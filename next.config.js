@@ -73,14 +73,9 @@ const nextConfig = {
         destination: 'https://toolslab.dev/:path*',
         permanent: true, // 301 redirect
       },
-      // Old sitemap URLs to new static sitemap (CPU optimization)
+      // Sitemap index legacy redirect
       {
         source: '/sitemap-index.xml',
-        destination: '/sitemap.xml',
-        permanent: true,
-      },
-      {
-        source: '/sitemap-:locale.xml',
         destination: '/sitemap.xml',
         permanent: true,
       },
