@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://toolslab.dev/sitemap-en.xml</loc>
+    <lastmod>2026-02-17</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://toolslab.dev/sitemap-it.xml</loc>
+    <lastmod>2026-02-17</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://toolslab.dev/sitemap-es.xml</loc>
+    <lastmod>2026-02-17</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://toolslab.dev/sitemap-fr.xml</loc>
+    <lastmod>2026-02-17</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://toolslab.dev/sitemap-de.xml</loc>
+    <lastmod>2026-02-17</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://toolslab.dev/sitemap-pt.xml</loc>
+    <lastmod>2026-02-17</lastmod>
+  </sitemap>
+</sitemapindex>
