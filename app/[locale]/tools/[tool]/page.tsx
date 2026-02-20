@@ -5,13 +5,14 @@ import ToolPageClient from '@/components/tools/ToolPageClient';
 import { tools, getToolById, categories } from '@/lib/tools';
 import { generateToolSchema } from '@/lib/tool-schema';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
+import { loadToolTranslation } from '@/lib/i18n/load-tools';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
 
-// ISR: Revalidate tool pages every 24 hours (86400 seconds)
-// Tools don't change frequently, so aggressive caching is safe
-export const revalidate = 86400;
+// Static: pages are fully static at build time and served from CDN
+// No ISR needed — tool content never changes between deploys
+export const revalidate = false;
 
 // Force static generation at build time for all tools
 export const dynamicParams = false;
@@ -202,11 +203,27 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
-  const toolSchema = await generateToolSchema(toolId);
+  // Load base sections and tool translation in parallel (avoids loading all 59 tools)
+  const [baseDict, singleToolData, toolSchema] = await Promise.all([
+    getDictionary(locale as Locale, [
+      'common',
+      'home',
+      'categories',
+      'footer',
+      'seo',
+      'lab',
+    ]),
+    loadToolTranslation(locale as Locale, toolId),
+    generateToolSchema(toolId),
+  ]);
 
-  // Extract tool-specific translations from granular JSON files
-  const toolData = dict.tools?.[toolId] as any;
+  const dict = {
+    ...baseDict,
+    tools: { [toolId]: singleToolData },
+  };
+
+  // Extract tool-specific translations
+  const toolData = singleToolData as any;
 
   const toolTranslations = {
     title: toolData?.title || tool.name,
