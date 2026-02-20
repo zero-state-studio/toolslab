@@ -8,9 +8,9 @@ import { loadToolTranslation } from '@/lib/i18n/load-tools';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
-// ISR: Revalidate tool pages every 24 hours (86400 seconds)
-// Tools don't change frequently, so aggressive caching is safe
-export const revalidate = 86400;
+// Static: pages are fully static at build time and served from CDN
+// No ISR needed — tool content never changes between deploys
+export const revalidate = false;
 
 // Force static generation at build time for all tools
 export const dynamicParams = false;
@@ -154,12 +154,27 @@ export default async function ToolPage({ params }: ToolPageProps) {
     notFound();
   }
 
-  // Load English dictionary and translations (default locale)
-  const dict = await getDictionary('en');
-  const structuredData = await generateToolSchema(params.tool);
+  // Load base sections and tool translation in parallel (avoids loading all 59 tools)
+  const [baseDict, singleToolData, structuredData] = await Promise.all([
+    getDictionary('en', [
+      'common',
+      'home',
+      'categories',
+      'footer',
+      'seo',
+      'lab',
+    ]),
+    loadToolTranslation('en', params.tool),
+    generateToolSchema(params.tool),
+  ]);
 
-  // Extract tool-specific translations from granular JSON files
-  const toolData = dict.tools?.[params.tool] as any;
+  const dict = {
+    ...baseDict,
+    tools: { [params.tool]: singleToolData },
+  };
+
+  // Extract tool-specific translations
+  const toolData = singleToolData as any;
 
   const toolTranslations = {
     title: toolData?.title || tool.name,
