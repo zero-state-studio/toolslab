@@ -21,12 +21,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://toolslab.dev/blog</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://toolslab.dev/lab</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>monthly</changefreq>
@@ -111,68 +105,6 @@
     <lastmod>2026-02-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-  </url>
-
-  <!-- Blog Posts -->
-  <url>
-    <loc>https://toolslab.dev/blog/json-formatting-complete-guide</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/blog/base64-encoding-explained</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/blog/json-vs-xml-vs-yaml</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/blog/api-testing-best-practices</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/blog/password-security-guide</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/blog/regex-patterns-guide</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/blog/sql-formatting-standards</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/blog/color-theory-for-developers</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/blog/url-encoding-decoding-guide</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/blog/10-essential-developer-tools</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 
   <!-- Tool Pages — priority 0.9: searchVolume >= 50000 -->
