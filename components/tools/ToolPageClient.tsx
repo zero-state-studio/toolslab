@@ -13,7 +13,11 @@ import {
   getCategoryColorClass,
 } from '@/lib/tools';
 import ToolWorkspace from './ToolWorkspace';
-import { trackEngagement, trackToolUse } from '@/lib/analytics';
+import {
+  trackEngagement,
+  trackToolUse,
+  trackConversion,
+} from '@/lib/analytics';
 import {
   ChevronRight,
   Share2,
@@ -330,6 +334,30 @@ export default function ToolPageClient({
           {/* Sidebar (Desktop Only) - Narrower */}
           {!isMobile && (
             <div className="space-y-4 lg:col-span-3">
+              {/* Support / Donation Box */}
+              <a
+                href="https://buymeacoffee.com/toolslab"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackConversion('donation', 'tool-sidebar')}
+                className="group block rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 transition-all hover:border-amber-500/40 hover:bg-amber-500/10 dark:border-amber-500/20 dark:bg-amber-500/5"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl transition-transform duration-200 group-hover:scale-110">
+                    ☕
+                  </span>
+                  <div className="flex-1">
+                    <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">
+                      Enjoying ToolsLab?
+                    </p>
+                    <p className="text-xs text-amber-600/80 dark:text-amber-500/80">
+                      Share it or buy me a coffee to keep it free ☕
+                    </p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-amber-500/60 transition-colors group-hover:text-amber-500" />
+                </div>
+              </a>
+
               {/* Related Tools */}
               <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
                 <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
@@ -416,6 +444,30 @@ export default function ToolPageClient({
         {/* Mobile Related Tools */}
         {isMobile && (
           <div className="mt-8 sm:mt-12">
+            {/* Support / Donation Box */}
+            <a
+              href="https://buymeacoffee.com/toolslab"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackConversion('donation', 'tool-sidebar')}
+              className="group mb-6 block rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 transition-all hover:border-amber-500/40 hover:bg-amber-500/10 dark:border-amber-500/20 dark:bg-amber-500/5"
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-2xl transition-transform duration-200 group-hover:scale-110">
+                  ☕
+                </span>
+                <div className="flex-1">
+                  <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">
+                    Enjoying ToolsLab?
+                  </p>
+                  <p className="text-xs text-amber-600/80 dark:text-amber-500/80">
+                    Share it or buy me a coffee to keep it free ☕
+                  </p>
+                </div>
+                <ArrowRight className="h-4 w-4 text-amber-500/60 transition-colors group-hover:text-amber-500" />
+              </div>
+            </a>
+
             <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
               {t.relatedTools}
             </h3>
