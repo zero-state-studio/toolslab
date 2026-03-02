@@ -3,7 +3,7 @@
   "description": "Convert colors between HEX, RGB, HSL, HSV, and CMYK formats with palette generation",
   "placeholder": "Enter color (HEX, RGB, HSL, HSV, CMYK, or name)",
   "meta": {
-    "title": "Color Converter - HEX RGB HSL",
+    "title": "Color Converter - HEX, RGB, HSL & CMYK Free Online Tool",
     "description": "Convert colors between HEX, RGB, HSL, HSV, and CMYK formats. Generate palettes, check contrast ratios, and create tints and shades. Free tool for designers."
   },
   "tagline": "Convert colors between formats with palette generator and contrast checker",

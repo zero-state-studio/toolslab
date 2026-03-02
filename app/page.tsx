@@ -3,6 +3,8 @@ import HomePageContent from '@/components/layout/HomePageContent';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: 'ToolsLab - 50+ Free Developer Tools | JSON, Base64, JWT, UUID & More',
   description:

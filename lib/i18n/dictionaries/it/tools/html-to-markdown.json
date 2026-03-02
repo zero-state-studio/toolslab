@@ -1,0 +1,84 @@
+{
+  "title": "Convertitore HTML → Markdown",
+  "description": "Converti HTML in Markdown pulito o Markdown in HTML con supporto GFM",
+  "placeholder": "Incolla qui HTML o Markdown...",
+  "instructions": {
+    "title": "Come usare il Convertitore HTML → Markdown",
+    "steps": [
+      {
+        "title": "Seleziona la modalità di conversione",
+        "description": "Scegli 'HTML → Markdown' per convertire codice HTML in sintassi Markdown pulita, oppure 'Markdown → HTML' per renderizzare Markdown come HTML formattato."
+      },
+      {
+        "title": "Incolla il tuo input",
+        "description": "Incolla markup HTML o testo Markdown nell'area di input. La conversione avviene automaticamente mentre scrivi, senza bisogno di premere alcun bottone."
+      },
+      {
+        "title": "Configura le opzioni (modalità HTML → MD)",
+        "description": "Clicca su 'Opzioni' per personalizzare lo stile dei titoli (ATX # o Setext con sottolineatura), il marcatore degli elenchi (-, *, +), lo stile dei blocchi codice (con backtick o indentato) e il separatore orizzontale."
+      },
+      {
+        "title": "Copia o scambia il risultato",
+        "description": "Clicca su 'Copia output' per copiare il testo convertito negli appunti. Usa 'Scambia' per invertire input e output e cambiare automaticamente la direzione di conversione."
+      }
+    ],
+    "features": [
+      "Conversione HTML → Markdown in tempo reale",
+      "Rendering Markdown → HTML in tempo reale",
+      "Supporto GFM (GitHub Flavored Markdown)",
+      "Conversione tabelle con sintassi GFM completa",
+      "Supporto blocchi codice e codice inline",
+      "Stile titoli configurabile (ATX / Setext)",
+      "Marcatore elenco puntato configurabile (-, *, +)",
+      "Stile blocchi codice con backtick o indentato",
+      "Bottone Scambia per invertire la direzione",
+      "Anteprima HTML per output Markdown",
+      "Statistiche caratteri e righe",
+      "100% nel browser, nessun upload su server"
+    ],
+    "useCases": [
+      "Convertire articoli del blog da HTML CMS a Markdown per siti statici",
+      "Riportare anteprime HTML di README GitHub in Markdown modificabile",
+      "Migrare contenuti da WordPress o Drupal a piattaforme Markdown",
+      "Convertire documentazione da HTML a Markdown per il controllo versione",
+      "Generare anteprime Markdown per strumenti di documentazione",
+      "Preparare template email HTML come bozze Markdown",
+      "Convertire tabelle HTML in sintassi GFM",
+      "Pulire HTML copiato da editor WYSIWYG"
+    ],
+    "proTips": [
+      "Usa lo stile ATX (# H1) per migliore compatibilità con GitHub e la maggior parte dei parser Markdown",
+      "Attiva 'Anteprima' nella modalità Markdown → HTML per vedere l'output renderizzato prima di copiare",
+      "Il bottone 'Scambia' cambia automaticamente la direzione — incolla HTML, converti, poi scambia per modificare il Markdown",
+      "I blocchi codice con backtick (```) sono più portabili di quelli indentati tra le varie piattaforme",
+      "Le tabelle GFM richiedono una struttura | colonna | corretta — se il tuo HTML ha colspan, verrà semplificato"
+    ],
+    "troubleshooting": [
+      "Se l'HTML con stili inline converte male, rimuovi prima gli stili — Turndown ignora la maggior parte del CSS",
+      "Gli elenchi HTML molto annidati potrebbero non convertirsi perfettamente — semplifica la struttura se necessario",
+      "HTML con JavaScript o attributi complessi verrà rimosso — solo i tag semantici vengono convertiti",
+      "Se le tabelle Markdown appaiono disallineate, assicurati che la tabella HTML abbia una struttura thead/tbody corretta",
+      "Input molto grandi possono richiedere un momento — elabora a pezzi se le prestazioni sono un problema"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia risultato"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleziona tutto"
+      }
+    ]
+  },
+  "meta": {
+    "title": "Convertitore HTML Markdown - Strumento GFM Gratuito Online",
+    "description": "Converti HTML in Markdown pulito o Markdown in HTML online. Supporta tabelle GFM, blocchi codice, link e immagini. Convertitore HTML↔Markdown gratuito nel browser."
+  },
+  "tagline": "Converti HTML in Markdown e viceversa con pieno supporto GFM",
+  "pageDescription": "Converti markup HTML in sintassi Markdown pulita o renderizza Markdown come HTML con supporto GFM (GitHub Flavored Markdown). Perfetto per sviluppatori che migrano contenuti tra CMS basati su HTML e piattaforme Markdown come GitHub, GitLab o Notion. Supporta tabelle, blocchi codice, strikethrough, liste attività, link, immagini e tutti gli elementi HTML standard. Completamente nel browser con opzioni di output configurabili — nessun account richiesto."
+}

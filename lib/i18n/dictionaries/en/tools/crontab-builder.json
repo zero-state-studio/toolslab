@@ -1,9 +1,9 @@
 {
   "title": "Crontab Expression Builder",
   "description": "Parse, build and validate cron expressions with visual builder, presets and next execution times",
-  "placeholder": "",
+  "placeholder": "Configure your cron schedule...",
   "meta": {
-    "title": "Crontab Builder - Free Online Tool",
+    "title": "Crontab Builder - Free Cron Job Scheduler & Editor Online",
     "description": "Build and validate cron expressions with a visual editor. Generate crontab schedules with human-readable descriptions and next run times. Free cron builder."
   },
   "tagline": "Build and parse cron expressions with visual interface",

@@ -1506,6 +1506,33 @@ export const tools: Tool[] = [
     searchVolume: 8500,
     label: '',
   },
+  {
+    id: 'html-to-markdown',
+    name: 'HTML to Markdown',
+    description:
+      'Convert HTML to Markdown or Markdown to HTML with GFM table and code block support',
+    icon: '🔄',
+    route: '/tools/html-to-markdown',
+    categories: ['text', 'formatters'],
+    keywords: [
+      'html',
+      'markdown',
+      'convert',
+      'md',
+      'gfm',
+      'github',
+      'turndown',
+      'marked',
+      'table',
+      'code',
+      'html to markdown',
+      'markdown to html',
+      'html converter',
+      'markdown converter',
+    ],
+    searchVolume: 9000,
+    label: '',
+  },
 ];
 
 // Group tools by category

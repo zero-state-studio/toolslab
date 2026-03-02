@@ -1,12 +1,14 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { locales, type Locale, localeToOGLocale } from '@/lib/i18n/config';
 import {
   getLocalizedPath,
   generateHreflangAlternates,
 } from '@/lib/i18n/helpers';
 import { LocaleLabPageClient } from './LocaleLabPageClient';
+
+export const revalidate = false;
 
 interface LocaleLabPageProps {
   params: {
@@ -73,6 +75,7 @@ export async function generateMetadata({
           ? 'Costruisci il tuo toolkit personalizzato per sviluppatori contrassegnando i tuoi strumenti più usati. Completamente privato con localStorage - nessun account necessario.'
           : 'Build your personalized developer toolkit by starring your most-used tools. Completely private with localStorage - no account needed.',
       type: 'website',
+      locale: localeToOGLocale[locale as Locale],
       url: `https://toolslab.dev${getLocalizedPath('/lab', locale as Locale)}`,
     },
     twitter: {

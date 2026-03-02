@@ -27,6 +27,16 @@ export const localeFlags: Record<Locale, string> = {
   pt: '🇵🇹',
 };
 
+// OpenGraph locale codes for social media metadata
+export const localeToOGLocale: Record<Locale, string> = {
+  en: 'en_US',
+  it: 'it_IT',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  de: 'de_DE',
+  pt: 'pt_PT',
+};
+
 // Future locales (ready to add)
 // When adding a new locale:
 // 1. Add to Locale type

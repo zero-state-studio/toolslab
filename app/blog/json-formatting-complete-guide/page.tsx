@@ -17,6 +17,8 @@ import { TOCItem, FAQItem } from '@/lib/blog/types';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import styles from './page.module.css';
 
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: 'JSON Formatting: The Complete Developer Guide | ToolsLab Blog',
   description:

@@ -9,6 +9,8 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: 'Terms of Service - ToolsLab | Free Developer Tools',
   description:

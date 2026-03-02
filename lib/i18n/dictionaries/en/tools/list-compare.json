@@ -1,9 +1,9 @@
 {
   "title": "List Compare",
   "description": "Compare multiple lists to find differences, intersections, and unions with advanced operations",
-  "placeholder": "",
+  "placeholder": "Enter your first list here...",
   "meta": {
-    "title": "List Compare - Free Online Comparison",
+    "title": "List Compare Tool - Find Differences Between Two Lists",
     "description": "Compare two lists online to find differences, intersections, unions, and unique items. Sort, deduplicate, and export results. Free list comparison tool."
   },
   "tagline": "Compare multiple lists with advanced diff and set operations",

@@ -1,9 +1,9 @@
 {
   "title": "JSON to TypeScript",
   "description": "Convert JSON to TypeScript interfaces",
-  "placeholder": "",
+  "placeholder": "Paste JSON data to generate TypeScript interfaces...",
   "meta": {
-    "title": "JSON to TypeScript - Free Online Tool",
+    "title": "JSON to TypeScript Interface Generator - Free Online Tool",
     "description": "Generate TypeScript interfaces from JSON data online. Support for nested objects, arrays, optional fields, and union types. Free JSON to TS converter."
   },
   "tagline": "Generate TypeScript interfaces from JSON with smart type inference",

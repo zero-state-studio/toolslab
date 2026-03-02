@@ -1,9 +1,9 @@
 {
   "title": "cURL to Code Converter",
   "description": "Convert cURL commands to code in various programming languages",
-  "placeholder": "",
+  "placeholder": "Paste your cURL command here...",
   "meta": {
-    "title": "cURL to Code Converter - Free Online Tool",
+    "title": "cURL to Python, JavaScript, Go Converter - Free Online Tool",
     "description": "Convert cURL commands to Python, JavaScript, Go, PHP, and more languages. Generate ready-to-use HTTP request code snippets. Free online cURL converter tool."
   },
   "tagline": "Convert cURL commands to production-ready code in any programming language",

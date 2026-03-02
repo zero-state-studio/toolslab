@@ -4,12 +4,14 @@ import { Suspense } from 'react';
 import { categories } from '@/lib/tools';
 import { getCategorySEO } from '@/lib/category-seo';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { locales, type Locale, localeToOGLocale } from '@/lib/i18n/config';
 import {
   getLocalizedPath,
   generateHreflangAlternates,
 } from '@/lib/i18n/helpers';
 import LocaleCategoryPageContent from '@/components/layout/LocaleCategoryPageContent';
+
+export const revalidate = false;
 
 interface LocaleCategoryPageProps {
   params: {
@@ -85,6 +87,7 @@ export async function generateMetadata({
       title: `${categoryDict?.name || category.name} - ToolsLab`,
       description,
       type: 'website',
+      locale: localeToOGLocale[locale as Locale],
       url: `https://toolslab.dev${getLocalizedPath(`/category/${categoryId}`, locale as Locale)}`,
     },
     twitter: {

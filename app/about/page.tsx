@@ -4,6 +4,8 @@ import { NewAboutPage } from '@/components/about/NewAboutPage';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: 'About ToolsLab - The Story of Your Developer Toolbox',
   description:

@@ -1,9 +1,9 @@
 {
   "title": "Favicon Generator",
   "description": "Generate favicons for websites in various formats",
-  "placeholder": "",
+  "placeholder": "Upload image or enter text for favicon...",
   "meta": {
-    "title": "Favicon Generator - Free Online Tool",
+    "title": "Favicon Generator - Create ICO & PNG Favicons Free Online",
     "description": "Create favicons for your website in all required formats and sizes. Generate ICO, PNG, SVG favicons from any image. Free online generator with live preview."
   },
   "tagline": "Generate complete favicon packages for all devices",

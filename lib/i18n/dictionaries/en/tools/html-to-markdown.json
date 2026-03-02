@@ -1,0 +1,84 @@
+{
+  "title": "HTML to Markdown Converter",
+  "description": "Convert HTML to clean Markdown or render Markdown to HTML with GFM support",
+  "placeholder": "Paste HTML or Markdown here...",
+  "instructions": {
+    "title": "How to use HTML to Markdown Converter",
+    "steps": [
+      {
+        "title": "Select conversion mode",
+        "description": "Choose 'HTML → Markdown' to convert HTML code into clean Markdown syntax, or 'Markdown → HTML' to render Markdown as formatted HTML output."
+      },
+      {
+        "title": "Paste your input",
+        "description": "Paste HTML markup or Markdown text into the input area. Conversion happens automatically as you type, with no button needed."
+      },
+      {
+        "title": "Configure options (HTML → MD mode)",
+        "description": "Click 'Options' to customize heading style (ATX # or Setext underline), bullet marker (-, *, +), code block style (fenced ``` or indented), and horizontal rule character."
+      },
+      {
+        "title": "Copy or swap the result",
+        "description": "Click 'Copy Output' to copy the converted text to clipboard. Use 'Swap' to flip input and output and reverse the conversion direction automatically."
+      }
+    ],
+    "features": [
+      "Real-time HTML to Markdown conversion",
+      "Real-time Markdown to HTML rendering",
+      "GFM (GitHub Flavored Markdown) support",
+      "Table conversion with full GFM syntax",
+      "Code block and inline code support",
+      "Configurable heading style (ATX / Setext)",
+      "Configurable bullet list marker (-, *, +)",
+      "Fenced or indented code block style",
+      "Swap button to reverse conversion direction",
+      "HTML preview for Markdown output",
+      "Character and line count stats",
+      "100% browser-based, no server uploads"
+    ],
+    "useCases": [
+      "Convert blog posts from HTML CMS to Markdown for static sites",
+      "Turn GitHub README HTML previews back into editable Markdown",
+      "Migrate content from WordPress or Drupal to Markdown-based platforms",
+      "Convert documentation from HTML to Markdown for version control",
+      "Render Markdown previews for documentation tools",
+      "Prepare HTML email templates as Markdown drafts",
+      "Convert HTML tables to GFM Markdown table syntax",
+      "Clean up copy-pasted HTML from WYSIWYG editors"
+    ],
+    "proTips": [
+      "Use ATX heading style (# H1) for better compatibility with GitHub and most Markdown parsers",
+      "Enable 'Preview' in Markdown → HTML mode to see the rendered output before copying",
+      "The 'Swap' button automatically switches the conversion direction — paste HTML, convert, then swap to edit Markdown",
+      "Fenced code blocks (```) are more portable than indented code blocks across platforms",
+      "GFM tables require proper | column | alignment — if your HTML table has colspan, it will be simplified"
+    ],
+    "troubleshooting": [
+      "If HTML with inline styles converts poorly, strip styles first — Turndown ignores most CSS",
+      "Deeply nested HTML lists may not convert perfectly — simplify the structure if needed",
+      "HTML with JavaScript or complex attributes will be stripped — only semantic tags are converted",
+      "If Markdown tables appear misaligned, ensure your HTML table has proper thead/tbody structure",
+      "Very large inputs may take a moment — process in chunks if performance is a concern"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy result"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Select all"
+      }
+    ]
+  },
+  "meta": {
+    "title": "HTML to Markdown Converter - Free Online GFM Tool",
+    "description": "Convert HTML to clean Markdown or Markdown to HTML online. Supports GFM tables, code blocks, links, and images. Free, browser-based HTML↔Markdown converter."
+  },
+  "tagline": "Convert HTML to Markdown and back with full GFM support",
+  "pageDescription": "Convert HTML markup to clean Markdown syntax or render Markdown as HTML with GFM (GitHub Flavored Markdown) support. Perfect for developers migrating content between HTML-based CMSes and Markdown platforms like GitHub, GitLab, or Notion. Supports tables, fenced code blocks, strikethrough, task lists, links, images, and all standard HTML elements. Fully browser-based with configurable output options — no account or signup required."
+}

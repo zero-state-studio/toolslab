@@ -9,7 +9,13 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
-import { Locale } from '@/lib/i18n/config';
+import { Locale, locales } from '@/lib/i18n/config';
+
+export const revalidate = false;
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 type Props = {
   params: { locale: Locale };

@@ -1,9 +1,9 @@
 {
-  "title": "Base64 Decoder",
-  "description": "Decode Base64 strings to text or binary data",
-  "placeholder": "Enter Base64 string to decode...",
+  "title": "Base64 Encoder & Decoder",
+  "description": "Encode text or files to Base64, or decode Base64 strings to text and binary data",
+  "placeholder": "Enter text to encode, or Base64 string to decode...",
   "instructions": {
-    "title": "How to use Base64 Decoder",
+    "title": "How to use Base64 Encoder & Decoder",
     "steps": [
       {
         "title": "Paste your Base64 string or file",
@@ -77,7 +77,7 @@
     ]
   },
   "meta": {
-    "title": "Base64 Decoder - Free Online Tool",
+    "title": "Base64 Encoder Decoder - Free Online Tool for Text & Files",
     "description": "Encode text to Base64 or decode Base64 strings to plain text online. Support for files, UTF-8, and binary data. Free, secure Base64 encoder and decoder."
   },
   "tagline": "Encode and decode Base64 files and text instantly",

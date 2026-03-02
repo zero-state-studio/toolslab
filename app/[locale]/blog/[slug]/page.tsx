@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { Locale, locales } from '@/lib/i18n/config';
+import { Locale, locales, localeToOGLocale } from '@/lib/i18n/config';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { getArticle } from '@/lib/blog/get-article';
 import { ACTIVE_ARTICLE_SLUGS } from '@/lib/blog/active-articles';
@@ -16,6 +16,8 @@ import { AlertCircle } from 'lucide-react';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
 import styles from './page.module.css';
+
+export const revalidate = false;
 
 interface ArticlePageProps {
   params: {
@@ -47,6 +49,7 @@ export async function generateMetadata({
       title: article.seo.metaTitle,
       description: article.seo.metaDescription,
       type: 'article',
+      locale: localeToOGLocale[locale as Locale],
       url,
       publishedTime: article.publishDate,
       modifiedTime: article.modifiedDate || article.publishDate,

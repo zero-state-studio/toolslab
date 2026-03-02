@@ -2,11 +2,13 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import CategoriesHubContentSimple from '@/components/layout/CategoriesHubContentSimple';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { locales, type Locale, localeToOGLocale } from '@/lib/i18n/config';
 import {
   getLocalizedPath,
   generateHreflangAlternates,
 } from '@/lib/i18n/helpers';
+
+export const revalidate = false;
 
 interface LocaleCategoriesPageProps {
   params: {
@@ -47,6 +49,7 @@ export async function generateMetadata({
       title,
       description,
       type: 'website',
+      locale: localeToOGLocale[locale as Locale],
       url: `https://toolslab.dev${getLocalizedPath('/categories', locale as Locale)}`,
     },
     twitter: {

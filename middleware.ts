@@ -261,7 +261,6 @@ export const config = {
     '/blog/:path*',
     '/privacy',
     '/terms',
-    '/download',
     '/coming-soon',
     '/maintenance',
     // Localized routes (covers all localized pages)

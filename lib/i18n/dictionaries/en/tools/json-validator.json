@@ -1,9 +1,9 @@
 {
   "title": "JSON Validator",
   "description": "Validate JSON syntax and structure",
-  "placeholder": "",
+  "placeholder": "Paste JSON to validate...",
   "meta": {
-    "title": "JSON Validator - Free Online Tool",
+    "title": "JSON Validator - Syntax Checker & Schema Validator Free",
     "description": "Validate JSON syntax and structure online with detailed error messages and line numbers. Debug malformed JSON quickly. Free, instant JSON validator tool."
   },
   "tagline": "Validate JSON with advanced schema support and error detection",

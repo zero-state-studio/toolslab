@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Shield, Heart, Lock, Monitor, Globe, Coffee } from 'lucide-react';
 
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: 'Privacy Policy - ToolsLab | Your Data Stays Yours',
   description:
