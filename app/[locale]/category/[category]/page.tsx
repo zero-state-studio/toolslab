@@ -11,6 +11,8 @@ import {
 } from '@/lib/i18n/helpers';
 import LocaleCategoryPageContent from '@/components/layout/LocaleCategoryPageContent';
 
+export const revalidate = false;
+
 interface LocaleCategoryPageProps {
   params: {
     locale: string;

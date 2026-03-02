@@ -8,6 +8,8 @@ import { getLocalizedPath } from '@/lib/i18n/helpers';
 import { NewAboutPage } from '@/components/about/NewAboutPage';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
+export const revalidate = false;
+
 interface LocaleAboutPageProps {
   params: {
     locale: string;

@@ -3,79 +3,81 @@
   "description": "Converta strings Base64 em arquivos PDF",
   "placeholder": "",
   "meta": {
-    "title": "Base64 para PDF - Ferramenta Online Gratuita",
-    "description": "Converta strings Base64 em arquivos PDF online. Decodifique Base64 e baixe como documento PDF instantaneamente. Ferramenta gratuita com pré-visualização."
+    "title": "Conversor Base64 para PDF - Decodificador Online Gratuito",
+    "description": "Conversor Base64 para PDF gratuito. Cole uma string Base64 ou data URI e baixe o PDF decodificado instantaneamente. 100% no navegador, sem upload de arquivo."
   },
-  "tagline": "Converta dados Base64 em arquivos PDF instantaneamente",
-  "pageDescription": "Converta dados codificados em Base64 para arquivos PDF com download instantâneo. Perfeito para desenvolvedores trabalhando com APIs de documentos, anexos de e-mail e fluxos de trabalho de processamento de dados. Conversão segura baseada em navegador sem uploads para servidor. Valide entrada Base64, visualize metadados PDF e baixe arquivos convertidos diretamente para seu dispositivo.",
+  "tagline": "Decodifique strings Base64 e baixe arquivos PDF instantaneamente — sem upload necessário",
+  "pageDescription": "Converta qualquer string Base64 em um arquivo PDF diretamente no navegador — sem upload para servidor, sem cadastro. Cole dados Base64 brutos ou um data URI (data:application/pdf;base64,...) e baixe o PDF decodificado em um clique. Ideal para desenvolvedores que depuram respostas de API REST com PDFs em Base64, gerenciam anexos de e-mail codificados em Base64, testam pipelines de geração de documentos e inspecionam arquivos PDF de exportações de dados. Valida o padding Base64 automaticamente, detecta entradas malformadas e exibe uma prévia completa do documento antes do download.",
   "instructions": {
-    "title": "Como usar o Conversor Base64 para PDF",
+    "title": "Como usar Base64 para PDF",
     "steps": [
       {
         "title": "Cole sua string Base64",
-        "description": "Copie e cole seus dados PDF codificados em Base64 na área de entrada. A ferramenta detecta automaticamente prefixos de URL de dados."
+        "description": "Copie a string PDF codificada em Base64 da resposta da sua API, cliente de e-mail ou outra fonte e cole-a no campo de entrada. Você pode colar Base64 bruto ou um data URI completo começando com data:application/pdf;base64,"
       },
       {
-        "title": "Valide o formato Base64",
-        "description": "A ferramenta valida automaticamente sua entrada Base64 e verifica cabeçalhos PDF válidos."
+        "title": "Valide a entrada Base64",
+        "description": "A ferramenta verifica automaticamente se a string é Base64 válido e contém um PDF decodificável. Se caracteres de preenchimento (=) estiverem faltando ou houver caracteres inválidos, uma mensagem de erro irá guiá-lo na correção."
       },
       {
-        "title": "Defina nome de arquivo personalizado (opcional)",
-        "description": "Personalize o nome do arquivo PDF de saída conforme necessário."
+        "title": "Prévia do PDF decodificado",
+        "description": "Após a validação, clique em Converter para PDF. A ferramenta decodifica a string e exibe uma prévia completa do PDF usando o visualizador integrado do navegador. Verifique se o documento está correto antes de baixá-lo."
       },
       {
-        "title": "Converta",
-        "description": "Clique em 'Converter para PDF' para processar os dados. Metadados do PDF serão exibidos se disponíveis."
-      },
-      {
-        "title": "Baixe seu PDF",
-        "description": "Clique em 'Baixar PDF' para salvar o documento convertido em seu dispositivo."
+        "title": "Baixe o arquivo PDF",
+        "description": "Clique em Baixar PDF para salvar o arquivo decodificado no seu dispositivo. O nome do arquivo é gerado automaticamente com a data de hoje (document_AAAA-MM-DD.pdf) ou você pode definir um nome personalizado antes da conversão. Nenhum dado é enviado a servidores externos."
       }
     ],
     "features": [
-      "Validação Base64 em tempo real",
-      "Validação de cabeçalho PDF",
-      "Extração de metadados do documento",
-      "Remoção automática de prefixo de URL de dados",
-      "Suporte a nome de arquivo personalizado",
-      "Estimativa de tamanho de arquivo",
-      "Processamento completamente seguro",
-      "Sem uploads para servidor",
-      "Funciona offline",
-      "Download direto para dispositivo"
+      "Decodifica strings Base64 brutas e data URIs (data:application/pdf;base64,...)",
+      "Validação automática de padding Base64 e detecção de erros",
+      "Prévia completa do PDF via visualizador do navegador após a conversão",
+      "Sem upload de arquivo — conversão 100% no lado do cliente",
+      "Suporta strings Base64 grandes de REST APIs e pipelines de dados",
+      "Nome de arquivo personalizável com timestamp de data automático",
+      "Funciona offline após o primeiro carregamento da página",
+      "Sem cadastro ou conta necessários"
     ],
     "useCases": [
-      "Converter PDFs de respostas de API",
-      "Extrair documentos PDF de dados JSON/XML",
-      "Processar anexos PDF de APIs de e-mail",
-      "Recuperar PDFs de backups Base64",
-      "Depurar dados de documento em desenvolvimento",
-      "Converter PDFs de URL de dados para arquivos",
-      "Processar faturas ou relatórios de sistemas",
-      "Extrair documentos de automação de testes"
+      "Decodificação de arquivos PDF retornados como Base64 por REST APIs ou endpoints GraphQL",
+      "Recuperação de anexos PDF de dados de e-mail brutos (codificados MIME/Base64)",
+      "Teste e depuração de serviços de geração de documentos que retornam Base64",
+      "Conversão de exportações de PDF Base64 de bancos de dados ou pipelines de dados",
+      "Inspeção de arquivos PDF incorporados em respostas JSON",
+      "Verificação de relatórios codificados em Base64 de serviços de terceiros",
+      "Decodificação de arquivos PDF de data URIs em HTML ou CSS",
+      "Prévia rápida de um PDF antes de integrá-lo em uma aplicação"
     ],
     "proTips": [
-      "Dados PDF Base64 começam com 'JVBERi0' quando codificados",
-      "A ferramenta remove automaticamente prefixos de URL de dados",
-      "PDFs podem conter texto, imagens e gráficos vetoriais",
-      "Verifique o tamanho do arquivo antes de processar PDFs grandes",
-      "Use visualizador PDF separado para conteúdo completo do documento"
+      "Se sua string começa com data:application/pdf;base64, cole-a como está — a ferramenta remove o cabeçalho automaticamente",
+      "O padding = faltante no final da string é a causa mais comum de erros de decodificação — adicione um ou dois = no final para corrigir",
+      "Para strings Base64 muito grandes (acima de 5MB), cole em partes para verificar qual segmento está corrompido",
+      "Use o console do navegador (F12) para copiar strings Base64 diretamente das respostas de API",
+      "Se a prévia do PDF aparecer em branco ou exibir um pedido de senha, o arquivo original pode estar protegido por senha ou foi corrompido antes da codificação"
     ],
     "troubleshooting": [
-      "Erro de Base64 inválido: Verifique caracteres Base64 válidos",
-      "Nenhum cabeçalho PDF encontrado: Dados podem não ser PDF válido",
-      "Arquivo não abre: PDF pode estar corrompido na fonte",
-      "Problemas de memória: Tente PDFs menores",
-      "Download falha: Verifique permissões do navegador"
+      "Caracteres Base64 inválidos: remova espaços, quebras de linha ou caracteres que não sejam Base64 da sua string",
+      "Erro de padding faltante: adicione um ou dois caracteres = ao final da string até o erro desaparecer",
+      "PDF em branco ou corrompido após o download: o arquivo original provavelmente estava corrompido antes de ser codificado — verifique a fonte",
+      "Data URI não reconhecido: certifique-se de que o formato inclua um separador de vírgula (ex. data:application/pdf;base64,...) — qualquer tipo MIME é suportado desde que o payload Base64 siga a vírgula",
+      "Processamento muito lento: strings Base64 acima de 10MB podem levar alguns segundos — é normal para arquivos PDF grandes"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Colar entrada Base64"
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Converter para PDF"
       },
       {
         "keys": "Ctrl+C",
         "description": "Copiar nome do arquivo"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar PDF"
       }
     ]
   }

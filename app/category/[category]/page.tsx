@@ -6,6 +6,8 @@ import CategoryPageContent from '@/components/layout/CategoryPageContent';
 import { getCategorySEO } from '@/lib/category-seo';
 import { generateHreflangAlternates } from '@/lib/i18n/helpers';
 
+export const revalidate = false;
+
 interface Props {
   params: { category: string };
 }

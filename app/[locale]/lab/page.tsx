@@ -8,6 +8,8 @@ import {
 } from '@/lib/i18n/helpers';
 import { LocaleLabPageClient } from './LocaleLabPageClient';
 
+export const revalidate = false;
+
 interface LocaleLabPageProps {
   params: {
     locale: string;

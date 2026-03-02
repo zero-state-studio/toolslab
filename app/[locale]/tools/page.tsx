@@ -10,6 +10,8 @@ import {
 } from '@/lib/i18n/helpers';
 import ToolsHubContent from '@/components/tools/ToolsHubContent';
 
+export const revalidate = false;
+
 interface LocaleToolsPageProps {
   params: {
     locale: string;

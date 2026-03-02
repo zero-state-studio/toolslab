@@ -85,22 +85,22 @@ const nextConfig = {
   // Headers personalizzati
   async headers() {
     return [
-      // Tool pages - 24h CDN cache (aligned with ISR revalidate)
-      // After 24h: stale-while-revalidate serves old content while fetching new
+      // Tool pages - fully static (SSG), long CDN cache
+      // Vercel invalidates CDN on each deploy, so 1-year cache is safe
       {
         source: '/tools/:tool',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, s-maxage=86400, stale-while-revalidate=3600',
+            value: 'public, s-maxage=31536000, stale-while-revalidate=86400',
           },
           {
             key: 'CDN-Cache-Control',
-            value: 'public, max-age=86400',
+            value: 'public, max-age=31536000',
           },
           {
             key: 'Cloudflare-CDN-Cache-Control',
-            value: 'max-age=86400',
+            value: 'max-age=31536000',
           },
         ],
       },
@@ -110,15 +110,15 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, s-maxage=86400, stale-while-revalidate=3600',
+            value: 'public, s-maxage=31536000, stale-while-revalidate=86400',
           },
           {
             key: 'CDN-Cache-Control',
-            value: 'public, max-age=86400',
+            value: 'public, max-age=31536000',
           },
           {
             key: 'Cloudflare-CDN-Cache-Control',
-            value: 'max-age=86400',
+            value: 'max-age=31536000',
           },
         ],
       },

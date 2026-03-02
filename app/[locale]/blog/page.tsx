@@ -7,6 +7,8 @@ import { ArticleCard } from '@/components/blog/ArticleCard';
 import { FeaturedArticleCard } from '@/components/blog/FeaturedArticleCard';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
+export const revalidate = false;
+
 interface BlogPageProps {
   params: {
     locale: Locale;

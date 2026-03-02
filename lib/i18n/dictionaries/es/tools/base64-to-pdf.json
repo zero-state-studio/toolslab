@@ -1,67 +1,66 @@
 {
   "title": "Base64 a PDF",
   "description": "Convierte cadenas Base64 en archivos PDF",
-  "placeholder": "Pega la cadena Base64...",
+  "placeholder": "",
   "meta": {
-    "title": "Base64 a PDF - Herramienta Online Gratuita",
-    "description": "Convierta cadenas Base64 en archivos PDF online. Decodifique datos Base64 y descargue como PDF. Herramienta gratuita con procesamiento seguro en el navegador."
+    "title": "Convertidor Base64 a PDF - Decodificador Online Gratis",
+    "description": "Convertidor Base64 a PDF gratuito. Pega una cadena Base64 o un data URI y descarga el PDF decodificado al instante. 100% en el navegador, sin subida."
   },
-  "tagline": "Converti dati Base64 in file PDF istantaneamente",
-  "pageDescription": "Converti dati codificati Base64 in file PDF con download istantaneo. Perfetto per sviluppatori che lavorano con API documenti, allegati email e workflow elaborazione dati. Conversione sicura basata su browser senza caricamenti server. Valida input Base64, visualizza metadata PDF e scarica file convertiti direttamente sul tuo dispositivo.",
+  "tagline": "Decodifica cadenas Base64 y descarga archivos PDF al instante — sin subida requerida",
+  "pageDescription": "Convierte cualquier cadena Base64 en un archivo PDF directamente en tu navegador — sin subida al servidor, sin registro. Pega datos Base64 sin procesar o un data URI (data:application/pdf;base64,...) y descarga el PDF decodificado en un clic. Ideal para desarrolladores que depuran respuestas de API REST con PDF en Base64, gestionan adjuntos de correo codificados en Base64, prueban pipelines de generación de documentos e inspeccionan archivos PDF de exportaciones de datos. Valida el padding Base64 automáticamente, detecta entradas malformadas y muestra una vista previa completa del documento antes de la descarga.",
   "instructions": {
     "title": "Cómo usar Base64 a PDF",
     "steps": [
       {
         "title": "Pega tu cadena Base64",
-        "description": "Copia y pega tu cadena Base64 en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
+        "description": "Copia la cadena PDF codificada en Base64 de la respuesta de tu API, cliente de correo u otra fuente y pégala en el campo de entrada. Puedes pegar Base64 sin procesar o un data URI completo que comience con data:application/pdf;base64,"
       },
       {
-        "title": "Configura las opciones (si disponible)",
-        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
+        "title": "Valida la entrada Base64",
+        "description": "La herramienta verifica automáticamente que la cadena sea Base64 válido y contenga un PDF decodificable. Si faltan caracteres de relleno (=) o hay caracteres no válidos, un mensaje de error te guiará para corregirlo."
       },
       {
-        "title": "Examina la salida",
-        "description": "La herramienta procesará tu entrada y mostrará el resultado con formato y validación apropiados."
+        "title": "Vista previa del PDF decodificado",
+        "description": "Una vez validado, haz clic en Convertir a PDF. La herramienta decodifica la cadena y muestra una vista previa completa del PDF usando el visor integrado del navegador. Verifica que el documento sea correcto antes de descargarlo."
       },
       {
-        "title": "Copia o descarga el resultado",
-        "description": "Copia el resultado procesado al portapapeles para uso inmediato o descárgalo como archivo."
+        "title": "Descarga el archivo PDF",
+        "description": "Haz clic en Descargar PDF para guardar el archivo decodificado en tu dispositivo. El nombre del archivo se genera automáticamente con la fecha de hoy (document_AAAA-MM-DD.pdf) o puedes establecer uno personalizado antes de convertir. No se envían datos a ningún servidor."
       }
     ],
     "features": [
-      "Procesamiento en tiempo real con resultados instantáneos",
-      "Sin límite de tamaño para procesamiento basado en navegador",
-      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
-      "Sin carga de datos ni almacenamiento en servidor",
-      "Copiar al portapapeles con un clic",
-      "Descargar resultados como archivo",
-      "Validación de sintaxis y resaltado de errores",
-      "Funciona sin conexión después de la carga inicial"
+      "Decodifica cadenas Base64 sin procesar y data URIs (data:application/pdf;base64,...)",
+      "Validación automática del padding Base64 y detección de errores",
+      "Vista previa completa del PDF mediante el visor del navegador tras la conversión",
+      "Sin subida de archivos — la conversión es 100% en el lado del cliente",
+      "Compatible con cadenas Base64 grandes de REST APIs y pipelines de datos",
+      "Nombre de archivo personalizable con marca de tiempo automática",
+      "Funciona sin conexión tras la primera carga de la página",
+      "Sin registro ni cuenta requeridos"
     ],
     "useCases": [
-      "Limpiar y formatear código desordenado para mejor legibilidad",
-      "Estandarizar el estilo de código en equipos de desarrollo",
-      "Depurar estructuras complejas con indentación apropiada",
-      "Preparar código para documentación y revisiones de código",
-      "Convertir entre diferentes estándares de formato",
-      "Validar sintaxis antes del despliegue",
-      "Procesar datos de fuentes externas o APIs",
-      "Generar código listo para producción"
+      "Decodificación de archivos PDF devueltos como Base64 por REST APIs o endpoints GraphQL",
+      "Recuperación de adjuntos PDF de datos de correo sin procesar (codificados MIME/Base64)",
+      "Prueba y depuración de servicios de generación de documentos que devuelven Base64",
+      "Conversión de exportaciones PDF en Base64 desde bases de datos o pipelines de datos",
+      "Inspección de archivos PDF embebidos en respuestas JSON",
+      "Verificación de informes codificados en Base64 de servicios de terceros",
+      "Decodificación de archivos PDF de data URIs en HTML o CSS",
+      "Vista previa rápida de un PDF antes de integrarlo en una aplicación"
     ],
     "proTips": [
-      "Usa atajos de teclado para un flujo de trabajo más rápido",
-      "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
-      "Valida tu entrada antes del procesamiento para detectar errores temprano",
-      "Guarda las configuraciones frecuentes como predeterminadas",
-      "Usa la función de descarga para archivar archivos procesados",
-      "Verifica cuidadosamente la salida antes de usar en producción"
+      "Si tu cadena comienza con data:application/pdf;base64, pégala tal cual — la herramienta elimina el encabezado automáticamente",
+      "El padding = faltante al final de la cadena es la causa más común de errores de decodificación — agrega uno o dos = al final para solucionarlo",
+      "Para cadenas Base64 muy grandes (más de 5MB), pega en fragmentos para verificar qué segmento está corrupto",
+      "Usa la consola del navegador (F12) para copiar cadenas Base64 directamente de las respuestas de API",
+      "Si la vista previa del PDF aparece en blanco o muestra una solicitud de contraseña, el archivo original puede estar protegido con contraseña o corrompido antes de la codificación"
     ],
     "troubleshooting": [
-      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
-      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
-      "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
-      "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
-      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
+      "Caracteres Base64 no válidos: elimina espacios, saltos de línea o caracteres que no sean Base64 de tu cadena",
+      "Error de padding faltante: agrega uno o dos caracteres = al final de la cadena hasta que el error desaparezca",
+      "PDF en blanco o corrupto tras la descarga: el archivo original probablemente estaba corrupto antes de ser codificado — verifica la fuente",
+      "Data URI no reconocido: asegúrate de que el formato incluya un separador de coma (ej. data:application/pdf;base64,...) — se admite cualquier tipo MIME siempre que el payload Base64 siga a la coma",
+      "Procesamiento muy lento: las cadenas Base64 de más de 10MB pueden tardar unos segundos — es normal para archivos PDF grandes"
     ],
     "keyboardShortcuts": [
       {
@@ -70,15 +69,15 @@
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Procesar/Formatear"
+        "description": "Convertir a PDF"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copiar resultado"
+        "description": "Copiar nombre de archivo"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Descargar archivo"
+        "description": "Descargar PDF"
       }
     ]
   }

@@ -17,6 +17,8 @@ import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
 import styles from './page.module.css';
 
+export const revalidate = false;
+
 interface ArticlePageProps {
   params: {
     locale: Locale;

@@ -8,6 +8,8 @@ import {
   generateHreflangAlternates,
 } from '@/lib/i18n/helpers';
 
+export const revalidate = false;
+
 interface LocaleCategoriesPageProps {
   params: {
     locale: string;

@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: 'Maintenance Mode | ToolsLab',
   description: "ToolsLab is currently under maintenance. We'll be back soon!",

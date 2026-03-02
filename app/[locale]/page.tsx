@@ -7,6 +7,8 @@ import { getPageMetadata, getKeywordsString } from '@/lib/i18n/seo-metadata';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
+export const revalidate = false;
+
 interface LocalePageProps {
   params: {
     locale: string;
