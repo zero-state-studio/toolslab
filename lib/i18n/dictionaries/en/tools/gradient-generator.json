@@ -1,9 +1,9 @@
 {
   "title": "Gradient Generator",
   "description": "Generate custom CSS gradients with visual editor",
-  "placeholder": "",
+  "placeholder": "Configure gradient colors and direction...",
   "meta": {
-    "title": "CSS Gradient Generator - Free Online Tool",
+    "title": "CSS Gradient Generator - Linear, Radial Backgrounds Free",
     "description": "Create CSS gradients with a visual editor. Generate linear, radial, and conic gradients with custom colors and stops. Copy CSS code instantly. Free online tool."
   },
   "tagline": "Create beautiful CSS gradients with visual editor and presets",

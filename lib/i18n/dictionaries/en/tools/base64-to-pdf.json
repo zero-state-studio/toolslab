@@ -1,7 +1,7 @@
 {
   "title": "Base64 to PDF",
   "description": "Convert Base64 strings to PDF files",
-  "placeholder": "",
+  "placeholder": "Paste Base64 encoded PDF string here...",
   "meta": {
     "title": "Base64 to PDF Converter - Free Online Decoder & Download",
     "description": "Free Base64 to PDF converter. Paste a Base64 string or data URI and download the decoded PDF instantly. 100% client-side, no upload needed."

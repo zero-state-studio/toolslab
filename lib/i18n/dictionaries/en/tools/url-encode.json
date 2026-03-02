@@ -1,9 +1,9 @@
 {
-  "title": "URL Decoder",
-  "description": "Decode URL-encoded text",
-  "placeholder": "Enter URL-encoded text...",
+  "title": "URL Encoder & Decoder",
+  "description": "Encode and decode URL strings and query parameters with percent-encoding",
+  "placeholder": "Enter URL or text to encode/decode...",
   "instructions": {
-    "title": "How to use URL Decoder",
+    "title": "How to use URL Encoder & Decoder",
     "steps": [
       {
         "title": "Paste your URL or text",
@@ -77,7 +77,7 @@
     ]
   },
   "meta": {
-    "title": "URL Decoder - Free Online Tool",
+    "title": "URL Encoder Decoder - Free Online Percent-Encoding Tool",
     "description": "Encode and decode URL strings online. Convert special characters to percent-encoded format or decode URL parameters to readable text. Free URL encoder/decoder."
   },
   "tagline": "Encode and decode URLs and query parameters safely",

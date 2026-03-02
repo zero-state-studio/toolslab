@@ -3,7 +3,7 @@
   "description": "Generate .htaccess files for Apache with redirects, security rules, caching, and URL rewriting",
   "placeholder": "Configure your .htaccess settings",
   "meta": {
-    "title": "Htaccess Generator - Apache Configuration Tool",
+    "title": "Htaccess Generator - Apache Redirects & HTTPS Rules Free",
     "description": "Free online .htaccess generator. Create Apache configuration with redirects, security headers, caching rules, HTTPS forcing, and more. No coding required."
   },
   "tagline": "Generate professional .htaccess files for Apache servers with visual configuration",

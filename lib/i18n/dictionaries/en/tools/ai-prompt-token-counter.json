@@ -3,7 +3,7 @@
   "description": "Count tokens for AI prompts across GPT-4, Claude, Llama models with accurate cost estimation",
   "placeholder": "Enter your prompt or paste text here...",
   "meta": {
-    "title": "AI Token Counter - GPT-4 & Claude",
+    "title": "AI Token Counter - GPT-4, Claude & Llama API Cost Estimator",
     "description": "Count tokens and estimate API costs for GPT-4, Claude, Llama, Gemini, and Mistral models. Optimize prompts and compare pricing. Free AI token counter."
   },
   "tagline": "Count tokens and estimate costs across GPT-4, Claude, Llama, and more AI models",

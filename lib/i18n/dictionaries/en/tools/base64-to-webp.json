@@ -1,9 +1,9 @@
 {
   "title": "Base64 to WebP",
   "description": "Convert Base64 strings to WebP images",
-  "placeholder": "",
+  "placeholder": "Paste Base64 encoded WebP string here...",
   "meta": {
-    "title": "Base64 to WebP - Free Online Converter",
+    "title": "Base64 to WebP Converter - Decode Modern Image Format Free",
     "description": "Convert Base64 to WebP online. Decode Base64 and save as modern WebP image. Free converter with instant preview, transparency support and compression analysis."
   },
   "tagline": "Convert Base64 data to modern WebP images instantly with advanced features",

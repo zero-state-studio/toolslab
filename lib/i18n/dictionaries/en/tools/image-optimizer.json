@@ -1,9 +1,9 @@
 {
   "title": "Image Optimizer",
   "description": "Optimize and compress images",
-  "placeholder": "",
+  "placeholder": "Drop image or click to upload...",
   "meta": {
-    "title": "Image Optimizer - Free Online Tool",
+    "title": "Image Optimizer - Compress JPEG, PNG & WebP Free Online",
     "description": "Optimize and compress images online. Reduce JPEG, PNG, WebP, and GIF file sizes while preserving quality. Smart compression controls. Free, browser-based tool."
   },
   "tagline": "Compress images with smart optimization for web and mobile",

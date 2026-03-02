@@ -77,7 +77,7 @@
     ]
   },
   "meta": {
-    "title": "JWT Decoder - Free Online Tool",
+    "title": "JWT Decoder - Decode & Verify JSON Web Tokens Free Online",
     "description": "Decode and inspect JSON Web Tokens (JWT) online. View header, payload, and verify signatures with claim analysis. Free, secure, browser-based JWT decoder."
   },
   "tagline": "Decode and analyze JWT tokens with security validation instantly",

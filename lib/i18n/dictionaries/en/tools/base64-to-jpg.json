@@ -1,9 +1,9 @@
 {
   "title": "Base64 to JPG",
   "description": "Convert Base64 strings to JPG/JPEG images",
-  "placeholder": "",
+  "placeholder": "Paste Base64 encoded JPEG string here...",
   "meta": {
-    "title": "Base64 to JPG - Free Online Converter",
+    "title": "Base64 to JPG Converter - Decode & Preview JPEG Free",
     "description": "Convert Base64 to JPG/JPEG online. Decode Base64 and save as JPEG image. Free converter tool with instant preview and quality metadata display."
   },
   "tagline": "Convert Base64 data to JPG/JPEG images instantly with preview",

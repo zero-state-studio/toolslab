@@ -3,7 +3,7 @@
   "description": "Convert XML documents to JSON format with attribute handling, namespace support, and smart array detection",
   "placeholder": "Paste your XML here...",
   "meta": {
-    "title": "XML to JSON Converter - Free Online Tool",
+    "title": "XML to JSON Converter - Parse & Transform XML Free Online",
     "description": "Convert XML to JSON online with smart array detection, namespace support, and attribute handling. CDATA support and type conversion included. Free converter."
   },
   "tagline": "Convert XML documents to JSON format with advanced parsing and flexible output options",

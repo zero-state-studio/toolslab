@@ -1,9 +1,9 @@
 {
   "title": "XML Formatter",
   "description": "Format, validate and minify XML documents with syntax highlighting and XPath support",
-  "placeholder": "",
+  "placeholder": "Paste XML to format...",
   "meta": {
-    "title": "XML Formatter - Free Online Tool",
+    "title": "XML Formatter - Beautify & Validate XML Free Online",
     "description": "Format, beautify, and validate XML documents online with syntax highlighting and XPath support. Minify or pretty-print XML with custom indentation. Free tool."
   },
   "tagline": "Format, validate and minify XML with XPath search and namespace support",
