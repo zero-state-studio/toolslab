@@ -6,7 +6,7 @@ import { tools, getToolById, categories } from '@/lib/tools';
 import { generateToolSchema } from '@/lib/tool-schema';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { loadToolTranslation } from '@/lib/i18n/load-tools';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { locales, type Locale, localeToOGLocale } from '@/lib/i18n/config';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
 
@@ -149,6 +149,7 @@ export async function generateMetadata({
       title: metaTitle,
       description: metaDescription,
       type: 'website',
+      locale: localeToOGLocale[locale as Locale],
       url: `https://toolslab.dev${getLocalizedPath(`/tools/${toolId}`, locale as Locale)}`,
       images: [
         {

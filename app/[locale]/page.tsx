@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import HomePageContent from '@/components/layout/HomePageContent';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { locales, type Locale, localeToOGLocale } from '@/lib/i18n/config';
 import { getPageMetadata, getKeywordsString } from '@/lib/i18n/seo-metadata';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
@@ -33,6 +33,7 @@ export async function generateMetadata({
     openGraph: {
       title: metadata.title,
       description: metadata.description,
+      locale: localeToOGLocale[locale as Locale],
       url: `https://toolslab.dev${getLocalizedPath('/', locale as Locale)}`,
       siteName: 'ToolsLab',
       type: 'website',

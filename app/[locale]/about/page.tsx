@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
-import { locales, type Locale } from '@/lib/i18n/config';
+import { locales, type Locale, localeToOGLocale } from '@/lib/i18n/config';
 import { getPageMetadata, getKeywordsString } from '@/lib/i18n/seo-metadata';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
 import { NewAboutPage } from '@/components/about/NewAboutPage';
@@ -35,6 +35,7 @@ export async function generateMetadata({
       title: metadata.title,
       description: metadata.description,
       type: 'website',
+      locale: localeToOGLocale[locale as Locale],
       url: `https://toolslab.dev${getLocalizedPath('/about', locale as Locale)}`,
       siteName: 'ToolsLab',
       images: [

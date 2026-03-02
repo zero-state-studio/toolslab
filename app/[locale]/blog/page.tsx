@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
-import { Locale, locales } from '@/lib/i18n/config';
+import { Locale, locales, localeToOGLocale } from '@/lib/i18n/config';
 import { getActiveArticlesForLocale } from '@/lib/blog/active-articles';
 import { ArticleCard } from '@/components/blog/ArticleCard';
 import { FeaturedArticleCard } from '@/components/blog/FeaturedArticleCard';
@@ -27,6 +27,15 @@ export async function generateMetadata({
   return {
     title: `${dict.blog.title} | ToolsLab`,
     description: dict.blog.subtitle,
+    openGraph: {
+      title: `${dict.blog.title} | ToolsLab`,
+      description: dict.blog.subtitle,
+      type: 'website',
+      locale: localeToOGLocale[locale as Locale],
+      url:
+        locale === 'en' ? `${baseUrl}/${path}` : `${baseUrl}/${locale}/${path}`,
+      siteName: 'ToolsLab',
+    },
     alternates: {
       canonical:
         locale === 'en' ? `${baseUrl}/${path}` : `${baseUrl}/${locale}/${path}`,
