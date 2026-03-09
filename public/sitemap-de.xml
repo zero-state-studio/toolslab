@@ -1,458 +1,979 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <!-- Static Pages -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://toolslab.dev/de</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/tools</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/categories</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/categories"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/categories"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/categories"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/categories"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/categories"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/categories"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/categories"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/lab</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/lab"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/lab"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/lab"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/lab"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/lab"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/lab"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/lab"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/about</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/about"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/about"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/about"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/about"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/about"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/privacy</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/privacy"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/privacy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/privacy"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/privacy"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/privacy"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/privacy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/privacy"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/terms</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
-  </url>
-
-  <!-- Category Pages -->
-  <url>
-    <loc>https://toolslab.dev/de/category/data</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/category/encoding</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/terms"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/terms"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/terms"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/terms"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/terms"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/terms"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/terms"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/de/category/base64</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/category/text</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/category/generators</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/category/web</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/category/dev</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/category/formatters</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/category/social</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/category/pdf</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Tool Pages — priority 0.9: searchVolume >= 50000 -->
-  <url>
-    <loc>https://toolslab.dev/de/tools/jpg-to-pdf</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/png-to-pdf</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/instagram-font-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/whatsapp-link-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/curl-to-code</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/utm-builder</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Tool Pages — priority 0.8: searchVolume 10000–49999 -->
-  <url>
-    <loc>https://toolslab.dev/de/tools/json-to-typescript</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/ai-prompt-token-counter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/youtube-timestamp-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/yaml-json-converter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/js-minifier</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/gif-to-pdf</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/color-format-converter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/list-compare</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/htaccess-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/gradient-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/css-minifier</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/yaml-validator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/unix-timestamp-converter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/image-to-pdf</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/color-picker</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/xml-to-json-converter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/linkedin-post-formatter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/pdf-to-word</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/lorem-ipsum-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/chmod-calculator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/eml-to-html</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/bcrypt-hash-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/string-case-converter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Tool Pages — priority 0.7: searchVolume < 10000 -->
-  <url>
-    <loc>https://toolslab.dev/de/tools/qr-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/password-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/xml-formatter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/barcode-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://toolslab.dev/de/blog/json-formatting-complete-guide</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/blog/json-formatting-complete-guide"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/blog/json-formatting-complete-guide"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/blog/json-formatting-complete-guide"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/blog/json-formatting-complete-guide"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/blog/json-formatting-complete-guide"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/blog/json-formatting-complete-guide"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/blog/json-formatting-complete-guide"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/tools/json-formatter</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/excel-filter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/js-object-to-json</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/json-validator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/uuid-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/url-encode</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/regex-tester</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/json-formatter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/json-formatter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/json-formatter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/json-formatter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/json-formatter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/json-formatter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/json-formatter"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/tools/csv-to-json</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/sql-formatter</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/hash-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/binary-to-text</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/html-encode-decode</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/jwt-decoder</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/base64-encode</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/crontab-builder</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/text-diff</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/markdown-preview</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/de/tools/favicon-generator</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/csv-to-json"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/csv-to-json"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/tools/json-to-csv</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/json-to-csv"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/json-to-csv"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/de/tools/base64-to-jpg</loc>
-    <lastmod>2026-02-17</lastmod>
+    <loc>https://toolslab.dev/de/tools/sql-formatter</loc>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/sql-formatter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/sql-formatter"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/de/tools/base64-to-webp</loc>
-    <lastmod>2026-02-17</lastmod>
+    <loc>https://toolslab.dev/de/tools/xml-formatter</loc>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/xml-formatter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/xml-formatter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/xml-formatter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/xml-formatter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/xml-formatter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/xml-formatter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/xml-formatter"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/de/tools/base64-to-png</loc>
-    <lastmod>2026-02-17</lastmod>
+    <loc>https://toolslab.dev/de/tools/xml-to-json-converter</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/xml-to-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/xml-to-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/xml-to-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/xml-to-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/xml-to-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/xml-to-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/xml-to-json-converter"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/base64-encode</loc>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/base64-encode"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/base64-encode"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/base64-encode"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/base64-encode"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/base64-encode"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/base64-encode"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/base64-encode"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/url-encode</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/url-encode"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/url-encode"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/url-encode"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/url-encode"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/url-encode"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/url-encode"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/url-encode"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/html-encode-decode</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/html-encode-decode"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/html-encode-decode"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/html-encode-decode"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/html-encode-decode"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/html-encode-decode"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/html-encode-decode"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/html-encode-decode"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/hash-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/hash-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/jwt-decoder</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/jwt-decoder"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/jwt-decoder"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/jwt-decoder"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/jwt-decoder"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/jwt-decoder"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/jwt-decoder"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/jwt-decoder"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/bcrypt-hash-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/bcrypt-hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/bcrypt-hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/bcrypt-hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/bcrypt-hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/bcrypt-hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/bcrypt-hash-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/bcrypt-hash-generator"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/tools/base64-to-pdf</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/base64-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/base64-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/base64-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/base64-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/base64-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/base64-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/base64-to-pdf"/>
   </url>
   <url>
     <loc>https://toolslab.dev/de/tools/base64-to-gif</loc>
-    <lastmod>2026-02-17</lastmod>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/base64-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/base64-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/base64-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/base64-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/base64-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/base64-to-gif"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/base64-to-gif"/>
   </url>
-
+  <url>
+    <loc>https://toolslab.dev/de/tools/base64-to-png</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/base64-to-png"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/base64-to-png"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/base64-to-png"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/base64-to-png"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/base64-to-png"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/base64-to-png"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/base64-to-png"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/base64-to-jpg</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/base64-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/base64-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/base64-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/base64-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/base64-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/base64-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/base64-to-jpg"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/base64-to-webp</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/base64-to-webp"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/base64-to-webp"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/base64-to-webp"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/base64-to-webp"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/base64-to-webp"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/base64-to-webp"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/base64-to-webp"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/excel-filter</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/excel-filter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/excel-filter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/excel-filter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/excel-filter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/excel-filter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/excel-filter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/excel-filter"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/instagram-font-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/instagram-font-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/instagram-font-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/instagram-font-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/instagram-font-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/instagram-font-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/instagram-font-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/instagram-font-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/linkedin-post-formatter</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/linkedin-post-formatter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/linkedin-post-formatter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/linkedin-post-formatter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/linkedin-post-formatter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/linkedin-post-formatter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/linkedin-post-formatter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/linkedin-post-formatter"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/text-diff</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/text-diff"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/text-diff"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/markdown-preview</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/markdown-preview"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/markdown-preview"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/markdown-preview"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/markdown-preview"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/markdown-preview"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/markdown-preview"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/markdown-preview"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/regex-tester</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/regex-tester"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/regex-tester"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/uuid-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/uuid-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/uuid-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/password-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/password-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/password-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/qr-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/qr-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/qr-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/barcode-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/barcode-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/barcode-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/barcode-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/barcode-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/barcode-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/barcode-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/barcode-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/color-picker</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/color-picker"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/color-picker"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/color-format-converter</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/color-format-converter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/color-format-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/color-format-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/color-format-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/color-format-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/color-format-converter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/color-format-converter"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/favicon-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/favicon-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/favicon-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/favicon-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/favicon-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/favicon-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/favicon-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/favicon-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/gradient-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/gradient-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/gradient-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/gradient-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/gradient-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/gradient-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/gradient-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/gradient-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/json-validator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/json-validator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/json-validator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/crontab-builder</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/crontab-builder"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/crontab-builder"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/crontab-builder"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/crontab-builder"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/crontab-builder"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/crontab-builder"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/crontab-builder"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/list-compare</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/list-compare"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/list-compare"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/list-compare"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/list-compare"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/list-compare"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/list-compare"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/list-compare"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/curl-to-code</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-code"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-code"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-code"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-code"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-code"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-code"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-code"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/json-to-typescript</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/json-to-typescript"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/json-to-typescript"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/css-minifier</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/css-minifier"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/css-minifier"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/css-minifier"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/css-minifier"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/css-minifier"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/css-minifier"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/css-minifier"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/js-minifier</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/js-minifier"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/js-minifier"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/yaml-json-converter</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/yaml-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/yaml-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/yaml-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/yaml-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/yaml-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/yaml-json-converter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/yaml-json-converter"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/yaml-validator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/yaml-validator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/yaml-validator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/yaml-validator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/yaml-validator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/yaml-validator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/yaml-validator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/yaml-validator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/unix-timestamp-converter</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/unix-timestamp-converter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/unix-timestamp-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/unix-timestamp-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/unix-timestamp-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/unix-timestamp-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/unix-timestamp-converter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/unix-timestamp-converter"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/eml-to-html</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/eml-to-html"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/eml-to-html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/eml-to-html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/eml-to-html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/eml-to-html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/eml-to-html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/eml-to-html"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/ai-prompt-token-counter</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/ai-prompt-token-counter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/ai-prompt-token-counter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/ai-prompt-token-counter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/ai-prompt-token-counter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/ai-prompt-token-counter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/ai-prompt-token-counter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/ai-prompt-token-counter"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/pdf-to-word</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/pdf-to-word"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/pdf-to-word"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/image-to-pdf</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/image-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/image-to-pdf"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/jpg-to-pdf</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/jpg-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/jpg-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/jpg-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/jpg-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/jpg-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/jpg-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/jpg-to-pdf"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/png-to-pdf</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/png-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/png-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/png-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/png-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/png-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/png-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/png-to-pdf"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/gif-to-pdf</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/gif-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/gif-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/gif-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/gif-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/gif-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/gif-to-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/gif-to-pdf"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/whatsapp-link-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/whatsapp-link-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/whatsapp-link-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/whatsapp-link-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/whatsapp-link-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/whatsapp-link-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/whatsapp-link-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/whatsapp-link-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/utm-builder</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/utm-builder"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/utm-builder"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/utm-builder"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/utm-builder"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/utm-builder"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/utm-builder"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/utm-builder"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/youtube-timestamp-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/youtube-timestamp-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/youtube-timestamp-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/youtube-timestamp-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/youtube-timestamp-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/youtube-timestamp-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/youtube-timestamp-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/youtube-timestamp-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/chmod-calculator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/chmod-calculator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/chmod-calculator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/chmod-calculator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/chmod-calculator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/chmod-calculator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/chmod-calculator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/chmod-calculator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/htaccess-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/htaccess-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/htaccess-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/htaccess-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/htaccess-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/htaccess-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/htaccess-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/htaccess-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/lorem-ipsum-generator</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/lorem-ipsum-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/lorem-ipsum-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/lorem-ipsum-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/lorem-ipsum-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/lorem-ipsum-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/lorem-ipsum-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/lorem-ipsum-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/string-case-converter</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/string-case-converter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/string-case-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/string-case-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/string-case-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/string-case-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/string-case-converter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/string-case-converter"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/binary-to-text</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/binary-to-text"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/binary-to-text"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/binary-to-text"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/binary-to-text"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/binary-to-text"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/binary-to-text"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/binary-to-text"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/tools/js-object-to-json</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/js-object-to-json"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/js-object-to-json"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/js-object-to-json"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/js-object-to-json"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/js-object-to-json"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/js-object-to-json"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/js-object-to-json"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/data</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/data"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/data"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/data"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/data"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/data"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/data"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/data"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/formatters</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/formatters"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/formatters"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/formatters"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/formatters"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/formatters"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/formatters"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/formatters"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/dev</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/dev"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/dev"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/dev"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/dev"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/dev"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/dev"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/dev"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/text</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/text"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/text"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/text"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/text"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/text"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/text"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/text"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/encoding</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/encoding"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/encoding"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/encoding"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/encoding"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/encoding"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/encoding"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/encoding"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/base64</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/base64"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/base64"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/base64"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/base64"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/base64"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/base64"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/base64"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/social</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/social"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/social"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/social"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/social"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/social"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/social"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/social"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/generators</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/generators"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/generators"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/generators"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/generators"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/generators"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/generators"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/generators"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/web</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/web"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/web"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/web"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/web"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/web"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/web"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/web"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/de/category/pdf</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/pdf"/>
+  </url>
 </urlset>

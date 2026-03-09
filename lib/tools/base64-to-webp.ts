@@ -1,3 +1,23 @@
+import {
+  sanitizeBase64Input,
+  isValidBase64,
+  estimateDecodedSize,
+  formatFileSize,
+  downloadBlob,
+  exceedsMaxSize,
+  MAX_BASE64_INPUT_SIZE,
+  detectFormatFromBase64,
+} from './base64-common';
+
+export type { SanitizeResult } from './base64-common';
+export {
+  isValidBase64,
+  estimateDecodedSize,
+  formatFileSize,
+  downloadBlob,
+  sanitizeBase64Input,
+};
+
 export interface Base64ToWebpOptions {
   fileName?: string;
   validateWebpHeader?: boolean;
@@ -9,6 +29,8 @@ export interface Base64ToWebpResult {
   error?: string;
   fileName?: string;
   fileSize?: number;
+  corrections?: string[];
+  wrongFormat?: { detected: string; expected: string };
   metadata?: {
     width?: number;
     height?: number;
@@ -16,22 +38,6 @@ export interface Base64ToWebpResult {
     isAnimated?: boolean;
     compressionType?: string;
   };
-}
-
-/**
- * Validates if a string is valid Base64 format
- */
-export function isValidBase64(str: string): boolean {
-  if (!str || str.length === 0) {
-    return false;
-  }
-
-  // Remove whitespace
-  const cleanStr = str.replace(/\s+/g, '');
-
-  // Check if it's valid Base64 characters
-  const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
-  return base64Regex.test(cleanStr);
 }
 
 /**
@@ -44,13 +50,10 @@ export function isWebpData(uint8Array: Uint8Array): {
   compressionType?: string;
 } {
   // WebP signature: RIFF....WEBP
-  // Bytes 0-3: "RIFF" (52 49 46 46)
-  // Bytes 8-11: "WEBP" (57 45 42 50)
   if (uint8Array.length < 12) {
     return { isWebp: false };
   }
 
-  // Check RIFF signature
   const hasRiffSignature =
     uint8Array[0] === 0x52 &&
     uint8Array[1] === 0x49 &&
@@ -61,7 +64,6 @@ export function isWebpData(uint8Array: Uint8Array): {
     return { isWebp: false };
   }
 
-  // Check WEBP signature
   const hasWebpSignature =
     uint8Array[8] === 0x57 &&
     uint8Array[9] === 0x45 &&
@@ -72,13 +74,11 @@ export function isWebpData(uint8Array: Uint8Array): {
     return { isWebp: false };
   }
 
-  // Try to determine format type
   let hasAlpha = false;
   let isAnimated = false;
   let compressionType = 'Unknown';
 
   if (uint8Array.length >= 16) {
-    // Check for VP8L (lossless), VP8 (lossy), or VP8X (extended)
     const chunkType = String.fromCharCode(
       uint8Array[12],
       uint8Array[13],
@@ -88,13 +88,11 @@ export function isWebpData(uint8Array: Uint8Array): {
 
     if (chunkType === 'VP8L') {
       compressionType = 'Lossless';
-      // VP8L typically has alpha
       hasAlpha = true;
     } else if (chunkType === 'VP8 ') {
       compressionType = 'Lossy';
     } else if (chunkType === 'VP8X') {
       compressionType = 'Extended';
-      // VP8X can have alpha and animation flags
       if (uint8Array.length >= 21) {
         const flags = uint8Array[20];
         hasAlpha = (flags & 0x10) !== 0;
@@ -103,12 +101,7 @@ export function isWebpData(uint8Array: Uint8Array): {
     }
   }
 
-  return {
-    isWebp: true,
-    hasAlpha,
-    isAnimated,
-    compressionType,
-  };
+  return { isWebp: true, hasAlpha, isAnimated, compressionType };
 }
 
 /**
@@ -127,13 +120,11 @@ export function extractWebpMetadata(uint8Array: Uint8Array) {
     return metadata;
   }
 
-  // Get WebP format info
   const webpInfo = isWebpData(uint8Array);
   metadata.hasAlpha = webpInfo.hasAlpha;
   metadata.isAnimated = webpInfo.isAnimated;
   metadata.compressionType = webpInfo.compressionType;
 
-  // Try to extract dimensions based on chunk type
   const chunkType = String.fromCharCode(
     uint8Array[12],
     uint8Array[13],
@@ -142,13 +133,9 @@ export function extractWebpMetadata(uint8Array: Uint8Array) {
   );
 
   if (chunkType === 'VP8 ' && uint8Array.length >= 30) {
-    // VP8 (lossy) format
-    // Width and height are in bytes 26-29
     metadata.width = ((uint8Array[26] | (uint8Array[27] << 8)) & 0x3fff) + 1;
     metadata.height = ((uint8Array[28] | (uint8Array[29] << 8)) & 0x3fff) + 1;
   } else if (chunkType === 'VP8L' && uint8Array.length >= 25) {
-    // VP8L (lossless) format
-    // Width and height are encoded in bits
     const bits =
       uint8Array[21] |
       (uint8Array[22] << 8) |
@@ -157,8 +144,6 @@ export function extractWebpMetadata(uint8Array: Uint8Array) {
     metadata.width = (bits & 0x3fff) + 1;
     metadata.height = ((bits >> 14) & 0x3fff) + 1;
   } else if (chunkType === 'VP8X' && uint8Array.length >= 30) {
-    // VP8X (extended) format
-    // Canvas width and height (24-bit)
     metadata.width =
       1 + (uint8Array[24] | (uint8Array[25] << 8) | (uint8Array[26] << 16));
     metadata.height =
@@ -169,7 +154,7 @@ export function extractWebpMetadata(uint8Array: Uint8Array) {
 }
 
 /**
- * Converts Base64 string to WebP Blob
+ * Converts Base64 string to WebP Blob with auto-correction of common input errors
  */
 export function base64ToWebp(
   base64Data: string,
@@ -179,15 +164,35 @@ export function base64ToWebp(
     const { fileName = `webp-${Date.now()}.webp`, validateWebpHeader = true } =
       options;
 
-    // Clean Base64 string
-    let cleanBase64 = base64Data.trim().replace(/\s+/g, '');
+    // Check size limit
+    if (exceedsMaxSize(base64Data)) {
+      return {
+        success: false,
+        error: `Input too large. Maximum size is ${formatFileSize(MAX_BASE64_INPUT_SIZE)}.`,
+      };
+    }
 
-    // Remove data URL prefix if present
-    if (cleanBase64.startsWith('data:')) {
-      const commaIndex = cleanBase64.indexOf(',');
-      if (commaIndex !== -1) {
-        cleanBase64 = cleanBase64.substring(commaIndex + 1);
-      }
+    // Sanitize input with auto-corrections (handles Base64url, data URL prefix,
+    // whitespace, PEM headers, quotes, line numbers, missing padding)
+    const {
+      cleaned: cleanBase64,
+      corrections,
+      detectedFormat,
+    } = sanitizeBase64Input(base64Data);
+
+    // Check for wrong format before trying to decode
+    if (
+      validateWebpHeader &&
+      detectedFormat &&
+      detectedFormat !== 'unknown' &&
+      detectedFormat !== 'webp'
+    ) {
+      return {
+        success: false,
+        error: `This data appears to be a ${detectedFormat.toUpperCase()} image, not WebP.`,
+        corrections: corrections.length > 0 ? corrections : undefined,
+        wrongFormat: { detected: detectedFormat, expected: 'webp' },
+      };
     }
 
     // Validate Base64 format
@@ -195,6 +200,7 @@ export function base64ToWebp(
       return {
         success: false,
         error: 'Invalid Base64 format',
+        corrections: corrections.length > 0 ? corrections : undefined,
       };
     }
 
@@ -214,6 +220,7 @@ export function base64ToWebp(
           success: false,
           error:
             'Data does not appear to be a WebP image. Please check your Base64 string.',
+          corrections: corrections.length > 0 ? corrections : undefined,
         };
       }
     }
@@ -230,6 +237,7 @@ export function base64ToWebp(
       fileName,
       fileSize: uint8Array.length,
       metadata,
+      corrections: corrections.length > 0 ? corrections : undefined,
     };
   } catch (error) {
     return {
@@ -240,40 +248,4 @@ export function base64ToWebp(
           : 'Failed to convert Base64 to WebP',
     };
   }
-}
-
-/**
- * Format file size to human-readable string
- */
-export function formatFileSize(bytes: number): string {
-  if (bytes === 0) return '0 Bytes';
-
-  const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
-}
-
-/**
- * Estimate decoded size from Base64 string length
- */
-export function estimateDecodedSize(base64Length: number): number {
-  // Base64 encoding increases size by ~33%
-  // So decoded size is roughly 3/4 of encoded size
-  return Math.floor((base64Length * 3) / 4);
-}
-
-/**
- * Helper function to download a blob as a file
- */
-export function downloadBlob(blob: Blob, filename: string): void {
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = filename;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
 }

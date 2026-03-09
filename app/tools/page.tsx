@@ -7,6 +7,8 @@ import { Suspense } from 'react';
 import ToolsHubContent from '@/components/tools/ToolsHubContent';
 import { generateHreflangAlternates } from '@/lib/i18n/helpers';
 
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: 'All Developer Tools - Free Online Utilities | ToolsLab',
   description:

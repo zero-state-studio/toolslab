@@ -1,67 +1,66 @@
 {
   "title": "Base64 zu PDF",
-  "description": "Konvertieren Base64 strings zu PDF files",
+  "description": "Konvertiert Base64-Strings in PDF-Dateien",
   "placeholder": "",
   "meta": {
-    "title": "Base64 zu PDF Konverter - Online",
-    "description": "Base64-Zeichenketten in PDF-Dateien online konvertieren. Base64-Daten dekodieren und als PDF-Dokument herunterladen. Kostenloses Browser-Tool mit Vorschau."
+    "title": "Base64 zu PDF Konverter - Kostenloser Online-Decoder",
+    "description": "Kostenloser Base64-zu-PDF-Konverter. Fügen Sie Base64 oder einen Data-URI ein und laden Sie das PDF sofort herunter. 100% clientseitig, kein Upload nötig."
   },
-  "tagline": "Konvertieren Base64 Daten zu PDF files instantly",
-  "pageDescription": "Konvertieren Sie Base64-kodierte Daten zu PDF-Dateien mit sofortigem Download. Perfekt für Entwickler, die mit Dokument-APIs, E-Mail-Anhängen und Datenverarbeitungs-Workflows arbeiten. Sichere browserbasierte Konvertierung ohne Server-Uploads. Validieren Sie Base64-Eingaben, sehen Sie PDF-Metadaten in der Vorschau und laden Sie konvertierte Dateien direkt auf Ihr Gerät herunter.",
+  "tagline": "Base64-Strings dekodieren und PDF-Dateien sofort herunterladen — kein Upload erforderlich",
+  "pageDescription": "Konvertieren Sie beliebige Base64-kodierte Strings direkt im Browser in PDF-Dateien — kein Server-Upload, keine Registrierung. Fügen Sie rohe Base64-Daten oder einen Data-URI (data:application/pdf;base64,...) ein und laden Sie das dekodierte PDF mit einem Klick herunter. Ideal für Entwickler, die REST-API-Antworten mit Base64-PDFs debuggen, Base64-kodierte E-Mail-Anhänge verarbeiten, Dokumentengenerierungs-Pipelines testen und PDF-Dateien aus Datenexporten prüfen. Validiert Base64-Padding automatisch, erkennt fehlerhafte Eingaben und zeigt eine vollständige PDF-Vorschau vor dem Download.",
   "instructions": {
     "title": "So verwenden Sie Base64 zu PDF",
     "steps": [
       {
-        "title": "Base64-String oder Datei einfügen",
-        "description": "Kopieren und fügen Sie Ihren Base64-String oder Ihre Datei in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Base64-String einfügen",
+        "description": "Kopieren Sie den Base64-kodierten PDF-String aus Ihrer API-Antwort, Ihrem E-Mail-Client oder einer anderen Quelle und fügen Sie ihn in das Eingabefeld ein. Sie können rohen Base64 oder einen vollständigen Data-URI eingeben, der mit data:application/pdf;base64, beginnt."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Base64-Eingabe validieren",
+        "description": "Das Tool überprüft automatisch, ob der String gültiges Base64 ist und ein dekoderbares PDF enthält. Wenn Padding-Zeichen (=) fehlen oder ungültige Zeichen vorhanden sind, hilft eine Fehlermeldung bei der Korrektur."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool verarbeitet Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Dekodiertes PDF in der Vorschau anzeigen",
+        "description": "Nach der Validierung auf PDF konvertieren klicken. Das Tool dekodiert den String und zeigt eine vollständige PDF-Vorschau über den integrierten Browser-Viewer. Prüfen Sie das Dokument vor dem Herunterladen."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "PDF-Datei herunterladen",
+        "description": "Klicken Sie auf PDF herunterladen, um die dekodierte Datei auf Ihrem Gerät zu speichern. Der Dateiname wird automatisch mit dem heutigen Datum generiert (document_JJJJ-MM-TT.pdf) oder Sie legen vor der Konvertierung einen eigenen Namen fest. Es werden keine Daten an Server übermittelt."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Dekodiert rohe Base64-Strings und Data-URIs (data:application/pdf;base64,...)",
+      "Automatische Base64-Padding-Validierung und Fehlererkennung",
+      "Vollständige PDF-Vorschau über den Browser-Viewer nach der Konvertierung",
+      "Kein Datei-Upload — Konvertierung erfolgt 100% clientseitig",
+      "Unterstützt große Base64-Strings aus REST-APIs und Datenpipelines",
+      "Anpassbarer Dateiname mit automatischem Datums-Zeitstempel",
+      "Funktioniert offline nach dem ersten Seitenaufruf",
+      "Keine Registrierung oder Account erforderlich"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Dekodierung von PDF-Dateien, die als Base64 von REST-APIs oder GraphQL-Endpunkten zurückgegeben werden",
+      "Wiederherstellung von PDF-Anhängen aus rohen E-Mail-Daten (MIME/Base64-kodiert)",
+      "Test und Debugging von Dokumentengenerierungs-Services, die Base64 ausgeben",
+      "Konvertierung von Base64-PDF-Exporten aus Datenbanken oder Datenpipelines",
+      "Prüfung von PDF-Dateien, die in JSON-Antworten eingebettet sind",
+      "Verifizierung von Base64-kodierten Berichten von Drittanbieterdiensten",
+      "Dekodierung von PDF-Dateien aus Data-URIs in HTML oder CSS",
+      "Schnelle Vorschau eines PDFs vor der Integration in eine Anwendung"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Wenn Ihr String mit data:application/pdf;base64, beginnt, fügen Sie ihn unverändert ein — das Tool entfernt den Header automatisch",
+      "Fehlendes =-Padding am Ende des Strings ist die häufigste Ursache für Dekodierungsfehler — fügen Sie ein oder zwei = am Ende hinzu, um dies zu beheben",
+      "Bei sehr großen Base64-Strings (über 5 MB) in Abschnitte aufteilen, um das fehlerhafte Segment zu finden",
+      "Verwenden Sie die Browser-Konsole (F12), um Base64-Strings direkt aus API-Antworten zu kopieren",
+      "Wenn die PDF-Vorschau leer erscheint oder eine Passwortaufforderung anzeigt, ist die Quelldatei möglicherweise passwortgeschützt oder wurde vor der Kodierung beschädigt"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Ungültige Base64-Zeichen: Entfernen Sie Leerzeichen, Zeilenumbrüche oder Nicht-Base64-Zeichen aus Ihrem String",
+      "Fehler durch fehlendes Padding: Fügen Sie ein oder zwei =-Zeichen am Ende des Strings hinzu, bis der Fehler verschwindet",
+      "Leeres oder beschädigtes PDF nach dem Download: Die Originaldatei war wahrscheinlich bereits vor der Kodierung beschädigt — überprüfen Sie die Quelle",
+      "Data-URI nicht erkannt: Stellen Sie sicher, dass das Format ein Komma-Trennzeichen enthält (z.B. data:application/pdf;base64,...) — jeder MIME-Typ wird unterstützt, solange die Base64-Nutzdaten dem Komma folgen",
+      "Sehr langsame Verarbeitung: Base64-Strings über 10 MB können einige Sekunden dauern — das ist normal bei großen PDF-Dateien"
     ],
     "keyboardShortcuts": [
       {
@@ -69,16 +68,16 @@
         "description": "Eingabe einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+Enter",
+        "description": "In PDF konvertieren"
       },
       {
         "keys": "Strg+C",
-        "description": "Ergebnis kopieren"
+        "description": "Dateiname kopieren"
       },
       {
         "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "description": "PDF herunterladen"
       }
     ]
   }

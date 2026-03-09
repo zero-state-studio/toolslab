@@ -1,67 +1,66 @@
 {
   "title": "Base64 to PDF",
   "description": "Convert Base64 strings to PDF files",
-  "placeholder": "",
+  "placeholder": "Paste Base64 encoded PDF string here...",
   "meta": {
-    "title": "Base64 to PDF - Free Online Tool",
-    "description": "Convert Base64 encoded strings to PDF files online. Decode Base64 data and download as PDF documents instantly. Free, browser-based converter with preview."
+    "title": "Base64 to PDF Converter - Free Online Decoder & Download",
+    "description": "Free Base64 to PDF converter. Paste a Base64 string or data URI and download the decoded PDF instantly. 100% client-side, no upload needed."
   },
-  "tagline": "Convert Base64 data to PDF files instantly",
-  "pageDescription": "Convert Base64-encoded data to PDF files with instant download. Perfect for developers working with document APIs, email attachments and data processing workflows. Secure browser-based conversion without server uploads. Validate Base64 input, preview PDF metadata and download converted files directly to your device.",
+  "tagline": "Decode Base64 strings and download PDF files instantly — no upload required",
+  "pageDescription": "Convert any Base64-encoded string to a PDF file directly in your browser — no server upload, no registration. Paste raw Base64 data or a data URI (data:application/pdf;base64,...) and download the decoded PDF in one click. Ideal for developers debugging REST API responses that return Base64 PDFs, handling email attachments encoded in Base64, testing document generation pipelines, and inspecting PDF files from data exports. Validates Base64 padding automatically, detects malformed input and previews the converted document before download.",
   "instructions": {
     "title": "How to use Base64 to PDF",
     "steps": [
       {
-        "title": "Paste your Base64 string or file",
-        "description": "Copy and paste your Base64 string or file into the input area. The tool accepts any format and will process it immediately."
+        "title": "Paste your Base64 string",
+        "description": "Copy the Base64-encoded PDF string from your API response, email client or data source and paste it into the input field. You can paste raw Base64 or a full data URI starting with data:application/pdf;base64,"
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Validate the Base64 input",
+        "description": "The tool automatically checks that the string is valid Base64 and contains a decodable PDF. If the input has missing padding characters (=) or invalid characters, an error message will guide you to fix it."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will process your input and display the result with proper formatting and validation."
+        "title": "Preview the decoded PDF",
+        "description": "Once validated, click Convert to PDF. The tool decodes the string and shows a full PDF preview using your browser's built-in viewer. Check that the document looks correct before downloading."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Download the PDF file",
+        "description": "Click the Download PDF button to save the decoded file to your device. The filename is auto-generated with today's date (document_YYYY-MM-DD.pdf) or you can set a custom name before converting. No data is sent to any server."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Decodes raw Base64 strings and data URIs (data:application/pdf;base64,...)",
+      "Automatic Base64 padding validation and error detection",
+      "Full in-browser PDF preview via browser viewer after conversion",
+      "No file upload — conversion is 100% client-side",
+      "Supports large Base64 strings from REST APIs and data pipelines",
+      "Custom output filename with auto-generated date timestamp",
+      "Works offline after the first page load",
+      "No registration or account required"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Decoding PDF files returned as Base64 by REST APIs or GraphQL endpoints",
+      "Recovering PDF attachments from raw email data (MIME/Base64 encoded)",
+      "Testing and debugging document generation services that output Base64",
+      "Converting Base64 PDF exports from databases or data pipelines",
+      "Inspecting PDF files embedded in JSON responses",
+      "Verifying Base64-encoded reports from third-party services",
+      "Decoding PDF files from data URIs in HTML or CSS",
+      "Quickly previewing a PDF before integrating it into an application"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "If your string starts with data:application/pdf;base64, paste it as-is — the tool strips the header automatically",
+      "Missing = padding at the end of the string is the most common cause of decode errors — add one or two = characters at the end to fix it",
+      "For very large Base64 strings (over 5MB), paste in chunks to verify which segment is corrupted",
+      "Use the browser console (F12) to copy Base64 strings from API responses directly",
+      "If the PDF preview appears blank or shows a password prompt, the source file may be password-protected or was corrupted before encoding"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Invalid Base64 characters: Remove whitespace, line breaks or non-Base64 characters from your string",
+      "Missing padding error: Add one or two = characters at the end of the string until the error clears",
+      "Blank or corrupt PDF after download: The original file was likely corrupted before being encoded — verify the source",
+      "Data URI not recognized: Ensure the format includes a comma separator (e.g. data:application/pdf;base64,...) — any MIME type is supported as long as the Base64 payload follows the comma",
+      "Very slow processing: Base64 strings over 10MB may take a few seconds — this is normal for large PDF files"
     ],
     "keyboardShortcuts": [
       {
@@ -70,15 +69,15 @@
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Process/Format"
+        "description": "Convert to PDF"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copy result"
+        "description": "Copy filename"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Download file"
+        "description": "Download PDF"
       }
     ]
   }

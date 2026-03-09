@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import CategoriesHubContentSimple from '@/components/layout/CategoriesHubContentSimple';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: 'Developer Tool Categories - Browse by Functionality',
   description:

@@ -5,6 +5,7 @@
 
 import { tools } from '@/lib/tools';
 import { locales, defaultLocale, type Locale } from '@/lib/i18n/config';
+import { ACTIVE_ARTICLE_SLUGS } from '@/lib/blog/active-articles';
 
 const SITE_URL = 'https://toolslab.dev';
 
@@ -37,26 +38,13 @@ export interface SitemapPage {
  */
 export function getStaticPages(): SitemapPage[] {
   return [
-    {
-      path: '/',
-      changefreq: 'daily',
-      priority: 1.0,
-    },
-    {
-      path: '/tools',
-      changefreq: 'daily',
-      priority: 0.9,
-    },
-    {
-      path: '/about',
-      changefreq: 'monthly',
-      priority: 0.7,
-    },
-    {
-      path: '/lab',
-      changefreq: 'weekly',
-      priority: 0.8,
-    },
+    { path: '/', changefreq: 'daily', priority: 1.0 },
+    { path: '/tools', changefreq: 'daily', priority: 0.9 },
+    { path: '/categories', changefreq: 'weekly', priority: 0.8 },
+    { path: '/lab', changefreq: 'monthly', priority: 0.6 },
+    { path: '/about', changefreq: 'monthly', priority: 0.5 },
+    { path: '/privacy', changefreq: 'yearly', priority: 0.3 },
+    { path: '/terms', changefreq: 'yearly', priority: 0.3 },
   ];
 }
 
@@ -65,12 +53,18 @@ export function getStaticPages(): SitemapPage[] {
  */
 export function getToolPages(): SitemapPage[] {
   return tools
-    .filter((tool) => tool.label !== 'coming-soon') // Exclude coming soon tools
-    .map((tool) => ({
-      path: `/tools/${tool.id}`,
-      changefreq: 'weekly' as const,
-      priority: 0.9,
-    }));
+    .filter((tool) => tool.label !== 'coming-soon')
+    .map((tool) => {
+      let priority: number;
+      if (tool.searchVolume >= 50000) priority = 0.9;
+      else if (tool.searchVolume >= 10000) priority = 0.8;
+      else priority = 0.7;
+      return {
+        path: `/tools/${tool.id}`,
+        changefreq: 'weekly' as const,
+        priority,
+      };
+    });
 }
 
 /**
@@ -88,10 +82,26 @@ export function getCategoryPages(): SitemapPage[] {
 }
 
 /**
- * Get all pages for sitemap (static + tools + categories)
+ * Get all blog article pages
+ */
+export function getBlogPages(): SitemapPage[] {
+  return ACTIVE_ARTICLE_SLUGS.map((slug) => ({
+    path: `/blog/${slug}`,
+    changefreq: 'monthly' as const,
+    priority: 0.6,
+  }));
+}
+
+/**
+ * Get all pages for sitemap (static + blog + tools + categories)
  */
 export function getAllPages(): SitemapPage[] {
-  return [...getStaticPages(), ...getToolPages(), ...getCategoryPages()];
+  return [
+    ...getStaticPages(),
+    ...getBlogPages(),
+    ...getToolPages(),
+    ...getCategoryPages(),
+  ];
 }
 
 /**
@@ -100,6 +110,7 @@ export function getAllPages(): SitemapPage[] {
 export function getAbsoluteUrl(locale: Locale, path: string): string {
   // English (default) doesn't have prefix
   if (locale === defaultLocale) {
+    if (path === '/') return SITE_URL; // 'https://toolslab.dev' (no trailing slash)
     return `${SITE_URL}${path}`;
   }
 
@@ -143,7 +154,7 @@ export function generateHreflangAlternates(path: string): Array<{
  */
 export function generateSitemapURLs(locale: Locale): SitemapURL[] {
   const pages = getAllPages();
-  const lastmod = new Date().toISOString();
+  const lastmod = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
   return pages.map((page) => ({
     url: getAbsoluteUrl(locale, page.path),
@@ -171,7 +182,7 @@ export function generateURLXML(sitemapURL: SitemapURL): string {
     <loc>${sitemapURL.url}</loc>
     <lastmod>${sitemapURL.lastmod}</lastmod>
     <changefreq>${sitemapURL.changefreq}</changefreq>
-    <priority>${sitemapURL.priority}</priority>
+    <priority>${sitemapURL.priority.toFixed(1)}</priority>
 ${alternatesXML}
   </url>`;
 }
@@ -194,7 +205,7 @@ ${urlsXML}
  * Generate sitemap index XML
  */
 export function generateSitemapIndexXML(): string {
-  const lastmod = new Date().toISOString();
+  const lastmod = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
   const sitemapsXML = locales
     .map(
@@ -285,6 +296,7 @@ export function validateHreflangBidirectionality(): Array<{
  */
 export function getSitemapStats() {
   const staticPages = getStaticPages();
+  const blogPages = getBlogPages();
   const toolPages = getToolPages();
   const categoryPages = getCategoryPages();
   const totalPages = getAllPages();
@@ -292,6 +304,7 @@ export function getSitemapStats() {
   return {
     totalLocales: locales.length,
     staticPages: staticPages.length,
+    blogPages: blogPages.length,
     toolPages: toolPages.length,
     categoryPages: categoryPages.length,
     totalPagesPerLocale: totalPages.length,

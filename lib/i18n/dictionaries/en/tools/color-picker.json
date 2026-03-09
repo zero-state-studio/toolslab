@@ -1,9 +1,9 @@
 {
   "title": "Color Picker",
   "description": "Pick and convert colors between HEX, RGB, HSL formats",
-  "placeholder": "",
+  "placeholder": "Enter color (HEX, RGB, HSL)...",
   "meta": {
-    "title": "Color Picker - Free Online Tool",
+    "title": "Color Picker - HEX, RGB, HSL Color Selection Free Online",
     "description": "Pick colors with an interactive color picker. Convert between HEX, RGB, HSL formats instantly. Extract and save favorite colors. Free online color tool."
   },
   "tagline": "Pick colors with contrast checker and palette generator",

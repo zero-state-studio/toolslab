@@ -121,6 +121,7 @@ const toolComponents = {
     () => import('./implementations/LinkedInPostFormatter')
   ),
   'yaml-validator': lazy(() => import('./implementations/YamlValidator')),
+  'html-to-markdown': lazy(() => import('./implementations/HtmlToMarkdown')),
   // Add more as needed
 } as const;
 

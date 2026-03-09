@@ -3,7 +3,7 @@
   "description": "Calculate Unix file permissions with visual grid, octal and symbolic notation converter",
   "placeholder": "Enter octal value (e.g., 755)",
   "meta": {
-    "title": "Chmod Calculator - Unix Permissions",
+    "title": "Chmod Calculator - Linux File Permissions Octal & rwx Free",
     "description": "Free online chmod calculator. Convert between octal (755, 644) and symbolic (rwxr-xr-x) Unix file permissions with visual grid, presets, and command generation."
   },
   "tagline": "Calculate and convert Unix file permissions with visual interface and common presets",

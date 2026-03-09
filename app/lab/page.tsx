@@ -4,6 +4,8 @@ import { LabPageClient } from './LabPageClient';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: 'My Developer Lab - Personal Tool Collection | ToolsLab',
   description:

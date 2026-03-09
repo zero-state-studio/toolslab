@@ -83,7 +83,7 @@
     "Pretty printing"
   ],
   "meta": {
-    "title": "JS to JSON Converter - Free Tool",
+    "title": "JS Object to JSON Converter - Free Online JavaScript Tool",
     "description": "Convert JavaScript objects to valid JSON online. Handle circular references, BigInt, functions, and undefined values. Free, secure, browser-based converter."
   },
   "labels": {

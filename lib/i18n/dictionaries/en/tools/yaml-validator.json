@@ -3,7 +3,7 @@
   "description": "Validate YAML syntax with detailed error messages and line numbers",
   "placeholder": "Paste your YAML here to validate...",
   "meta": {
-    "title": "YAML Validator - Online Checker",
+    "title": "YAML Validator - Online Syntax Checker for Kubernetes & CI",
     "description": "Validate YAML syntax online with detailed error messages and line numbers. Support for YAML 1.1 and 1.2 specs. Free tool for Kubernetes and Docker configs."
   },
   "tagline": "Validate YAML syntax instantly with detailed error reporting",

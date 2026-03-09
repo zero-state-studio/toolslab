@@ -3,7 +3,7 @@
   "description": "Convert EML email files to HTML with header extraction, attachment handling, and multi-view rendering",
   "placeholder": "Upload an EML file or paste EML content here...",
   "meta": {
-    "title": "EML to HTML Converter - Free Email Viewer",
+    "title": "EML to HTML Converter - Parse MIME, Attachments & Headers",
     "description": "Convert EML email files to HTML instantly. Parse headers, extract attachments, and view email content. Support for MIME and multipart messages. Free EML viewer."
   },
   "tagline": "Convert EML email files to HTML with advanced parsing and multi-view rendering",

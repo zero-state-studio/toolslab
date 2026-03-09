@@ -98,6 +98,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'binary-to-text',
     'js-object-to-json',
     'bcrypt-hash-generator',
+    'html-to-markdown',
   ];
 
   const tools: Record<string, any> = {};
