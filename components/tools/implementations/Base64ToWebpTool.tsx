@@ -21,6 +21,7 @@ import {
   estimateDecodedSize,
   isValidBase64,
   downloadBlob,
+  sanitizeBase64Input,
 } from '@/lib/tools/base64-to-webp';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
@@ -72,19 +73,10 @@ export default function Base64ToWebpTool({
     }
 
     const hasDataUrlPrefix = base64String.startsWith('data:');
-    let cleanBase64 = base64String.trim();
+    const { cleaned } = sanitizeBase64Input(base64String);
 
-    if (hasDataUrlPrefix) {
-      const commaIndex = cleanBase64.indexOf(',');
-      if (commaIndex !== -1) {
-        cleanBase64 = cleanBase64.substring(commaIndex + 1);
-      }
-    }
-
-    cleanBase64 = cleanBase64.replace(/\s+/g, '');
-
-    const isValid = isValidBase64(cleanBase64);
-    const estimatedSize = isValid ? estimateDecodedSize(cleanBase64.length) : 0;
+    const isValid = isValidBase64(cleaned);
+    const estimatedSize = isValid ? estimateDecodedSize(cleaned) : 0;
 
     setValidationInfo({
       isValid,

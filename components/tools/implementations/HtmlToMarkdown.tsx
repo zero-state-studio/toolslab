@@ -12,6 +12,7 @@ import {
   ChevronUp,
   Eye,
   Code,
+  Upload,
 } from 'lucide-react';
 import {
   htmlToMarkdown,
@@ -94,6 +95,8 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
     hr: '---',
   });
   const [error, setError] = useState<string | null>(null);
+  const [fileName, setFileName] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { copied, copy } = useCopy();
   const { trackUse, trackError } = useToolTracking('html-to-markdown');
   const { resultRef, scrollToResult } = useScrollToResult({
@@ -154,10 +157,34 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
     }
   }, [input, mode, options, trackUse, trackError]);
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.name.match(/\.html?$/i)) {
+      setError('Please select a valid .html or .htm file');
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const content = ev.target?.result as string;
+      setInput(content);
+      setFileName(file.name);
+      setError(null);
+    };
+    reader.onerror = () => setError('Failed to read file');
+    reader.readAsText(file, 'UTF-8');
+
+    // Reset so the same file can be re-selected
+    e.target.value = '';
+  };
+
   const handleClear = () => {
     setInput('');
     setOutput('');
     setError(null);
+    setFileName(null);
     setShowPreview(false);
   };
 
@@ -229,6 +256,26 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
               <ChevronDown className="ml-1 h-3 w-3" />
             )}
           </Button>
+        )}
+
+        {mode === 'html-to-md' && (
+          <>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <Upload className="mr-1 h-4 w-4" />
+              Upload HTML
+            </Button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".html,.htm"
+              className="hidden"
+              onChange={handleFileUpload}
+            />
+          </>
         )}
 
         <Button variant="ghost" size="sm" onClick={handleLoadExample}>
@@ -336,9 +383,17 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
         {/* Input */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <Label htmlFor="input-area">
-              {mode === 'html-to-md' ? 'HTML Input' : 'Markdown Input'}
-            </Label>
+            <div className="flex items-center gap-2">
+              <Label htmlFor="input-area">
+                {mode === 'html-to-md' ? 'HTML Input' : 'Markdown Input'}
+              </Label>
+              {fileName && (
+                <span className="flex items-center gap-1 rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground">
+                  <Upload className="h-3 w-3" />
+                  {fileName}
+                </span>
+              )}
+            </div>
             <span className="text-xs text-muted-foreground">
               {inputChars} chars · {inputLines} lines
             </span>
