@@ -19,6 +19,7 @@ import {
   formatFileSize,
   estimateDecodedSize,
   isValidBase64,
+  normalizeBase64,
   downloadBlob,
 } from '@/lib/tools/base64-to-pdf';
 import { useCopy } from '@/lib/hooks/useCopy';
@@ -74,6 +75,9 @@ export default function Base64ToPdfTool({
         cleanBase64 = cleanBase64.substring(commaIndex + 1);
       }
     }
+
+    // Normalize Base64url before validation
+    cleanBase64 = normalizeBase64(cleanBase64.replace(/\s+/g, ''));
 
     const isValid = isValidBase64(cleanBase64);
     const estimatedSize = isValid ? estimateDecodedSize(cleanBase64) : 0;
@@ -275,9 +279,24 @@ export default function Base64ToPdfTool({
       {/* Error Display */}
       {error && (
         <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
-          <div className="flex items-center gap-2">
-            <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
-            <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
+          <div className="flex items-start gap-2">
+            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
+            <div className="space-y-1">
+              <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
+              {result?.detectedFileType && (
+                <p className="text-sm text-red-600 dark:text-red-400">
+                  Tip: If you need to convert this {result.detectedFileType} to
+                  PDF, use a dedicated conversion tool first.
+                </p>
+              )}
+              {!result?.detectedFileType && error.includes('valid PDF') && (
+                <p className="text-sm text-red-600 dark:text-red-400">
+                  Tip: Valid PDF Base64 data should start with
+                  &quot;JVBERi0&quot;. Make sure you&apos;re encoding the PDF
+                  file itself, not a different format.
+                </p>
+              )}
+            </div>
           </div>
         </div>
       )}
