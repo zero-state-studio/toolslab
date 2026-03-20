@@ -72,7 +72,7 @@ function LoadingPlaceholder({
 }) {
   return (
     <div className={`flex ${minHeight} items-center justify-center`}>
-      <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-300 border-t-blue-600" />
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-white/10 border-t-violet-500" />
     </div>
   );
 }
@@ -102,7 +102,7 @@ export default function HomePageContent({
       sections={homeSections}
       initialDictionary={dictionary}
     >
-      <main className="min-h-screen">
+      <main className="min-h-screen bg-background">
         {/* Above the fold - loaded immediately */}
         <HeroSection locale={locale} dictionary={dictionary} />
 

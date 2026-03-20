@@ -1,154 +1,160 @@
 'use client';
 
-import { Github, Zap, BarChart3, CloudCog, Globe } from 'lucide-react';
+import { Github, Zap, BarChart3, CloudCog, Globe, Shield } from 'lucide-react';
 import { trackSocial } from '@/lib/analytics';
-import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
-interface PoweredByServiceConfig {
-  id: 'github' | 'vercel' | 'umami' | 'cloudflare' | 'porkbun';
-  icon: React.ReactNode;
-  url: string;
-  color: string;
-}
-
-const servicesConfig: PoweredByServiceConfig[] = [
+const stats = [
   {
-    id: 'github',
-    icon: <Github className="h-8 w-8" />,
-    url: 'https://github.com',
-    color: '#181717',
+    value: '0 Bytes',
+    label: 'Your data never leaves your device',
+    accent: 'emerald',
+    accentClasses: {
+      border: 'border-emerald-500/20',
+      bg: 'bg-emerald-500/10',
+      text: 'text-emerald-400',
+      valueBg: 'text-emerald-300',
+    },
+    icon: Shield,
   },
   {
-    id: 'vercel',
-    icon: <Zap className="h-8 w-8" />,
-    url: 'https://vercel.com',
-    color: '#000000',
+    value: 'Open Source',
+    label: 'Community-driven development',
+    accent: 'violet',
+    accentClasses: {
+      border: 'border-violet-500/20',
+      bg: 'bg-violet-500/10',
+      text: 'text-violet-400',
+      valueBg: 'text-violet-300',
+    },
+    icon: Github,
+    link: 'https://github.com',
   },
   {
-    id: 'umami',
-    icon: <BarChart3 className="h-8 w-8" />,
-    url: 'https://umami.is',
-    color: '#FF6B35',
+    value: '$0 / month',
+    label: 'Free forever · No premium tier',
+    accent: 'amber',
+    accentClasses: {
+      border: 'border-amber-500/20',
+      bg: 'bg-amber-500/10',
+      text: 'text-amber-400',
+      valueBg: 'text-amber-300',
+    },
+    icon: Zap,
   },
   {
-    id: 'cloudflare',
-    icon: <CloudCog className="h-8 w-8" />,
-    url: 'https://cloudflare.com',
-    color: '#F38020',
-  },
-  {
-    id: 'porkbun',
-    icon: <Globe className="h-8 w-8" />,
-    url: 'https://porkbun.com',
-    color: '#FF6B9D',
+    value: '6 Languages',
+    label: 'EN, IT, ES, FR, DE, PT',
+    accent: 'violet',
+    accentClasses: {
+      border: 'border-violet-500/20',
+      bg: 'bg-violet-500/10',
+      text: 'text-violet-400',
+      valueBg: 'text-violet-300',
+    },
+    icon: Globe,
   },
 ];
 
-interface PoweredByCardProps {
-  service: PoweredByServiceConfig;
-  name: string;
-  description: string;
-  index: number;
-}
-
-function PoweredByCard({
-  service,
-  name,
-  description,
-  index,
-}: PoweredByCardProps) {
-  const handleClick = () => {
-    trackSocial(service.id, 'powered-by-section');
-  };
-
-  return (
-    <a
-      href={service.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={handleClick}
-      className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-violet-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 dark:border-slate-800/50 dark:bg-slate-900/50 dark:hover:border-slate-700/70 dark:hover:bg-slate-900/70"
-    >
-      {/* Subtle gradient overlay on hover */}
-      <div
-        className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-10"
-        style={{
-          background: `linear-gradient(135deg, ${service.color}20, transparent)`,
-        }}
-      />
-
-      <div className="relative z-10 flex flex-col items-center space-y-4">
-        <div
-          className="text-gray-500 transition-all duration-300 group-hover:scale-110 dark:text-slate-500"
-          style={{
-            color: undefined,
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = service.color;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = '';
-          }}
-        >
-          {service.icon}
-        </div>
-
-        <div className="text-center">
-          <div className="mb-1 font-semibold text-gray-900 transition-colors duration-300 group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-300">
-            {name}
-          </div>
-          <div className="text-xs text-gray-600 transition-colors duration-300 group-hover:text-gray-700 dark:text-slate-400 dark:group-hover:text-slate-300">
-            {description}
-          </div>
-        </div>
-      </div>
-    </a>
-  );
-}
+const logoRow = [
+  { id: 'github', icon: Github, label: 'GitHub', url: 'https://github.com' },
+  { id: 'vercel', icon: Zap, label: 'Vercel', url: 'https://vercel.com' },
+  {
+    id: 'umami',
+    icon: BarChart3,
+    label: 'Umami',
+    url: 'https://umami.is',
+  },
+  {
+    id: 'cloudflare',
+    icon: CloudCog,
+    label: 'Cloudflare',
+    url: 'https://cloudflare.com',
+  },
+];
 
 export function PoweredBy() {
-  const { data: t } = useDictionarySectionContext('home');
-  const poweredBy = t?.poweredBy;
-
   return (
-    <section className="relative bg-gradient-to-br from-gray-50 to-white py-20 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
+    <section className="relative py-20">
       {/* Gradient divider line */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-500/50 to-transparent"></div>
-
-      {/* Subtle dot pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.02] dark:opacity-[0.03]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgb(148 163 184) 1px, transparent 0)`,
-          backgroundSize: '32px 32px',
-        }}
-      ></div>
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
       <div className="container relative mx-auto max-w-7xl px-6">
+        {/* Header */}
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            {poweredBy?.title || 'Powered By'}
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2">
+            <div className="h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="font-mono text-xs font-medium uppercase tracking-widest text-emerald-400">
+              Transparent by design
+            </span>
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+            Built in the Open
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-            {poweredBy?.subtitle ||
-              'Built with industry-leading tools and services'}
+          <p className="mt-4 text-lg text-slate-700 dark:text-slate-400">
+            No hidden costs. No data collection. No vendor lock-in.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-5">
-          {servicesConfig.map((service, index) => {
-            const serviceData =
-              poweredBy?.[service.id as keyof typeof poweredBy];
-            const isObject =
-              typeof serviceData === 'object' && serviceData !== null;
+        {/* 4 stat cards */}
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {stats.map((stat) => {
+            const Icon = stat.icon;
+            const content = (
+              <div
+                className={`flex h-full flex-col items-center rounded-2xl border ${stat.accentClasses.border} ${stat.accentClasses.bg} p-6 text-center shadow-card-inset backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:brightness-110`}
+              >
+                <div
+                  className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200/80 bg-slate-100 dark:border-white/[0.08] dark:bg-white/[0.05]`}
+                >
+                  <Icon className={`h-5 w-5 ${stat.accentClasses.text}`} />
+                </div>
+                <div
+                  className={`text-2xl font-bold ${stat.accentClasses.valueBg}`}
+                >
+                  {stat.value}
+                </div>
+                <div className="mt-2 text-sm text-slate-700 dark:text-slate-400">
+                  {stat.label}
+                </div>
+              </div>
+            );
+
+            if (stat.link) {
+              return (
+                <a
+                  key={stat.value}
+                  href={stat.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackSocial('github', 'built-in-open')}
+                >
+                  {content}
+                </a>
+              );
+            }
+            return <div key={stat.value}>{content}</div>;
+          })}
+        </div>
+
+        {/* Logo row — secondary "Powered by" */}
+        <div className="mt-16 flex flex-wrap items-center justify-center gap-6">
+          <span className="font-mono text-xs uppercase tracking-wider text-slate-700">
+            Powered by
+          </span>
+          {logoRow.map((item) => {
+            const Icon = item.icon;
             return (
-              <PoweredByCard
-                key={service.id}
-                service={service}
-                name={isObject ? serviceData.name : service.id}
-                description={isObject ? serviceData.description : ''}
-                index={index}
-              />
+              <a
+                key={item.id}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackSocial(item.id, 'powered-by-logos')}
+                className="flex items-center gap-1.5 text-slate-700 transition-colors hover:text-slate-400"
+              >
+                <Icon className="h-4 w-4" />
+                <span className="text-sm">{item.label}</span>
+              </a>
             );
           })}
         </div>
