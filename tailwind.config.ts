@@ -113,6 +113,16 @@ const config: Config = {
             transform: 'translateX(100%)',
           },
         },
+        'glow-pulse': {
+          '0%, 100%': { opacity: '0.4' },
+          '50%': { opacity: '0.8' },
+        },
+      },
+      boxShadow: {
+        'glow-violet': '0 0 24px rgba(139, 92, 246, 0.15)',
+        'glow-amber': '0 0 24px rgba(245, 158, 11, 0.15)',
+        'glow-emerald': '0 0 24px rgba(16, 185, 129, 0.10)',
+        'card-inset': 'inset 0 1px 0 0 rgba(255,255,255,0.06)',
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -124,6 +134,7 @@ const config: Config = {
         'shake-beaker': 'shake-beaker 0.5s ease-in-out',
         'lab-experiment': 'lab-experiment 3s ease-in-out infinite',
         shimmer: 'shimmer 2s infinite',
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
       },
       scale: {
         '102': '1.02',
