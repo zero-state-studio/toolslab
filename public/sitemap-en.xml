@@ -314,6 +314,19 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/base64-to-jpg"/>
   </url>
   <url>
+    <loc>https://toolslab.dev/tools/html-to-markdown</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/html-to-markdown"/>
+  </url>
+  <url>
     <loc>https://toolslab.dev/tools/base64-to-webp</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>

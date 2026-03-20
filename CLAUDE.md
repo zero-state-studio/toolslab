@@ -19,6 +19,11 @@ Esempio: /new-tool json-diff "JSON Diff" dev
 ```
 Al termine esegue automaticamente `tool-completeness-reviewer` per verifica finale.
 
+**🔍 SEO OBBLIGATORIO dopo `/new-tool`** — Dopo la creazione dello scaffold, esegui SEMPRE nell'ordine:
+1. **`programmatic-seo`** — ottimizza `meta.title`, `meta.description`, `tagline`, `pageDescription` e keywords in `tools.ts` usando i playbook (Conversions, Templates, ecc.). Aggiorna anche il file i18n EN.
+2. **`seo-audit`** — verifica che il tool sia nella sitemap (`public/sitemap-*.xml`), che lo schema JSON-LD sia corretto, che canonical/hreflang siano presenti, e che OG/Twitter usino la meta description ottimizzata.
+3. **Aggiungi il tool alla sitemap** — il file è statico: aggiungere manualmente l'entry in tutti i 5 file `public/sitemap-{en,it,es,fr,de,pt}.xml` con priority `0.8` e tutti gli hreflang.
+
 ### 🎯 Skill: `/i18n-check`
 Verifica che tutti i tool abbiano traduzioni complete per tutte le 6 lingue (en, it, es, fr, de, pt).
 **Usa questa skill prima di ogni deploy** o quando aggiungi nuove traduzioni.

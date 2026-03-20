@@ -10,6 +10,7 @@ const customJestConfig = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
     '^yaml$': '<rootDir>/node_modules/yaml/dist/index.js',
+    '^marked$': '<rootDir>/node_modules/marked/lib/marked.umd.js',
   },
   collectCoverageFrom: [
     'lib/**/*.{js,jsx,ts,tsx}',

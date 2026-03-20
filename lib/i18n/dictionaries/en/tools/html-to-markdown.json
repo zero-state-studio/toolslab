@@ -76,9 +76,9 @@
     ]
   },
   "meta": {
-    "title": "HTML to Markdown Converter - Free Online GFM Tool",
-    "description": "Convert HTML to clean Markdown or Markdown to HTML online. Supports GFM tables, code blocks, links, and images. Free, browser-based HTML↔Markdown converter."
+    "title": "HTML to Markdown Converter — Free, Instant, Browser-Based",
+    "description": "Free HTML to Markdown converter — paste, upload a file, or fetch directly from a URL. Supports GFM tables, code blocks, task lists, and links. Instant, browser-based, no signup."
   },
-  "tagline": "Convert HTML to Markdown and back with full GFM support",
-  "pageDescription": "Convert HTML markup to clean Markdown syntax or render Markdown as HTML with GFM (GitHub Flavored Markdown) support. Perfect for developers migrating content between HTML-based CMSes and Markdown platforms like GitHub, GitLab, or Notion. Supports tables, fenced code blocks, strikethrough, task lists, links, images, and all standard HTML elements. Fully browser-based with configurable output options — no account or signup required."
+  "tagline": "Instantly convert HTML to clean Markdown — paste, upload, or fetch from any URL",
+  "pageDescription": "Convert any HTML to clean, readable Markdown in seconds — or render Markdown back to HTML. Paste raw markup, upload an .html file, or enter a page URL to fetch and convert in one click. Supports GitHub Flavored Markdown (GFM): tables, fenced code blocks, strikethrough, task lists, links, and images. Perfect for migrating WordPress or Drupal content to static sites, editing GitHub READMEs, writing for Notion or Obsidian, and cleaning up WYSIWYG editor output. Fully configurable output (ATX/Setext headings, bullet markers, code style) — free, browser-based, no account required."
 }

@@ -92,7 +92,7 @@ export async function generateMetadata({
 
     openGraph: {
       title: `${tool.name} - Free Online Tool | ToolsLab`,
-      description: tool.description,
+      description: toolData?.meta?.description || tool.description,
       type: 'website',
       url: `https://toolslab.dev/tools/${params.tool}`,
       images: [
@@ -109,7 +109,7 @@ export async function generateMetadata({
     twitter: {
       card: 'summary_large_image',
       title: `${tool.name} - ToolsLab`,
-      description: tool.description,
+      description: toolData?.meta?.description || tool.description,
       images: [`/tools/${params.tool}/opengraph-image.png`],
       creator: '@toolslab',
     },

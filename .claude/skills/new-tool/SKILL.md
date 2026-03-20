@@ -269,9 +269,55 @@ Crea i file JSON in `/lib/i18n/dictionaries/{en,it,es,fr,de,pt}/tools/TOOL_ID.js
 
 ---
 
-## STEP 11 — Verifica sitemap (nessuna azione richiesta)
+## STEP 11 — 🚨 Aggiungi il tool alla sitemap statica
 
-La sitemap viene aggiornata automaticamente leggendo `/lib/tools.ts` a ogni build.
+La sitemap **NON è generata automaticamente** — è un file XML statico che va aggiornato manualmente.
+
+Aggiungi il seguente blocco in **tutti e 6 i file** `public/sitemap-{en,it,es,fr,de,pt}.xml`, inserendolo prima della prima `<url>` esistente che contiene `/tools/`:
+
+**In `public/sitemap-en.xml`** — usa URL senza prefisso lingua:
+
+```xml
+<url>
+  <loc>https://toolslab.dev/tools/TOOL_ID</loc>
+  <lastmod>YYYY-MM-DD</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+  <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/TOOL_ID"/>
+</url>
+```
+
+**In `public/sitemap-it.xml`** — usa `<loc>` con prefisso `/it/`, tutti gli hreflang invariati:
+
+```xml
+<url>
+  <loc>https://toolslab.dev/it/tools/TOOL_ID</loc>
+  <lastmod>YYYY-MM-DD</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+  <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/TOOL_ID"/>
+  <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/TOOL_ID"/>
+</url>
+```
+
+Stessa struttura per `sitemap-es.xml` (`/es/`), `sitemap-fr.xml` (`/fr/`), `sitemap-de.xml` (`/de/`), `sitemap-pt.xml` (`/pt/`).
+
+**Verifica finale:**
+
+```bash
+grep -c "TOOL_ID" public/sitemap-en.xml  # deve restituire > 0
+```
 
 ---
 
@@ -300,6 +346,7 @@ Prima di considerare il tool completo, verifica:
 - [ ] `components/tools/LazyToolLoader.tsx` — tool registrato nel lazy loader
 - [ ] `lib/i18n/load-tools.ts` — tool ID aggiunto ⚠️
 - [ ] `lib/i18n/dictionaries/{en,it,es,fr,de,pt}/tools/TOOL_ID.json` — 6 file JSON
+- [ ] `public/sitemap-{en,it,es,fr,de,pt}.xml` — entry aggiunta in tutti e 6 i file ⚠️
 
 Dopo aver completato tutti gli step, di' all'utente:
 
