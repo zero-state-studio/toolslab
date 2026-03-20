@@ -131,7 +131,7 @@ interface LazyToolLoaderProps extends BaseToolProps {
   toolId: ToolId;
 }
 
-export default function LazyToolLoader({
+const LazyToolLoader = React.memo(function LazyToolLoader({
   toolId,
   ...props
 }: LazyToolLoaderProps) {
@@ -156,7 +156,9 @@ export default function LazyToolLoader({
       </ErrorBoundary>
     </Suspense>
   );
-}
+});
+
+export default LazyToolLoader;
 
 // Error Boundary for tool loading
 class ErrorBoundary extends React.Component<
