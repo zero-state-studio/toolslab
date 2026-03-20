@@ -1,5 +1,89 @@
 # CLAUDE.md - Standard Operativi per OctoTools
 
+## 🤖 AUTOMAZIONI CLAUDE CODE ATTIVE
+
+Questo progetto usa automazioni Claude Code per velocizzare lo sviluppo e garantire qualità. **Usale sempre.**
+
+### 🔌 MCP Server: context7
+Fornisce documentazione aggiornata delle librerie in uso (Next.js, Zustand, Zod, Radix UI, Tailwind, ecc.).
+**Uso**: quando hai dubbi su API di una libreria, chiedi esplicitamente `use context7` nella query.
+```
+Esempio: "Come si usa useEffect in Next.js 14 App Router? use context7"
+```
+
+### 🎯 Skill: `/new-tool [tool-id] [Tool Name] [category]`
+Scaffold automatico completo per un nuovo tool, seguendo i 13 step obbligatori.
+**Usa SEMPRE questa skill quando crei un nuovo tool.** Garantisce che nessuno step venga saltato.
+```
+Esempio: /new-tool json-diff "JSON Diff" dev
+```
+Al termine esegue automaticamente `tool-completeness-reviewer` per verifica finale.
+
+**🔍 SEO OBBLIGATORIO dopo `/new-tool`** — Dopo la creazione dello scaffold, esegui SEMPRE nell'ordine:
+1. **`programmatic-seo`** — ottimizza `meta.title`, `meta.description`, `tagline`, `pageDescription` e keywords in `tools.ts` usando i playbook (Conversions, Templates, ecc.). Aggiorna anche il file i18n EN.
+2. **`seo-audit`** — verifica che il tool sia nella sitemap (`public/sitemap-*.xml`), che lo schema JSON-LD sia corretto, che canonical/hreflang siano presenti, e che OG/Twitter usino la meta description ottimizzata.
+3. **Aggiungi il tool alla sitemap** — il file è statico: aggiungere manualmente l'entry in tutti i 5 file `public/sitemap-{en,it,es,fr,de,pt}.xml` con priority `0.8` e tutti gli hreflang.
+
+### 🎯 Skill: `/i18n-check`
+Verifica che tutti i tool abbiano traduzioni complete per tutte le 6 lingue (en, it, es, fr, de, pt).
+**Usa questa skill prima di ogni deploy** o quando aggiungi nuove traduzioni.
+```
+Esempio: /i18n-check
+```
+
+### ⚡ Hooks attivi (automatici)
+- **PostToolUse** — Dopo ogni modifica a file `.ts/.tsx`, esegue `tsc --noEmit` automaticamente. Se vedi errori TypeScript nell'output, correggili prima di continuare.
+- **PreToolUse** — Blocca qualsiasi tentativo di modificare `.env.local` via Claude. Per modificare le credenziali, usa il terminale direttamente.
+
+### 🤖 Subagent: `tool-completeness-reviewer`
+Verifica che un tool abbia completato tutti i 13 step. Viene invocato automaticamente da `/new-tool`, ma puoi usarlo manualmente:
+```
+"Invoca tool-completeness-reviewer per verificare il tool json-diff"
+```
+
+### 📦 Skills esterne installate — Trigger automatici
+
+Le seguenti skills sono installate in `.agents/skills/` e **DEVI attivarle autonomamente** quando riconosci le situazioni descritte, senza aspettare che l'utente le chieda esplicitamente.
+
+#### `vercel-react-best-practices` → attiva quando:
+- Scrivi o modifichi un componente React/Next.js (`.tsx`)
+- Implementi data fetching, `useEffect`, o lazy loading
+- L'utente chiede ottimizzazione performance o bundle size
+- Rilevi pattern potenzialmente inefficienti (waterfall, re-render eccessivi)
+
+#### `systematic-debugging` → attiva quando:
+- C'è un errore che non si riproduce in locale ma appare in produzione
+- Un bug persiste dopo il primo tentativo di fix
+- Hai un errore di hydration React (es. Error #425)
+- Il build Vercel fallisce senza una causa ovvia
+- Stai per applicare un terzo fix allo stesso problema → **fermati e usa questa skill**
+
+#### `free-tool-strategy` → attiva quando:
+- L'utente chiede quale tool implementare tra più opzioni
+- Si discute di priorità nella roadmap (`IMPLEMENTATION_ROADMAP.md`)
+- Si valuta il potenziale SEO/traffic di un nuovo tool
+- Si pianifica uno sprint di sviluppo
+
+#### `programmatic-seo` → attiva quando:
+- Scrivi `tagline` o `seoDescription` per un nuovo tool in `tool-seo.ts`
+- Si pianifica una nuova categoria di tool o pagina aggregatrice
+- L'utente chiede come ottimizzare il ranking di una pagina tool
+- Si discute di keyword strategy o struttura URL
+
+#### `seo-audit` → attiva quando:
+- L'utente chiede di verificare/migliorare la SEO di un tool o pagina
+- Prima di un deploy importante che tocca routing, metadata o sitemap
+- Dopo aver aggiunto 5+ tool nuovi senza audit recente
+- Si rilevano problemi con hreflang, canonical o schema markup
+
+#### `page-cro` → attiva quando:
+- L'utente chiede di migliorare un tool page (conversioni, engagement, UX)
+- Si lavora su tool ad alto `searchVolume` in `tools.ts` (>10K)
+- Si scrivono o revisionano CTA, headline o descrizioni pagina
+- L'utente menziona bounce rate, retention o miglioramento UI
+
+---
+
 ## 🗺️ Tool Development Roadmap
 
 **La roadmap completa per l'implementazione dei nuovi tool è disponibile in:**
@@ -34,6 +118,8 @@ npm update
 ### 2. DURANTE LO SVILUPPO
 
 #### Creazione di nuovi tool
+
+**🎯 METODO RAPIDO**: Usa la skill `/new-tool [tool-id] [Tool Name] [category]` — esegue automaticamente tutti i 13 step e verifica la completezza. Vedi sezione "AUTOMAZIONI CLAUDE CODE ATTIVE" in cima a questo file.
 
 **⚠️ IMPORTANTE**: Usa SOLO il sistema in `/lib/tools.ts` per gestire tools e categories.
 
@@ -980,6 +1066,10 @@ Esempio di hreflang generato:
 3. **Usare placeholder tradotti** per migliorare UX
 4. **Mantenere consistenza** nei termini tecnici tra lingue
 5. **Testare sempre** il language switcher su diverse pagine
+
+### Verifica Traduzioni con i18n-check
+
+**Prima di ogni deploy**, esegui la skill `/i18n-check` per verificare che tutti i tool abbiano tutte e 6 le traduzioni complete. La skill riporta file mancanti, campi incompleti e tool non registrati in `load-tools.ts`.
 
 ### Testing Multilingua
 

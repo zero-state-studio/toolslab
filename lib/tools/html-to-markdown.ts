@@ -62,6 +62,44 @@ export function htmlToMarkdown(
     // Apply GFM plugin (tables, strikethrough, task lists)
     turndownService.use(gfm);
 
+    // Custom rule: <a> tags that wrap block-level elements (cards, feature sections, etc.)
+    // produce broken Markdown link syntax because the content is multiline.
+    // Solution: unwrap the anchor and just emit the inner content.
+    const BLOCK_TAGS = new Set([
+      'H1',
+      'H2',
+      'H3',
+      'H4',
+      'H5',
+      'H6',
+      'P',
+      'DIV',
+      'ARTICLE',
+      'SECTION',
+      'FIGURE',
+      'BLOCKQUOTE',
+      'UL',
+      'OL',
+      'LI',
+      'TABLE',
+      'HEADER',
+      'FOOTER',
+      'NAV',
+      'ASIDE',
+      'MAIN',
+    ]);
+
+    turndownService.addRule('block-anchor', {
+      filter: (node) => {
+        if (node.nodeName !== 'A') return false;
+        for (let i = 0; i < node.childNodes.length; i++) {
+          if (BLOCK_TAGS.has(node.childNodes[i].nodeName)) return true;
+        }
+        return false;
+      },
+      replacement: (content) => content,
+    });
+
     const result = turndownService.turndown(html);
 
     return {

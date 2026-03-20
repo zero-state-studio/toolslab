@@ -13,7 +13,10 @@ import {
   Eye,
   Code,
   Upload,
+  Link,
+  Loader2,
 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
 import {
   htmlToMarkdown,
   markdownToHtml,
@@ -22,6 +25,8 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
+import { useToolStore } from '@/lib/store/toolStore';
+import { useHydration } from '@/lib/hooks/useHydration';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -83,6 +88,8 @@ const MARKDOWN_EXAMPLE = [
 ].join('\n');
 
 export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
+  const isHydrated = useHydration();
+  const { addToHistory } = useToolStore();
   const [mode, setMode] = useState<ConversionMode>('html-to-md');
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
@@ -96,6 +103,10 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
   });
   const [error, setError] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
+  const [showUrlInput, setShowUrlInput] = useState(false);
+  const [urlInput, setUrlInput] = useState('');
+  const [isFetchingUrl, setIsFetchingUrl] = useState(false);
+  const [sourceUrl, setSourceUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { copied, copy } = useCopy();
   const { trackUse, trackError } = useToolTracking('html-to-markdown');
@@ -129,7 +140,20 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
         const result = htmlToMarkdown(input, options);
         if (result.success && result.result !== undefined) {
           setOutput(result.result);
-          trackUse(input, result.result, { success: true });
+          trackUse(input, result.result, {
+            success: true,
+            source: sourceUrl ? 'url' : 'manual',
+            ...(sourceUrl ? { sourceUrl } : {}),
+          });
+          if (isHydrated) {
+            addToHistory({
+              id: crypto.randomUUID(),
+              tool: 'html-to-markdown',
+              input,
+              output: result.result,
+              timestamp: startTime,
+            });
+          }
         } else if (result.error) {
           setError(result.error);
           setOutput('');
@@ -139,7 +163,16 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
         const result = markdownToHtml(input);
         if (result.success && result.result !== undefined) {
           setOutput(result.result);
-          trackUse(input, result.result, { success: true });
+          trackUse(input, result.result, { success: true, source: 'manual' });
+          if (isHydrated) {
+            addToHistory({
+              id: crypto.randomUUID(),
+              tool: 'html-to-markdown',
+              input,
+              output: result.result,
+              timestamp: startTime,
+            });
+          }
         } else if (result.error) {
           setError(result.error);
           setOutput('');
@@ -155,7 +188,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
         input.length
       );
     }
-  }, [input, mode, options, trackUse, trackError]);
+  }, [input, mode, options, trackUse, trackError, isHydrated, addToHistory]);
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -185,6 +218,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
     setOutput('');
     setError(null);
     setFileName(null);
+    setSourceUrl(null);
     setShowPreview(false);
   };
 
@@ -206,11 +240,37 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
     setError(null);
   };
 
+  const handleFetchUrl = async () => {
+    if (!urlInput.trim()) return;
+    setIsFetchingUrl(true);
+    setError(null);
+    try {
+      const res = await fetch(
+        `/api/fetch-url?url=${encodeURIComponent(urlInput)}`
+      );
+      const data = await res.json();
+      if (data.success) {
+        setInput(data.html);
+        setFileName(new URL(urlInput).hostname);
+        setSourceUrl(urlInput);
+        setShowUrlInput(false);
+        setUrlInput('');
+      } else {
+        setError(data.error ?? 'Failed to fetch URL.');
+      }
+    } catch {
+      setError('Failed to fetch URL. Check your connection and try again.');
+    } finally {
+      setIsFetchingUrl(false);
+    }
+  };
+
   const handleModeChange = (newMode: ConversionMode) => {
     setMode(newMode);
     setInput('');
     setOutput('');
     setError(null);
+    setSourceUrl(null);
     setShowPreview(false);
   };
 
@@ -275,6 +335,14 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
               className="hidden"
               onChange={handleFileUpload}
             />
+            <Button
+              variant={showUrlInput ? 'outline' : 'ghost'}
+              size="sm"
+              onClick={() => setShowUrlInput((v) => !v)}
+            >
+              <Link className="mr-1 h-4 w-4" />
+              From URL
+            </Button>
           </>
         )}
 
@@ -283,6 +351,50 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
           Load Example
         </Button>
       </div>
+
+      {/* URL Fetch Panel (HTML → MD only) */}
+      {mode === 'html-to-md' && showUrlInput && (
+        <div className="flex items-center gap-2">
+          <Input
+            value={urlInput}
+            onChange={(e) => setUrlInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleFetchUrl();
+              if (e.key === 'Escape') {
+                setShowUrlInput(false);
+                setUrlInput('');
+              }
+            }}
+            placeholder="https://example.com/page"
+            className="font-mono text-sm"
+            disabled={isFetchingUrl}
+            autoFocus
+          />
+          <Button
+            size="sm"
+            onClick={handleFetchUrl}
+            disabled={isFetchingUrl || !urlInput.trim()}
+          >
+            {isFetchingUrl ? (
+              <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+            ) : (
+              <Link className="mr-1 h-4 w-4" />
+            )}
+            {isFetchingUrl ? 'Fetching…' : 'Fetch HTML'}
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              setShowUrlInput(false);
+              setUrlInput('');
+            }}
+            disabled={isFetchingUrl}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
 
       {/* Options Panel (HTML → MD only) */}
       {mode === 'html-to-md' && showOptions && (
@@ -462,25 +574,27 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
               className="h-72 resize-none font-mono text-sm"
             />
           )}
+
+          {/* Copy button — directly below the output */}
+          <Button
+            onClick={handleCopy}
+            disabled={!output}
+            variant="outline"
+            size="sm"
+            className="w-full"
+          >
+            {copied ? (
+              <Check className="mr-2 h-4 w-4 text-green-500" />
+            ) : (
+              <Copy className="mr-2 h-4 w-4" />
+            )}
+            {copied ? 'Copied!' : 'Copy Output'}
+          </Button>
         </div>
       </div>
 
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-2">
-        <Button
-          onClick={handleCopy}
-          disabled={!output}
-          variant="outline"
-          size="sm"
-        >
-          {copied ? (
-            <Check className="mr-2 h-4 w-4 text-green-500" />
-          ) : (
-            <Copy className="mr-2 h-4 w-4" />
-          )}
-          {copied ? 'Copied!' : 'Copy Output'}
-        </Button>
-
         <Button
           onClick={handleSwap}
           disabled={!output}

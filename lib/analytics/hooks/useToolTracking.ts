@@ -34,6 +34,8 @@ export function useToolTracking(toolId: string) {
         processingTime?: number;
         success?: boolean;
         error?: string;
+        source?: string;
+        sourceUrl?: string;
       }
     ) => {
       try {
@@ -65,6 +67,8 @@ export function useToolTracking(toolId: string) {
             processingTime: metadata?.processingTime,
             success,
             sessionId: '',
+            ...(metadata?.source ? { source: metadata.source } : {}),
+            ...(metadata?.sourceUrl ? { sourceUrl: metadata.sourceUrl } : {}),
           });
           manager.track(event);
         }
