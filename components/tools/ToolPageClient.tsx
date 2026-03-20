@@ -35,6 +35,21 @@ import ToolHowToUse from './ToolHowToUse';
 import ToolHeroSection from './ToolHeroSection';
 import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
 
+const CATEGORY_COLORS: Record<string, string> = {
+  data: '#0EA5E9',
+  encoding: '#10B981',
+  text: '#8B5CF6',
+  generators: '#F97316',
+  web: '#EC4899',
+  dev: '#F59E0B',
+  formatters: '#6366F1',
+  social: '#F43F5E',
+};
+
+function getCategoryColor(category: string): string {
+  return CATEGORY_COLORS[category] ?? '#3B82F6';
+}
+
 interface ToolPageClientProps {
   toolId: string;
   locale?: string;
@@ -59,7 +74,6 @@ export default function ToolPageClient({
   const { theme } = useTheme();
   const { createHref } = useLocalizedRouter();
   const [usageCount, setUsageCount] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
 
   // Tool label system
   const toolLabel = useToolLabel(toolId);
@@ -68,15 +82,6 @@ export default function ToolPageClient({
 
   // Extract initial input from search params
   const initialInput = searchParams?.get('input') || undefined;
-
-  // Use matchMedia for zero-cost, event-based mobile detection
-  useEffect(() => {
-    const mql = window.matchMedia('(max-width: 767px)');
-    setIsMobile(mql.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mql.addEventListener('change', handler);
-    return () => mql.removeEventListener('change', handler);
-  }, []);
 
   useEffect(() => {
     // Simulate usage count
@@ -162,22 +167,13 @@ export default function ToolPageClient({
   const categoryName = categoryDict?.name || primaryCategory?.name || 'Tools';
   const categoryId = tool.categories[0];
 
-  // Get category color using the same system as ToolCard
-  const getCategoryColor = (category: string) => {
-    const colors = {
-      data: '#0EA5E9',
-      encoding: '#10B981',
-      text: '#8B5CF6',
-      generators: '#F97316',
-      web: '#EC4899',
-      dev: '#F59E0B',
-      formatters: '#6366F1',
-      social: '#F43F5E',
-    };
-    return colors[category as keyof typeof colors] || '#3B82F6';
-  };
-
   const categoryColor = getCategoryColor(categoryId);
+
+  // Memoize the tool prop object to prevent breaking ToolWorkspace memoization
+  const toolWithSlug = useMemo(
+    () => ({ ...tool, slug: tool.id, category: categoryId } as any),
+    [tool, categoryId]
+  );
 
   const handleShare = async () => {
     const hasNativeShare =
@@ -306,7 +302,7 @@ export default function ToolPageClient({
           {/* Tool Workspace - Much wider on desktop */}
           <div className="lg:col-span-9">
             <ToolWorkspace
-              tool={{ ...tool, slug: tool.id, category: categoryId } as any}
+              tool={toolWithSlug}
               categoryColor={categoryColor}
               initialInput={initialInput}
               locale={locale}
@@ -331,9 +327,8 @@ export default function ToolPageClient({
             />
           </div>
 
-          {/* Sidebar (Desktop Only) - Narrower */}
-          {!isMobile && (
-            <div className="space-y-4 lg:col-span-3">
+          {/* Sidebar (Desktop Only via CSS) */}
+          <div className="hidden space-y-4 lg:col-span-3 lg:block">
               {/* Support / Donation Box */}
               <a
                 href="https://buymeacoffee.com/toolslab"
@@ -438,12 +433,10 @@ export default function ToolPageClient({
 
               {/* Sidebar Ad - Hidden */}
             </div>
-          )}
         </div>
 
-        {/* Mobile Related Tools */}
-        {isMobile && (
-          <div className="mt-8 sm:mt-12">
+        {/* Mobile Related Tools (visible only on mobile via CSS) */}
+        <div className="mt-8 sm:mt-12 lg:hidden">
             {/* Support / Donation Box */}
             <a
               href="https://buymeacoffee.com/toolslab"
@@ -498,12 +491,11 @@ export default function ToolPageClient({
                 </Link>
               ))}
             </div>
-          </div>
-        )}
+        </div>
 
-        {/* Mobile Same Category Tools */}
-        {isMobile && sameCategoryTools.length > 0 && (
-          <div className="mt-12 sm:mt-16">
+        {/* Mobile Same Category Tools (visible only on mobile via CSS) */}
+        {sameCategoryTools.length > 0 && (
+          <div className="mt-12 sm:mt-16 lg:hidden">
             <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
               {t.sameCategoryTools}
             </h3>

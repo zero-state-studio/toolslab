@@ -71,9 +71,10 @@ export function Header() {
     <>
       <header
         className={cn(
-          'sticky top-0 z-50 w-full border-b border-gray-200/40 bg-white/95 transition-all duration-300 dark:border-gray-800/40 dark:bg-gray-900/95 md:bg-white/75 md:backdrop-blur-md md:dark:bg-gray-900/75',
+          'sticky top-0 z-50 w-full border-b backdrop-blur-md transition-all duration-300',
+          'border-slate-200/50 bg-white/90 dark:border-white/[0.06] dark:bg-background/80',
           isScrolled &&
-            'bg-white/95 shadow-lg dark:bg-gray-900/95 md:bg-white/90 md:dark:bg-gray-900/90'
+            'bg-white/95 shadow-lg shadow-slate-200/50 dark:bg-background/95 dark:shadow-black/30'
         )}
       >
         <div className="container mx-auto flex h-16 max-w-7xl items-center px-6">
@@ -95,7 +96,7 @@ export function Header() {
             <Link
               href={createHref('/tools')}
               className={cn(
-                'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
+                'flex items-center text-slate-600 transition-colors duration-200 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white',
                 pathname === createHref('/tools') &&
                   'text-violet-600 dark:text-violet-400'
               )}
@@ -107,7 +108,7 @@ export function Header() {
             {/* Categories dropdown */}
             <div className="group relative">
               <button
-                className="flex items-center rounded-lg px-2 py-1 text-gray-600 transition-colors duration-200 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100"
+                className="flex items-center rounded-lg px-2 py-1 text-slate-600 transition-colors duration-200 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 dark:text-slate-400 dark:hover:text-white"
                 aria-expanded="false"
                 aria-haspopup="true"
                 aria-label="Categories menu"
@@ -133,7 +134,7 @@ export function Header() {
               {/* Dropdown */}
               <div className="pointer-events-none invisible absolute left-0 top-full z-50 mt-2 w-64 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
                 <div
-                  className="rounded-xl border border-gray-200/40 bg-white p-4 shadow-xl dark:border-gray-800/40 dark:bg-gray-900 md:bg-white/95 md:backdrop-blur-md md:dark:bg-gray-900/95"
+                  className="rounded-xl border border-slate-200/60 bg-white p-4 shadow-xl backdrop-blur-xl dark:border-white/[0.08] dark:bg-background/95"
                   role="menu"
                   aria-label="Categories navigation menu"
                 >
@@ -141,7 +142,7 @@ export function Header() {
                     {/* Hub Link - Browse All Categories */}
                     <Link
                       href={createHref('/categories')}
-                      className="flex items-center rounded-lg p-3 font-medium text-violet-600 transition-colors hover:bg-violet-50 dark:text-violet-400 dark:hover:bg-violet-900/20"
+                      className="flex items-center rounded-lg p-3 font-medium text-violet-400 transition-colors hover:bg-violet-500/10"
                       role="menuitem"
                       aria-label="Browse all categories overview page"
                     >
@@ -150,21 +151,21 @@ export function Header() {
                         <div className="text-sm font-semibold">
                           Browse All Categories
                         </div>
-                        <div className="text-xs text-violet-500 dark:text-violet-400">
+                        <div className="text-xs text-violet-400">
                           Overview & comparison
                         </div>
                       </div>
                     </Link>
 
                     {/* Visual Separator */}
-                    <div className="mx-2 my-1 border-t border-gray-200/60 dark:border-gray-700/60" />
+                    <div className="mx-2 my-1 border-t border-white/[0.06]" />
 
                     {/* Individual Category Links */}
                     {categories.map((category) => (
                       <Link
                         key={category.id}
                         href={createHref(`/category/${category.id}`)}
-                        className="flex items-center rounded-lg p-3 transition-colors hover:bg-white/10 dark:hover:bg-gray-800/50"
+                        className="flex items-center rounded-lg p-3 text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.05]"
                         role="menuitem"
                         aria-label={`${category.name} category with ${category.tools.length} tools`}
                       >
@@ -173,7 +174,7 @@ export function Header() {
                           <div className="text-sm font-medium">
                             {category.name}
                           </div>
-                          <div className="text-xs text-gray-500 dark:text-gray-400">
+                          <div className="text-xs text-slate-400 dark:text-slate-500">
                             {category.tools.length} tool
                             {category.tools.length !== 1 ? 's' : ''}
                           </div>
@@ -188,7 +189,7 @@ export function Header() {
             <Link
               href={createHref('/lab')}
               className={cn(
-                'flex items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100',
+                'flex items-center text-slate-600 transition-colors duration-200 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white',
                 pathname === createHref('/lab') &&
                   'text-violet-600 dark:text-violet-400'
               )}
@@ -222,7 +223,7 @@ export function Header() {
             <Link
               href={createHref('/about')}
               className={cn(
-                'hidden items-center text-gray-600 transition-colors duration-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 md:flex',
+                'hidden items-center text-slate-600 transition-colors duration-200 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white md:flex',
                 pathname === createHref('/about') &&
                   'text-violet-600 dark:text-violet-400'
               )}
@@ -241,7 +242,7 @@ export function Header() {
             {mounted && (
               <button
                 onClick={toggleTheme}
-                className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 transition-all duration-200 hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:bg-gray-800 dark:hover:bg-gray-700"
+                className="relative inline-flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-all duration-200 hover:bg-slate-200 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:border dark:border-white/[0.06] dark:bg-white/[0.04] dark:text-slate-400 dark:hover:bg-white/[0.08] dark:hover:text-white"
                 aria-label="Toggle theme"
               >
                 <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -252,7 +253,7 @@ export function Header() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 transition-all duration-200 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 md:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition-all duration-200 hover:bg-slate-200 dark:border dark:border-white/[0.06] dark:bg-white/[0.04] dark:text-slate-400 dark:hover:bg-white/[0.08] dark:hover:text-white md:hidden"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -268,7 +269,7 @@ export function Header() {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden">
-          <div className="fixed inset-y-0 right-0 w-full max-w-sm overflow-y-auto bg-white/95 p-6 shadow-xl backdrop-blur-md dark:bg-gray-900/95">
+          <div className="fixed inset-y-0 right-0 w-full max-w-sm overflow-y-auto bg-white/95 p-6 shadow-xl backdrop-blur-md dark:bg-background/95">
             <div className="mb-8 flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <LabLogo className="h-6 w-6 text-violet-600" animated />
@@ -324,7 +325,7 @@ export function Header() {
               </Link>
 
               <div className="border-t border-white/10 pt-4">
-                <div className="mb-3 text-sm font-medium text-gray-400">
+                <div className="mb-3 text-sm font-medium text-slate-500 dark:text-slate-400">
                   {common?.nav?.categories || 'Categories'}
                 </div>
                 <div className="space-y-2">
@@ -361,7 +362,7 @@ export function Header() {
                         <div className="text-sm font-medium">
                           {category.name}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-slate-400 dark:text-slate-500">
                           {category.tools.length} tool
                           {category.tools.length !== 1 ? 's' : ''}
                         </div>
