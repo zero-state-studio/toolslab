@@ -46,15 +46,17 @@ export async function generateMetadata({
     };
   }
 
-  const dict = await getDictionary(locale as Locale);
-  const toolDict = dict.tools[toolId];
+  // Load locale dict and English fallback in parallel to eliminate waterfall
+  const [dict, enDict] = await Promise.all([
+    getDictionary(locale as Locale),
+    locale !== 'en' ? getDictionary('en') : Promise.resolve(null),
+  ]);
+  const toolDict = dict.tools?.[toolId];
 
   if (!toolDict) {
-    // Fallback to English if translation is missing
-    const enDict = await getDictionary('en');
-    const enToolDict = enDict.tools[toolId];
-
-    if (!enToolDict) {
+    // Fallback to English if locale translation is missing
+    const hasEnglishFallback = enDict?.tools?.[toolId];
+    if (!hasEnglishFallback) {
       return {
         title: `${tool.name} - ToolsLab`,
         description: tool.description,
