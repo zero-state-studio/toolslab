@@ -142,14 +142,13 @@ export default function ToolPageClient({
   }, [toolId, tool]);
 
   // Memoize the tool prop object to prevent breaking ToolWorkspace memoization
-  // NOTE: Must be before any early returns (Rules of Hooks)
+  const categoryId = tool?.categories[0] ?? 'dev';
   const toolWithSlug = useMemo(
-    () =>
-      tool ? ({ ...tool, slug: tool.id, category: tool.categories[0] } as any) : null,
-    [tool]
+    () => (tool ? ({ ...tool, slug: tool.id, category: categoryId } as any) : null),
+    [tool, categoryId]
   );
 
-  if (!tool || !toolWithSlug) {
+  if (!tool) {
     return <div>Tool not found</div>;
   }
 
@@ -173,7 +172,6 @@ export default function ToolPageClient({
   );
   const categoryDict = dictionary?.categories?.[primaryCategory?.id || 'dev'];
   const categoryName = categoryDict?.name || primaryCategory?.name || 'Tools';
-  const categoryId = tool.categories[0];
 
   const categoryColor = getCategoryColor(categoryId);
 
