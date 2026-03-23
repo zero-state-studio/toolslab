@@ -141,6 +141,13 @@ export default function ToolPageClient({
       .slice(0, 6);
   }, [toolId, tool]);
 
+  // Memoize the tool prop object to prevent breaking ToolWorkspace memoization
+  const categoryId = tool?.categories[0] ?? 'dev';
+  const toolWithSlug = useMemo(
+    () => (tool ? ({ ...tool, slug: tool.id, category: categoryId } as any) : null),
+    [tool, categoryId]
+  );
+
   if (!tool) {
     return <div>Tool not found</div>;
   }
@@ -165,15 +172,8 @@ export default function ToolPageClient({
   );
   const categoryDict = dictionary?.categories?.[primaryCategory?.id || 'dev'];
   const categoryName = categoryDict?.name || primaryCategory?.name || 'Tools';
-  const categoryId = tool.categories[0];
 
   const categoryColor = getCategoryColor(categoryId);
-
-  // Memoize the tool prop object to prevent breaking ToolWorkspace memoization
-  const toolWithSlug = useMemo(
-    () => ({ ...tool, slug: tool.id, category: categoryId } as any),
-    [tool, categoryId]
-  );
 
   const handleShare = async () => {
     const hasNativeShare =
