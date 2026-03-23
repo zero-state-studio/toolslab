@@ -238,14 +238,14 @@ export default function CategoriesHubContentSimple({
                   href={createHref(`/category/${category.id}`)}
                   className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:bg-slate-100/50 hover:shadow-lg dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
                 >
-                  {/* Hover glow */}
+                  {/* Persistent category glow background */}
                   <div
-                    className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    className="absolute inset-0 opacity-40 transition-opacity duration-300 group-hover:opacity-100"
                     style={{ background: glowColor }}
                   />
 
-                  {/* Gradient top accent on hover */}
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {/* Colored top border — always visible */}
+                  <div className={`absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r ${gradient}`} />
 
                   <div className="relative z-10">
                     {/* Icon */}

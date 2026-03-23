@@ -9,6 +9,20 @@ import { ToolLabel } from '@/lib/edge-config/types';
 import { useLocale } from '@/hooks/useLocale';
 import { useDictionary } from '@/hooks/useDictionary';
 
+// Category gradient — one thin top-border per card gives a light color note
+const categoryGradients: Record<string, string> = {
+  data: 'from-blue-500 to-cyan-500',
+  encoding: 'from-emerald-500 to-green-500',
+  base64: 'from-teal-500 to-cyan-500',
+  text: 'from-purple-500 to-pink-500',
+  web: 'from-pink-500 to-rose-500',
+  dev: 'from-amber-500 to-orange-500',
+  generators: 'from-orange-500 to-red-500',
+  formatters: 'from-indigo-500 to-purple-500',
+  social: 'from-rose-500 to-pink-500',
+  pdf: 'from-red-600 to-orange-600',
+};
+
 interface ToolCardProps {
   tool: Tool;
   className?: string;
@@ -35,6 +49,7 @@ export function ToolCard({
   const categoryId = tool.categories[0];
   const translatedCategory =
     dictionary?.categories?.[categoryId]?.name || categoryId;
+  const gradient = categoryGradients[categoryId] || 'from-violet-500 to-violet-400';
   const comingSoonMessage =
     (dictionary?.common?.messages as any)?.comingSoon ||
     'This tool is coming soon. Stay tuned for updates!';
@@ -71,8 +86,8 @@ export function ToolCard({
   return (
     <Link href={createHref(tool.route)} className={cn('group block h-full', className)}>
       <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:shadow-none dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]">
-        {/* Gradient top accent on hover */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        {/* Category color top accent — always visible */}
+        <div className={`absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r ${gradient}`} />
 
         {/* Header: icon + label badge + favorite */}
         <div className="mb-4 flex items-start justify-between gap-2">
