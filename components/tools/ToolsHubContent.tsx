@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import { useDictionary } from '@/hooks/useDictionary';
@@ -8,30 +8,51 @@ import Link from 'next/link';
 import {
   tools,
   categories,
-  getToolsByCategory,
-  getCategoryColorClass,
   type Tool,
 } from '@/lib/tools';
 import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
+import { ToolListItem } from '@/components/tools/ToolListItem';
 import {
   Search,
-  Filter,
-  Grid3X3,
-  List,
-  TrendingUp,
-  Sparkles,
-  Zap,
-  Shield,
-  ChevronRight,
-  Star,
-  Users,
-  Clock,
-  ArrowRight,
-  CheckCircle2,
   X,
+  TrendingUp,
+  Clock,
+  LayoutGrid,
+  List,
+  ChevronRight,
+  Shield,
+  Zap,
+  Lock,
+  CheckCircle2,
+  Database,
+  FileText,
+  Palette,
+  Settings,
+  Rocket,
+  Share2,
+  ArrowUpAZ,
+  Code2,
+  Image,
+  AlertCircle,
+  Terminal,
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-// Category colors mapping
+// Category icons — same as CategoryGrid
+const categoryIcons: Record<string, React.ElementType> = {
+  data: Database,
+  encoding: Lock,
+  base64: Image,
+  text: FileText,
+  generators: Rocket,
+  web: Palette,
+  dev: Terminal,
+  formatters: Code2,
+  social: Share2,
+  pdf: FileText,
+};
+
+// Category accent colors
 const categoryColors: Record<string, string> = {
   data: '#0EA5E9',
   encoding: '#10B981',
@@ -45,12 +66,19 @@ const categoryColors: Record<string, string> = {
   pdf: '#EF4444',
 };
 
-type SortOption = 'alphabetical' | 'popular' | 'recent' | 'category';
+type ViewMode = 'grid' | 'list';
+type SortOption = 'popular' | 'alphabetical' | 'recent';
 
 interface ToolsHubContentProps {
   locale?: string;
   dictionary?: any;
 }
+
+const SORT_OPTIONS: { value: SortOption; label: string; icon: React.ElementType }[] = [
+  { value: 'popular', label: 'Most Popular', icon: TrendingUp },
+  { value: 'alphabetical', label: 'A → Z', icon: ArrowUpAZ },
+  { value: 'recent', label: 'Recently Added', icon: Clock },
+];
 
 export default function ToolsHubContent({
   locale,
@@ -58,45 +86,22 @@ export default function ToolsHubContent({
 }: ToolsHubContentProps = {}) {
   const searchParams = useSearchParams();
   const { replace, createHref } = useLocalizedRouter();
-  const { dictionary: hookDictionary, loading } = useDictionary();
+  const { dictionary: hookDictionary } = useDictionary();
 
-  // Use provided dictionary or fall back to hook
   const dictionary = propDictionary || hookDictionary;
 
-  // Translations with fallbacks to English
   const t = dictionary?.toolsPage || {
-    breadcrumb: {
-      home: 'Home',
-      allTools: 'All Tools',
-    },
+    breadcrumb: { home: 'Home', allTools: 'All Tools' },
     header: {
-      title: 'All Developer Tools - Free Online Utilities',
-      subtitle:
-        'Complete collection of professional tools for developers, data analysts, and system administrators',
-      description:
-        'free browser-based tools for JSON formatting, Base64 encoding, hash generation, and more. Zero data transmission, no registration required.',
-    },
-    trust: {
-      tools: 'tools',
-      freeForever: 'Free forever',
-      privacyFirst: 'Privacy-first',
+      title: 'All Developer Tools',
+      subtitle: 'Complete collection of free browser-based tools. No signup, no tracking, instant results.',
     },
     search: { placeholder: "Search tools... (e.g. 'json', 'encode', 'hash')" },
-    filters: {
-      all: 'All',
-      sortBy: 'Sort by:',
-      mostPopular: 'Most Popular',
-      alphabetical: 'A-Z',
-      recentlyAdded: 'Recently Added',
-      category: 'Category',
-      clearFilters: 'Clear filters',
-    },
+    filters: { all: 'All', clearFilters: 'Clear filters' },
     sections: {
-      recentlyAdded: 'Recently Added Tools',
-      newTools: 'new tools',
-      mostPopular: 'Most Popular Tools',
-      trendingTools: 'trending tools',
+      mostPopular: 'Most Popular',
       allTools: 'All Tools',
+      trendingTools: 'trending tools',
     },
     empty: {
       title: 'No tools found',
@@ -104,97 +109,44 @@ export default function ToolsHubContent({
       clearAll: 'Clear all filters',
     },
     seo: {
-      whyChoose: {
-        title: 'Why Choose ToolsLab Tools?',
-        benefits: [
-          'Complete privacy - all processing happens in your browser',
-          'No registration or account required',
-          'Professional-grade tools used by developers worldwide',
-          'Real-time processing with instant results',
-          'Mobile-friendly responsive design',
-          'Regular updates with new tools and features',
-        ],
-      },
+      whyChoose: { title: 'Why Choose ToolsLab Tools?' },
       workflows: {
         title: 'Common Developer Workflows',
-        api: {
-          title: 'API Development & Testing',
-          tools: [
-            'JSON Formatter',
-            'JWT Decoder',
-            'URL Encoder',
-            'Hash Generator',
-          ],
-        },
-        data: {
-          title: 'Data Migration & ETL',
-          tools: [
-            'CSV to JSON',
-            'Base64 Encoder',
-            'SQL Formatter',
-            'UUID Generator',
-          ],
-        },
-        security: {
-          title: 'Security & Authentication',
-          tools: [
-            'JWT Decoder',
-            'Hash Generator',
-            'Password Generator',
-            'Base64',
-          ],
-        },
+        api: { title: 'API Development & Testing', tools: ['JSON Formatter', 'JWT Decoder', 'URL Encoder', 'Hash Generator'] },
+        data: { title: 'Data Migration & ETL', tools: ['CSV to JSON', 'Base64 Encoder', 'SQL Formatter', 'UUID Generator'] },
+        security: { title: 'Security & Authentication', tools: ['JWT Decoder', 'Hash Generator', 'Password Generator', 'Base64'] },
       },
     },
   };
 
-  // Count total tools
   const totalTools = tools.length;
 
-  // Get search and filter params
   const search = searchParams?.get('search') || '';
   const categoryFilter = searchParams?.get('category') || '';
   const sort = (searchParams?.get('sort') as SortOption) || 'popular';
-  const popular = searchParams?.get('popular') === 'true';
 
-  // State
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [mounted, setMounted] = useState(false);
 
-  // Set mounted on client-side
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => { setMounted(true); }, []);
 
-  // Filtered and sorted tools
   const filteredTools = useMemo(() => {
     let result = [...tools];
 
-    // Apply search filter
     if (search) {
-      const searchLower = search.toLowerCase();
+      const q = search.toLowerCase();
       result = result.filter(
         (tool) =>
-          tool.name.toLowerCase().includes(searchLower) ||
-          tool.description.toLowerCase().includes(searchLower) ||
-          tool.keywords.some((keyword) =>
-            keyword.toLowerCase().includes(searchLower)
-          )
+          tool.name.toLowerCase().includes(q) ||
+          tool.description.toLowerCase().includes(q) ||
+          tool.keywords.some((k) => k.toLowerCase().includes(q))
       );
     }
 
-    // Apply category filter
     if (categoryFilter && categoryFilter !== 'all') {
-      result = result.filter((tool) =>
-        tool.categories.includes(categoryFilter)
-      );
+      result = result.filter((tool) => tool.categories.includes(categoryFilter));
     }
 
-    // Apply popular filter
-    if (popular) {
-      result = result.filter((tool) => tool.label === 'popular');
-    }
-
-    // Apply sorting
     switch (sort) {
       case 'alphabetical':
         result.sort((a, b) => a.name.localeCompare(b.name));
@@ -215,63 +167,49 @@ export default function ToolsHubContent({
           return 0;
         });
         break;
-      default:
-        break;
     }
 
     return result;
-  }, [search, categoryFilter, sort, popular]);
+  }, [search, categoryFilter, sort]);
 
-  // Get recently added and popular tools for sections
-  const recentTools = useMemo(() => {
-    return tools.filter((tool) => tool.label === 'new').slice(0, 6);
-  }, []);
+  const popularTools = useMemo(
+    () =>
+      [...tools]
+        .filter((t) => t.label === 'popular')
+        .sort((a, b) => (b.searchVolume || 0) - (a.searchVolume || 0))
+        .slice(0, 6),
+    []
+  );
 
-  const popularTools = useMemo(() => {
-    return [...tools]
-      .filter((tool) => tool.label === 'popular')
-      .sort((a, b) => (b.searchVolume || 0) - (a.searchVolume || 0))
-      .slice(0, 6);
-  }, []);
-
-  // Update URL with filters
   const updateFilters = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams?.toString());
-    if (value) {
-      params.set(key, value);
-    } else {
-      params.delete(key);
-    }
+    if (value) params.set(key, value);
+    else params.delete(key);
     replace(`/tools?${params.toString()}`, { scroll: false });
   };
 
-  const clearAllFilters = () => {
-    replace('/tools', { scroll: false });
-  };
+  const clearAllFilters = () => replace('/tools', { scroll: false });
 
-  // Show loading skeleton on first mount
+  const hasActiveFilters = !!(search || categoryFilter);
+
+  const activeCategory = categories.find((c) => c.id === categoryFilter);
+
+  // Skeleton on SSR
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+      <div className="min-h-screen bg-background">
         <div className="animate-pulse">
-          {/* Header skeleton */}
-          <div className="border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
-            <div className="container mx-auto px-4 py-20">
-              <div className="mx-auto max-w-4xl text-center">
-                <div className="mx-auto mb-4 h-12 w-96 rounded bg-gray-200 dark:bg-gray-700" />
-                <div className="w-128 mx-auto mb-8 h-6 rounded bg-gray-200 dark:bg-gray-700" />
-              </div>
+          <div className="py-14">
+            <div className="mx-auto max-w-7xl px-4 text-center">
+              <div className="mx-auto mb-4 h-6 w-48 rounded-full bg-slate-200 dark:bg-white/[0.06]" />
+              <div className="mx-auto mb-6 h-12 w-80 rounded-xl bg-slate-200 dark:bg-white/[0.06]" />
+              <div className="mx-auto h-14 max-w-xl rounded-xl bg-slate-200 dark:bg-white/[0.06]" />
             </div>
           </div>
-
-          {/* Content skeleton */}
-          <div className="container mx-auto px-4 py-12">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="mx-auto max-w-7xl px-4 pb-16">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="h-40 rounded-xl bg-gray-200 dark:bg-gray-700"
-                />
+                <div key={i} className="h-40 rounded-2xl bg-slate-200 dark:bg-white/[0.04]" />
               ))}
             </div>
           </div>
@@ -281,328 +219,469 @@ export default function ToolsHubContent({
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-      {/* Header Section - Compact */}
-      <section className="relative border-b border-gray-200 bg-gradient-to-br from-blue-600 via-purple-600 to-cyan-500 dark:border-gray-700">
-        <div className="container mx-auto px-4 py-8 sm:py-10">
-          <div className="mx-auto max-w-4xl text-center">
-            {/* Breadcrumbs */}
-            <nav className="mb-3 flex justify-center" aria-label="Breadcrumb">
-              <ol className="flex items-center space-x-2 text-sm text-white/80">
-                <li>
-                  <Link
-                    href={createHref('/')}
-                    className="transition-colors hover:text-white"
-                  >
-                    {t.breadcrumb.home}
-                  </Link>
-                </li>
-                <li>
-                  <ChevronRight className="h-3 w-3" />
-                </li>
-                <li className="font-medium text-white">
-                  {t.breadcrumb.allTools}
-                </li>
-              </ol>
-            </nav>
+    <div className="min-h-screen bg-background">
+      {/* Subtle grid pattern */}
+      <div
+        className="fixed inset-0 opacity-50"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(139,92,246,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(139,92,246,0.035) 1px, transparent 1px)
+          `,
+          backgroundSize: '64px 64px',
+          pointerEvents: 'none',
+        }}
+      />
 
-            {/* Main heading */}
-            <h1 className="mb-2 text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
-              {t.header.title}
-            </h1>
+      {/* ── COMPACT HERO ─────────────────────────────────────────── */}
+      <section className="relative overflow-hidden pb-6 pt-4 sm:pb-8 sm:pt-5">
+        {/* Ambient glows */}
+        <div className="pointer-events-none absolute -left-32 -top-16 h-64 w-64 rounded-full bg-violet-600/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-32 top-0 h-56 w-56 rounded-full bg-amber-500/[0.07] blur-3xl" />
 
-            {/* Subtitle + Count */}
-            <p className="mb-4 text-base text-white/90">
-              {t.header.subtitle}{' '}
-              <span className="font-semibold text-white">
-                ({totalTools}+ {t.trust.tools})
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center">
+          {/* Breadcrumb */}
+          <nav className="mb-3 flex justify-center" aria-label="Breadcrumb">
+            <ol className="flex items-center gap-2 text-sm">
+              <li>
+                <Link
+                  href={createHref('/')}
+                  className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                >
+                  {t.breadcrumb.home}
+                </Link>
+              </li>
+              <li>
+                <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+              </li>
+              <li className="font-medium text-slate-900 dark:text-white">
+                {t.breadcrumb.allTools}
+              </li>
+            </ol>
+          </nav>
+
+          {/* Badge */}
+          <div className="mb-3 flex justify-center">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-violet-500/25 bg-violet-500/10 px-4 py-1.5">
+              <div className="relative">
+                <div className="h-1.5 w-1.5 rounded-full bg-violet-400" />
+                <div className="absolute inset-0 h-1.5 w-1.5 animate-ping rounded-full bg-violet-400 opacity-75" />
+              </div>
+              <span className="font-mono text-xs font-medium uppercase tracking-widest text-violet-600 dark:text-violet-300">
+                {totalTools} tools · free forever · no signup
               </span>
-            </p>
-
-            {/* Trust badges */}
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/90">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-4 w-4 text-white" />
-                <span>{t.trust.freeForever}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-white" />
-                <span>{t.trust.privacyFirst}</span>
-              </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Filters Section with Search */}
-      <section className="sticky top-16 z-10 border-b border-gray-200 bg-white/95 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/95">
-        <div className="container mx-auto px-4 py-4">
-          {/* Search bar + Sort row */}
-          <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            {/* Search bar - filters tools in real-time */}
-            <div className="relative w-full sm:max-w-md">
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <Search className="h-5 w-5 text-gray-400" />
-              </div>
+          {/* H1 */}
+          <h1 className="mb-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+            All{' '}
+            <span className="bg-gradient-to-r from-violet-400 via-violet-300 to-amber-400 bg-clip-text text-transparent">
+              Developer
+            </span>{' '}
+            Tools
+          </h1>
+
+          <p className="mx-auto mb-5 max-w-xl text-sm text-slate-600 dark:text-slate-400 sm:text-base">
+            {t.header.subtitle}
+          </p>
+
+          {/* Search bar */}
+          <div className="mx-auto max-w-xl">
+            <div className="relative">
+              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
               <input
-                type="text"
+                type="search"
                 value={search}
                 onChange={(e) => updateFilters('search', e.target.value)}
                 placeholder={t.search.placeholder}
-                className="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-10 text-gray-900 placeholder-gray-500 transition-colors duration-200 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-400 dark:focus:ring-blue-400"
+                className="h-10 w-full rounded-xl border border-slate-200 bg-white pl-10 pr-9 text-sm text-slate-900 placeholder-slate-400 caret-violet-400 backdrop-blur-sm transition-all duration-200 focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white dark:placeholder-slate-500"
               />
               {search && (
                 <button
                   onClick={() => updateFilters('search', '')}
-                  className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-0.5 text-slate-400 transition-colors hover:text-slate-600 dark:hover:text-slate-300"
                 >
-                  <X className="h-5 w-5" />
+                  <X className="h-3.5 w-3.5" />
                 </button>
               )}
             </div>
-
-            {/* Sort dropdown with icon */}
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <Filter className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                <select
-                  value={sort}
-                  onChange={(e) =>
-                    updateFilters('sort', e.target.value as SortOption)
-                  }
-                  className="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:border-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:border-gray-500 dark:focus:border-blue-400"
-                >
-                  <option value="popular">{t.filters.mostPopular}</option>
-                  <option value="alphabetical">{t.filters.alphabetical}</option>
-                  <option value="recent">{t.filters.recentlyAdded}</option>
-                </select>
-              </div>
-
-              {(search || categoryFilter || popular) && (
-                <button
-                  onClick={clearAllFilters}
-                  className="flex items-center gap-2 rounded-lg bg-gray-100 px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-                >
-                  <X className="h-4 w-4" />
-                  {t.filters.clearFilters}
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Category filters with counters and category colors */}
-          <div className="flex flex-wrap items-center gap-2">
-            <button
-              onClick={() => updateFilters('category', '')}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                !categoryFilter || categoryFilter === 'all'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-              }`}
-            >
-              {t.filters.all}
-              <span
-                className={`ml-1.5 ${!categoryFilter || categoryFilter === 'all' ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'}`}
-              >
-                ({totalTools})
-              </span>
-            </button>
-            {categories.map((category) => {
-              const categoryToolCount = tools.filter((tool) =>
-                tool.categories.includes(category.id)
-              ).length;
-              const isActive = categoryFilter === category.id;
-              const color = categoryColors[category.id] || '#3B82F6';
-
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => updateFilters('category', category.id)}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
-                    isActive
-                      ? 'text-white shadow-md'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                  }`}
-                  style={isActive ? { backgroundColor: color } : undefined}
-                >
-                  {dictionary?.categories?.[category.id]?.name || category.name}
-                  <span
-                    className={`ml-1.5 ${isActive ? 'text-white/70' : 'text-gray-500 dark:text-gray-400'}`}
-                  >
-                    ({categoryToolCount})
-                  </span>
-                </button>
-              );
-            })}
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
-        {/* Recently Added Section */}
-        {!search && !categoryFilter && !popular && recentTools.length > 0 && (
-          <section className="mb-12">
-            <div className="mb-6 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Sparkles className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {t.sections.recentlyAdded}
-                </h2>
-                <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
-                  {recentTools.length} {t.sections.newTools}
-                </span>
+      {/* ── MAIN LAYOUT: SIDEBAR + CONTENT ───────────────────────── */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-16 pt-2">
+        <div className="flex gap-8">
+
+          {/* ── SIDEBAR (desktop only) ── */}
+          <aside className="hidden w-56 flex-shrink-0 lg:block">
+            <div className="sticky top-20 space-y-8">
+
+              {/* Categories */}
+              <div>
+                <p className="mb-2 px-3 font-mono text-[10px] uppercase tracking-widest text-slate-500">
+                  Categories
+                </p>
+                <nav className="space-y-0.5">
+                  {/* All */}
+                  <button
+                    onClick={() => updateFilters('category', '')}
+                    className={cn(
+                      'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all',
+                      !categoryFilter
+                        ? 'border border-violet-500/20 bg-violet-500/10 font-medium text-violet-700 dark:text-violet-300'
+                        : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.04] dark:hover:text-white'
+                    )}
+                  >
+                    <LayoutGrid className="h-4 w-4 flex-shrink-0" />
+                    <span>All Tools</span>
+                    <span className="ml-auto font-mono text-xs opacity-50">{totalTools}</span>
+                  </button>
+
+                  {categories.map((category) => {
+                    const Icon = categoryIcons[category.id] || LayoutGrid;
+                    const isActive = categoryFilter === category.id;
+                    const count = tools.filter((t) => t.categories.includes(category.id)).length;
+                    return (
+                      <button
+                        key={category.id}
+                        onClick={() => updateFilters('category', category.id)}
+                        className={cn(
+                          'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all',
+                          isActive
+                            ? 'border border-violet-500/20 bg-violet-500/10 font-medium text-violet-700 dark:text-violet-300'
+                            : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.04] dark:hover:text-white'
+                        )}
+                      >
+                        <Icon className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">
+                          {dictionary?.categories?.[category.id]?.name || category.name}
+                        </span>
+                        <span className="ml-auto font-mono text-xs opacity-50">{count}</span>
+                      </button>
+                    );
+                  })}
+                </nav>
+              </div>
+
+              {/* Sort */}
+              <div>
+                <p className="mb-2 px-3 font-mono text-[10px] uppercase tracking-widest text-slate-500">
+                  Sort by
+                </p>
+                <div className="space-y-0.5">
+                  {SORT_OPTIONS.map((opt) => {
+                    const Icon = opt.icon;
+                    return (
+                      <button
+                        key={opt.value}
+                        onClick={() => updateFilters('sort', opt.value)}
+                        className={cn(
+                          'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all',
+                          sort === opt.value
+                            ? 'border border-violet-500/20 bg-violet-500/10 font-medium text-violet-700 dark:text-violet-300'
+                            : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.04] dark:hover:text-white'
+                        )}
+                      >
+                        <Icon className="h-4 w-4 flex-shrink-0" />
+                        <span>{opt.label}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Clear filters */}
+              {hasActiveFilters && (
+                <button
+                  onClick={clearAllFilters}
+                  className="flex w-full items-center gap-2 rounded-lg border border-dashed border-slate-300 px-3 py-2 text-sm text-slate-500 transition-colors hover:border-slate-400 hover:text-slate-700 dark:border-white/[0.08] dark:text-slate-500 dark:hover:border-white/[0.15] dark:hover:text-slate-400"
+                >
+                  <X className="h-3.5 w-3.5" />
+                  {t.filters.clearFilters}
+                </button>
+              )}
+            </div>
+          </aside>
+
+          {/* ── MAIN CONTENT ── */}
+          <main className="min-w-0 flex-1">
+
+            {/* Mobile: horizontal category chips */}
+            <div className="mb-4 overflow-x-auto lg:hidden">
+              <div className="flex gap-2 pb-2">
+                <button
+                  onClick={() => updateFilters('category', '')}
+                  className={cn(
+                    'flex-shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all',
+                    !categoryFilter
+                      ? 'bg-violet-600 text-white shadow-md'
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/[0.05] dark:text-slate-300'
+                  )}
+                >
+                  All ({totalTools})
+                </button>
+                {categories.map((cat) => {
+                  const count = tools.filter((t) => t.categories.includes(cat.id)).length;
+                  const isActive = categoryFilter === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      onClick={() => updateFilters('category', cat.id)}
+                      className={cn(
+                        'flex-shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all',
+                        isActive
+                          ? 'bg-violet-600 text-white shadow-md'
+                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/[0.05] dark:text-slate-300'
+                      )}
+                    >
+                      {dictionary?.categories?.[cat.id]?.name || cat.name} ({count})
+                    </button>
+                  );
+                })}
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {recentTools.map((tool) => (
-                <ToolCardWrapper key={tool.id} tool={tool} />
-              ))}
-            </div>
-          </section>
-        )}
 
-        {/* Most Popular Section */}
-        {!search && !categoryFilter && !popular && popularTools.length > 0 && (
-          <section className="mb-12">
-            <div className="mb-6 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <TrendingUp className="h-6 w-6 text-orange-600 dark:text-orange-400" />
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {t.sections.mostPopular}
-                </h2>
-                <span className="rounded-full bg-orange-100 px-3 py-1 text-sm font-medium text-orange-700 dark:bg-orange-900/30 dark:text-orange-300">
-                  {popularTools.length} {t.sections.trendingTools}
-                </span>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {popularTools.map((tool) => (
-                <ToolCardWrapper key={tool.id} tool={tool} />
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* All Tools Section */}
-        <section>
-          <div className="mb-6 flex items-center gap-3">
-            <Grid3X3 className="h-6 w-6 text-gray-600 dark:text-gray-400" />
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              {search || categoryFilter || popular
-                ? `${filteredTools.length} ${t.trust.tools}`
-                : t.sections.allTools}
-            </h2>
-          </div>
-
-          {filteredTools.length === 0 ? (
-            <div className="rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 px-6 py-20 text-center dark:border-gray-700 dark:bg-gray-800/50">
-              <Search className="mx-auto mb-4 h-12 w-12 text-gray-400" />
-              <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-                {t.empty.title}
-              </h3>
-              <p className="mb-4 text-gray-600 dark:text-gray-400">
-                {t.empty.description}
+            {/* Toolbar: count + mobile sort + view toggle */}
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <p className="text-sm text-slate-600 dark:text-slate-400">
+                <span className="font-semibold text-slate-900 dark:text-white">
+                  {filteredTools.length}
+                </span>{' '}
+                {filteredTools.length === 1 ? 'tool' : 'tools'}
+                {activeCategory && (
+                  <span> in {dictionary?.categories?.[activeCategory.id]?.name || activeCategory.name}</span>
+                )}
+                {search && (
+                  <span> matching &ldquo;{search}&rdquo;</span>
+                )}
               </p>
-              <button
-                onClick={clearAllFilters}
-                className="rounded-lg bg-blue-600 px-6 py-2 text-white transition-colors hover:bg-blue-700"
-              >
-                {t.empty.clearAll}
-              </button>
+
+              <div className="flex items-center gap-2">
+                {/* Mobile sort select */}
+                <select
+                  value={sort}
+                  onChange={(e) => updateFilters('sort', e.target.value)}
+                  className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-500/20 dark:border-white/[0.06] dark:bg-white/[0.03] dark:text-slate-300 lg:hidden"
+                >
+                  {SORT_OPTIONS.map((opt) => (
+                    <option key={opt.value} value={opt.value}>{opt.label}</option>
+                  ))}
+                </select>
+
+                {/* View toggle */}
+                <div className="flex items-center rounded-lg border border-slate-200 bg-white p-0.5 dark:border-white/[0.06] dark:bg-white/[0.02]">
+                  <button
+                    onClick={() => setViewMode('grid')}
+                    title="Grid view"
+                    className={cn(
+                      'flex items-center justify-center rounded-md p-1.5 transition-all',
+                      viewMode === 'grid'
+                        ? 'bg-slate-100 text-slate-900 dark:bg-white/[0.08] dark:text-white'
+                        : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
+                    )}
+                  >
+                    <LayoutGrid className="h-4 w-4" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode('list')}
+                    title="List view"
+                    className={cn(
+                      'flex items-center justify-center rounded-md p-1.5 transition-all',
+                      viewMode === 'list'
+                        ? 'bg-slate-100 text-slate-900 dark:bg-white/[0.08] dark:text-white'
+                        : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
+                    )}
+                  >
+                    <List className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-              {filteredTools.map((tool) => (
-                <ToolCardWrapper key={tool.id} tool={tool} />
-              ))}
-            </div>
-          )}
-        </section>
+
+            {/* Most Popular section — visible only when no filters active */}
+            {!search && !categoryFilter && popularTools.length > 0 && (
+              <section className="mb-10">
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="flex items-center gap-2 rounded-full border border-amber-500/25 bg-amber-500/10 px-3 py-1.5">
+                    <TrendingUp className="h-3.5 w-3.5 text-amber-500" />
+                    <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-amber-600 dark:text-amber-400">
+                      {t.sections.mostPopular}
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-500 dark:text-slate-500">
+                    {popularTools.length} {t.sections.trendingTools}
+                  </span>
+                </div>
+
+                {viewMode === 'grid' ? (
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {popularTools.map((tool) => (
+                      <ToolCardWrapper key={tool.id} tool={tool} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {popularTools.map((tool) => (
+                      <ToolListItem key={tool.id} tool={tool} dictionary={dictionary} />
+                    ))}
+                  </div>
+                )}
+              </section>
+            )}
+
+            {/* All / Filtered tools */}
+            <section>
+              {!search && !categoryFilter && (
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 dark:border-white/[0.06] dark:bg-white/[0.03]">
+                    <LayoutGrid className="h-3.5 w-3.5 text-slate-500" />
+                    <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-slate-500">
+                      {t.sections.allTools}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {filteredTools.length === 0 ? (
+                <div className="rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 px-6 py-20 text-center dark:border-white/[0.06] dark:bg-white/[0.01]">
+                  <AlertCircle className="mx-auto mb-4 h-10 w-10 text-slate-400" />
+                  <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">
+                    {t.empty.title}
+                  </h3>
+                  <p className="mb-5 text-sm text-slate-600 dark:text-slate-400">
+                    {t.empty.description}
+                  </p>
+                  <button
+                    onClick={clearAllFilters}
+                    className="rounded-lg bg-violet-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-violet-700"
+                  >
+                    {t.empty.clearAll}
+                  </button>
+                </div>
+              ) : viewMode === 'grid' ? (
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  {filteredTools.map((tool) => (
+                    <ToolCardWrapper key={tool.id} tool={tool} />
+                  ))}
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  {filteredTools.map((tool) => (
+                    <ToolListItem key={tool.id} tool={tool} dictionary={dictionary} />
+                  ))}
+                </div>
+              )}
+            </section>
+          </main>
+        </div>
       </div>
 
-      {/* SEO Content Section */}
-      <section className="border-t border-gray-200 bg-white py-16 dark:border-gray-700 dark:bg-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="mx-auto max-w-4xl">
-            {/* Why Choose Section */}
-            <div className="mb-12">
-              <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
-                {t.seo.whyChoose.title}
-              </h2>
-              <ul className="grid gap-4 sm:grid-cols-2">
-                {t.seo.whyChoose.benefits.map(
-                  (benefit: string, index: number) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="mt-1 h-5 w-5 flex-shrink-0 text-green-600 dark:text-green-400" />
-                      <span className="text-gray-700 dark:text-gray-300">
-                        {benefit}
-                      </span>
-                    </li>
-                  )
-                )}
-              </ul>
-            </div>
+      {/* ── SEO SECTION ───────────────────────────────────────────── */}
+      <section className="relative z-10 border-t border-slate-200 bg-slate-50 py-16 dark:border-white/[0.06] dark:bg-white/[0.01]">
+        <div className="mx-auto max-w-7xl px-4">
 
-            {/* Common Workflows */}
-            <div>
-              <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                {t.seo.workflows.title}
-              </h2>
-              <div className="space-y-4">
-                {[
-                  {
-                    title: t.seo.workflows.api.title,
-                    tools: t.seo.workflows.api.tools,
-                  },
-                  {
-                    title: t.seo.workflows.data.title,
-                    tools: t.seo.workflows.data.tools,
-                  },
-                  {
-                    title: t.seo.workflows.security.title,
-                    tools: t.seo.workflows.security.tools,
-                  },
-                ].map((workflow, index) => (
+          {/* Why ToolsLab */}
+          <div className="mb-14">
+            <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+              {t.seo.whyChoose.title}
+            </h2>
+            <p className="mb-8 text-slate-600 dark:text-slate-400">
+              Professional tools built with privacy and speed in mind.
+            </p>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { icon: Shield, title: 'Complete Privacy', description: 'All processing happens in your browser — no data ever leaves your device.' },
+                { icon: Zap, title: 'Instant Results', description: 'Real-time processing with no server round-trips. Results appear as you type.' },
+                { icon: CheckCircle2, title: 'Free Forever', description: 'No registration, no subscription, no hidden costs. Everything is 100% free.' },
+                { icon: Lock, title: 'No Signup Required', description: 'Open any tool and start using it immediately. No account needed.' },
+                { icon: Settings, title: 'Mobile-Friendly', description: 'Fully responsive design works perfectly on any device or screen size.' },
+                { icon: Clock, title: 'Always Up-to-Date', description: 'Regular updates with new tools, features, and bug fixes every week.' },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
                   <div
-                    key={index}
-                    className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800"
+                    key={item.title}
+                    className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 dark:border-white/[0.06] dark:bg-white/[0.02]"
                   >
-                    <h3 className="mb-2 font-medium text-gray-900 dark:text-white">
-                      {workflow.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {workflow.tools.map((toolName: string) => (
+                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-violet-500/10">
+                      <Icon className="h-4 w-4 text-violet-500 dark:text-violet-400" />
+                    </div>
+                    <div>
+                      <p className="mb-0.5 text-sm font-semibold text-slate-900 dark:text-white">
+                        {item.title}
+                      </p>
+                      <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Common Workflows */}
+          <div>
+            <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+              {t.seo.workflows.title}
+            </h2>
+            <p className="mb-8 text-slate-600 dark:text-slate-400">
+              Combine tools to build efficient development workflows.
+            </p>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {[
+                {
+                  icon: Code2,
+                  title: t.seo.workflows.api.title,
+                  tools: t.seo.workflows.api.tools,
+                  color: 'violet',
+                },
+                {
+                  icon: Database,
+                  title: t.seo.workflows.data.title,
+                  tools: t.seo.workflows.data.tools,
+                  color: 'blue',
+                },
+                {
+                  icon: Lock,
+                  title: t.seo.workflows.security.title,
+                  tools: t.seo.workflows.security.tools,
+                  color: 'emerald',
+                },
+              ].map((workflow) => {
+                const Icon = workflow.icon;
+                return (
+                  <div
+                    key={workflow.title}
+                    className="rounded-xl border border-slate-200 bg-white p-5 dark:border-white/[0.06] dark:bg-white/[0.02]"
+                  >
+                    <div className="mb-3 flex items-center gap-2">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-500/10">
+                        <Icon className="h-3.5 w-3.5 text-violet-500 dark:text-violet-400" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
+                        {workflow.title}
+                      </h3>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {(workflow.tools as string[]).map((toolName) => (
                         <span
                           key={toolName}
-                          className="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                          className="rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-600 dark:border-white/[0.06] dark:bg-white/[0.03] dark:text-slate-400"
                         >
                           {toolName}
                         </span>
                       ))}
                     </div>
                   </div>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
     </div>
   );
-}
-
-// Helper function to get category colors
-function getCategoryColor(categoryId: string): string {
-  const colors: Record<string, string> = {
-    data: '#0EA5E9',
-    encoding: '#10B981',
-    text: '#8B5CF6',
-    generators: '#F97316',
-    web: '#EC4899',
-    dev: '#F59E0B',
-    formatters: '#6366F1',
-    social: '#F43F5E',
-  };
-  return colors[categoryId] || '#3B82F6';
 }
