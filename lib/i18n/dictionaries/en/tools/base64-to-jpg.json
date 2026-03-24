@@ -4,10 +4,10 @@
   "placeholder": "Paste Base64 encoded JPEG string here...",
   "meta": {
     "title": "Base64 to JPG Converter - Decode & Preview JPEG Free",
-    "description": "Convert Base64 to JPG/JPEG online. Decode Base64 and save as JPEG image. Free converter tool with instant preview and quality metadata display."
+    "description": "Convert Base64 to JPG/JPEG online free with instant preview and quality estimation. Decode images in your browser — no signup or upload required. Fast."
   },
   "tagline": "Convert Base64 data to JPG/JPEG images instantly with preview",
-  "pageDescription": "Convert Base64-encoded data to JPG/JPEG images with instant download and preview. Perfect for developers working with image APIs, email attachments and data processing workflows. Supports JPEG quality estimation and metadata extraction. Secure browser-based conversion without server uploads. Validate Base64 input, preview JPEG images, view image dimensions and quality information, and download converted files directly to your device.",
+  "pageDescription": "Convert Base64-encoded data to JPG/JPEG images with instant download and preview — no signup or registration required. Perfect for developers working with image APIs, email attachments and data processing workflows. Supports JPEG quality estimation and metadata extraction. Secure browser-based conversion without server uploads. Validate Base64 input, preview JPEG images, view image dimensions and quality information, and download converted files directly to your device.",
   "instructions": {
     "title": "How to use Base64 to JPG Converter",
     "steps": [

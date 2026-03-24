@@ -4,10 +4,10 @@
   "placeholder": "Enter your prompt or paste text here...",
   "meta": {
     "title": "AI Token Counter - GPT-4, Claude & Llama API Cost Estimator",
-    "description": "Count tokens and estimate API costs for GPT-4, Claude, Llama, Gemini, and Mistral models. Optimize prompts and compare pricing. Free AI token counter."
+    "description": "Free AI token counter online — estimate API costs for GPT-4, Claude, Llama & Gemini. Compare models, optimize prompts and reduce costs. No signup needed."
   },
   "tagline": "Count tokens and estimate costs across GPT-4, Claude, Llama, and more AI models",
-  "pageDescription": "Professional AI token counter for prompt engineers and developers. Accurately count tokens for OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini, and Mistral models. Get detailed cost estimates with latest API pricing, compare token counts across all models, and optimize your prompts to reduce tokens and costs. Features real-time token counting, context window tracking, batch analysis, prompt optimization suggestions, and comprehensive cost projections. Save your analysis history and export results as JSON. All processing happens locally in your browser for maximum privacy and speed.",
+  "pageDescription": "Professional AI token counter for prompt engineers and developers. Accurately count tokens for OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini, and Mistral models. A free tiktoken alternative that works online with no signup needed. Get detailed cost estimates with latest API pricing, compare token counts across all models, and optimize your prompts to reduce tokens and costs. Features real-time token counting, context window tracking, batch analysis, prompt optimization suggestions, and comprehensive cost projections. Save your analysis history and export results as JSON. All processing happens locally in your browser for maximum privacy and speed.",
   "instructions": {
     "title": "How to use AI Token Counter",
     "steps": [

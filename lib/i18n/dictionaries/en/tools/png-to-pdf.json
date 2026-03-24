@@ -34,7 +34,8 @@
       "Completely secure - all processing in browser",
       "No upload limits or file restrictions",
       "Batch processing of unlimited PNG files",
-      "Maintains PNG transparency and quality in PDF"
+      "Converts without losing quality — no compression or watermarks",
+      "No software download, signup, or registration required"
     ],
     "useCases": [
       "Create PDF portfolios from PNG graphics with transparency",
@@ -75,8 +76,8 @@
   },
   "meta": {
     "title": "PNG to PDF Converter - Free Online Tool | Convert PNG to PDF",
-    "description": "Convert PNG images to PDF free online. Preserve transparency, batch multiple files, set page sizes and margins. Secure browser-based PNG converter."
+    "description": "Convert PNG to PDF online free — no watermark, no download, no signup. Preserve transparency, batch multiple files, custom page sizes. Secure & fast."
   },
   "tagline": "Convert PNG images to PDF with transparency support and custom page layout options",
-  "pageDescription": "Transform PNG images into professional PDF documents while preserving transparency and quality. Full control over page sizes, fit modes, and margins. Perfect for creating design portfolios, documentation with transparent graphics, presentations, and technical spec sheets from PNG files. Supports unlimited PNG images, batch processing, reordering, and custom page dimensions. Free, secure browser-based conversion with no uploads or storage. Maintains PNG transparency and high image quality in PDF output."
+  "pageDescription": "Transform PNG images into professional PDF documents while preserving transparency and quality. Full control over page sizes, fit modes, and margins. Perfect for creating design portfolios, documentation with transparent graphics, presentations, and technical spec sheets from PNG files. Supports unlimited PNG images, batch processing, reordering, and custom page dimensions. Free, secure browser-based conversion with no uploads or storage — no software download, no signup, and no registration needed. Converts PNG to PDF without losing quality and without watermarks. Maintains PNG transparency and high image quality in PDF output."
 }

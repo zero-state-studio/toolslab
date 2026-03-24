@@ -4,10 +4,10 @@
   "placeholder": "https://example.com/page",
   "meta": {
     "title": "UTM Link Builder - Google Analytics Campaign URL Generator",
-    "description": "Build trackable UTM links for Google Analytics campaigns. Create URLs with UTM parameters for social media, email, and ads tracking. Free UTM link builder tool."
+    "description": "Free UTM builder for Google Analytics & GA4 — no signup needed. Create trackable campaign URLs with presets, templates, and bulk export. Fast & private."
   },
   "tagline": "Create trackable campaign URLs with UTM parameters for analytics and marketing",
-  "pageDescription": "Professional UTM link builder for marketers and analysts. Generate trackable URLs with UTM parameters (source, medium, campaign, term, content) for Google Analytics tracking. Use presets for social media (Facebook, Twitter, LinkedIn, Instagram), email campaigns, and advertising. Save templates for recurring campaigns. Add custom parameters for advanced tracking. Export URLs in CSV format for bulk campaigns. All processing happens in your browser for complete privacy and security.",
+  "pageDescription": "Professional UTM link builder for marketers and analysts. Generate trackable URLs with UTM parameters (source, medium, campaign, term, content) for Google Analytics and GA4 tracking. Use presets for social media (Facebook, Twitter, LinkedIn, Instagram), email campaigns, and advertising. Save templates for recurring campaigns. Add custom parameters for advanced tracking. Export URLs in CSV format for bulk campaign generation. Free alternative to Google's campaign URL builder — no signup, no registration needed. All processing happens in your browser for complete privacy and security.",
   "instructions": {
     "title": "How to use UTM Link Builder",
     "steps": [
@@ -47,7 +47,8 @@
       "Parameter count and summary display",
       "CSV export for bulk campaigns (future)",
       "Completely browser-based - no server processing",
-      "No data collection or logging"
+      "No data collection or logging — no signup required",
+      "Compatible with Google Analytics 4 (GA4) and Universal Analytics"
     ],
     "useCases": [
       "Track social media campaign performance across multiple platforms",

@@ -4,10 +4,10 @@
   "placeholder": "Paste Base64 encoded WebP string here...",
   "meta": {
     "title": "Base64 to WebP Converter - Decode Modern Image Format Free",
-    "description": "Convert Base64 to WebP online. Decode Base64 and save as modern WebP image. Free converter with instant preview, transparency support and compression analysis."
+    "description": "Convert Base64 to WebP online free with instant preview and download. Decode animated or transparent WebP images in your browser. No signup required."
   },
   "tagline": "Convert Base64 data to modern WebP images instantly with advanced features",
-  "pageDescription": "Convert Base64-encoded data to WebP images with instant download and preview. Perfect for developers working with modern image formats, APIs and web optimization. Supports both lossy and lossless compression, transparency (alpha channel), and animated WebP. Secure browser-based conversion without server uploads. Validate Base64 input, preview WebP images with transparency support, view compression type and metadata, and download converted files directly to your device.",
+  "pageDescription": "Convert Base64-encoded data to WebP images with instant download and preview. Perfect for developers working with modern image formats, APIs and web optimization. Supports both lossy and lossless compression, transparency (alpha channel), and animated WebP. Secure browser-based conversion without server uploads — no signup or registration required. Validate Base64 input, preview WebP images with transparency support, view compression type and metadata, and download converted files directly to your device.",
   "instructions": {
     "title": "How to use Base64 to WebP Converter",
     "steps": [
