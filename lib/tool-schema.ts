@@ -66,7 +66,7 @@ export async function generateToolSchema(toolId: string) {
           '@id': toolUrl,
         },
         featureList: seo.tagline,
-        keywords: tool.keywords.join(', '),
+        keywords: [...tool.keywords, ...(tool.longTailKeywords || [])].join(', '),
         datePublished: '2025-01-01',
         dateModified: '2025-01-15T00:00:00.000Z',
         inLanguage: 'en-US',

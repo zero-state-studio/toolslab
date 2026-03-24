@@ -46,10 +46,11 @@ export async function generateMetadata({
   );
   const categoryName = primaryCategory?.name || 'Tools';
 
-  // Generate comprehensive keywords
+  // Generate comprehensive keywords (short-tail + long-tail)
   const keywords = [
     tool.name.toLowerCase(),
     ...tool.keywords,
+    ...(tool.longTailKeywords || []),
     'online tool',
     'free tool',
     'developer tool',
