@@ -4,63 +4,65 @@
   "placeholder": "Paste JSON data to generate TypeScript interfaces...",
   "meta": {
     "title": "JSON to TypeScript Interface Generator - Free Online Tool",
-    "description": "Generate TypeScript interfaces from JSON data online. Support for nested objects, arrays, optional fields, and union types. Free JSON to TS converter."
+    "description": "Convert JSON to TypeScript interfaces online free. Smart type inference with nested objects, optional fields, union types & Zod schema. No signup needed."
   },
   "tagline": "Generate TypeScript interfaces from JSON with smart type inference",
-  "pageDescription": "Advanced JSON to TypeScript converter with smart type inference, optional properties and nested interface support. Convert API responses, configuration objects and complex JSON structures to production-ready TypeScript interfaces. Features union types, enum detection, date parsing, custom naming conventions and readonly options. Includes Zod schema generation, validation code and mock data generators. Perfect for TypeScript developers building type-safe applications with external APIs.",
+  "pageDescription": "Free advanced JSON to TypeScript converter with smart type inference, optional properties and nested interface support. Convert API responses, JSON Schema, configuration objects and complex JSON structures to production-ready TypeScript interfaces. Features union types, enum detection, date parsing, custom naming conventions and readonly options. Includes Zod schema generation, validation code and mock data generators. Perfect for TypeScript developers building type-safe applications with external APIs. No signup, no registration — all processing in your browser.",
   "instructions": {
     "title": "How to use JSON to TypeScript",
     "steps": [
       {
         "title": "Paste your JSON data",
-        "description": "Copy and paste your JSON data into the input area. The tool accepts any format and will process it immediately."
+        "description": "Copy and paste JSON from an API response, configuration file, or any JSON source into the input area. The tool accepts objects, arrays, nested structures, and JSON Schema. Invalid JSON is highlighted with error messages."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Configure TypeScript options",
+        "description": "Customize the output: choose between interfaces or types, set naming conventions (PascalCase, camelCase), enable optional properties with '?', add readonly modifiers, and configure enum detection for repeated string values."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will process your input and display the result with proper formatting and validation."
+        "title": "Review generated TypeScript",
+        "description": "The converter instantly generates TypeScript interfaces with smart type inference. Nested objects become separate named interfaces. Arrays are typed automatically. Union types and nullable fields are detected from your JSON data."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the formatted JSON to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Copy or generate Zod schema",
+        "description": "Copy the TypeScript interfaces to your clipboard, or switch to Zod schema output for runtime validation. The generated code is production-ready with proper imports, exports, and type annotations."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Smart type inference for strings, numbers, booleans, arrays, and objects",
+      "Nested object support — each level generates its own named interface",
+      "Optional properties detection with '?' modifier",
+      "Union types for arrays with mixed element types",
+      "Enum detection for repeated string literal values",
+      "Readonly property support for immutable data",
+      "Zod schema generation for runtime validation",
+      "JSON Schema to TypeScript conversion support",
+      "Custom naming conventions (PascalCase, camelCase)",
+      "Completely secure — all processing in your browser, no signup required"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Convert REST API JSON responses to TypeScript interfaces",
+      "Generate type-safe interfaces from JSON configuration files",
+      "Create Zod validation schemas from JSON API payloads",
+      "Type external API data for type-safe fetch calls",
+      "Generate interfaces from database query results",
+      "Convert JSON Schema definitions to TypeScript types",
+      "Build type-safe form data interfaces from JSON",
+      "Create mock data types for unit testing"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Paste a real API response for the most accurate type inference",
+      "Enable optional properties when JSON fields may be missing or null",
+      "Use enum detection for status fields like 'active' | 'inactive' | 'pending'",
+      "Generate Zod schemas when you need runtime validation, not just compile-time types",
+      "For large nested JSON, review generated interface names and rename if needed",
+      "Combine with readonly for configuration objects that shouldn't be mutated"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
+      "Invalid JSON error: Check for trailing commas, missing quotes, or unescaped characters",
+      "Empty output: Ensure your JSON contains at least one object or array",
+      "Types too broad (any[]): Provide sample data in arrays for better type inference",
+      "Missing nested interfaces: Verify nested objects are not empty {}",
       "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
     ],
     "keyboardShortcuts": [

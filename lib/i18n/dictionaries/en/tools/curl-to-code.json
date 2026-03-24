@@ -4,63 +4,65 @@
   "placeholder": "Paste your cURL command here...",
   "meta": {
     "title": "cURL to Python, JavaScript, Go Converter - Free Online Tool",
-    "description": "Convert cURL commands to Python, JavaScript, Go, PHP, and more languages. Generate ready-to-use HTTP request code snippets. Free online cURL converter tool."
+    "description": "Convert cURL to Python, JavaScript, Go, PHP and 15+ languages online free. Generate production-ready fetch, axios, requests code. No signup, secure & fast."
   },
   "tagline": "Convert cURL commands to production-ready code in any programming language",
-  "pageDescription": "Free cURL to code converter transforms cURL commands into production-ready code for JavaScript, Python, Go, Java, PHP, Ruby and 15+ languages. Features automatic error handling, type inference, async/await support and best practices integration. Perfect for API developers converting documentation examples, debugging network requests and building SDK clients. Supports all cURL flags, authentication methods, multipart uploads and generates unit tests. Secure browser-based conversion with no data upload.",
+  "pageDescription": "Free cURL to code converter transforms cURL commands into production-ready code for JavaScript (fetch, axios), Python (requests), Go (net/http), PHP (Guzzle, cURL), Java, Ruby and 15+ languages. Features automatic error handling, type inference, async/await support and best practices integration. Perfect for API developers converting documentation examples, debugging network requests and building SDK clients. Supports all cURL flags, authentication methods, multipart uploads and generates unit tests. Secure browser-based conversion with no data upload, no signup, and no registration required.",
   "instructions": {
     "title": "How to use cURL to Code Converter",
     "steps": [
       {
-        "title": "Paste your URL or text",
-        "description": "Copy and paste your URL or text into the input area. The tool accepts any format and will process it immediately."
+        "title": "Paste your cURL command",
+        "description": "Copy a cURL command from your terminal, browser DevTools, API documentation, or Postman and paste it into the input area. Supports all cURL flags including headers, authentication, and request body."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Select target language and library",
+        "description": "Choose your target programming language (Python, JavaScript, Go, PHP, Java, Ruby, C#, etc.) and HTTP library (fetch, axios, requests, Guzzle, net/http). The converter generates idiomatic code for each."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will process your input and display the result with proper formatting and validation."
+        "title": "Review generated code",
+        "description": "The converter instantly generates production-ready code with proper error handling, async/await patterns, type safety, and best practices for your chosen language."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Copy and use in your project",
+        "description": "Copy the generated code to your clipboard with one click. The code is ready to paste directly into your project — includes imports, error handling, and proper HTTP client configuration."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
+      "Support for 15+ programming languages and HTTP libraries",
+      "JavaScript output: fetch API, axios, node-fetch, got",
+      "Python output: requests, httpx, aiohttp",
+      "Go, PHP (Guzzle/cURL), Java, Ruby, C#, Rust, and more",
+      "Automatic error handling and async/await support",
+      "Parses all cURL flags: headers, auth, cookies, data, multipart",
       "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
+      "No data uploads, no signup, no registration required",
       "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Syntax highlighting for generated code"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Convert API documentation cURL examples to your language",
+      "Transform browser DevTools cURL exports to production code",
+      "Generate HTTP client code from Postman cURL exports",
+      "Build SDK clients from REST API curl commands",
+      "Debug network requests by converting to readable code",
+      "Migrate API integrations between programming languages",
+      "Create unit test stubs from real API curl requests",
+      "Convert authentication flows (OAuth, Bearer, Basic) to code"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Copy cURL from Chrome DevTools: right-click request > Copy > Copy as cURL",
+      "Include all headers for accurate code generation",
+      "Use fetch for modern browser-based JavaScript projects",
+      "Use axios for Node.js projects needing interceptors and retries",
+      "Python requests library is best for simple synchronous HTTP calls",
+      "Go net/http generates zero-dependency production code"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
+      "Parsing fails: Ensure your cURL command starts with 'curl' and has valid syntax",
+      "Missing headers in output: Check that -H flags are properly quoted in your cURL",
+      "Authentication not converted: Verify -u or --header Authorization flags are present",
+      "Body not included: Ensure -d or --data flags are properly formatted",
       "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
     ],
     "keyboardShortcuts": [
