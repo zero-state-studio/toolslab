@@ -107,10 +107,11 @@ export async function generateMetadata({
 
   const translatedKeywords = getTranslatedKeywords(locale);
 
-  // Generate comprehensive keywords
+  // Generate comprehensive keywords (short-tail + long-tail)
   const keywords = [
     toolDict?.title.toLowerCase() || tool.name.toLowerCase(),
     ...tool.keywords,
+    ...(tool.longTailKeywords || []),
     translatedKeywords.onlineTool,
     translatedKeywords.freeTool,
     translatedKeywords.developerTool,

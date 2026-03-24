@@ -395,6 +395,25 @@ export interface Dictionary {
       needMoreTools: string;
       needMoreToolsDescription: string;
       browseAllTools: string;
+      popularToolsTitle: string;
+      popularToolsSubtitle: string;
+      howItWorksTitle: string;
+      step1Title: string;
+      step1Description: string;
+      step2Title: string;
+      step2Description: string;
+      step3Title: string;
+      step3Description: string;
+      categoriesTitle: string;
+      categoriesSubtitle: string;
+      trustPrivacyTitle: string;
+      trustPrivacyDescription: string;
+      trustFreeTitle: string;
+      trustFreeDescription: string;
+      trustNoSignupTitle: string;
+      trustNoSignupDescription: string;
+      bottomCtaTitle: string;
+      bottomCtaDescription: string;
     };
     helpButton: {
       title: string;

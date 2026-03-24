@@ -49,7 +49,7 @@ export default function LanguageSwitcher({
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 rounded-lg px-3 py-2 text-2xl transition-colors hover:bg-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/20"
+        className="flex h-8 w-8 items-center justify-center rounded-lg text-base transition-all hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 dark:hover:bg-white/[0.06]"
         aria-label="Select language"
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -60,39 +60,35 @@ export default function LanguageSwitcher({
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 z-50 mt-2 w-48 rounded-lg border bg-popover shadow-lg">
-          <div className="py-1" role="menu" aria-orientation="vertical">
+        <div className="absolute right-0 z-50 mt-1.5 w-44 rounded-xl border border-slate-200/80 bg-white/95 p-1 shadow-xl backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0a0a0f]/95">
+          <div role="menu" aria-orientation="vertical">
             {availableLocales.map((locale) => {
               const config = getLocaleConfig(locale);
               return (
                 <button
                   key={locale}
                   onClick={() => handleLanguageChange(locale)}
-                  className={`flex w-full items-center gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-muted/50 ${
+                  className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition-colors ${
                     locale === activeLocale
-                      ? 'bg-muted/30 font-medium text-foreground'
-                      : 'text-muted-foreground'
+                      ? 'bg-violet-500/10 font-medium text-violet-600 dark:text-violet-300'
+                      : 'text-slate-700 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-white/[0.05]'
                   }`}
                   role="menuitem"
                   aria-current={locale === activeLocale ? 'true' : 'false'}
                 >
-                  <span className="text-lg" role="img" aria-label={config.name}>
+                  <span className="text-base" role="img" aria-label={config.name}>
                     {config.flag}
                   </span>
                   <span>{config.name}</span>
                   {locale === activeLocale && (
                     <svg
-                      className="ml-auto h-4 w-4 text-primary"
+                      className="ml-auto h-3.5 w-3.5 text-violet-500"
                       fill="none"
-                      strokeWidth="2"
+                      strokeWidth="2.5"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   )}
                 </button>
