@@ -1,13 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useToolStore } from '@/lib/store/toolStore';
 import { getToolById } from '@/lib/tools';
-import { FavoriteButton } from '@/components/lab/FavoriteButton';
-import { useToolLabel } from '@/lib/services/toolLabelService';
-import { useToolLabels } from '@/lib/hooks/useToolLabels';
-import { cn } from '@/lib/utils';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 
@@ -89,25 +85,40 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
                 return (
                   <div
                     key={tool.id}
-                    className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10]"
+                    className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
                     onClick={() => onToolSelect(tool.id)}
                   >
-                    <div className="mb-3 flex items-center gap-3">
-                      <span className="text-2xl">{tool.icon}</span>
-                      <div className="flex-1">
-                        <h3 className="font-semibold text-slate-900 transition-colors group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-400">
+                    {/* Gradient accent on hover */}
+                    <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-violet-500 to-amber-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                    {/* Icon + Info */}
+                    <div className="mb-3 flex items-start gap-4">
+                      <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-2xl transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
+                        {tool.icon}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h3 className="font-semibold text-slate-900 dark:text-white">
                           {tool.name}
                         </h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                        <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
                           {t?.overview?.used || 'Used'}{' '}
                           {formatTimeAgo(recentTool.timestamp, t)}
                         </p>
                       </div>
-                      <FavoriteButton type="tool" id={tool.id} />
                     </div>
-                    <p className="line-clamp-2 text-sm text-slate-600 dark:text-slate-400">
-                      {tool.description}
-                    </p>
+
+                    {/* Footer: category badge + Open CTA */}
+                    <div className="mt-4 flex items-center justify-between border-t border-slate-200 pt-4 dark:border-white/[0.06]">
+                      <div className="flex items-center gap-2">
+                        <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:border-white/[0.06] dark:bg-white/[0.03] dark:text-slate-400">
+                          {tool.categories?.[0] || 'tool'}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-sm font-medium text-violet-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:text-violet-400">
+                        Open
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+                      </div>
+                    </div>
                   </div>
                 );
               })}
@@ -126,42 +137,45 @@ interface ToolOverviewCardProps {
 }
 
 function ToolOverviewCard({ tool, index, onClick }: ToolOverviewCardProps) {
-  const toolLabel = useToolLabel(tool.id);
-  const { getToolLabelInfo } = useToolLabels();
-  const labelConfig = getToolLabelInfo(toolLabel);
-
   return (
     <motion.div
-      className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10]"
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       onClick={onClick}
+      whileHover={{ y: -5 }}
     >
-      <div className="mb-4 flex items-center gap-3">
-        <span className="text-3xl">{tool.icon}</span>
-        <div className="flex-1">
-          <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-slate-900 transition-colors group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-400">
-              {tool.name}
-            </h3>
-            {tool.label && labelConfig.config && (
-              <span
-                className={cn(
-                  'rounded-full px-2 py-1 text-xs font-medium',
-                  labelConfig.config.className
-                )}
-              >
-                {labelConfig.config.text}
-              </span>
-            )}
-          </div>
+      {/* Gradient accent on hover */}
+      <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-violet-500 to-amber-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+      {/* Icon + Info */}
+      <div className="mb-3 flex items-start gap-4">
+        <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-2xl transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
+          {tool.icon}
         </div>
-        <FavoriteButton type="tool" id={tool.id} />
+        <div className="min-w-0 flex-1">
+          <h3 className="font-semibold text-slate-900 dark:text-white">
+            {tool.name}
+          </h3>
+          <p className="mt-1 line-clamp-2 text-sm text-slate-600 dark:text-slate-400">
+            {tool.description}
+          </p>
+        </div>
       </div>
-      <p className="line-clamp-2 text-sm text-slate-600 dark:text-slate-400">
-        {tool.description}
-      </p>
+
+      {/* Footer: category badge + Open CTA */}
+      <div className="mt-4 flex items-center justify-between border-t border-slate-200 pt-4 dark:border-white/[0.06]">
+        <div className="flex items-center gap-2">
+          <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:border-white/[0.06] dark:bg-white/[0.03] dark:text-slate-400">
+            {tool.categories?.[0] || 'tool'}
+          </span>
+        </div>
+        <div className="flex items-center gap-1.5 text-sm font-medium text-violet-500 opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:text-violet-400">
+          Open
+          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
+        </div>
+      </div>
     </motion.div>
   );
 }

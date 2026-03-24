@@ -66,8 +66,8 @@ export function FeaturedTools({
                   href={createHref(tool.route)}
                   className="group relative block h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:shadow-none dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04] dark:hover:shadow-none"
                 >
-                  {/* Gradient top accent — appears on hover */}
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {/* Gradient top accent */}
+                  <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-violet-500/40 to-amber-500/30 transition-opacity duration-300 group-hover:from-violet-500/80 group-hover:to-amber-500/60" />
 
                   <div className="flex items-start gap-4">
                     {/* Tool icon */}
