@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { useToolStore } from '@/lib/store/toolStore';
 import { WelcomePopup, HelpButton } from '@/components/lab/WelcomePopup';
 import { labToasts } from '@/lib/utils/toasts';
@@ -66,11 +66,14 @@ export default function NewLabHubContent() {
   if (!mounted) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="border-b border-slate-200 py-12 dark:border-white/[0.06]">
+        <div className="border-b border-slate-200 py-3 dark:border-white/[0.06]">
           <div className="animate-pulse">
-            <div className="mx-auto max-w-4xl px-4">
-              <div className="mb-4 h-10 w-64 rounded bg-slate-200 dark:bg-white/[0.06]" />
-              <div className="h-5 w-96 rounded bg-slate-200 dark:bg-white/[0.06]" />
+            <div className="mx-auto max-w-7xl px-4">
+              <div className="flex items-center gap-3">
+                <div className="h-5 w-20 rounded bg-slate-200 dark:bg-white/[0.06]" />
+                <div className="h-6 w-24 rounded bg-slate-200 dark:bg-white/[0.06]" />
+                <div className="h-5 w-16 rounded-full bg-slate-200 dark:bg-white/[0.06]" />
+              </div>
             </div>
           </div>
         </div>
@@ -119,47 +122,33 @@ export default function NewLabHubContent() {
         }}
       />
 
-      {/* Header */}
+      {/* Compact Header */}
       <div className="relative border-b border-slate-200 dark:border-white/[0.06]">
-        {/* Ambient Glows */}
-        <div className="pointer-events-none absolute -left-40 -top-40 h-80 w-80 rounded-full bg-violet-600/10 blur-3xl" />
-        <div className="pointer-events-none absolute -right-40 -top-20 h-60 w-60 rounded-full bg-amber-500/[0.07] blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-4 py-3">
+          <div className="flex items-center gap-3">
+            {/* Breadcrumb inline */}
+            <nav aria-label="Breadcrumb" className="mr-1">
+              <ol className="flex items-center gap-1.5 text-sm text-slate-500">
+                <li>
+                  <a href="/" className="transition-colors hover:text-slate-900 dark:hover:text-white">Home</a>
+                </li>
+                <li><span className="text-slate-400">/</span></li>
+              </ol>
+            </nav>
 
-        <div className="relative mx-auto max-w-7xl px-4 py-8">
-          {/* Breadcrumb */}
-          <nav className="mb-4" aria-label="Breadcrumb">
-            <ol className="flex items-center space-x-2 text-sm text-slate-500">
-              <li>
-                <a href="/" className="transition-colors hover:text-slate-900 dark:hover:text-white">Home</a>
-              </li>
-              <li><span className="text-slate-400">/</span></li>
-              <li className="font-medium text-slate-900 dark:text-white">Lab</li>
-            </ol>
-          </nav>
+            <h1 className="text-lg font-bold text-slate-900 dark:text-white">
+              My Lab
+            </h1>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="mb-2 flex items-center gap-3">
-              <span className="text-3xl">🧪</span>
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white md:text-3xl">
-                My Developer Lab
-              </h1>
-              <span className="rounded-full bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-700 dark:text-violet-300">
-                Personal
-              </span>
-            </div>
-            <p className="text-sm text-slate-600 dark:text-slate-400">
-              Your personalized toolkit for maximum productivity
-            </p>
-          </motion.div>
+            <span className="rounded-full bg-violet-500/10 px-2.5 py-0.5 text-xs font-medium text-violet-700 dark:text-violet-300">
+              {favoriteCount} {favoriteCount === 1 ? 'tool' : 'tools'}
+            </span>
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex min-h-[calc(100vh-9rem)]">
+      <div className="flex min-h-[calc(100vh-6rem)]">
         {/* Sidebar */}
         <LabSidebar
           selectedToolId={selectedToolId}
