@@ -29,7 +29,188 @@ interface InstagramFontProps extends BaseToolProps {}
 const MAX_CHARS_BIO = 150; // Instagram bio character limit
 const MAX_CHARS_POST = 2200; // Instagram post character limit
 
-export default function InstagramFont({ categoryColor }: InstagramFontProps) {
+const uiStrings: Record<string, Record<string, string>> = {
+  en: {
+    toolTitle: 'Instagram Font Generator',
+    yourText: 'Your Text',
+    placeholder: 'Type your text here... (e.g., Your Name, Bio, Caption)',
+    bioWarning: 'Text exceeds Instagram bio limit (150 characters)',
+    postWarning: 'Text exceeds Instagram post limit (2200 characters)',
+    searchStyles: 'Search styles...',
+    platform: 'Platform:',
+    all: 'All',
+    stylesAvailable: '{count} styles available',
+    styleAvailable: '{count} style available',
+    favorites: '{count} favorites',
+    favorite: '{count} favorite',
+    copiedAll: 'Copied All!',
+    copyAll: 'Copy All',
+    removeFromFavorites: 'Remove from favorites',
+    addToFavorites: 'Add to favorites',
+    worksOn: 'Works on:',
+    copied: 'Copied',
+    copy: 'Copy',
+    showAll: 'Show All {count} Styles',
+    noMatch: 'No styles match your filters. Try adjusting your search or platform selection.',
+    typeAbove: 'Type your text above to see all styles',
+    unicodeStyles: '{count}+ unique Unicode font styles available',
+  },
+  it: {
+    toolTitle: 'Generatore di Font per Instagram',
+    yourText: 'Il tuo testo',
+    placeholder: 'Scrivi il tuo testo qui... (es. Nome, Bio, Didascalia)',
+    bioWarning: 'Il testo supera il limite della bio Instagram (150 caratteri)',
+    postWarning: 'Il testo supera il limite del post Instagram (2200 caratteri)',
+    searchStyles: 'Cerca stili...',
+    platform: 'Piattaforma:',
+    all: 'Tutti',
+    stylesAvailable: '{count} stili disponibili',
+    styleAvailable: '{count} stile disponibile',
+    favorites: '{count} preferiti',
+    favorite: '{count} preferito',
+    copiedAll: 'Tutti copiati!',
+    copyAll: 'Copia tutti',
+    removeFromFavorites: 'Rimuovi dai preferiti',
+    addToFavorites: 'Aggiungi ai preferiti',
+    worksOn: 'Funziona su:',
+    copied: 'Copiato',
+    copy: 'Copia',
+    showAll: 'Mostra tutti i {count} stili',
+    noMatch: 'Nessuno stile corrisponde ai filtri. Prova a modificare la ricerca o la piattaforma.',
+    typeAbove: 'Scrivi il tuo testo qui sopra per vedere tutti gli stili',
+    unicodeStyles: '{count}+ stili di font Unicode unici disponibili',
+  },
+  es: {
+    toolTitle: 'Generador de Fuentes para Instagram',
+    yourText: 'Tu texto',
+    placeholder: 'Escribe tu texto aquí... (ej. Tu Nombre, Bio, Subtítulo)',
+    bioWarning: 'El texto supera el límite de la bio de Instagram (150 caracteres)',
+    postWarning: 'El texto supera el límite del post de Instagram (2200 caracteres)',
+    searchStyles: 'Buscar estilos...',
+    platform: 'Plataforma:',
+    all: 'Todos',
+    stylesAvailable: '{count} estilos disponibles',
+    styleAvailable: '{count} estilo disponible',
+    favorites: '{count} favoritos',
+    favorite: '{count} favorito',
+    copiedAll: '¡Todos copiados!',
+    copyAll: 'Copiar todos',
+    removeFromFavorites: 'Quitar de favoritos',
+    addToFavorites: 'Añadir a favoritos',
+    worksOn: 'Funciona en:',
+    copied: 'Copiado',
+    copy: 'Copiar',
+    showAll: 'Mostrar los {count} estilos',
+    noMatch: 'Ningún estilo coincide con tus filtros. Intenta ajustar la búsqueda o la plataforma.',
+    typeAbove: 'Escribe tu texto arriba para ver todos los estilos',
+    unicodeStyles: '{count}+ estilos de fuente Unicode únicos disponibles',
+  },
+  fr: {
+    toolTitle: 'Générateur de Polices Instagram',
+    yourText: 'Votre texte',
+    placeholder: 'Tapez votre texte ici... (ex. Votre Nom, Bio, Légende)',
+    bioWarning: 'Le texte dépasse la limite de la bio Instagram (150 caractères)',
+    postWarning: 'Le texte dépasse la limite du post Instagram (2200 caractères)',
+    searchStyles: 'Rechercher des styles...',
+    platform: 'Plateforme :',
+    all: 'Tous',
+    stylesAvailable: '{count} styles disponibles',
+    styleAvailable: '{count} style disponible',
+    favorites: '{count} favoris',
+    favorite: '{count} favori',
+    copiedAll: 'Tous copiés !',
+    copyAll: 'Tout copier',
+    removeFromFavorites: 'Retirer des favoris',
+    addToFavorites: 'Ajouter aux favoris',
+    worksOn: 'Fonctionne sur :',
+    copied: 'Copié',
+    copy: 'Copier',
+    showAll: 'Afficher les {count} styles',
+    noMatch: 'Aucun style ne correspond à vos filtres. Essayez de modifier votre recherche ou la plateforme.',
+    typeAbove: 'Tapez votre texte ci-dessus pour voir tous les styles',
+    unicodeStyles: '{count}+ styles de police Unicode uniques disponibles',
+  },
+  de: {
+    toolTitle: 'Instagram Schriftarten-Generator',
+    yourText: 'Dein Text',
+    placeholder: 'Gib deinen Text hier ein... (z.B. Dein Name, Bio, Bildunterschrift)',
+    bioWarning: 'Text überschreitet das Instagram-Bio-Limit (150 Zeichen)',
+    postWarning: 'Text überschreitet das Instagram-Post-Limit (2200 Zeichen)',
+    searchStyles: 'Stile suchen...',
+    platform: 'Plattform:',
+    all: 'Alle',
+    stylesAvailable: '{count} Stile verfügbar',
+    styleAvailable: '{count} Stil verfügbar',
+    favorites: '{count} Favoriten',
+    favorite: '{count} Favorit',
+    copiedAll: 'Alle kopiert!',
+    copyAll: 'Alle kopieren',
+    removeFromFavorites: 'Aus Favoriten entfernen',
+    addToFavorites: 'Zu Favoriten hinzufügen',
+    worksOn: 'Funktioniert auf:',
+    copied: 'Kopiert',
+    copy: 'Kopieren',
+    showAll: 'Alle {count} Stile anzeigen',
+    noMatch: 'Keine Stile entsprechen deinen Filtern. Versuche, die Suche oder Plattform anzupassen.',
+    typeAbove: 'Gib deinen Text oben ein, um alle Stile zu sehen',
+    unicodeStyles: '{count}+ einzigartige Unicode-Schriftstile verfügbar',
+  },
+  pt: {
+    toolTitle: 'Gerador de Fontes Instagram',
+    yourText: 'Seu texto',
+    placeholder: 'Digite seu texto aqui... (ex. Seu Nome, Bio, Legenda)',
+    bioWarning: 'O texto excede o limite da bio do Instagram (150 caracteres)',
+    postWarning: 'O texto excede o limite do post do Instagram (2200 caracteres)',
+    searchStyles: 'Buscar estilos...',
+    platform: 'Plataforma:',
+    all: 'Todos',
+    stylesAvailable: '{count} estilos disponíveis',
+    styleAvailable: '{count} estilo disponível',
+    favorites: '{count} favoritos',
+    favorite: '{count} favorito',
+    copiedAll: 'Todos copiados!',
+    copyAll: 'Copiar todos',
+    removeFromFavorites: 'Remover dos favoritos',
+    addToFavorites: 'Adicionar aos favoritos',
+    worksOn: 'Funciona em:',
+    copied: 'Copiado',
+    copy: 'Copiar',
+    showAll: 'Mostrar todos os {count} estilos',
+    noMatch: 'Nenhum estilo corresponde aos seus filtros. Tente ajustar a busca ou a plataforma.',
+    typeAbove: 'Digite seu texto acima para ver todos os estilos',
+    unicodeStyles: '{count}+ estilos de fonte Unicode únicos disponíveis',
+  },
+};
+
+function getTranslations(locale?: string) {
+  const ui = uiStrings[locale || 'en'] || uiStrings.en;
+  return {
+    toolTitle: ui.toolTitle,
+    yourText: ui.yourText,
+    placeholder: ui.placeholder,
+    bioWarning: ui.bioWarning,
+    postWarning: ui.postWarning,
+    searchStyles: ui.searchStyles,
+    platform: ui.platform,
+    all: ui.all,
+    copiedAll: ui.copiedAll,
+    copyAll: ui.copyAll,
+    removeFromFavorites: ui.removeFromFavorites,
+    addToFavorites: ui.addToFavorites,
+    worksOn: ui.worksOn,
+    copied: ui.copied,
+    copy: ui.copy,
+    noMatch: ui.noMatch,
+    typeAbove: ui.typeAbove,
+    stylesAvailable: (n: number) => (n !== 1 ? ui.stylesAvailable : ui.styleAvailable).replace('{count}', String(n)),
+    favorites: (n: number) => (n !== 1 ? ui.favorites : ui.favorite).replace('{count}', String(n)),
+    showAll: (n: number) => ui.showAll.replace('{count}', String(n)),
+    unicodeStyles: (n: number) => ui.unicodeStyles.replace('{count}', String(n)),
+  };
+}
+
+export default function InstagramFont({ categoryColor, locale }: InstagramFontProps) {
+  const t = useMemo(() => getTranslations(locale), [locale]);
   const [input, setInput] = useState('');
   const [generatedStyles, setGeneratedStyles] = useState<
     Array<{
@@ -254,8 +435,8 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
       <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <Sparkles className="h-5 w-5" style={{ color: categoryColor }} />
-          <h3 className="font-semibold text-gray-900 dark:text-white">
-            Instagram Font Generator
+          <h3 className="font-semibold text-gray-900 dark:text-white" suppressHydrationWarning>
+            {t.toolTitle}
           </h3>
         </div>
       </div>
@@ -264,8 +445,8 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
         {/* Input Section */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Your Text
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300" suppressHydrationWarning>
+              {t.yourText}
             </label>
             <div className="flex items-center gap-2 text-sm">
               <span
@@ -296,8 +477,8 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your text here... (e.g., Your Name, Bio, Caption)"
-            className="h-32 w-full resize-none rounded-lg border-2 bg-gray-50 px-4 py-3 text-base text-gray-900 placeholder-gray-400 transition-all focus:outline-none dark:bg-gray-900 dark:text-white"
+            placeholder={t.placeholder}
+                       className="h-32 w-full resize-none rounded-lg border-2 bg-gray-50 px-4 py-3 text-base text-gray-900 placeholder-gray-400 transition-all focus:outline-none dark:bg-gray-900 dark:text-white"
             style={{
               borderColor: `${categoryColor}30`,
             }}
@@ -311,12 +492,12 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
           />
           {isOverBioLimit && !isOverPostLimit && (
             <p className="text-sm text-orange-500">
-              ⚠️ Text exceeds Instagram bio limit (150 characters)
+              ⚠️ {t.bioWarning}
             </p>
           )}
           {isOverPostLimit && (
             <p className="text-sm text-red-500">
-              ❌ Text exceeds Instagram post limit (2200 characters)
+              ❌ {t.postWarning}
             </p>
           )}
         </div>
@@ -329,7 +510,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
               <Search className="h-4 w-4 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search styles..."
+                placeholder={t.searchStyles}
                 value={searchFilter}
                 onChange={(e) => setSearchFilter(e.target.value)}
                 className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
@@ -339,7 +520,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
             {/* Platform Filter */}
             <div className="flex items-center gap-2">
               <span className="text-sm text-gray-600 dark:text-gray-400">
-                Platform:
+                {t.platform}
               </span>
               <div className="flex gap-1">
                 <button
@@ -356,7 +537,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                         : 'transparent',
                   }}
                 >
-                  All
+                  {t.all}
                 </button>
                 <button
                   onClick={() => handlePlatformChange('instagram')}
@@ -435,10 +616,9 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
         {generatedStyles.length > 0 && (
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              {filteredStyles.length} style
-              {filteredStyles.length !== 1 ? 's' : ''} available
+              {t.stylesAvailable(filteredStyles.length)}
               {localFavoriteStyles.length > 0 &&
-                ` • ${localFavoriteStyles.length} favorite${localFavoriteStyles.length !== 1 ? 's' : ''}`}
+                ` • ${t.favorites(localFavoriteStyles.length)}`}
             </p>
             <button
               onClick={handleCopyAll}
@@ -451,12 +631,12 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
               {copiedAll ? (
                 <>
                   <Check className="h-4 w-4" />
-                  Copied All!
+                  {t.copiedAll}
                 </>
               ) : (
                 <>
                   <Copy className="h-4 w-4" />
-                  Copy All
+                  {t.copyAll}
                 </>
               )}
             </button>
@@ -482,8 +662,8 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                       className="absolute right-2 top-2 rounded p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                       title={
                         isFavorited
-                          ? 'Remove from favorites'
-                          : 'Add to favorites'
+                          ? t.removeFromFavorites
+                          : t.addToFavorites
                       }
                     >
                       <Star
@@ -513,7 +693,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                     {/* Compatibility Icons & Copy Button - Same Row for both Mobile and Desktop */}
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs text-gray-500">Works on:</span>
+                        <span className="text-xs text-gray-500">{t.worksOn}</span>
                         {style.compatibility.instagram && (
                           <Instagram className="h-3.5 w-3.5 text-pink-500" />
                         )}
@@ -539,12 +719,12 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                         {isCopied ? (
                           <>
                             <Check className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                            <span>Copied</span>
+                            <span>{t.copied}</span>
                           </>
                         ) : (
                           <>
                             <Copy className="h-3.5 w-3.5 md:h-4 md:w-4" />
-                            <span>Copy</span>
+                            <span>{t.copy}</span>
                           </>
                         )}
                       </button>
@@ -565,7 +745,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
                     color: categoryColor,
                   }}
                 >
-                  Show All {filteredStyles.length} Styles
+                  {t.showAll(filteredStyles.length)}
                 </button>
               </div>
             )}
@@ -573,8 +753,7 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
         ) : input.trim() ? (
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-8 text-center dark:border-gray-700 dark:bg-gray-900">
             <p className="text-gray-500 dark:text-gray-400">
-              No styles match your filters. Try adjusting your search or
-              platform selection.
+              {t.noMatch}
             </p>
           </div>
         ) : (
@@ -583,11 +762,11 @@ export default function InstagramFont({ categoryColor }: InstagramFontProps) {
               className="mx-auto mb-4 h-12 w-12"
               style={{ color: categoryColor }}
             />
-            <p className="text-lg font-medium text-gray-700 dark:text-gray-300">
-              Type your text above to see all styles
+            <p className="text-lg font-medium text-gray-700 dark:text-gray-300" suppressHydrationWarning>
+              {t.typeAbove}
             </p>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-              {fontStyles.length}+ unique Unicode font styles available
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400" suppressHydrationWarning>
+              {t.unicodeStyles(fontStyles.length)}
             </p>
           </div>
         )}
