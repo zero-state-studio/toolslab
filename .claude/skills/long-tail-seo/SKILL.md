@@ -1,13 +1,13 @@
 ---
 name: long-tail-seo
-description: "Research, assign, and verify long-tail SEO keywords for ToolsLab tools. Use when adding long-tail keywords to a tool, auditing keyword coverage, or optimizing tool page content for search. Triggers: 'long-tail keywords', 'keyword research for tool', 'SEO keywords for [tool]', 'check keyword coverage', 'add long-tail to [tool]'."
+description: "Research, assign, and verify long-tail SEO keywords for ToolsLab tools. Uses real web research (Google autocomplete, People Also Ask, competitor analysis) for data-driven keyword selection. Triggers: 'long-tail keywords', 'keyword research for tool', 'SEO keywords for [tool]', 'check keyword coverage', 'add long-tail to [tool]'."
 metadata:
-  version: 1.0.0
+  version: 2.0.0
 ---
 
 # /long-tail-seo — Long-Tail Keyword Research & Verification
 
-Automated workflow for researching, assigning, and verifying long-tail SEO keywords for ToolsLab tools. Ensures keywords are both defined in `tools.ts` AND covered in visible page content.
+Automated workflow for researching, assigning, and verifying long-tail SEO keywords for ToolsLab tools. **Uses real web research** (Google autocomplete, People Also Ask, competitor analysis, related searches) for data-driven keyword selection. Ensures keywords are both defined in `tools.ts` AND covered in visible page content.
 
 ## Usage
 
@@ -44,36 +44,91 @@ lib/tool-schema.ts                    → JSON-LD keywords field (injected autom
 
 ---
 
-## Workflow: 4 Steps
+## Workflow: 5 Steps
 
-### Step 1: RESEARCH — Find high-value long-tail queries
+### Step 1: GATHER — Read tool data from codebase
 
-For the given tool, generate 12 long-tail keywords by combining:
+Read the tool's existing data to understand what it does:
 
-**Query patterns to cover:**
-- **Transactional**: `[tool] online free`, `[tool] no signup`, `free online [tool]`
-- **Informational**: `how to [action]`, `what is [tool]`
-- **Specific feature**: `[tool] with [feature]`, `[tool] for [use case]`
-- **Comparison/Alternative**: `[tool] without [limitation]`, `[tool] in browser`
-- **Format variations**: `[input] to [output] converter`, `convert [input] to [output]`
+1. Read the tool's `name`, `description`, `keywords`, `searchVolume` from `lib/tools.ts`
+2. Read the tool's `pageDescription` and `instructions` from `lib/i18n/dictionaries/en/tools/[tool-id].json`
+3. Identify the tool's core function, input/output, unique features, and target audience
+4. Note the existing `keywords` array to avoid duplicates
 
-**Quality criteria for each keyword:**
-- Contains 4-8 words (true long-tail)
-- Represents a real search query (natural language)
-- Includes the tool's primary function
-- Mixes intent types (informational, transactional, navigational)
-- Avoids keyword stuffing or unnatural phrasing
+### Step 2: RESEARCH — Web research for real search data
 
-**Research method:**
-1. Read the tool's `name`, `description`, `keywords` from `lib/tools.ts`
-2. Read the tool's `pageDescription` and `instructions` from the EN i18n file
-3. Identify the tool's core function, input/output, and unique features
-4. Generate 12 long-tail keywords covering diverse query patterns
-5. Prioritize keywords that match real user search intent
+**This is the critical step that makes keyword selection data-driven instead of guessed.**
 
-### Step 2: ASSIGN — Add keywords to tools.ts
+Run **5 parallel web searches** using the WebSearch tool to gather real keyword data:
 
-Add the `longTailKeywords` array to the tool entry in `lib/tools.ts`:
+#### Search 1: Google autocomplete suggestions
+```
+Query: "[tool name] generator" OR "[tool name] online"
+Goal: Find what Google suggests when users start typing
+```
+
+#### Search 2: "People Also Ask" and related queries
+```
+Query: "how to [tool primary action]" OR "[tool name] how to"
+Goal: Find informational long-tail queries real users ask
+```
+
+#### Search 3: Competitor keyword analysis
+```
+Query: "best free [tool name] online" OR "[tool name] alternative"
+Goal: Find what keywords competitors target
+```
+
+#### Search 4: Specific use-case queries
+```
+Query: "[tool name] for [primary use case]" OR "[tool action] without [common limitation]"
+Goal: Find niche long-tail queries with high conversion intent
+```
+
+#### Search 5: Format/feature-specific queries
+```
+Query: "[tool name] with [key feature]" OR "[input format] to [output format] [tool type]"
+Goal: Find feature-specific search patterns
+```
+
+**How to adapt searches per tool type:**
+- **Converters** (base64-to-jpg, etc.): Focus on format pairs, "convert X to Y online free"
+- **Generators** (lorem-ipsum, uuid, etc.): Focus on "generate X online", "random X generator"
+- **Formatters** (json-formatter, sql-formatter): Focus on "format X online", "beautify X", "minify X"
+- **Validators** (json-validator, regex-tester): Focus on "validate X online", "check X syntax"
+- **Encoders/Decoders**: Focus on "encode/decode X online free", "X encoder decoder"
+- **Social/Marketing tools**: Focus on "[platform] tool for [action]", "[platform] [feature] generator"
+
+#### Processing web results
+
+From the 5 searches, extract:
+1. **Google autocomplete suggestions** — these are real high-volume queries
+2. **"People Also Ask" questions** — convert to keyword format
+3. **Related searches** at bottom of SERP — often excellent long-tail
+4. **Competitor page titles and H1s** — reverse-engineer their keyword targets
+5. **Forum/Reddit queries** — real user language and pain points
+
+**Deduplication rules:**
+- Remove near-duplicates (e.g., "json formatter online" vs "online json formatter")
+- Prefer the version that matches natural search language
+- Remove any that overlap with the existing `keywords` array
+
+### Step 3: SELECT & ASSIGN — Choose 12 best keywords and add to tools.ts
+
+From the web research results, select the **12 best long-tail keywords** using this scoring:
+
+**Selection criteria (in priority order):**
+1. **Found in real search results** (autocomplete, PAA, related searches) — highest priority
+2. **Contains 4-8 words** (true long-tail territory)
+3. **Clear search intent** (transactional, informational, or navigational)
+4. **Natural language** (how a real person would type in Google)
+5. **Diverse intent mix** — aim for approximately:
+   - 4 transactional (`[tool] online free`, `[tool] no signup`)
+   - 3 informational (`how to [action]`, `what is [tool]`)
+   - 3 feature-specific (`[tool] with [feature]`, `[tool] for [use case]`)
+   - 2 comparison/alternative (`best free [tool]`, `[tool] without [limitation]`)
+
+**Add to tools.ts:**
 
 ```typescript
 {
@@ -82,9 +137,9 @@ Add the `longTailKeywords` array to the tool entry in `lib/tools.ts`:
   // ... existing fields
   keywords: ['existing', 'short', 'keywords'],
   longTailKeywords: [
-    'tool name converter online free',
-    'how to use tool name',
-    // ... 10 more
+    'keyword from google autocomplete',
+    'keyword from people also ask',
+    // ... 10 more, all validated by web research
   ],
   searchVolume: 5000,
 }
@@ -95,8 +150,10 @@ Add the `longTailKeywords` array to the tool entry in `lib/tools.ts`:
 - English only (visible content in i18n handles other languages)
 - No duplicates with existing `keywords` array
 - Each keyword must be unique (no near-duplicates)
+- At least 8 of 12 must come directly from web research findings
+- Maximum 4 can be pattern-generated (for coverage of intent types not found in search)
 
-### Step 3: VERIFY — Cross-check against visible content
+### Step 4: VERIFY — Cross-check against visible content
 
 For each of the 12 long-tail keywords, check if the key concepts appear in:
 
@@ -117,13 +174,13 @@ For each of the 12 long-tail keywords, check if the key concepts appear in:
 **Output a coverage table:**
 
 ```
-| Long-Tail Keyword | Status | Found In |
-|---|---|---|
-| tool converter online free | COVERED | meta.description: "Free converter" |
-| how to convert tool data | NOT COVERED | "how to" pattern missing from instructions |
+| Long-Tail Keyword | Source | Status | Found In |
+|---|---|---|---|
+| tool converter online free | Google autocomplete | COVERED | meta.description |
+| how to convert tool data | People Also Ask | NOT COVERED | missing from instructions |
 ```
 
-### Step 4: FIX — Enrich content for uncovered keywords
+### Step 5: FIX — Enrich content for uncovered keywords
 
 For any NOT COVERED keywords:
 
@@ -143,25 +200,34 @@ For any NOT COVERED keywords:
 
 ## Output Format
 
-After running all 4 steps, output:
+After running all 5 steps, output:
 
 ```
 ## Long-Tail SEO Report: [tool-id]
 
+### Web Research Summary
+- **Searches performed**: 5
+- **Raw candidates found**: N keywords
+- **Sources**: Google autocomplete (X), People Also Ask (Y), Related searches (Z), Competitor analysis (W)
+
 ### Keywords Added (12)
-1. keyword one
-2. keyword two
+| # | Keyword | Source | Intent |
+|---|---|---|---|
+| 1 | keyword from autocomplete | Google autocomplete | transactional |
+| 2 | keyword from PAA | People Also Ask | informational |
 ...
 
 ### Coverage Check
-| # | Long-Tail Keyword | Status | Found In |
-|---|---|---|---|
-| 1 | keyword one | COVERED | pageDescription |
-| 2 | keyword two | FIXED | Added to instructions.features |
+| # | Long-Tail Keyword | Source | Status | Found In |
+|---|---|---|---|---|
+| 1 | keyword one | Google autocomplete | COVERED | pageDescription |
+| 2 | keyword two | People Also Ask | FIXED | Added to instructions.features |
 ...
 
 ### Summary
 - Total: 12 keywords
+- From web research: X/12
+- Pattern-generated: Y/12
 - Covered: X/12
 - Fixed: Y/12
 - Coverage: 100%
@@ -177,7 +243,7 @@ After running all 4 steps, output:
 When run with `--audit`, check ALL tools that already have `longTailKeywords` defined:
 
 1. Read all tool entries from `lib/tools.ts` that have `longTailKeywords`
-2. For each, run Step 3 (VERIFY) only
+2. For each, run Step 4 (VERIFY) only
 3. Output a summary table:
 
 ```
@@ -187,7 +253,7 @@ When run with `--audit`, check ALL tools that already have `longTailKeywords` de
 | lorem-ipsum | 12 | 11 | 1 |
 ```
 
-4. For any gaps found, run Step 4 (FIX)
+4. For any gaps found, run Step 5 (FIX)
 
 ---
 
