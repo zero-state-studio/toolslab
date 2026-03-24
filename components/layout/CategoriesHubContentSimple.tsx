@@ -2,11 +2,67 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Search, X } from 'lucide-react';
-import { categories, getCategoryColorClass } from '@/lib/tools';
+import {
+  Search,
+  X,
+  ChevronRight,
+  Database,
+  Lock,
+  FileText,
+  Palette,
+  Settings,
+  Rocket,
+  Share2,
+  Image,
+  Code2,
+  ArrowRight,
+} from 'lucide-react';
+import { categories } from '@/lib/tools';
 import { useLocale } from '@/hooks/useLocale';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { type Locale } from '@/lib/i18n/config';
+
+// ── Design tokens (match CategoryGrid on home) ─────────────────────
+const categoryIcons: Record<string, React.ElementType> = {
+  data: Database,
+  encoding: Lock,
+  base64: Image,
+  text: FileText,
+  generators: Rocket,
+  web: Palette,
+  dev: Settings,
+  formatters: Code2,
+  social: Share2,
+  pdf: FileText,
+};
+
+const categoryGradients: Record<string, string> = {
+  data: 'from-blue-500 to-cyan-500',
+  encoding: 'from-emerald-500 to-green-500',
+  base64: 'from-teal-500 to-cyan-500',
+  text: 'from-purple-500 to-pink-500',
+  web: 'from-pink-500 to-rose-500',
+  dev: 'from-amber-500 to-orange-500',
+  generators: 'from-orange-500 to-red-500',
+  formatters: 'from-indigo-500 to-purple-500',
+  social: 'from-rose-500 to-pink-500',
+  pdf: 'from-red-600 to-orange-600',
+};
+
+const categoryGlowColors: Record<string, string> = {
+  data: 'rgba(59,130,246,0.07)',
+  encoding: 'rgba(16,185,129,0.07)',
+  base64: 'rgba(20,184,166,0.07)',
+  text: 'rgba(168,85,247,0.07)',
+  web: 'rgba(236,72,153,0.07)',
+  dev: 'rgba(245,158,11,0.07)',
+  generators: 'rgba(249,115,22,0.07)',
+  formatters: 'rgba(99,102,241,0.07)',
+  social: 'rgba(244,63,94,0.07)',
+  pdf: 'rgba(239,68,68,0.07)',
+};
+
+// ──────────────────────────────────────────────────────────────────
 
 interface CategoriesHubContentSimpleProps {
   locale?: Locale;
@@ -15,61 +71,48 @@ interface CategoriesHubContentSimpleProps {
 
 export default function CategoriesHubContentSimple({
   locale: serverLocale,
-  dictionary: serverDictionary,
+  dictionary,
 }: CategoriesHubContentSimpleProps) {
   const { locale: clientLocale, createHref } = useLocale();
   const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Use server props if available, otherwise client-side detection
   const locale = serverLocale || clientLocale;
-  const dictionary = serverDictionary;
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => { setMounted(true); }, []);
 
-  const totalTools = categories.reduce(
-    (sum, category) => sum + category.tools.length,
-    0
-  );
+  const totalTools = categories.reduce((sum, c) => sum + c.tools.length, 0);
 
-  const filteredCategories = categories.filter(
-    (category) =>
-      searchQuery === '' ||
-      category.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      category.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      category.tools.some(
-        (tool) =>
-          tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          tool.keywords.some((keyword) =>
-            keyword.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredCategories = searchQuery
+    ? categories.filter(
+        (cat) =>
+          cat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          cat.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          cat.tools.some(
+            (t) =>
+              t.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              t.keywords.some((k) =>
+                k.toLowerCase().includes(searchQuery.toLowerCase())
+              )
           )
       )
-  );
+    : categories;
 
-  const clearSearch = () => {
-    setSearchQuery('');
-  };
-
-  // Show loading state during hydration
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+      <div className="min-h-screen bg-background">
         <div className="animate-pulse">
-          <div className="bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 py-20">
-            <div className="mx-auto max-w-4xl px-4 text-center">
-              <div className="mx-auto mb-4 h-12 w-96 rounded bg-white/20" />
-              <div className="w-128 mx-auto mb-8 h-6 rounded bg-white/20" />
+          <div className="py-12">
+            <div className="mx-auto max-w-7xl px-4 text-center">
+              <div className="mx-auto mb-4 h-6 w-48 rounded-full bg-slate-200 dark:bg-white/[0.06]" />
+              <div className="mx-auto mb-4 h-10 w-80 rounded-xl bg-slate-200 dark:bg-white/[0.06]" />
+              <div className="mx-auto h-10 max-w-md rounded-xl bg-slate-200 dark:bg-white/[0.06]" />
             </div>
           </div>
-          <div className="container mx-auto px-4 py-12">
+          <div className="mx-auto max-w-7xl px-4 pb-16">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="h-40 rounded-xl bg-gray-200 dark:bg-gray-700"
-                />
+                <div key={i} className="h-52 rounded-2xl bg-slate-200 dark:bg-white/[0.04]" />
               ))}
             </div>
           </div>
@@ -78,462 +121,195 @@ export default function CategoriesHubContentSimple({
     );
   }
 
-  // Localized text
-  const text = {
-    title: locale === 'it' ? 'Categorie Strumenti' : 'Tool Categories',
-    subtitle:
-      locale === 'it'
-        ? `${totalTools}+ strumenti professionali per sviluppatori organizzati in ${categories.length} categorie specializzate.`
-        : `${totalTools}+ professional developer tools organized into ${categories.length} specialized categories.`,
-    searchPlaceholder:
-      locale === 'it' ? 'Cerca categorie...' : 'Search categories...',
-    clearSearch: locale === 'it' ? 'Cancella' : 'Clear',
-    toolsText: locale === 'it' ? 'strumenti' : 'tools',
-    exploreText: locale === 'it' ? 'Esplora' : 'Explore',
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700">
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-          <div className="text-center">
-            {/* Breadcrumbs */}
-            <nav className="mb-5 flex justify-center" aria-label="Breadcrumb">
-              <ol className="flex items-center space-x-2 text-sm text-white/80">
-                <li>
-                  <Link
-                    href={createHref('/')}
-                    className="transition-colors hover:text-white"
-                  >
-                    {locale === 'it' ? 'Home' : 'Home'}
-                  </Link>
-                </li>
-                <li>
-                  <ArrowRight className="h-3 w-3" />
-                </li>
-                <li className="font-medium text-white">{text.title}</li>
-              </ol>
-            </nav>
+    <div className="min-h-screen bg-background">
+      {/* Grid pattern */}
+      <div
+        className="fixed inset-0 opacity-50"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(139,92,246,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(139,92,246,0.035) 1px, transparent 1px)
+          `,
+          backgroundSize: '64px 64px',
+          pointerEvents: 'none',
+        }}
+      />
 
-            {/* Hero Icon */}
-            <div className="mb-5 flex justify-center">
-              <div className="text-5xl lg:text-6xl">🛠️</div>
-            </div>
+      {/* ── COMPACT HERO ──────────────────────────────────────────── */}
+      <section className="relative overflow-hidden pb-6 pt-4 sm:pb-8 sm:pt-5">
+        {/* Ambient glows */}
+        <div className="pointer-events-none absolute -left-32 -top-16 h-64 w-64 rounded-full bg-violet-600/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-32 top-0 h-56 w-56 rounded-full bg-amber-500/[0.07] blur-3xl" />
 
-            {/* Main Heading */}
-            <h1 className="mb-4 text-3xl font-bold text-white lg:text-4xl">
-              {locale === 'it' ? (
-                <>
-                  Esplora le{' '}
-                  <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    Categorie
-                  </span>{' '}
-                  di Strumenti
-                </>
-              ) : (
-                <>
-                  Explore Tool{' '}
-                  <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    Categories
-                  </span>
-                </>
-              )}
-            </h1>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center">
+          {/* Breadcrumb */}
+          <nav className="mb-3 flex justify-center" aria-label="Breadcrumb">
+            <ol className="flex items-center gap-2 text-sm">
+              <li>
+                <Link href={createHref('/')} className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
+                  Home
+                </Link>
+              </li>
+              <li><ChevronRight className="h-3.5 w-3.5 text-slate-400" /></li>
+              <li className="font-medium text-slate-900 dark:text-white">Categories</li>
+            </ol>
+          </nav>
 
-            {/* Simplified Header Description */}
-            <div className="mx-auto mb-8 max-w-3xl">
-              <p className="text-lg text-white/90 lg:text-xl">
-                {text.subtitle}
-              </p>
-            </div>
-
-            {/* Search Bar */}
-            <div className="mx-auto mb-6 max-w-2xl">
+          {/* Badge */}
+          <div className="mb-3 flex justify-center">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-violet-500/25 bg-violet-500/10 px-4 py-1.5">
               <div className="relative">
-                <label htmlFor="category-search" className="sr-only">
-                  {text.searchPlaceholder}
-                </label>
-                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
-                  <Search className="h-5 w-5 text-gray-500" />
-                </div>
-                <input
-                  id="category-search"
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={text.searchPlaceholder}
-                  className="w-full rounded-full border border-gray-300 bg-white/90 py-3 pl-12 pr-12 text-gray-900 placeholder-gray-500 backdrop-blur-sm transition-all focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-200 dark:border-gray-600 dark:bg-gray-800/90 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-400"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={clearSearch}
-                    className="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                  >
-                    <X className="h-5 w-5" />
-                  </button>
-                )}
+                <div className="h-1.5 w-1.5 rounded-full bg-violet-400" />
+                <div className="absolute inset-0 h-1.5 w-1.5 animate-ping rounded-full bg-violet-400 opacity-75" />
               </div>
+              <span className="font-mono text-xs font-medium uppercase tracking-widest text-violet-600 dark:text-violet-300">
+                {categories.length} categories · {totalTools}+ tools
+              </span>
+            </div>
+          </div>
+
+          {/* H1 */}
+          <h1 className="mb-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+            Browse Tool{' '}
+            <span className="bg-gradient-to-r from-violet-400 via-violet-300 to-amber-400 bg-clip-text text-transparent">
+              Categories
+            </span>
+          </h1>
+
+          <p className="mx-auto mb-5 max-w-xl text-sm text-slate-600 dark:text-slate-400 sm:text-base">
+            {totalTools}+ professional tools organized into {categories.length} specialized categories. Find exactly what you need, instantly.
+          </p>
+
+          {/* Search */}
+          <div className="mx-auto max-w-md">
+            <div className="relative">
+              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search categories or tools..."
+                className="h-10 w-full rounded-xl border border-slate-200 bg-white pl-10 pr-9 text-sm text-slate-900 placeholder-slate-400 caret-violet-400 transition-all focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white dark:placeholder-slate-500"
+              />
               {searchQuery && (
-                <p className="mt-2 text-sm text-white/80">
-                  {locale === 'it'
-                    ? `Trovate ${filteredCategories.length} categorie corrispondenti a "${searchQuery}"`
-                    : `Found ${filteredCategories.length} categories matching "${searchQuery}"`}
-                </p>
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
               )}
             </div>
-
-            {/* Action Buttons */}
-            <div className="mb-6 flex flex-wrap items-center justify-center gap-4">
-              <Link
-                href={createHref('/tools')}
-                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-semibold text-white transition-all hover:scale-105 hover:bg-blue-700"
-              >
-                {locale === 'it' ? 'Sfoglia Tutti i' : 'Browse All'}{' '}
-                {totalTools} {locale === 'it' ? 'Strumenti' : 'Tools'}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href={createHref('/?popular=true')}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
-              >
-                {locale === 'it' ? 'Strumenti Popolari' : 'Popular Tools'}
-              </Link>
-            </div>
-
-            {/* Feature Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/90">
-              <div className="flex items-center gap-2">
-                <span>⚡</span>
-                <span>
-                  {locale === 'it' ? 'Velocissimo' : 'Lightning fast'}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>🔒</span>
-                <span>
-                  {locale === 'it' ? 'Privacy garantita' : 'Privacy first'}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span>❤️</span>
-                <span>{locale === 'it' ? 'Sempre gratis' : 'Always free'}</span>
-              </div>
-            </div>
+            {searchQuery && (
+              <p className="mt-2 text-xs text-slate-500 dark:text-slate-500">
+                {filteredCategories.length} {filteredCategories.length === 1 ? 'category' : 'categories'} matching &ldquo;{searchQuery}&rdquo;
+              </p>
+            )}
           </div>
         </div>
       </section>
 
-      {/* Info Section */}
-      <section className="border-y border-gray-800 bg-gray-900 py-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-base leading-relaxed text-gray-300">
-            {locale === 'it' ? (
-              <>
-                Che tu stia{' '}
-                <Link
-                  href={createHref('/tools/json-formatter')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  formattando dati JSON
-                </Link>
-                ,{' '}
-                <Link
-                  href={createHref('/tools/base64-encode')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  codificando stringhe Base64
-                </Link>
-                , o{' '}
-                <Link
-                  href={createHref('/tools/hash-generator')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  generando hash sicuri
-                </Link>
-                , il nostro approccio categorizzato ti aiuta a trovare lo
-                strumento giusto istantaneamente. Ogni categoria contiene
-                utilità testate sul campo usate da migliaia di sviluppatori in
-                tutto il mondo, dalla{' '}
-                <strong className="text-white">conversione dati</strong> e{' '}
-                <strong className="text-white">operazioni di sicurezza</strong>{' '}
-                all&apos;
-                <strong className="text-white">
-                  elaborazione testi
-                </strong> e{' '}
-                <strong className="text-white">generazione codice</strong>.
-                Risparmia tempo navigando tra gli strumenti che si completano a
-                vicenda all&apos;interno di raggruppamenti logici progettati per
-                scenari di sviluppo reali.
-              </>
-            ) : locale === 'es' ? (
-              <>
-                Ya sea que estés{' '}
-                <Link
-                  href={createHref('/tools/json-formatter')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  formateando datos JSON
-                </Link>
-                ,{' '}
-                <Link
-                  href={createHref('/tools/base64-encode')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  codificando cadenas Base64
-                </Link>
-                , o{' '}
-                <Link
-                  href={createHref('/tools/hash-generator')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  generando hashes seguros
-                </Link>
-                , nuestro enfoque categorizado te ayuda a encontrar la
-                herramienta correcta al instante. Cada categoría contiene
-                utilidades probadas en batalla utilizadas por miles de
-                desarrolladores en todo el mundo, desde{' '}
-                <strong className="text-white">conversión de datos</strong> y{' '}
-                <strong className="text-white">operaciones de seguridad</strong>{' '}
-                hasta{' '}
-                <strong className="text-white">procesamiento de texto</strong> y{' '}
-                <strong className="text-white">generación de código</strong>.
-                Ahorra tiempo navegando por flujos de trabajo complejos
-                explorando herramientas que se complementan entre sí dentro de
-                agrupaciones lógicas diseñadas para escenarios de desarrollo del
-                mundo real.
-              </>
-            ) : locale === 'fr' ? (
-              <>
-                Que vous soyez en train de{' '}
-                <Link
-                  href={createHref('/tools/json-formatter')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  formater des données JSON
-                </Link>
-                ,{' '}
-                <Link
-                  href={createHref('/tools/base64-encode')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  encoder des chaînes Base64
-                </Link>
-                , ou{' '}
-                <Link
-                  href={createHref('/tools/hash-generator')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  générer des hachages sécurisés
-                </Link>
-                , notre approche catégorisée vous aide à trouver le bon outil
-                instantanément. Chaque catégorie contient des utilitaires
-                éprouvés utilisés par des milliers de développeurs dans le monde
-                entier, de la{' '}
-                <strong className="text-white">conversion de données</strong> et
-                des{' '}
-                <strong className="text-white">opérations de sécurité</strong>{' '}
-                au <strong className="text-white">traitement de texte</strong>{' '}
-                et à la{' '}
-                <strong className="text-white">génération de code</strong>.
-                Gagnez du temps en naviguant dans des flux de travail complexes
-                en parcourant des outils qui se complètent mutuellement au sein
-                de groupements logiques conçus pour des scénarios de
-                développement réels.
-              </>
-            ) : (
-              <>
-                Whether you&apos;re{' '}
-                <Link
-                  href={createHref('/tools/json-formatter')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  formatting JSON data
-                </Link>
-                ,{' '}
-                <Link
-                  href={createHref('/tools/base64-encode')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  encoding Base64 strings
-                </Link>
-                , or{' '}
-                <Link
-                  href={createHref('/tools/hash-generator')}
-                  className="text-blue-400 underline underline-offset-2 hover:text-blue-300"
-                >
-                  generating secure hashes
-                </Link>
-                , our categorized approach helps you find the right tool
-                instantly. Each category contains battle-tested utilities used
-                by thousands of developers worldwide, from{' '}
-                <strong className="text-white">data conversion</strong> and{' '}
-                <strong className="text-white">security operations</strong> to{' '}
-                <strong className="text-white">text processing</strong> and{' '}
-                <strong className="text-white">code generation</strong>. Save
-                time navigating complex workflows by browsing tools that
-                complement each other within logical groupings designed for
-                real-world development scenarios.
-              </>
-            )}
-          </p>
-        </div>
-      </section>
-
-      {/* Categories Grid */}
-      <section className="py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2 className="sr-only">
-            {locale === 'it' ? 'Tutte le Categorie' : 'All Categories'}
-          </h2>
+      {/* ── CATEGORIES GRID ───────────────────────────────────────── */}
+      <section className="relative z-10 mx-auto max-w-7xl px-4 pb-16">
+        {filteredCategories.length === 0 ? (
+          <div className="rounded-2xl border-2 border-dashed border-slate-200 px-6 py-20 text-center dark:border-white/[0.06]">
+            <p className="text-base font-medium text-slate-900 dark:text-white">No categories found</p>
+            <p className="mt-1 text-sm text-slate-500">Try a different search term.</p>
+            <button
+              onClick={() => setSearchQuery('')}
+              className="mt-4 rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white hover:bg-violet-700"
+            >
+              Clear search
+            </button>
+          </div>
+        ) : (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredCategories.map((category, index) => {
-              const getCategoryGradient = (categoryId: string) => {
-                switch (categoryId) {
-                  case 'data':
-                    return {
-                      border: 'border-blue-400',
-                      gradient:
-                        'from-blue-900/40 via-blue-800/30 to-blue-900/40',
-                      icon: 'bg-gradient-to-br from-blue-500 to-blue-600',
-                    };
-                  case 'encoding':
-                    return {
-                      border: 'border-green-400',
-                      gradient:
-                        'from-green-900/40 via-green-800/30 to-green-900/40',
-                      icon: 'bg-gradient-to-br from-green-500 to-green-600',
-                    };
-                  case 'text':
-                    return {
-                      border: 'border-purple-400',
-                      gradient:
-                        'from-purple-900/40 via-purple-800/30 to-purple-900/40',
-                      icon: 'bg-gradient-to-br from-purple-500 to-purple-600',
-                    };
-                  case 'generators':
-                    return {
-                      border: 'border-orange-400',
-                      gradient:
-                        'from-orange-900/40 via-orange-800/30 to-orange-900/40',
-                      icon: 'bg-gradient-to-br from-orange-500 to-orange-600',
-                    };
-                  case 'web':
-                    return {
-                      border: 'border-pink-400',
-                      gradient:
-                        'from-pink-900/40 via-pink-800/30 to-pink-900/40',
-                      icon: 'bg-gradient-to-br from-pink-500 to-pink-600',
-                    };
-                  case 'dev':
-                    return {
-                      border: 'border-yellow-400',
-                      gradient:
-                        'from-yellow-900/40 via-yellow-800/30 to-yellow-900/40',
-                      icon: 'bg-gradient-to-br from-yellow-500 to-yellow-600',
-                    };
-                  case 'formatters':
-                    return {
-                      border: 'border-indigo-400',
-                      gradient:
-                        'from-indigo-900/40 via-indigo-800/30 to-indigo-900/40',
-                      icon: 'bg-gradient-to-br from-indigo-500 to-indigo-600',
-                    };
-                  default:
-                    return {
-                      border: 'border-gray-400',
-                      gradient:
-                        'from-gray-900/40 via-gray-800/30 to-gray-900/40',
-                      icon: 'bg-gradient-to-br from-gray-500 to-gray-600',
-                    };
-                }
-              };
-
-              const categoryStyle = getCategoryGradient(category.id);
+            {filteredCategories.map((category) => {
+              const Icon = categoryIcons[category.id] || FileText;
+              const gradient = categoryGradients[category.id] || 'from-slate-500 to-slate-600';
+              const glowColor = categoryGlowColors[category.id] || 'rgba(139,92,246,0.06)';
+              const catName = dictionary?.categories?.[category.id]?.name || category.name;
+              const catDescription = dictionary?.categories?.[category.id]?.description || category.description;
 
               return (
                 <Link
                   key={category.id}
                   href={createHref(`/category/${category.id}`)}
-                  className="group"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:bg-slate-100/50 hover:shadow-lg dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
                 >
+                  {/* Persistent category glow background */}
                   <div
-                    className={`relative flex min-h-[320px] flex-col overflow-hidden rounded-2xl border-2 ${categoryStyle.border} bg-gradient-to-br ${categoryStyle.gradient} p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl`}
-                  >
-                    {/* Icon in top-left with larger size */}
-                    <div className="mb-6 flex items-start justify-between">
-                      <div
-                        className={`flex h-16 w-16 items-center justify-center rounded-2xl ${categoryStyle.icon} text-3xl shadow-lg`}
-                      >
-                        {category.icon}
-                      </div>
+                    className="absolute inset-0 opacity-40 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{ background: glowColor }}
+                  />
+
+                  {/* Colored top border — always visible */}
+                  <div className={`absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r ${gradient}`} />
+
+                  <div className="relative z-10">
+                    {/* Icon */}
+                    <div className={`mb-4 inline-flex rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg`}>
+                      <Icon className="h-5 w-5" />
                     </div>
 
-                    {/* Title */}
-                    <h3 className="mb-3 text-2xl font-bold text-white">
-                      {dictionary?.categories?.[category.id]?.name ||
-                        category.name}
-                    </h3>
+                    {/* Name */}
+                    <h2 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
+                      {catName}
+                    </h2>
 
                     {/* Description */}
-                    <p className="mb-4 flex-grow leading-relaxed text-white/80">
-                      {dictionary?.categories?.[category.id]?.description ||
-                        category.description}
+                    <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                      {catDescription}
                     </p>
 
-                    {/* Tool count with icon */}
-                    <div className="mt-auto flex items-center gap-2 text-sm text-white/90">
-                      <svg
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                        />
-                      </svg>
-                      <span>
-                        {category.tools.length} {text.toolsText}
+                    {/* Footer: count + arrow */}
+                    <div className="flex items-center justify-between">
+                      <span className="inline-flex items-center rounded-full border border-slate-200/80 bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:border-white/[0.08] dark:bg-white/[0.05] dark:text-slate-300">
+                        {category.tools.length} {category.tools.length === 1 ? 'tool' : 'tools'}
                       </span>
-                      <ArrowRight className="ml-auto h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      <ChevronRight className="h-4 w-4 text-slate-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-violet-400" />
                     </div>
 
-                    {/* Background decorative element */}
-                    <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 opacity-10">
-                      <div className="text-8xl">{category.icon}</div>
+                    {/* Tool preview chips */}
+                    <div className="mt-4 flex flex-wrap gap-1">
+                      {category.tools.slice(0, 3).map((tool) => (
+                        <span
+                          key={tool.id}
+                          className="rounded-md border border-slate-200 bg-slate-50/60 px-2 py-0.5 text-xs text-slate-500 dark:border-white/[0.06] dark:bg-white/[0.02] dark:text-slate-400"
+                        >
+                          {tool.name}
+                        </span>
+                      ))}
+                      {category.tools.length > 3 && (
+                        <span className="rounded-md border border-slate-200 bg-slate-50/60 px-2 py-0.5 text-xs font-medium text-slate-400 dark:border-white/[0.06] dark:bg-white/[0.02]">
+                          +{category.tools.length - 3} more
+                        </span>
+                      )}
                     </div>
                   </div>
                 </Link>
               );
             })}
           </div>
-        </div>
+        )}
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-16">
-        <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-2xl font-bold text-white">
-            {locale === 'it' ? 'Pronti per iniziare?' : 'Ready to get started?'}
+      {/* ── CTA ───────────────────────────────────────────────────── */}
+      <section className="relative z-10 border-t border-slate-200 bg-slate-50 py-14 dark:border-white/[0.06] dark:bg-white/[0.01]">
+        <div className="mx-auto max-w-7xl px-4 text-center">
+          <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
+            Looking for a specific tool?
           </h2>
-          <p className="mb-8 text-xl text-white/90">
-            {locale === 'it'
-              ? `Esplora tutti i ${totalTools}+ strumenti o immergiti in categorie specifiche.`
-              : `Explore all ${totalTools}+ tools or dive into specific categories.`}
+          <p className="mb-6 text-slate-600 dark:text-slate-400">
+            Browse all {totalTools}+ tools with search, filters, and sorting.
           </p>
           <Link
             href={createHref('/tools')}
-            className="inline-flex items-center rounded-full bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(139,92,246,0.35)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(139,92,246,0.45)]"
           >
-            {locale === 'it'
-              ? 'Sfoglia Tutti gli Strumenti'
-              : 'Browse All Tools'}
-            <ArrowRight className="ml-2 h-5 w-5" />
+            Browse all tools
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

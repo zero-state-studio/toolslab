@@ -34,9 +34,9 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
     return (
       <div className="flex-1 p-8">
         <div className="animate-pulse">
-          <div className="mb-4 h-8 w-1/3 rounded bg-gray-200 dark:bg-gray-800"></div>
-          <div className="mb-8 h-4 w-2/3 rounded bg-gray-200 dark:bg-gray-800"></div>
-          <div className="h-64 rounded bg-gray-200 dark:bg-gray-800"></div>
+          <div className="mb-4 h-8 w-1/3 rounded bg-slate-200 dark:bg-white/[0.06]"></div>
+          <div className="mb-8 h-4 w-2/3 rounded bg-slate-200 dark:bg-white/[0.06]"></div>
+          <div className="h-64 rounded bg-slate-200 dark:bg-white/[0.06]"></div>
         </div>
       </div>
     );
@@ -53,11 +53,11 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
       transition={{ duration: 0.3 }}
     >
       {/* Header */}
-      <div className="border-b border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-950">
+      <div className="border-b border-slate-200 bg-white p-4 dark:border-white/[0.06] dark:bg-white/[0.02]">
         <div className="mb-3 flex items-center justify-between">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+            className="flex items-center gap-2 text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           >
             <ArrowLeft className="h-4 w-4" />
             <span className="text-xs">Back to Lab</span>
@@ -69,8 +69,8 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
               className={cn(
                 'flex items-center gap-2 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors',
                 showInstructions
-                  ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
+                  ? 'bg-violet-500/10 text-violet-700 dark:text-violet-300'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/[0.06] dark:text-slate-300 dark:hover:bg-white/[0.10]'
               )}
             >
               <BookOpen className="h-4 w-4" />
@@ -80,7 +80,7 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
             <Link
               href={tool.route}
               target="_blank"
-              className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+              className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700 transition-colors hover:bg-slate-200 dark:bg-white/[0.06] dark:text-slate-300 dark:hover:bg-white/[0.10]"
             >
               <ExternalLink className="h-4 w-4" />
               Open in new tab
@@ -95,7 +95,7 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
             <span className="text-2xl">{tool.icon}</span>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-xl font-bold text-slate-900 dark:text-white">
                   {tool.name}
                 </h1>
                 {tool.label && labelConfig.config && (
@@ -109,7 +109,7 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
                   </span>
                 )}
               </div>
-              <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
                 {tool.description}
               </p>
             </div>

@@ -9,6 +9,7 @@ import {
   generateHreflangAlternates,
 } from '@/lib/i18n/helpers';
 import ToolsHubContent from '@/components/tools/ToolsHubContent';
+import { tools } from '@/lib/tools';
 
 export const revalidate = false;
 
@@ -21,13 +22,12 @@ interface LocaleToolsPageProps {
 export async function generateMetadata({
   params: { locale },
 }: LocaleToolsPageProps): Promise<Metadata> {
-  // Validate locale
   if (!locales.includes(locale as Locale)) {
     return {};
   }
 
-  const dict = await getDictionary(locale as Locale);
   const metadata = getPageMetadata('tools', locale as Locale);
+  const localizedUrl = `https://toolslab.dev${getLocalizedPath('/tools', locale as Locale)}`;
 
   return {
     title: metadata.title,
@@ -38,7 +38,7 @@ export async function generateMetadata({
       description: metadata.description,
       type: 'website',
       locale: localeToOGLocale[locale as Locale],
-      url: `https://toolslab.dev${getLocalizedPath('/tools', locale as Locale)}`,
+      url: localizedUrl,
       siteName: 'ToolsLab',
       images: [
         {
@@ -56,7 +56,7 @@ export async function generateMetadata({
       images: ['https://toolslab.dev/twitter-card.jpg'],
     },
     alternates: {
-      canonical: `https://toolslab.dev${getLocalizedPath('/tools', locale as Locale)}`,
+      canonical: localizedUrl,
       languages: generateHreflangAlternates('/tools'),
     },
     robots: {
@@ -74,26 +74,72 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  return locales.map((locale) => ({
-    locale,
-  }));
+  return locales.map((locale) => ({ locale }));
+}
+
+const BASE_URL = 'https://toolslab.dev';
+
+function buildStructuredData(locale: string) {
+  const localizedPath = getLocalizedPath('/tools', locale as Locale);
+  const availableTools = tools.filter((t) => t.label !== 'coming-soon');
+
+  return [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'All Developer Tools – Free Online Utilities',
+      description: `${availableTools.length}+ free browser-based developer tools. No signup, 100% private.`,
+      url: `${BASE_URL}${localizedPath}`,
+      provider: {
+        '@type': 'Organization',
+        name: 'ToolsLab',
+        url: BASE_URL,
+      },
+      hasPart: availableTools.slice(0, 30).map((tool) => ({
+        '@type': 'SoftwareApplication',
+        name: tool.name,
+        description: tool.description,
+        url: `${BASE_URL}${getLocalizedPath(tool.route, locale as Locale)}`,
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'Web Browser',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: 'Free Developer Tools by ToolsLab',
+      url: `${BASE_URL}${localizedPath}`,
+      numberOfItems: availableTools.length,
+      itemListElement: availableTools.slice(0, 50).map((tool, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: tool.name,
+        url: `${BASE_URL}${getLocalizedPath(tool.route, locale as Locale)}`,
+      })),
+    },
+  ];
 }
 
 export default async function LocaleToolsPage({
   params: { locale },
 }: LocaleToolsPageProps) {
-  // Validate locale
   if (!locales.includes(locale as Locale)) {
     notFound();
   }
 
   const dict = await getDictionary(locale as Locale);
+  const structuredData = buildStructuredData(locale);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-      <Suspense fallback={<div>Loading...</div>}>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Suspense fallback={<div className="min-h-screen bg-background" />}>
         <ToolsHubContent locale={locale as Locale} dictionary={dict} />
       </Suspense>
-    </div>
+    </>
   );
 }
