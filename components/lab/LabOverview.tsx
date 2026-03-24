@@ -60,7 +60,7 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
       <div className="mx-auto max-w-6xl space-y-8">
         {/* Favorite Tools Grid */}
         <div>
-          <h2 className="mb-6 text-xl font-semibold text-gray-900 dark:text-white">
+          <h2 className="mb-6 text-xl font-semibold text-slate-900 dark:text-white">
             {t?.overview?.favoriteTools || 'Favorite Tools'}
           </h2>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -78,7 +78,7 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
         {/* Recent Tools */}
         {recentTools.length > 0 && (
           <div>
-            <h2 className="mb-6 text-xl font-semibold text-gray-900 dark:text-white">
+            <h2 className="mb-6 text-xl font-semibold text-slate-900 dark:text-white">
               {t?.overview?.recentlyUsed || 'Recently Used'}
             </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -89,23 +89,23 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
                 return (
                   <div
                     key={tool.id}
-                    className="group cursor-pointer rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-gray-300 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+                    className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10]"
                     onClick={() => onToolSelect(tool.id)}
                   >
                     <div className="mb-3 flex items-center gap-3">
                       <span className="text-2xl">{tool.icon}</span>
                       <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900 transition-colors group-hover:text-purple-600 dark:text-white dark:group-hover:text-purple-400">
+                        <h3 className="font-semibold text-slate-900 transition-colors group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-400">
                           {tool.name}
                         </h3>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                        <p className="text-sm text-slate-500 dark:text-slate-400">
                           {t?.overview?.used || 'Used'}{' '}
                           {formatTimeAgo(recentTool.timestamp, t)}
                         </p>
                       </div>
                       <FavoriteButton type="tool" id={tool.id} />
                     </div>
-                    <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
+                    <p className="line-clamp-2 text-sm text-slate-600 dark:text-slate-400">
                       {tool.description}
                     </p>
                   </div>
@@ -132,19 +132,17 @@ function ToolOverviewCard({ tool, index, onClick }: ToolOverviewCardProps) {
 
   return (
     <motion.div
-      className="group cursor-pointer rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-gray-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-900 dark:hover:border-gray-700"
+      className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10]"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       onClick={onClick}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
     >
       <div className="mb-4 flex items-center gap-3">
         <span className="text-3xl">{tool.icon}</span>
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-gray-900 transition-colors group-hover:text-purple-600 dark:text-white dark:group-hover:text-purple-400">
+            <h3 className="font-semibold text-slate-900 transition-colors group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-400">
               {tool.name}
             </h3>
             {tool.label && labelConfig.config && (
@@ -161,7 +159,7 @@ function ToolOverviewCard({ tool, index, onClick }: ToolOverviewCardProps) {
         </div>
         <FavoriteButton type="tool" id={tool.id} />
       </div>
-      <p className="line-clamp-2 text-sm text-gray-600 dark:text-gray-400">
+      <p className="line-clamp-2 text-sm text-slate-600 dark:text-slate-400">
         {tool.description}
       </p>
     </motion.div>

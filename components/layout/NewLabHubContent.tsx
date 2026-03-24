@@ -65,12 +65,12 @@ export default function NewLabHubContent() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-        <div className="bg-gradient-to-r from-purple-600 via-violet-600 to-purple-800 py-20">
+      <div className="min-h-screen bg-background">
+        <div className="border-b border-slate-200 py-12 dark:border-white/[0.06]">
           <div className="animate-pulse">
-            <div className="mx-auto max-w-4xl px-4 text-center">
-              <div className="mx-auto mb-4 h-12 w-96 rounded bg-white/20" />
-              <div className="w-128 mx-auto mb-8 h-6 rounded bg-white/10" />
+            <div className="mx-auto max-w-4xl px-4">
+              <div className="mb-4 h-10 w-64 rounded bg-slate-200 dark:bg-white/[0.06]" />
+              <div className="h-5 w-96 rounded bg-slate-200 dark:bg-white/[0.06]" />
             </div>
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function NewLabHubContent() {
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
-                  className="h-40 rounded-xl bg-gray-200 dark:bg-gray-800"
+                  className="h-40 rounded-2xl bg-slate-200 dark:bg-white/[0.06]"
                 />
               ))}
             </div>
@@ -108,19 +108,50 @@ export default function NewLabHubContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-background">
+      {/* Grid Background */}
+      <div
+        className="pointer-events-none fixed inset-0 opacity-40 dark:opacity-20"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(139,92,246,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.035) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+        }}
+      />
+
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 via-violet-600 to-purple-800 py-8">
-        <div className="mx-auto max-w-7xl px-4 text-center">
+      <div className="relative border-b border-slate-200 dark:border-white/[0.06]">
+        {/* Ambient Glows */}
+        <div className="pointer-events-none absolute -left-40 -top-40 h-80 w-80 rounded-full bg-violet-600/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-40 -top-20 h-60 w-60 rounded-full bg-amber-500/[0.07] blur-3xl" />
+
+        <div className="relative mx-auto max-w-7xl px-4 py-8">
+          {/* Breadcrumb */}
+          <nav className="mb-4" aria-label="Breadcrumb">
+            <ol className="flex items-center space-x-2 text-sm text-slate-500">
+              <li>
+                <a href="/" className="transition-colors hover:text-slate-900 dark:hover:text-white">Home</a>
+              </li>
+              <li><span className="text-slate-400">/</span></li>
+              <li className="font-medium text-slate-900 dark:text-white">Lab</li>
+            </ol>
+          </nav>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="mb-2 text-2xl font-bold text-white md:text-3xl">
-              My Developer Lab
-            </h1>
-            <p className="text-sm text-purple-100">
+            <div className="mb-2 flex items-center gap-3">
+              <span className="text-3xl">🧪</span>
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white md:text-3xl">
+                My Developer Lab
+              </h1>
+              <span className="rounded-full bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-700 dark:text-violet-300">
+                Personal
+              </span>
+            </div>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               Your personalized toolkit for maximum productivity
             </p>
           </motion.div>
