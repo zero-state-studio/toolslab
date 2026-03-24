@@ -4,10 +4,10 @@
   "placeholder": "Paste Base64 encoded PNG string here...",
   "meta": {
     "title": "Base64 to PNG Converter - Decode & Preview Transparent PNG",
-    "description": "Convert Base64 to PNG online. Decode Base64 and save as PNG image. Free converter tool with instant preview and metadata display."
+    "description": "Convert Base64 to PNG online free with instant preview and transparency support. Decode PNG images in your browser — no signup or upload required. Fast."
   },
   "tagline": "Convert Base64 data to PNG images instantly with preview",
-  "pageDescription": "Convert Base64-encoded data to PNG images with instant download and preview. Perfect for developers working with image APIs, email attachments and data processing workflows. Supports all PNG color types including transparency. Secure browser-based conversion without server uploads. Validate Base64 input, preview PNG images with transparency support, view image dimensions and metadata, and download converted files directly to your device.",
+  "pageDescription": "Convert Base64-encoded data to PNG images with instant download and preview — no registration or signup required. Perfect for developers working with image APIs, email attachments and data processing workflows. Supports all PNG color types including transparency. Secure browser-based conversion without server uploads. Validate Base64 input, preview PNG images with transparency support, view image dimensions and metadata, and download converted files directly to your device.",
   "instructions": {
     "title": "How to use Base64 to PNG Converter",
     "steps": [

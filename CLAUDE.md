@@ -76,6 +76,13 @@ Le seguenti skills sono installate in `.agents/skills/` e **DEVI attivarle auton
 - Dopo aver aggiunto 5+ tool nuovi senza audit recente
 - Si rilevano problemi con hreflang, canonical o schema markup
 
+#### `long-tail-seo` → attiva quando:
+- L'utente chiede di aggiungere long-tail keywords a un tool
+- Si crea un nuovo tool e si vuole ottimizzare SEO keyword
+- L'utente chiede "keyword research" o "long-tail" per un tool
+- Si vuole verificare la copertura keyword nel contenuto visibile
+- L'utente chiede quali tool non hanno long-tail keywords
+
 #### `page-cro` → attiva quando:
 - L'utente chiede di migliorare un tool page (conversioni, engagement, UX)
 - Si lavora su tool ad alto `searchVolume` in `tools.ts` (>10K)
