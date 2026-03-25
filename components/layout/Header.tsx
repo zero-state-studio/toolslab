@@ -12,7 +12,6 @@ import {
   Beaker,
   Grid3X3,
   Info,
-  ChevronDown,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { categories } from '@/lib/tools';
@@ -96,69 +95,10 @@ export function Header() {
               {common?.nav?.tools || 'Tools'}
             </Link>
 
-            {/* Categories dropdown */}
-            <div className="group relative">
-              <button
-                className={cn(
-                  'flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200',
-                  'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.05] dark:hover:text-white',
-                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-500'
-                )}
-                aria-haspopup="true"
-                aria-label="Categories menu"
-              >
-                <Grid3X3 className="h-3.5 w-3.5" />
-                {common?.nav?.categories || 'Categories'}
-                <ChevronDown className="h-3 w-3 transition-transform duration-200 group-hover:rotate-180" />
-              </button>
-
-              {/* Dropdown panel */}
-              <div className="pointer-events-none invisible absolute left-0 top-full z-50 mt-1.5 w-72 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:visible group-hover:opacity-100">
-                <div className="rounded-xl border border-slate-200/80 bg-white/95 p-3 shadow-xl shadow-slate-200/50 backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0a0a0f]/95 dark:shadow-black/40">
-                  {/* Browse all */}
-                  <Link
-                    href={createHref('/categories')}
-                    className="mb-1 flex items-center gap-3 rounded-lg p-2.5 transition-colors hover:bg-violet-500/10"
-                    role="menuitem"
-                  >
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10">
-                      <Grid3X3 className="h-4 w-4 text-violet-500" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-violet-600 dark:text-violet-400">
-                        Browse All Categories
-                      </div>
-                      <div className="text-xs text-slate-500 dark:text-slate-500">
-                        Overview & comparison
-                      </div>
-                    </div>
-                  </Link>
-
-                  <div className="my-1.5 border-t border-slate-100 dark:border-white/[0.06]" />
-
-                  <div className="grid grid-cols-1 gap-0.5">
-                    {categories.map((category) => (
-                      <Link
-                        key={category.id}
-                        href={createHref(`/category/${category.id}`)}
-                        className="flex items-center gap-3 rounded-lg px-2.5 py-2 transition-colors hover:bg-slate-100 dark:hover:bg-white/[0.04]"
-                        role="menuitem"
-                      >
-                        <span className="w-5 text-center text-base">{category.icon}</span>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium text-slate-800 dark:text-slate-200">
-                            {category.name}
-                          </div>
-                        </div>
-                        <span className="font-mono text-xs text-slate-400 dark:text-slate-600">
-                          {category.tools.length}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Link href={createHref('/categories')} className={navLinkClass('/categories')}>
+              <Grid3X3 className="h-3.5 w-3.5" />
+              {common?.nav?.categories || 'Categories'}
+            </Link>
 
             <Link href={createHref('/lab')} className={navLinkClass('/lab')}>
               <Beaker className="h-3.5 w-3.5" />

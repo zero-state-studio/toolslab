@@ -196,7 +196,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
       )}
       <Suspense
         fallback={
-          <div className="min-h-screen animate-pulse bg-gray-50 dark:bg-gray-900" />
+          <div className="min-h-screen animate-pulse bg-gray-50 dark:bg-background" />
         }
       >
         <ToolPageClient
