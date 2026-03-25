@@ -38,7 +38,7 @@
     "targets": ["nsis", "deb", "appimage", "dmg", "app"],
     "icon": ["icons/icon.png"],
     "resources": [],
-    "copyright": "© 2025 ToolsLab. All rights reserved.",
+    "copyright": "© 2026 ToolsLab. All rights reserved.",
     "category": "DeveloperTool",
     "shortDescription": "Professional developer tools suite",
     "longDescription": "ToolsLab is a comprehensive suite of developer tools including formatters, converters, encoders, and generators. All tools work offline and respect your privacy.",
