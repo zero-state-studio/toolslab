@@ -4,10 +4,10 @@
   "placeholder": "Paste XML to format...",
   "meta": {
     "title": "XML Formatter - Beautify & Validate XML Free Online",
-    "description": "Format, beautify, and validate XML documents online with syntax highlighting and XPath support. Minify or pretty-print XML with custom indentation. Free tool."
+    "description": "Format, beautify, and validate XML online free — XPath support, minify or pretty-print, custom indentation. No signup required. Browser-based XML formatter."
   },
   "tagline": "Format, validate and minify XML with XPath search and namespace support",
-  "pageDescription": "Professional XML formatter with syntax validation, beautification and minification. Features XPath search, namespace analysis and structure visualization. Perfect for SOAP, RSS, SVG and configuration files. Handles large XML documents efficiently with real-time validation and error highlighting. Free and secure browser-based XML processing.",
+  "pageDescription": "Professional XML formatter with syntax validation, beautification and minification. Features XPath search, namespace analysis and structure visualization. Perfect for SOAP, RSS, SVG and configuration files. Handles large XML documents efficiently with real-time validation and error highlighting. Free online with no signup required — all XML processing happens in your browser.",
   "instructions": {
     "title": "How to use XML Formatter",
     "steps": [

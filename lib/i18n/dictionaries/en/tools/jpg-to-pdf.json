@@ -34,7 +34,8 @@
       "Completely secure - all processing in browser",
       "No upload limits or file restrictions",
       "Batch processing of unlimited JPG files",
-      "Maintains high image quality in PDF output"
+      "Converts without losing quality — no compression or watermarks",
+      "No software download, signup, or registration required"
     ],
     "useCases": [
       "Create PDF portfolios from JPG photo collections",
@@ -75,8 +76,8 @@
   },
   "meta": {
     "title": "JPG to PDF Converter - Free Online | Convert JPEG to PDF",
-    "description": "Convert JPG and JPEG images to PDF free online. Combine multiple files into one PDF. Custom page sizes, fit modes, and margins. Secure browser-based tool."
+    "description": "Convert JPG to PDF online free — no watermark, no download, no signup. Combine multiple images into one PDF with custom page sizes and margins. Fast & secure."
   },
   "tagline": "Convert JPG and JPEG images to PDF with custom page sizes and professional layout options",
-  "pageDescription": "Transform JPG and JPEG images into professional PDF documents with full control over page sizes, fit modes, and margins. Perfect for creating photo albums, documentation, portfolios, and presentations from JPG files. Supports unlimited JPG images, batch processing, reordering, and custom page dimensions. Free, secure browser-based conversion with no uploads or storage. Maintains high JPG image quality in PDF output. Works with both .jpg and .jpeg file extensions."
+  "pageDescription": "Transform JPG and JPEG images into professional PDF documents with full control over page sizes, fit modes, and margins. Perfect for creating photo albums, documentation, portfolios, and presentations from JPG files. Supports unlimited JPG images, batch processing, reordering, and custom page dimensions. Free, secure browser-based conversion with no uploads or storage — no software download, no signup, and no registration needed. Converts JPG to PDF without losing quality and without watermarks. Works with both .jpg and .jpeg file extensions."
 }

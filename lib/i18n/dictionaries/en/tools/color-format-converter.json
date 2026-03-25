@@ -4,10 +4,10 @@
   "placeholder": "Enter color (HEX, RGB, HSL, HSV, CMYK, or name)",
   "meta": {
     "title": "Color Converter - HEX, RGB, HSL & CMYK Free Online Tool",
-    "description": "Convert colors between HEX, RGB, HSL, HSV, and CMYK formats. Generate palettes, check contrast ratios, and create tints and shades. Free tool for designers."
+    "description": "Convert colors between HEX, RGB, HSL, HSV, CMYK online free — no signup required. Generate palettes, check WCAG contrast ratios, and export as CSS variables."
   },
   "tagline": "Convert colors between formats with palette generator and contrast checker",
-  "pageDescription": "Professional color format converter for designers and developers. Convert seamlessly between HEX, RGB, HSL, HSV, and CMYK formats. Generate harmonious color palettes with complementary, analogous, triadic, and tetradic schemes. Create tints and shades for any color. Check WCAG contrast compliance for accessibility. Export colors as CSS variables, SCSS, or JSON. Save color history and quickly reuse recent colors. All processing happens in your browser for maximum privacy.",
+  "pageDescription": "Professional color format converter for designers and developers. Convert seamlessly between HEX, RGB, HSL, HSV, and CMYK formats. Generate harmonious color palettes with complementary, analogous, triadic, and tetradic schemes. Create tints and shades for any color. Check WCAG contrast compliance for accessibility. Export colors as CSS variables, SCSS, or JSON. Save color history and quickly reuse recent colors. All processing happens in your browser for maximum privacy. No signup or account needed.",
   "instructions": {
     "title": "How to use Color Format Converter",
     "steps": [
@@ -50,6 +50,7 @@
     ],
     "useCases": [
       "Convert brand colors between design and development formats",
+      "Convert RGB screen colors to CMYK for print design and physical materials",
       "Generate color palettes for UI design systems",
       "Ensure accessibility compliance with contrast checking",
       "Create color variations for hover states and themes",

@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "JavaScript Minifier - Compress & Optimize JS Code Free",
-    "description": "Minify and compress JavaScript code online to reduce file size and improve page load speed. Remove whitespace and comments. Free JS minifier and compressor."
+    "description": "Minify and beautify JavaScript online free — no signup required. Compress JS code, remove whitespace, and reduce bundle size up to 70%. Full ES6+ support."
   },
   "tagline": "Minify and optimize JavaScript code with ES6+ support and source maps",
-  "pageDescription": "Professional JavaScript minifier and beautifier with ES2024+ support, reducing bundle size by up to 70% while maintaining functionality. Features advanced optimizations including dead code elimination, variable renaming, function inlining, and tree shaking simulation. Generate source maps for debugging, apply varying compression levels, and maintain modern JavaScript compatibility. Process code securely in your browser with no server uploads - perfect for production optimization and webpack alternative processing."
+  "pageDescription": "Professional JavaScript minifier and beautifier with ES2024+ support, reducing bundle size by up to 70% while maintaining functionality. Features advanced optimizations including dead code elimination, variable renaming, function inlining, and tree shaking simulation. Generate source maps for debugging, apply varying compression levels, and maintain modern JavaScript compatibility. Process code securely in your browser with no server uploads or signup required — a Terser-powered alternative to UglifyJS, perfect for production optimization."
 }

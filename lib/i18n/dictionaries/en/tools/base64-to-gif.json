@@ -4,10 +4,10 @@
   "placeholder": "Paste Base64 encoded GIF string here...",
   "meta": {
     "title": "Base64 to GIF Converter - Decode & Preview Animated GIF",
-    "description": "Convert Base64 to GIF online. Decode Base64 and save as GIF image. Free converter tool with preview support for animated GIFs."
+    "description": "Convert Base64 to GIF online free with instant preview and download. Decode animated GIFs in your browser — no signup or upload required. Secure and fast."
   },
   "tagline": "Convert Base64 data to GIF images instantly with preview",
-  "pageDescription": "Convert Base64-encoded data to GIF images with instant download and preview. Perfect for developers working with image APIs, email attachments and data processing workflows. Supports both GIF87a and GIF89a formats including animated GIFs. Secure browser-based conversion without server uploads. Validate Base64 input, preview GIF images and download converted files directly to your device.",
+  "pageDescription": "Convert Base64-encoded data to GIF images with instant download and preview — no registration or signup required. Perfect for developers working with image APIs, email attachments and data processing workflows. Supports both GIF87a and GIF89a formats including animated GIFs. Secure browser-based conversion without server uploads. Validate Base64 input, preview GIF images and download converted files directly to your device.",
   "instructions": {
     "title": "How to use Base64 to GIF Converter",
     "steps": [

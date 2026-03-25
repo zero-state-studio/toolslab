@@ -1,8 +1,18 @@
 // lib/tool-schema.ts
 import { getToolById } from '@/lib/tools';
 import { loadToolTranslation } from '@/lib/i18n/load-tools';
+import type { Locale } from '@/lib/i18n/config';
 
-export async function generateToolSchema(toolId: string) {
+const localeToLanguageTag: Record<string, string> = {
+  en: 'en',
+  it: 'it',
+  es: 'es',
+  fr: 'fr',
+  de: 'de',
+  pt: 'pt',
+};
+
+export async function generateToolSchema(toolId: string, locale: Locale = 'en') {
   const tool = getToolById(toolId);
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://toolslab.dev';
 
@@ -10,15 +20,17 @@ export async function generateToolSchema(toolId: string) {
     return null;
   }
 
-  // Load SEO data from granular JSON files
-  const seo = await loadToolTranslation('en', toolId);
+  // Load SEO data in the correct locale
+  const seo = await loadToolTranslation(locale, toolId);
 
   if (!seo || !seo.pageDescription) {
     return null;
   }
 
-  const toolUrl = `${baseUrl}${tool.route}`;
+  const localePath = locale === 'en' ? '' : `/${locale}`;
+  const toolUrl = `${baseUrl}${localePath}${tool.route}`;
   const categoryName = tool.categories[0] || 'dev';
+  const inLanguage = localeToLanguageTag[locale] || 'en-US';
 
   return {
     '@context': 'https://schema.org',
@@ -69,7 +81,7 @@ export async function generateToolSchema(toolId: string) {
         keywords: [...tool.keywords, ...(tool.longTailKeywords || [])].join(', '),
         datePublished: '2025-01-01',
         dateModified: '2025-01-15T00:00:00.000Z',
-        inLanguage: 'en-US',
+        inLanguage,
       },
 
       // BreadcrumbList schema

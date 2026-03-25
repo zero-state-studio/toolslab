@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "JSON to YAML Converter - Bidirectional Free Online Tool",
-    "description": "Convert between JSON and YAML formats online with clean, readable output. Support for nested structures and arrays. Free bidirectional converter tool."
+    "description": "Convert YAML to JSON online free — no signup required. Bidirectional converter with syntax validation for Kubernetes, Docker Compose, and CI/CD configs."
   },
   "tagline": "Convert YAML to JSON and back with advanced validation features",
-  "pageDescription": "Free YAML to JSON converter with bidirectional conversion, multi-document support, and anchor resolution. Convert Kubernetes configs, Docker Compose files, CI/CD pipelines, and Swagger specifications instantly. Features real-time validation, syntax highlighting, type preservation, and comment handling. Supports YAML 1.2 with anchors, aliases, merge keys, and custom tags. Export to TypeScript interfaces and JSON Schema. Perfect for DevOps engineers, developers working with configuration files, and API documentation."
+  "pageDescription": "Free YAML to JSON converter with bidirectional conversion, multi-document support, and anchor resolution. No installation or signup required — runs entirely in your browser. Convert Kubernetes configs, Docker Compose files, CI/CD pipelines, and Swagger specifications instantly. Features real-time validation, syntax highlighting, type preservation, and comment handling. Supports YAML 1.2 with anchors, aliases, merge keys, and custom tags. Export to TypeScript interfaces and JSON Schema. Perfect for DevOps engineers, developers working with configuration files, and API documentation."
 }

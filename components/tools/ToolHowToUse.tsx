@@ -61,10 +61,10 @@ export default function ToolHowToUse({
   if (!instruction) {
     // Fallback to generic instructions if tool-specific content not found
     return (
-      <div className="mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:mt-12 sm:p-6">
+      <div className="mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card sm:mt-12 sm:p-6">
         <div className="mb-4 flex items-center gap-2">
           <BookOpen className="h-5 w-5" style={{ color: categoryColor }} />
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
             {sectionLabels.howToUse}
           </h2>
         </div>
@@ -76,7 +76,7 @@ export default function ToolHowToUse({
             >
               1
             </span>
-            <span className="text-gray-600 dark:text-gray-400">
+            <span className="text-slate-600 dark:text-slate-400">
               Enter or paste your input in the text area above
             </span>
           </li>
@@ -87,7 +87,7 @@ export default function ToolHowToUse({
             >
               2
             </span>
-            <span className="text-gray-600 dark:text-gray-400">
+            <span className="text-slate-600 dark:text-slate-400">
               Configure any options or settings as needed
             </span>
           </li>
@@ -98,7 +98,7 @@ export default function ToolHowToUse({
             >
               3
             </span>
-            <span className="text-gray-600 dark:text-gray-400">
+            <span className="text-slate-600 dark:text-slate-400">
               Click the process button to generate your result
             </span>
           </li>
@@ -109,7 +109,7 @@ export default function ToolHowToUse({
             >
               4
             </span>
-            <span className="text-gray-600 dark:text-gray-400">
+            <span className="text-slate-600 dark:text-slate-400">
               Copy, download, or share your output as needed
             </span>
           </li>
@@ -121,10 +121,10 @@ export default function ToolHowToUse({
   return (
     <div className="mt-8 space-y-6 sm:mt-12" style={{ minHeight: '400px' }}>
       {/* Main Instructions Section */}
-      <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+      <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card sm:p-6">
         <div className="mb-6 flex items-center gap-2">
           <BookOpen className="h-5 w-5" style={{ color: categoryColor }} />
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
             {instruction.title}
           </h2>
         </div>
@@ -141,10 +141,10 @@ export default function ToolHowToUse({
                   {index + 1}
                 </span>
                 <div className="flex-1">
-                  <h3 className="font-medium text-gray-900 dark:text-white">
+                  <h3 className="font-medium text-slate-900 dark:text-white">
                     {step.title}
                   </h3>
-                  <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
                     {step.description}
                   </p>
                 </div>
@@ -156,7 +156,7 @@ export default function ToolHowToUse({
         {/* Features Section */}
         {instruction.features && instruction.features.length > 0 && (
           <div className="mb-6">
-            <h3 className="mb-3 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+            <h3 className="mb-3 flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
               <Target className="h-4 w-4" style={{ color: categoryColor }} />
               {sectionLabels.keyFeatures}
             </h3>
@@ -167,7 +167,7 @@ export default function ToolHowToUse({
                     className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full"
                     style={{ backgroundColor: categoryColor }}
                   />
-                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                  <span className="text-sm text-slate-600 dark:text-slate-400">
                     {feature}
                   </span>
                 </li>
@@ -183,8 +183,8 @@ export default function ToolHowToUse({
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Use Cases */}
           {instruction.useCases && instruction.useCases.length > 0 && (
-            <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-6">
-              <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+            <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card sm:p-6">
+              <h3 className="mb-4 flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
                 <Target className="h-4 w-4" style={{ color: categoryColor }} />
                 {sectionLabels.commonUseCases}
               </h3>
@@ -195,7 +195,7 @@ export default function ToolHowToUse({
                       className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full"
                       style={{ backgroundColor: categoryColor }}
                     />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                    <span className="text-sm text-slate-600 dark:text-slate-400">
                       {useCase}
                     </span>
                   </li>
@@ -206,8 +206,8 @@ export default function ToolHowToUse({
 
           {/* Pro Tips */}
           {instruction.proTips && instruction.proTips.length > 0 && (
-            <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 dark:border-amber-800 dark:from-amber-900/20 dark:to-orange-900/20 sm:p-6">
-              <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+            <div className="rounded-xl border border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-4 dark:border-amber-500/20 dark:bg-none dark:bg-amber-500/5 dark:from-transparent dark:to-transparent sm:p-6">
+              <h3 className="mb-4 flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
                 <Lightbulb className="h-4 w-4 text-amber-600 dark:text-amber-400" />
                 {sectionLabels.proTips}
               </h3>
@@ -235,8 +235,8 @@ export default function ToolHowToUse({
           {/* Troubleshooting */}
           {instruction.troubleshooting &&
             instruction.troubleshooting.length > 0 && (
-              <div className="rounded-xl border border-red-200 bg-gradient-to-br from-red-50 to-rose-50 p-4 dark:border-red-800 dark:from-red-900/20 dark:to-rose-900/20 sm:p-6">
-                <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+              <div className="rounded-xl border border-red-200 bg-gradient-to-br from-red-50 to-rose-50 p-4 dark:border-red-500/20 dark:bg-none dark:bg-red-500/5 dark:from-transparent dark:to-transparent sm:p-6">
+                <h3 className="mb-4 flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
                   <AlertCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
                   {sectionLabels.troubleshooting}
                 </h3>
@@ -256,8 +256,8 @@ export default function ToolHowToUse({
           {/* Keyboard Shortcuts */}
           {instruction.keyboardShortcuts &&
             instruction.keyboardShortcuts.length > 0 && (
-              <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-4 dark:border-blue-800 dark:from-blue-900/20 dark:to-indigo-900/20 sm:p-6">
-                <h3 className="mb-4 flex items-center gap-2 font-semibold text-gray-900 dark:text-white">
+              <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-4 dark:border-blue-500/20 dark:bg-none dark:bg-blue-500/5 dark:from-transparent dark:to-transparent sm:p-6">
+                <h3 className="mb-4 flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
                   <Keyboard className="h-4 w-4 text-blue-600 dark:text-blue-400" />
                   {sectionLabels.keyboardShortcuts}
                 </h3>

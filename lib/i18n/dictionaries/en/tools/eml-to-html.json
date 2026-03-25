@@ -4,10 +4,10 @@
   "placeholder": "Upload an EML file or paste EML content here...",
   "meta": {
     "title": "EML to HTML Converter - Parse MIME, Attachments & Headers",
-    "description": "Convert EML email files to HTML instantly. Parse headers, extract attachments, and view email content. Support for MIME and multipart messages. Free EML viewer."
+    "description": "Convert EML files to HTML online free — parse MIME headers, extract attachments, view email content. Supports Outlook, Thunderbird. No signup required."
   },
   "tagline": "Convert EML email files to HTML with advanced parsing and multi-view rendering",
-  "pageDescription": "Professional EML to HTML converter with MIME parsing, header extraction, attachment handling, and security sanitization. Convert emails from Outlook, Thunderbird, Apple Mail, and other clients. Features include raw view, rendered HTML view, headers table, source view, and attachment extraction. Perfect for email migration, template analysis, forensics, and archiving. Supports quoted-printable, base64 encoding, multipart messages, inline images, and all RFC822/2822 standards.",
+  "pageDescription": "Professional EML to HTML converter with MIME parsing, header extraction, attachment handling, and security sanitization. Convert emails from Outlook, Thunderbird, Apple Mail, and other clients. Features raw view, rendered HTML view, headers table, and attachment extraction. Perfect for email migration, forensics, and archiving. Free online with no signup required — 100% client-side processing.",
   "instructions": {
     "title": "How to use EML to HTML Converter",
     "steps": [

@@ -4,10 +4,10 @@
   "placeholder": "# Start writing your markdown here...\n\n## Features\n- GitHub Flavored Markdown\n- Live preview\n- Export to HTML/PDF\n- Auto-save\n\nTry typing some **bold** or *italic* text!",
   "meta": {
     "title": "Markdown Preview & Editor - Live Render GFM Free Online",
-    "description": "Write and preview Markdown with live rendering and GitHub Flavored Markdown support. Export to HTML or PDF with statistics and auto-save. Free online editor."
+    "description": "Write and preview Markdown online free — live GFM rendering, export to HTML or PDF, auto-save, statistics. No signup required. Free online Markdown editor tool."
   },
   "tagline": "Edit, preview and export Markdown with live rendering and comprehensive statistics",
-  "pageDescription": "Professional Markdown editor with split-view preview, GitHub Flavored Markdown support, export to multiple formats (HTML, PDF, MD), statistics dashboard, templates library, and auto-save. All processing happens in your browser - secure and fast.",
+  "pageDescription": "Professional Markdown editor with split-view preview, GitHub Flavored Markdown support, export to multiple formats (HTML, PDF, MD), statistics dashboard, templates library, and auto-save. Free online with no signup required — all processing happens in your browser, secure and fast.",
   "instructions": {
     "title": "How to use the Markdown Preview & Editor",
     "steps": [

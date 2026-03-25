@@ -4,10 +4,10 @@
   "placeholder": "Configure your .htaccess settings",
   "meta": {
     "title": "Htaccess Generator - Apache Redirects & HTTPS Rules Free",
-    "description": "Free online .htaccess generator. Create Apache configuration with redirects, security headers, caching rules, HTTPS forcing, and more. No coding required."
+    "description": "Free .htaccess generator online — no signup or coding required. Create Apache config with 301 redirects, force HTTPS, security headers, and caching rules."
   },
   "tagline": "Generate professional .htaccess files for Apache servers with visual configuration",
-  "pageDescription": "Free online .htaccess generator for Apache web servers. Create configuration files with 301/302 redirects, force HTTPS, security headers, browser caching, gzip compression, custom error pages, and IP blocking. Features preset configurations for WordPress, SPA apps, and performance optimization. Perfect for web developers, system administrators, and site owners.",
+  "pageDescription": "Free online .htaccess generator for Apache web servers. Create configuration files with 301/302 redirects, force HTTPS, security headers, browser caching, gzip compression, custom error pages, and IP blocking. Features preset configurations for WordPress, SPA apps, and performance optimization. Perfect for web developers, system administrators, and site owners. No signup or coding required — generate production-ready .htaccess files in your browser without writing a single line of code. Ideal for website migrations, WordPress deployments, and Apache server configuration.",
   "generate": "Generate .htaccess",
   "copy": "Copy",
   "copied": "Copied!",
@@ -99,7 +99,8 @@
       "Implementing URL redirects for SEO",
       "Securing WordPress installations",
       "Blocking malicious IPs and bots",
-      "Configuring single-page application routing"
+      "Configuring single-page application routing",
+      "Migrating website to new domain with 301 redirects"
     ],
     "proTips": [
       "Always backup your existing .htaccess before replacing it",
