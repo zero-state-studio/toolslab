@@ -142,10 +142,13 @@ export default function ToolPageClient({
   }, [toolId, tool]);
 
   // Memoize the tool prop object to prevent breaking ToolWorkspace memoization
-  const categoryId = tool?.categories[0] ?? 'dev';
+  // Must be before early return to satisfy Rules of Hooks
   const toolWithSlug = useMemo(
-    () => (tool ? ({ ...tool, slug: tool.id, category: categoryId } as any) : null),
-    [tool, categoryId]
+    () =>
+      tool
+        ? ({ ...tool, slug: tool.id, category: tool.categories[0] } as any)
+        : null,
+    [tool]
   );
 
   if (!tool) {
