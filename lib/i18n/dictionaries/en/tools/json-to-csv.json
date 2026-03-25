@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "JSON to CSV Converter - Export to Excel & CSV Free Online",
-    "description": "Convert JSON data to CSV format online. Flatten nested objects and arrays with customizable column mapping and delimiter options. Free JSON to CSV converter."
+    "description": "Convert JSON to CSV online free — no signup required. Flatten nested JSON, map columns, and export Excel-compatible files ready for Google Sheets in seconds."
   },
   "tagline": "Convert JSON to CSV with advanced formatting and column mapping",
-  "pageDescription": "Free JSON to CSV converter with advanced flattening, column mapping, and formatting options. Transform JSON arrays, nested objects, and complex data structures into Excel-compatible CSV files. Features drag-and-drop column ordering, custom delimiters, header configuration, and real-time preview. Perfect for data export, API response conversion, and spreadsheet integration. Secure browser-based processing with no file uploads."
+  "pageDescription": "Free JSON to CSV converter with advanced flattening, column mapping, and formatting options. Transform JSON arrays, nested objects, and complex data structures into Excel-compatible CSV files. Features drag-and-drop column ordering, custom delimiters, header configuration, and real-time preview. Perfect for data export, API response conversion, and spreadsheet integration. Secure browser-based processing with no file uploads. No signup or registration required — works with Google Sheets, Excel, and any spreadsheet application."
 }

@@ -4,10 +4,10 @@
   "placeholder": "Paste your XML here...",
   "meta": {
     "title": "XML to JSON Converter - Parse & Transform XML Free Online",
-    "description": "Convert XML to JSON online with smart array detection, namespace support, and attribute handling. CDATA support and type conversion included. Free converter."
+    "description": "Convert XML to JSON online free — smart array detection, namespace support, CDATA, type conversion. No signup required, browser-based XML to JSON converter."
   },
   "tagline": "Convert XML documents to JSON format with advanced parsing and flexible output options",
-  "pageDescription": "Professional XML to JSON converter with smart array detection, namespace handling, and flexible attribute modes. Features CDATA preservation, automatic type conversion, and pretty print formatting. Perfect for API integration, data transformation, and converting SOAP/RSS feeds. Handles complex XML structures with mixed content efficiently. Free and secure browser-based conversion.",
+  "pageDescription": "Professional XML to JSON converter with smart array detection, namespace handling, and flexible attribute modes. Features CDATA preservation, automatic type conversion, and pretty print formatting. Perfect for API integration, data transformation, and converting SOAP/RSS feeds. Handles complex XML structures with mixed content efficiently. Free online tool with no signup required — all processing happens in your browser.",
   "instructions": {
     "title": "How to use XML to JSON Converter",
     "steps": [

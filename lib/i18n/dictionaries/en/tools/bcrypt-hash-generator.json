@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "Bcrypt Hash Generator - Free Online Secure Password Hashing",
-    "description": "Generate and verify bcrypt password hashes online. Configurable cost factor, salt display, and hash verification. Free, secure client-side bcrypt tool."
+    "description": "Generate and verify bcrypt password hashes online free — configurable cost factor (4-12 rounds), salt display, hash verification. No signup required. Secure, client-side."
   },
   "tagline": "Generate secure bcrypt password hashes with configurable rounds",
-  "pageDescription": "Generate and verify bcrypt password hashes with configurable cost factor for secure password storage. Perfect for developers building authentication systems, testing password security, and learning about bcrypt encryption. Features adjustable rounds (4-12), automatic salt generation, hash verification, and timing comparison. All processing happens locally in your browser - your passwords never leave your device."
+  "pageDescription": "Generate and verify bcrypt password hashes with configurable cost factor for secure password storage. Perfect for developers building authentication systems and testing password security. Features adjustable rounds (4-12), automatic salt generation, hash verification, and timing comparison. Free online with no signup required — your passwords never leave your browser."
 }

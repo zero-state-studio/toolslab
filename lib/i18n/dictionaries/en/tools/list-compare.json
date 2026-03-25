@@ -7,7 +7,7 @@
     "description": "Compare two lists online to find differences, intersections, unions, and unique items. Sort, deduplicate, and export results. Free list comparison tool."
   },
   "tagline": "Compare multiple lists with advanced diff and set operations",
-  "pageDescription": "Professional list comparison tool with set operations (union, intersection, difference), fuzzy matching and developer-friendly output formats. Compare up to 10 lists simultaneously with intelligent algorithms for package dependencies, git files, API endpoints and data analysis. Features Venn diagrams, regex matching, duplicate detection and export to JSON, CSV, SQL. Perfect for developers, data analysts and system administrators managing lists, arrays and datasets.",
+  "pageDescription": "Professional list comparison tool with set operations (union, intersection, difference), fuzzy matching and developer-friendly output formats. Compare up to 10 lists simultaneously with intelligent algorithms for package dependencies, git files, API endpoints and data analysis. Features Venn diagrams, regex matching, duplicate detection and export to JSON, CSV, SQL. Perfect for developers, data analysts and system administrators managing lists, arrays and datasets. No signup or account required — works directly in your browser as a fast alternative to Excel VLOOKUP or Python scripts.",
   "instructions": {
     "title": "How to use List Compare",
     "steps": [

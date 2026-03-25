@@ -4,10 +4,10 @@
   "placeholder": "Configure your cron schedule...",
   "meta": {
     "title": "Crontab Builder - Free Cron Job Scheduler & Editor Online",
-    "description": "Build and validate cron expressions with a visual editor. Generate crontab schedules with human-readable descriptions and next run times. Free cron builder."
+    "description": "Build and validate cron expressions online free — visual editor, human-readable descriptions, next run times. No signup required. Free crontab expression builder tool."
   },
   "tagline": "Build and parse cron expressions with visual interface",
-  "pageDescription": "Create and validate cron expressions using our visual builder with dropdown menus and common presets. Parse existing crontab entries with human-readable descriptions and next execution times. Perfect for system administrators, DevOps engineers and developers scheduling automated tasks and deployments.",
+  "pageDescription": "Create and validate cron expressions using our visual builder with dropdown menus and common presets. Parse existing crontab entries with human-readable descriptions and next execution times. Perfect for system administrators, DevOps engineers and developers scheduling automated tasks. Free online with no signup required — browser-based crontab builder.",
   "instructions": {
     "title": "How to use Crontab Expression Builder",
     "steps": [

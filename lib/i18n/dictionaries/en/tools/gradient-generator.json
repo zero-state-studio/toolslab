@@ -4,10 +4,10 @@
   "placeholder": "Configure gradient colors and direction...",
   "meta": {
     "title": "CSS Gradient Generator - Linear, Radial Backgrounds Free",
-    "description": "Create CSS gradients with a visual editor. Generate linear, radial, and conic gradients with custom colors and stops. Copy CSS code instantly. Free online tool."
+    "description": "Free CSS gradient generator online — no signup required. Create linear, radial, and conic gradients with color stops. Export CSS and Tailwind instantly."
   },
   "tagline": "Create beautiful CSS gradients with visual editor and presets",
-  "pageDescription": "Professional CSS gradient generator with linear, radial and conic gradients. Create beautiful backgrounds with visual color stop editor, preset collections and real-time preview. Export as CSS, Tailwind classes and SVG. Features drag-and-drop interface, color harmony generator and browser compatibility. Perfect for web designers and developers creating modern UI backgrounds.",
+  "pageDescription": "Professional CSS gradient generator with linear, radial and conic gradients. Create beautiful backgrounds with visual color stop editor, preset collections and real-time preview. Export as CSS, Tailwind classes and SVG. Features drag-and-drop interface, color harmony generator and browser compatibility. Perfect for web designers and developers creating modern UI backgrounds. Free to use online with no signup or account required — all gradient generation happens instantly in your browser.",
   "instructions": {
     "title": "How to use Gradient Generator",
     "steps": [

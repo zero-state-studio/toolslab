@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "Unix Timestamp Converter - Epoch to Date & Time Free",
-    "description": "Convert between Unix timestamps and human-readable dates online. Support for milliseconds, seconds, and multiple timezones. Free timestamp converter tool."
+    "description": "Convert Unix timestamps to dates online free — no signup required. Supports seconds, milliseconds, and timezones. Generates JS, Python, and PHP code examples."
   },
   "tagline": "Convert Unix timestamps to human dates with timezone support",
-  "pageDescription": "Professional Unix timestamp converter with timezone support, batch processing, and code generation. Convert epoch time to readable dates and vice versa with real-time validation. Features multiple date formats, relative time calculations, developer code examples, and timezone-aware conversions. Perfect for developers working with APIs, databases, logs, and system integrations. Supports seconds and milliseconds with IANA timezone database."
+  "pageDescription": "Professional Unix timestamp converter with timezone support, batch processing, and code generation. Convert epoch time to readable dates and vice versa with real-time validation. Features multiple date formats, relative time calculations, developer code examples, and timezone-aware conversions. Perfect for developers working with APIs, databases, logs, and system integrations. Supports seconds and milliseconds with IANA timezone database. Free to use online with no signup required. Generates code examples for JavaScript, Python, PHP, and other languages. Outputs ISO 8601, RFC 2822, and custom date formats."
 }

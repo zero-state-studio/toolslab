@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "Hash Generator - MD5, SHA-256 & SHA-512 Free Online Tool",
-    "description": "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes for text and files online. Verify data integrity with instant hash computation. Free, browser-based tool."
+    "description": "Generate MD5, SHA-1, SHA-256, SHA-512 hashes online free — verify data integrity instantly. No signup required. Secure browser-based hash generator tool for developers."
   },
   "tagline": "Generate secure MD5, SHA256 and SHA512 hashes",
-  "pageDescription": "Generate cryptographic hash values using MD5, SHA-1, SHA-256, and SHA-512 algorithms. Perfect for password hashing, file integrity verification, and security auditing. Real-time hash generation with one-click copying. All processing happens locally in your browser for maximum security and privacy."
+  "pageDescription": "Generate cryptographic hash values using MD5, SHA-1, SHA-256, and SHA-512 algorithms. Perfect for password hashing, file integrity verification, and security auditing. Real-time hash generation with one-click copying. Free online with no signup required — all processing happens locally in your browser for maximum security and privacy."
 }

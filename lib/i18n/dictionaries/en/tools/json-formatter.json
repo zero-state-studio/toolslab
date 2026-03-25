@@ -84,7 +84,7 @@
   ],
   "meta": {
     "title": "JSON Formatter - Free Online Tool to Beautify & Validate",
-    "description": "Format, validate and beautify JSON data with syntax highlighting. Free online JSON formatter with no registration required. Works instantly in your browser."
+    "description": "Format, validate and beautify JSON online free — syntax highlighting, real-time error detection, key search. No registration required. Works instantly in your browser."
   },
   "labels": {
     "indentSize": "Indent Size",
@@ -101,5 +101,5 @@
     "expanded": "Expanded"
   },
   "tagline": "Format, validate and beautify JSON instantly online",
-  "pageDescription": "Format and validate JSON data with our free online JSON formatter. Debug malformed JSON, beautify minified code, and validate syntax with real-time error detection. Perfect for developers working with APIs, config files, and data processing. Search keys, customize indentation, and process large files securely in your browser."
+  "pageDescription": "Format and validate JSON data with our free online JSON formatter. Debug malformed JSON, beautify minified code, and validate syntax with real-time error detection. Perfect for developers working with APIs, config files, and data processing. No signup required — search keys, customize indentation, and process files securely in your browser."
 }

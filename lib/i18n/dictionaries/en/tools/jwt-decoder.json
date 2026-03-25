@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "JWT Decoder - Decode & Verify JSON Web Tokens Free Online",
-    "description": "Decode and inspect JSON Web Tokens (JWT) online. View header, payload, and verify signatures with claim analysis. Free, secure, browser-based JWT decoder."
+    "description": "Decode and inspect JWT tokens online free — view header, payload, verify signatures, analyze claims and expiration. No signup required. Secure browser-based JWT decoder."
   },
   "tagline": "Decode and analyze JWT tokens with security validation instantly",
-  "pageDescription": "Professional JWT decoder with claims analysis, security validation, and expiration checking. Decode JSON Web Tokens safely with detailed header, payload, and signature information. Perfect for debugging authentication issues, analyzing token claims, and validating JWT security. Supports all JWT algorithms with real-time security recommendations and time-based claim analysis."
+  "pageDescription": "Professional JWT decoder with claims analysis, security validation, and expiration checking. Decode JSON Web Tokens safely with detailed header, payload, and signature information. Perfect for debugging authentication issues and analyzing token claims. Supports all JWT algorithms with real-time security recommendations. Free online with no signup required — browser-based and secure."
 }

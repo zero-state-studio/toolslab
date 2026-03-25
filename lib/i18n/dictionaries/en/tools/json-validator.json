@@ -4,10 +4,10 @@
   "placeholder": "Paste JSON to validate...",
   "meta": {
     "title": "JSON Validator - Syntax Checker & Schema Validator Free",
-    "description": "Validate JSON syntax and structure online with detailed error messages and line numbers. Debug malformed JSON quickly. Free, instant JSON validator tool."
+    "description": "Validate JSON online free — syntax checker with schema support (Draft 7/2019-09), detailed errors and line numbers. No signup required. Instant JSON validator tool."
   },
   "tagline": "Validate JSON with advanced schema support and error detection",
-  "pageDescription": "Advanced JSON validator with JSON Schema support, real-time error reporting and security audit. Validate API responses, configuration files and data structures with Draft 7/2019-09/2020-12 schema support. Features syntax highlighting, detailed error diagnostics, performance metrics and security vulnerability detection. Perfect for developers and API testing.",
+  "pageDescription": "Advanced JSON validator with JSON Schema support, real-time error reporting and security audit. Validate API responses, configuration files and data structures with Draft 7/2019-09/2020-12 schema support. Features syntax highlighting, detailed error diagnostics, performance metrics and security vulnerability detection. Free online with no signup required — perfect for developers and API testing.",
   "instructions": {
     "title": "How to use JSON Validator",
     "steps": [
