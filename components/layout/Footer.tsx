@@ -28,7 +28,7 @@ export function Footer() {
     terms: 'Terms of Service',
     support: 'Support us',
     buyMeCoffee: 'Buy us a coffee',
-    copyright: '© 2025 ToolsLab. All rights reserved.',
+    copyright: '© 2026 ToolsLab. All rights reserved.',
     craftedIn: 'in our digital laboratory',
     developedBy: 'Developed by',
   };

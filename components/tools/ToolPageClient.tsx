@@ -218,35 +218,53 @@ export default function ToolPageClient({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-background dark:to-background">
-      {/* Header Ad Banner - Hidden */}
+    <div className="relative min-h-screen bg-background">
+      {/* Grid pattern */}
+      <div
+        className="fixed inset-0 opacity-50"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(139,92,246,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(139,92,246,0.035) 1px, transparent 1px)
+          `,
+          backgroundSize: '64px 64px',
+          pointerEvents: 'none',
+        }}
+      />
 
-      <div className="mx-auto max-w-[1400px] px-4 py-4 sm:py-8">
+      {/* Ambient glows */}
+      <div
+        className="pointer-events-none fixed -left-32 -top-16 h-64 w-64 rounded-full blur-3xl"
+        style={{ backgroundColor: `${categoryColor}1a` }}
+      />
+      <div className="pointer-events-none fixed -right-32 top-0 h-56 w-56 rounded-full bg-amber-500/[0.07] blur-3xl" />
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-4 sm:py-8">
         {/* Breadcrumb - Reduced spacing */}
         <nav className="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm">
           <Link
             href="/"
-            className="text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           >
             Home
           </Link>
-          <ChevronRight className="h-4 w-4 text-gray-400" />
+          <ChevronRight className="h-4 w-4 text-slate-400" />
           <Link
             href="/tools"
-            className="text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           >
             Tools
           </Link>
-          <ChevronRight className="h-4 w-4 text-gray-400" />
+          <ChevronRight className="h-4 w-4 text-slate-400" />
           <Link
             href={`/category/${categoryId}`}
-            className="capitalize text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="capitalize transition-colors"
             style={{ color: categoryColor }}
           >
             {primaryCategory?.name || categoryId}
           </Link>
-          <ChevronRight className="h-4 w-4 text-gray-400" />
-          <span className="font-medium text-gray-900 dark:text-white">
+          <ChevronRight className="h-4 w-4 text-slate-400" />
+          <span className="font-medium text-slate-900 dark:text-white">
             {tool.name}
           </span>
         </nav>
@@ -260,6 +278,7 @@ export default function ToolPageClient({
             toolTagline={toolTranslations?.tagline}
             toolPageDescription={toolTranslations?.pageDescription}
             categoryColor={categoryColor}
+            categoryId={categoryId}
             categoryName={categoryName}
             favoriteButton={
               <FavoriteButton
@@ -293,7 +312,7 @@ export default function ToolPageClient({
           <div className="flex items-start pt-1">
             <button
               onClick={handleShare}
-              className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm transition-colors hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700"
+              className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm transition-colors hover:bg-gray-50 dark:border-white/[0.08] dark:hover:bg-white/[0.05]"
             >
               <Share2 className="h-4 w-4" />
               <span className="hidden sm:inline">{t.share}</span>
@@ -359,7 +378,7 @@ export default function ToolPageClient({
 
               {/* Related Tools */}
               <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card">
-                <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                <h3 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
                   {t.relatedTools}
                 </h3>
                 <div className="space-y-3">
@@ -367,7 +386,7 @@ export default function ToolPageClient({
                     <Link
                       key={relatedTool.id}
                       href={createHref(`/tools/${relatedTool.id}`)}
-                      className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
+                      className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-white/[0.05]"
                     >
                       <div
                         className="rounded-lg p-2"
@@ -381,14 +400,14 @@ export default function ToolPageClient({
                         </span>
                       </div>
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                        <p className="text-sm font-medium text-slate-900 dark:text-white">
                           {relatedTool.name}
                         </p>
-                        <p className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400">
+                        <p className="line-clamp-1 text-xs text-slate-500 dark:text-slate-400">
                           {relatedTool.description}
                         </p>
                       </div>
-                      <ArrowRight className="h-4 w-4 text-gray-400 transition-colors group-hover:text-gray-600 dark:group-hover:text-gray-300" />
+                      <ArrowRight className="h-4 w-4 text-slate-400 transition-colors group-hover:text-slate-600 dark:group-hover:text-slate-300" />
                     </Link>
                   ))}
                 </div>
@@ -396,8 +415,8 @@ export default function ToolPageClient({
 
               {/* Same Category Tools */}
               {sameCategoryTools.length > 0 && (
-                <div className="mt-6 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
-                  <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+                <div className="mt-6 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card">
+                  <h3 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
                     {t.sameCategoryTools}
                   </h3>
                   <div className="space-y-3">
@@ -406,7 +425,7 @@ export default function ToolPageClient({
                         <Link
                           key={categoryTool.id}
                           href={createHref(`/tools/${categoryTool.id}`)}
-                          className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
+                          className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-white/[0.05]"
                         >
                           <div
                             className="rounded-lg p-2"
@@ -420,14 +439,14 @@ export default function ToolPageClient({
                             </span>
                           </div>
                           <div className="flex-1">
-                            <p className="text-sm font-medium text-gray-900 dark:text-white">
+                            <p className="text-sm font-medium text-slate-900 dark:text-white">
                               {categoryTool.name}
                             </p>
-                            <p className="line-clamp-1 text-xs text-gray-500 dark:text-gray-400">
+                            <p className="line-clamp-1 text-xs text-slate-500 dark:text-slate-400">
                               {categoryTool.description}
                             </p>
                           </div>
-                          <ArrowRight className="h-4 w-4 text-gray-400 transition-colors group-hover:text-gray-600 dark:group-hover:text-gray-300" />
+                          <ArrowRight className="h-4 w-4 text-slate-400 transition-colors group-hover:text-slate-600 dark:group-hover:text-slate-300" />
                         </Link>
                       )
                     )}
@@ -465,7 +484,7 @@ export default function ToolPageClient({
               </div>
             </a>
 
-            <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
+            <h3 className="mb-4 text-base font-semibold text-slate-900 dark:text-white sm:text-lg">
               {t.relatedTools}
             </h3>
             <div className="grid grid-cols-2 gap-4">
@@ -473,7 +492,7 @@ export default function ToolPageClient({
                 <Link
                   key={relatedTool.id}
                   href={createHref(`/tools/${relatedTool.id}`)}
-                  className="rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
+                  className="rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-lg dark:border-white/[0.08] dark:bg-card"
                 >
                   <div
                     className="mb-2 inline-block rounded-lg p-2"
@@ -486,10 +505,10 @@ export default function ToolPageClient({
                       {relatedTool.icon}
                     </span>
                   </div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  <p className="text-sm font-medium text-slate-900 dark:text-white">
                     {relatedTool.name}
                   </p>
-                  <p className="mt-1 line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
+                  <p className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
                     {relatedTool.description}
                   </p>
                 </Link>
@@ -500,7 +519,7 @@ export default function ToolPageClient({
         {/* Mobile Same Category Tools (visible only on mobile via CSS) */}
         {sameCategoryTools.length > 0 && (
           <div className="mt-12 sm:mt-16 lg:hidden">
-            <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
+            <h3 className="mb-4 text-base font-semibold text-slate-900 dark:text-white sm:text-lg">
               {t.sameCategoryTools}
             </h3>
             <div className="grid grid-cols-2 gap-4">
@@ -508,7 +527,7 @@ export default function ToolPageClient({
                 <Link
                   key={categoryTool.id}
                   href={createHref(`/tools/${categoryTool.id}`)}
-                  className="rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-lg dark:border-gray-700 dark:bg-gray-800"
+                  className="rounded-xl border border-gray-200 bg-white p-4 transition-all hover:shadow-lg dark:border-white/[0.08] dark:bg-card"
                 >
                   <div
                     className="mb-2 inline-block rounded-lg p-2"
@@ -521,10 +540,10 @@ export default function ToolPageClient({
                       {categoryTool.icon}
                     </span>
                   </div>
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  <p className="text-sm font-medium text-slate-900 dark:text-white">
                     {categoryTool.name}
                   </p>
-                  <p className="mt-1 line-clamp-2 text-xs text-gray-500 dark:text-gray-400">
+                  <p className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
                     {categoryTool.description}
                   </p>
                 </Link>
