@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { categories, getToolsByCategory } from '@/lib/tools';
 import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
 import {
@@ -12,11 +12,47 @@ import { getToolById } from '@/lib/tools';
 import { trackEngagement } from '@/lib/analytics';
 import {
   ChevronRight,
-  TrendingUp,
   ArrowRight,
   Star,
 } from 'lucide-react';
 import Script from 'next/script';
+
+// ── Keyword filter helpers ────────────────────────────────────────
+// Merge variant forms into a canonical keyword
+const KEYWORD_NORMALIZE: Record<string, string> = {
+  validator: 'validate',
+  validation: 'validate',
+  jpeg: 'jpg',
+  picture: 'image',
+  photo: 'image',
+  formatter: 'format',
+  converter: 'convert',
+  parser: 'parse',
+  parsing: 'parse',
+  minifier: 'minify',
+  minification: 'minify',
+  encoder: 'encode',
+  decoder: 'decode',
+  encoding: 'encode',
+  decoding: 'decode',
+};
+
+// Generic/non-informative terms to exclude
+const KEYWORD_BLOCKLIST = new Set([
+  'convert', 'download', 'online', 'export', 'import', 'data',
+  'query', 'viewer', 'beautify', 'format', 'parse', 'encode', 'decode',
+  'free', 'tool', 'tools', 'generate', 'generator', 'batch', 'size',
+  'namespace', 'api', 'a4', 'letter', 'syntax', 'output', 'input',
+  'page', 'file', 'text', 'code', 'type', 'format', 'number', 'string',
+]);
+// ──────────────────────────────────────────────────────────────────
+
+// Normalize a raw keyword → canonical form, or null if it should be skipped
+function normalizeKw(rawKw: string): string | null {
+  const lower = rawKw.toLowerCase();
+  if (lower.includes(' ') || lower.length < 2) return null;
+  return KEYWORD_NORMALIZE[lower] ?? lower;
+}
 
 // ── Design tokens (match CategoriesHubContentSimple) ─────────────
 const categoryGradients: Record<string, string> = {
@@ -43,6 +79,7 @@ export default function CategoryPageContent({
   seoContent,
 }: CategoryPageContentProps) {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [selectedKeyword, setSelectedKeyword] = useState<string | null>(null);
   const category = categories.find((cat) => cat.id === categoryId);
   const tools = category ? getToolsByCategory(category.id) : [];
   const structuredData = generateCategoryStructuredData(seoContent);
@@ -77,6 +114,59 @@ export default function CategoryPageContent({
   );
 
   const totalTools = categories.reduce((sum, c) => sum + c.tools.length, 0);
+
+  // Build keyword filters ensuring every tool appears in at least one filter
+  const keywordFilters = useMemo(() => {
+    // Step 1: per-tool candidate keywords (after normalization, no blocklist yet)
+    const toolCandidates = allDisplayTools.map((tool) => {
+      const candidates = new Set<string>();
+      (tool.keywords || []).forEach((rawKw) => {
+        const n = normalizeKw(rawKw);
+        if (n) candidates.add(n);
+      });
+      return candidates;
+    });
+
+    // Step 2: frequency map across all candidates
+    const freq = new Map<string, number>();
+    toolCandidates.forEach((candidates) => {
+      candidates.forEach((kw) => freq.set(kw, (freq.get(kw) || 0) + 1));
+    });
+
+    // Step 3: initial filter set (freq ≥ 2, not blocklisted)
+    const filterSet = new Set<string>(
+      Array.from(freq.entries())
+        .filter(([kw, count]) => count >= 2 && !KEYWORD_BLOCKLIST.has(kw))
+        .map(([kw]) => kw)
+    );
+
+    // Step 4: coverage guarantee — every tool must match at least one filter
+    toolCandidates.forEach((candidates) => {
+      const covered = Array.from(candidates).some((kw) => filterSet.has(kw));
+      if (covered || candidates.size === 0) return;
+      // Pick fallback: highest-frequency candidate among this tool's keywords
+      let bestKw = '';
+      let bestFreq = 0;
+      candidates.forEach((kw) => {
+        const f = freq.get(kw) || 0;
+        if (f > bestFreq) { bestFreq = f; bestKw = kw; }
+      });
+      if (bestKw) filterSet.add(bestKw);
+    });
+
+    return Array.from(filterSet).sort((a, b) => a.localeCompare(b)); // A-Z
+  }, [allDisplayTools]);
+
+  // Tools filtered by selected keyword (matches normalized form)
+  const filteredTools = useMemo(() => {
+    if (!selectedKeyword) return null;
+    return allDisplayTools.filter((tool) =>
+      (tool.keywords || []).some((rawKw) => {
+        const n = normalizeKw(rawKw);
+        return n === selectedKeyword;
+      })
+    );
+  }, [selectedKeyword, allDisplayTools]);
 
   return (
     <>
@@ -191,45 +281,90 @@ export default function CategoryPageContent({
         {/* ── TOOLS ──────────────────────────────────────────────────── */}
         <section className="relative z-10 mx-auto max-w-7xl px-4 pb-16">
 
-          {/* Popular Tools */}
-          {popularTools.length > 0 && (
-            <div className="mb-10">
-              <div className="mb-4 flex items-center gap-3">
-                <h2 className="text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
-                  Most Popular
-                </h2>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
-                  <Star className="h-3 w-3 fill-current" />
-                  Top Picks
-                </span>
-              </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {popularTools.map((tool) => (
-                  <ToolCardWrapper key={tool.id} tool={tool} />
-                ))}
-              </div>
+          {/* Keyword filters */}
+          {keywordFilters.length > 0 && (
+            <div className="mb-6 flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedKeyword(null)}
+                className={`rounded-full border px-3 py-1 text-xs font-medium transition-all ${
+                  selectedKeyword === null
+                    ? `bg-gradient-to-r ${gradient} border-transparent text-white shadow-sm`
+                    : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-400 dark:hover:bg-white/[0.06]'
+                }`}
+              >
+                All
+              </button>
+              {keywordFilters.map((kw) => (
+                <button
+                  key={kw}
+                  onClick={() => setSelectedKeyword(kw === selectedKeyword ? null : kw)}
+                  className={`rounded-full border px-3 py-1 font-mono text-xs font-medium transition-all ${
+                    selectedKeyword === kw
+                      ? `bg-gradient-to-r ${gradient} border-transparent text-white shadow-sm`
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 dark:border-white/[0.08] dark:bg-white/[0.03] dark:text-slate-400 dark:hover:bg-white/[0.06]'
+                  }`}
+                >
+                  {kw}
+                </button>
+              ))}
             </div>
           )}
 
-          {/* Other Tools */}
-          {otherTools.length > 0 && (
+          {/* Filtered view */}
+          {filteredTools !== null ? (
             <div className="mb-10">
-              {(popularTools.length > 0) && (
-                <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
-                  All {category.name} Tools
-                </h2>
+              <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
+                {filteredTools.length} {filteredTools.length === 1 ? 'tool' : 'tools'} for{' '}
+                <span className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
+                  {selectedKeyword}
+                </span>
+              </h2>
+              {filteredTools.length > 0 ? (
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {filteredTools.map((tool) => (
+                    <ToolCardWrapper key={tool.id} tool={tool} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-slate-500 dark:text-slate-400">No tools found for this filter.</p>
               )}
-              {popularTools.length === 0 && (
-                <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
-                  {category.name} Tools
-                </h2>
-              )}
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {otherTools.map((tool) => (
-                  <ToolCardWrapper key={tool.id} tool={tool} />
-                ))}
-              </div>
             </div>
+          ) : (
+            <>
+              {/* Popular Tools */}
+              {popularTools.length > 0 && (
+                <div className="mb-10">
+                  <div className="mb-4 flex items-center gap-3">
+                    <h2 className="text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
+                      Most Popular
+                    </h2>
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+                      <Star className="h-3 w-3 fill-current" />
+                      Top Picks
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    {popularTools.map((tool) => (
+                      <ToolCardWrapper key={tool.id} tool={tool} />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Other Tools */}
+              {otherTools.length > 0 && (
+                <div className="mb-10">
+                  <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
+                    {popularTools.length > 0 ? `All ${category.name} Tools` : `${category.name} Tools`}
+                  </h2>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                    {otherTools.map((tool) => (
+                      <ToolCardWrapper key={tool.id} tool={tool} />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
           )}
 
           {/* ── FAQ ──────────────────────────────────────────────────── */}
