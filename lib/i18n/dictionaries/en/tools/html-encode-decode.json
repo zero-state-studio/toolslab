@@ -81,8 +81,8 @@
   },
   "meta": {
     "title": "HTML Encode Decode - Convert HTML Entities Free Online",
-    "description": "Encode text to HTML entities or decode HTML entities to plain text. Support for named, decimal, and hexadecimal entities. Free, secure, browser-based HTML tool."
+    "description": "Encode text to HTML entities or decode entities to plain text online free. Named, decimal, hex formats. No signup required. Secure browser-based HTML encoder/decoder."
   },
   "tagline": "Convert text to HTML entities and decode HTML safely",
-  "pageDescription": "Encode special characters to HTML entities or decode entities back to plain text. Essential for web developers working with HTML, XML, preventing XSS attacks, and handling special characters. Supports multiple encoding formats including named entities (&lt; &gt;), decimal (&#60;), and hexadecimal (&#x3C;). Process text instantly in your browser with no server uploads."
+  "pageDescription": "Encode special characters to HTML entities or decode entities back to plain text. Essential for web developers preventing XSS attacks and handling special characters in HTML and XML. Supports named entities (&lt; &gt;), decimal (&#60;), and hexadecimal (&#x3C;) formats. Free online with no signup required — process text instantly in your browser with no server uploads."
 }

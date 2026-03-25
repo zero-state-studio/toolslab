@@ -4,10 +4,10 @@
   "placeholder": "Paste your YAML here to validate...",
   "meta": {
     "title": "YAML Validator - Online Syntax Checker for Kubernetes & CI",
-    "description": "Validate YAML syntax online with detailed error messages and line numbers. Support for YAML 1.1 and 1.2 specs. Free tool for Kubernetes and Docker configs."
+    "description": "Validate YAML syntax online free — no signup required. Detailed error messages with exact line numbers for Kubernetes, Docker Compose, and GitHub Actions."
   },
   "tagline": "Validate YAML syntax instantly with detailed error reporting",
-  "pageDescription": "Free online YAML validator checks your YAML syntax and reports errors with exact line numbers. Supports YAML 1.1 and 1.2 specifications, validates Kubernetes manifests, Docker Compose files, GitHub Actions workflows, and any YAML configuration. Features include syntax highlighting, duplicate key detection, pretty formatting, and structure visualization. Browser-based with complete privacy - your data never leaves your device.",
+  "pageDescription": "Free online YAML validator checks your YAML syntax and reports errors with exact line numbers. Supports YAML 1.1 and 1.2 specifications, validates Kubernetes manifests, Docker Compose files, GitHub Actions workflows, and any YAML configuration. Features include syntax highlighting, duplicate key detection, pretty formatting, and structure visualization. Browser-based with complete privacy - your data never leaves your device. No signup or registration required.",
   "instructions": {
     "title": "How to use YAML Validator",
     "steps": [

@@ -4,10 +4,10 @@
   "placeholder": "Drop image or click to upload...",
   "meta": {
     "title": "Image Optimizer - Compress JPEG, PNG & WebP Free Online",
-    "description": "Optimize and compress images online. Reduce JPEG, PNG, WebP, and GIF file sizes while preserving quality. Smart compression controls. Free, browser-based tool."
+    "description": "Compress and optimize images online free — reduce JPEG, PNG, WebP file size up to 80% while preserving quality. No signup required. Fast, browser-based image optimizer."
   },
   "tagline": "Compress images with smart optimization for web and mobile",
-  "pageDescription": "Professional image optimization tool that reduces file size by up to 80% while maintaining visual quality. Supports JPG, PNG, WebP, and AVIF formats with adjustable compression levels. Perfect for web developers optimizing page speed and mobile app developers reducing bundle size. Batch process multiple images with real-time preview.",
+  "pageDescription": "Professional image optimization tool that reduces file size by up to 80% while maintaining visual quality. Supports JPG, PNG, WebP, and AVIF formats with adjustable compression levels. Perfect for web developers optimizing page speed and mobile app developers reducing bundle size. Batch process multiple images with real-time preview. Free online with no signup required.",
   "instructions": {
     "title": "How to use Image Optimizer",
     "steps": [

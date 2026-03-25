@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "CSV to JSON Converter - Parse & Import CSV Free Online",
-    "description": "Convert CSV files to JSON format online with support for custom delimiters, headers, and nested structures. Handles large files. Free CSV to JSON converter."
+    "description": "Convert CSV to JSON online free — custom delimiters, auto header detection, nested structures, large file support. No signup required. Free CSV to JSON converter."
   },
   "tagline": "Convert CSV data to JSON format with smart parsing",
-  "pageDescription": "Transform CSV files and data into JSON format with automatic header detection and custom delimiter support. Perfect for data migration, API integration, and spreadsheet processing. Handles large files with streaming, preserves data types, and offers multiple output formats. Free, secure browser-based conversion with no file uploads."
+  "pageDescription": "Transform CSV files and data into JSON format with automatic header detection and custom delimiter support. Perfect for data migration, API integration, and spreadsheet processing. Handles large files, preserves data types, and offers multiple output formats. Free online with no signup required — secure browser-based CSV to JSON conversion with no file uploads."
 }

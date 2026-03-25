@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "Base64 Encoder Decoder - Free Online Tool for Text & Files",
-    "description": "Encode text to Base64 or decode Base64 strings to plain text online. Support for files, UTF-8, and binary data. Free, secure Base64 encoder and decoder."
+    "description": "Encode text or files to Base64, decode Base64 to text online free. Supports UTF-8, binary, files up to 50MB. No signup required. Secure browser-based Base64 tool."
   },
   "tagline": "Encode and decode Base64 files and text instantly",
-  "pageDescription": "Free Base64 encoder and decoder for text, images, and files up to 50MB. Perfect for web developers embedding images in HTML/CSS, API data transmission, and email attachments. Drag-and-drop interface with secure browser-based processing. Download decoded files directly or copy encoded strings to clipboard."
+  "pageDescription": "Free Base64 encoder and decoder for text, images, and files up to 50MB. Perfect for web developers embedding images in HTML/CSS, API data transmission, and email attachments. Drag-and-drop interface with secure browser-based processing. No signup required — download decoded files directly or copy encoded strings to clipboard instantly."
 }

@@ -4,10 +4,10 @@
   "placeholder": "Enter color (HEX, RGB, HSL)...",
   "meta": {
     "title": "Color Picker - HEX, RGB, HSL Color Selection Free Online",
-    "description": "Pick colors with an interactive color picker. Convert between HEX, RGB, HSL formats instantly. Extract and save favorite colors. Free online color tool."
+    "description": "Free online color picker — pick colors and convert between HEX, RGB, HSL, CMYK. WCAG contrast checker, palette generator, no signup required. Browser-based."
   },
   "tagline": "Pick colors with contrast checker and palette generator",
-  "pageDescription": "Professional color picker for developers and designers with HEX, RGB, HSL, HSV, CMYK and LAB formats. Generate color palettes, check WCAG contrast ratios, simulate color blindness and export to CSS, Tailwind, Material Design. Features eyedropper API, gradient generator and design system integration. Free browser-based tool with accessibility compliance checking.",
+  "pageDescription": "Professional color picker for developers and designers with HEX, RGB, HSL, HSV, CMYK and LAB formats. Generate color palettes, check WCAG contrast ratios, simulate color blindness and export to CSS, Tailwind, Material Design. Features eyedropper API, gradient generator and design system integration. Free online tool with no signup required — all processing in your browser.",
   "instructions": {
     "title": "How to use Color Picker",
     "steps": [

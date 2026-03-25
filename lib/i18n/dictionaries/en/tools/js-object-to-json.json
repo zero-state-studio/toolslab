@@ -84,7 +84,7 @@
   ],
   "meta": {
     "title": "JS Object to JSON Converter - Free Online JavaScript Tool",
-    "description": "Convert JavaScript objects to valid JSON online. Handle circular references, BigInt, functions, and undefined values. Free, secure, browser-based converter."
+    "description": "Convert JavaScript objects to valid JSON online free — handles circular references, BigInt, functions, unquoted keys. No signup required. Secure browser-based converter."
   },
   "labels": {
     "input": "JavaScript Object",
@@ -110,5 +110,5 @@
     "keep": "Keep as-is"
   },
   "tagline": "Convert JavaScript objects to valid JSON instantly with smart handling",
-  "pageDescription": "Transform JavaScript object literals into valid JSON format with our free online converter. Automatically handles unquoted keys, single quotes, trailing commas, circular references, BigInt values, and functions. Perfect for developers converting console output, config files, or test data to JSON. Secure client-side processing with no data uploads."
+  "pageDescription": "Transform JavaScript object literals into valid JSON format with our free online converter. Automatically handles unquoted keys, single quotes, trailing commas, circular references, BigInt values, and functions. Perfect for developers converting console output, config files, or test data to JSON. No signup required — secure client-side processing with no data uploads."
 }

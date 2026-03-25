@@ -91,8 +91,8 @@
   },
   "meta": {
     "title": "String Case Converter - camelCase, snake_case Free Online",
-    "description": "Convert text between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and more. Free online string case converter for developers. Works offline."
+    "description": "Convert text between camelCase, snake_case, kebab-case, PascalCase, CONSTANT_CASE online free. Batch mode, auto-detection, no signup required. Works offline."
   },
   "tagline": "Convert text between camelCase, snake_case, kebab-case and more instantly",
-  "pageDescription": "Transform text between different naming conventions with this free online String Case Converter. Instantly convert between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case, and more. Perfect for developers who need to convert variable names, class names, or constants between different programming languages and coding standards. Features batch conversion, automatic case detection, and one-click copy. Secure, browser-based, and works completely offline."
+  "pageDescription": "Transform text between different naming conventions with this free online String Case Converter. Instantly convert between camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, Title Case, and more. Perfect for developers converting variable names between programming languages. Features batch conversion and automatic case detection. No signup required — secure, browser-based, works offline."
 }
