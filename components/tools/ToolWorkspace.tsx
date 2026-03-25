@@ -270,7 +270,7 @@ export default function ToolWorkspace({
   // Default generic tool workspace
   return (
     <div
-      className={`flex h-full flex-col overflow-hidden ${isLabMode ? '' : 'rounded-xl border border-gray-200'} bg-white transition-all dark:border-gray-700 dark:bg-gray-800 ${isFullscreen ? 'fixed inset-4 z-50' : ''}`}
+      className={`flex h-full flex-col overflow-hidden ${isLabMode ? '' : 'rounded-xl border border-gray-200'} bg-white transition-all dark:border-white/[0.08] dark:bg-card ${isFullscreen ? 'fixed inset-4 z-50' : ''}`}
     >
       {/* Tool Header Bar */}
       {!isLabMode && (

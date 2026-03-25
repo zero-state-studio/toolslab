@@ -175,6 +175,7 @@ export default function ToolPageClient({
   );
   const categoryDict = dictionary?.categories?.[primaryCategory?.id || 'dev'];
   const categoryName = categoryDict?.name || primaryCategory?.name || 'Tools';
+  const categoryId = tool.categories[0];
 
   const categoryColor = getCategoryColor(categoryId);
 
@@ -217,7 +218,7 @@ export default function ToolPageClient({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-950">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-background dark:to-background">
       {/* Header Ad Banner - Hidden */}
 
       <div className="mx-auto max-w-[1400px] px-4 py-4 sm:py-8">
@@ -357,7 +358,7 @@ export default function ToolPageClient({
               </a>
 
               {/* Related Tools */}
-              <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+              <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card">
                 <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
                   {t.relatedTools}
                 </h3>
