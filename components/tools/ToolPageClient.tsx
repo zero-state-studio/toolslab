@@ -141,6 +141,16 @@ export default function ToolPageClient({
       .slice(0, 6);
   }, [toolId, tool]);
 
+  // Memoize the tool prop object to prevent breaking ToolWorkspace memoization
+  // Must be before early return to satisfy Rules of Hooks
+  const toolWithSlug = useMemo(
+    () =>
+      tool
+        ? ({ ...tool, slug: tool.id, category: tool.categories[0] } as any)
+        : null,
+    [tool]
+  );
+
   if (!tool) {
     return <div>Tool not found</div>;
   }
@@ -168,12 +178,6 @@ export default function ToolPageClient({
   const categoryId = tool.categories[0];
 
   const categoryColor = getCategoryColor(categoryId);
-
-  // Memoize the tool prop object to prevent breaking ToolWorkspace memoization
-  const toolWithSlug = useMemo(
-    () => ({ ...tool, slug: tool.id, category: categoryId } as any),
-    [tool, categoryId]
-  );
 
   const handleShare = async () => {
     const hasNativeShare =
