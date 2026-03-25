@@ -3,6 +3,18 @@
 import { useState, useEffect } from 'react';
 import { Sparkles, Zap } from 'lucide-react';
 
+const categoryGradients: Record<string, string> = {
+  data: 'from-blue-500 to-cyan-500',
+  encoding: 'from-emerald-500 to-green-500',
+  base64: 'from-teal-500 to-cyan-500',
+  text: 'from-purple-500 to-pink-500',
+  web: 'from-pink-500 to-rose-500',
+  dev: 'from-amber-500 to-orange-500',
+  generators: 'from-orange-500 to-red-500',
+  formatters: 'from-indigo-500 to-purple-500',
+  pdf: 'from-red-600 to-orange-600',
+};
+
 interface ToolHeroSectionProps {
   toolId: string;
   toolName: string;
@@ -10,6 +22,7 @@ interface ToolHeroSectionProps {
   toolTagline?: string;
   toolPageDescription?: string;
   categoryColor: string;
+  categoryId?: string;
   categoryName?: string;
   favoriteButton?: React.ReactNode;
   categoryBadge?: React.ReactNode;
@@ -24,12 +37,14 @@ export default function ToolHeroSection({
   toolTagline,
   toolPageDescription,
   categoryColor,
+  categoryId,
   categoryName,
   favoriteButton,
   categoryBadge,
   labelBadge,
   className = '',
 }: ToolHeroSectionProps) {
+  const gradient = categoryGradients[categoryId || ''] || 'from-violet-500 to-purple-500';
   const [isVisible, setIsVisible] = useState(false);
 
   // Use provided translations (from JSON granular files)
@@ -45,29 +60,28 @@ export default function ToolHeroSection({
     return (
       <div className={`mb-8 text-center ${className}`}>
         <div
-          className={`mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl transition-all duration-500 ${
+          className={`mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} text-white shadow-lg transition-all duration-500 ${
             isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
           }`}
-          style={{ backgroundColor: `${categoryColor}20` }}
         >
-          <Zap className="h-10 w-10" style={{ color: categoryColor }} />
+          <Zap className="h-10 w-10 text-white" />
         </div>
         <h1
-          className={`mb-2 text-3xl font-bold text-gray-900 transition-all delay-100 duration-500 dark:text-white sm:text-4xl lg:text-5xl ${
+          className={`mb-2 text-3xl font-bold text-slate-900 transition-all delay-100 duration-500 dark:text-white sm:text-4xl lg:text-5xl ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}
         >
           {toolName}
         </h1>
         <p
-          className={`mb-4 text-xl text-gray-700 transition-all delay-150 duration-500 dark:text-gray-300 ${
+          className={`mb-4 text-xl text-slate-700 transition-all delay-150 duration-500 dark:text-slate-300 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}
         >
           Professional tool for developers and power users
         </p>
         <p
-          className={`mx-auto max-w-3xl text-gray-600 transition-all delay-200 duration-500 dark:text-gray-400 ${
+          className={`mx-auto max-w-3xl text-slate-600 transition-all delay-200 duration-500 dark:text-slate-400 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}
         >
@@ -84,23 +98,17 @@ export default function ToolHeroSection({
       <div className="mb-2 flex items-center gap-2 sm:gap-3">
         {/* Compact Icon */}
         <div
-          className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl shadow-sm transition-all duration-300 sm:h-14 sm:w-14 ${
+          className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-lg transition-all duration-300 sm:h-14 sm:w-14 ${
             isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
           }`}
-          style={{
-            backgroundColor: `${categoryColor}20`,
-          }}
         >
-          <Sparkles
-            className="h-6 w-6 sm:h-7 sm:w-7"
-            style={{ color: categoryColor }}
-          />
+          <Sparkles className="h-6 w-6 text-white sm:h-7 sm:w-7" />
         </div>
 
         {/* Title and badges inline */}
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:gap-3">
           <h1
-            className={`text-2xl font-bold text-gray-900 dark:text-white sm:text-3xl lg:text-4xl ${
+            className={`text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl lg:text-4xl ${
               isVisible
                 ? 'translate-y-0 opacity-100'
                 : 'translate-y-1 opacity-0'
@@ -120,7 +128,7 @@ export default function ToolHeroSection({
 
       {/* Tagline/Description - use translated version if available */}
       <p
-        className={`mb-2 text-base text-gray-700 transition-all delay-100 duration-300 dark:text-gray-300 sm:text-lg md:mb-4 ${
+        className={`mb-2 text-base text-slate-700 transition-all delay-100 duration-300 dark:text-slate-300 sm:text-lg md:mb-4 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
         }`}
       >
@@ -130,7 +138,7 @@ export default function ToolHeroSection({
       {/* Page Description - hidden on mobile to show textarea */}
       {pageDescription && (
         <p
-          className={`hidden max-w-4xl text-sm leading-relaxed text-gray-600 transition-all delay-150 duration-300 dark:text-gray-400 sm:text-base md:block ${
+          className={`hidden max-w-4xl text-sm leading-relaxed text-slate-600 transition-all delay-150 duration-300 dark:text-slate-400 sm:text-base md:block ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
           }`}
         >
