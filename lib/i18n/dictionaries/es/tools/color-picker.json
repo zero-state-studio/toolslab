@@ -3,83 +3,101 @@
   "description": "Elige y convierte colores entre formatos HEX, RGB, HSL",
   "placeholder": "Elige un color...",
   "meta": {
-    "title": "Selector de Color - Herramienta Online Gratuita",
-    "description": "Selecciona colores online gratis. Convierte entre HEX, RGB, HSL, CMYK. Verificación de contraste WCAG y generador de paletas. Exporta para CSS y Tailwind."
+    "title": "Selector de Color - Conversor HEX RGB HSL Online Gratis",
+    "description": "Selector de color online gratis — elige colores y convierte entre HEX, RGB, HSL, CMYK. Contraste WCAG, generador de paletas. Sin registro, en el navegador."
   },
-  "tagline": "Scegli colori con controllo contrasto e generatore palette",
-  "pageDescription": "Color picker professionale per sviluppatori e designer con formati HEX, RGB, HSL, HSV, CMYK e LAB. Genera palette colori, controlla rapporti contrasto WCAG, simula daltonismo ed export CSS, Tailwind, Material Design. Funzionalità API eyedropper, generatore gradienti e integrazione design system. Strumento gratuito basato su browser con controllo conformità accessibilità.",
+  "tagline": "Elige colores con verificador de contraste y generador de paletas",
+  "pageDescription": "Selector de color profesional online gratis para desarrolladores y diseñadores. Elige cualquier color y conviértelo al instante entre HEX, RGB, HSL, HSV, CMYK y LAB. Genera paletas armoniosas a partir de un solo color, verifica el contraste WCAG para accesibilidad web y simula daltonismo. Exporta valores listos para CSS, Tailwind y Material Design. Cuenta con cuentagotas para extraer colores de pantalla, generador de degradados e integración con sistemas de diseño. Herramienta gratuita que funciona en el navegador sin registro ni instalación de software.",
   "instructions": {
-    "title": "Cómo usar Selector de Color",
+    "title": "Cómo usar el Selector de Color",
     "steps": [
       {
-        "title": "Pega tu contenido",
-        "description": "Copia y pega tu contenido en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
+        "title": "Selecciona un color",
+        "description": "Usa la rueda de color o el selector visual para elegir tu color. También puedes introducir directamente un valor HEX, RGB o HSL en el campo de entrada."
       },
       {
-        "title": "Configura las opciones (si disponible)",
-        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
+        "title": "Convierte entre formatos",
+        "description": "El color seleccionado se convierte automáticamente a todos los formatos: HEX, RGB, HSL, HSV, CMYK y LAB. Haz clic en cualquier valor para copiarlo al portapapeles."
       },
       {
-        "title": "Examina la salida",
-        "description": "La herramienta procesará tu entrada y mostrará el resultado con formato y validación apropiados."
+        "title": "Verifica el contraste WCAG",
+        "description": "Elige un color de texto y uno de fondo para comprobar la relación de contraste. La herramienta indica si cumple los niveles AA y AAA de las directrices WCAG."
       },
       {
-        "title": "Copia o descarga el resultado",
-        "description": "Copia el resultado procesado al portapapeles para uso inmediato o descárgalo como archivo."
+        "title": "Genera una paleta de colores",
+        "description": "A partir del color seleccionado, genera paletas armoniosas: complementaria, análoga, triádica, split-complementaria y monocromática."
+      },
+      {
+        "title": "Exporta tus colores",
+        "description": "Copia los valores de color con un clic, listos para CSS, Tailwind, Sass o cualquier framework. También puedes exportar la paleta completa."
       }
     ],
     "features": [
-      "Procesamiento en tiempo real con resultados instantáneos",
-      "Sin límite de tamaño para procesamiento basado en navegador",
-      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
-      "Sin carga de datos ni almacenamiento en servidor",
-      "Copiar al portapapeles con un clic",
-      "Descargar resultados como archivo",
-      "Validación de sintaxis y resaltado de errores",
-      "Funciona sin conexión después de la carga inicial"
+      "Conversión instantánea entre HEX, RGB, HSL, HSV, CMYK y LAB",
+      "Verificador de contraste WCAG con niveles AA y AAA",
+      "Generador de paletas: complementaria, análoga, triádica y monocromática",
+      "Cuentagotas (eyedropper) para extraer colores directamente de la pantalla",
+      "Simulación de daltonismo (protanopía, deuteranopía, tritanopía)",
+      "Exportación de valores para CSS, variables CSS y clases Tailwind",
+      "Generador de degradados lineales y radiales con vista previa en tiempo real",
+      "Procesamiento 100% en el navegador — ningún dato enviado al servidor"
     ],
     "useCases": [
-      "Limpiar y formatear código desordenado para mejor legibilidad",
-      "Estandarizar el estilo de código en equipos de desarrollo",
-      "Depurar estructuras complejas con indentación apropiada",
-      "Preparar código para documentación y revisiones de código",
-      "Convertir entre diferentes estándares de formato",
-      "Validar sintaxis antes del despliegue",
-      "Procesar datos de fuentes externas o APIs",
-      "Generar código listo para producción"
+      "Elegir los colores principales y secundarios para un sitio web o aplicación",
+      "Verificar que el contraste texto-fondo cumple los estándares WCAG de accesibilidad",
+      "Generar una paleta de colores coherente desde un color de marca",
+      "Convertir colores HEX a RGB o HSL para desarrollo CSS",
+      "Crear variantes claras y oscuras de un color para estados hover y focus",
+      "Comprobar cómo ven los colores las personas daltónicas",
+      "Extraer los valores Tailwind correspondientes a un color personalizado",
+      "Encontrar colores complementarios o análogos para gráficos y presentaciones"
     ],
     "proTips": [
-      "Usa atajos de teclado para un flujo de trabajo más rápido",
-      "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
-      "Valida tu entrada antes del procesamiento para detectar errores temprano",
-      "Guarda las configuraciones frecuentes como predeterminadas",
-      "Usa la función de descarga para archivar archivos procesados",
-      "Verifica cuidadosamente la salida antes de usar en producción"
+      "Para accesibilidad web, asegúrate de que el contraste sea al menos 4.5:1 para texto normal y 3:1 para texto grande (WCAG AA)",
+      "Usa la paleta monocromática para crear escalas de grises o variantes tonales de un color de marca",
+      "Puedes introducir un código HEX sin el símbolo # — la herramienta lo reconoce automáticamente",
+      "Siempre prueba tus combinaciones de color con el simulador de daltonismo antes de finalizar tu diseño",
+      "Copia el valor HSL si necesitas ajustar fácilmente la luminosidad o saturación en CSS",
+      "Guarda tus colores favoritos para construir tu sistema de diseño paso a paso"
     ],
     "troubleshooting": [
-      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
-      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
-      "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
-      "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
-      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
+      "Color no reconocido: verifica que el formato sea válido (ej. #FF5733, rgb(255,87,51), hsl(11,100%,60%))",
+      "Contraste insuficiente: intenta aumentar la diferencia de luminosidad entre los dos colores elegidos",
+      "La paleta no es armoniosa: asegúrate de partir de un color saturado; colores muy claros u oscuros producen paletas menos variadas",
+      "Los valores CMYK no coinciden con la impresión: la conversión RGB-CMYK es aproximada; para impresión profesional usa un perfil ICC",
+      "El cuentagotas no funciona: esta función requiere un navegador compatible con la API EyeDropper (Chrome 95+, Edge 95+). Firefox y Safari aún no la soportan"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Pegar entrada"
-      },
-      {
-        "keys": "Ctrl+Enter",
-        "description": "Procesar/Formatear"
+        "description": "Pegar un código de color"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copiar resultado"
+        "description": "Copiar el color seleccionado"
+      },
+      {
+        "keys": "Ctrl+Z",
+        "description": "Volver al color anterior"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Descargar archivo"
+        "description": "Guardar color en favoritos"
       }
     ]
-  }
+  },
+  "longTailKeywords": [
+    "selector de color online gratis",
+    "conversor de colores hex rgb hsl gratis",
+    "selector de color para diseño web gratis",
+    "cómo convertir hex a rgb online",
+    "generador de paleta de colores online gratis",
+    "verificador de contraste wcag online gratis",
+    "herramienta de colores para desarrolladores",
+    "selector de color sin registro navegador",
+    "paleta de colores desde un solo color gratis",
+    "mejor selector de color gratuito online",
+    "cómo elegir colores para páginas web",
+    "convertir colores hex rgb sin instalar software"
+  ]
 }

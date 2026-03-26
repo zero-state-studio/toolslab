@@ -2,7 +2,7 @@
 name: long-tail-seo
 description: "Research, assign, and verify long-tail SEO keywords for ToolsLab tools. Supports EN and all 5 other locales (it, es, fr, de, pt). Uses real web research in the target language for data-driven keyword selection. Triggers: 'long-tail keywords', 'keyword research for tool', 'SEO keywords for [tool]', 'check keyword coverage', 'add long-tail to [tool]', 'long-tail italiano', 'long-tail per tutte le lingue'."
 metadata:
-  version: 3.0.0
+  version: 3.1.0
 ---
 
 # /long-tail-seo — Long-Tail Keyword Research & Verification (Multilingual)
@@ -81,6 +81,26 @@ Run these 5 steps for each locale being processed. For `--all`, run the full wor
 4. Check if `longTailKeywords` already exists in the target location (tools.ts for EN, locale JSON for non-EN)
 5. Note the tool's core function, input/output, unique features, and target audience
 6. For non-EN, also read the EN version to understand the base content and intent
+7. **🔍 Language integrity check (MANDATORY)** — For each field (`tagline`, `pageDescription`, `meta.description`, `meta.title`, all `instructions.*` strings), verify:
+   - **Wrong language**: Text is in a different language than the target locale (e.g., Italian text in the ES/FR/DE/PT file). Flag as `WRONG_LANGUAGE`.
+   - **Broken/mixed language**: Text mixes the target language with English or another language unnaturally (e.g., "Professioneller Farbe Wähler für developers mit HEX formats"). Flag as `BROKEN_LANGUAGE`.
+   - **Generic template content**: Instructions are not tool-specific — they use generic phrases like "Paste your content", "Configure options", "Review the output" that could apply to any tool. Flag as `GENERIC_CONTENT`.
+
+   Report all issues found in a **Language Integrity Report** block before proceeding to Step 2:
+   ```
+   ### Language Integrity Report ([locale])
+   - tagline: OK / WRONG_LANGUAGE (found: Italian) / BROKEN_LANGUAGE
+   - pageDescription: OK / WRONG_LANGUAGE (found: Italian) / BROKEN_LANGUAGE
+   - meta.description: OK / WRONG_LANGUAGE / BROKEN_LANGUAGE / TOO SHORT / TOO LONG
+   - meta.title: OK / WRONG_LANGUAGE
+   - instructions.steps: OK / GENERIC_CONTENT / WRONG_LANGUAGE
+   - instructions.features: OK / GENERIC_CONTENT / WRONG_LANGUAGE
+   - instructions.useCases: OK / GENERIC_CONTENT / WRONG_LANGUAGE
+   - instructions.proTips: OK / GENERIC_CONTENT / WRONG_LANGUAGE
+   - instructions.troubleshooting: OK / GENERIC_CONTENT / WRONG_LANGUAGE
+   ```
+
+   Any field flagged here MUST be rewritten in Step 5, regardless of keyword coverage results.
 
 ### Step 2: RESEARCH — Web research in the target language
 
@@ -252,6 +272,25 @@ For each of the 12 keywords, check if the key concepts appear in the locale's vi
 - **Status**: NEEDS UPDATE
 ```
 
+#### 4C: Language integrity re-check
+
+Re-verify all fields flagged in Step 1's Language Integrity Report. Additionally, for any content that was NOT flagged in Step 1 but was modified during Step 3 (keyword assignment), verify the modifications didn't introduce language issues.
+
+**This check catches:**
+- Fields that were in the wrong language from the start (flagged in Step 1)
+- Fields where generic template content makes keyword coverage impossible (flagged in Step 1)
+- Any regression introduced by keyword-related edits
+
+**Output:**
+```
+### Language Integrity Status ([locale])
+| Field | Step 1 Flag | Current Status | Action Needed |
+|-------|-------------|----------------|---------------|
+| tagline | WRONG_LANGUAGE (Italian) | NEEDS REWRITE | Rewrite in [locale] in Step 5C |
+| pageDescription | OK | OK | None |
+| instructions.steps | GENERIC_CONTENT | NEEDS REWRITE | Rewrite tool-specific in Step 5C |
+```
+
 ### Step 5: FIX — Enrich content and fix meta.description
 
 #### 5A: Fix keyword coverage gaps
@@ -288,6 +327,33 @@ DE:  "[Input] in [output] online kostenlos konvertieren. [Hauptfunktion] mit sof
 PT:  "Converter [input] para [output] online grátis. [Função chave] com pré-visualização instantânea. [Diferenciador]. Sem cadastro."
 ```
 
+#### 5C: Fix language integrity issues
+
+For every field flagged in Step 1 / Step 4C, apply the appropriate fix:
+
+**WRONG_LANGUAGE** — The field contains text in a completely different language:
+1. Do NOT translate the existing text — it may be low-quality or generic
+2. Read the EN version of the same field for intent reference
+3. Write new, native content in the target language from scratch
+4. Ensure the new text naturally includes relevant keyword concepts from Step 3
+
+**BROKEN_LANGUAGE** — The field mixes the target language with English or has unnatural grammar:
+1. Identify all non-native words and awkward constructions
+2. Rewrite entirely in natural, fluent prose in the target language
+3. Technical terms that are universally used in English are acceptable (e.g., "HEX", "RGB", "CSS", "API", "WCAG") — but surrounding prose must be native
+
+**GENERIC_CONTENT** — Instructions are template boilerplate, not tool-specific:
+1. Rewrite ALL instruction sections (steps, features, useCases, proTips, troubleshooting) to be specific to the tool's actual functionality
+2. Steps should describe the tool's real workflow (not "paste content" → "configure" → "review output")
+3. Features should list the tool's actual capabilities
+4. Use cases should reflect real-world scenarios for the tool's target audience
+5. Content must be in the target locale's language and naturally incorporate keyword concepts
+
+**Output per fixed field:**
+```
+- [field]: [FLAG] → FIXED — Rewrote in [locale] with [N] keyword concepts integrated
+```
+
 ---
 
 ## Output Format
@@ -300,6 +366,13 @@ PT:  "Converter [input] para [output] online grátis. [Função chave] com pré-
 - **Searches performed**: 5
 - **Raw candidates found**: N keywords
 - **Sources**: Autocomplete (X), People Also Ask (Y), Related searches (Z), Competitor analysis (W)
+
+### Language Integrity Report
+- tagline: OK / WRONG_LANGUAGE / BROKEN_LANGUAGE
+- pageDescription: OK / WRONG_LANGUAGE / BROKEN_LANGUAGE
+- meta.description: OK / WRONG_LANGUAGE
+- instructions: OK / GENERIC_CONTENT / WRONG_LANGUAGE
+- **Issues found**: N fields need rewrite → will be fixed in Step 5C
 
 ### Keywords Added (12)
 | # | Keyword | Source | Intent |
