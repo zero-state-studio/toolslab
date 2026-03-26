@@ -1,4 +1,18 @@
 {
+  "longTailKeywords": [
+    "filtre excel en ligne gratuit sans inscription",
+    "filtrer fichier excel en ligne gratuit",
+    "visualiseur excel en ligne gratuit avec filtres",
+    "comment filtrer données excel en ligne gratuitement",
+    "trier et filtrer fichier xlsx en ligne gratuit",
+    "exporter données filtrées excel en csv gratuit",
+    "outil filtre excel en ligne sans installation",
+    "ouvrir et filtrer excel sans microsoft office gratuit",
+    "filtrer grand fichier excel en ligne sans logiciel",
+    "analyser données excel dans le navigateur gratuit",
+    "meilleur outil filtre excel gratuit en ligne",
+    "filtre avancé excel en ligne sans compte"
+  ],
   "title": "Outil Filtre Excel",
   "description": "Téléchargez des fichiers Excel et appliquez des filtres dynamiques aux tableaux avec recherche, tri et capacités d'exportation",
   "placeholder": "Téléchargez votre fichier Excel pour commencer...",
@@ -23,7 +37,7 @@
       }
     ],
     "features": [
-      "Téléchargez des fichiers Excel jusqu'à 50 Mo",
+      "Visualiseur Excel en ligne avec filtres avancés — fichiers jusqu'à 50 Mo",
       "Filtres dynamiques avec 13 opérateurs différents",
       "Recherche globale sur toutes les colonnes",
       "Triez par n'importe quelle colonne (croissant/décroissant)",
@@ -33,7 +47,7 @@
       "Filtrage et pagination en temps réel"
     ],
     "useCases": [
-      "Filtrez rapidement de grands ensembles de données sans ouvrir Excel",
+      "Visualiseur et filtre Excel en ligne — ouvrez et filtrez sans Microsoft Office",
       "Partagez facilement les données filtrées avec les membres de l'équipe",
       "Nettoyez et préparez les données pour l'analyse",
       "Trouvez des enregistrements spécifiques dans plusieurs colonnes",
@@ -67,7 +81,7 @@
   ],
   "meta": {
     "title": "Outil Filtre Excel - Outil en Ligne Gratuit",
-    "description": "Téléchargez et filtrez des fichiers Excel en ligne avec recherche avancée, tri et export. Outil filtre Excel gratuit sans installation. Dans le navigateur."
+    "description": "Filtrez des fichiers Excel en ligne gratuit sans inscription. Recherche, tri et export CSV. Fichiers jusqu'à 50 Mo. Outil filtre Excel gratuit en ligne."
   },
   "labels": {
     "upload": "Télécharger le fichier",
@@ -85,7 +99,7 @@
     "hideFilters": "Masquer les filtres"
   },
   "tagline": "Filtrez et analysez les données Excel instantanément en ligne",
-  "pageDescription": "Téléchargez des fichiers Excel et appliquez de puissants filtres à vos données avec notre outil de filtre Excel en ligne gratuit. Recherchez dans les colonnes, triez les données, masquez les colonnes et exportez les résultats filtrés au format CSV ou Excel. Parfait pour l'analyse de données, les rapports et la manipulation rapide des données sans installer de logiciel. Traitez des fichiers jusqu'à 50 Mo en toute sécurité dans votre navigateur.",
+  "pageDescription": "Téléchargez des fichiers Excel et appliquez des filtres avancés à vos données avec notre visualiseur et outil de filtre Excel en ligne gratuit. Triez, recherchez et exportez les résultats filtrés en CSV sans inscription ni compte. Parfait pour analyser des données dans le navigateur sans Microsoft Office ni logiciel à installer. Traitez des fichiers jusqu'à 50 Mo en toute sécurité.",
   "usageTips": {
     "title": "Conseils d'Utilisation",
     "tips": [
