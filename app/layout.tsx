@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
 import Script from 'next/script';
-import { headers } from 'next/headers';
-import { getLocaleFromPathname } from '@/lib/i18n/locale-detector';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { UmamiProvider } from '@/components/analytics/UmamiProvider';
@@ -129,42 +127,16 @@ export const metadata: Metadata = {
   category: 'technology',
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Get locale from URL for correct <html lang> attribute (critical for SEO)
-  // This makes the page "dynamic" but CDN caching is handled by Cache-Control headers
-  const headersList = await headers();
-  const requestUrl = headersList.get('x-request-url');
-
-  let locale = 'en';
-  if (requestUrl) {
-    try {
-      const url = new URL(requestUrl);
-      locale = getLocaleFromPathname(url.pathname);
-      if (process.env.NODE_ENV !== 'production') {
-        console.log(
-          '🌐 SSR Layout - URL:',
-          requestUrl,
-          '| pathname:',
-          url.pathname,
-          '| locale:',
-          locale
-        );
-      }
-    } catch (e) {
-      console.error('Failed to parse request URL:', e);
-    }
-  } else {
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn('⚠️ No x-request-url header found, defaulting to en');
-    }
-  }
-
+  // lang="en" is the SSR default; HtmlLangUpdater (client component) updates it
+  // after hydration based on the actual pathname. This keeps the layout static
+  // so pages are served from CDN without a serverless function cold start.
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* DNS prefetch for faster subsequent requests */}
         <link rel="dns-prefetch" href="https://toolslab.dev" />
