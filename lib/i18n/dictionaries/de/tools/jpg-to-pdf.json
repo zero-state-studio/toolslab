@@ -1,72 +1,92 @@
 {
   "title": "JPG zu PDF",
-  "description": "Konvertieren Sie JPG und JPEG in PDF mit benutzerdefinierten Seitengrößen und Layout-Optionen",
-  "placeholder": "JPG ziehen oder klicken...",
+  "description": "Konvertieren Sie JPG- und JPEG-Bilder in das PDF-Format mit benutzerdefinierten Seitengrößen und Layout-Optionen",
+  "placeholder": "JPG-Bilder hierher ziehen oder klicken zum Hochladen...",
   "instructions": {
-    "title": "JPG zu PDF Konverter",
+    "title": "So verwenden Sie den JPG-zu-PDF-Konverter",
     "steps": [
       {
-        "title": "JPG/JPEG hochladen",
-        "description": "Ziehen Sie JPG oder JPEG. Unterstützt .jpg und .jpeg."
+        "title": "JPG/JPEG-Bilder hochladen",
+        "description": "Ziehen Sie mehrere JPG- oder JPEG-Bilder in den Upload-Bereich oder klicken Sie, um Dateien von Ihrem Computer auszuwählen. Unterstützt die Erweiterungen .jpg und .jpeg."
       },
       {
         "title": "Bilder neu anordnen",
-        "description": "Pfeiltasten zum Reorganisieren von JPG."
+        "description": "Verwenden Sie die Pfeil-Schaltflächen, um JPG-Bilder in der gewünschten Reihenfolge zu sortieren. Die Reihenfolge bestimmt die Seitenreihenfolge im fertigen PDF."
       },
       {
-        "title": "PDF konfigurieren",
-        "description": "Größe, Anpassung, Ränder wählen."
+        "title": "PDF-Einstellungen konfigurieren",
+        "description": "Wählen Sie Seitengröße (A4, Letter, A3, Legal, Tabloid, Benutzerdefiniert), Anpassungsmodus, Ränder (0-100pt) und Dateiname."
       },
-      { "title": "PDF erstellen", "description": "Jedes JPG wird eine Seite." }
+      {
+        "title": "PDF erstellen und herunterladen",
+        "description": "Klicken Sie auf PDF erstellen, um das Dokument zu generieren. Jedes JPG-Bild wird zu einer Seite im fertigen PDF."
+      }
     ],
     "features": [
-      "Mehrere JPG/JPEG in ein PDF",
-      "Support .jpg und .jpeg",
-      "Mit Pfeilen neu anordnen",
-      "A4, Letter, A3, Legal, Tabloid, Benutzerdefiniert",
-      "Modi: enthalten, abdecken, füllen, keine",
-      "Ränder 0-100pt",
-      "Benutzerdefinierter Name",
-      "Miniaturansichten",
-      "Sicherer Browser",
-      "Keine Limits",
-      "Unbegrenzter Batch",
-      "Erhält JPG-Qualität"
+      "Mehrere JPG/JPEG-Bilder in ein PDF zusammenfügen",
+      "Unterstützung für .jpg und .jpeg Erweiterungen",
+      "Bilder mit Pfeil-Schaltflächen neu anordnen",
+      "Seitengrößen: A4, Letter, A3, Legal, Tabloid, Benutzerdefiniert",
+      "Anpassungsmodi: enthalten, abdecken, füllen, keiner",
+      "Einstellbare Ränder von 0 bis 100pt",
+      "Benutzerdefinierter Dateiname",
+      "Miniaturansichten zur Vorschau",
+      "Verarbeitung im Browser — sicher und privat",
+      "Keine Dateilimits oder Einschränkungen",
+      "Unbegrenzte Stapelverarbeitung",
+      "Erhält hohe JPG-Qualität im PDF-Ergebnis",
+      "Ohne Wasserzeichen und ohne Qualitätsverlust",
+      "Keine Software, Anmeldung oder Konto erforderlich"
     ],
     "useCases": [
-      "PDF-Portfolios aus JPG-Fotos",
-      "Gescannte JPG in PDF konvertieren",
-      "JPG-Screenshots kombinieren",
-      "JPG-Produktbilder fusionieren",
-      "Fotoalben aus JPG erstellen",
-      "JPG-Mockups in PDF konvertieren",
-      "JPG-Berichte vorbereiten",
-      "JPG-Fotos archivieren"
+      "PDF-Portfolios aus JPG-Fotosammlungen erstellen",
+      "Gescannte JPG-Dokumente in PDF konvertieren",
+      "JPG-Screenshots zu einer Präsentation zusammenfügen",
+      "JPG-Produktbilder für Kataloge zusammenführen",
+      "Fotoalben aus JPG-Bildern als PDF erstellen",
+      "JPG-Mockups in teilbares PDF konvertieren",
+      "Berichte aus JPG-Scans vorbereiten",
+      "JPG-Fotos im universellen PDF-Format archivieren"
     ],
     "proTips": [
-      "Verwenden Sie Enthalten für JPG-Proportionen",
-      "Wählen Sie Abdecken zum Füllen",
-      "Ränder 0 für randabfallende JPG",
-      "Benutzerdefiniert für JPG-Abmessungen",
-      "Vor Erstellen neu anordnen"
+      "Verwenden Sie 'Enthalten', um JPG-Proportionen ohne Zuschnitt zu erhalten",
+      "Wählen Sie 'Abdecken' zum vollständigen Ausfüllen der Seite (kann Ränder zuschneiden)",
+      "Ränder auf 0 für randabfallende JPG-Seiten",
+      "Verwenden Sie 'Benutzerdefiniert' um den JPG-Abmessungen zu entsprechen",
+      "Fügen Sie Ränder für besseres Druckformat hinzu",
+      "Ordnen Sie JPG vor dem Erstellen neu an, um Zeit zu sparen"
     ],
     "troubleshooting": [
-      "JPG lädt nicht: Überprüfen Sie .jpg oder .jpeg",
-      "Schlechte Qualität: Hochauflösende JPG verwenden",
-      "Bilder zugeschnitten: Versuchen Sie Enthalten",
-      "Große Datei: JPG komprimieren",
-      "Erstellung fehlgeschlagen: Weniger JPG",
-      "Bild verzerrt: Vermeiden Sie Füllen"
+      "JPG lädt nicht: Überprüfen Sie die Erweiterung .jpg oder .jpeg",
+      "Schlechte Qualität: Verwenden Sie hochauflösende JPG-Quellbilder",
+      "Bilder abgeschnitten: Versuchen Sie den Modus 'Enthalten'",
+      "Große Datei: Komprimieren Sie JPG vor dem Hochladen",
+      "Erstellung fehlgeschlagen: Versuchen Sie es mit weniger JPG oder kleineren Dateien",
+      "Bild verzerrt: Vermeiden Sie 'Füllen', wenn Sie kein Strecken wünschen"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ziehen & Ablegen", "description": "JPG ablegen" },
-      { "keys": "Klicken", "description": "JPG auswählen" }
+      { "keys": "Ziehen & Ablegen", "description": "JPG-Dateien zum Hochladen ablegen" },
+      { "keys": "Klicken", "description": "JPG-Dateien vom Computer auswählen" }
     ]
   },
   "meta": {
-    "title": "JPG zu PDF Konverter - Kostenloses Tool",
-    "description": "Konvertieren Sie JPG und JPEG kostenlos online in PDF. Kombinieren Sie JPG in ein PDF. Sicherer Browser-Konverter."
+    "title": "JPG zu PDF Konverter - Kostenloses Online-Tool",
+    "description": "JPG und JPEG kostenlos in PDF umwandeln – ohne Wasserzeichen, ohne Anmeldung. Mehrere Fotos zu einem PDF mit A4-Format und eigenen Rändern zusammenfügen."
   },
-  "tagline": "Konvertieren Sie JPG und JPEG in PDF mit benutzerdefinierten Seitengrößen und professionellen Layout-Optionen",
-  "pageDescription": "Transformieren Sie JPG und JPEG in professionelle PDF-Dokumente mit vollständiger Kontrolle über Seitengrößen, Anpassungsmodi und Ränder. Perfekt für Fotoalben, Dokumentation, Portfolios von JPG-Dateien. Unterstützt unbegrenzte JPG, Stapelverarbeitung, Neuanordnung. Kostenlose sichere browserbasierte Konvertierung. Erhält hohe JPG-Qualität."
+  "tagline": "Konvertieren Sie JPG- und JPEG-Bilder in PDF mit benutzerdefinierten Seitengrößen und professionellen Layout-Optionen",
+  "pageDescription": "Verwandeln Sie JPG- und JPEG-Bilder in professionelle PDF-Dokumente mit vollständiger Kontrolle über Seitengrößen, Anpassungsmodi und Ränder. Perfekt für Fotoalben, Dokumentation, Portfolios und Präsentationen aus JPG-Dateien. Unterstützt unbegrenzte JPG-Bilder, Stapelverarbeitung, Neuanordnung und benutzerdefinierte Seitenmaße. Kostenlose und sichere browserbasierte Konvertierung ohne Datei-Upload auf Server. Konvertiert ohne Wasserzeichen, ohne Software-Installation und ohne Anmeldung erforderlich. Funktioniert mit den Erweiterungen .jpg und .jpeg.",
+  "longTailKeywords": [
+    "JPG in PDF umwandeln kostenlos online",
+    "JPG in PDF ohne Anmeldung",
+    "mehrere JPG zu einer PDF zusammenfügen",
+    "JPG zu PDF ohne Wasserzeichen kostenlos",
+    "wie man JPG in PDF umwandelt",
+    "Bilder in PDF umwandeln ohne Software",
+    "JPG in PDF mit A4 Seitengröße",
+    "JPG zu PDF mit benutzerdefinierten Rändern",
+    "gescannte JPG Bilder in PDF umwandeln",
+    "Fotoalbum als PDF aus JPG erstellen",
+    "bester kostenloser JPG zu PDF Konverter online",
+    "JPEG in PDF ohne Qualitätsverlust konvertieren"
+  ]
 }

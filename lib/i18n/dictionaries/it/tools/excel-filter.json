@@ -1,4 +1,18 @@
 {
+  "longTailKeywords": [
+    "filtro excel online gratis senza registrazione",
+    "filtrare file excel online gratis",
+    "visualizzatore excel online gratuito con filtri",
+    "come filtrare dati excel online senza installare",
+    "ordinare e filtrare file xlsx online gratis",
+    "esportare dati filtrati excel in csv gratis",
+    "filtro excel avanzato online senza account",
+    "aprire e filtrare file excel senza microsoft office",
+    "strumento filtro excel online con ordinamento colonne",
+    "analizzare dati excel nel browser gratis",
+    "filtrare grandi file excel online senza software",
+    "miglior strumento filtro excel gratuito online"
+  ],
   "title": "Strumento Filtro Excel",
   "description": "Carica file Excel e applica filtri dinamici alle tabelle con ricerca, ordinamento e capacità di esportazione",
   "placeholder": "Carica il tuo file Excel per iniziare...",
@@ -23,7 +37,7 @@
       }
     ],
     "features": [
-      "Carica file Excel fino a 50MB",
+      "Visualizzatore Excel online con filtri avanzati — file fino a 50MB",
       "Filtri dinamici con 13 operatori diversi",
       "Ricerca globale su tutte le colonne",
       "Ordina per qualsiasi colonna (crescente/decrescente)",
@@ -33,7 +47,7 @@
       "Filtraggio e paginazione in tempo reale"
     ],
     "useCases": [
-      "Filtra grandi set di dati rapidamente senza aprire Excel",
+      "Visualizzatore e filtro Excel online — apri e filtra file senza Microsoft Office",
       "Condividi dati filtrati con i membri del team facilmente",
       "Pulisci e prepara i dati per l'analisi",
       "Trova record specifici su più colonne",
@@ -67,7 +81,7 @@
   ],
   "meta": {
     "title": "Filtro Excel - Strumento Online",
-    "description": "Carica e filtra file Excel online con ricerca avanzata, ordinamento ed esportazione. Strumento filtro Excel gratuito senza installazione. Funziona nel browser."
+    "description": "Filtra file Excel online gratis senza registrazione. Ricerca avanzata, ordinamento, esportazione CSV. File fino a 50MB. Filtro Excel gratuito nel browser."
   },
   "labels": {
     "upload": "Carica File",
@@ -85,7 +99,7 @@
     "hideFilters": "Nascondi Filtri"
   },
   "tagline": "Filtra e analizza dati Excel istantaneamente online",
-  "pageDescription": "Carica file Excel e applica potenti filtri ai tuoi dati con il nostro strumento filtro Excel online gratuito. Cerca tra le colonne, ordina i dati, nascondi colonne ed esporta risultati filtrati in CSV o Excel. Perfetto per analisi dati, reportistica e manipolazione rapida dei dati senza installare software. Elabora file fino a 50MB in modo sicuro nel tuo browser.",
+  "pageDescription": "Carica file Excel e applica potenti filtri avanzati ai tuoi dati con il nostro visualizzatore e strumento filtro Excel online gratuito. Cerca tra le colonne, ordina i dati, nascondi colonne ed esporta risultati filtrati in CSV o Excel. Perfetto per analizzare dati nel browser senza Microsoft Office e senza registrazione. Elabora file fino a 50MB in modo sicuro — nessun account richiesto.",
   "usageTips": {
     "title": "Suggerimenti per l'Uso",
     "tips": [

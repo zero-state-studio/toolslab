@@ -1,66 +1,80 @@
 {
+  "longTailKeywords": [
+    "minificare javascript online gratis",
+    "comprimere codice javascript online gratis",
+    "minimizzatore javascript online gratuito",
+    "come minificare javascript online senza installare",
+    "ridurre dimensione file javascript online gratis",
+    "minificatore js con supporto ES6 online",
+    "compressore javascript online senza registrazione",
+    "alternativa uglifyjs online gratis",
+    "ottimizzare javascript per produzione online",
+    "minificare e abbellire codice js gratis",
+    "miglior strumento minificazione javascript gratuito",
+    "eliminazione codice morto javascript online"
+  ],
   "title": "Minimizzatore JavaScript",
   "description": "Minimizza e comprimi codice JavaScript",
   "meta": {
     "title": "Minificatore JavaScript - Online",
-    "description": "Minimizza e comprimi codice JavaScript online. Riduci dimensione dei file e migliora velocità di caricamento. Rimuovi spazi e commenti. Strumento gratuito."
+    "description": "Minifica codice JavaScript online gratis senza registrazione. Comprimi JS fino al 70%, rimuovi codice morto. Supporto ES6+. Alternativa UglifyJS nel browser."
   },
   "tagline": "Minimizza e ottimizza codice JavaScript con supporto ES6+ e source map",
-  "pageDescription": "Minimizzatore e beautifier JavaScript professionale con supporto ES2024+, riduce dimensione bundle fino al 70% mantenendo funzionalità. Funzionalità ottimizzazioni avanzate inclusa eliminazione codice morto, ridenominazione variabili, inlining funzioni e simulazione tree shaking. Genera source map per debugging, applica livelli compressione variabili e mantieni compatibilità JavaScript moderno. Elabora codice in sicurezza nel tuo browser senza caricamenti server - perfetto per ottimizzazione produzione ed elaborazione alternativa webpack.",
+  "pageDescription": "Minimizzatore e beautifier JavaScript professionale con supporto ES2024+, riduce dimensione bundle fino al 70% mantenendo funzionalità. Compressore JavaScript online gratuito con eliminazione codice morto, ridenominazione variabili, inlining funzioni e simulazione tree shaking. Genera source map per debugging, applica livelli compressione variabili e mantieni compatibilità JavaScript moderno. Elabora codice in sicurezza nel tuo browser senza registrazione — alternativa a UglifyJS e Terser per ottimizzazione produzione.",
   "instructions": {
-    "title": "Come usare Minimizzatore JavaScript",
+    "title": "Come usare il Minimizzatore JavaScript",
     "steps": [
       {
         "title": "Incolla il tuo codice JavaScript",
-        "description": "Copia e incolla il tuo codice JavaScript nell'area di input. Lo strumento accetta qualsiasi formato e lo elaborerà immediatamente."
+        "description": "Copia e incolla il codice sorgente JavaScript nell'editor. Supporta ES6+, ES2024, JSX e sintassi moderna incluse arrow function, async/await e optional chaining."
       },
       {
-        "title": "Configura le opzioni (se disponibile)",
-        "description": "Regola le opzioni di formattazione, indentazione o altre impostazioni per adattarle alle tue preferenze."
+        "title": "Scegli modalità minificazione o abbellimento",
+        "description": "Seleziona 'Minifica' per comprimere il codice per la produzione — rimuove spazi, accorcia variabili, elimina codice morto. Oppure 'Abbellisci' per espandere e indentare codice minificato."
       },
       {
-        "title": "Esamina l'output",
-        "description": "Lo strumento minificherà e ottimizzerà il tuo input e mostrerà il risultato con formattazione e validazione appropriate."
+        "title": "Configura livello di compressione e opzioni",
+        "description": "Regola la compressione da base (rimozione spazi) ad aggressiva (rinomina variabili, inlining funzioni, tree shaking). Abilita generazione source map per debugging in produzione."
       },
       {
-        "title": "Copia o scarica il risultato",
-        "description": "Copia il JavaScript formattato negli appunti per uso immediato o scaricalo come file."
+        "title": "Copia o scarica l'output ottimizzato",
+        "description": "Verifica il rapporto di compressione (tipicamente 30-70% di riduzione), poi copia il codice minificato o scarica il file .min.js con source map opzionali."
       }
     ],
     "features": [
-      "Elaborazione in tempo reale con risultati istantanei",
-      "Nessun limite di dimensione per l'elaborazione basata su browser",
-      "Completamente sicuro - tutta l'elaborazione avviene nel tuo browser",
-      "Nessun caricamento dati o archiviazione server",
-      "Copia negli appunti con un clic",
-      "Scarica i risultati come file",
-      "Validazione sintassi ed evidenziazione errori",
-      "Funziona offline dopo il caricamento iniziale"
+      "Minifica JavaScript con supporto completo ES6/ES2024+ — motore Terser",
+      "Abbellisci e formatta codice JS minificato con indentazione configurabile",
+      "Eliminazione codice morto e simulazione tree shaking",
+      "Rinomina variabili e inlining funzioni per massima compressione",
+      "Generazione source map per debugging in produzione",
+      "Riduci dimensione bundle fino al 70% — comprimi JS per caricamenti più veloci",
+      "Nessun caricamento server — tutta l'elaborazione avviene nel browser",
+      "Alternativa UglifyJS con compatibilità JavaScript moderno"
     ],
     "useCases": [
-      "Pulire e formattare codice disordinato per una migliore leggibilità",
-      "Standardizzare lo stile del codice nei team di sviluppo",
-      "Debug di strutture complesse con indentazione appropriata",
-      "Preparare il codice per documentazione e code review",
-      "Convertire tra diversi standard di formattazione",
-      "Validare la sintassi prima del deploy",
-      "Elaborare dati da fonti esterne o API",
-      "Generare codice pronto per la produzione"
+      "Comprimere JavaScript per deploy in produzione e tempi di caricamento più rapidi",
+      "Ridurre dimensione bundle JavaScript prima del deploy su CDN o hosting",
+      "Minificare script e librerie di terze parti senza strumenti di build",
+      "Abbellire codice vendor minificato per debugging e code review",
+      "Ottimizzare codice JS per velocità sito web e punteggi Core Web Vitals",
+      "Preparare asset JavaScript per WordPress, Shopify o siti statici",
+      "Minificazione rapida senza configurare webpack, Rollup o Vite",
+      "Rimuovere console.log, commenti e statement di debug prima della produzione"
     ],
     "proTips": [
-      "Usa le scorciatoie da tastiera per un flusso di lavoro più veloce",
-      "Elabora file di grandi dimensioni in blocchi più piccoli se le prestazioni rallentano",
-      "Valida il tuo input prima dell'elaborazione per individuare errori anticipatamente",
-      "Salva le impostazioni utilizzate frequentemente come predefinite",
-      "Usa la funzione di download per archiviare i file elaborati",
-      "Controlla attentamente l'output prima di usarlo in produzione"
+      "Usa compressione aggressiva per build di produzione — la rinomina variabili risparmia 20-30%",
+      "Abilita source map quando minifichi codice produzione per preservare capacità di debugging",
+      "Testa l'output minificato nei DevTools del browser prima del deploy per individuare errori runtime",
+      "Combina più file JS prima della minificazione per migliori rapporti di compressione",
+      "Usa la modalità abbellimento per decodificare codice di terze parti minificato per il debug",
+      "Confronta dimensione input vs output per verificare che il rapporto di compressione raggiunga i tuoi obiettivi"
     ],
     "troubleshooting": [
-      "Errori di sintassi: controlla parentesi, virgolette o punti e virgola mancanti",
-      "Elaborazione fallita: assicurati che il formato di input sia valido",
-      "Performance lenta: prova a elaborare blocchi di dati più piccoli",
-      "Funzionalità mancanti: alcune sintassi avanzate potrebbero richiedere formattazione manuale",
-      "Compatibilità browser: usa Chrome, Firefox o Edge per risultati migliori"
+      "Errori di sintassi dopo minificazione: verifica che il codice non usi funzionalità ES6+ non supportate — controlla virgole finali o optional chaining",
+      "L'output interrompe funzionalità: prova un livello di compressione inferiore — la rinomina aggressiva variabili può conflittare con eval() o accesso dinamico proprietà",
+      "Source map non funzionano: verifica che il commento URL source map sia preservato nell'output minificato",
+      "File grande lento da elaborare: file oltre 1MB possono richiedere alcuni secondi — dividi in moduli più piccoli se necessario",
+      "Abbellitore non indenta correttamente: controlla mix tab/spazi nel codice originale e seleziona impostazioni indentazione consistenti"
     ],
     "keyboardShortcuts": [
       {

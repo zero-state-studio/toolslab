@@ -31,10 +31,12 @@
       "Margini regolabili 0-100pt",
       "Nome file personalizzato",
       "Anteprima miniature",
-      "Elaborazione nel browser - sicuro",
+      "Elaborazione nel browser - sicuro e privato",
       "Nessun limite di caricamento",
       "Elaborazione batch illimitata",
-      "Mantiene alta qualità JPG"
+      "Mantiene alta qualità JPG nell'output PDF",
+      "Senza filigrana e senza perdita di qualità",
+      "Nessuna registrazione, account o software da installare"
     ],
     "useCases": [
       "Crea portfolio PDF da collezioni foto JPG",
@@ -47,30 +49,44 @@
       "Archivia foto JPG in formato PDF"
     ],
     "proTips": [
-      "Usa 'Contenere' per preservare proporzioni JPG",
-      "Scegli 'Coprire' per riempire pagina (può ritagliare)",
+      "Usa 'Contenere' per preservare proporzioni JPG senza ritaglio",
+      "Scegli 'Coprire' per riempire pagina (può ritagliare i bordi)",
       "Imposta margini a 0 per JPG a vivo",
       "Usa dimensione 'Personalizzata' per abbinare dimensioni JPG",
       "Aggiungi margini per migliore formattazione stampa",
-      "Riordina JPG prima di generare"
+      "Riordina JPG prima di generare per risparmiare tempo"
     ],
     "troubleshooting": [
       "JPG non si carica: Verifica estensione .jpg o .jpeg",
-      "Qualità scarsa: Usa JPG ad alta risoluzione",
+      "Qualità scarsa: Usa JPG ad alta risoluzione come sorgente",
       "Immagini ritagliate: Prova 'Contenere' invece di 'Coprire'",
       "File grande: Comprimi JPG prima di caricare",
       "Generazione fallita: Prova meno JPG o file più piccoli",
-      "Immagine distorta: Evita 'Riempire'"
+      "Immagine distorta: Evita 'Riempire' se non desideri stretching"
     ],
     "keyboardShortcuts": [
-      { "keys": "Trascina e Rilascia", "description": "Rilascia file JPG" },
-      { "keys": "Click", "description": "Seleziona file JPG" }
+      { "keys": "Trascina e Rilascia", "description": "Rilascia file JPG per caricarli" },
+      { "keys": "Click", "description": "Seleziona file JPG dal computer" }
     ]
   },
   "meta": {
     "title": "Convertitore JPG in PDF - Strumento Online Gratuito | Converti JPEG in PDF",
-    "description": "Converti JPG e JPEG in PDF online gratis. Combina più file JPG in un PDF. Dimensioni pagina personalizzate, modalità adattamento e margini. Convertitore sicuro browser. Nessun limite."
+    "description": "Converti JPG e JPEG in PDF online gratis, senza filigrana e senza registrazione. Combina più immagini in un PDF con dimensioni A4 e margini personalizzati."
   },
   "tagline": "Converti immagini JPG e JPEG in PDF con dimensioni pagina e opzioni di layout professionali",
-  "pageDescription": "Trasforma immagini JPG e JPEG in documenti PDF professionali con controllo completo su dimensioni pagina, modalità adattamento e margini. Perfetto per creare album fotografici, documentazione, portfolio e presentazioni da file JPG. Supporta immagini JPG illimitate, elaborazione batch, riordino e dimensioni pagina personalizzate. Conversione gratuita e sicura nel browser senza caricamenti. Mantiene alta qualità JPG nell'output PDF. Funziona con estensioni .jpg e .jpeg."
+  "pageDescription": "Trasforma immagini JPG e JPEG in documenti PDF professionali con controllo completo su dimensioni pagina, modalità adattamento e margini. Perfetto per creare album fotografici, documentazione, portfolio e presentazioni da file JPG. Supporta immagini JPG illimitate, elaborazione batch, riordino e dimensioni pagina personalizzate. Conversione gratuita e sicura nel browser senza caricamenti su server. Converte senza filigrana, senza software da installare e senza registrazione richiesta. Funziona con estensioni .jpg e .jpeg.",
+  "longTailKeywords": [
+    "convertire JPG in PDF online gratis",
+    "convertire foto JPG in PDF senza registrazione",
+    "unire più foto JPG in un unico PDF",
+    "convertire JPG in PDF senza filigrana",
+    "come convertire immagini JPG in PDF",
+    "unire immagini in PDF senza installare programmi",
+    "convertire JPG in PDF con dimensioni A4",
+    "convertire JPG in PDF con margini personalizzati",
+    "convertire scansioni JPG in PDF online",
+    "creare album fotografico PDF da immagini JPG",
+    "miglior convertitore JPG PDF gratuito online",
+    "da JPG a PDF senza perdita di qualità"
+  ]
 }
