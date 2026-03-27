@@ -1,87 +1,101 @@
 {
   "title": "WhatsApp-Link-Generator",
-  "description": "Erstellen Sie WhatsApp Click-to-Chat Links mit vorausgefullten Nachrichten und QR-Codes",
+  "description": "Erstellen Sie WhatsApp Click-to-Chat Links mit vorausgefüllten Nachrichten und QR-Codes",
   "placeholder": "151 12345678",
   "meta": {
     "title": "WhatsApp-Link-Generator - Kostenlos",
     "description": "WhatsApp-Click-to-Chat-Links mit vorausgefüllten Nachrichten, QR-Codes und Ländervorwahlen erstellen. wa.me-URLs für Unternehmen und Marketing. Kostenlos."
   },
-  "tagline": "Generieren Sie WhatsApp Click-to-Chat Links mit vorausgefullten Nachrichten und sofortigen QR-Codes",
-  "pageDescription": "Professioneller WhatsApp-Link-Generator fur Unternehmen und Marketer. Erstellen Sie sofortige Click-to-Chat URLs (wa.me) mit vorausgefullten Nachrichten, automatischer Landervorwahl-Erkennung und herunterladbaren QR-Codes. Verwenden Sie Nachrichtenvorlagen fur gängige Geschaftsszenarien (Anfragen, Support, Termine). Vorschau Ihrer Nachricht in einer mobilen Oberflache vor dem Teilen. Perfekt fur Websites, Visitenkarten, Social-Media-Profile und Marketingmaterialien. Die gesamte Verarbeitung erfolgt in Ihrem Browser fur vollstandigen Datenschutz - keine Telefonnummern werden gespeichert oder protokolliert.",
+  "tagline": "WhatsApp Click-to-Chat Links mit vorausgefüllten Nachrichten und sofortigen QR-Codes erstellen",
+  "pageDescription": "Professioneller WhatsApp-Link-Generator kostenlos für Unternehmen und Marketer. Erstellen Sie sofortige Click-to-Chat URLs (wa.me) mit vorausgefüllten Nachrichten, automatischer Ländervorwahl-Erkennung und herunterladbaren QR-Codes, ohne Registrierung. Verwenden Sie Nachrichtenvorlagen für gängige Geschäftsszenarien (Anfragen, Support, Termine). Vorschau Ihrer Nachricht in einer mobilen Oberfläche vor dem Teilen. Perfekt für Websites, Visitenkarten, Social-Media-Profile und Marketingmaterialien. Die gesamte Verarbeitung erfolgt in Ihrem Browser — keine Telefonnummern werden gespeichert oder protokolliert.",
+  "longTailKeywords": [
+    "WhatsApp Link Generator kostenlos online",
+    "WhatsApp Link erstellen mit Nachricht kostenlos",
+    "WhatsApp Link Generator ohne Registrierung",
+    "wa.me Link erstellen kostenlos",
+    "WhatsApp QR Code Generator kostenlos",
+    "WhatsApp Button für Website erstellen",
+    "WhatsApp Link ohne Nummer speichern",
+    "WhatsApp Direktlink mit vorgefertigter Nachricht",
+    "wie erstelle ich einen WhatsApp Link",
+    "WhatsApp Link für Unternehmen erstellen kostenlos",
+    "Click-to-Chat Link WhatsApp erstellen",
+    "bester kostenloser WhatsApp Link Generator"
+  ],
   "instructions": {
     "title": "So verwenden Sie den WhatsApp-Link-Generator",
     "steps": [
       {
-        "title": "Wahlen Sie Ihre Landervorwahl",
-        "description": "Klicken Sie auf die Landerauswahl und wahlen Sie das Land Ihrer WhatsApp-Nummer. Sie konnen nach Landername, Code oder Vorwahl suchen. Das Tool unterstutzt uber 50 Lander einschließlich USA (+1), UK (+44), Deutschland (+49), Osterreich (+43) und viele mehr. Die Landervorwahl wird automatisch zu Ihrer Nummer hinzugefugt."
+        "title": "Wählen Sie Ihre Ländervorwahl",
+        "description": "Klicken Sie auf die Länderauswahl und wählen Sie das Land Ihrer WhatsApp-Nummer. Sie können nach Ländername, Code oder Vorwahl suchen. Das Tool unterstützt über 50 Länder einschließlich USA (+1), UK (+44), Deutschland (+49), Österreich (+43) und viele mehr. Die Ländervorwahl wird automatisch zu Ihrer Nummer hinzugefügt."
       },
       {
         "title": "Geben Sie die Telefonnummer ein",
-        "description": "Geben Sie die Telefonnummer ohne Landervorwahl oder fuhrende Nullen ein. Zum Beispiel, wenn die vollstandige Nummer +49 151 12345678 ist, geben Sie nur '151 12345678' ein. Das Tool akzeptiert Leerzeichen und Bindestriche fur die Lesbarkeit, entfernt sie aber automatisch bei der Link-Generierung."
+        "description": "Geben Sie die Telefonnummer ohne Ländervorwahl oder führende Nullen ein. Zum Beispiel, wenn die vollständige Nummer +49 151 12345678 ist, geben Sie nur '151 12345678' ein. Das Tool akzeptiert Leerzeichen und Bindestriche für die Lesbarkeit, entfernt sie aber automatisch bei der Link-Generierung."
       },
       {
-        "title": "Fugen Sie eine vorausgefullte Nachricht hinzu (optional)",
-        "description": "Schreiben Sie eine Nachricht, die vorausgefullt erscheint, wenn jemand auf Ihren Link klickt. Dies ist perfekt fur Standardanfragen, Support-Anfragen oder Werbebotschaften. Verwenden Sie die Vorlagen-Schaltflache, um schnell gangige Geschaftsnachrichten wie Produktanfragen, Terminanfragen oder Support-Tickets einzufugen."
+        "title": "Fügen Sie eine vorausgefüllte Nachricht hinzu (optional)",
+        "description": "Schreiben Sie eine Nachricht, die vorausgefüllt erscheint, wenn jemand auf Ihren Link klickt. Dies ist perfekt für Standardanfragen, Support-Anfragen oder Werbebotschaften. Verwenden Sie die Vorlagen-Schaltfläche, um schnell gängige Geschäftsnachrichten wie Produktanfragen, Terminanfragen oder Support-Tickets einzufügen."
       },
       {
         "title": "Generieren Sie Ihren WhatsApp-Link",
-        "description": "Klicken Sie auf 'WhatsApp-Link generieren', um Ihre Click-to-Chat URL zu erstellen. Das Tool validiert Ihre Telefonnummer und erstellt einen korrekt formatierten wa.me-Link. Wenn Sie eine Nachricht hinzugefugt haben, wird sie URL-kodiert und automatisch zum Link hinzugefugt."
+        "description": "Klicken Sie auf 'WhatsApp-Link generieren', um Ihre Click-to-Chat URL zu erstellen. Das Tool validiert Ihre Telefonnummer und erstellt einen korrekt formatierten wa.me-Link. Wenn Sie eine Nachricht hinzugefügt haben, wird sie URL-kodiert und automatisch zum Link hinzugefügt."
       },
       {
         "title": "Kopieren, herunterladen oder testen Sie Ihren Link",
-        "description": "Verwenden Sie den generierten Link, indem Sie ihn in die Zwischenablage kopieren, als Textdatei herunterladen oder auf 'WhatsApp offnen' klicken, um ihn direkt zu testen. Laden Sie den QR-Code fur Druckmaterialien, Visitenkarten oder Schaufenster herunter. Die mobile Vorschau zeigt genau, wie Ihre Nachricht den Empfangern erscheint."
+        "description": "Verwenden Sie den generierten Link, indem Sie ihn in die Zwischenablage kopieren, als Textdatei herunterladen oder auf 'WhatsApp öffnen' klicken, um ihn direkt zu testen. Laden Sie den QR-Code für Druckmaterialien, Visitenkarten oder Schaufenster herunter. Die mobile Vorschau zeigt genau, wie Ihre Nachricht den Empfängern erscheint."
       }
     ],
     "features": [
-      "Uber 50 Landervorwahlen mit Suche und Flaggen-Icons",
-      "Unterstutzung fur vorausgefullte Nachrichten bis 4096 Zeichen",
-      "Sofortige QR-Code-Generierung im WhatsApp-Grun-Stil",
-      "Nachrichtenvorlagen fur geschaftliche, personliche und Marketing-Nutzung",
+      "Über 50 Ländervorwahlen mit Suche und Flaggen-Icons",
+      "Unterstützung für vorausgefüllte Nachrichten bis 4096 Zeichen",
+      "Sofortige QR-Code-Generierung im WhatsApp-Grün-Stil",
+      "Nachrichtenvorlagen für geschäftliche, persönliche und Marketing-Nutzung",
       "Chat-Vorschau im mobilen Stil zur Visualisierung Ihrer Nachricht",
       "Telefonnummer-Validierung mit Format-Anleitung",
       "Ein-Klick-Kopieren in die Zwischenablage",
       "Link als Textdatei herunterladen",
       "QR-Code als PNG-Bild herunterladen",
-      "Direkter 'WhatsApp offnen'-Test-Button",
+      "Direkter 'WhatsApp öffnen'-Test-Button",
       "Saubere URL-Generierung nach wa.me-Standards",
-      "Vollstandig browserbasiert - keine Serververarbeitung",
+      "Vollständig browserbasiert — keine Serververarbeitung",
       "Keine Telefonnummern gespeichert oder protokolliert"
     ],
     "useCases": [
-      "Fugen Sie Click-to-Chat-Buttons auf Ihrer Website fur sofortigen Kundensupport hinzu",
-      "Erstellen Sie WhatsApp-Links fur Visitenkarten und gedruckte Materialien",
-      "Generieren Sie QR-Codes fur Schaufenster, Menus und physische Standorte",
-      "Fugen Sie Chat-Links in E-Mail-Signaturen fur einfachen Kontakt ein",
-      "Fugen Sie WhatsApp-Buttons zu Social-Media-Profilen hinzu (Instagram, Facebook, LinkedIn)",
-      "Erstellen Sie vorausgefullte Anfrageformulare fur Produktinformationen",
+      "Fügen Sie Click-to-Chat-Buttons auf Ihrer Website für sofortigen Kundensupport hinzu",
+      "Erstellen Sie WhatsApp-Links für Visitenkarten und gedruckte Materialien",
+      "Generieren Sie QR-Codes für Schaufenster, Menüs und physische Standorte",
+      "Fügen Sie Chat-Links in E-Mail-Signaturen für einfachen Kontakt ein",
+      "Fügen Sie WhatsApp-Buttons zu Social-Media-Profilen hinzu (Instagram, Facebook, LinkedIn)",
+      "Erstellen Sie vorausgefüllte Anfrageformulare für Produktinformationen",
       "Richten Sie Terminbuchungs-Links mit vorgeschriebenen Nachrichten ein",
       "Generieren Sie Support-Ticket-Links mit strukturierten Nachrichtenvorlagen",
       "Erstellen Sie Marketing-Kampagnen-Links mit Werbebotschaften",
       "Teilen Sie Kontakt-Links in Newslettern und Marketing-E-Mails",
-      "Fugen Sie Chat-Links zu YouTube-Videobeschreibungen hinzu",
-      "Erstellen Sie Schnellkontakt-Links fur Veranstalter"
+      "Fügen Sie Chat-Links zu YouTube-Videobeschreibungen hinzu",
+      "Erstellen Sie Schnellkontakt-Links für Veranstalter"
     ],
     "proTips": [
-      "Halten Sie vorausgefullte Nachrichten kurz und professionell - Empfanger konnen immer mehr hinzufugen",
+      "Halten Sie vorausgefüllte Nachrichten kurz und professionell — Empfänger können immer mehr hinzufügen",
       "Verwenden Sie Nachrichtenvorlagen als Ausgangspunkt und passen Sie sie an Ihre Marke an",
-      "Laden Sie QR-Codes in hoher Auflosung fur Druckmaterialien herunter",
-      "Testen Sie Ihren Link vor dem Teilen, indem Sie auf 'WhatsApp offnen' klicken",
-      "Fur geschaftliche Nutzung, erwagen Sie WhatsApp Business fur zusatzliche Funktionen",
-      "Fugen Sie einen Call-to-Action in Ihre Nachricht ein wie 'Ich mochte...'",
-      "Speichern Sie haufig verwendete Telefonnummern und Nachrichten fur schnellen Zugriff",
+      "Laden Sie QR-Codes in hoher Auflösung für Druckmaterialien herunter",
+      "Testen Sie Ihren Link vor dem Teilen, indem Sie auf 'WhatsApp öffnen' klicken",
+      "Für geschäftliche Nutzung, erwägen Sie WhatsApp Business für zusätzliche Funktionen",
+      "Fügen Sie einen Call-to-Action in Ihre Nachricht ein wie 'Ich möchte...'",
+      "Speichern Sie häufig verwendete Telefonnummern und Nachrichten für schnellen Zugriff",
       "Verwenden Sie die mobile Vorschau, um sicherzustellen, dass Ihre Nachricht professionell aussieht",
       "Kombinieren Sie mit UTM Builder, um WhatsApp-Traffic in Analytics zu verfolgen",
-      "Platzieren Sie QR-Codes auf Augenhohe an physischen Standorten fur optimales Scannen"
+      "Platzieren Sie QR-Codes auf Augenhöhe an physischen Standorten für optimales Scannen"
     ],
     "troubleshooting": [
-      "Link offnet WhatsApp nicht: Stellen Sie sicher, dass WhatsApp auf dem Gerat installiert ist. Auf Desktop muss WhatsApp Web eingerichtet sein.",
-      "Fehler ungultige Telefonnummer: Entfernen Sie fuhrende Nullen und geben Sie nur Ziffern ein. Die Landervorwahl wird automatisch hinzugefugt.",
-      "Nachricht erscheint nicht: Prufen Sie, ob Sonderzeichen korrekt kodiert sind. Vermeiden Sie bestimmte Symbole.",
-      "QR-Code lasst sich nicht scannen: Sorgen Sie fur gute Beleuchtung und halten Sie das Telefon 15-20 cm vom Code entfernt. Versuchen Sie, ihn herunterzuladen und großer zu drucken.",
-      "Falsches Land ausgewahlt: Suchen Sie Ihr Land nach Name oder Vorwahl im Dropdown-Wahler.",
+      "Link öffnet WhatsApp nicht: Stellen Sie sicher, dass WhatsApp auf dem Gerät installiert ist. Auf Desktop muss WhatsApp Web eingerichtet sein.",
+      "Fehler ungültige Telefonnummer: Entfernen Sie führende Nullen und geben Sie nur Ziffern ein. Die Ländervorwahl wird automatisch hinzugefügt.",
+      "Nachricht erscheint nicht: Prüfen Sie, ob Sonderzeichen korrekt kodiert sind. Vermeiden Sie bestimmte Symbole.",
+      "QR-Code lässt sich nicht scannen: Sorgen Sie für gute Beleuchtung und halten Sie das Telefon 15-20 cm vom Code entfernt. Versuchen Sie, ihn herunterzuladen und größer zu drucken.",
+      "Falsches Land ausgewählt: Suchen Sie Ihr Land nach Name oder Vorwahl im Dropdown-Wähler.",
       "Link funktioniert auf Handy aber nicht auf Desktop: WhatsApp Web muss im Desktop-Browser angemeldet sein.",
-      "Nachricht zu lang: WhatsApp vorausgefullte Nachrichten haben ein Limit von 4096 Zeichen. Kurzen Sie Ihre Nachricht.",
-      "Chat offnet sich mit falscher Nummer: Uberprufen Sie das Telefonnummernformat und die Landervorwahl-Auswahl."
+      "Nachricht zu lang: WhatsApp vorausgefüllte Nachrichten haben ein Limit von 4096 Zeichen. Kürzen Sie Ihre Nachricht.",
+      "Chat öffnet sich mit falscher Nummer: Überprüfen Sie das Telefonnummernformat und die Ländervorwahl-Auswahl."
     ],
     "keyboardShortcuts": [
       {
@@ -94,7 +108,7 @@
       },
       {
         "keys": "Esc",
-        "description": "Landerauswahl schließen"
+        "description": "Länderauswahl schließen"
       }
     ]
   }

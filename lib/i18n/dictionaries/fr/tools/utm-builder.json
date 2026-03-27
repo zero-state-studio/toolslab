@@ -4,10 +4,24 @@
   "placeholder": "https://exemple.com/page",
   "meta": {
     "title": "Générateur Liens UTM - Campagnes",
-    "description": "Créez des liens UTM pour Google Analytics. Générez des URLs traçables avec paramètres UTM pour campagnes sur réseaux sociaux, email et publicité. Outil gratuit."
+    "description": "Créez des liens UTM pour Google Analytics et GA4. Générez des URLs traçables avec paramètres UTM pour campagnes sur réseaux sociaux et email. Outil gratuit."
   },
   "tagline": "Créez des URLs de campagne traçables avec des paramètres UTM pour l'analytics et le marketing",
-  "pageDescription": "Générateur de liens UTM professionnel pour marketeurs et analystes. Générez des URLs traçables avec des paramètres UTM (source, medium, campaign, term, content) pour le suivi Google Analytics. Utilisez des presets pour les réseaux sociaux (Facebook, Twitter, LinkedIn, Instagram), campagnes email et publicité. Sauvegardez des modèles pour les campagnes récurrentes. Ajoutez des paramètres personnalisés pour un suivi avancé. Exportez les URLs au format CSV pour les campagnes massives. Tout le traitement se fait dans votre navigateur pour une confidentialité et une sécurité complètes.",
+  "pageDescription": "Générateur de liens UTM professionnel pour marketeurs et analystes. Générez des URLs traçables avec des paramètres UTM (source, medium, campaign, term, content) pour le suivi Google Analytics et GA4. Utilisez des presets pour les réseaux sociaux (Facebook, Twitter, LinkedIn, Instagram), campagnes email et publicité. Sauvegardez des modèles pour les campagnes récurrentes. Ajoutez des paramètres personnalisés pour un suivi avancé. Alternative gratuite au Google URL Builder — sans inscription, sans connexion. Tout le traitement se fait dans votre navigateur pour une confidentialité et une sécurité complètes.",
+  "longTailKeywords": [
+    "générateur liens UTM en ligne gratuit",
+    "créateur URL UTM sans inscription Google Analytics",
+    "créer URL UTM pour campagnes email gratuit",
+    "générateur paramètres UTM pour réseaux sociaux",
+    "comment créer des paramètres UTM pour suivre campagnes",
+    "qu'est-ce que les paramètres UTM et comment les utiliser",
+    "comment utiliser générateur URL Google Analytics gratuit",
+    "générateur UTM compatible GA4 Google Analytics 4",
+    "créateur URL UTM avec modèles prédéfinis",
+    "créer liens traçables pour publicités réseaux sociaux",
+    "meilleur générateur UTM gratuit sans inscription",
+    "alternative gratuite au Google URL Builder"
+  ],
   "instructions": {
     "title": "Comment utiliser le Générateur de Liens UTM",
     "steps": [
@@ -29,7 +43,7 @@
       },
       {
         "title": "Générez et utilisez votre URL UTM",
-        "description": "Cliquez sur 'Générer l'URL UTM' pour créer votre lien traçable. Copiez-le dans le presse-papiers, téléchargez-le comme fichier texte ou testez-le directement dans un nouvel onglet. Utilisez l'URL générée dans vos supports marketing, publications sur les réseaux sociaux, campagnes email ou créations publicitaires pour suivre les performances dans Google Analytics ou votre plateforme analytics préférée."
+        "description": "Cliquez sur 'Générer l'URL UTM' pour créer votre lien traçable. Copiez-le dans le presse-papiers, téléchargez-le comme fichier texte ou testez-le directement dans un nouvel onglet. Utilisez l'URL générée dans vos supports marketing, publications sur les réseaux sociaux, campagnes email ou créations publicitaires pour suivre les performances dans Google Analytics ou GA4."
       }
     ],
     "features": [
@@ -45,9 +59,9 @@
       "Téléchargement des URLs comme fichiers texte",
       "Test des liens générés dans un nouvel onglet",
       "Comptage et résumé des paramètres",
-      "Export CSV pour les campagnes massives (futur)",
       "Entièrement basé sur le navigateur - aucun traitement serveur",
-      "Aucune collecte de données ni journalisation"
+      "Aucune collecte de données, aucune inscription requise",
+      "Compatible avec Google Analytics 4 (GA4) et Universal Analytics"
     ],
     "useCases": [
       "Suivez les performances des campagnes sur les réseaux sociaux sur plusieurs plateformes",

@@ -4,10 +4,24 @@
   "placeholder": "https://beispiel.com/seite",
   "meta": {
     "title": "UTM-Link-Builder - Kampagnen-URLs",
-    "description": "UTM-Links für Google Analytics erstellen. Nachverfolgbare URLs mit UTM-Parametern für Social Media, E-Mail und Werbekampagnen generieren. Kostenlos."
+    "description": "UTM-Links für Google Analytics und GA4 erstellen. Nachverfolgbare URLs mit UTM-Parametern für Social Media, E-Mail und Werbekampagnen generieren. Kostenlos."
   },
   "tagline": "Erstellen Sie nachverfolgbare Kampagnen-URLs mit UTM-Parametern für Analytics und Marketing",
-  "pageDescription": "Professioneller UTM Link Builder für Marketer und Analysten. Generieren Sie nachverfolgbare URLs mit UTM-Parametern (source, medium, campaign, term, content) für Google Analytics Tracking. Verwenden Sie Voreinstellungen für Social Media (Facebook, Twitter, LinkedIn, Instagram), E-Mail-Kampagnen und Werbung. Speichern Sie Vorlagen für wiederkehrende Kampagnen. Fügen Sie benutzerdefinierte Parameter für erweitertes Tracking hinzu. Exportieren Sie URLs im CSV-Format für Massenkampagnen. Alle Verarbeitung erfolgt in Ihrem Browser für vollständige Privatsphäre und Sicherheit.",
+  "pageDescription": "Professioneller UTM Link Builder für Marketer und Analysten. Generieren Sie nachverfolgbare URLs mit UTM-Parametern (source, medium, campaign, term, content) für Google Analytics und GA4 Tracking. Verwenden Sie Voreinstellungen für Social Media (Facebook, Twitter, LinkedIn, Instagram), E-Mail-Kampagnen und Werbung. Speichern Sie Vorlagen für wiederkehrende Kampagnen. Fügen Sie benutzerdefinierte Parameter für erweitertes Tracking hinzu. Kostenlose Alternative zum Google Campaign URL Builder — ohne Anmeldung, ohne Registrierung. Alle Verarbeitung erfolgt in Ihrem Browser für vollständige Privatsphäre und Sicherheit.",
+  "longTailKeywords": [
+    "UTM Link Generator online kostenlos",
+    "UTM Builder ohne Anmeldung Google Analytics",
+    "UTM Links erstellen für E-Mail-Kampagnen kostenlos",
+    "UTM Parameter Generator für Social Media Kampagnen",
+    "wie UTM Parameter für Kampagnen erstellen",
+    "was sind UTM Parameter und wie funktionieren sie",
+    "Google Analytics URL Builder kostenlos ohne Registrierung",
+    "UTM Generator kompatibel mit GA4 Google Analytics 4",
+    "UTM URL Builder mit Vorlagen und Voreinstellungen",
+    "Tracking Links für Social Media Kampagnen erstellen",
+    "bester kostenloser UTM Generator ohne Registrierung",
+    "kostenlose Alternative zum Google Campaign URL Builder"
+  ],
   "instructions": {
     "title": "So verwenden Sie den UTM Link Builder",
     "steps": [
@@ -29,7 +43,7 @@
       },
       {
         "title": "Generieren und verwenden Sie Ihre UTM-URL",
-        "description": "Klicken Sie auf 'UTM-URL generieren', um Ihren nachverfolgbaren Link zu erstellen. Kopieren Sie ihn in die Zwischenablage, laden Sie ihn als Textdatei herunter oder testen Sie ihn direkt in einem neuen Tab. Verwenden Sie die generierte URL in Ihren Marketing-Materialien, Social-Media-Posts, E-Mail-Kampagnen oder Anzeigen-Creatives, um die Performance in Google Analytics oder Ihrer bevorzugten Analytics-Plattform zu verfolgen."
+        "description": "Klicken Sie auf 'UTM-URL generieren', um Ihren nachverfolgbaren Link zu erstellen. Kopieren Sie ihn in die Zwischenablage, laden Sie ihn als Textdatei herunter oder testen Sie ihn direkt in einem neuen Tab. Verwenden Sie die generierte URL in Ihren Marketing-Materialien, Social-Media-Posts, E-Mail-Kampagnen oder Anzeigen-Creatives, um die Performance in Google Analytics oder GA4 zu verfolgen."
       }
     ],
     "features": [
@@ -45,9 +59,9 @@
       "URLs als Textdateien herunterladen",
       "Generierte Links in neuem Tab testen",
       "Parameterzählung und Zusammenfassung",
-      "CSV-Export für Massenkampagnen (zukünftig)",
       "Vollständig browserbasiert - keine Serververarbeitung",
-      "Keine Datenerfassung oder Protokollierung"
+      "Keine Datenerfassung, keine Anmeldung erforderlich",
+      "Kompatibel mit Google Analytics 4 (GA4) und Universal Analytics"
     ],
     "useCases": [
       "Verfolgen Sie die Performance von Social-Media-Kampagnen über mehrere Plattformen",

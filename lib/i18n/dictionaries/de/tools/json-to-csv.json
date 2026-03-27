@@ -1,78 +1,81 @@
 {
   "title": "JSON zu CSV",
-  "description": "Konvertieren JSON-Daten zu CSV Format",
-  "placeholder": "Einfügen JSON-Daten...",
+  "description": "JSON-Daten in das CSV-Format konvertieren",
+  "placeholder": "JSON-Daten einfügen...",
   "instructions": {
-    "title": "So verwenden Sie JSON zu CSV",
+    "title": "So verwenden Sie den JSON-zu-CSV-Konverter",
     "steps": [
       {
-        "title": "JSON-Daten einfügen",
-        "description": "Kopieren und fügen Sie Ihre JSON-Daten in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "JSON-Daten einfügen oder hochladen",
+        "description": "Fügen Sie Ihre JSON-Daten direkt in den Eingabebereich ein oder ziehen Sie eine JSON-Datei per Drag-and-Drop hinein. Das Tool akzeptiert JSON-Arrays mit Objekten, verschachtelte JSON-Strukturen und komplexe Daten aus API-Antworten."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "CSV-Optionen konfigurieren",
+        "description": "Wählen Sie das Trennzeichen (Komma, Semikolon, Tabulator), aktivieren Sie die Abflachung verschachtelter Objekte, legen Sie benutzerdefinierte Spaltenüberschriften fest und ordnen Sie Spalten per Drag-and-Drop neu an."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool verarbeitet Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "CSV-Ausgabe in der Vorschau prüfen",
+        "description": "Sehen Sie eine Live-Vorschau Ihrer CSV-Daten während der Konfiguration. Verschachtelte JSON-Schlüssel erscheinen als abgeflachte Spaltennamen (z. B. user.name, address.city) für die Tabellenkalkulationskompatibilität."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie das formatierte JSON in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "CSV herunterladen oder kopieren",
+        "description": "Klicken Sie auf CSV herunterladen, um die Datei zu speichern oder in die Zwischenablage zu kopieren. Das CSV ist Excel-kompatibel und bereit für Google Sheets, LibreOffice Calc oder jede andere Tabellenkalkulationsanwendung."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Konvertiert JSON-Arrays mit einem Klick in CSV",
+      "Flacht verschachtelte JSON-Objekte automatisch ab (z. B. address.city, user.name)",
+      "Benutzerdefinierte Trennzeichen: Komma, Semikolon, Tabulator, Pipe",
+      "Drag-and-Drop-Spaltenordnung und -Neuanordnung",
+      "Echtzeit-CSV-Vorschau während der Konfiguration",
+      "Benutzerdefinierte Spaltenüberschriften",
+      "Exportiert Excel-kompatible CSV-Dateien",
+      "Browserbasierte Verarbeitung — keine Datei-Uploads auf Server",
+      "Keine Registrierung oder Anmeldung erforderlich",
+      "Ohne Software-Installation — funktioniert direkt im Browser",
+      "Unterstützt komplexes JSON aus REST-API-Antworten"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "REST-API JSON-Antworten für die Datenanalyse in CSV exportieren",
+      "Datenbankexporte im JSON-Format in Tabellenkalkulationen umwandeln",
+      "Verschachtelte JSON-Objekte in flache CSV-Zeilen transformieren",
+      "JSON-Daten für den Import in Excel oder Google Sheets vorbereiten",
+      "JSON-Test-Fixtures für API-Tests in CSV konvertieren",
+      "JSON-Konfigurationsdaten für Berichte in CSV exportieren",
+      "Komplexes verschachteltes JSON für Datenbankimporte abflachen",
+      "JSON-Arrays aus Web-Scraping in CSV umwandeln"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie Punkt-Notation (user.name) als Spaltennamen, um abgeflachte verschachtelte Felder zu identifizieren",
+      "Wählen Sie Semikolon als Trennzeichen, wenn Sie in europäischem Excel öffnen",
+      "Ordnen Sie Spalten per Drag-and-Drop vor dem Herunterladen in der gewünschten Reihenfolge an",
+      "Bei tief verschachteltem JSON erzeugt die Abflachung lange Spaltennamen — nutzen Sie benutzerdefinierte Überschriften zum Umbenennen",
+      "Wenn Arrays Objekte enthalten, wird jedes Objekt zu einer eigenen CSV-Zeile",
+      "Fügen Sie das UTF-8-BOM hinzu, wenn Sonderzeichen in Excel falsch angezeigt werden"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Ungültiges JSON: Validieren Sie Ihr JSON vor der Konvertierung mit einem JSON-Validator",
+      "Fehlende Spalten: Einige Schlüssel könnten verschachtelt sein — aktivieren Sie die Abflachung, um alle Felder anzuzeigen",
+      "Arrays in Werten: Konfigurieren Sie die Array-Verarbeitung zum Erweitern, Stringifizieren oder Ignorieren",
+      "Falsche Kodierung: Aktivieren Sie UTF-8-BOM, wenn Sonderzeichen in Excel fehlerhaft angezeigt werden",
+      "Leeres CSV: Stellen Sie sicher, dass Ihr JSON ein Array von Objekten ist, kein einzelnes Objekt oder Primitiv"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "description": "JSON-Eingabe einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+Enter",
+        "description": "In CSV konvertieren"
       },
       {
         "keys": "Strg+C",
-        "description": "Ergebnis kopieren"
+        "description": "CSV-Ergebnis kopieren"
       },
       {
         "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "description": "CSV-Datei herunterladen"
       }
     ]
   },
@@ -80,6 +83,20 @@
     "title": "JSON zu CSV Konverter - Online",
     "description": "JSON-Daten online in CSV-Format umwandeln. Verschachtelte Objekte und Arrays mit anpassbarer Spaltenzuordnung abflachen. Kostenloses Konverter-Tool für Daten."
   },
-  "tagline": "Konvertieren JSON zu CSV mit advanced formatting und column mapping",
-  "pageDescription": "Kostenlos JSON zu CSV converter mit advanced flattening, column mapping, und formatting options. Transform JSON arrays, nested objects, und complex Daten structures into Excel-compatible CSV files. Features drag-und-drop column ordering, custom delimiters, header configuration, und real-time preview. Perfect für Daten exportieren, API response Konvertierung, und spreadsheet Integration. Secure browserbasiert processing mit no file uploads."
+  "tagline": "JSON in CSV umwandeln mit erweiterter Abflachung und Excel-kompatibler Ausgabe",
+  "pageDescription": "Kostenloser JSON-zu-CSV-Konverter mit erweiterter Abflachung, Spaltenzuordnung und Formatierungsoptionen. Wandeln Sie JSON-Arrays, verschachtelte Objekte und komplexe Datenstrukturen in Excel-kompatible CSV-Dateien um. Mit Drag-and-Drop-Spaltenordnung, benutzerdefinierten Trennzeichen, Kopfzeilenkonfiguration und Echtzeit-Vorschau. Ideal für Datenexport, API-Antwortkonvertierung und Tabellenkalkulations-Integration. Sichere browserbasierte Verarbeitung ohne Datei-Upload auf Server. Ohne Anmeldung, ohne Installation, ohne Einschränkungen.",
+  "longTailKeywords": [
+    "JSON in CSV umwandeln online kostenlos",
+    "JSON zu CSV konvertieren ohne Anmeldung",
+    "JSON zu CSV ohne Software installieren",
+    "wie JSON in CSV konvertieren",
+    "verschachteltes JSON in CSV umwandeln Excel",
+    "JSON Array zu CSV konvertieren online",
+    "API JSON Antwort in CSV exportieren",
+    "JSON Daten in Tabellenkalkulation exportieren",
+    "bester kostenloser JSON zu CSV Konverter online",
+    "JSON in CSV mit Spaltenzuordnung umwandeln",
+    "JSON Objekte abflachen und als CSV exportieren",
+    "JSON zu CSV Excel-kompatibel kostenlos"
+  ]
 }

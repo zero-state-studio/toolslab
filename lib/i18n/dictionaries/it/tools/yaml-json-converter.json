@@ -1,66 +1,92 @@
 {
   "title": "Convertitore YAML/JSON",
-  "description": "Converti tra formati YAML e JSON in entrambe le direzioni",
+  "description": "Converti tra formati YAML e JSON in entrambe le direzioni con validazione e supporto anchor",
+  "placeholder": "Incolla YAML o JSON qui...",
   "meta": {
     "title": "Convertitore YAML/JSON - Online",
-    "description": "Converti tra JSON e YAML online con output pulito e leggibile. Supporto per strutture nidificate e array. Conversione bidirezionale. Strumento gratuito online."
+    "description": "Converti tra YAML e JSON online gratis, senza registrazione. Conversione bidirezionale con validazione sintassi per Kubernetes, Docker Compose e CI/CD."
   },
-  "tagline": "Converti YAML in JSON e viceversa con funzionalità validazione avanzate",
-  "pageDescription": "Convertitore YAML in JSON gratuito con conversione bidirezionale, supporto multi-documento e risoluzione anchor. Converti config Kubernetes, file Docker Compose, pipeline CI/CD e specifiche Swagger istantaneamente. Funzionalità validazione in tempo reale, evidenziazione sintassi, preservazione tipi e gestione commenti. Supporta YAML 1.2 con anchor, alias, chiavi merge e tag personalizzati. Export interfacce TypeScript e JSON Schema. Perfetto per DevOps engineer, sviluppatori che lavorano con file configurazione e documentazione API.",
+  "tagline": "Converti YAML in JSON e viceversa con conversione bidirezionale e validazione avanzata",
+  "pageDescription": "Convertitore YAML/JSON gratuito con conversione bidirezionale, supporto multi-documento e risoluzione anchor — senza registrazione, tutto nel browser. Converti configurazioni Kubernetes, file Docker Compose, pipeline CI/CD e specifiche Swagger istantaneamente. Funzionalità: validazione in tempo reale, evidenziazione sintassi, preservazione tipi e gestione commenti. Supporta YAML 1.2 con anchor, alias, chiavi merge e tag personalizzati. Export interfacce TypeScript e JSON Schema. Perfetto per DevOps engineer, sviluppatori che lavorano con file di configurazione e documentazione API.",
+  "longTailKeywords": [
+    "convertitore YAML JSON online gratis",
+    "come convertire YAML in JSON online",
+    "convertitore YAML JSON bidirezionale senza registrazione",
+    "converti YAML in JSON Kubernetes online",
+    "convertire file YAML in JSON Docker Compose",
+    "convertitore YAML JSON validazione sintassi online",
+    "convertitore JSON YAML per file configurazione",
+    "converti YAML in JSON gratis nel browser",
+    "migliore convertitore YAML JSON gratuito online",
+    "convertire YAML JSON CI CD pipeline online",
+    "convertire YAML JSON con supporto multi-documento",
+    "converti YAML JSON per sviluppatori DevOps"
+  ],
   "instructions": {
-    "title": "Come usare Convertitore YAML/JSON",
+    "title": "Come usare il Convertitore YAML/JSON",
     "steps": [
       {
-        "title": "Incolla il tuo dati JSON",
-        "description": "Copia e incolla il tuo dati JSON nell'area di input. Lo strumento accetta qualsiasi formato e lo elaborerà immediatamente."
+        "title": "Incolla il tuo YAML o JSON nell'input",
+        "description": "Incolla i tuoi dati YAML o JSON nell'area di input. Puoi anche caricare un file .yaml, .yml o .json. Lo strumento rileva automaticamente il formato (YAML o JSON) e imposta la direzione di conversione."
       },
       {
-        "title": "Configura le opzioni (se disponibile)",
-        "description": "Regola le opzioni di formattazione, indentazione o altre impostazioni per adattarle alle tue preferenze."
+        "title": "Seleziona la direzione di conversione e le opzioni",
+        "description": "Scegli la direzione di conversione — YAML → JSON o JSON → YAML — usando i pulsanti in cima. Puoi anche regolare il livello di indentazione per l'output YAML (default: 2 spazi). Le opzioni hanno effetto immediato."
       },
       {
-        "title": "Esamina l'output",
-        "description": "Lo strumento convertirà il tuo input e mostrerà il risultato con formattazione e validazione appropriate."
+        "title": "Visualizza la conversione e la validazione in tempo reale",
+        "description": "La conversione avviene in tempo reale mentre digiti. Gli errori di sintassi vengono evidenziati con descrizioni chiare. Un indicatore di stato mostra se il documento è valido. Per file YAML multi-documento (separati da ---), ogni documento viene convertito separatamente."
       },
       {
-        "title": "Copia o scarica il risultato",
-        "description": "Copia il JSON formattato negli appunti per uso immediato o scaricalo come file."
+        "title": "Copia o scarica l'output convertito",
+        "description": "Clicca 'Copia' per copiare il risultato negli appunti, oppure 'Scarica' per salvarlo come file .yaml o .json. Utile per aggiornare direttamente file di configurazione Kubernetes o Docker Compose."
+      },
+      {
+        "title": "Funzionalità avanzate: anchor, export TypeScript",
+        "description": "Gli anchor YAML (&nome) e gli alias (*nome) vengono risolti automaticamente nell'output JSON. Le chiavi merge (<<:) vengono espanse correttamente. Usa i pulsanti di export TypeScript e JSON Schema per generare definizioni di tipo dalle strutture convertite."
       }
     ],
     "features": [
-      "Elaborazione in tempo reale con risultati istantanei",
-      "Nessun limite di dimensione per l'elaborazione basata su browser",
-      "Completamente sicuro - tutta l'elaborazione avviene nel tuo browser",
-      "Nessun caricamento dati o archiviazione server",
-      "Copia negli appunti con un clic",
-      "Scarica i risultati come file",
-      "Validazione sintassi ed evidenziazione errori",
-      "Funziona offline dopo il caricamento iniziale"
+      "Conversione bidirezionale YAML ↔ JSON con rilevamento automatico del formato",
+      "Supporto YAML multi-documento (separatore ---) con conversione per-documento",
+      "Risoluzione automatica di anchor, alias e chiavi merge",
+      "Preservazione dei tipi: stringhe, numeri, booleani, null, array, oggetti",
+      "Gestione commenti YAML (rimossi nell'output JSON con avviso)",
+      "Validazione sintassi in tempo reale con messaggi di errore inline",
+      "Evidenziazione sintassi per YAML e JSON",
+      "Ottimizzato per Kubernetes, Docker Compose, GitHub Actions e Ansible",
+      "Export interfacce TypeScript da strutture YAML/JSON",
+      "Export JSON Schema per validazione dati",
+      "Elaborazione nel browser — nessun dato caricato sui server",
+      "Download come file .yaml o .json"
     ],
     "useCases": [
-      "Pulire e formattare codice disordinato per una migliore leggibilità",
-      "Standardizzare lo stile del codice nei team di sviluppo",
-      "Debug di strutture complesse con indentazione appropriata",
-      "Preparare il codice per documentazione e code review",
-      "Convertire tra diversi standard di formattazione",
-      "Validare la sintassi prima del deploy",
-      "Elaborare dati da fonti esterne o API",
-      "Generare codice pronto per la produzione"
+      "Convertire manifest Kubernetes da YAML a JSON per le API REST",
+      "Trasformare file Docker Compose in JSON per script CI/CD",
+      "Convertire configurazioni GitHub Actions da YAML a JSON per analisi",
+      "Migrare configurazioni Ansible tra formati YAML e JSON",
+      "Convertire specifiche OpenAPI/Swagger da YAML a JSON",
+      "Sviluppo API: convertire payload JSON in YAML per la documentazione",
+      "Validare e correggere errori di sintassi in file YAML/JSON prima del deploy",
+      "Convertire pipeline CI/CD tra formati YAML e JSON",
+      "Generare JSON Schema da strutture YAML esistenti",
+      "Trasformare file di configurazione applicazione tra ambienti diversi"
     ],
     "proTips": [
-      "Usa le scorciatoie da tastiera per un flusso di lavoro più veloce",
-      "Elabora file di grandi dimensioni in blocchi più piccoli se le prestazioni rallentano",
-      "Valida il tuo input prima dell'elaborazione per individuare errori anticipatamente",
-      "Salva le impostazioni utilizzate frequentemente come predefinite",
-      "Usa la funzione di download per archiviare i file elaborati",
-      "Controlla attentamente l'output prima di usarlo in produzione"
+      "Kubernetes richiede YAML con indentazione corretta — usa la validazione in tempo reale prima di applicare i manifest con kubectl",
+      "Gli anchor YAML devono essere definiti prima degli alias nello stesso documento, altrimenti la conversione fallisce",
+      "JSON non supporta i commenti: i commenti YAML vengono rimossi nell'output — controlla l'indicatore di avviso",
+      "Per i valori port di Docker Compose, verifica che i numeri non vengano convertiti in stringhe nell'output JSON",
+      "YAML multi-documento (---) produce un array JSON — accedi all'indice corretto nel codice",
+      "Usa l'export TypeScript per generare automaticamente le interfacce dai tuoi file di configurazione"
     ],
     "troubleshooting": [
-      "Errori di sintassi: controlla parentesi, virgolette o punti e virgola mancanti",
-      "Elaborazione fallita: assicurati che il formato di input sia valido",
-      "Performance lenta: prova a elaborare blocchi di dati più piccoli",
-      "Funzionalità mancanti: alcune sintassi avanzate potrebbero richiedere formattazione manuale",
-      "Compatibilità browser: usa Chrome, Firefox o Edge per risultati migliori"
+      "Errore di indentazione: YAML usa spazi, non tabulazioni — verifica che non ci siano tab nell'input",
+      "Anchor non risolto: assicurati che l'anchor (&nome) sia definito prima dell'alias (*nome) nel documento",
+      "Commenti persi: i commenti YAML (#) non sono supportati in JSON e vengono rimossi automaticamente",
+      "Tipi errati nel JSON: YAML interpreta '1.0' come numero — wrappalo in virgolette per mantenerlo stringa",
+      "Risultato multi-documento: l'output JSON è un array — usa l'indice corretto nell'applicazione",
+      "Performance con file grandi: per file oltre 1MB la conversione può richiedere qualche secondo"
     ],
     "keyboardShortcuts": [
       {
@@ -69,7 +95,7 @@
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Elabora/Formatta"
+        "description": "Converti"
       },
       {
         "keys": "Ctrl+C",

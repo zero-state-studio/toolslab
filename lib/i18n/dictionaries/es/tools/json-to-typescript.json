@@ -1,67 +1,83 @@
 {
   "title": "JSON a TypeScript",
   "description": "Convierte JSON en interfaces TypeScript",
-  "placeholder": "Pega tu JSON...",
+  "placeholder": "Pega tu JSON aquí para generar interfaces TypeScript...",
   "meta": {
     "title": "JSON a TypeScript - Herramienta Online Gratuita",
-    "description": "Genere interfaces TypeScript desde JSON online. Inferencia de tipos, propiedades opcionales e interfaces anidadas. Herramienta gratuita para desarrollo de APIs."
+    "description": "Convierte JSON en interfaces TypeScript online gratis. Inferencia de tipos, propiedades opcionales, objetos anidados y schema Zod. Sin registro requerido."
   },
-  "tagline": "Genera interfacce TypeScript da JSON con inferenza tipi intelligente",
-  "pageDescription": "Convertitore JSON a TypeScript avanzato con inferenza tipi intelligente, proprietà opzionali e supporto interfacce nidificate. Converti risposte API, oggetti configurazione e strutture JSON complesse in interfacce TypeScript production-ready. Funzionalità tipi union, rilevamento enum, parsing date, convenzioni naming personalizzate e opzioni immutabili. Include generazione schema Zod, codice validazione e generatori dati mock. Perfetto per sviluppatori TypeScript che costruiscono applicazioni type-safe con API esterne.",
+  "tagline": "Genera interfaces TypeScript desde JSON con inferencia de tipos inteligente",
+  "pageDescription": "Convertidor JSON a TypeScript avanzado con inferencia de tipos inteligente, propiedades opcionales e interfaces anidadas. Convierte respuestas de API, objetos de configuración y estructuras JSON complejas en interfaces TypeScript listas para producción. Funcionalidades: tipos union, detección de enums, convenciones de nomenclatura personalizadas y opciones readonly. Genera esquemas Zod para validación en tiempo de ejecución. Ideal para desarrolladores TypeScript que construyen aplicaciones type-safe con APIs externas. Sin registro, sin instalación — todo el procesamiento en tu navegador.",
+  "longTailKeywords": [
+    "convertir JSON a interfaces TypeScript online gratis",
+    "generador interfaces TypeScript desde JSON sin registro",
+    "convertir JSON TypeScript con objetos anidados",
+    "cómo convertir JSON a TypeScript automáticamente",
+    "generador schema Zod desde JSON gratis",
+    "convertidor JSON TypeScript con tipos union y enums",
+    "mejor convertidor JSON TypeScript gratuito online",
+    "interfaces TypeScript desde respuesta API JSON",
+    "qué son las interfaces TypeScript y cómo crearlas",
+    "JSON a TypeScript con detección de propiedades opcionales",
+    "convertidor JSON TypeScript para desarrolladores frontend",
+    "alternativa gratuita a quicktype para JSON TypeScript"
+  ],
   "instructions": {
-    "title": "Cómo usar JSON a TypeScript",
+    "title": "Cómo usar el Convertidor JSON a TypeScript",
     "steps": [
       {
-        "title": "Pega tu datos JSON",
-        "description": "Copia y pega tu datos JSON en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
+        "title": "Pega tu JSON",
+        "description": "Copia y pega tu JSON en el área de entrada. La herramienta acepta respuestas de API, archivos de configuración, arrays, objetos anidados y cualquier estructura JSON válida. El JSON inválido se resalta con mensajes de error claros para ayudarte a corregir la sintaxis."
       },
       {
-        "title": "Configura las opciones (si disponible)",
-        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
+        "title": "Configura las opciones de TypeScript",
+        "description": "Personaliza la salida eligiendo entre interfaces o tipos, establece convenciones de nomenclatura (PascalCase, camelCase), habilita propiedades opcionales con '?', agrega modificadores readonly para datos inmutables y configura la detección de enums para valores de string repetidos."
       },
       {
-        "title": "Examina la salida",
-        "description": "La herramienta procesará tu entrada y mostrará el resultado con formato y validación apropiados."
+        "title": "Revisa las interfaces generadas",
+        "description": "El convertidor genera instantáneamente interfaces TypeScript con inferencia de tipos inteligente. Los objetos anidados se convierten en interfaces separadas con nombres descriptivos. Los arrays se tipan automáticamente. Los tipos union y los campos anulables se detectan desde la estructura de tu JSON."
       },
       {
-        "title": "Copia o descarga el resultado",
-        "description": "Copia el JSON formateado al portapapeles para uso inmediato o descárgalo como archivo."
+        "title": "Copia o genera schema Zod",
+        "description": "Copia las interfaces TypeScript al portapapeles, o cambia a la generación de schema Zod para validación en tiempo de ejecución. El código generado está listo para producción con imports, exports y anotaciones de tipos correctas."
       }
     ],
     "features": [
-      "Procesamiento en tiempo real con resultados instantáneos",
-      "Sin límite de tamaño para procesamiento basado en navegador",
-      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
-      "Sin carga de datos ni almacenamiento en servidor",
-      "Copiar al portapapeles con un clic",
-      "Descargar resultados como archivo",
-      "Validación de sintaxis y resaltado de errores",
-      "Funciona sin conexión después de la carga inicial"
+      "Inferencia de tipos inteligente para strings, números, booleanos, arrays y objetos",
+      "Soporte de objetos anidados — cada nivel genera su propia interfaz nombrada",
+      "Detección de propiedades opcionales con modificador '?'",
+      "Tipos union para arrays con tipos de elementos mixtos",
+      "Detección de enums para valores de string literales repetidos",
+      "Soporte de propiedades readonly para datos inmutables",
+      "Generación de schema Zod para validación en tiempo de ejecución",
+      "Soporte de conversión JSON Schema a TypeScript",
+      "Convenciones de nomenclatura personalizadas (PascalCase, camelCase)",
+      "Completamente seguro — todo el procesamiento en el navegador, sin registro requerido"
     ],
     "useCases": [
-      "Limpiar y formatear código desordenado para mejor legibilidad",
-      "Estandarizar el estilo de código en equipos de desarrollo",
-      "Depurar estructuras complejas con indentación apropiada",
-      "Preparar código para documentación y revisiones de código",
-      "Convertir entre diferentes estándares de formato",
-      "Validar sintaxis antes del despliegue",
-      "Procesar datos de fuentes externas o APIs",
-      "Generar código listo para producción"
+      "Convierte respuestas JSON de REST API en interfaces TypeScript",
+      "Genera interfaces type-safe desde archivos de configuración JSON",
+      "Crea schemas de validación Zod desde payloads de API JSON",
+      "Tipifica datos de API externos para llamadas fetch type-safe",
+      "Genera interfaces desde resultados de consultas de base de datos",
+      "Convierte definiciones JSON Schema a tipos TypeScript",
+      "Construye interfaces de datos de formularios type-safe desde JSON",
+      "Crea tipos de datos mock para pruebas unitarias"
     ],
     "proTips": [
-      "Usa atajos de teclado para un flujo de trabajo más rápido",
-      "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
-      "Valida tu entrada antes del procesamiento para detectar errores temprano",
-      "Guarda las configuraciones frecuentes como predeterminadas",
-      "Usa la función de descarga para archivar archivos procesados",
-      "Verifica cuidadosamente la salida antes de usar en producción"
+      "Pega una respuesta de API real para la inferencia de tipos más precisa",
+      "Habilita propiedades opcionales cuando los campos JSON pueden estar ausentes o ser null",
+      "Usa la detección de enums para campos de estado como 'active' | 'inactive' | 'pending'",
+      "Genera schemas Zod cuando necesites validación en tiempo de ejecución, no solo tipos en tiempo de compilación",
+      "Para JSON anidados complejos, revisa los nombres de interfaces generados y renómbralos si es necesario",
+      "Combina con readonly para objetos de configuración que no deben ser modificados"
     ],
     "troubleshooting": [
-      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
-      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
-      "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
-      "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
-      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
+      "Error JSON inválido: verifica comas finales, comillas faltantes o caracteres sin escape",
+      "Salida vacía: asegúrate de que tu JSON contenga al menos un objeto o array",
+      "Tipos demasiado genéricos (any[]): proporciona datos de ejemplo en los arrays para mejor inferencia de tipos",
+      "Interfaces anidadas faltantes: verifica que los objetos anidados no estén vacíos {}",
+      "Compatibilidad del navegador: usa la última versión de Chrome, Firefox o Edge para mejores resultados"
     ],
     "keyboardShortcuts": [
       {
@@ -70,7 +86,7 @@
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Procesar/Formatear"
+        "description": "Convertir JSON"
       },
       {
         "keys": "Ctrl+C",

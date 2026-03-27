@@ -4,10 +4,24 @@
   "placeholder": "Digite seu prompt ou cole o texto aqui...",
   "meta": {
     "title": "Contador Tokens IA - GPT-4 Claude",
-    "description": "Conte tokens e estime custos API para GPT-4, Claude, Llama, Gemini e Mistral. Otimize prompts e compare preços. Contador de tokens IA gratuito online."
+    "description": "Conte tokens e estime custos API para GPT-4, Claude e Gemini. Compare modelos, otimize prompts e reduza gastos. Contador tokens IA gratuito sem cadastro."
   },
   "tagline": "Conte tokens e estime custos em modelos GPT-4, Claude, Llama e mais IA",
-  "pageDescription": "Contador de tokens IA profissional para engenheiros de prompt e desenvolvedores. Conte tokens com precisão para OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini e modelos Mistral. Obtenha estimativas detalhadas de custo com preços de API mais recentes, compare contagens de tokens em todos os modelos e otimize seus prompts para reduzir tokens e custos. Recursos incluem contagem de tokens em tempo real, rastreamento de janela de contexto, análise em lote, sugestões de otimização de prompt e projeções de custo abrangentes. Salve seu histórico de análise e exporte resultados como JSON. Todo o processamento acontece localmente no seu navegador para máxima privacidade e velocidade.",
+  "pageDescription": "Contador de tokens IA profissional para engenheiros de prompt e desenvolvedores. Conte tokens com precisão para OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini e modelos Mistral. Alternativa gratuita ao tiktoken — funciona online sem instalação. Obtenha estimativas detalhadas de custo com preços de API mais recentes, compare contagens de tokens em todos os modelos e otimize seus prompts para reduzir tokens e custos. Recursos incluem contagem de tokens em tempo real, rastreamento de janela de contexto, análise em lote, sugestões de otimização de prompt e projeções de custo abrangentes. Salve seu histórico de análise e exporte resultados como JSON. Todo o processamento acontece localmente no seu navegador para máxima privacidade e velocidade. Sem cadastro necessário.",
+  "longTailKeywords": [
+    "contador tokens IA online grátis sem cadastro",
+    "calculadora tokens ChatGPT Claude grátis online",
+    "como calcular tokens antes de chamar API grátis",
+    "calcular custos API GPT-4 Claude online grátis",
+    "alternativa gratuita ao tiktoken online",
+    "contador tokens GPT-4 Claude Llama sem login",
+    "o que são tokens em IA e como contá-los por modelo",
+    "como otimizar prompts para reduzir tokens e custos API",
+    "estimador custos API OpenAI Claude Gemini gratuito",
+    "contador tokens para engenharia de prompts",
+    "monitoramento janela de contexto IA GPT Claude online",
+    "melhor contador tokens IA gratuito comparar modelos"
+  ],
   "instructions": {
     "title": "Como usar o Contador de Tokens IA",
     "steps": [
@@ -35,7 +49,7 @@
     "features": [
       "Suporte para mais de 15 modelos IA incluindo GPT-4o, Claude 3.5, Llama 3.1, Gemini 2.0, Mistral",
       "Estimativa precisa de tokens para o tokenizador específico de cada modelo",
-      "Contagem de tokens em tempo real conforme você digita (com debounce para desempenho)",
+      "Contagem de tokens em tempo real conforme você digita",
       "Rastreamento de janela de contexto com indicador de progresso visual",
       "Estimativa abrangente de custos com preços de API mais recentes (janeiro de 2025)",
       "Comparação multi-modelo para encontrar a opção mais econômica",
@@ -63,7 +77,7 @@
       "Testar variações de prompt para encontrar a versão mais eficiente em tokens",
       "Calcular custos para cenários de processamento em lote",
       "Comparar diferenças de tokenização entre modelos",
-      "Otimizar conteúdo longo para processamento IA",
+      "Entender o que são tokens em IA e como contá-los para cada modelo",
       "Depurar por que prompts estão sendo truncados",
       "Planejar alocação de contexto para aplicações RAG",
       "Estimar custos para recursos alimentados por IA antes do desenvolvimento",
@@ -84,13 +98,13 @@
       "Para geração de código, GPT-4 Turbo oferece melhor equilíbrio de qualidade e custo"
     ],
     "troubleshooting": [
-      "Contagens de tokens são estimativas: Contagens de API reais podem variar ligeiramente (±5%) devido a implementações exatas de tokenizador. Use esta ferramenta para planejamento e otimização, não faturamento exato.",
-      "Avisos de limite de contexto: Se você vir vermelho (80%+), seu prompt pode ser truncado. Divida em múltiplas requisições ou use um modelo com janela de contexto maior.",
-      "Alta relação token-palavra: Geralmente causada por caracteres especiais, código ou formatação excessiva. O recurso Otimizar pode ajudar a reduzir isso.",
-      "Discrepâncias de preço: Preços são atualizados regularmente mas verifique a documentação oficial do provedor para tarifas mais recentes. Última atualização: janeiro de 2025.",
-      "Problemas de upload de arquivo: Apenas arquivos .txt e .md são suportados. Para outros formatos, copie o conteúdo de texto e cole.",
-      "Histórico não salva: Ative localStorage no seu navegador. Histórico é armazenado localmente e nunca enviado para servidores.",
-      "Desempenho lento com textos muito longos: Contagem de tokens para textos de 50k+ caracteres pode levar alguns segundos. Isso é normal e acontece no seu navegador."
+      "Contagens de tokens são estimativas: Contagens de API reais podem variar ligeiramente (±5%) devido a implementações exatas de tokenizador",
+      "Avisos de limite de contexto: Se você vir vermelho (80%+), seu prompt pode ser truncado",
+      "Alta relação token-palavra: Geralmente causada por caracteres especiais, código ou formatação excessiva",
+      "Discrepâncias de preço: Preços são atualizados regularmente mas verifique a documentação oficial do provedor",
+      "Problemas de upload de arquivo: Apenas arquivos .txt e .md são suportados",
+      "Histórico não salva: Ative localStorage no seu navegador",
+      "Desempenho lento com textos muito longos: Contagem de tokens para textos de 50k+ caracteres pode levar alguns segundos"
     ],
     "keyboardShortcuts": [
       {
