@@ -8,6 +8,7 @@ import { searchTools } from '@/lib/tools';
 import { type Locale, defaultLocale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { useLocale } from '@/hooks/useLocale';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 const placeholders = [
   'json formatter',
@@ -228,7 +229,7 @@ export function HeroSection({
                       onClick={() => handleResultClick(tool.route)}
                       className="flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors hover:bg-slate-100 dark:hover:bg-white/[0.05]"
                     >
-                      <span className="text-2xl">{tool.icon}</span>
+                      <ToolIcon id={tool.id} className="h-5 w-5 flex-shrink-0 text-slate-600 dark:text-slate-400" />
                       <div>
                         <div className="font-medium text-slate-900 dark:text-white">
                           {tool.name}

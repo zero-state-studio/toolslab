@@ -18,6 +18,7 @@ import {
 import { useToolChainStore } from '@/lib/stores/toolChainStore';
 import { tools } from '@/lib/tools';
 import { cn } from '@/lib/utils';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 interface ToolChainSuggestionsProps {
   className?: string;
@@ -163,7 +164,7 @@ export default function ToolChainSuggestions({
                   onClick={() => handleContinueWithTool(toolSlug)}
                   className="group flex items-center gap-3 rounded-xl border border-white/50 bg-white/70 p-3 transition-all duration-200 hover:border-blue-200 hover:bg-white hover:shadow-md dark:border-gray-700/50 dark:bg-gray-800/50 dark:hover:border-blue-700 dark:hover:bg-gray-700"
                 >
-                  <div className="flex-shrink-0 text-2xl">{tool.icon}</div>
+                  <ToolIcon id={tool.id} className="h-5 w-5 flex-shrink-0 text-slate-600 dark:text-slate-400" />
                   <div className="min-w-0 flex-1">
                     <div className="text-sm font-medium text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
                       {tool.name}

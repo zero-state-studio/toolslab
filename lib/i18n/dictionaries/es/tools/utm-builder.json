@@ -4,10 +4,24 @@
   "placeholder": "https://ejemplo.com/pagina",
   "meta": {
     "title": "Constructor Links UTM - Campañas",
-    "description": "Cree links UTM para Google Analytics. Genere URLs rastreables con parámetros UTM para campañas en redes sociales, email y publicidad. Herramienta UTM gratuita."
+    "description": "Cree links UTM para Google Analytics y GA4. Genere URLs rastreables con parámetros UTM para campañas en redes sociales, email y publicidad. Sin registro."
   },
   "tagline": "Crea URLs de campaña rastreables con parámetros UTM para analytics y marketing",
-  "pageDescription": "Constructor de enlaces UTM profesional para marketers y analistas. Genera URLs rastreables con parámetros UTM (source, medium, campaign, term, content) para seguimiento de Google Analytics. Usa presets para redes sociales (Facebook, Twitter, LinkedIn, Instagram), campañas de email y publicidad. Guarda plantillas para campañas recurrentes. Agrega parámetros personalizados para seguimiento avanzado. Exporta URLs en formato CSV para campañas masivas. Todo el procesamiento ocurre en tu navegador para privacidad y seguridad completas.",
+  "pageDescription": "Constructor de enlaces UTM profesional para marketers y analistas. Genera URLs rastreables con parámetros UTM (source, medium, campaign, term, content) para seguimiento de Google Analytics y GA4. Usa presets para redes sociales (Facebook, Twitter, LinkedIn, Instagram), campañas de email y publicidad. Guarda plantillas para campañas recurrentes. Agrega parámetros personalizados para seguimiento avanzado. Alternativa gratuita a Google URL Builder — sin registro, sin inicio de sesión. Todo el procesamiento ocurre en tu navegador para privacidad y seguridad completas.",
+  "longTailKeywords": [
+    "generador enlaces UTM online gratis",
+    "constructor UTM sin registro Google Analytics",
+    "crear URL UTM para campañas email gratis",
+    "generador parámetros UTM para redes sociales",
+    "cómo crear parámetros UTM para rastrear campañas",
+    "qué son los parámetros UTM y cómo usarlos",
+    "cómo usar creador de URL Google Analytics gratis",
+    "generador UTM compatible con GA4 Google Analytics 4",
+    "constructor URL UTM con plantillas predefinidas",
+    "crear links rastreables para publicidad redes sociales",
+    "mejor generador UTM gratuito sin registro",
+    "alternativa gratuita a Google URL Builder"
+  ],
   "instructions": {
     "title": "Cómo usar el Constructor de Enlaces UTM",
     "steps": [
@@ -29,7 +43,7 @@
       },
       {
         "title": "Genera y usa tu URL UTM",
-        "description": "Haz clic en 'Generar URL UTM' para crear tu enlace rastreable. Cópialo al portapapeles, descárgalo como archivo de texto o pruébalo directamente en una nueva pestaña. Usa la URL generada en tus materiales de marketing, publicaciones en redes sociales, campañas de email o creatividades de anuncios para rastrear el rendimiento en Google Analytics o tu plataforma de analytics preferida."
+        "description": "Haz clic en 'Generar URL UTM' para crear tu enlace rastreable. Cópialo al portapapeles, descárgalo como archivo de texto o pruébalo directamente en una nueva pestaña. Usa la URL generada en tus materiales de marketing, publicaciones en redes sociales, campañas de email o creatividades de anuncios para rastrear el rendimiento en Google Analytics o GA4."
       }
     ],
     "features": [
@@ -45,9 +59,9 @@
       "Descargar URLs como archivos de texto",
       "Probar enlaces generados en nueva pestaña",
       "Conteo y resumen de parámetros",
-      "Exportación CSV para campañas masivas (futuro)",
       "Completamente basado en navegador - sin procesamiento en servidor",
-      "Sin recopilación de datos ni registro"
+      "Sin recopilación de datos, sin registro requerido",
+      "Compatible con Google Analytics 4 (GA4) y Universal Analytics"
     ],
     "useCases": [
       "Rastrea el rendimiento de campañas en redes sociales en múltiples plataformas",

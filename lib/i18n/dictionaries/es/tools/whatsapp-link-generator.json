@@ -1,87 +1,101 @@
 {
   "title": "Generador de Enlaces WhatsApp",
-  "description": "Crea enlaces WhatsApp click-to-chat con mensajes predefinidos y codigos QR",
-  "placeholder": "333 1234567",
+  "description": "Crea enlaces WhatsApp click-to-chat con mensajes predefinidos y códigos QR",
+  "placeholder": "612 345678",
   "meta": {
     "title": "Generador Links WhatsApp - Gratis",
     "description": "Cree links WhatsApp click-to-chat con mensajes predefinidos, códigos QR y códigos de país. Genere URLs wa.me para negocios y marketing. Herramienta gratuita."
   },
-  "tagline": "Genera enlaces WhatsApp click-to-chat con mensajes predefinidos y codigos QR instantaneos",
-  "pageDescription": "Generador profesional de enlaces WhatsApp para empresas y marketers. Crea URLs click-to-chat instantaneas (wa.me) con mensajes predefinidos, deteccion automatica de codigo de pais y codigos QR descargables. Usa plantillas de mensajes para escenarios empresariales comunes (consultas, soporte, citas). Previsualiza tu mensaje en una interfaz estilo movil antes de compartir. Perfecto para sitios web, tarjetas de presentacion, perfiles de redes sociales y materiales de marketing. Todo el procesamiento ocurre en tu navegador para completa privacidad - ningun numero de telefono se almacena o registra.",
+  "tagline": "Genera enlaces WhatsApp click-to-chat con mensajes predefinidos y códigos QR instantáneos",
+  "pageDescription": "Generador profesional de enlaces WhatsApp gratuito para empresas y marketers. Crea URLs click-to-chat instantáneas (wa.me) con mensajes predefinidos, detección automática de código de país y códigos QR descargables, sin registro. Usa plantillas de mensajes para escenarios empresariales comunes (consultas, soporte, citas). Previsualiza tu mensaje en una interfaz estilo móvil antes de compartir. Perfecto para sitios web, tarjetas de presentación, perfiles de redes sociales y materiales de marketing. Todo el procesamiento ocurre en tu navegador — ningún número de teléfono se almacena o registra.",
+  "longTailKeywords": [
+    "generador enlace whatsapp gratis online",
+    "crear enlace whatsapp con mensaje predefinido",
+    "generador link whatsapp sin registro",
+    "cómo crear enlace whatsapp gratis",
+    "generador código qr whatsapp gratis",
+    "crear botón whatsapp para sitio web",
+    "enlace whatsapp sin guardar número",
+    "enlace whatsapp con mensaje personalizado",
+    "crear link wa.me gratis online",
+    "cómo hacer enlace whatsapp para redes sociales",
+    "enlace whatsapp para empresas y marketing",
+    "mejor generador de enlaces whatsapp gratis"
+  ],
   "instructions": {
-    "title": "Como usar el Generador de Enlaces WhatsApp",
+    "title": "Cómo usar el Generador de Enlaces WhatsApp",
     "steps": [
       {
-        "title": "Selecciona tu codigo de pais",
-        "description": "Haz clic en el selector de pais y elige el pais de tu numero WhatsApp. Puedes buscar por nombre de pais, codigo o prefijo. La herramienta soporta mas de 50 paises incluyendo EE.UU. (+1), Reino Unido (+44), Mexico (+52), Espana (+34) y muchos mas. El codigo de pais se anade automaticamente a tu numero."
+        "title": "Selecciona tu código de país",
+        "description": "Haz clic en el selector de país y elige el país de tu número WhatsApp. Puedes buscar por nombre de país, código o prefijo. La herramienta soporta más de 50 países incluyendo EE.UU. (+1), Reino Unido (+44), México (+52), España (+34) y muchos más. El código de país se añade automáticamente a tu número."
       },
       {
-        "title": "Ingresa el numero de telefono",
-        "description": "Escribe el numero de telefono sin el codigo de pais ni ceros iniciales. Por ejemplo, si el numero completo es +34 612 345678, solo ingresa '612 345678'. La herramienta acepta espacios y guiones para legibilidad pero los elimina automaticamente al generar el enlace."
+        "title": "Ingresa el número de teléfono",
+        "description": "Escribe el número de teléfono sin el código de país ni ceros iniciales. Por ejemplo, si el número completo es +34 612 345678, solo ingresa '612 345678'. La herramienta acepta espacios y guiones para legibilidad pero los elimina automáticamente al generar el enlace."
       },
       {
         "title": "Agrega un mensaje predefinido (opcional)",
-        "description": "Escribe un mensaje que aparecera predefinido cuando alguien haga clic en tu enlace. Esto es perfecto para consultas estandar, solicitudes de soporte o mensajes promocionales. Usa el boton Plantillas para insertar rapidamente mensajes empresariales comunes como consultas de productos, solicitudes de citas o tickets de soporte."
+        "description": "Escribe un mensaje que aparecerá predefinido cuando alguien haga clic en tu enlace. Esto es perfecto para consultas estándar, solicitudes de soporte o mensajes promocionales. Usa el botón Plantillas para insertar rápidamente mensajes empresariales comunes como consultas de productos, solicitudes de citas o tickets de soporte."
       },
       {
         "title": "Genera tu enlace WhatsApp",
-        "description": "Haz clic en 'Generar Enlace WhatsApp' para crear tu URL click-to-chat. La herramienta validara tu numero de telefono y creara un enlace wa.me correctamente formateado. Si incluiste un mensaje, sera codificado en URL y anadido automaticamente al enlace."
+        "description": "Haz clic en 'Generar Enlace WhatsApp' para crear tu URL click-to-chat. La herramienta validará tu número de teléfono y creará un enlace wa.me correctamente formateado. Si incluiste un mensaje, será codificado en URL y añadido automáticamente al enlace."
       },
       {
         "title": "Copia, descarga o prueba tu enlace",
-        "description": "Usa el enlace generado copiandolo al portapapeles, descargandolo como archivo de texto, o haciendo clic en 'Abrir WhatsApp' para probarlo directamente. Descarga el codigo QR para materiales impresos, tarjetas de presentacion o exhibidores de tienda. La vista previa movil muestra exactamente como aparecera tu mensaje a los destinatarios."
+        "description": "Usa el enlace generado copiándolo al portapapeles, descargándolo como archivo de texto, o haciendo clic en 'Abrir WhatsApp' para probarlo directamente. Descarga el código QR para materiales impresos, tarjetas de presentación o exhibidores de tienda. La vista previa móvil muestra exactamente cómo aparecerá tu mensaje a los destinatarios."
       }
     ],
     "features": [
-      "Mas de 50 codigos de pais con busqueda e iconos de bandera",
+      "Más de 50 códigos de país con búsqueda e iconos de bandera",
       "Soporte de mensajes predefinidos hasta 4096 caracteres",
-      "Generacion instantanea de codigo QR con estilo verde WhatsApp",
+      "Generación instantánea de código QR con estilo verde WhatsApp",
       "Plantillas de mensajes para uso empresarial, personal y marketing",
-      "Vista previa de chat estilo movil para visualizar tu mensaje",
-      "Validacion de numero de telefono con guia de formato",
+      "Vista previa de chat estilo móvil para visualizar tu mensaje",
+      "Validación de número de teléfono con guía de formato",
       "Copia al portapapeles con un clic",
       "Descarga enlace como archivo de texto",
-      "Descarga codigo QR como imagen PNG",
-      "Boton directo 'Abrir WhatsApp' para pruebas",
-      "Generacion de URL limpia siguiendo estandares wa.me",
-      "Completamente basado en navegador - sin procesamiento de servidor",
-      "Ningun numero de telefono almacenado o registrado"
+      "Descarga código QR como imagen PNG",
+      "Botón directo 'Abrir WhatsApp' para pruebas",
+      "Generación de URL limpia siguiendo estándares wa.me",
+      "Completamente basado en navegador — sin procesamiento de servidor",
+      "Ningún número de teléfono almacenado o registrado"
     ],
     "useCases": [
-      "Agrega botones click-to-chat en tu sitio web para soporte instantaneo al cliente",
-      "Crea enlaces WhatsApp para tarjetas de presentacion y materiales impresos",
-      "Genera codigos QR para vitrinas de tiendas, menus y ubicaciones fisicas",
-      "Incluye enlaces de chat en firmas de email para contacto facil",
+      "Agrega botones click-to-chat en tu sitio web para soporte instantáneo al cliente",
+      "Crea enlaces WhatsApp para tarjetas de presentación y materiales impresos",
+      "Genera códigos QR para vitrinas de tiendas, menús y ubicaciones físicas",
+      "Incluye enlaces de chat en firmas de email para contacto fácil",
       "Agrega botones WhatsApp a perfiles de redes sociales (Instagram, Facebook, LinkedIn)",
-      "Crea formularios de consulta predefinidos para informacion de productos",
+      "Crea formularios de consulta predefinidos para información de productos",
       "Configura enlaces de reserva de citas con mensajes preescritos",
       "Genera enlaces de tickets de soporte con plantillas de mensajes estructurados",
-      "Crea enlaces de campanas de marketing con mensajes promocionales",
+      "Crea enlaces de campañas de marketing con mensajes promocionales",
       "Comparte enlaces de contacto en boletines y emails de marketing",
       "Agrega enlaces de chat a descripciones de videos de YouTube",
-      "Crea enlaces de contacto rapido para organizadores de eventos"
+      "Crea enlaces de contacto rápido para organizadores de eventos"
     ],
     "proTips": [
-      "Mantien los mensajes predefinidos cortos y profesionales - los destinatarios siempre pueden agregar mas",
+      "Mantén los mensajes predefinidos cortos y profesionales — los destinatarios siempre pueden agregar más",
       "Usa las plantillas de mensajes como punto de partida y personaliza para la voz de tu marca",
-      "Descarga los codigos QR en alta resolucion para materiales impresos",
+      "Descarga los códigos QR en alta resolución para materiales impresos",
       "Prueba tu enlace antes de compartirlo haciendo clic en 'Abrir WhatsApp'",
       "Para uso empresarial, considera WhatsApp Business para funciones adicionales",
-      "Incluye una llamada a la accion en tu mensaje como 'Me gustaria...'",
-      "Guarda numeros de telefono y mensajes frecuentemente usados para acceso rapido",
-      "Usa la vista previa movil para asegurarte de que tu mensaje se vea profesional",
-      "Combina con UTM Builder para rastrear trafico de WhatsApp en analytics",
-      "Coloca los codigos QR a la altura de los ojos en ubicaciones fisicas para mejor escaneo"
+      "Incluye una llamada a la acción en tu mensaje como 'Me gustaría...'",
+      "Guarda números de teléfono y mensajes frecuentemente usados para acceso rápido",
+      "Usa la vista previa móvil para asegurarte de que tu mensaje se vea profesional",
+      "Combina con UTM Builder para rastrear tráfico de WhatsApp en analytics",
+      "Coloca los códigos QR a la altura de los ojos en ubicaciones físicas para mejor escaneo"
     ],
     "troubleshooting": [
-      "El enlace no abre WhatsApp: Asegurate de que WhatsApp este instalado en el dispositivo. En escritorio, WhatsApp Web debe estar configurado.",
-      "Error de numero de telefono invalido: Elimina cualquier cero inicial e ingresa solo digitos. El codigo de pais se agrega automaticamente.",
-      "El mensaje no aparece: Verifica que los caracteres especiales esten correctamente codificados. Evita usar ciertos simbolos.",
-      "El codigo QR no escanea: Asegura buena iluminacion y sostien el telefono a 15-20 cm del codigo. Intenta descargarlo e imprimirlo mas grande.",
-      "Pais incorrecto seleccionado: Busca tu pais por nombre o codigo de marcacion en el selector desplegable.",
-      "El enlace funciona en movil pero no en escritorio: WhatsApp Web debe estar conectado en el navegador de escritorio.",
-      "Mensaje muy largo: Los mensajes predefinidos de WhatsApp tienen un limite de 4096 caracteres. Acorta tu mensaje.",
-      "El chat se abre con el numero equivocado: Verifica el formato del numero de telefono y la seleccion del codigo de pais."
+      "El enlace no abre WhatsApp: Asegúrate de que WhatsApp esté instalado en el dispositivo. En escritorio, WhatsApp Web debe estar configurado.",
+      "Error de número de teléfono inválido: Elimina cualquier cero inicial e ingresa solo dígitos. El código de país se agrega automáticamente.",
+      "El mensaje no aparece: Verifica que los caracteres especiales estén correctamente codificados. Evita usar ciertos símbolos.",
+      "El código QR no escanea: Asegura buena iluminación y sostén el teléfono a 15-20 cm del código. Intenta descargarlo e imprimirlo más grande.",
+      "País incorrecto seleccionado: Busca tu país por nombre o código de marcación en el selector desplegable.",
+      "El enlace funciona en móvil pero no en escritorio: WhatsApp Web debe estar conectado en el navegador de escritorio.",
+      "Mensaje muy largo: Los mensajes predefinidos de WhatsApp tienen un límite de 4096 caracteres. Acorta tu mensaje.",
+      "El chat se abre con el número equivocado: Verifica el formato del número de teléfono y la selección del código de país."
     ],
     "keyboardShortcuts": [
       {
@@ -94,7 +108,7 @@
       },
       {
         "keys": "Escape",
-        "description": "Cerrar selector de pais"
+        "description": "Cerrar selector de país"
       }
     ]
   }

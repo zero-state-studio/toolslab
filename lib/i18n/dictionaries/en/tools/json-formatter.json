@@ -7,15 +7,15 @@
     "steps": [
       {
         "title": "Paste your JSON data",
-        "description": "Copy and paste your JSON data into the input area. The tool accepts any format and will process it immediately."
+        "description": "Copy and paste your JSON code into the input area. The tool accepts compressed, formatted, or malformed JSON and will analyze it immediately."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Configure options",
+        "description": "Adjust indentation size, sort keys alphabetically, or choose validate-only mode to tailor the output to your preferences."
       },
       {
         "title": "Review the output",
-        "description": "The tool will format and beautify your input and display the result with proper formatting and validation."
+        "description": "The formatter beautifies your JSON with color-coded syntax highlighting and marks any errors with their exact line position in the code."
       },
       {
         "title": "Copy or download result",
@@ -30,6 +30,7 @@
       "Copy to clipboard with one click",
       "Download results as file",
       "Syntax validation and error highlighting",
+      "No installation required — works directly in your browser",
       "Works offline after initial page load"
     ],
     "useCases": [
@@ -84,7 +85,7 @@
   ],
   "meta": {
     "title": "JSON Formatter - Free Online Tool to Beautify & Validate",
-    "description": "Format, validate and beautify JSON online free — syntax highlighting, real-time error detection, key search. No registration required. Works instantly in your browser."
+    "description": "Format, validate and beautify JSON online free. Syntax highlighting, real-time error detection, key search and sort. No registration needed. Works in browser."
   },
   "labels": {
     "indentSize": "Indent Size",

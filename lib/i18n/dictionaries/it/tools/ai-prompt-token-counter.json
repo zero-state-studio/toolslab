@@ -4,10 +4,24 @@
   "placeholder": "Inserisci il tuo prompt o incolla il testo qui...",
   "meta": {
     "title": "Contatore Token AI - GPT-4 Claude",
-    "description": "Conta token e stima costi API per GPT-4, Claude, Llama, Gemini e Mistral. Ottimizza prompt e confronta prezzi. Contatore token AI gratuito per sviluppatori."
+    "description": "Conta token e stima costi API per GPT-4, Claude, Llama e Gemini. Ottimizza prompt e confronta modelli. Contatore token AI gratuito, senza registrazione."
   },
   "tagline": "Conta token e stima costi su GPT-4, Claude, Llama e altri modelli AI",
-  "pageDescription": "Contatore token AI professionale per prompt engineer e sviluppatori. Conta accuratamente i token per modelli OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini e Mistral. Ottieni stime dettagliate dei costi con i prezzi API più recenti, confronta i conteggi token su tutti i modelli e ottimizza i tuoi prompt per ridurre token e costi. Funzionalità: conteggio token in tempo reale, monitoraggio finestra di contesto, analisi batch, suggerimenti ottimizzazione prompt e proiezioni costi complete. Salva la cronologia delle tue analisi ed esporta i risultati come JSON. Tutta l'elaborazione avviene localmente nel tuo browser per massima privacy e velocità.",
+  "pageDescription": "Contatore token AI professionale per prompt engineer e sviluppatori. Conta accuratamente i token per modelli OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini e Mistral. Alternativa gratuita a tiktoken — funziona online senza installazione. Ottieni stime dettagliate dei costi con i prezzi API più recenti, confronta i conteggi token su tutti i modelli e ottimizza i tuoi prompt per ridurre token e costi. Funzionalità: conteggio token in tempo reale, monitoraggio finestra di contesto, analisi batch, suggerimenti ottimizzazione prompt e proiezioni costi complete. Salva la cronologia delle tue analisi ed esporta i risultati come JSON. Tutta l'elaborazione avviene localmente nel tuo browser per massima privacy e velocità. Nessuna registrazione richiesta.",
+  "longTailKeywords": [
+    "contatore token AI online gratis senza registrazione",
+    "calcolatore token ChatGPT Claude gratis online",
+    "come contare token prima di inviare richiesta API",
+    "calcolare costi API GPT-4 Claude online gratis",
+    "alternativa gratuita a tiktoken online",
+    "contatore token GPT-4 Claude Llama senza login",
+    "cosa sono i token nei modelli AI e come contarli",
+    "come ottimizzare prompt per ridurre token e costi API",
+    "stimatore costi API OpenAI Claude Gemini gratuito",
+    "contatore token per prompt engineering e sviluppo",
+    "monitoraggio finestra contesto AI GPT Claude online",
+    "miglior contatore token AI gratuito confronto modelli"
+  ],
   "instructions": {
     "title": "Come usare il Contatore Token AI",
     "steps": [
@@ -62,7 +76,7 @@
       "Testare variazioni prompt per trovare la versione più efficiente",
       "Calcolare costi per scenari di elaborazione batch",
       "Confrontare differenze di tokenizzazione tra modelli",
-      "Ottimizzare contenuti long-form per elaborazione AI",
+      "Capire cosa sono i token e come contarli per ogni modello AI",
       "Debug perché i prompt vengono troncati",
       "Pianificare allocazione contesto per applicazioni RAG",
       "Stimare costi per funzionalità AI prima dello sviluppo",

@@ -1,66 +1,83 @@
 {
   "title": "JSON a TypeScript",
   "description": "Converti JSON in interfacce TypeScript",
+  "placeholder": "Incolla il tuo JSON qui per generare interfacce TypeScript...",
   "meta": {
     "title": "JSON a TypeScript - Strumento Online Gratuito",
-    "description": "Genera interfacce TypeScript da dati JSON online. Supporto per oggetti annidati, array, proprietà opzionali e tipi union. Convertitore JSON a TypeScript."
+    "description": "Genera interfacce TypeScript da JSON online gratis. Inferenza tipi, oggetti annidati, proprietà opzionali e tipi union. Schema Zod incluso. Senza registrazione."
   },
   "tagline": "Genera interfacce TypeScript da JSON con inferenza tipi intelligente",
-  "pageDescription": "Convertitore JSON a TypeScript avanzato con inferenza tipi intelligente, proprietà opzionali e supporto interfacce nidificate. Converti risposte API, oggetti configurazione e strutture JSON complesse in interfacce TypeScript production-ready. Funzionalità tipi union, rilevamento enum, parsing date, convenzioni naming personalizzate e opzioni immutabili. Include generazione schema Zod, codice validazione e generatori dati mock. Perfetto per sviluppatori TypeScript che costruiscono applicazioni type-safe con API esterne.",
+  "pageDescription": "Convertitore JSON a TypeScript avanzato con inferenza tipi intelligente, proprietà opzionali e supporto interfacce nidificate. Converti risposte API, oggetti configurazione e strutture JSON complesse in interfacce TypeScript production-ready. Funzionalità tipi union, rilevamento enum, parsing date, convenzioni naming personalizzate e opzioni immutabili. Include generazione schema Zod, codice validazione e generatori dati mock. Perfetto per sviluppatori TypeScript che costruiscono applicazioni type-safe con API esterne. Nessuna registrazione, nessuna installazione — tutto il processing avviene nel browser.",
+  "longTailKeywords": [
+    "converti JSON in interfacce TypeScript online gratis",
+    "generatore interfacce TypeScript da JSON senza registrazione",
+    "convertire JSON TypeScript con oggetti annidati",
+    "come convertire JSON in TypeScript automaticamente",
+    "generatore schema Zod da JSON gratis",
+    "convertitore JSON TypeScript con tipi union e enum",
+    "miglior convertitore JSON TypeScript gratuito online",
+    "interfacce TypeScript da risposta API JSON",
+    "cosa sono le interfacce TypeScript e come crearle",
+    "JSON a TypeScript con rilevamento proprietà opzionali",
+    "convertitore JSON TypeScript per sviluppatori frontend",
+    "alternativa gratuita a quicktype per JSON TypeScript"
+  ],
   "instructions": {
-    "title": "Come usare JSON a TypeScript",
+    "title": "Come usare il Convertitore JSON a TypeScript",
     "steps": [
       {
-        "title": "Incolla il tuo dati JSON",
-        "description": "Copia e incolla il tuo dati JSON nell'area di input. Lo strumento accetta qualsiasi formato e lo elaborerà immediatamente."
+        "title": "Incolla il tuo JSON",
+        "description": "Copia e incolla il tuo JSON nell'area di input. Lo strumento accetta risposte API, file di configurazione, array, oggetti nidificati e qualsiasi struttura JSON valida. Il JSON non valido viene evidenziato con messaggi di errore chiari per aiutarti a correggere la sintassi."
       },
       {
-        "title": "Configura le opzioni (se disponibile)",
-        "description": "Regola le opzioni di formattazione, indentazione o altre impostazioni per adattarle alle tue preferenze."
+        "title": "Configura le opzioni TypeScript",
+        "description": "Personalizza l'output scegliendo tra interfacce o tipi, imposta le convenzioni di naming (PascalCase, camelCase), abilita le proprietà opzionali con '?', aggiungi modificatori readonly per dati immutabili e configura il rilevamento degli enum per valori stringa ripetuti."
       },
       {
-        "title": "Esamina l'output",
-        "description": "Lo strumento elaborerà il tuo input e mostrerà il risultato con formattazione e validazione appropriate."
+        "title": "Esamina le interfacce generate",
+        "description": "Il convertitore genera istantaneamente le interfacce TypeScript con inferenza tipi intelligente. Gli oggetti nidificati diventano interfacce separate con nomi descrittivi. Gli array vengono tipizzati automaticamente. I tipi union e i campi nullable vengono rilevati dalla struttura del tuo JSON."
       },
       {
-        "title": "Copia o scarica il risultato",
-        "description": "Copia il JSON formattato negli appunti per uso immediato o scaricalo come file."
+        "title": "Copia o genera schema Zod",
+        "description": "Copia le interfacce TypeScript negli appunti, oppure passa alla generazione dello schema Zod per la validazione a runtime. Il codice generato è production-ready con import, export e annotazioni di tipo corrette."
       }
     ],
     "features": [
-      "Elaborazione in tempo reale con risultati istantanei",
-      "Nessun limite di dimensione per l'elaborazione basata su browser",
-      "Completamente sicuro - tutta l'elaborazione avviene nel tuo browser",
-      "Nessun caricamento dati o archiviazione server",
-      "Copia negli appunti con un clic",
-      "Scarica i risultati come file",
-      "Validazione sintassi ed evidenziazione errori",
-      "Funziona offline dopo il caricamento iniziale"
+      "Inferenza tipi intelligente per stringhe, numeri, booleani, array e oggetti",
+      "Supporto oggetti nidificati — ogni livello genera la propria interfaccia nominata",
+      "Rilevamento proprietà opzionali con modificatore '?'",
+      "Tipi union per array con tipi di elemento misti",
+      "Rilevamento enum per valori stringa letterali ripetuti",
+      "Supporto proprietà readonly per dati immutabili",
+      "Generazione schema Zod per validazione a runtime",
+      "Supporto conversione JSON Schema a TypeScript",
+      "Convenzioni naming personalizzate (PascalCase, camelCase)",
+      "Completamente sicuro — tutto il processing nel browser, nessuna registrazione richiesta"
     ],
     "useCases": [
-      "Pulire e formattare codice disordinato per una migliore leggibilità",
-      "Standardizzare lo stile del codice nei team di sviluppo",
-      "Debug di strutture complesse con indentazione appropriata",
-      "Preparare il codice per documentazione e code review",
-      "Convertire tra diversi standard di formattazione",
-      "Validare la sintassi prima del deploy",
-      "Elaborare dati da fonti esterne o API",
-      "Generare codice pronto per la produzione"
+      "Converti risposte JSON di REST API in interfacce TypeScript",
+      "Genera interfacce type-safe da file di configurazione JSON",
+      "Crea schemi di validazione Zod da payload API JSON",
+      "Tipizza dati API esterni per chiamate fetch type-safe",
+      "Genera interfacce da risultati di query database",
+      "Converti definizioni JSON Schema in tipi TypeScript",
+      "Costruisci interfacce form data type-safe da JSON",
+      "Crea tipi dati mock per unit testing"
     ],
     "proTips": [
-      "Usa le scorciatoie da tastiera per un flusso di lavoro più veloce",
-      "Elabora file di grandi dimensioni in blocchi più piccoli se le prestazioni rallentano",
-      "Valida il tuo input prima dell'elaborazione per individuare errori anticipatamente",
-      "Salva le impostazioni utilizzate frequentemente come predefinite",
-      "Usa la funzione di download per archiviare i file elaborati",
-      "Controlla attentamente l'output prima di usarlo in produzione"
+      "Incolla una risposta API reale per l'inferenza tipi più accurata",
+      "Abilita le proprietà opzionali quando i campi JSON possono essere assenti o null",
+      "Usa il rilevamento enum per campi status come 'active' | 'inactive' | 'pending'",
+      "Genera schemi Zod quando hai bisogno di validazione a runtime, non solo tipi compile-time",
+      "Per JSON nidificati complessi, controlla i nomi delle interfacce generate e rinominali se necessario",
+      "Combina con readonly per oggetti di configurazione che non devono essere modificati"
     ],
     "troubleshooting": [
-      "Errori di sintassi: controlla parentesi, virgolette o punti e virgola mancanti",
-      "Elaborazione fallita: assicurati che il formato di input sia valido",
-      "Performance lenta: prova a elaborare blocchi di dati più piccoli",
-      "Funzionalità mancanti: alcune sintassi avanzate potrebbero richiedere formattazione manuale",
-      "Compatibilità browser: usa Chrome, Firefox o Edge per risultati migliori"
+      "Errore JSON non valido: controlla virgole finali, virgolette mancanti o caratteri non escapati",
+      "Output vuoto: assicurati che il tuo JSON contenga almeno un oggetto o array",
+      "Tipi troppo generici (any[]): fornisci dati di esempio negli array per una migliore inferenza tipi",
+      "Interfacce nidificate mancanti: verifica che gli oggetti nidificati non siano vuoti {}",
+      "Compatibilità browser: usa l'ultima versione di Chrome, Firefox o Edge per risultati ottimali"
     ],
     "keyboardShortcuts": [
       {
@@ -69,7 +86,7 @@
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Elabora/Formatta"
+        "description": "Converti JSON"
       },
       {
         "keys": "Ctrl+C",

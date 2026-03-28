@@ -1,128 +1,142 @@
 {
   "title": "Generador de Timestamps YouTube",
-  "description": "Crea timestamps y capitulos de YouTube con generacion automatica de enlaces y conversion de tiempo",
+  "description": "Crea timestamps y capítulos de YouTube con generación automática de enlaces y conversión de tiempo",
   "placeholder": "00:00",
   "meta": {
     "title": "Generador Timestamps YouTube",
-    "description": "Cree capítulos y timestamps YouTube con formato de tiempo automático. Links clicables para descripciones de video. Herramienta gratuita para creadores."
+    "description": "Cree capítulos y timestamps YouTube gratis, sin registro. Links clicables para descripciones de video. Herramienta gratuita para creadores de contenido."
   },
-  "tagline": "Genera capitulos y timestamps de YouTube con creacion automatica de enlaces y conversion de tiempo",
-  "pageDescription": "Generador profesional de timestamps de YouTube para creadores de contenido y editores de video. Crea timestamps formateados para descripciones de video, genera Capitulos de YouTube para navegacion mejorada y convierte entre formatos de tiempo instantaneamente. Agrega timestamps con etiquetas, importa capitulos existentes y exporta en multiples formatos. Genera enlaces de timestamp clicables cuando proporcionas una URL de video. El convertidor de tiempo integrado maneja formatos HH:MM:SS, MM:SS y segundos. Todo el procesamiento ocurre en tu navegador para privacidad completa - ningun dato de video se almacena o sube.",
+  "tagline": "Genera capítulos y timestamps de YouTube con creación automática de enlaces y conversión de tiempo",
+  "pageDescription": "Generador profesional de timestamps de YouTube para creadores de contenido y editores de vídeo — gratis, sin registro. Crea timestamps formateados para descripciones de vídeo, genera Capítulos de YouTube para navegación mejorada y SEO, convierte entre formatos de tiempo instantáneamente. Agrega timestamps con etiquetas, importa capítulos existentes y exporta en múltiples formatos. Genera enlaces de timestamp clicables cuando proporcionas una URL de vídeo. El convertidor de tiempo integrado maneja formatos HH:MM:SS, MM:SS y segundos. Todo el procesamiento ocurre en tu navegador para privacidad completa — ningún dato de vídeo se almacena o sube.",
+  "longTailKeywords": [
+    "generador timestamps YouTube online gratis",
+    "cómo crear capítulos YouTube descripción video",
+    "generador capítulos YouTube sin registro",
+    "crear enlaces timestamp YouTube clicables",
+    "formato timestamps YouTube copiar pegar descripción",
+    "herramienta capítulos YouTube para creadores",
+    "conversor tiempo segundos MM:SS YouTube gratis",
+    "cómo añadir marcas de tiempo YouTube para SEO",
+    "mejor generador capítulos YouTube gratuito",
+    "importar capítulos YouTube desde texto",
+    "generador enlaces timestamp YouTube compartir",
+    "timestamps YouTube para episodios podcast"
+  ],
   "videoUrlPlaceholder": "https://www.youtube.com/watch?v=...",
   "addTimestamp": "Agregar Timestamp",
   "time": "Tiempo",
   "label": "Etiqueta",
-  "labelPlaceholder": "Titulo del capitulo...",
+  "labelPlaceholder": "Título del capítulo...",
   "timestamps": "Timestamps",
-  "noTimestamps": "Sin timestamps aun. Agrega el primero!",
-  "generateChapters": "Generar Capitulos",
-  "importChapters": "Importar Capitulos",
-  "copyChapters": "Copiar Capitulos",
+  "noTimestamps": "Sin timestamps aún. ¡Agrega el primero!",
+  "generateChapters": "Generar Capítulos",
+  "importChapters": "Importar Capítulos",
+  "copyChapters": "Copiar Capítulos",
   "copyLinks": "Copiar con Enlaces",
   "clear": "Limpiar Todo",
   "delete": "Eliminar",
   "edit": "Editar",
   "save": "Guardar",
   "cancel": "Cancelar",
-  "chaptersFormat": "Formato Capitulos YouTube",
+  "chaptersFormat": "Formato Capítulos YouTube",
   "linksFormat": "Timestamps con Enlaces",
-  "videoUrl": "URL Video YouTube",
+  "videoUrl": "URL Vídeo YouTube",
   "optional": "(opcional)",
-  "invalidTime": "Formato de tiempo invalido. Usa MM:SS o HH:MM:SS",
-  "invalidUrl": "URL de YouTube invalida",
-  "chaptersOutput": "Salida de Capitulos",
+  "invalidTime": "Formato de tiempo inválido. Usa MM:SS o HH:MM:SS",
+  "invalidUrl": "URL de YouTube inválida",
+  "chaptersOutput": "Salida de Capítulos",
   "linksOutput": "Salida de Enlaces",
-  "copied": "Copiado!",
-  "importPlaceholder": "Pega los capitulos aqui (uno por linea)...\nEjemplo:\n00:00 Introduccion\n01:30 Primer Tema\n05:45 Segundo Tema",
+  "copied": "¡Copiado!",
+  "importPlaceholder": "Pega los capítulos aquí (uno por línea)...\nEjemplo:\n00:00 Introducción\n01:30 Primer Tema\n05:45 Segundo Tema",
   "importButton": "Importar",
   "convertTime": "Convertidor de Tiempo",
   "seconds": "Segundos",
   "formatted": "Formateado",
   "convert": "Convertir",
   "instructions": {
-    "title": "Como usar el Generador de Timestamps YouTube",
+    "title": "Cómo usar el Generador de Timestamps YouTube",
     "steps": [
       {
         "title": "Agrega tu primer timestamp",
-        "description": "Ingresa un tiempo en formato MM:SS o HH:MM:SS (ej. 01:30 o 1:30:00) y una etiqueta descriptiva para el capitulo. El primer capitulo en 00:00 es requerido para que funcionen los Capitulos de YouTube. Haz clic en 'Agregar Timestamp' o presiona Enter para agregarlo a tu lista."
+        "description": "Ingresa un tiempo en formato MM:SS o HH:MM:SS (ej. 01:30 o 1:30:00) y una etiqueta descriptiva para el capítulo. El primer capítulo en 00:00 es requerido para que funcionen los Capítulos de YouTube. Haz clic en 'Agregar Timestamp' o presiona Enter para agregarlo a tu lista."
       },
       {
-        "title": "Construye tu lista de capitulos",
-        "description": "Continua agregando timestamps para cada seccion de tu video. YouTube requiere al menos 3 capitulos con el primero comenzando en 00:00. Los capitulos deben estar separados por al menos 10 segundos. Edita o elimina timestamps en cualquier momento usando los botones de accion en cada fila."
+        "title": "Construye tu lista de capítulos",
+        "description": "Continúa agregando timestamps para cada sección de tu vídeo. YouTube requiere al menos 3 capítulos con el primero comenzando en 00:00. Los capítulos deben estar separados por al menos 10 segundos. Edita o elimina timestamps en cualquier momento usando los botones de acción en cada fila."
       },
       {
-        "title": "Agrega la URL de tu video (opcional)",
-        "description": "Pega la URL de tu video de YouTube para generar enlaces de timestamp clicables. La herramienta soporta todos los formatos de URL de YouTube incluyendo youtube.com/watch, enlaces cortos youtu.be y URLs embed. Los enlaces incluiran el parametro &t= para navegacion directa."
+        "title": "Agrega la URL de tu vídeo (opcional)",
+        "description": "Pega la URL de tu vídeo de YouTube para generar enlaces de timestamp clicables. La herramienta soporta todos los formatos de URL de YouTube incluyendo youtube.com/watch, enlaces cortos youtu.be y URLs embed. Los enlaces incluirán el parámetro &t= para navegación directa."
       },
       {
-        "title": "Copia y usa tus capitulos",
-        "description": "Haz clic en 'Copiar Capitulos' para copiar los timestamps formateados para la descripcion de tu video. El formato es exactamente lo que YouTube espera: timestamp seguido del titulo en cada linea. Si agregaste una URL de video, usa 'Copiar con Enlaces' para enlaces de timestamp clicables."
+        "title": "Copia y usa tus capítulos",
+        "description": "Haz clic en 'Copiar Capítulos' para copiar los timestamps formateados para la descripción de tu vídeo. El formato es exactamente lo que YouTube espera: timestamp seguido del título en cada línea. Si agregaste una URL de vídeo, usa 'Copiar con Enlaces' para enlaces de timestamp clicables."
       },
       {
-        "title": "Importa capitulos existentes",
-        "description": "Tienes capitulos de otra fuente? Haz clic en 'Importar Capitulos' y pegalos en el formato estandar (timestamp espacio titulo). La herramienta los analizara y agregara a tu lista automaticamente. Genial para migrar timestamps de otros videos o archivos de texto."
+        "title": "Importa capítulos existentes",
+        "description": "¿Tienes capítulos de otra fuente? Haz clic en 'Importar Capítulos' y pégalos en el formato estándar (timestamp espacio título). La herramienta los analizará y agregará a tu lista automáticamente. Genial para migrar timestamps de otros vídeos o archivos de texto."
       }
     ],
     "features": [
-      "Salida en formato Capitulos YouTube (listo para descripciones de video)",
-      "Ordenamiento y formato automatico del tiempo",
+      "Salida en formato Capítulos YouTube (listo para descripciones de vídeo)",
+      "Ordenamiento y formato automático del tiempo",
       "Soporte para formatos MM:SS y HH:MM:SS",
-      "Generacion de enlaces de timestamp clicables con URL de video",
-      "Importar capitulos existentes desde texto",
-      "Editar timestamps en linea sin perder datos",
+      "Generación de enlaces de timestamp clicables con URL de vídeo",
+      "Importar capítulos existentes desde texto",
+      "Editar timestamps en línea sin perder datos",
       "Convertidor de tiempo integrado (segundos a formateado y viceversa)",
       "Copiar al portapapeles con un clic",
-      "Extraccion de ID de video de cualquier formato de URL de YouTube",
-      "Validacion automatica de requisitos de Capitulos YouTube",
-      "Procesamiento en navegador - sin subidas necesarias",
+      "Extracción de ID de vídeo de cualquier formato de URL de YouTube",
+      "Validación automática de requisitos de Capítulos YouTube",
+      "Procesamiento en navegador — sin subidas necesarias",
       "Exportar timestamps con o sin enlaces clicables"
     ],
     "useCases": [
-      "Crea Capitulos de YouTube para navegacion de video y SEO mejorados",
-      "Genera enlaces de timestamp para compartir momentos especificos del video",
-      "Construye listas de capitulos para episodios de podcast en YouTube",
-      "Crea navegacion para contenido largo (tutoriales, cursos)",
-      "Genera timestamps para series de videos educativos",
-      "Crea marcadores de capitulo para VODs de transmisiones en vivo",
-      "Construye listas de timestamps para videos musicales con multiples pistas",
+      "Crea Capítulos de YouTube para navegación de vídeo y SEO mejorados",
+      "Genera enlaces de timestamp para compartir momentos específicos del vídeo",
+      "Construye listas de capítulos para episodios de podcast en YouTube",
+      "Crea navegación para contenido largo (tutoriales, cursos)",
+      "Genera timestamps para series de vídeos educativos",
+      "Crea marcadores de capítulo para VODs de transmisiones en vivo",
+      "Construye listas de timestamps para vídeos musicales con múltiples pistas",
       "Genera timestamps para conferencias y presentaciones",
-      "Crea navegacion de capitulos para videos de audiolibros",
-      "Construye listas de timestamps para videos de compilaciones"
+      "Crea navegación de capítulos para vídeos de audiolibros",
+      "Construye listas de timestamps para vídeos de compilaciones"
     ],
     "proTips": [
-      "Siempre comienza con 00:00 - YouTube requiere que el primer capitulo comience al inicio",
-      "Usa titulos de capitulo descriptivos pero concisos (menos de 100 caracteres recomendado)",
-      "Agrega al menos 3 capitulos - YouTube no mostrara capitulos con menos entradas",
-      "Mantiene los capitulos separados por al menos 10 segundos para que YouTube los reconozca",
-      "Incluye temas clave en los titulos de capitulos para mejor visibilidad en busquedas",
-      "Usa el convertidor de tiempo para verificar rapidamente la duracion entre capitulos",
-      "Importa capitulos de tu guion o esquema antes de grabar",
-      "Copia los capitulos a un archivo de texto como respaldo antes de publicar",
-      "Usa convenciones de nombres consistentes en tu serie de videos",
-      "Agrega la URL del video para generar enlaces de timestamp compartibles en redes sociales"
+      "Siempre comienza con 00:00 — YouTube requiere que el primer capítulo comience al inicio",
+      "Usa títulos de capítulo descriptivos pero concisos (menos de 100 caracteres recomendado)",
+      "Agrega al menos 3 capítulos — YouTube no mostrará capítulos con menos entradas",
+      "Mantén los capítulos separados por al menos 10 segundos para que YouTube los reconozca",
+      "Incluye temas clave en los títulos de capítulos para mejor visibilidad en búsquedas",
+      "Usa el convertidor de tiempo para verificar rápidamente la duración entre capítulos",
+      "Importa capítulos de tu guión o esquema antes de grabar",
+      "Copia los capítulos a un archivo de texto como respaldo antes de publicar",
+      "Usa convenciones de nombres consistentes en tu serie de vídeos",
+      "Agrega la URL del vídeo para generar enlaces de timestamp compartibles en redes sociales"
     ],
     "troubleshooting": [
-      "Capitulos no se muestran en YouTube: Asegurate de tener al menos 3 capitulos, el primero comienza en 00:00 y los capitulos estan separados por al menos 10 segundos.",
-      "Error de tiempo invalido: Usa formato MM:SS (05:30) o HH:MM:SS (1:05:30). Los segundos puros tambien funcionan (90).",
-      "URL de video no reconocida: Asegurate de que sea una URL de YouTube valida. La herramienta soporta youtube.com/watch, youtu.be y formatos embed.",
-      "Timestamps no en orden: La herramienta ordena automaticamente los timestamps cronologicamente al generar la salida.",
-      "Importacion no funciona: Cada capitulo debe estar en su propia linea con formato 'MM:SS Titulo' o 'HH:MM:SS Titulo'.",
-      "Enlaces no aparecen: Agrega una URL de video de YouTube valida para habilitar la generacion de enlaces de timestamp.",
-      "Titulos de capitulo cortados: YouTube trunca titulos largos. Mantenlos bajo 100 caracteres.",
-      "Copiado pero no funciona: Asegurate de pegar en la descripcion del video, no en el titulo o campo de etiquetas."
+      "Capítulos no se muestran en YouTube: Asegúrate de tener al menos 3 capítulos, el primero comienza en 00:00 y los capítulos están separados por al menos 10 segundos.",
+      "Error de tiempo inválido: Usa formato MM:SS (05:30) o HH:MM:SS (1:05:30). Los segundos puros también funcionan (90).",
+      "URL de vídeo no reconocida: Asegúrate de que sea una URL de YouTube válida. La herramienta soporta youtube.com/watch, youtu.be y formatos embed.",
+      "Timestamps no en orden: La herramienta ordena automáticamente los timestamps cronológicamente al generar la salida.",
+      "Importación no funciona: Cada capítulo debe estar en su propia línea con formato 'MM:SS Título' o 'HH:MM:SS Título'.",
+      "Enlaces no aparecen: Agrega una URL de vídeo de YouTube válida para habilitar la generación de enlaces de timestamp.",
+      "Títulos de capítulo cortados: YouTube trunca títulos largos. Mantenlos bajo 100 caracteres.",
+      "Copiado pero no funciona: Asegúrate de pegar en la descripción del vídeo, no en el título o campo de etiquetas."
     ],
     "keyboardShortcuts": [
       {
         "keys": "Enter",
-        "description": "Agregar timestamp (cuando esta en campos de entrada)"
+        "description": "Agregar timestamp (cuando estás en campos de entrada)"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copiar (despues de seleccionar texto)"
+        "description": "Copiar (después de seleccionar texto)"
       },
       {
         "keys": "Escape",
-        "description": "Cancelar edicion"
+        "description": "Cancelar edición"
       }
     ]
   }

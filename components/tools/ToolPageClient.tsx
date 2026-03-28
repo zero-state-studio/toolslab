@@ -34,6 +34,7 @@ import { FAQModal } from '@/components/ui/faq-modal';
 import ToolHowToUse from './ToolHowToUse';
 import ToolHeroSection from './ToolHeroSection';
 import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 const CATEGORY_COLORS: Record<string, string> = {
   data: '#0EA5E9',
@@ -392,12 +393,11 @@ export default function ToolPageClient({
                         className="rounded-lg p-2"
                         style={{ backgroundColor: `${categoryColor}20` }}
                       >
-                        <span
-                          className="flex h-5 w-5 items-center justify-center text-lg"
+                        <ToolIcon
+                          id={relatedTool.id}
+                          className="h-4 w-4"
                           style={{ color: categoryColor }}
-                        >
-                          {relatedTool.icon}
-                        </span>
+                        />
                       </div>
                       <div className="flex-1">
                         <p className="text-sm font-medium text-slate-900 dark:text-white">
@@ -431,12 +431,7 @@ export default function ToolPageClient({
                             className="rounded-lg p-2"
                             style={{ backgroundColor: `${categoryColor}20` }}
                           >
-                            <span
-                              className="flex h-5 w-5 items-center justify-center text-lg"
-                              style={{ color: categoryColor }}
-                            >
-                              {categoryTool.icon}
-                            </span>
+                              <ToolIcon id={categoryTool.id} className="h-4 w-4" style={{ color: categoryColor }} />
                           </div>
                           <div className="flex-1">
                             <p className="text-sm font-medium text-slate-900 dark:text-white">
@@ -498,12 +493,7 @@ export default function ToolPageClient({
                     className="mb-2 inline-block rounded-lg p-2"
                     style={{ backgroundColor: `${categoryColor}20` }}
                   >
-                    <span
-                      className="flex h-5 w-5 items-center justify-center text-lg"
-                      style={{ color: categoryColor }}
-                    >
-                      {relatedTool.icon}
-                    </span>
+                    <ToolIcon id={relatedTool.id} className="h-5 w-5" style={{ color: categoryColor }} />
                   </div>
                   <p className="text-sm font-medium text-slate-900 dark:text-white">
                     {relatedTool.name}
@@ -533,12 +523,7 @@ export default function ToolPageClient({
                     className="mb-2 inline-block rounded-lg p-2"
                     style={{ backgroundColor: `${categoryColor}20` }}
                   >
-                    <span
-                      className="flex h-5 w-5 items-center justify-center text-lg"
-                      style={{ color: categoryColor }}
-                    >
-                      {categoryTool.icon}
-                    </span>
+                    <ToolIcon id={categoryTool.id} className="h-5 w-5" style={{ color: categoryColor }} />
                   </div>
                   <p className="text-sm font-medium text-slate-900 dark:text-white">
                     {categoryTool.name}

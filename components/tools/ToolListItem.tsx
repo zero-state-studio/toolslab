@@ -5,6 +5,7 @@ import { ChevronRight } from 'lucide-react';
 import { type Tool } from '@/lib/tools';
 import { useLocale } from '@/hooks/useLocale';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 const categoryColors: Record<string, string> = {
   data: '#0EA5E9',
@@ -41,10 +42,10 @@ export function ToolListItem({ tool, dictionary }: ToolListItemProps) {
     return (
       <div className="flex cursor-not-allowed items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 opacity-60 dark:border-white/[0.04] dark:bg-white/[0.01]">
         <div
-          className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-xl"
-          style={{ backgroundColor: `${color}15`, border: `1px solid ${color}25` }}
+          className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg"
+          style={{ backgroundColor: `${color}15`, border: `1px solid ${color}25`, color }}
         >
-          {tool.icon}
+          <ToolIcon id={tool.id} className="h-5 w-5" />
         </div>
         <div className="flex-1 min-w-0">
           <p className="text-sm font-medium text-slate-500 dark:text-slate-500">
@@ -67,13 +68,14 @@ export function ToolListItem({ tool, dictionary }: ToolListItemProps) {
 
         {/* Tool icon */}
         <div
-          className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-xl transition-transform duration-200 group-hover:scale-105"
+          className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-105"
           style={{
             backgroundColor: `${color}18`,
             border: `1px solid ${color}30`,
+            color,
           }}
         >
-          {tool.icon}
+          <ToolIcon id={tool.id} className="h-5 w-5" />
         </div>
 
         {/* Tool info */}

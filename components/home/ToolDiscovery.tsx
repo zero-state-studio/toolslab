@@ -7,6 +7,7 @@ import { ArrowRight, Code, Database, Lock, Globe, Zap } from 'lucide-react';
 import { tools } from '@/lib/tools';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import { useLocale } from '@/hooks/useLocale';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 const useCaseTabsConfig = [
   {
@@ -174,7 +175,7 @@ export function ToolDiscovery() {
                         href={createHref(tool!.route)}
                         className="group flex items-start gap-4 rounded-lg border border-slate-200 bg-slate-50 p-4 transition-all hover:border-violet-500/40 hover:bg-violet-50 hover:shadow-sm dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-violet-500/30 dark:hover:bg-violet-500/[0.05] dark:hover:shadow-none"
                       >
-                        <div className="text-2xl">{tool!.icon}</div>
+                        <ToolIcon id={tool!.id} className="h-6 w-6 flex-shrink-0 text-slate-600 dark:text-slate-400" />
                         <div className="flex-1">
                           <h4 className="font-semibold text-slate-900 transition-colors group-hover:text-violet-300 dark:text-white">
                             {tool!.name}

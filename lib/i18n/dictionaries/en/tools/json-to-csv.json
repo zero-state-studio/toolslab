@@ -3,76 +3,78 @@
   "description": "Convert JSON data to CSV format",
   "placeholder": "Paste JSON data...",
   "instructions": {
-    "title": "How to use JSON to CSV",
+    "title": "How to use JSON to CSV Converter",
     "steps": [
       {
-        "title": "Paste your JSON data",
-        "description": "Copy and paste your JSON data into the input area. The tool accepts any format and will process it immediately."
+        "title": "Paste or upload your JSON data",
+        "description": "Paste JSON directly into the input area or drag and drop a JSON file. The tool accepts JSON arrays of objects, nested JSON structures, and complex data from API responses."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Configure CSV options",
+        "description": "Choose your field delimiter (comma, semicolon, tab), toggle nested object flattening, set custom column headers, and drag-and-drop columns to reorder them to your preference."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will process your input and display the result with proper formatting and validation."
+        "title": "Preview the CSV output",
+        "description": "See a live preview of your CSV data as you configure options. Nested JSON keys appear as flattened column names (e.g., user.name, address.city) for spreadsheet compatibility."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the formatted JSON to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Download or copy the CSV",
+        "description": "Click Download CSV to save the file or copy it to clipboard. The output is Excel-compatible and ready for Google Sheets, LibreOffice Calc, or any spreadsheet application."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Converts JSON arrays to CSV with one click",
+      "Flattens nested JSON objects automatically (e.g., address.city, user.name)",
+      "Custom field delimiters: comma, semicolon, tab, pipe",
+      "Drag-and-drop column ordering and reordering",
+      "Real-time CSV preview as you configure",
+      "Custom header names per column",
+      "Export Excel-compatible CSV files",
+      "Browser-based processing — no file uploads to servers",
+      "No registration or signup required",
+      "Supports complex JSON from REST API responses"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Export REST API JSON responses to CSV for data analysis",
+      "Convert database JSON exports to spreadsheet format",
+      "Transform nested JSON objects into flat CSV rows",
+      "Prepare JSON data for import into Excel or Google Sheets",
+      "Convert API test fixtures to CSV for QA testing",
+      "Export JSON configuration data to CSV for reporting",
+      "Flatten complex nested JSON for database imports",
+      "Convert JSON arrays from web scraping to CSV"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Use dot-notation column names (user.name) to identify flattened nested fields",
+      "Choose semicolon delimiter if opening in European Excel (uses semicolon by default)",
+      "Drag-and-drop columns to set the exact column order before downloading",
+      "For deeply nested JSON, flattening creates verbose column names — use custom headers to rename them",
+      "If arrays contain objects, each object becomes a separate CSV row",
+      "Add UTF-8 BOM option if international characters display incorrectly in Excel"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Invalid JSON: ensure your JSON is valid using a JSON validator before converting",
+      "Missing columns: some keys may be nested — enable flattening to expose all fields",
+      "Arrays in values: configure array handling to expand, stringify, or ignore array values",
+      "Wrong encoding: enable UTF-8 BOM if special characters appear garbled in Excel",
+      "Empty CSV: verify your JSON is an array of objects, not a single object or primitive value"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Paste input"
+        "description": "Paste JSON input"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Process/Format"
+        "description": "Convert to CSV"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copy result"
+        "description": "Copy CSV result"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Download file"
+        "description": "Download CSV file"
       }
     ]
   },

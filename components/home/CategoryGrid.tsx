@@ -1,32 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import {
-  Database,
-  Lock,
-  FileText,
-  Palette,
-  Settings,
-  Rocket,
-  ChevronRight,
-  Share2,
-} from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { categories } from '@/lib/tools';
 import { type Locale, defaultLocale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { useLocale } from '@/hooks/useLocale';
-
-const categoryIcons = {
-  data: Database,
-  encoding: Lock,
-  text: FileText,
-  web: Palette,
-  dev: Settings,
-  generators: Rocket,
-  formatters: FileText,
-  social: Share2,
-  pdf: FileText,
-};
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 // Per-category glow colors (shown on hover as an inset shadow tint)
 const categoryGlowColors: Record<string, string> = {
@@ -81,9 +61,6 @@ export function CategoryGrid({
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {categories.map((category) => {
-            const Icon =
-              categoryIcons[category.id as keyof typeof categoryIcons] ||
-              Database;
             const gradient =
               categoryGradients[
                 category.id as keyof typeof categoryGradients
@@ -114,7 +91,7 @@ export function CategoryGrid({
                       <div
                         className={`mb-4 inline-flex rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg`}
                       >
-                        <Icon className="h-6 w-6" />
+                        <ToolIcon id={category.id} type="category" className="h-6 w-6" />
                       </div>
 
                       <h3 className="mb-2 text-xl font-semibold text-slate-900 dark:text-white">

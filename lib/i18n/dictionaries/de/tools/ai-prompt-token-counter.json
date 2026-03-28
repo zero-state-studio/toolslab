@@ -1,109 +1,122 @@
 {
-  "title": "AI-Prompt-Token-Zähler",
-  "description": "Count tokens für AI prompts across GPT-4, Claude, Llama models mit accurate cost estimation",
-  "placeholder": "Eingeben Ihre prompt oder einfügen text hier ein...",
+  "title": "KI-Prompt-Token-Zähler",
+  "description": "Token für KI-Prompts zählen für GPT-4, Claude, Llama mit präziser Kostenschätzung",
+  "placeholder": "KI-Prompt eingeben oder Text hier einfügen...",
   "meta": {
     "title": "KI-Token-Zähler - GPT-4 & Claude",
-    "description": "Zählen Sie Token und berechnen Sie API-Kosten für GPT-4, Claude, Llama, Gemini und Mistral. Optimieren Sie Prompts und vergleichen Sie Preise. Kostenlos."
+    "description": "Token zählen und API-Kosten berechnen für GPT-4, Claude und Gemini. Prompts optimieren und Modelle vergleichen. Kostenloser KI-Token-Zähler ohne Anmeldung."
   },
-  "tagline": "Count tokens und estimate costs across GPT-4, Claude, Llama, und more AI models",
-  "pageDescription": "Professioneller AI token counter für prompt engineers und developers. Accurately count tokens für OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini, und Mistral models. Get detailed cost estimates mit latest API pricing, compare token counts across alle models, und optimize Ihre prompts zu reduce tokens und costs. Features real-time token counting, context window tracking, batch analysis, prompt optimization suggestions, und comprehensive cost projections. Speichern Ihre analysis Verlauf und exportieren results as JSON. All processing happens locally in Ihre browser für maximum privacy und speed.",
+  "tagline": "Token zählen und Kosten schätzen für GPT-4, Claude, Llama und weitere KI-Modelle",
+  "pageDescription": "Professioneller KI-Token-Zähler für Prompt-Engineers und Entwickler. Token präzise zählen für OpenAI GPT-4, GPT-3.5 Turbo, Claude 3/4, Llama 2/3, Gemini und Mistral. Kostenlose Alternative zu tiktoken — funktioniert online ohne Installation. Erhalten Sie detaillierte Kostenschätzungen mit den aktuellen API-Preisen, vergleichen Sie Token-Anzahlen aller Modelle und optimieren Sie Ihre Prompts, um Token und Kosten zu reduzieren. Funktionen: Echtzeit-Token-Zählung, Kontextfenster-Überwachung, Batch-Analyse, Prompt-Optimierungsvorschläge und umfassende Kostenprojektionen. Speichern Sie Ihren Analyseverlauf und exportieren Sie Ergebnisse als JSON. Die gesamte Verarbeitung erfolgt lokal in Ihrem Browser für maximale Privatsphäre und Geschwindigkeit. Keine Anmeldung erforderlich.",
+  "longTailKeywords": [
+    "KI Token Zähler online kostenlos ohne Anmeldung",
+    "Token Rechner ChatGPT Claude kostenlos online",
+    "Token zählen vor API Anfrage kostenlos",
+    "GPT-4 Claude API Kosten berechnen online kostenlos",
+    "kostenlose Alternative zu tiktoken online",
+    "Token Zähler GPT-4 Claude Llama ohne Login",
+    "was sind Token in KI Sprachmodellen und wie zählt man sie",
+    "Prompt für weniger Token und niedrigere API Kosten optimieren",
+    "API Kostenrechner OpenAI Claude Gemini kostenlos",
+    "Token Zähler für Prompt Engineering und Entwicklung",
+    "Kontextfenster Überwachung KI GPT Claude online",
+    "bester kostenloser KI Token Zähler Modelle vergleichen"
+  ],
   "instructions": {
-    "title": "So verwenden Sie AI-Prompt-Token-Zähler",
+    "title": "So verwenden Sie den KI-Prompt-Token-Zähler",
     "steps": [
       {
-        "title": "Eingeben Ihre prompt oder text",
-        "description": "Eingeben oder einfügen Ihre AI prompt into die large text area. You can also upload .txt oder .md files by clicking die upload Schaltfläche oder dragging und dropping them. The Tool supports very long texts (100k+ characters) und auto-saves Ihre input zu prevent Daten loss."
+        "title": "Prompt oder Text eingeben",
+        "description": "Tippen oder fügen Sie Ihren KI-Prompt in das große Textfeld ein. Sie können auch .txt- oder .md-Dateien hochladen, indem Sie auf die Upload-Schaltfläche klicken oder sie hineinziehen. Das Tool unterstützt sehr lange Texte (100.000+ Zeichen) und speichert Ihre Eingabe automatisch, um Datenverlust zu vermeiden."
       },
       {
-        "title": "Auswählen Ihre AI model",
-        "description": "Wählen die AI model you're using von die dropdown: GPT-4, GPT-4 Turbo, GPT-3.5, Claude 3/3.5/4, Llama 2/3, Gemini Pro/1.5, oder Mistral. Each model uses a verschieden tokenizer und has verschieden context windows und pricing. The Tool shows die model's context limit und tokenizer eingeben."
+        "title": "KI-Modell auswählen",
+        "description": "Wählen Sie das von Ihnen verwendete KI-Modell aus dem Dropdown-Menü: GPT-4, GPT-4 Turbo, GPT-3.5, Claude 3/3.5/4, Llama 2/3, Gemini Pro/1.5 oder Mistral. Jedes Modell verwendet einen anderen Tokenizer und hat unterschiedliche Kontextfenster und Preise. Das Tool zeigt das Kontextlimit und den Tokenizer-Typ des Modells an."
       },
       {
-        "title": "Anzeigen token count und analysis",
-        "description": "See sofortig results including total tokens, characters, words, token-zu-word ratio, und context window usage. A visuell progress bar shows how much of die model's context you're using (green: 0-50%, yellow: 50-80%, red: 80-100%). Get warnings if you're approaching die limit und suggestions für optimization."
+        "title": "Token-Anzahl und Analyse anzeigen",
+        "description": "Sehen Sie sofortige Ergebnisse einschließlich Gesamt-Token, Zeichen, Wörter, Token-zu-Wort-Verhältnis und Kontextfenster-Nutzung. Ein visueller Fortschrittsbalken zeigt, wie viel des Modellkontexts Sie verwenden (grün: 0-50%, gelb: 50-80%, rot: 80-100%). Erhalten Sie Warnungen, wenn Sie sich dem Limit nähern, sowie Optimierungsvorschläge."
       },
       {
-        "title": "Estimate API costs",
-        "description": "Anzeigen detailed cost estimates based auf die latest API pricing (updated January 2025). See costs per request, per 100 requests, per 1,000, und per 10,000 requests. Adjust die output token ratio slider zu estimate costs including expected model responses. Pricing includes both input und output token costs."
+        "title": "API-Kosten schätzen",
+        "description": "Visualisieren Sie detaillierte Kostenschätzungen basierend auf den aktuellen API-Preisen (aktualisiert Januar 2025). Sehen Sie Kosten pro Anfrage, pro 100 Anfragen, pro 1.000 und pro 10.000 Anfragen. Passen Sie den Schieberegler für das Output-Token-Verhältnis an, um Kosten einschließlich erwarteter Modellantworten zu schätzen. Die Preise beinhalten sowohl Eingabe- als auch Ausgabe-Token-Kosten."
       },
       {
-        "title": "Compare models und optimize",
-        "description": "Switch zu Compare anzeigen zu see token counts und costs across alle models simultaneously. Verwenden Optimize anzeigen zu get an optimized version of Ihre prompt mit reduced tokens. The Tool removes excessive whitespace, repetitive patterns, und unnecessary formatting while preserving meaning."
+        "title": "Modelle vergleichen und optimieren",
+        "description": "Wechseln Sie zur Vergleichsansicht, um Token-Anzahlen und Kosten aller Modelle gleichzeitig zu sehen. Nutzen Sie die Optimierungsansicht, um eine optimierte Version Ihres Prompts mit reduzierten Tokens zu erhalten. Das Tool entfernt übermäßige Leerzeichen, repetitive Muster und unnötige Formatierungen unter Beibehaltung des Sinns."
       }
     ],
     "features": [
-      "Unterstützung für 15+ AI models including GPT-4o, Claude 3.5, Llama 3.1, Gemini 2.0, Mistral",
-      "Accurate token estimation für each model's specific tokenizer",
-      "Real-time token counting as you eingeben (debounced für performance)",
-      "Context window tracking mit visuell progress indicator",
-      "Comprehensive cost estimation mit latest API pricing (January 2025)",
-      "Multi-model comparison zu find die most cost-effective option",
-      "Prompt optimization zu reduce token count",
-      "Token-zu-word ratio analysis für efficiency insights",
-      "Batch processing für multiple prompts",
-      "Automatisch Verlauf saving of letzte 20 analyses",
-      "Auto-speichern input zu prevent Daten loss",
-      "File upload support (.txt, .md) mit drag & drop",
-      "Exportieren results as JSON mit full analysis Daten",
-      "Kopieren results zu clipboard",
-      "Warnings when approaching context limits",
-      "Optimization suggestions für token reduction",
-      "Cost projections für scaled usage (100, 1k, 10k requests)",
-      "Works 100% offline nach dem ersten Laden",
-      "No Daten sent zu external servers"
+      "Unterstützung für 15+ KI-Modelle einschließlich GPT-4o, Claude 3.5, Llama 3.1, Gemini 2.0, Mistral",
+      "Präzise Token-Schätzung für den spezifischen Tokenizer jedes Modells",
+      "Echtzeit-Token-Zählung während der Eingabe",
+      "Kontextfenster-Überwachung mit visuellem Fortschrittsanzeiger",
+      "Umfassende Kostenschätzung mit aktuellen API-Preisen (Januar 2025)",
+      "Multi-Modell-Vergleich zum Finden der kosteneffektivsten Option",
+      "Prompt-Optimierung zur Reduzierung der Token-Anzahl",
+      "Token-zu-Wort-Verhältnis-Analyse für Effizienz-Einblicke",
+      "Automatische Verlaufsspeicherung der letzten 20 Analysen",
+      "Automatisches Speichern der Eingabe zur Vermeidung von Datenverlust",
+      "Datei-Upload-Unterstützung (.txt, .md) mit Drag & Drop",
+      "Ergebnisse als JSON mit vollständigen Analysedaten exportieren",
+      "Ergebnisse in die Zwischenablage kopieren",
+      "Warnungen beim Annähern an Kontextlimits",
+      "Optimierungsvorschläge zur Token-Reduzierung",
+      "Kostenprojektionen für skalierte Nutzung (100, 1k, 10k Anfragen)",
+      "Funktioniert 100% offline nach dem ersten Laden",
+      "Keine Daten werden an externe Server gesendet"
     ],
     "useCases": [
-      "Estimate API costs before deploying AI applications",
-      "Optimize prompts zu reduce token usage und costs",
-      "Wählen die most cost-effective model für Ihre verwenden case",
-      "Überprüfen prompts fit within model context windows",
-      "Analyze token efficiency of verschieden prompt styles",
-      "Budget planning für AI API usage",
-      "Testen prompt Variationen zu find die most token-efficient version",
-      "Calculate costs für batch processing scenarios",
-      "Compare tokenization differences across models",
-      "Optimize long-form content für AI processing",
-      "Debug why prompts are being truncated",
-      "Plan context allocation für RAG applications",
-      "Estimate costs für AI-powered features before Entwicklung",
-      "Monitor token usage trends in prompt engineering workflows"
+      "API-Kosten schätzen, bevor KI-Anwendungen bereitgestellt werden",
+      "Prompts optimieren, um Token-Nutzung und Kosten zu reduzieren",
+      "Das kosteneffektivste Modell für Ihren Anwendungsfall auswählen",
+      "Überprüfen, ob Prompts in die Kontextfenster des Modells passen",
+      "Token-Effizienz verschiedener Prompt-Stile analysieren",
+      "Budgetplanung für die Nutzung von KI-APIs",
+      "Prompt-Variationen testen, um die token-effizienteste Version zu finden",
+      "Kosten für Batch-Verarbeitungsszenarien berechnen",
+      "Tokenisierungsunterschiede zwischen Modellen vergleichen",
+      "Verstehen, was Token in KI-Modellen sind und wie man sie zählt",
+      "Debuggen, warum Prompts abgeschnitten werden",
+      "Kontextzuweisung für RAG-Anwendungen planen",
+      "Kosten für KI-gestützte Funktionen vor der Entwicklung schätzen",
+      "Token-Nutzungstrends in Prompt-Engineering-Workflows überwachen"
     ],
     "proTips": [
-      "Verwenden GPT-3.5 für simple tasks - it's 20x cheaper than GPT-4 mit similar tokenization",
-      "Claude models are very efficient für long contexts - verwenden them für documents",
-      "Prüfen token-zu-word ratio: Werte > 2 indicate inefficient formatting",
-      "Remove markdown formatting if not needed - it adds extra tokens",
-      "Verwenden die Optimize feature before finalizing production prompts",
-      "Compare models in die Compare anzeigen zu find cost savings",
-      "Adjust output token ratio zu estimate full conversation costs",
-      "Speichern häufig verwendet prompts in Verlauf für schnell zugreifen",
-      "Upload files directly instead of kopieren-pasting zu handle very long texts",
-      "Context bei 80%+ means die model might truncate responses - split Ihre prompt",
-      "Gemini 2.0 Flash has 1M token context - excellent für long documents",
-      "For code Generierung, GPT-4 Turbo offers best balance of quality und cost"
+      "Verwenden Sie GPT-3.5 für einfache Aufgaben — es ist 20x günstiger als GPT-4 bei ähnlicher Tokenisierung",
+      "Claude-Modelle sind sehr effizient für lange Kontexte — nutzen Sie sie für Dokumente",
+      "Prüfen Sie das Token-zu-Wort-Verhältnis: Werte > 2 deuten auf ineffiziente Formatierung hin",
+      "Entfernen Sie Markdown-Formatierung wenn nicht nötig — sie fügt zusätzliche Token hinzu",
+      "Nutzen Sie die Optimierungsfunktion, bevor Sie Produktions-Prompts finalisieren",
+      "Vergleichen Sie Modelle in der Vergleichsansicht, um Kosteneinsparungen zu finden",
+      "Passen Sie das Output-Token-Verhältnis an, um vollständige Gesprächskosten zu schätzen",
+      "Speichern Sie häufig verwendete Prompts im Verlauf für schnellen Zugriff",
+      "Laden Sie Dateien direkt hoch statt zu kopieren und einzufügen für sehr lange Texte",
+      "Kontext bei 80%+ bedeutet, dass das Modell Antworten abschneiden könnte — teilen Sie Ihren Prompt",
+      "Gemini 2.0 Flash hat einen 1-Million-Token-Kontext — ausgezeichnet für lange Dokumente",
+      "Für Code-Generierung bietet GPT-4 Turbo die beste Balance aus Qualität und Kosten"
     ],
     "troubleshooting": [
-      "Token counts are estimates: Real API counts may vary slightly (±5%) due zu exact tokenizer implementations. Verwenden this Tool für planning und optimization, not exact billing.",
-      "Context limit warnings: If you see red (80%+), Ihre prompt may be truncated. Split it into multiple requests oder verwenden a model mit larger context window.",
-      "High token-zu-word ratio: Usually caused by special characters, code, oder excessive formatting. The Optimize feature can help reduce this.",
-      "Pricing discrepancies: Prices are updated regularly but prüfen official provider Dokumentation für latest rates. Last updated: January 2025.",
-      "File upload Probleme: Only .txt und .md files are supported. For other Formate, kopieren die text content und einfügen it.",
-      "Verlauf not saving: Aktivieren localStorage in Ihre browser. Verlauf is stored locally und never sent zu servers.",
-      "Slow performance mit very long texts: Token counting für 50k+ character texts may take a few seconds. This is normal und happens in Ihre browser."
+      "Token-Anzahlen sind Schätzungen: Tatsächliche API-Anzahlen können leicht variieren (±5%) aufgrund exakter Tokenizer-Implementierungen",
+      "Kontextlimit-Warnungen: Wenn Sie rot sehen (80%+), könnte Ihr Prompt abgeschnitten werden",
+      "Hohes Token-zu-Wort-Verhältnis: Meist durch Sonderzeichen, Code oder übermäßige Formatierung verursacht",
+      "Preisdiskrepanzen: Preise werden regelmäßig aktualisiert, aber prüfen Sie die offizielle Anbieter-Dokumentation",
+      "Datei-Upload-Probleme: Nur .txt- und .md-Dateien werden unterstützt",
+      "Verlauf wird nicht gespeichert: Aktivieren Sie localStorage in Ihrem Browser",
+      "Langsame Leistung bei sehr langen Texten: Token-Zählung für 50k+ Zeichen kann einige Sekunden dauern"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Einfügen text"
+        "description": "Text einfügen"
       },
       {
         "keys": "Strg+A",
-        "description": "Auswählen alle text"
+        "description": "Alles auswählen"
       },
       {
         "keys": "Strg+C",
-        "description": "Kopieren selected"
+        "description": "Auswahl kopieren"
       }
     ]
   }
