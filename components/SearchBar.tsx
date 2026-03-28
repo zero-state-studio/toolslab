@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { Search, X } from 'lucide-react';
 import { searchTools } from '@/lib/tools';
 import type { Tool } from '@/lib/tools';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -170,13 +171,14 @@ export const SearchBar = forwardRef<SearchBarRef, SearchBarProps>(
                 >
                   <div className="flex items-center gap-3">
                     <div
-                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border text-lg"
+                      className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg border"
                       style={{
                         backgroundColor: `${getCategoryColor(tool.categories[0])}20`,
                         borderColor: `${getCategoryColor(tool.categories[0])}40`,
+                        color: getCategoryColor(tool.categories[0]),
                       }}
                     >
-                      <span>{tool.icon}</span>
+                      <ToolIcon id={tool.id} className="h-5 w-5" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="truncate font-medium text-gray-900 dark:text-white">

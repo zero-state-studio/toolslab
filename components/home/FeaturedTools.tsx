@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, TrendingUp } from 'lucide-react';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 import { tools } from '@/lib/tools';
 import { type Locale, defaultLocale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
@@ -71,8 +72,8 @@ export function FeaturedTools({
 
                   <div className="flex items-start gap-4">
                     {/* Tool icon */}
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-2xl transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                      {tool.icon}
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
+                      <ToolIcon id={tool.id} className="h-6 w-6 text-slate-600 dark:text-slate-400" />
                     </div>
 
                     {/* Tool info */}

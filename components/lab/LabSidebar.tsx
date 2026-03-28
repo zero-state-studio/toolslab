@@ -10,6 +10,7 @@ import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 interface LabSidebarProps {
   selectedToolId: string | null;
@@ -172,9 +173,7 @@ function ToolSidebarItem({
       whileTap={{ scale: 0.98 }}
     >
       <div className="flex min-w-0 flex-1 items-center gap-2">
-        <span className="flex-shrink-0 text-lg" title={tool.name}>
-          {tool.icon}
-        </span>
+        <ToolIcon id={tool.id} className="h-4 w-4 flex-shrink-0 text-slate-500 dark:text-slate-400" />
 
         <AnimatePresence mode="wait">
           {!isCollapsed && (

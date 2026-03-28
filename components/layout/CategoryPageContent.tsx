@@ -16,6 +16,7 @@ import {
   Star,
 } from 'lucide-react';
 import Script from 'next/script';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 // ── Keyword filter helpers ────────────────────────────────────────
 // Merge variant forms into a canonical keyword
@@ -219,7 +220,7 @@ export default function CategoryPageContent({
             {/* Category badge + icon */}
             <div className="mb-3 flex items-center gap-3">
               <div className={`inline-flex rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg`}>
-                <span className="text-xl leading-none">{category.icon}</span>
+                <ToolIcon id={category.id} type="category" className="h-6 w-6" />
               </div>
               <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/25 bg-violet-500/10 px-3 py-1">
                 <span className="font-mono text-xs font-medium uppercase tracking-widest text-violet-600 dark:text-violet-300">
@@ -421,7 +422,7 @@ export default function CategoryPageContent({
                       className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-100 hover:shadow-sm dark:border-white/[0.06] dark:bg-white/[0.02] dark:text-slate-300 dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
                     >
                       <span className={`inline-flex rounded-lg bg-gradient-to-br ${relGradient} p-1 text-white`}>
-                        <span className="text-xs leading-none">{relatedCategory.icon}</span>
+                        <ToolIcon id={relatedCategory.id} type="category" className="h-3.5 w-3.5" />
                       </span>
                       <span>{relatedCategory.name}</span>
                       <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
