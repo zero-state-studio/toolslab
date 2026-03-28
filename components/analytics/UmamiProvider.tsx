@@ -77,6 +77,7 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
     script.src = scriptUrl;
     script.defer = true;
     script.setAttribute('data-website-id', websiteId);
+    script.setAttribute('data-performance', 'true');
     // Note: data-auto-track defaults to 'true' - we let Umami handle infrastructure
     // Our manual events (tool.use, session.*, etc.) will supplement automatic pageviews
 
