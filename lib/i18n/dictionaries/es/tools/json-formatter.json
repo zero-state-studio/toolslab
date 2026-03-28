@@ -2,20 +2,36 @@
   "title": "Formateador JSON",
   "description": "Formatea, valida y embellece datos JSON con resaltado de sintaxis",
   "placeholder": "Pega tu JSON aquí...",
+  "tagline": "Formatea, valida y embellece JSON instantáneamente online",
+  "pageDescription": "Formatea y valida datos JSON con nuestro formateador JSON online gratuito. Depura JSON malformado, embellece código minificado y valida la sintaxis con detección de errores en tiempo real. Perfecto para desarrolladores que trabajan con APIs, archivos de configuración y procesamiento de datos. Sin registro — busca claves, personaliza la sangría y procesa archivos de forma segura en tu navegador.",
+  "longTailKeywords": [
+    "formateador json online gratis",
+    "validar json online gratis",
+    "json formatter sin registro",
+    "cómo formatear json online",
+    "cómo validar sintaxis json",
+    "embellir json online gratis",
+    "formatear json sin instalar software",
+    "formateador json para desarrolladores",
+    "json formatter con resaltado de sintaxis",
+    "formatear json comprimido online",
+    "mejor formateador json gratuito",
+    "depurar json malformado online"
+  ],
   "instructions": {
     "title": "Cómo usar Formateador JSON",
     "steps": [
       {
-        "title": "Pega tu datos JSON",
-        "description": "Copia y pega tu datos JSON en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
+        "title": "Pega tus datos JSON",
+        "description": "Copia y pega tu código JSON en el área de entrada. La herramienta acepta JSON comprimido, formateado o malformado y lo analizará inmediatamente."
       },
       {
-        "title": "Configura las opciones (si disponible)",
-        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
+        "title": "Configura las opciones",
+        "description": "Ajusta el tamaño de sangría, ordena las claves alfabéticamente o elige el modo solo validación para adaptar la salida a tus preferencias."
       },
       {
         "title": "Examina la salida",
-        "description": "La herramienta formateará y embellecerá tu entrada y mostrará el resultado con formato y validación apropiados."
+        "description": "El formateador embellecerá tu JSON con resaltado de sintaxis e indicará cualquier error con su posición exacta en el código."
       },
       {
         "title": "Copia o descarga el resultado",
@@ -30,14 +46,15 @@
       "Copiar al portapapeles con un clic",
       "Descargar resultados como archivo",
       "Validación de sintaxis y resaltado de errores",
+      "Sin instalación requerida — funciona directamente en el navegador",
       "Funciona sin conexión después de la carga inicial"
     ],
     "useCases": [
-      "Limpiar y formatear código desordenado para mejor legibilidad",
+      "Limpiar y formatear JSON desordenado para mejor legibilidad",
       "Estandarizar el estilo de código en equipos de desarrollo",
-      "Depurar estructuras complejas con indentación apropiada",
+      "Depurar estructuras JSON complejas con indentación apropiada",
       "Preparar código para documentación y revisiones de código",
-      "Convertir entre diferentes estándares de formato",
+      "Validar respuestas de API y archivos de configuración JSON",
       "Validar sintaxis antes del despliegue",
       "Procesar datos de fuentes externas o APIs",
       "Generar código listo para producción"
@@ -45,41 +62,29 @@
     "proTips": [
       "Usa atajos de teclado para un flujo de trabajo más rápido",
       "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
-      "Valida tu entrada antes del procesamiento para detectar errores temprano",
-      "Guarda las configuraciones frecuentes como predeterminadas",
+      "Valida tu JSON antes del procesamiento para detectar errores temprano",
+      "Usa la opción ordenar claves para normalizar JSON de distintas fuentes",
       "Usa la función de descarga para archivar archivos procesados",
       "Verifica cuidadosamente la salida antes de usar en producción"
     ],
     "troubleshooting": [
-      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
-      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
+      "Errores de sintaxis: verifica corchetes, comillas o comas faltantes",
+      "Fallo de procesamiento: asegúrate de que el formato de entrada sea JSON válido",
       "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
       "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
       "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
     ],
     "keyboardShortcuts": [
-      {
-        "keys": "Ctrl+V",
-        "description": "Pegar entrada"
-      },
-      {
-        "keys": "Ctrl+Enter",
-        "description": "Procesar/Formatear"
-      },
-      {
-        "keys": "Ctrl+C",
-        "description": "Copiar resultado"
-      },
-      {
-        "keys": "Ctrl+S",
-        "description": "Descargar archivo"
-      }
+      { "keys": "Ctrl+V", "description": "Pegar entrada" },
+      { "keys": "Ctrl+Enter", "description": "Procesar/Formatear" },
+      { "keys": "Ctrl+C", "description": "Copiar resultado" },
+      { "keys": "Ctrl+S", "description": "Descargar archivo" }
     ]
   },
   "features": [
     "Resaltado de sintaxis",
     "Detección de errores",
-    "Impresión bonita",
+    "Salida formateada",
     "Minificación"
   ],
   "meta": {
@@ -99,7 +104,5 @@
   "options": {
     "compact": "Compacto",
     "expanded": "Expandido"
-  },
-  "tagline": "Format, validate and beautify JSON instantly online",
-  "pageDescription": "Format and validate JSON data with our free online JSON formatter. Debug malformed JSON, beautify minified code, and validate syntax with real-time error detection. Perfect for developers working with APIs, config files, and data processing. Search keys, customize indentation, and process large files securely in your browser."
+  }
 }
