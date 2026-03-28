@@ -43,6 +43,7 @@ import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;
@@ -163,7 +164,7 @@ function LabToolCard({
   return (
     <CardContent>
       <div className="mb-3 flex items-start gap-3">
-        <div className="text-xl">{tool.icon}</div>
+        <ToolIcon id={tool.id} className="h-5 w-5 flex-shrink-0 text-slate-600 dark:text-slate-400" />
         <div className="min-w-0 flex-1">
           <h4
             className={cn(
@@ -252,7 +253,7 @@ function PopularToolCard({ tool, index }: { tool: any; index: number }) {
         {/* Top accent line */}
         <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-2xl bg-gradient-to-r from-violet-500/40 to-amber-500/30 transition-opacity group-hover:from-violet-500/80 group-hover:to-amber-500/60" />
 
-        <span className="flex-shrink-0 text-2xl">{tool.icon}</span>
+        <ToolIcon id={tool.id} className="h-6 w-6 flex-shrink-0 text-slate-600 dark:text-slate-400" />
         <div className="min-w-0 flex-1">
           <h3 className="font-semibold text-slate-900 transition-colors group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-400">
             {tool.name}

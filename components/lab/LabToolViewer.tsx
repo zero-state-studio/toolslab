@@ -11,6 +11,7 @@ import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { cn } from '@/lib/utils';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 import Link from 'next/link';
 
 interface LabToolViewerProps {
@@ -57,7 +58,7 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
         <div className="flex items-center justify-between gap-4">
           {/* Tool identity */}
           <div className="flex min-w-0 items-center gap-3">
-            <span className="flex-shrink-0 text-2xl">{tool.icon}</span>
+            <ToolIcon id={tool.id} className="h-6 w-6 flex-shrink-0 text-slate-700 dark:text-slate-300" />
             <div className="min-w-0">
               <div className="flex items-center gap-2">
                 <h1 className="text-base font-bold text-slate-900 dark:text-white sm:text-lg">

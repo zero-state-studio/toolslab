@@ -7,6 +7,7 @@ import { tools } from '@/lib/tools';
 import { useLocale } from '@/hooks/useLocale';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import { useState, useEffect } from 'react';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 // Fix: sort by searchVolume instead of using label === 'popular' (always empty)
 const popularTools = tools
@@ -121,7 +122,7 @@ export function FooterCTA() {
                   href={createHref(tool.route)}
                   className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm transition-all hover:border-violet-400 hover:text-violet-600 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:text-slate-400 dark:shadow-none dark:hover:border-violet-500/30 dark:hover:text-violet-300 dark:hover:shadow-none"
                 >
-                  <span>{tool.icon}</span>
+                  <ToolIcon id={tool.id} className="h-4 w-4" />
                   {tool.name}
                 </Link>
               ))}

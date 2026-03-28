@@ -23,6 +23,7 @@ import { GitHubStars } from '@/components/ui/github-stars';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import { useDictionarySection } from '@/hooks/useDictionary';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -269,7 +270,7 @@ export function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.05]"
                 >
-                  <span className="w-5 text-center">{category.icon}</span>
+                  <ToolIcon id={category.id} type="category" className="h-4 w-4 flex-shrink-0 text-slate-500 dark:text-slate-400" />
                   <span className="flex-1">{category.name}</span>
                   <span className="font-mono text-xs text-slate-400 dark:text-slate-600">
                     {category.tools.length}

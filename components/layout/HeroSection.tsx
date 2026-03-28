@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Search, ArrowRight, Sparkles } from 'lucide-react';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 import { searchTools } from '@/lib/tools';
 import { useRouter } from 'next/navigation';
 
@@ -126,7 +127,7 @@ export function HeroSection() {
                             key={tool.id}
                             className="group flex w-full cursor-pointer items-center rounded-xl p-4 text-left transition-colors hover:bg-white/10"
                           >
-                            <span className="mr-4 text-2xl">{tool.icon}</span>
+                            <ToolIcon id={tool.id} className="mr-4 h-6 w-6 flex-shrink-0 text-white/90" />
                             <div className="flex-1">
                               <div className="font-medium text-white transition-colors group-hover:text-yellow-300">
                                 {tool.name}

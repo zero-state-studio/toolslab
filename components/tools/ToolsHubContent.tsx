@@ -37,6 +37,7 @@ import {
   Terminal,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 // Category icons — same as CategoryGrid
 const categoryIcons: Record<string, React.ElementType> = {
@@ -440,7 +441,7 @@ export default function ToolsHubContent({
                           : 'bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-white/[0.05] dark:text-slate-300'
                       )}
                     >
-                      <span className="text-base leading-none">{cat.icon}</span>
+                      <ToolIcon id={cat.id} type="category" className="h-4 w-4 flex-shrink-0" />
                       {dictionary?.categories?.[cat.id]?.name || cat.name}
                       <span className="font-mono text-[10px] opacity-60">({count})</span>
                     </button>
