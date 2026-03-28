@@ -38,7 +38,8 @@
       "Pretty print formatting",
       "Sample YAML templates",
       "Copy formatted output",
-      "100% browser-based with complete privacy"
+      "100% browser-based with complete privacy",
+      "No software installation needed — validate YAML directly in your browser"
     ],
     "useCases": [
       "Validate Kubernetes manifests before deployment",

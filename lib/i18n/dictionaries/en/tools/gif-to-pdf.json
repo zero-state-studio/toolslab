@@ -34,7 +34,8 @@
       "Preview thumbnails for all GIF images",
       "Completely secure - all processing in browser",
       "No upload limits or file restrictions",
-      "Batch processing of unlimited GIF files"
+      "Batch processing of unlimited GIF files",
+      "No watermarks added — output PDFs are clean and professional"
     ],
     "useCases": [
       "Create PDF presentations from GIF animations",
@@ -52,6 +53,7 @@
       "Choose 'Cover' to fill entire page (may crop GIF edges)",
       "Set margins to 0 for full-bleed GIF pages",
       "Use 'Custom' page size to match your GIF dimensions",
+      "No Adobe Acrobat or additional software needed — works entirely in your browser",
       "Consider converting animated GIFs to video format instead"
     ],
     "troubleshooting": [
