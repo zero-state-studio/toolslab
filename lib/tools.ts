@@ -46,7 +46,7 @@ export const tools: Tool[] = [
       'best free json formatter and validator online',
       'format json without installing code editor',
     ],
-    searchVolume: 8500,
+    searchVolume: 400000,
     label: '',
   },
   {
@@ -79,7 +79,7 @@ export const tools: Tool[] = [
       'best free csv to json converter online tool',
       'csv to json without installing python or node.js',
     ],
-    searchVolume: 7200,
+    searchVolume: 20000,
     label: '',
   },
   {
@@ -120,7 +120,7 @@ export const tools: Tool[] = [
       'best free json to csv converter online',
       'json to csv converter without file upload',
     ],
-    searchVolume: 25000,
+    searchVolume: 32000,
     label: '',
   },
   {
@@ -145,7 +145,7 @@ export const tools: Tool[] = [
       'best free sql formatter online for all dialects',
       'format sql without installing database client software',
     ],
-    searchVolume: 6800,
+    searchVolume: 20000,
     label: '',
   },
   {
@@ -187,7 +187,7 @@ export const tools: Tool[] = [
       'best free xml formatter and validator online',
       'xml formatter without installing xml editor software',
     ],
-    searchVolume: 8900,
+    searchVolume: 40000,
     label: '',
   },
   {
@@ -229,7 +229,7 @@ export const tools: Tool[] = [
       'best free xml to json converter online tool',
       'xml to json converter without installing software',
     ],
-    searchVolume: 12500,
+    searchVolume: 12000,
     label: '',
   },
 
@@ -256,7 +256,7 @@ export const tools: Tool[] = [
       'best free base64 encoder decoder online tool',
       'base64 converter without installing software',
     ],
-    searchVolume: 9200,
+    searchVolume: 150000,
     label: '',
   },
   {
@@ -281,7 +281,7 @@ export const tools: Tool[] = [
       'best free url encoder decoder online tool',
       'url encode decode without installing software',
     ],
-    searchVolume: 7800,
+    searchVolume: 50000,
     label: '',
   },
   {
@@ -319,7 +319,7 @@ export const tools: Tool[] = [
       'html encode decode without installing developer tools',
     ],
     isNew: true,
-    searchVolume: 6200,
+    searchVolume: 12000,
     label: '',
   },
   {
@@ -344,7 +344,7 @@ export const tools: Tool[] = [
       'best free hash generator online md5 sha256 sha512',
       'generate checksum without installing hashing tools',
     ],
-    searchVolume: 6500,
+    searchVolume: 12000,
     label: '',
   },
   {
@@ -370,7 +370,7 @@ export const tools: Tool[] = [
       'decode jwt without installing jwt library locally',
     ],
     isNew: true,
-    searchVolume: 5800,
+    searchVolume: 20000,
     label: '',
   },
   {
@@ -407,7 +407,7 @@ export const tools: Tool[] = [
       'best free bcrypt hash generator online tool',
       'bcrypt generator without running server locally',
     ],
-    searchVolume: 10000,
+    searchVolume: 5000,
     label: '',
   },
   {
@@ -448,7 +448,7 @@ export const tools: Tool[] = [
       'best free base64 to pdf converter online tool',
       'decode base64 pdf without running backend code',
     ],
-    searchVolume: 3200,
+    searchVolume: 7000,
     label: '',
   },
   {
@@ -482,7 +482,7 @@ export const tools: Tool[] = [
       'decode base64 gif from api response',
       'free base64 to gif decoder client side',
     ],
-    searchVolume: 2800,
+    searchVolume: 1800,
     label: '',
   },
   {
@@ -517,7 +517,7 @@ export const tools: Tool[] = [
       'decode base64 png from api response',
       'free base64 to png decoder client side',
     ],
-    searchVolume: 3500,
+    searchVolume: 3800,
     label: '',
   },
   {
@@ -553,7 +553,7 @@ export const tools: Tool[] = [
       'free base64 to jpg no signup no upload',
       'free base64 to jpeg decoder client side',
     ],
-    searchVolume: 4200,
+    searchVolume: 4500,
     label: '',
   },
   {
@@ -590,7 +590,7 @@ export const tools: Tool[] = [
       'free base64 to webp converter no signup required',
       'browser based base64 to webp decoder tool',
     ],
-    searchVolume: 3800,
+    searchVolume: 2200,
     label: '',
   },
   {
@@ -632,7 +632,7 @@ export const tools: Tool[] = [
       'best free excel filter tool online no account',
       'excel data filter without microsoft office subscription',
     ],
-    searchVolume: 8500,
+    searchVolume: 8000,
     label: '',
   },
 
@@ -684,7 +684,7 @@ export const tools: Tool[] = [
       'free text style generator no app download',
       'font changer online with platform compatibility',
     ],
-    searchVolume: 82000,
+    searchVolume: 95000,
     label: '',
   },
   {
@@ -728,7 +728,7 @@ export const tools: Tool[] = [
       'best free linkedin post formatter online tool',
       'linkedin text formatter without third party app',
     ],
-    searchVolume: 12000,
+    searchVolume: 5000,
     label: '',
   },
   {
@@ -764,7 +764,7 @@ export const tools: Tool[] = [
       'best free diff checker online for developers',
       'compare texts without installing git or diff tool',
     ],
-    searchVolume: 5200,
+    searchVolume: 60000,
     label: '',
   },
   {
@@ -801,7 +801,7 @@ export const tools: Tool[] = [
       'best free markdown preview editor online tool',
       'preview markdown without installing vscode or obsidian',
     ],
-    searchVolume: 4800,
+    searchVolume: 30000,
     label: '',
   },
   {
@@ -826,7 +826,7 @@ export const tools: Tool[] = [
       'best free online regex tester and debugger',
       'test regex without installing code editor or ide',
     ],
-    searchVolume: 7500,
+    searchVolume: 39000,
     label: '',
   },
 
@@ -853,7 +853,7 @@ export const tools: Tool[] = [
       'best free uuid guid generator online tool',
       'uuid generator without signing up or creating account',
     ],
-    searchVolume: 8200,
+    searchVolume: 100000,
     label: '',
   },
   {
@@ -878,7 +878,7 @@ export const tools: Tool[] = [
       'best free password generator online no account',
       'password generator without installing password manager',
     ],
-    searchVolume: 9500,
+    searchVolume: 350000,
     label: '',
   },
   {
@@ -917,7 +917,7 @@ export const tools: Tool[] = [
       'best free qr code generator online no account',
       'qr code creator without installing app or software',
     ],
-    searchVolume: 9800,
+    searchVolume: 550000,
     label: '',
   },
   {
@@ -951,20 +951,20 @@ export const tools: Tool[] = [
       'pdf',
     ],
     longTailKeywords: [
-      'barcode generator online free no signup',
-      'generate ean-13 upc-a barcode online free',
-      'barcode generator free download png svg',
-      'create product barcode free online no registration',
-      'how to generate ean barcode for product label',
-      'how to create code 128 barcode for shipping labels',
-      'how to make isbn barcode for book publishing free',
-      'barcode generator with batch csv import free',
-      'barcode generator for inventory and retail labels',
-      'barcode maker with label designer templates free',
-      'best free barcode generator online for retail',
-      'barcode generator without paid subscription or software',
+      'free online barcode generator no signup required',
+      'bulk barcode generator from excel csv free',
+      'ean-13 barcode generator free online',
+      'upc-a barcode generator online free',
+      'code 128 barcode generator free download png svg',
+      'how to create barcode for my product free',
+      'barcode generator for retail product labels',
+      'barcode generator for inventory management free',
+      'batch barcode creator from csv file online',
+      'barcode label maker print at home free',
+      'isbn barcode generator free online no registration',
+      'barcode generator high resolution print quality 300 dpi',
     ],
-    searchVolume: 8900,
+    searchVolume: 200000,
     label: '',
   },
 
@@ -1019,7 +1019,7 @@ export const tools: Tool[] = [
       'best free online color picker for developers',
       'color picker without installing software browser based',
     ],
-    searchVolume: 12500,
+    searchVolume: 350000,
     label: '',
   },
   {
@@ -1066,7 +1066,7 @@ export const tools: Tool[] = [
       'best free color converter for web designers',
       'color converter with figma color values',
     ],
-    searchVolume: 18500,
+    searchVolume: 45000,
     label: '',
   },
   {
@@ -1092,7 +1092,7 @@ export const tools: Tool[] = [
       'compress images without installing image editing software',
     ],
     isNew: true,
-    searchVolume: 4500,
+    searchVolume: 150000,
     label: 'coming-soon',
   },
   {
@@ -1128,7 +1128,7 @@ export const tools: Tool[] = [
       'favicon maker without installing image editing software',
     ],
     isNew: true,
-    searchVolume: 3200,
+    searchVolume: 32000,
     label: '',
   },
   {
@@ -1170,7 +1170,7 @@ export const tools: Tool[] = [
       'css gradient generator for ui design backgrounds',
       'css gradient maker online free no login',
     ],
-    searchVolume: 15000,
+    searchVolume: 40000,
     label: '',
   },
 
@@ -1219,7 +1219,7 @@ export const tools: Tool[] = [
       'best free json validator online with schema support',
       'validate json without installing code editor or tools',
     ],
-    searchVolume: 8400,
+    searchVolume: 90000,
     label: '',
   },
   {
@@ -1255,7 +1255,7 @@ export const tools: Tool[] = [
       'best free crontab builder online no account needed',
       'build cron schedule without remembering cron syntax',
     ],
-    searchVolume: 5500,
+    searchVolume: 12000,
     label: '',
   },
   {
@@ -1301,7 +1301,7 @@ export const tools: Tool[] = [
       'best free list diff tool online',
       'list comparison tool for data analysis',
     ],
-    searchVolume: 18000,
+    searchVolume: 45000,
     label: '',
   },
   {
@@ -1347,7 +1347,7 @@ export const tools: Tool[] = [
       'convert api curl example to production code',
       'browser based curl to code converter private secure',
     ],
-    searchVolume: 45000,
+    searchVolume: 10000,
     label: '',
   },
   {
@@ -1394,7 +1394,7 @@ export const tools: Tool[] = [
       'json to typescript with enum detection and readonly',
       'convert json schema to typescript interfaces online',
     ],
-    searchVolume: 35000,
+    searchVolume: 11000,
     label: '',
   },
   {
@@ -1440,6 +1440,7 @@ export const tools: Tool[] = [
   },
   {
     id: 'js-minifier',
+
     name: 'JavaScript Minifier/Beautifier',
     description:
       'Minify, beautify and optimize JavaScript code with ES6+ support, source maps, and advanced compression',
@@ -1528,7 +1529,7 @@ export const tools: Tool[] = [
       'best free yaml to json converter online',
       'yaml to json converter with syntax validation',
     ],
-    searchVolume: 30000,
+    searchVolume: 18000,
     label: '',
   },
   {
@@ -1570,7 +1571,7 @@ export const tools: Tool[] = [
       'yaml validator with duplicate key detection online',
       'check yaml file for errors without installing software',
     ],
-    searchVolume: 15000,
+    searchVolume: 11000,
     label: '',
   },
   {
@@ -1614,7 +1615,7 @@ export const tools: Tool[] = [
       'current unix timestamp to human readable date',
       'unix epoch time converter without signup instant',
     ],
-    searchVolume: 15000,
+    searchVolume: 20000,
     label: '',
   },
   {
@@ -1665,7 +1666,7 @@ export const tools: Tool[] = [
       'best free eml to html converter online tool',
       'eml converter without installing email software',
     ],
-    searchVolume: 12000,
+    searchVolume: 2000,
     label: '',
   },
   {
@@ -1711,7 +1712,7 @@ export const tools: Tool[] = [
       'ai api cost estimator multiple models comparison',
       'count tokens for prompt engineering and optimization',
     ],
-    searchVolume: 35000,
+    searchVolume: 20000,
     label: '',
   },
 
@@ -1756,7 +1757,7 @@ export const tools: Tool[] = [
       'best free pdf to word converter online tool',
       'convert pdf to word without adobe acrobat',
     ],
-    searchVolume: 12000,
+    searchVolume: 1000000,
     label: '',
   },
   {
@@ -1802,7 +1803,7 @@ export const tools: Tool[] = [
       'best free image to pdf converter online tool',
       'convert multiple photos to pdf a4 letter format',
     ],
-    searchVolume: 15000,
+    searchVolume: 300000,
     label: '',
   },
   {
@@ -1845,7 +1846,7 @@ export const tools: Tool[] = [
       'merge jpg files into single pdf online',
       'secure browser based jpg to pdf converter',
     ],
-    searchVolume: 150000,
+    searchVolume: 1500000,
     label: '',
   },
   {
@@ -1887,7 +1888,7 @@ export const tools: Tool[] = [
       'convert png screenshots to pdf document free',
       'secure browser based png to pdf converter',
     ],
-    searchVolume: 100000,
+    searchVolume: 600000,
     label: '',
   },
   {
@@ -1928,7 +1929,7 @@ export const tools: Tool[] = [
       'best free gif to pdf converter no watermark',
       'gif to pdf converter without adobe acrobat',
     ],
-    searchVolume: 20000,
+    searchVolume: 5000,
     label: '',
   },
 
@@ -1959,7 +1960,7 @@ export const tools: Tool[] = [
       'messaging',
       'social media',
     ],
-    searchVolume: 75000,
+    searchVolume: 70000,
     longTailKeywords: [
       'whatsapp link generator online free',
       'create whatsapp click to chat link',
@@ -2020,7 +2021,7 @@ export const tools: Tool[] = [
       'utm parameter generator with presets and export',
       'best free utm builder alternative to google',
     ],
-    searchVolume: 45000,
+    searchVolume: 35000,
     label: '',
   },
   {
@@ -2062,7 +2063,7 @@ export const tools: Tool[] = [
       'create youtube chapters for long videos tutorials',
       'youtube video chapter maker with time converter',
     ],
-    searchVolume: 35000,
+    searchVolume: 6000,
     label: '',
   },
   {
@@ -2109,7 +2110,7 @@ export const tools: Tool[] = [
       'best free chmod calculator online no registration',
       'chmod calculator without installing linux terminal',
     ],
-    searchVolume: 12000,
+    searchVolume: 11000,
     label: '',
   },
   {
@@ -2159,7 +2160,7 @@ export const tools: Tool[] = [
       'htaccess generator with gzip compression and caching',
       'htaccess generator for beginners no coding required',
     ],
-    searchVolume: 18000,
+    searchVolume: 8000,
     label: '',
   },
   {
@@ -2201,7 +2202,7 @@ export const tools: Tool[] = [
       'generate dummy text for web design',
       'lipsum generator with custom length',
     ],
-    searchVolume: 12000,
+    searchVolume: 12500,
     label: '',
   },
   {
@@ -2247,7 +2248,7 @@ export const tools: Tool[] = [
       'best free string case converter for developers',
       'convert naming convention without writing code',
     ],
-    searchVolume: 11000,
+    searchVolume: 25000,
     label: '',
   },
   {
@@ -2290,7 +2291,7 @@ export const tools: Tool[] = [
       'best free binary to text converter online tool',
       'binary decoder without installing programming environment',
     ],
-    searchVolume: 6500,
+    searchVolume: 27000,
     label: '',
   },
   {
@@ -2332,7 +2333,7 @@ export const tools: Tool[] = [
       'best free javascript object to json converter online',
       'convert js object to json without running node.js',
     ],
-    searchVolume: 8500,
+    searchVolume: 6000,
     label: '',
   },
   {
@@ -2377,7 +2378,7 @@ export const tools: Tool[] = [
       'best free html to markdown converter online',
       'html to markdown without installing node packages',
     ],
-    searchVolume: 9000,
+    searchVolume: 10000,
     label: '',
   },
 ];

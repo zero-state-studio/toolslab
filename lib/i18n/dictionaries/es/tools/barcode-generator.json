@@ -24,7 +24,7 @@
     ],
     "features": [
       "Más de 20 formatos incluyendo EAN-13, UPC-A, Code 128, Code 39, ISBN, QR Code, Data Matrix",
-      "Validación en tiempo real con cálculo automático de checksum",
+      "Validación en tiempo real con cálculo automático de dígito de control (checksum)",
       "Múltiples formatos de exportación: PNG (72-600 DPI), SVG, PDF, EPS, JPG",
       "Tamaño, colores, márgenes, rotación y texto personalizables",
       "Generación por lotes desde archivos CSV/TXT con exportación ZIP",
@@ -32,13 +32,13 @@
       "Prueba de escáner con webcam para verificar legibilidad",
       "Diseñador de etiquetas con plantillas",
       "Decodificador de códigos - sube imagen para decodificar códigos existentes",
-      "Procesamiento 100% en el navegador - tus datos nunca salen de tu dispositivo"
+      "100% online, gratis y sin registro - tus datos nunca salen de tu dispositivo"
     ],
     "useCases": [
       "Crear etiquetas de productos para retail y e-commerce con EAN-13/UPC-A",
       "Generar códigos ISBN para libros y publicaciones",
       "Diseñar etiquetas de envío con Code 128 para logística",
-      "Crear sistemas de seguimiento de inventario",
+      "Crear sistemas de seguimiento de inventarios y gestión de stock",
       "Generar códigos QR para autenticación de productos",
       "Diseñar etiquetas de precio para tiendas",
       "Crear insignias de eventos y entradas con numeración secuencial",
@@ -57,7 +57,7 @@
     "troubleshooting": [
       "El escáner no lee: Aumenta tamaño, verifica zonas silenciosas, asegura contraste, calidad de impresión 300+ DPI",
       "Error de datos inválidos: Cada formato tiene limitaciones específicas - revisa el panel de información",
-      "Checksum no coincide: Usa función de cálculo automático",
+      "Dígito de control no coincide: Usa función de cálculo automático de checksum",
       "Código muy grande: Cambia a formato más compacto (UPC-E en lugar de UPC-A)",
       "Colores no funcionan: Asegura alto contraste - barras oscuras en fondo claro",
       "Generación batch falla: Verifica formato CSV - un valor por línea, sin encabezados, codificación UTF-8"
@@ -87,8 +87,22 @@
   },
   "meta": {
     "title": "Generador Códigos de Barras",
-    "description": "Genere códigos de barras en más de 20 formatos: EAN-13, UPC-A, Code 128, ISBN, QR Code. Generación por lotes con descarga PNG, SVG o PDF. Gratis."
+    "description": "Generador de códigos de barras online gratis, sin registro. Cree EAN-13, UPC-A, Code 128, ISBN y más. Generación por lotes CSV, descarga PNG, SVG y PDF."
   },
   "tagline": "Genera códigos de barras profesionales para retail, inventario y envíos con personalización avanzada",
-  "pageDescription": "Generador profesional de códigos de barras con soporte para todos los formatos comerciales: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) y 2D (QR Code, Data Matrix, PDF417, Aztec). Incluye generación por lotes desde CSV, diseñador de etiquetas, verificación de escáner, múltiples formatos de exportación (PNG hasta 600 DPI, SVG, PDF, EPS), personalización de colores y decodificador. Perfecto para etiquetas de productos retail, gestión de inventario, logística de envíos y seguimiento farmacéutico. 100% basado en navegador sin carga de datos."
+  "pageDescription": "Generador profesional de códigos de barras online gratis, sin registro. Soporte para todos los formatos comerciales: 1D (EAN-13 con cálculo automático de dígito de control, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) y 2D (QR Code, Data Matrix, PDF417, Aztec). Incluye generación por lotes desde CSV, diseñador de etiquetas para imprimir con marcas de corte, verificación de escáner, múltiples formatos de exportación (PNG hasta 600 DPI, SVG, PDF, EPS), personalización de colores y decodificador. Perfecto para etiquetas de productos retail, gestión de inventarios, logística de envíos y seguimiento farmacéutico. Crea códigos de barras ISBN para libros, etiquetas para imprimir y sistemas de inventario. 100% basado en navegador sin carga de datos.",
+  "longTailKeywords": [
+    "generador de códigos de barras online gratis",
+    "generador de código de barras ean 13 gratis",
+    "crear código de barras para productos gratis",
+    "cómo crear código de barras online gratis",
+    "generador código de barras code 128 gratis",
+    "código de barras gratis para imprimir etiquetas",
+    "generador de códigos de barras por lotes gratis",
+    "crear código de barras ean 13 con dígito de control",
+    "generador código de barras para inventarios gratis",
+    "generador código de barras isbn para libros gratis",
+    "generador código de barras png svg descargar gratis",
+    "crear código de barras online sin registro"
+  ]
 }
