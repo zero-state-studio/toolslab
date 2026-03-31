@@ -2,6 +2,20 @@
   "title": "Formateur SQL",
   "description": "Formatez et embellissez les requêtes SQL",
   "placeholder": "Collez votre requête SQL ici...",
+  "longTailKeywords": [
+    "formateur sql en ligne gratuit",
+    "formater requête sql en ligne",
+    "comment formater une requête sql en ligne",
+    "comment indenter du sql automatiquement",
+    "meilleur formateur sql gratuit",
+    "formater sql sans installer de logiciel",
+    "formater requête mysql en ligne",
+    "formater requête postgresql en ligne",
+    "embellisseur sql en ligne sans inscription",
+    "formateur sql avec coloration syntaxique",
+    "indenter sql en ligne gratuit",
+    "outil sql en ligne sans installation"
+  ],
   "instructions": {
     "title": "Comment utiliser le Formateur SQL",
     "steps": [
@@ -41,9 +55,9 @@
       "Standardiser le style de code SQL dans les équipes de développement",
       "Déboguer des requêtes complexes avec une indentation appropriée",
       "Préparer des scripts SQL pour la documentation et la revue de code",
-      "Convertir entre différents standards de formatage SQL",
-      "Nettoyer le SQL auto-généré des constructeurs de requêtes",
+      "Nettoyer le SQL auto-généré des constructeurs de requêtes et ORM",
       "Formater les procédures stockées et les scripts de migration de base de données",
+      "Indenter du SQL directement dans le navigateur sans installer de logiciel ni s'inscrire",
       "Préparer les requêtes SQL pour le déploiement en production"
     ],
     "proTips": [
@@ -51,7 +65,7 @@
       "Choisissez une indentation de 4 espaces pour un équilibre optimal entre lisibilité et compacité",
       "Sélectionnez le dialecte SQL correct pour garantir une reconnaissance appropriée des mots-clés",
       "Formatez les scripts volumineux par sections si les performances ralentissent",
-      "Préservez les commentaires originaux - ils contiennent un contexte important",
+      "Préservez les commentaires originaux — ils contiennent un contexte important pour les requêtes complexes",
       "Utilisez un formatage cohérent dans toute votre base de code"
     ],
     "troubleshooting": [
@@ -85,7 +99,7 @@
     ]
   },
   "tagline": "Formatez et embellissez les requêtes SQL avec coloration syntaxique",
-  "pageDescription": "Formatez et embellissez les requêtes SQL avec indentation appropriée, mise en évidence des mots-clés et validation de syntaxe. Parfait pour les développeurs de bases de données, les analystes de données et l'optimisation SQL. Prend en charge plusieurs dialectes SQL (MySQL, PostgreSQL, SQLite) avec des options de formatage personnalisables. Formateur SQL gratuit et sécurisé basé sur navigateur sans téléchargement de données.",
+  "pageDescription": "Formatez et embellissez les requêtes SQL avec indentation appropriée, mise en évidence des mots-clés et validation de syntaxe. Parfait pour les développeurs de bases de données et les analystes de données. Prend en charge plusieurs dialectes SQL (MySQL, PostgreSQL, SQLite). Formateur SQL gratuit en ligne, sans inscription ni installation — traitement sécurisé directement dans votre navigateur.",
   "meta": {
     "title": "Formateur SQL - Outil en Ligne Gratuit",
     "description": "Formatez et embellissez les requêtes SQL en ligne avec coloration syntaxique. Support MySQL, PostgreSQL, SQLite et autres dialectes. Outil SQL gratuit en ligne."

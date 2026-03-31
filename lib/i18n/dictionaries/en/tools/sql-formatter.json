@@ -7,78 +7,86 @@
     "steps": [
       {
         "title": "Paste your SQL query",
-        "description": "Copy and paste your SQL query into the input area. The tool accepts any format and will process it immediately."
+        "description": "Copy and paste your SQL query or script into the input area. The formatter accepts minified, compressed, or unformatted SQL from any database system."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Select your SQL dialect",
+        "description": "Choose your database system (MySQL, PostgreSQL, SQLite, SQL Server) for dialect-specific formatting and correct keyword recognition."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will format and beautify your input and display the result with proper formatting and validation."
+        "title": "Configure formatting options",
+        "description": "Customize indentation size (2 or 4 spaces), keyword casing (uppercase/lowercase), and line-break preferences to match your coding standards."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the formatted SQL to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Review the formatted output",
+        "description": "The formatter validates SQL syntax and displays your query with proper indentation, keyword highlighting, and improved readability — ready for code reviews and documentation."
+      },
+      {
+        "title": "Copy or download the result",
+        "description": "Copy the formatted SQL to your clipboard for immediate use, or download it as a .sql file for storage and sharing."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Multi-dialect support (MySQL, PostgreSQL, SQLite, SQL Server)",
+      "Intelligent keyword recognition with uppercase/lowercase conversion",
+      "Adjustable indentation (2 spaces, 4 spaces, or tab)",
+      "SQL syntax validation with error highlighting",
+      "Parsing of complex queries including CTEs, subqueries, and joins",
+      "Comment preservation and formatting",
+      "Handles large SQL scripts up to 5MB",
+      "Export formatted SQL as a downloadable file"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Format messy SQL queries for improved readability and code reviews",
+      "Standardize SQL code style across development teams",
+      "Debug complex queries with proper indentation and structure",
+      "Prepare SQL scripts for documentation and deployment",
+      "Clean up auto-generated SQL from ORM query builders",
+      "Format stored procedures and database migration scripts",
+      "Beautify SQL without installing a database client or IDE",
+      "Validate SQL syntax before running queries in production"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Use uppercase keywords for better readability — SQL conventions capitalize SELECT, FROM, WHERE",
+      "Choose 4-space indentation for a good balance between readability and compactness",
+      "Select the correct SQL dialect to ensure proper keyword recognition for your database",
+      "Format large scripts in sections if performance slows down",
+      "Keep original comments intact — they provide important context for complex queries",
+      "Use consistent formatting across your entire SQL codebase"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Syntax errors: Check for missing semicolons, unclosed parentheses, or unmatched quotes",
+      "Keywords not recognized: Verify the selected SQL dialect matches your database system",
+      "Formatting issues: Ensure the SQL is syntactically valid before formatting",
+      "Slow performance: Split very large scripts into smaller chunks",
+      "Missing features: Some dialect-specific advanced syntax may require manual formatting"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Paste input"
+        "description": "Paste SQL query"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Process/Format"
+        "description": "Format SQL"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Select all formatted output"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copy result"
+        "description": "Copy formatted SQL"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Download file"
+        "description": "Download SQL file"
       }
     ]
   },
   "meta": {
     "title": "SQL Formatter - Beautify & Format SQL Queries Free Online",
-    "description": "Format and beautify SQL queries online free — MySQL, PostgreSQL, SQLite, syntax highlighting. No signup required. Instant, secure browser-based SQL formatter tool."
+    "description": "Format and beautify SQL queries online free. MySQL, PostgreSQL, SQLite supported. Syntax highlighting, auto-indentation. No signup or installation needed."
   },
   "tagline": "Format and beautify SQL queries with syntax highlighting",
   "pageDescription": "Format and beautify SQL queries with proper indentation, keyword highlighting, and syntax validation. Perfect for database developers, data analysts, and SQL optimization. Supports multiple SQL dialects (MySQL, PostgreSQL, SQLite) with customizable formatting options. Free online with no signup required — secure browser-based SQL formatter with no data uploads."

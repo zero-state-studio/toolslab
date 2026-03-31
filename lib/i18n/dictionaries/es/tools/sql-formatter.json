@@ -2,6 +2,20 @@
   "title": "Formateador SQL",
   "description": "Formatea y embellece consultas SQL",
   "placeholder": "Pega tu consulta SQL aquí...",
+  "longTailKeywords": [
+    "formateador sql online gratis",
+    "formatear sql online",
+    "formateador sql en línea gratuito",
+    "cómo formatear consultas sql online",
+    "mejor formateador sql gratuito",
+    "formatear sql sin instalar software",
+    "formatear query mysql online gratis",
+    "formatear sql directamente en el navegador",
+    "formateador sql sin registro",
+    "formateador sql con resaltado de sintaxis",
+    "indentar sql online gratis",
+    "formatear sql postgresql online gratis"
+  ],
   "instructions": {
     "title": "Cómo usar el Formateador SQL",
     "steps": [
@@ -41,9 +55,9 @@
       "Estandarizar el estilo de código SQL en equipos de desarrollo",
       "Depurar consultas complejas con sangría adecuada",
       "Preparar scripts SQL para documentación y revisión de código",
-      "Convertir entre diferentes estándares de formato SQL",
-      "Limpiar SQL auto-generado de constructores de consultas",
+      "Limpiar SQL auto-generado de constructores de consultas y ORM",
       "Formatear procedimientos almacenados y scripts de migración de base de datos",
+      "Indentar SQL directamente en el navegador sin instalar software ni registrarse",
       "Preparar consultas SQL para despliegue en producción"
     ],
     "proTips": [
@@ -51,7 +65,7 @@
       "Elige sangría de 4 espacios para un equilibrio óptimo entre legibilidad y compacidad",
       "Selecciona el dialecto SQL correcto para garantizar el reconocimiento adecuado de palabras clave",
       "Formatea scripts grandes en secciones si el rendimiento se vuelve lento",
-      "Preserva los comentarios originales - contienen contexto importante",
+      "Preserva los comentarios originales - contienen contexto importante para consultas complejas",
       "Usa formato consistente en toda tu base de código"
     ],
     "troubleshooting": [
@@ -85,9 +99,9 @@
     ]
   },
   "tagline": "Formatea y embellece consultas SQL con resaltado de sintaxis",
-  "pageDescription": "Formatea y embellece consultas SQL con sangría adecuada, resaltado de palabras clave y validación de sintaxis. Perfecto para desarrolladores de bases de datos, analistas de datos y optimización SQL. Soporta múltiples dialectos SQL (MySQL, PostgreSQL, SQLite) con opciones de formato personalizables. Formateador SQL gratuito y seguro basado en navegador sin carga de datos.",
+  "pageDescription": "Formatea y embellece consultas SQL con sangría adecuada, resaltado de palabras clave y validación de sintaxis. Perfecto para desarrolladores de bases de datos, analistas de datos y optimización SQL. Soporta múltiples dialectos SQL (MySQL, PostgreSQL, SQLite) con opciones de formato personalizables. Formatea SQL directamente en el navegador sin instalar software ni registrarte — formateador SQL gratuito y seguro sin carga de datos.",
   "meta": {
     "title": "Formateador SQL - Herramienta Online Gratuita",
-    "description": "Formatea y embellece consultas SQL en línea. Soporte para múltiples dialectos SQL. Herramienta formateadora SQL gratuita."
+    "description": "Formatea y embellece consultas SQL en línea gratis. MySQL, PostgreSQL, SQLite. Indentación automática, resaltado de sintaxis. Sin registro ni instalación."
   }
 }
