@@ -32,20 +32,21 @@
       "Test scanner con webcam per verificare la leggibilità",
       "Designer di etichette con template per retail, spedizioni e inventario",
       "Decoder di codici a barre - carica immagine per decodificare codici esistenti",
-      "Elaborazione 100% lato client - i tuoi dati non lasciano mai il browser"
+      "Elaborazione 100% lato client senza registrazione - i tuoi dati non lasciano mai il browser"
     ],
     "useCases": [
       "Crea etichette prodotto per retail ed e-commerce con EAN-13/UPC-A",
       "Genera codici a barre ISBN per libri e pubblicazioni",
-      "Progetta etichette di spedizione con Code 128 per logistica e magazzini",
-      "Crea sistemi di tracciamento inventario con generazione batch di codici",
+      "Progetta etichette di spedizione con Code 128 per logistica e magazzino",
+      "Crea sistemi di tracciamento per inventario e magazzino con generazione batch di codici",
       "Genera QR code per autenticazione prodotto e tracciabilità",
       "Progetta cartellini prezzo ed etichette scaffale per negozi",
       "Crea badge eventi e biglietti con numerazione sequenziale",
-      "Genera etichette farmaceutiche con Pharmacode e Data Matrix"
+      "Genera etichette farmaceutiche con Pharmacode e Data Matrix",
+      "Stampare etichette con codice a barre per prodotti, scaffali e spedizioni in pochi click"
     ],
     "proTips": [
-      "Usa il formato SVG per codici che devono scalare a qualsiasi dimensione senza perdita di qualità",
+      "Usa il formato SVG vettoriale per codici che devono scalare a qualsiasi dimensione senza perdita di qualità",
       "Abilita le zone silenziose (margini) per migliorare la leggibilità dello scanner - la maggior parte richiede almeno 2,5mm",
       "Testa il tuo codice con lo scanner integrato prima di stampare per evitare costose ristampe",
       "Usa Code 128 per dati alfanumerici - è il codice 1D più efficiente in termini di spazio",
@@ -90,5 +91,19 @@
     "description": "Genera codici a barre in oltre 20 formati: EAN-13, UPC-A, Code 128, ISBN, QR Code, Data Matrix. Generazione batch con download come PNG, SVG o PDF. Gratuito."
   },
   "tagline": "Genera codici a barre professionali per retail, inventario e spedizioni con personalizzazione avanzata",
-  "pageDescription": "Generatore professionale di codici a barre con supporto per tutti i formati commerciali: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) e 2D (QR Code, Data Matrix, PDF417, Aztec). Include generazione batch da CSV, designer di etichette con template, verifica scanner, formati di esportazione multipli (PNG fino a 600 DPI, SVG, PDF, EPS), personalizzazione colori con verifica contrasto e decoder di codici. Perfetto per etichette prodotto retail, gestione inventario, logistica spedizioni e tracciamento farmaceutico. 100% basato su browser senza caricamento dati."
+  "pageDescription": "Generatore professionale di codici a barre con supporto per tutti i formati commerciali: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) e 2D (QR Code, Data Matrix, PDF417, Aztec). Include generazione batch da CSV, designer di etichette con template, verifica scanner, formati di esportazione multipli (PNG fino a 600 DPI, SVG, PDF, EPS), personalizzazione colori con verifica contrasto e decoder di codici. Perfetto per etichette prodotto retail, gestione inventario, logistica spedizioni e tracciamento farmaceutico. 100% basato su browser senza caricamento dati.",
+  "longTailKeywords": [
+    "generatore codici a barre online gratis",
+    "generatore di codici a barre ean 13 gratuito",
+    "creare codice a barre per prodotti gratis",
+    "come creare codice a barre online gratis",
+    "generatore barcode code 128 online gratuito",
+    "generatore codici a barre vettoriale svg gratis",
+    "stampare etichette con codice a barre gratis",
+    "generatore codici a barre batch da csv",
+    "creare codice a barre ean 13 con checksum",
+    "generatore barcode per inventario e magazzino",
+    "generatore codice a barre isbn per libri gratis",
+    "creare codice a barre senza registrazione online"
+  ]
 }

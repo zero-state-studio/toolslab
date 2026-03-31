@@ -87,8 +87,22 @@
   },
   "meta": {
     "title": "Gerador Código de Barras - Grátis",
-    "description": "Gere códigos de barras em mais de 20 formatos: EAN-13, UPC-A, Code 128, ISBN, QR Code. Geração em lote com download como PNG, SVG ou PDF. Gratuito."
+    "description": "Gerador de código de barras online grátis, sem cadastro. Crie EAN-13, UPC-A, Code 128, ISBN, QR Code e mais. Geração em lote CSV, download PNG, SVG ou PDF."
   },
   "tagline": "Gere códigos de barras profissionais para varejo, inventário e envios com personalização avançada",
-  "pageDescription": "Gerador profissional de códigos de barras com suporte para todos os formatos comerciais: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) e 2D (QR Code, Data Matrix, PDF417, Aztec). Inclui geração em lote de CSV, designer de etiquetas, verificação de scanner, múltiplos formatos de exportação (PNG até 600 DPI, SVG, PDF, EPS), personalização de cores e decodificador. Perfeito para etiquetas de produtos de varejo, gestão de inventário, logística de envios e rastreamento farmacêutico. 100% baseado em navegador sem upload de dados."
+  "pageDescription": "Gerador profissional de códigos de barras online grátis, sem cadastro, com suporte para todos os formatos comerciais: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) e 2D (QR Code, Data Matrix, PDF417, Aztec). Inclui geração em lote de CSV, geração sequencial, designer de etiquetas para produtos e inventário, verificação de scanner, múltiplos formatos de exportação (PNG até 600 DPI, SVG, PDF, EPS), personalização de cores e decodificador. Perfeito para etiquetas de produtos de varejo, gestão de inventário, logística de envios e rastreamento farmacêutico. 100% baseado em navegador sem upload de dados.",
+  "longTailKeywords": [
+    "gerador de código de barras online grátis",
+    "gerador de código de barras ean-13 grátis online",
+    "criar código de barras para produtos grátis",
+    "como criar código de barras online grátis",
+    "gerador código de barras code 128 grátis",
+    "gerador de código de barras para etiquetas grátis",
+    "gerador de código de barras em lote csv grátis",
+    "gerador de código de barras sequencial grátis",
+    "criar código de barras para inventário grátis",
+    "gerador código de barras isbn para livros grátis",
+    "gerador código de barras png svg download grátis",
+    "criar código de barras online sem cadastro"
+  ]
 }
