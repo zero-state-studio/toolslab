@@ -1,0 +1,50 @@
+name: "⚡ Feature / Miglioramento"
+description: "Miglioramento di tool esistente, bug fix, o altra modifica"
+title: "[FEATURE] "
+labels: ["claude-code", "enhancement"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: "Tipo"
+      options:
+        - "Miglioramento tool esistente"
+        - "Bug fix"
+        - "Performance / ottimizzazione"
+        - "Refactoring"
+        - "SEO / contenuto"
+        - "i18n / traduzione"
+        - "Testing"
+        - "Altro"
+    validations:
+      required: true
+  - type: input
+    id: area
+    attributes:
+      label: "Tool o area coinvolta"
+      placeholder: "color-picker / components/tools/implementations/ColorPicker.tsx"
+  - type: textarea
+    id: what
+    attributes:
+      label: "Cosa deve fare"
+      description: "Descrizione precisa della modifica"
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: "File da modificare"
+      placeholder: |
+        - components/tools/implementations/ColorPicker.tsx
+        - lib/tools/color-picker.ts
+        - __tests__/unit/tools/color-picker.test.ts
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: "Acceptance Criteria"
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Note / contesto aggiuntivo"
