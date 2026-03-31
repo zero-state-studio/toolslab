@@ -136,10 +136,19 @@ export function HolidayOverlay({
         }
       `}</style>
 
+      {/* Holiday-themed radial background — always visible, holiday color only */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `radial-gradient(ellipse 70% 70% at ${cx}px ${cy}px, ${holiday.bgColor}55 0%, ${holiday.bgColor}22 45%, transparent 75%)`,
+        }}
+        aria-hidden="true"
+      />
+
       {/* Backdrop — click-to-close (only in click mode) */}
       {onClose && (
         <div
-          className="pointer-events-auto absolute inset-0 bg-black/50 backdrop-blur-sm"
+          className="pointer-events-auto absolute inset-0 bg-black/40 backdrop-blur-sm"
           onClick={onClose}
           aria-hidden="true"
         />

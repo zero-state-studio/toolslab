@@ -2,6 +2,8 @@ export interface HolidayDecoration {
   emoji: string;
   name: string;
   greeting: string;
+  /** CSS color used for the overlay radial-gradient background */
+  bgColor: string;
 }
 
 /** Meeus/Jones/Butcher algorithm for Easter Sunday */
@@ -65,59 +67,59 @@ export function getCurrentHoliday(now?: Date): HolidayDecoration | null {
 
   // New Year's Eve / New Year (Dec 30 – Jan 2)
   if (inRange(date, 12, 30, 12, 31) || inRange(date, 1, 1, 1, 2)) {
-    return { emoji: '🎉', name: 'New Year', greeting: 'Happy New Year!' };
+    return { emoji: '🎉', name: 'New Year', greeting: 'Happy New Year!', bgColor: '#6a0dad' };
   }
 
   // Epiphany / Three Kings (Jan 5–6)
   if (month === 1 && day >= 5 && day <= 6) {
-    return { emoji: '⭐', name: 'Epiphany', greeting: 'Happy Epiphany!' };
+    return { emoji: '⭐', name: 'Epiphany', greeting: 'Happy Epiphany!', bgColor: '#1a237e' };
   }
 
   // Valentine's Day (Feb 12–14)
   if (month === 2 && day >= 12 && day <= 14) {
-    return { emoji: '💝', name: "Valentine's Day", greeting: 'Happy Valentine\'s Day!' };
+    return { emoji: '💝', name: "Valentine's Day", greeting: "Happy Valentine's Day!", bgColor: '#c2185b' };
   }
 
   // St. Patrick's Day (Mar 15–17)
   if (month === 3 && day >= 15 && day <= 17) {
-    return { emoji: '🍀', name: "St. Patrick's Day", greeting: 'Happy St. Patrick\'s Day!' };
+    return { emoji: '🍀', name: "St. Patrick's Day", greeting: "Happy St. Patrick's Day!", bgColor: '#1b5e20' };
   }
 
   // Easter (Palm Sunday – Easter Monday)
   const easter = getEasterDate(year);
   if (aroundDate(date, easter, 7, 1)) {
-    return { emoji: '🐣', name: 'Easter', greeting: 'Happy Easter!' };
+    return { emoji: '🐣', name: 'Easter', greeting: 'Happy Easter!', bgColor: '#6a1b9a' };
   }
 
   // April Fools (Apr 1)
   if (month === 4 && day === 1) {
-    return { emoji: '🃏', name: 'April Fools', greeting: 'April Fools! 😄' };
+    return { emoji: '🃏', name: 'April Fools', greeting: 'April Fools! 😄', bgColor: '#e65100' };
   }
 
   // International Workers' Day (May 1)
   if (month === 5 && day === 1) {
-    return { emoji: '✊', name: "Workers' Day", greeting: 'Happy Workers\' Day!' };
+    return { emoji: '✊', name: "Workers' Day", greeting: "Happy Workers' Day!", bgColor: '#b71c1c' };
   }
 
   // Halloween (Oct 28–31)
   if (month === 10 && day >= 28 && day <= 31) {
-    return { emoji: '🎃', name: 'Halloween', greeting: 'Happy Halloween!' };
+    return { emoji: '🎃', name: 'Halloween', greeting: 'Happy Halloween!', bgColor: '#e65100' };
   }
 
   // Day of the Dead (Nov 1–2)
   if (month === 11 && day >= 1 && day <= 2) {
-    return { emoji: '💀', name: 'Day of the Dead', greeting: 'Happy Day of the Dead!' };
+    return { emoji: '💀', name: 'Day of the Dead', greeting: 'Happy Day of the Dead!', bgColor: '#4a148c' };
   }
 
   // Thanksgiving – 4th Thursday of November (Thu + 3 days window)
   const thanksgiving = getThanksgiving(year);
   if (aroundDate(date, thanksgiving, 0, 3)) {
-    return { emoji: '🦃', name: 'Thanksgiving', greeting: 'Happy Thanksgiving!' };
+    return { emoji: '🦃', name: 'Thanksgiving', greeting: 'Happy Thanksgiving!', bgColor: '#bf360c' };
   }
 
   // Christmas season (Dec 1 – Dec 26)
   if (month === 12 && day >= 1 && day <= 26) {
-    return { emoji: '🎄', name: 'Christmas', greeting: 'Merry Christmas!' };
+    return { emoji: '🎄', name: 'Christmas', greeting: 'Merry Christmas!', bgColor: '#1b5e20' };
   }
 
   return null;
