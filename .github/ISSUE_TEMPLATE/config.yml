@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Tool Development Guide
+    url: https://github.com/YOUR_ORG/YOUR_REPO/blob/main/TOOL_DEVELOPMENT.md
+    about: Guida completa per aggiungere tool manualmente
+  - name: 🗺️ Tools Roadmap
+    url: https://github.com/YOUR_ORG/YOUR_REPO/blob/main/TOOLS-ROADMAP.md
+    about: Lista tool pianificati per priorità

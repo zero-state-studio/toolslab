@@ -23,7 +23,7 @@
       }
     ],
     "features": [
-      "Upload Excel files up to 50MB",
+      "Online Excel viewer and filter — upload files up to 50MB",
       "Dynamic filters with 13 different operators",
       "Global search across all columns",
       "Sort by any column (ascending/descending)",
@@ -33,7 +33,7 @@
       "Real-time filtering and pagination"
     ],
     "useCases": [
-      "Filter large datasets quickly without opening Excel",
+      "View and filter large datasets without Microsoft Office installed",
       "Share filtered data with team members easily",
       "Clean and prepare data for analysis",
       "Find specific records across multiple columns",
@@ -67,7 +67,7 @@
   ],
   "meta": {
     "title": "Excel Filter Tool - Upload, Sort & Filter XLSX Free Online",
-    "description": "Upload and filter Excel files online with advanced search, sort, and export features. Free Excel filter tool with no installation required. Browser-based."
+    "description": "Filter Excel files online free — search, sort, hide columns, export CSV. Upload XLSX up to 50MB. No signup or installation. Secure browser-based tool."
   },
   "labels": {
     "upload": "Upload File",
@@ -85,7 +85,7 @@
     "hideFilters": "Hide Filters"
   },
   "tagline": "Filter and analyze Excel data instantly online",
-  "pageDescription": "Upload Excel files and apply powerful filters to your data with our free online Excel filter tool. Search across columns, sort data, hide columns, and export filtered results to CSV or Excel. Perfect for data analysis, reporting, and quick data manipulation without installing software. Process files up to 50MB securely in your browser.",
+  "pageDescription": "Upload Excel files and apply powerful filters to your data with our free online Excel filter tool. Search across columns, sort data, hide columns, and export filtered results to CSV or Excel. Perfect for data analysis, reporting, and quick data manipulation. No signup required — process files up to 50MB securely in your browser without installing software.",
   "usageTips": {
     "title": "Usage Tips",
     "tips": [

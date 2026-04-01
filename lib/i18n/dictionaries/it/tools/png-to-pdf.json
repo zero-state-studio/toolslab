@@ -7,70 +7,87 @@
     "steps": [
       {
         "title": "Carica immagini PNG",
-        "description": "Trascina più immagini PNG nell'area di caricamento o clicca per selezionare dal computer. La trasparenza nei PNG è preservata durante la conversione."
+        "description": "Trascina più immagini PNG nell'area di caricamento o clicca per selezionare dal computer. La trasparenza nei file PNG è preservata automaticamente durante la conversione."
       },
       {
         "title": "Riordina le immagini PNG",
-        "description": "Usa i pulsanti freccia su/giù per riorganizzare le immagini PNG nell'ordine desiderato."
+        "description": "Usa i pulsanti freccia su/giù per riorganizzare le immagini PNG nell'ordine desiderato. La sequenza determina l'ordine delle pagine nel documento PDF finale."
       },
       {
         "title": "Configura impostazioni PDF",
-        "description": "Clicca l'icona delle impostazioni per scegliere dimensione pagina, modalità adattamento, margini e nome file."
+        "description": "Scegli dimensione pagina (A4, Letter, A3, Legal, Tabloid, Personalizzata), modalità adattamento (contenere, coprire, riempire, nessuno), margini (0-100pt) e nome del file di output."
       },
       {
         "title": "Genera e scarica PDF",
-        "description": "Clicca Genera PDF per creare il documento. Ogni immagine PNG diventa una pagina nel PDF."
+        "description": "Clicca Genera PDF per creare il documento. Ogni immagine PNG diventa una pagina nel PDF. Scarica il file completato senza watermark e senza perdita di qualità."
       }
     ],
     "features": [
       "Converti più PNG in un unico PDF",
-      "Supporto completo trasparenza PNG",
-      "Riordina con pulsanti freccia",
+      "Supporto completo trasparenza PNG — canale alfa preservato",
+      "Riordina immagini con pulsanti freccia",
       "Dimensioni pagina: A4, Letter, A3, Legal, Tabloid, Personalizzata",
       "Modalità adattamento: contenere, coprire, riempire, nessuno",
       "Margini regolabili 0-100pt",
       "Nome file personalizzato",
       "Anteprima miniature PNG",
-      "Elaborazione sicura nel browser",
-      "Nessun limite caricamento",
+      "Elaborazione sicura nel browser — nessun caricamento su server",
+      "Nessun limite di caricamento",
       "Batch processing illimitato",
-      "Mantiene trasparenza e qualità PNG"
+      "Mantiene trasparenza e alta qualità PNG nell'output PDF",
+      "Senza watermark nell'output PDF",
+      "Senza registrazione o account richiesti",
+      "Nessun software da installare"
     ],
     "useCases": [
       "Crea portfolio PDF da grafica PNG con trasparenza",
-      "Converti screenshot PNG in PDF",
-      "Combina loghi PNG in presentazione",
-      "Unisci asset design PNG",
-      "Crea spec sheet da mockup PNG",
+      "Converti screenshot PNG in un unico documento PDF",
+      "Combina loghi PNG trasparenti in presentazione",
+      "Unisci asset design PNG per consegna ai clienti",
+      "Crea spec sheet tecnici da mockup PNG",
       "Converti icone PNG trasparenti in PDF",
-      "Prepara report PNG",
-      "Archivia grafica PNG in PDF"
+      "Prepara report e documentazione da immagini PNG",
+      "Archivia grafica PNG in formato PDF universale"
     ],
     "proTips": [
-      "Trasparenza PNG automaticamente preservata",
-      "Usa 'Contenere' per preservare proporzioni PNG",
-      "Scegli 'Coprire' per riempire pagina",
-      "Margini a 0 per PNG trasparenti a vivo",
-      "Dimensione 'Personalizzata' per abbinare PNG",
-      "Riordina PNG prima di generare"
+      "La trasparenza PNG viene automaticamente preservata nel PDF finale",
+      "Usa 'Contenere' per preservare le proporzioni PNG senza ritaglio",
+      "Scegli 'Coprire' per riempire la pagina intera (può ritagliare i bordi)",
+      "Imposta margini a 0 per PNG trasparenti a vivo",
+      "Usa dimensione 'Personalizzata' per abbinare esattamente le dimensioni PNG",
+      "Riordina le PNG prima di generare per risparmiare tempo"
     ],
     "troubleshooting": [
-      "PNG non si carica: Verifica estensione .png",
-      "Qualità scarsa: Usa PNG alta risoluzione",
-      "Trasparenza persa: Assicurati sia formato PNG",
-      "Immagini ritagliate: Prova 'Contenere'",
-      "File grande: PNG possono essere grandi",
-      "Immagine distorta: Evita 'Riempire'"
+      "PNG non si carica: verifica che l'estensione sia .png",
+      "Qualità scarsa: usa PNG ad alta risoluzione come sorgente",
+      "Trasparenza persa: assicurati di usare PNG e non JPG",
+      "Immagini ritagliate: prova la modalità 'Contenere' invece di 'Coprire'",
+      "File grande: i PNG possono essere grandi, considera la compressione preventiva",
+      "Immagine distorta: evita 'Riempire' se non vuoi stretching"
     ],
     "keyboardShortcuts": [
-      { "keys": "Trascina e Rilascia", "description": "Rilascia file PNG" },
-      { "keys": "Click", "description": "Seleziona file PNG" }
+      { "keys": "Trascina e Rilascia", "description": "Rilascia file PNG per caricarli" },
+      { "keys": "Click", "description": "Seleziona file PNG dal computer" }
     ]
   },
   "meta": {
     "title": "Convertitore PNG in PDF - Strumento Online Gratuito | Converti PNG in PDF",
-    "description": "Converti PNG in PDF online gratis con supporto trasparenza. Combina più PNG in un PDF. Dimensioni pagina personalizzate. Convertitore sicuro browser."
+    "description": "Converti PNG in PDF online gratis con trasparenza. Combina più PNG in un unico PDF senza registrazione, senza watermark e senza installare software."
   },
   "tagline": "Converti immagini PNG in PDF con supporto trasparenza e opzioni layout personalizzate",
-  "pageDescription": "Trasforma immagini PNG in documenti PDF professionali preservando trasparenza e qualità. Controllo completo su dimensioni pagina, modalità adattamento e margini. Perfetto per portfolio design, documentazione con grafica trasparente, presentazioni e spec sheet da file PNG. Supporta PNG illimitate, batch processing, riordino e dimensioni personalizzate. Conversione gratuita sicura nel browser. Mantiene trasparenza PNG e alta qualità nell'output PDF."
+  "pageDescription": "Trasforma immagini PNG in documenti PDF professionali preservando trasparenza e qualità. Controllo completo su dimensioni pagina, modalità adattamento e margini. Perfetto per portfolio design, documentazione con grafica trasparente, presentazioni e spec sheet tecnici da file PNG. Supporta PNG illimitate, batch processing, riordino e dimensioni personalizzate. Conversione gratuita sicura nel browser senza caricare file su server. Nessuna registrazione, nessun software da installare e nessun watermark nel risultato.",
+  "longTailKeywords": [
+    "convertire PNG in PDF online gratis",
+    "convertire PNG in PDF senza registrazione",
+    "unire più PNG in un unico PDF online",
+    "come convertire PNG in PDF gratis",
+    "convertire PNG in PDF con trasparenza",
+    "convertire immagini PNG in PDF senza software",
+    "da PNG a PDF mantenendo la trasparenza",
+    "creare PDF da immagini PNG gratis",
+    "combinare PNG in PDF senza watermark",
+    "migliore convertitore PNG PDF gratuito online",
+    "convertire screenshot PNG in PDF online",
+    "convertire PNG in PDF dimensioni A4"
+  ]
 }

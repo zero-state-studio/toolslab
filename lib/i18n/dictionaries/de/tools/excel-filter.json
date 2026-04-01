@@ -1,99 +1,113 @@
 {
-  "title": "Excel Filter Tool",
-  "description": "Upload Excel files und apply dynamic filters zu tables mit search, sort, und exportieren capabilities",
-  "placeholder": "Upload Ihre Excel file zu get started...",
+  "longTailKeywords": [
+    "Excel Datei online filtern kostenlos ohne Anmeldung",
+    "Excel Filter Tool online kostenlos ohne Installation",
+    "Excel Daten filtern und sortieren online gratis",
+    "XLSX Datei oeffnen und filtern ohne Excel kostenlos",
+    "Excel Daten online analysieren im Browser kostenlos",
+    "grosse Excel Datei online filtern ohne Software",
+    "Excel Tabelle online sortieren und exportieren gratis",
+    "gefilterte Excel Daten als CSV exportieren kostenlos",
+    "Excel Viewer online mit Filterfunktion kostenlos",
+    "wie kann man Excel Dateien online filtern ohne Konto",
+    "bestes kostenloses Excel Filter Tool online",
+    "Excel Spalten filtern und ausblenden online gratis"
+  ],
+  "title": "Excel-Filter-Tool",
+  "description": "Laden Sie Excel-Dateien hoch und wenden Sie dynamische Filter auf Tabellen an — mit Suche, Sortierung und Exportfunktionen",
+  "placeholder": "Laden Sie Ihre Excel-Datei hoch, um zu beginnen...",
   "instructions": {
-    "title": "So verwenden Sie Excel Filter Tool",
+    "title": "So verwenden Sie das Excel-Filter-Tool",
     "steps": [
       {
-        "title": "Upload Ihre Excel file",
-        "description": "Drag und drop Ihre .xlsx oder .xls file (up zu 50MB) oder klicken zu browse. The Tool will instantly load und display Ihre Daten in a table Format."
+        "title": "Excel-Datei hochladen",
+        "description": "Ziehen Sie Ihre .xlsx- oder .xls-Datei (bis zu 50 MB) per Drag & Drop oder klicken Sie zum Durchsuchen. Das Tool laedt Ihre Daten sofort und zeigt sie im Tabellenformat an."
       },
       {
-        "title": "Apply filters zu columns",
-        "description": "Klicken 'Add Filter' um zu erstellen column-specific filters. Wählen Sie aus text, numeric, und date operators like contains, equals, greater than, oder zwischen Werte."
+        "title": "Filter auf Spalten anwenden",
+        "description": "Klicken Sie auf 'Filter hinzufuegen', um spaltenspezifische Filter zu erstellen. Waehlen Sie aus Text-, Zahlen- und Datumsoperatoren wie enthaelt, gleich, groesser als oder zwischen Werten."
       },
       {
-        "title": "Search und sort Daten",
-        "description": "Verwenden die global search zu find Daten across alle columns instantly. Klicken column headers zu sort Daten in ascending oder descending order."
+        "title": "Daten suchen und sortieren",
+        "description": "Nutzen Sie die globale Suche, um Daten in allen Spalten sofort zu finden. Klicken Sie auf Spaltenueberschriften, um Daten aufsteigend oder absteigend zu sortieren."
       },
       {
-        "title": "Exportieren filtered results",
-        "description": "Exportieren Ihre filtered und sorted Daten as CSV oder Excel Format. Hidden columns will be excluded von die exportieren."
+        "title": "Gefilterte Ergebnisse exportieren",
+        "description": "Exportieren Sie Ihre gefilterten und sortierten Daten im CSV- oder Excel-Format. Ausgeblendete Spalten werden beim Export ausgeschlossen."
       }
     ],
     "features": [
-      "Upload Excel files up zu 50MB",
-      "Dynamic filters mit 13 verschieden operators",
-      "Global search across alle columns",
-      "Sort by jede column (ascending/descending)",
-      "Show/hide columns dynamically",
-      "Exportieren zu CSV oder Excel Format",
-      "Combine multiple filters (AND logic)",
-      "Real-time filtering und pagination"
+      "Excel Viewer online mit Filterfunktion — Dateien bis zu 50 MB",
+      "Dynamische Filter mit 13 verschiedenen Operatoren",
+      "Globale Suche ueber alle Spalten",
+      "Nach jeder Spalte sortieren (aufsteigend/absteigend)",
+      "Spalten dynamisch ein-/ausblenden",
+      "Export in CSV- oder Excel-Format",
+      "Mehrere Filter kombinieren (UND-Logik)",
+      "Echtzeit-Filterung und Seitennummerierung"
     ],
     "useCases": [
-      "Filter large datasets quickly without opening Excel",
-      "Share filtered Daten mit Team members easily",
-      "Clean und prepare Daten für analysis",
-      "Find specific records across multiple columns",
-      "Exportieren subsets of Daten für reports",
-      "Analyze sales, inventory, oder customer Daten",
-      "Verarbeiten survey results und feedback forms",
-      "Filter project management Daten und task lists"
+      "Excel Viewer und Filter online — Dateien oeffnen und filtern ohne Microsoft Office",
+      "Gefilterte Daten einfach mit Teammitgliedern teilen",
+      "Daten fuer die Analyse bereinigen und vorbereiten",
+      "Bestimmte Datensaetze ueber mehrere Spalten finden",
+      "Teilmengen von Daten fuer Berichte exportieren",
+      "Verkaufs-, Bestands- oder Kundendaten analysieren",
+      "Umfrageergebnisse und Feedbackformulare verarbeiten",
+      "Projektmanagement-Daten und Aufgabenlisten filtern"
     ],
     "proTips": [
-      "Combine multiple filters für precise Daten queries",
-      "Verwenden 'zwischen' operator für date ranges und numeric ranges",
-      "Hide columns you don't need before exporting",
-      "Klicken column headers multiple times zu cycle sort order",
-      "Verwenden global search für schnell lookups across alle Daten",
-      "Exportieren filtered Daten zu share specific subsets mit others"
+      "Kombinieren Sie mehrere Filter fuer praezise Datenabfragen",
+      "Verwenden Sie den 'zwischen'-Operator fuer Datums- und Zahlenbereiche",
+      "Blenden Sie Spalten aus, die Sie vor dem Export nicht benoetigen",
+      "Klicken Sie mehrmals auf Spaltenueberschriften, um die Sortierreihenfolge zu wechseln",
+      "Nutzen Sie die globale Suche fuer schnelle Abfragen ueber alle Daten",
+      "Exportieren Sie gefilterte Daten als CSV, um bestimmte Teilmengen mit anderen zu teilen"
     ],
     "troubleshooting": [
-      "File won't upload: Sicherstellen file is .xlsx oder .xls Format und unter 50MB",
-      "No Daten showing: Prüfen if Excel file has Daten in first sheet",
-      "Filter not working: Überprüfen die filter Wert matches Daten eingeben (text/number)",
-      "Slow performance: Versuchen filtering Daten zu reduce visible rows",
-      "Exportieren missing columns: Prüfen if columns are hidden in column manager"
+      "Datei laesst sich nicht hochladen: Stellen Sie sicher, dass die Datei im .xlsx- oder .xls-Format vorliegt und unter 50 MB gross ist",
+      "Keine Daten sichtbar: Pruefen Sie, ob die Excel-Datei Daten im ersten Blatt enthaelt",
+      "Filter funktioniert nicht: Ueberpruefen Sie, ob der Filterwert zum Datentyp passt (Text/Zahl)",
+      "Langsame Leistung: Versuchen Sie, die Daten zu filtern, um die sichtbaren Zeilen zu reduzieren",
+      "Export mit fehlenden Spalten: Pruefen Sie, ob Spalten im Spaltenmanager ausgeblendet sind"
     ],
     "keyboardShortcuts": []
   },
   "features": [
-    "Excel file upload",
-    "Dynamic filtering",
-    "Global search",
-    "Exportieren CSV/Excel"
+    "Excel-Datei hochladen",
+    "Dynamische Filterung",
+    "Globale Suche",
+    "Export CSV/Excel"
   ],
   "meta": {
     "title": "Excel-Filter - Online Tabellen-Tool",
-    "description": "Excel-Dateien online hochladen und filtern. Erweiterte Suche, Sortierung und Export-Funktionen. Kostenloses Excel-Filter-Tool ohne Installation. Im Browser."
+    "description": "Excel-Dateien online filtern kostenlos ohne Anmeldung. Suche, Sortierung und CSV-Export. Dateien bis 50 MB. Kostenloses Excel-Filter-Tool ohne Installation."
   },
   "labels": {
-    "upload": "Upload File",
-    "filter": "Filter",
-    "search": "Search",
+    "upload": "Datei hochladen",
+    "filter": "Filtern",
+    "search": "Suchen",
     "export": "Exportieren"
   },
   "messages": {
-    "uploadSuccess": "File uploaded successfully",
-    "filterApplied": "Filters applied",
-    "noData": "No Daten matches Ihre filters"
+    "uploadSuccess": "Datei erfolgreich hochgeladen",
+    "filterApplied": "Filter angewendet",
+    "noData": "Keine Daten entsprechen Ihren Filtern"
   },
   "options": {
-    "showFilters": "Show Filters",
-    "hideFilters": "Hide Filters"
+    "showFilters": "Filter anzeigen",
+    "hideFilters": "Filter ausblenden"
   },
-  "tagline": "Filter und analyze Excel Daten instantly online",
-  "pageDescription": "Upload Excel files und apply powerful filters zu Ihre Daten mit our free online Excel filter Tool. Search across columns, sort Daten, hide columns, und exportieren filtered results zu CSV oder Excel. Perfect für Daten analysis, reporting, und schnell Daten manipulation without installing software. Verarbeiten files up zu 50MB securely in Ihre browser.",
+  "tagline": "Excel-Daten sofort online filtern und analysieren",
+  "pageDescription": "Laden Sie Excel-Dateien hoch und wenden Sie leistungsstarke Filter auf Ihre Daten an mit unserem kostenlosen Excel-Filter-Tool online. Viewer mit Suche, Sortierung, Spalten ausblenden und Export gefilterter Ergebnisse als CSV oder Excel. Perfekt zum Analysieren von Daten im Browser ohne Microsoft Office und ohne Anmeldung. Verarbeiten Sie Dateien bis 50 MB sicher — ohne Installation und ohne Konto.",
   "usageTips": {
-    "title": "Usage Tips",
+    "title": "Nutzungstipps",
     "tips": [
-      "Upload Excel files up zu 50MB in size",
-      "Combine multiple filters für advanced Daten querying",
-      "Klicken column headers zu sort Daten ascending/descending",
-      "Verwenden global search zu find Daten across alle columns instantly",
-      "Exportieren filtered results zu CSV oder Excel Format"
+      "Laden Sie Excel-Dateien bis zu 50 MB hoch",
+      "Kombinieren Sie mehrere Filter fuer erweiterte Datenabfragen",
+      "Klicken Sie auf Spaltenueberschriften, um Daten aufsteigend/absteigend zu sortieren",
+      "Nutzen Sie die globale Suche, um Daten in allen Spalten sofort zu finden",
+      "Exportieren Sie gefilterte Ergebnisse im CSV- oder Excel-Format"
     ]
   }
 }

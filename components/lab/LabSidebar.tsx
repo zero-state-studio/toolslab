@@ -10,6 +10,7 @@ import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 interface LabSidebarProps {
   selectedToolId: string | null;
@@ -36,14 +37,14 @@ export function LabSidebar({
   return (
     <motion.div
       className={cn(
-        'flex min-h-[calc(100vh-9rem)] flex-col border-r border-gray-200 bg-white transition-all duration-300 dark:border-gray-800 dark:bg-gray-950',
+        'flex min-h-[calc(100vh-9rem)] flex-col border-r border-slate-200 bg-white transition-all duration-300 dark:border-white/[0.06] dark:bg-white/[0.02]',
         isCollapsed ? 'w-16' : 'w-64'
       )}
       initial={false}
       animate={{ width: isCollapsed ? 64 : 256 }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 p-3 dark:border-gray-800">
+      <div className="flex items-center justify-between border-b border-slate-200 p-3 dark:border-white/[0.06]">
         <AnimatePresence mode="wait">
           {!isCollapsed && (
             <motion.div
@@ -52,11 +53,11 @@ export function LabSidebar({
               exit={{ opacity: 0, x: -20 }}
               className="flex items-center gap-2"
             >
-              <Star className="h-4 w-4 fill-purple-500 text-purple-500" />
-              <h2 className="text-sm font-medium text-gray-900 dark:text-white">
+              <Star className="h-4 w-4 fill-violet-500 text-violet-500" />
+              <h2 className="text-sm font-medium text-slate-900 dark:text-white">
                 {t?.sidebar?.myTools || 'My Tools'}
               </h2>
-              <span className="rounded-full bg-gray-100 px-1.5 py-0.5 text-xs text-gray-500 dark:bg-gray-800">
+              <span className="rounded-full bg-slate-100 px-1.5 py-0.5 text-xs text-slate-500 dark:bg-white/[0.06]">
                 {favoriteToolsData.length}
               </span>
             </motion.div>
@@ -65,25 +66,25 @@ export function LabSidebar({
 
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="rounded-md p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+          className="rounded-md p-1 transition-colors hover:bg-slate-100 dark:hover:bg-white/[0.04]"
         >
           {isCollapsed ? (
-            <ChevronRight className="h-4 w-4 text-gray-500" />
+            <ChevronRight className="h-4 w-4 text-slate-500" />
           ) : (
-            <ChevronLeft className="h-4 w-4 text-gray-500" />
+            <ChevronLeft className="h-4 w-4 text-slate-500" />
           )}
         </button>
       </div>
 
       {/* Overview Button */}
-      <div className="border-b border-gray-200 p-3 dark:border-gray-800">
+      <div className="border-b border-slate-200 p-3 dark:border-white/[0.06]">
         <button
           onClick={onShowOverview}
           className={cn(
             'flex w-full items-center gap-2 rounded-lg p-2 transition-all duration-200',
             selectedToolId === null
-              ? 'bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300'
-              : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+              ? 'border border-violet-500/20 bg-violet-500/10 text-violet-700 dark:text-violet-300'
+              : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.04]'
           )}
         >
           <Grid3X3 className="h-4 w-4 flex-shrink-0" />
@@ -126,9 +127,9 @@ export function LabSidebar({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="border-t border-gray-200 p-4 dark:border-gray-800"
+          className="border-t border-slate-200 p-4 dark:border-white/[0.06]"
         >
-          <p className="text-center text-xs text-gray-500">
+          <p className="text-center text-xs text-slate-500">
             {t?.sidebar?.starToolsToAdd || 'Star tools to add them here'}
           </p>
         </motion.div>
@@ -162,8 +163,8 @@ function ToolSidebarItem({
       className={cn(
         'group flex w-full items-center gap-2 rounded-lg p-2 transition-all duration-200',
         isSelected
-          ? 'bg-purple-50 text-purple-700 shadow-sm dark:bg-purple-900/20 dark:text-purple-300'
-          : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+          ? 'border border-violet-500/20 bg-violet-500/10 text-violet-700 shadow-sm dark:text-violet-300'
+          : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.04]'
       )}
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
@@ -172,9 +173,7 @@ function ToolSidebarItem({
       whileTap={{ scale: 0.98 }}
     >
       <div className="flex min-w-0 flex-1 items-center gap-2">
-        <span className="flex-shrink-0 text-lg" title={tool.name}>
-          {tool.icon}
-        </span>
+        <ToolIcon id={tool.id} className="h-4 w-4 flex-shrink-0 text-slate-500 dark:text-slate-400" />
 
         <AnimatePresence mode="wait">
           {!isCollapsed && (
@@ -199,7 +198,7 @@ function ToolSidebarItem({
                   </span>
                 )}
               </div>
-              <p className="truncate text-left text-xs text-gray-500 dark:text-gray-400">
+              <p className="truncate text-left text-xs text-slate-500 dark:text-slate-400">
                 {tool.description}
               </p>
             </motion.div>
@@ -209,7 +208,7 @@ function ToolSidebarItem({
 
       {isSelected && (
         <motion.div
-          className="h-2 w-2 flex-shrink-0 rounded-full bg-purple-500"
+          className="h-2 w-2 flex-shrink-0 rounded-full bg-violet-500"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: 'spring', stiffness: 300, damping: 20 }}

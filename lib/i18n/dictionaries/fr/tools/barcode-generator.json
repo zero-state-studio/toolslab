@@ -90,5 +90,19 @@
     "description": "Générez des codes-barres en plus de 20 formats: EAN-13, UPC-A, Code 128, ISBN, QR Code. Génération par lots avec téléchargement PNG, SVG ou PDF. Gratuit."
   },
   "tagline": "Générez des codes-barres professionnels pour retail, inventaire et expéditions avec personnalisation avancée",
-  "pageDescription": "Générateur professionnel de codes-barres avec support pour tous les formats commerciaux : 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) et 2D (QR Code, Data Matrix, PDF417, Aztec). Inclut génération par lots depuis CSV, concepteur d'étiquettes, vérification scanner, multiples formats d'exportation (PNG jusqu'à 600 DPI, SVG, PDF, EPS), personnalisation couleurs et décodeur. Parfait pour étiquettes produits retail, gestion inventaire, logistique expéditions et suivi pharmaceutique. 100% basé navigateur sans chargement données."
+  "pageDescription": "Générateur professionnel de codes-barres en ligne gratuit, sans inscription ni logiciel à installer. Support pour tous les formats commerciaux : 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) et 2D (QR Code, Data Matrix, PDF417, Aztec). Inclut génération par lots depuis CSV, concepteur d'étiquettes personnalisé pour créer et imprimer vos étiquettes, vérification scanner, multiples formats d'exportation (PNG jusqu'à 600 DPI, SVG, PDF, EPS) et décodeur. Parfait pour étiquettes produits retail, gestion inventaire et stock, logistique expéditions et suivi pharmaceutique. 100% basé navigateur sans chargement de données.",
+  "longTailKeywords": [
+    "générateur de code-barres en ligne gratuit",
+    "générateur de code-barres ean-13 gratuit en ligne",
+    "créer un code-barres pour produit gratuitement",
+    "comment créer un code-barres en ligne gratuit",
+    "générateur de code-barres code 128 gratuit",
+    "générateur de code-barres par lots csv gratuit",
+    "créer et imprimer étiquettes code-barres gratuit",
+    "générateur code-barres export png svg pdf gratuit",
+    "générateur code-barres pour inventaire et stock",
+    "générateur code-barres isbn gratuit en ligne",
+    "créer code-barres sans inscription ni logiciel",
+    "générateur code-barres personnalisé en ligne gratuit"
+  ]
 }

@@ -2,22 +2,17 @@
 
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, TrendingUp, Clock } from 'lucide-react';
+import { ArrowRight, TrendingUp } from 'lucide-react';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 import { tools } from '@/lib/tools';
 import { type Locale, defaultLocale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { useLocale } from '@/hooks/useLocale';
 
-// Get featured tools (new ones or without label, excluding coming-soon)
+// Sort by searchVolume to show the most-searched tools first
 const featuredTools = tools
-  .filter((tool) => {
-    // Exclude coming-soon tools first
-    if (tool.label === 'coming-soon') return false;
-    // Include tools with label "new" or empty/undefined label
-    return (
-      tool.label === 'new' || tool.label === '' || tool.label === undefined
-    );
-  })
+  .filter((t) => t.label !== 'coming-soon')
+  .sort((a, b) => (b.searchVolume ?? 0) - (a.searchVolume ?? 0))
   .slice(0, 6);
 
 interface FeaturedToolsProps {
@@ -32,20 +27,26 @@ export function FeaturedTools({
   const { createHref } = useLocale();
 
   return (
-    <section className="bg-gray-50 py-16 dark:bg-gray-900 sm:py-20">
+    <section className="bg-slate-50/70 py-16 dark:bg-background sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Centered header */}
+        {/* Header */}
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            {dictionary?.home?.popular?.title || 'Most Used This Week'}
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-2">
+            <TrendingUp className="h-4 w-4 text-violet-400" />
+            <span className="font-mono text-xs font-medium uppercase tracking-widest text-violet-400">
+              Most searched
+            </span>
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+            {dictionary?.home?.popular?.title || 'Most-Used Developer Tools'}
           </h2>
-          <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-lg text-slate-700 dark:text-slate-400">
             {dictionary?.home?.popular?.subtitle ||
-              'Join hundreds of developers using these tools daily'}
+              'The tools developers search for most — all free, all instant'}
           </p>
           <Link
             href={createHref('/tools')}
-            className="mt-4 inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+            className="mt-4 inline-flex items-center gap-2 text-violet-400 transition-colors hover:text-violet-300"
           >
             {dictionary?.common?.nav?.allTools || 'View all tools'}
             <ArrowRight className="h-4 w-4" />
@@ -64,37 +65,23 @@ export function FeaturedTools({
               >
                 <Link
                   href={createHref(tool.route)}
-                  className="group relative block h-full overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800"
+                  className="group relative block h-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:shadow-none dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04] dark:hover:shadow-none"
                 >
-                  {/* Tool label badge */}
-                  {tool.label && (
-                    <div className="absolute right-4 top-4">
-                      {tool.label === 'new' && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 px-3 py-1 text-xs font-bold text-white">
-                          NEW
-                        </span>
-                      )}
-                      {tool.label === 'popular' && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 px-3 py-1 text-xs font-bold text-white">
-                          <TrendingUp className="h-3 w-3" />
-                          POPULAR
-                        </span>
-                      )}
-                    </div>
-                  )}
+                  {/* Gradient top accent */}
+                  <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-violet-500/40 to-amber-500/30 transition-opacity duration-300 group-hover:from-violet-500/80 group-hover:to-amber-500/60" />
 
                   <div className="flex items-start gap-4">
                     {/* Tool icon */}
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 text-2xl dark:from-blue-900/20 dark:to-blue-800/20">
-                      {tool.icon}
+                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
+                      <ToolIcon id={tool.id} className="h-6 w-6 text-slate-600 dark:text-slate-400" />
                     </div>
 
                     {/* Tool info */}
                     <div className="flex-1">
-                      <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-white">
+                      <h3 className="mb-1 text-lg font-semibold text-slate-900 dark:text-white">
                         {dictionary?.tools?.[tool.id]?.title || tool.name}
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                      <p className="text-sm text-slate-700 dark:text-slate-400">
                         {(
                           dictionary?.tools?.[tool.id]?.description ||
                           tool.description
@@ -107,32 +94,27 @@ export function FeaturedTools({
                     </div>
                   </div>
 
-                  {/* Stats */}
-                  <div className="mt-6 flex items-center justify-between border-t border-gray-100 pt-4 dark:border-gray-700">
-                    <div className="flex items-center gap-4">
-                      <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
-                        <Clock className="h-4 w-4" />
-                        <span>Instant</span>
-                      </div>
+                  {/* Stats row */}
+                  <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-4 dark:border-white/[0.06]">
+                    <div className="flex items-center gap-2">
+                      {/* Category badge */}
+                      <span className="rounded-md border border-slate-200 bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:border-white/[0.06] dark:bg-white/[0.03] dark:text-slate-400">
+                        {tool.categories?.[0] || 'tool'}
+                      </span>
+                      {/* Search volume for top 3 */}
+                      {index < 3 &&
+                        tool.searchVolume &&
+                        tool.searchVolume > 0 && (
+                          <span className="text-xs text-slate-600">
+                            {(tool.searchVolume / 1000).toFixed(0)}K/mo
+                          </span>
+                        )}
                     </div>
 
                     {/* CTA */}
-                    <div className="flex items-center gap-2 font-medium text-blue-600 opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:text-blue-400">
+                    <div className="flex items-center gap-2 text-sm font-medium text-violet-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                       Try Now
                       <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
-                    </div>
-                  </div>
-
-                  {/* Live indicator */}
-                  <div className="absolute left-4 top-4">
-                    <div className="flex items-center gap-2">
-                      <div className="relative">
-                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                        <div className="absolute inset-0 h-2 w-2 animate-ping rounded-full bg-green-500"></div>
-                      </div>
-                      <span className="text-xs font-medium text-green-600 dark:text-green-400">
-                        Live
-                      </span>
                     </div>
                   </div>
                 </Link>
@@ -145,7 +127,7 @@ export function FeaturedTools({
         <div className="mt-8 text-center sm:hidden">
           <Link
             href={createHref('/tools')}
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
+            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-500 px-6 py-3 font-medium text-white hover:from-violet-500 hover:to-violet-400"
           >
             {dictionary?.common?.nav?.allTools || 'View all tools'}
             <ArrowRight className="h-4 w-4" />

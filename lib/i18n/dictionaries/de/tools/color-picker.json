@@ -1,85 +1,103 @@
 {
   "title": "Farbwähler",
-  "description": "Pick und konvertieren Farben zwischen HEX, RGB, HSL Formate",
-  "placeholder": "",
+  "description": "Farben auswählen und zwischen HEX, RGB, HSL konvertieren",
+  "placeholder": "Farbe eingeben...",
   "meta": {
-    "title": "Farbwähler - Online Color Picker",
-    "description": "Farben mit dem interaktiven Farbwähler auswählen. Sofortige Konvertierung zwischen HEX, RGB und HSL. Farben aus Paletten extrahieren und speichern. Kostenlos."
+    "title": "Farbwähler - HEX RGB HSL Farbkonverter Online Kostenlos",
+    "description": "Farbwähler online kostenlos — Farben auswählen und zwischen HEX, RGB, HSL, CMYK konvertieren. WCAG-Kontrastprüfer, Palettengenerator. Ohne Anmeldung, im Browser."
   },
-  "tagline": "Pick Farben mit Kontrast Prüfer und Palette Generator",
-  "pageDescription": "Professioneller Farbe Wähler für Entwickler und designers mit HEX, RGB, HSL, HSV, CMYK und LAB Formate. Generieren Farbe Paletten, prüfen WCAG Kontrast ratios, simulate Farbe blindness und exportieren zu CSS, Tailwind, Material Design. Features eyedropper API, gradient Generator und Design system Integration. Kostenlos browserbasiert Tool mit Barrierefreiheit Konformität checking.",
+  "tagline": "Farben auswählen mit Kontrastprüfer und Palettengenerator",
+  "pageDescription": "Professioneller Farbwähler online kostenlos für Entwickler und Designer. Wählen Sie eine Farbe und konvertieren Sie sofort zwischen HEX, RGB, HSL, HSV, CMYK und LAB. Erstellen Sie harmonische Farbpaletten aus einer Grundfarbe, prüfen Sie den WCAG-Kontrast für barrierefreies Webdesign und simulieren Sie Farbenblindheit. Exportieren Sie Werte direkt als CSS, Tailwind-Klassen und Material Design. Mit integrierter Pipette zum Erfassen von Bildschirmfarben, Farbverlaufsgenerator und Designsystem-Integration. Vollständig browserbasiert, ohne Anmeldung und ohne Softwareinstallation.",
   "instructions": {
-    "title": "So verwenden Sie Farbwähler",
+    "title": "So verwenden Sie den Farbwähler",
     "steps": [
       {
-        "title": "Inhalt einfügen",
-        "description": "Kopieren und fügen Sie Ihre content in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Farbe auswählen",
+        "description": "Verwenden Sie das Farbrad oder den visuellen Farbwähler, um Ihre gewünschte Farbe auszuwählen. Alternativ geben Sie direkt einen HEX-, RGB- oder HSL-Wert in das Eingabefeld ein."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Zwischen Formaten konvertieren",
+        "description": "Die ausgewählte Farbe wird automatisch in alle verfügbaren Formate umgerechnet: HEX, RGB, HSL, HSV, CMYK und LAB. Klicken Sie auf einen Wert, um ihn in die Zwischenablage zu kopieren."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool verarbeitet Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "WCAG-Kontrast prüfen",
+        "description": "Wählen Sie eine Vordergrund- und eine Hintergrundfarbe, um das Kontrastverhältnis zu überprüfen. Das Tool zeigt an, ob die Kombination die WCAG-Stufen AA und AAA erfüllt."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Farbpalette erstellen",
+        "description": "Aus der gewählten Grundfarbe erstellen Sie harmonische Paletten: komplementär, analog, triadisch, split-komplementär und monochromatisch."
+      },
+      {
+        "title": "Werte exportieren",
+        "description": "Kopieren Sie Farbcodes mit einem Klick, bereit für CSS, Tailwind, Sass oder jedes andere Framework. Sie können auch die gesamte Palette exportieren."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Sofortige Konvertierung zwischen HEX, RGB, HSL, HSV, CMYK und LAB",
+      "WCAG-Kontrastprüfer mit AA- und AAA-Konformitätsanzeige",
+      "Palettengenerator: komplementär, analog, triadisch und monochromatisch",
+      "Pipette (Eyedropper) zum direkten Erfassen von Bildschirmfarben",
+      "Farbenblindheitssimulation (Protanopie, Deuteranopie, Tritanopie)",
+      "Export als CSS-Variablen, Tailwind-Klassen und Design-Tokens",
+      "Farbverlaufsgenerator mit linearen und radialen CSS-Verläufen",
+      "Vollständig browserbasiert — keine Daten werden an Server gesendet"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Primär- und Sekundärfarben für eine Website oder App auswählen",
+      "Prüfen, ob der Text-Hintergrund-Kontrast die WCAG-Barrierefreiheitsstandards erfüllt",
+      "Eine konsistente Farbpalette aus einer Markenfarbe erstellen",
+      "HEX-Farben in RGB oder HSL für die CSS-Entwicklung konvertieren",
+      "Helle und dunkle Farbvarianten für Hover- und Focus-Zustände erstellen",
+      "Testen, wie Farben für farbenblinde Nutzer erscheinen",
+      "Tailwind-Klassen für benutzerdefinierte Farben ermitteln",
+      "Komplementär- oder Analogfarben für Grafiken und Präsentationen finden"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Für barrierefreies Webdesign sollte der Kontrast mindestens 4,5:1 für normalen Text und 3:1 für großen Text betragen (WCAG AA)",
+      "Verwenden Sie die monochromatische Palette, um Graustufen oder Tonvarianten einer Markenfarbe zu erstellen",
+      "Sie können einen HEX-Code ohne das #-Zeichen eingeben — das Tool erkennt ihn automatisch",
+      "Testen Sie Ihre Farbkombinationen immer mit der Farbenblindheitssimulation, bevor Sie das Design finalisieren",
+      "Kopieren Sie den HSL-Wert, wenn Sie Helligkeit oder Sättigung im CSS einfach anpassen möchten",
+      "Speichern Sie Ihre Lieblingsfarben, um schrittweise Ihr Designsystem aufzubauen"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Farbe wird nicht erkannt: Überprüfen Sie, ob das Format gültig ist (z.B. #FF5733, rgb(255,87,51), hsl(11,100%,60%))",
+      "Kontrast zu niedrig: Versuchen Sie, den Helligkeitsunterschied zwischen den beiden gewählten Farben zu erhöhen",
+      "Palette wirkt unharmonisch: Beginnen Sie mit einer gesättigten Farbe; sehr helle oder dunkle Farben erzeugen weniger abwechslungsreiche Paletten",
+      "CMYK-Werte stimmen nicht mit dem Druck überein: Die RGB-CMYK-Konvertierung ist eine Näherung; für professionellen Druck verwenden Sie ein ICC-Profil",
+      "Pipette funktioniert nicht: Diese Funktion erfordert einen Browser mit EyeDropper-API-Unterstützung (Chrome 95+, Edge 95+). Firefox und Safari unterstützen sie noch nicht"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Eingabe einfügen"
-      },
-      {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "description": "Farbcode einfügen"
       },
       {
         "keys": "Strg+C",
-        "description": "Ergebnis kopieren"
+        "description": "Ausgewählte Farbe kopieren"
+      },
+      {
+        "keys": "Strg+Z",
+        "description": "Zur vorherigen Farbe zurückkehren"
       },
       {
         "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "description": "Farbe als Favorit speichern"
       }
     ]
-  }
+  },
+  "longTailKeywords": [
+    "Farbwähler online kostenlos",
+    "Farbkonverter hex rgb hsl kostenlos",
+    "Farben für Webdesign auswählen online",
+    "hex in rgb umrechnen online kostenlos",
+    "Farbpalette Generator online kostenlos",
+    "Kontrast Prüfer wcag online kostenlos",
+    "Farbwähler für Entwickler und Designer",
+    "Farbwähler ohne Anmeldung im Browser",
+    "Farbpalette aus einer Farbe erstellen kostenlos",
+    "bester kostenloser Farbwähler online",
+    "Farben konvertieren ohne Software Browser",
+    "Farbwähler mit Barrierefreiheit Prüfung"
+  ]
 }

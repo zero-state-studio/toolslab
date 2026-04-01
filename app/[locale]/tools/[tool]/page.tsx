@@ -218,7 +218,7 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
       'lab',
     ]),
     loadToolTranslation(locale as Locale, toolId),
-    generateToolSchema(toolId),
+    generateToolSchema(toolId, locale as Locale),
   ]);
 
   const dict = {

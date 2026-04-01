@@ -1,100 +1,114 @@
 {
-  "title": "Generateur de Liens WhatsApp",
-  "description": "Creez des liens WhatsApp click-to-chat avec messages pre-remplis et codes QR",
+  "title": "Générateur de Liens WhatsApp",
+  "description": "Créez des liens WhatsApp click-to-chat avec messages pré-remplis et codes QR",
   "placeholder": "6 12 34 56 78",
   "meta": {
     "title": "Générateur Liens WhatsApp",
     "description": "Créez des liens WhatsApp click-to-chat avec messages pré-remplis, codes QR et indicatifs pays. Générez des URLs wa.me pour entreprises et marketing. Gratuit."
   },
-  "tagline": "Generez des liens WhatsApp click-to-chat avec messages pre-remplis et codes QR instantanes",
-  "pageDescription": "Generateur professionnel de liens WhatsApp pour entreprises et marketeurs. Creez des URLs click-to-chat instantanees (wa.me) avec messages pre-remplis, detection automatique de l'indicatif pays et codes QR telechargeables. Utilisez des modeles de messages pour les scenarios professionnels courants (demandes, support, rendez-vous). Previsualisez votre message dans une interface style mobile avant de partager. Parfait pour les sites web, cartes de visite, profils de reseaux sociaux et supports marketing. Tout le traitement se fait dans votre navigateur pour une confidentialite totale - aucun numero de telephone n'est stocke ou enregistre.",
+  "tagline": "Générez des liens WhatsApp click-to-chat avec messages pré-remplis et codes QR instantanés",
+  "pageDescription": "Générateur professionnel de liens WhatsApp gratuit pour entreprises et marketeurs. Créez des URLs click-to-chat instantanées (wa.me) avec messages pré-remplis, détection automatique de l'indicatif pays et codes QR téléchargeables, sans inscription. Utilisez des modèles de messages pour les scénarios professionnels courants (demandes, support, rendez-vous). Prévisualisez votre message dans une interface style mobile avant de partager. Parfait pour les sites web, cartes de visite, profils de réseaux sociaux et supports marketing. Tout le traitement se fait dans votre navigateur — aucun numéro de téléphone n'est stocké ou enregistré.",
+  "longTailKeywords": [
+    "générateur lien whatsapp gratuit en ligne",
+    "créer lien whatsapp avec message prédéfini",
+    "générateur lien whatsapp sans inscription",
+    "comment créer un lien whatsapp gratuit",
+    "générateur code qr whatsapp gratuit",
+    "créer bouton whatsapp pour site web",
+    "lien whatsapp sans enregistrer numéro",
+    "lien whatsapp avec message personnalisé",
+    "générateur wa.me lien gratuit en ligne",
+    "comment ajouter lien whatsapp site web",
+    "lien whatsapp pour entreprises et marketing",
+    "meilleur générateur liens whatsapp gratuit"
+  ],
   "instructions": {
-    "title": "Comment utiliser le Generateur de Liens WhatsApp",
+    "title": "Comment utiliser le Générateur de Liens WhatsApp",
     "steps": [
       {
-        "title": "Selectionnez votre indicatif pays",
-        "description": "Cliquez sur le selecteur de pays et choisissez le pays de votre numero WhatsApp. Vous pouvez rechercher par nom de pays, code ou prefixe. L'outil prend en charge plus de 50 pays dont les USA (+1), le Royaume-Uni (+44), la France (+33), la Belgique (+32) et bien d'autres. L'indicatif pays sera automatiquement ajoute a votre numero."
+        "title": "Sélectionnez votre indicatif pays",
+        "description": "Cliquez sur le sélecteur de pays et choisissez le pays de votre numéro WhatsApp. Vous pouvez rechercher par nom de pays, code ou préfixe. L'outil prend en charge plus de 50 pays dont les USA (+1), le Royaume-Uni (+44), la France (+33), la Belgique (+32) et bien d'autres. L'indicatif pays sera automatiquement ajouté à votre numéro."
       },
       {
-        "title": "Entrez le numero de telephone",
-        "description": "Tapez le numero de telephone sans l'indicatif pays ni les zeros initiaux. Par exemple, si le numero complet est +33 6 12 34 56 78, entrez simplement '6 12 34 56 78'. L'outil accepte les espaces et tirets pour la lisibilite mais les supprime automatiquement lors de la generation du lien."
+        "title": "Entrez le numéro de téléphone",
+        "description": "Tapez le numéro de téléphone sans l'indicatif pays ni les zéros initiaux. Par exemple, si le numéro complet est +33 6 12 34 56 78, entrez simplement '6 12 34 56 78'. L'outil accepte les espaces et tirets pour la lisibilité mais les supprime automatiquement lors de la génération du lien."
       },
       {
-        "title": "Ajoutez un message pre-rempli (optionnel)",
-        "description": "Ecrivez un message qui apparaitra pre-rempli quand quelqu'un clique sur votre lien. C'est parfait pour les demandes standard, les requetes de support ou les messages promotionnels. Utilisez le bouton Modeles pour inserer rapidement des messages professionnels courants comme les demandes de produits, les prises de rendez-vous ou les tickets de support."
+        "title": "Ajoutez un message pré-rempli (optionnel)",
+        "description": "Écrivez un message qui apparaîtra pré-rempli quand quelqu'un clique sur votre lien. C'est parfait pour les demandes standard, les requêtes de support ou les messages promotionnels. Utilisez le bouton Modèles pour insérer rapidement des messages professionnels courants comme les demandes de produits, les prises de rendez-vous ou les tickets de support."
       },
       {
-        "title": "Generez votre lien WhatsApp",
-        "description": "Cliquez sur 'Generer Lien WhatsApp' pour creer votre URL click-to-chat. L'outil validera votre numero de telephone et creera un lien wa.me correctement formate. Si vous avez inclus un message, il sera encode en URL et ajoute automatiquement au lien."
+        "title": "Générez votre lien WhatsApp",
+        "description": "Cliquez sur 'Générer Lien WhatsApp' pour créer votre URL click-to-chat. L'outil validera votre numéro de téléphone et créera un lien wa.me correctement formaté. Si vous avez inclus un message, il sera encodé en URL et ajouté automatiquement au lien."
       },
       {
-        "title": "Copiez, telechargez ou testez votre lien",
-        "description": "Utilisez le lien genere en le copiant dans le presse-papiers, en le telechargeant comme fichier texte, ou en cliquant sur 'Ouvrir WhatsApp' pour le tester directement. Telechargez le code QR pour les supports imprimes, cartes de visite ou vitrines. L'apercu mobile montre exactement comment votre message apparaitra aux destinataires."
+        "title": "Copiez, téléchargez ou testez votre lien",
+        "description": "Utilisez le lien généré en le copiant dans le presse-papiers, en le téléchargeant comme fichier texte, ou en cliquant sur 'Ouvrir WhatsApp' pour le tester directement. Téléchargez le code QR pour les supports imprimés, cartes de visite ou vitrines. L'aperçu mobile montre exactement comment votre message apparaîtra aux destinataires."
       }
     ],
     "features": [
-      "Plus de 50 indicatifs pays avec recherche et icones de drapeaux",
-      "Support de messages pre-remplis jusqu'a 4096 caracteres",
-      "Generation instantanee de code QR avec style vert WhatsApp",
-      "Modeles de messages pour usage professionnel, personnel et marketing",
-      "Apercu de chat style mobile pour visualiser votre message",
-      "Validation du numero de telephone avec guide de format",
+      "Plus de 50 indicatifs pays avec recherche et icônes de drapeaux",
+      "Support de messages pré-remplis jusqu'à 4096 caractères",
+      "Génération instantanée de code QR avec style vert WhatsApp",
+      "Modèles de messages pour usage professionnel, personnel et marketing",
+      "Aperçu de chat style mobile pour visualiser votre message",
+      "Validation du numéro de téléphone avec guide de format",
       "Copie dans le presse-papiers en un clic",
-      "Telechargement du lien comme fichier texte",
-      "Telechargement du code QR comme image PNG",
+      "Téléchargement du lien comme fichier texte",
+      "Téléchargement du code QR comme image PNG",
       "Bouton direct 'Ouvrir WhatsApp' pour tester",
-      "Generation d'URL propre suivant les standards wa.me",
-      "Entierement base sur navigateur - pas de traitement serveur",
-      "Aucun numero de telephone stocke ou enregistre"
+      "Génération d'URL propre suivant les standards wa.me",
+      "Entièrement basé sur navigateur — pas de traitement serveur",
+      "Aucun numéro de téléphone stocké ou enregistré"
     ],
     "useCases": [
-      "Ajoutez des boutons click-to-chat sur votre site web pour un support client instantane",
-      "Creez des liens WhatsApp pour cartes de visite et supports imprimes",
-      "Generez des codes QR pour vitrines, menus et emplacements physiques",
+      "Ajoutez des boutons click-to-chat sur votre site web pour un support client instantané",
+      "Créez des liens WhatsApp pour cartes de visite et supports imprimés",
+      "Générez des codes QR pour vitrines, menus et emplacements physiques",
       "Incluez des liens de chat dans les signatures email pour un contact facile",
-      "Ajoutez des boutons WhatsApp aux profils de reseaux sociaux (Instagram, Facebook, LinkedIn)",
-      "Creez des formulaires de demande pre-remplis pour informations produits",
-      "Configurez des liens de prise de rendez-vous avec messages pre-ecrits",
-      "Generez des liens de tickets de support avec modeles de messages structures",
-      "Creez des liens de campagnes marketing avec messages promotionnels",
+      "Ajoutez des boutons WhatsApp aux profils de réseaux sociaux (Instagram, Facebook, LinkedIn)",
+      "Créez des formulaires de demande pré-remplis pour informations produits",
+      "Configurez des liens de prise de rendez-vous avec messages pré-écrits",
+      "Générez des liens de tickets de support avec modèles de messages structurés",
+      "Créez des liens de campagnes marketing avec messages promotionnels",
       "Partagez des liens de contact dans les newsletters et emails marketing",
-      "Ajoutez des liens de chat aux descriptions de videos YouTube",
-      "Creez des liens de contact rapide pour organisateurs d'evenements"
+      "Ajoutez des liens de chat aux descriptions de vidéos YouTube",
+      "Créez des liens de contact rapide pour organisateurs d'événements"
     ],
     "proTips": [
-      "Gardez les messages pre-remplis courts et professionnels - les destinataires peuvent toujours en ajouter",
-      "Utilisez les modeles de messages comme point de depart et personnalisez pour votre marque",
-      "Telechargez les codes QR en haute resolution pour les supports imprimes",
+      "Gardez les messages pré-remplis courts et professionnels — les destinataires peuvent toujours en ajouter",
+      "Utilisez les modèles de messages comme point de départ et personnalisez pour votre marque",
+      "Téléchargez les codes QR en haute résolution pour les supports imprimés",
       "Testez votre lien avant de le partager en cliquant sur 'Ouvrir WhatsApp'",
-      "Pour usage professionnel, considerez WhatsApp Business pour des fonctionnalites supplementaires",
-      "Incluez un appel a l'action dans votre message comme 'Je souhaiterais...'",
-      "Sauvegardez les numeros et messages frequemment utilises pour un acces rapide",
-      "Utilisez l'apercu mobile pour vous assurer que votre message a l'air professionnel",
+      "Pour usage professionnel, considérez WhatsApp Business pour des fonctionnalités supplémentaires",
+      "Incluez un appel à l'action dans votre message comme 'Je souhaiterais...'",
+      "Sauvegardez les numéros et messages fréquemment utilisés pour un accès rapide",
+      "Utilisez l'aperçu mobile pour vous assurer que votre message a l'air professionnel",
       "Combinez avec UTM Builder pour suivre le trafic WhatsApp dans les analytics",
-      "Placez les codes QR a hauteur des yeux dans les emplacements physiques pour un meilleur scan"
+      "Placez les codes QR à hauteur des yeux dans les emplacements physiques pour un meilleur scan"
     ],
     "troubleshooting": [
-      "Le lien n'ouvre pas WhatsApp: Assurez-vous que WhatsApp est installe sur l'appareil. Sur ordinateur, WhatsApp Web doit etre configure.",
-      "Erreur de numero de telephone invalide: Supprimez tout zero initial et entrez uniquement des chiffres. L'indicatif pays est ajoute automatiquement.",
-      "Le message n'apparait pas: Verifiez que les caracteres speciaux sont correctement encodes. Evitez certains symboles.",
-      "Le code QR ne scanne pas: Assurez un bon eclairage et tenez le telephone a 15-20 cm du code. Essayez de le telecharger et l'imprimer plus grand.",
-      "Mauvais pays selectionne: Recherchez votre pays par nom ou indicatif dans le selecteur deroulant.",
-      "Le lien fonctionne sur mobile mais pas sur ordinateur: WhatsApp Web doit etre connecte dans le navigateur.",
-      "Message trop long: Les messages pre-remplis WhatsApp ont une limite de 4096 caracteres. Raccourcissez votre message.",
-      "Le chat s'ouvre avec le mauvais numero: Verifiez le format du numero et la selection de l'indicatif pays."
+      "Le lien n'ouvre pas WhatsApp: Assurez-vous que WhatsApp est installé sur l'appareil. Sur ordinateur, WhatsApp Web doit être configuré.",
+      "Erreur de numéro de téléphone invalide: Supprimez tout zéro initial et entrez uniquement des chiffres. L'indicatif pays est ajouté automatiquement.",
+      "Le message n'apparaît pas: Vérifiez que les caractères spéciaux sont correctement encodés. Évitez certains symboles.",
+      "Le code QR ne scanne pas: Assurez un bon éclairage et tenez le téléphone à 15-20 cm du code. Essayez de le télécharger et l'imprimer plus grand.",
+      "Mauvais pays sélectionné: Recherchez votre pays par nom ou indicatif dans le sélecteur déroulant.",
+      "Le lien fonctionne sur mobile mais pas sur ordinateur: WhatsApp Web doit être connecté dans le navigateur.",
+      "Message trop long: Les messages pré-remplis WhatsApp ont une limite de 4096 caractères. Raccourcissez votre message.",
+      "Le chat s'ouvre avec le mauvais numéro: Vérifiez le format du numéro et la sélection de l'indicatif pays."
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Ctrl+Entree",
-        "description": "Generer lien WhatsApp"
+        "keys": "Ctrl+Entrée",
+        "description": "Générer lien WhatsApp"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copier lien genere"
+        "description": "Copier lien généré"
       },
       {
-        "keys": "Echap",
-        "description": "Fermer selecteur de pays"
+        "keys": "Échap",
+        "description": "Fermer sélecteur de pays"
       }
     ]
   }

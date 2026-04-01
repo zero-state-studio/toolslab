@@ -4,81 +4,85 @@
   "placeholder": "Enter color (HEX, RGB, HSL)...",
   "meta": {
     "title": "Color Picker - HEX, RGB, HSL Color Selection Free Online",
-    "description": "Pick colors with an interactive color picker. Convert between HEX, RGB, HSL formats instantly. Extract and save favorite colors. Free online color tool."
+    "description": "Free online color picker — pick colors and convert between HEX, RGB, HSL, CMYK. WCAG contrast checker, palette generator, no signup required. Browser-based."
   },
   "tagline": "Pick colors with contrast checker and palette generator",
-  "pageDescription": "Professional color picker for developers and designers with HEX, RGB, HSL, HSV, CMYK and LAB formats. Generate color palettes, check WCAG contrast ratios, simulate color blindness and export to CSS, Tailwind, Material Design. Features eyedropper API, gradient generator and design system integration. Free browser-based tool with accessibility compliance checking.",
+  "pageDescription": "Use this color picker online free to select any color and instantly convert between HEX, RGB, HSL, CMYK and LAB formats. Built-in WCAG contrast checker ensures your color combinations meet accessibility standards, while the palette generator creates harmonious schemes with complementary, analogous and triadic options. Simulate color blindness (protanopia, deuteranopia, tritanopia) to verify your design works for all users. Use the eyedropper tool to sample colors from any element on screen. Generate smooth CSS gradients, export values as Tailwind CSS classes or raw CSS variables, and build complete design tokens — all browser-based with no signup required.",
   "instructions": {
     "title": "How to use Color Picker",
     "steps": [
       {
-        "title": "Paste your content",
-        "description": "Copy and paste your content into the input area. The tool accepts any format and will process it immediately."
+        "title": "Select a color",
+        "description": "Click on the color wheel or spectrum to pick a color visually, use the eyedropper to sample a color from your screen, or type a value directly in HEX, RGB, or HSL format."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Convert between formats",
+        "description": "Once a color is selected, view its value in all supported formats — HEX, RGB, HSL, HSV, CMYK, and LAB. Click any value to copy it to your clipboard instantly."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will process your input and display the result with proper formatting and validation."
+        "title": "Check contrast and accessibility",
+        "description": "Use the WCAG contrast checker to test your foreground and background color combination. The tool shows contrast ratio and pass/fail status for AA and AAA compliance levels."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Generate a palette",
+        "description": "Create color palettes using harmonious schemes: complementary, analogous, triadic, split-complementary, or monochromatic. Adjust saturation and lightness to fine-tune each swatch."
+      },
+      {
+        "title": "Export your colors",
+        "description": "Copy individual color values, export your palette as CSS custom properties, Tailwind CSS config, or download the full palette for use in your design system or codebase."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Convert between HEX, RGB, HSL, HSV, CMYK, and LAB color formats instantly",
+      "WCAG contrast ratio checker with AA and AAA compliance indicators",
+      "Palette generator with complementary, analogous, triadic, and monochromatic schemes",
+      "Color blindness simulation for protanopia, deuteranopia, and tritanopia",
+      "Eyedropper tool to sample any color from your screen (EyeDropper API)",
+      "Gradient generator with linear, radial, and conic CSS gradient output",
+      "Export as CSS variables, Tailwind CSS classes, or design tokens",
+      "Fully browser-based — no data sent to any server, works offline"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Web design: pick brand colors and export as CSS variables or Tailwind classes",
+      "Accessibility compliance: verify color contrast meets WCAG 2.1 AA/AAA requirements",
+      "Branding and identity: build cohesive color palettes for logos, marketing, and style guides",
+      "CSS development: generate gradient code and color values ready to paste into stylesheets",
+      "UI prototyping: experiment with color combinations and preview them with contrast checks",
+      "Print design: convert screen colors to CMYK values for accurate print reproduction",
+      "Design systems: create and export consistent color tokens across your product",
+      "Color blindness testing: simulate how users with different vision types perceive your palette"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Use the eyedropper on any webpage to instantly capture and convert a color you like",
+      "Start with a single brand color and use the palette generator to build a full harmonious scheme",
+      "Always check contrast ratios for both normal text (4.5:1 AA) and large text (3:1 AA) thresholds",
+      "Toggle color blindness simulation before finalizing your palette to ensure inclusive design",
+      "Export your palette as Tailwind CSS config to integrate directly into your tailwind.config.js",
+      "Use HSL mode for easier adjustments — change lightness for tints/shades without affecting hue"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Eyedropper not working: The EyeDropper API requires Chrome 95+ or Edge 95+. It is not supported in Firefox or Safari yet.",
+      "Color looks different on screen vs print: Screen uses RGB (additive), print uses CMYK (subtractive). Use the CMYK output for print-accurate values.",
+      "Contrast ratio too low: Try increasing the lightness difference between foreground and background. Dark text on light backgrounds generally yields higher ratios.",
+      "HEX value not recognized: Ensure you include the # prefix and use valid hexadecimal characters (0-9, A-F). Both 3-digit (#FFF) and 6-digit (#FFFFFF) formats are supported.",
+      "Palette colors look off together: Switch from complementary to analogous scheme for more subtle harmony, or adjust saturation to unify the palette."
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Ctrl+V",
-        "description": "Paste input"
-      },
-      {
-        "keys": "Ctrl+Enter",
-        "description": "Process/Format"
-      },
-      {
         "keys": "Ctrl+C",
-        "description": "Copy result"
+        "description": "Copy selected color value"
       },
       {
-        "keys": "Ctrl+S",
-        "description": "Download file"
+        "keys": "Ctrl+V",
+        "description": "Paste a color code to load it"
+      },
+      {
+        "keys": "Ctrl+Shift+E",
+        "description": "Activate eyedropper"
+      },
+      {
+        "keys": "Ctrl+Shift+P",
+        "description": "Generate palette from current color"
       }
     ]
   }

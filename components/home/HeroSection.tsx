@@ -1,14 +1,14 @@
 'use client';
 
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { Search, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, ArrowRight, Shield, Lock, Zap } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { searchTools } from '@/lib/tools';
-import { cn } from '@/lib/utils';
 import { type Locale, defaultLocale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { useLocale } from '@/hooks/useLocale';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 const placeholders = [
   'json formatter',
@@ -43,10 +43,8 @@ export function HeroSection({
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { createHref } = useLocale();
 
-  // Get localized placeholders or fall back to English
   const localizedPlaceholders = useMemo(() => {
     if (!dictionary) return placeholders;
-
     return [
       dictionary.tools['json-formatter']?.title?.toLowerCase() ||
         'json formatter',
@@ -61,10 +59,8 @@ export function HeroSection({
     ];
   }, [dictionary]);
 
-  // Get localized popular searches
   const getPopularSearches = () => {
     if (!dictionary) return popularSearches;
-
     return [
       { label: 'JSON', query: 'json' },
       { label: 'Base64', query: 'base64' },
@@ -78,24 +74,12 @@ export function HeroSection({
     ];
   };
 
-  // Deterministic particles - no useEffect/setState needed
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 10 }, (_, i) => ({
-        left: `${(i * 37 + 13) % 100}%`,
-        top: `${(i * 53 + 7) % 100}%`,
-        delay: `${(i * 1.3) % 10}s`,
-        duration: `${10 + ((i * 2.7) % 20)}s`,
-      })),
-    []
-  );
-
   // Typewriter effect via direct DOM manipulation - no re-renders
   useEffect(() => {
     const input = searchInputRef.current;
     if (!input) return;
 
-    const tryText = dictionary?.common?.actions?.copy || 'Try';
+    const tryText = 'Try';
     let currentPlaceholderIndex = 0;
     let currentIndex = 0;
     let timer: NodeJS.Timeout;
@@ -134,7 +118,6 @@ export function HeroSection({
     };
 
     tick();
-
     return () => clearTimeout(timer);
   }, [localizedPlaceholders, dictionary]);
 
@@ -165,64 +148,52 @@ export function HeroSection({
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-purple-600 via-blue-600 to-teal-500">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="animate-gradient absolute inset-0 bg-gradient-to-br from-purple-600/20 via-blue-600/20 to-teal-500/20" />
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '20px 20px',
-          }}
-        />
-      </div>
+    <section className="relative flex min-h-[88vh] items-center overflow-hidden bg-background">
+      {/* Technical grid background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(139,92,246,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(139,92,246,0.04) 1px, transparent 1px)
+          `,
+          backgroundSize: '64px 64px',
+        }}
+      />
 
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {particles.map((particle, i) => (
-          <div
-            key={i}
-            className="particle absolute h-1 w-1 rounded-full bg-white/30"
-            style={{
-              left: particle.left,
-              top: particle.top,
-              animationDelay: particle.delay,
-              animationDuration: particle.duration,
-            }}
-          />
-        ))}
-      </div>
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute -left-32 top-0 h-[600px] w-[600px] rounded-full bg-violet-600/10 blur-3xl" />
+      <div className="bg-amber-500/8 pointer-events-none absolute -right-32 top-0 h-[500px] w-[500px] rounded-full blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 h-[300px] w-[800px] -translate-x-1/2 rounded-full bg-emerald-500/5 blur-3xl" />
 
-      <div className="relative z-10 px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+      <div className="relative z-10 w-full px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          {/* Trust badge */}
+          {/* Status badge */}
           <div className="mb-8 flex justify-center">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 md:backdrop-blur-sm">
-              <Sparkles className="h-4 w-4 text-yellow-300" />
-              <span className="text-sm font-medium text-white">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-violet-500/25 bg-violet-500/10 px-4 py-2">
+              <div className="relative">
+                <div className="h-2 w-2 rounded-full bg-violet-400" />
+                <div className="absolute inset-0 h-2 w-2 animate-ping rounded-full bg-violet-400 opacity-75" />
+              </div>
+              <span className="font-mono text-xs font-medium uppercase tracking-widest text-violet-300">
                 {dictionary?.home?.hero?.subtitle ||
-                  'Trusted by hundreds of developers worldwide'}
+                  '72 tools · free forever · no signup'}
               </span>
             </div>
           </div>
 
           {/* Main headline */}
-          <h1 className="mb-6 text-center text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="mb-6 text-center text-5xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-6xl lg:text-7xl">
             {dictionary?.home?.hero?.title || 'Your Developer Tools'}{' '}
-            <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-violet-400 via-violet-300 to-amber-400 bg-clip-text text-transparent">
               Laboratory
-            </span>{' '}
-            <span className="inline-block animate-bounce text-5xl">🧪</span>
+            </span>
           </h1>
 
           {/* Subheadline */}
-          <p className="mx-auto mb-10 max-w-3xl text-center text-lg text-white/90 sm:text-xl md:text-2xl">
+          <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-slate-700 dark:text-slate-400 sm:text-xl">
             {dictionary?.home?.hero?.description ||
-              'Experiment, Transform, Deploy. 50+ precision-engineered tools for your development workflow. No signup, no limits, just pure productivity.'}
+              'Experiment, Transform, Deploy. 72 precision-engineered tools — instant results, 100% private, runs entirely in your browser.'}
           </p>
 
           {/* Search bar */}
@@ -232,7 +203,7 @@ export function HeroSection({
                 <label htmlFor="hero-search" className="sr-only">
                   Search tools
                 </label>
-                <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/60" />
+                <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500" />
                 <input
                   id="hero-search"
                   ref={searchInputRef}
@@ -244,26 +215,26 @@ export function HeroSection({
                     setTimeout(() => setIsSearchFocused(false), 200)
                   }
                   placeholder=""
-                  className="h-14 w-full rounded-2xl border border-white/20 bg-white/20 pl-12 pr-4 text-lg text-white placeholder-white/50 caret-transparent transition-all duration-200 focus:border-white/40 focus:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/20 md:bg-white/10 md:backdrop-blur-md"
+                  className="h-14 w-full rounded-xl border border-slate-200 bg-white pl-12 pr-4 text-base text-slate-900 placeholder-slate-400 caret-violet-400 backdrop-blur-sm transition-all duration-200 focus:border-violet-500/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white dark:placeholder-slate-500"
                   suppressHydrationWarning
                 />
               </div>
 
               {/* Search suggestions dropdown */}
               {isSearchFocused && searchResults.length > 0 && (
-                <div className="absolute left-0 right-0 top-full z-[99999] mt-2 rounded-xl border border-white/20 bg-white p-2 shadow-2xl md:bg-white/95 md:backdrop-blur-md">
+                <div className="absolute left-0 right-0 top-full z-[99999] mt-2 rounded-xl border border-slate-200 bg-white/95 p-2 shadow-2xl backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0a0a0f]/95">
                   {searchResults.map((tool) => (
                     <button
                       key={tool.id}
                       onClick={() => handleResultClick(tool.route)}
-                      className="flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors hover:bg-blue-50"
+                      className="flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors hover:bg-slate-100 dark:hover:bg-white/[0.05]"
                     >
-                      <span className="text-2xl">{tool.icon}</span>
+                      <ToolIcon id={tool.id} className="h-5 w-5 flex-shrink-0 text-slate-600 dark:text-slate-400" />
                       <div>
-                        <div className="font-medium text-gray-900">
+                        <div className="font-medium text-slate-900 dark:text-white">
                           {tool.name}
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-sm text-slate-700 dark:text-slate-400">
                           {tool.description}
                         </div>
                       </div>
@@ -275,66 +246,76 @@ export function HeroSection({
 
             {/* Popular searches */}
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-              <span className="text-sm text-white/70">
-                {dictionary?.home?.popular?.subtitle || 'Popular'}:
+              <span className="font-mono text-xs uppercase tracking-wider text-slate-600">
+                {dictionary?.home?.popular?.subtitle || 'Quick access'}:
               </span>
               {getPopularSearches().map((search) => (
                 <button
                   key={search.query}
                   onClick={() => handlePopularSearch(search.query)}
-                  className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-white transition-all hover:border-white/40 hover:bg-white/20 md:backdrop-blur-sm"
+                  className="rounded-lg border border-slate-200 bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600 transition-all hover:border-violet-500/40 hover:text-violet-300 dark:border-white/[0.06] dark:bg-white/[0.03] dark:text-slate-400"
                 >
                   {search.label}
                 </button>
               ))}
             </div>
           </div>
+
+          {/* Primary CTA — above trust signals */}
+          <div className="mt-8 flex justify-center">
+            <Link
+              href={createHref('/tools')}
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-violet-500 px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_24px_rgba(139,92,246,0.4)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(139,92,246,0.5)]"
+            >
+              Browse all tools
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Inline trust signals */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <span className="flex items-center gap-1.5 text-sm text-slate-500">
+              <Shield className="h-3.5 w-3.5 text-emerald-500" />
+              No data leaves your device
+            </span>
+            <span className="text-xs text-slate-700">·</span>
+            <span className="flex items-center gap-1.5 text-sm text-slate-500">
+              <Zap className="h-3.5 w-3.5 text-amber-500" />
+              Runs in-browser
+            </span>
+            <span className="text-xs text-slate-700">·</span>
+            <span className="flex items-center gap-1.5 text-sm text-slate-500">
+              <Lock className="h-3.5 w-3.5 text-violet-400" />
+              No signup needed
+            </span>
+          </div>
+
+          {/* Quick inline links */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm text-slate-600">
+            <span>Popular:</span>
+            <Link
+              href={createHref('/tools/json-formatter')}
+              className="text-slate-500 transition-colors hover:text-violet-400"
+            >
+              JSON Formatter
+            </Link>
+            <span>·</span>
+            <Link
+              href={createHref('/tools/base64-encode')}
+              className="text-slate-500 transition-colors hover:text-violet-400"
+            >
+              Base64 Encoder
+            </Link>
+            <span>·</span>
+            <Link
+              href={createHref('/tools/jwt-decoder')}
+              className="text-slate-500 transition-colors hover:text-violet-400"
+            >
+              JWT Decoder
+            </Link>
+          </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes gradient {
-          0%,
-          100% {
-            transform: translateX(0) translateY(0);
-          }
-          25% {
-            transform: translateX(-5%) translateY(5%);
-          }
-          50% {
-            transform: translateX(5%) translateY(-5%);
-          }
-          75% {
-            transform: translateX(-5%) translateY(-5%);
-          }
-        }
-
-        .animate-gradient {
-          animation: gradient 15s ease infinite;
-          background-size: 200% 200%;
-        }
-
-        .particle {
-          animation: float linear infinite;
-        }
-
-        @keyframes float {
-          from {
-            transform: translateY(100vh) translateX(0);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          to {
-            transform: translateY(-100vh) translateX(100px);
-            opacity: 0;
-          }
-        }
-      `}</style>
     </section>
   );
 }

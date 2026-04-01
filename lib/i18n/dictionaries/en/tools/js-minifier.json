@@ -6,56 +6,56 @@
     "title": "How to use JavaScript Minifier",
     "steps": [
       {
-        "title": "Paste your JavaScript code",
-        "description": "Copy and paste your JavaScript code into the input area. The tool accepts any format and will process it immediately."
+        "title": "Paste or upload your JavaScript code",
+        "description": "Paste your JavaScript source code into the editor. Supports ES6+, ES2024, JSX, and modern syntax including arrow functions, async/await, and optional chaining."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Choose minification or beautification mode",
+        "description": "Select 'Minify' to compress code for production — removes whitespace, shortens variables, and eliminates dead code. Or select 'Beautify' to expand and indent minified code for readability."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will minify and optimize your input and display the result with proper formatting and validation."
+        "title": "Configure compression level and options",
+        "description": "Adjust compression from basic (whitespace removal) to aggressive (variable renaming, function inlining, tree shaking). Enable source map generation for production debugging."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Copy or download the optimized output",
+        "description": "Review the compression ratio (typically 30-70% size reduction), then copy the minified code or download the .min.js file with optional source maps."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Minify JavaScript with ES6/ES2024+ full support — Terser-powered engine",
+      "Beautify and format minified JS code with configurable indentation",
+      "Dead code elimination and tree shaking simulation",
+      "Variable renaming and function inlining for maximum compression",
+      "Source map generation for production debugging",
+      "Reduce bundle size by up to 70% — compress JS for faster page loads",
+      "No server uploads — all code processing happens in your browser",
+      "UglifyJS alternative with modern JavaScript compatibility"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Compress JavaScript for production deployment and faster page load times",
+      "Reduce JavaScript bundle size before deploying to CDN or hosting",
+      "Minify third-party scripts and libraries without build tools",
+      "Beautify minified vendor code for debugging and code review",
+      "Optimize JS code for website speed and Core Web Vitals scores",
+      "Prepare JavaScript assets for WordPress, Shopify, or static sites",
+      "Quick minification without configuring webpack, Rollup, or Vite",
+      "Remove console.log, comments, and debug statements before production"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Use aggressive compression for production builds — variable renaming alone saves 20-30%",
+      "Enable source maps when minifying production code to preserve debugging capability",
+      "Test minified output in browser DevTools before deploying to catch runtime errors",
+      "Combine multiple JS files before minifying for better compression ratios",
+      "Use beautify mode to reverse-engineer minified third-party code for debugging",
+      "Compare input vs output size to verify compression ratio meets your targets"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Syntax errors after minification: Ensure your code has no ES6+ features unsupported by the target — check for trailing commas or optional chaining",
+      "Output breaks functionality: Try lower compression level — aggressive variable renaming can conflict with eval() or dynamic property access",
+      "Source maps not working: Verify the source map URL comment is preserved in the minified output",
+      "Large file slow to process: Files over 1MB may take a few seconds — split into smaller modules if needed",
+      "Beautifier not indenting correctly: Check for mixed tabs/spaces in the original code and select consistent indentation settings"
     ],
     "keyboardShortcuts": [
       {
@@ -78,8 +78,8 @@
   },
   "meta": {
     "title": "JavaScript Minifier - Compress & Optimize JS Code Free",
-    "description": "Minify and compress JavaScript code online to reduce file size and improve page load speed. Remove whitespace and comments. Free JS minifier and compressor."
+    "description": "Minify and beautify JavaScript online free — no signup required. Compress JS code, remove whitespace, and reduce bundle size up to 70%. Full ES6+ support."
   },
   "tagline": "Minify and optimize JavaScript code with ES6+ support and source maps",
-  "pageDescription": "Professional JavaScript minifier and beautifier with ES2024+ support, reducing bundle size by up to 70% while maintaining functionality. Features advanced optimizations including dead code elimination, variable renaming, function inlining, and tree shaking simulation. Generate source maps for debugging, apply varying compression levels, and maintain modern JavaScript compatibility. Process code securely in your browser with no server uploads - perfect for production optimization and webpack alternative processing."
+  "pageDescription": "Professional JavaScript minifier and beautifier with ES2024+ support, reducing bundle size by up to 70% while maintaining functionality. Features advanced optimizations including dead code elimination, variable renaming, function inlining, and tree shaking simulation. Generate source maps for debugging, apply varying compression levels, and maintain modern JavaScript compatibility. Process code securely in your browser with no server uploads or signup required — a Terser-powered alternative to UglifyJS, perfect for production optimization."
 }

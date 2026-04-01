@@ -11,25 +11,39 @@ import {
   ArrowRight,
   Star,
   Search,
-  Download,
   Filter,
   Grid3X3,
   Heart,
   Shield,
   Zap,
   Bookmark,
+  Lock,
+  Sparkles,
+  Database,
+  FileText,
+  Palette,
+  Settings,
+  Rocket,
+  Share2,
+  Image,
+  Code2,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useToolStore } from '@/lib/store/toolStore';
 import { WelcomePopup, HelpButton } from '@/components/lab/WelcomePopup';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { cn } from '@/lib/utils';
-import { categories as CATEGORIES, tools as TOOLS_CONFIG } from '@/lib/tools';
+import {
+  categories as CATEGORIES,
+  tools as TOOLS_CONFIG,
+  getPopularTools,
+} from '@/lib/tools';
 import { labToasts } from '@/lib/utils/toasts';
 import { useToolLabel } from '@/lib/services/toolLabelService';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;
@@ -58,22 +72,22 @@ function CategorySection({ categoryId }: { categoryId: string }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800"
+      className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/[0.06] dark:bg-white/[0.02]"
     >
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="flex w-full items-center gap-3 px-6 py-5 transition-colors hover:bg-gray-50 dark:hover:bg-gray-700"
+        className="flex w-full items-center gap-3 px-6 py-5 transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.04]"
       >
         {isExpanded ? (
-          <ChevronDown className="h-5 w-5 text-gray-500" />
+          <ChevronDown className="h-5 w-5 text-slate-500" />
         ) : (
-          <ChevronRight className="h-5 w-5 text-gray-500" />
+          <ChevronRight className="h-5 w-5 text-slate-500" />
         )}
-        <div className="h-3 w-3 rounded-full bg-gradient-to-r from-purple-400 to-violet-600" />
-        <h3 className="flex-1 text-left text-lg font-semibold text-gray-900 dark:text-white">
+        <div className="h-3 w-3 rounded-full bg-gradient-to-r from-violet-400 to-violet-600" />
+        <h3 className="flex-1 text-left text-lg font-semibold text-slate-900 dark:text-white">
           {category.name}
         </h3>
-        <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">
+        <span className="rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-700 dark:text-violet-300">
           {categoryTools.length} {categoryTools.length === 1 ? 'tool' : 'tools'}
         </span>
         <FavoriteButton type="category" id={categoryId} name={category.name} />
@@ -84,7 +98,7 @@ function CategorySection({ categoryId }: { categoryId: string }) {
           initial={{ height: 0 }}
           animate={{ height: 'auto' }}
           exit={{ height: 0 }}
-          className="border-t border-gray-200 dark:border-gray-700"
+          className="border-t border-slate-200 dark:border-white/[0.06]"
         >
           <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 lg:grid-cols-3">
             {categoryTools.map((toolSlug) => {
@@ -130,7 +144,7 @@ function LabToolCard({
         <div
           className={cn(
             'group relative cursor-not-allowed rounded-xl p-5 opacity-75 transition-all',
-            'border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800'
+            'border border-slate-200 bg-slate-50 dark:border-white/[0.06] dark:bg-white/[0.04]'
           )}
         >
           {children}
@@ -139,7 +153,7 @@ function LabToolCard({
     }
 
     return (
-      <div className="group relative rounded-xl border border-gray-200 bg-white p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800">
+      <div className="group relative rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02]">
         <Link href={tool.route || `/tools/${tool.id}`} className="block">
           {children}
         </Link>
@@ -150,14 +164,14 @@ function LabToolCard({
   return (
     <CardContent>
       <div className="mb-3 flex items-start gap-3">
-        <div className="text-xl">{tool.icon}</div>
+        <ToolIcon id={tool.id} className="h-5 w-5 flex-shrink-0 text-slate-600 dark:text-slate-400" />
         <div className="min-w-0 flex-1">
           <h4
             className={cn(
               'truncate text-base font-semibold transition-colors',
               isComingSoon
-                ? 'text-gray-500 dark:text-gray-400'
-                : 'text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400'
+                ? 'text-slate-500 dark:text-slate-400'
+                : 'text-slate-900 group-hover:text-violet-600 dark:text-slate-100 dark:group-hover:text-violet-400'
             )}
           >
             {tool.name}
@@ -166,8 +180,8 @@ function LabToolCard({
             className={cn(
               'mt-1 line-clamp-2 text-xs leading-relaxed',
               isComingSoon
-                ? 'text-gray-500 dark:text-gray-400'
-                : 'text-gray-600 dark:text-gray-400'
+                ? 'text-slate-500 dark:text-slate-400'
+                : 'text-slate-600 dark:text-slate-400'
             )}
           >
             {isComingSoon
@@ -178,7 +192,7 @@ function LabToolCard({
       </div>
 
       {lastUsed && !isComingSoon && (
-        <div className="mb-3 flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+        <div className="mb-3 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
           <Clock className="h-3 w-3" />
           <span suppressHydrationWarning>
             Last used: {formatTimeAgo(lastUsed)}
@@ -188,13 +202,13 @@ function LabToolCard({
 
       <div className="flex items-center justify-between">
         {!isComingSoon ? (
-          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-2 text-xs font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl">
+          <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-violet-500 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:shadow-md">
             <ExternalLink className="h-3 w-3" />
             <span>Open Tool</span>
             <ArrowRight className="h-3 w-3" />
           </div>
         ) : (
-          <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 text-xs font-medium text-gray-500 dark:bg-gray-700 dark:text-gray-400">
+          <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs font-medium text-slate-500 dark:bg-white/[0.06] dark:text-slate-400">
             <Clock className="h-3 w-3" />
             <span>Coming Soon</span>
           </div>
@@ -203,7 +217,7 @@ function LabToolCard({
         {showRemove && (
           <button
             onClick={handleRemove}
-            className="rounded-lg p-2 text-gray-400 opacity-0 transition-all hover:bg-red-50 hover:text-red-500 group-hover:opacity-100 dark:hover:bg-red-950/30"
+            className="rounded-lg p-2 text-slate-400 opacity-0 transition-all hover:bg-red-50 hover:text-red-500 group-hover:opacity-100 dark:hover:bg-red-950/30"
             title="Remove from Lab"
           >
             <Trash2 className="h-4 w-4" />
@@ -217,7 +231,7 @@ function LabToolCard({
           {getLabelComponent(toolLabel, 'xs')}
         </div>
       ) : (
-        <div className="absolute right-3 top-3 rounded-full bg-gradient-to-r from-purple-500 to-violet-600 px-3 py-1 text-xs font-medium text-white shadow-lg backdrop-blur-sm">
+        <div className="absolute right-3 top-3 rounded-full bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-700 dark:text-violet-300">
           In Lab
         </div>
       )}
@@ -225,163 +239,349 @@ function LabToolCard({
   );
 }
 
+function PopularToolCard({ tool, index }: { tool: any; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+    >
+      <Link
+        href={tool.route}
+        className="group relative flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-md dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-violet-500/40 dark:hover:shadow-violet-500/10"
+      >
+        {/* Top accent line */}
+        <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-2xl bg-gradient-to-r from-violet-500/40 to-amber-500/30 transition-opacity group-hover:from-violet-500/80 group-hover:to-amber-500/60" />
+
+        <ToolIcon id={tool.id} className="h-6 w-6 flex-shrink-0 text-slate-600 dark:text-slate-400" />
+        <div className="min-w-0 flex-1">
+          <h3 className="font-semibold text-slate-900 transition-colors group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-400">
+            {tool.name}
+          </h3>
+          <p className="mt-1 line-clamp-2 text-sm text-slate-600 dark:text-slate-300">
+            {tool.description}
+          </p>
+        </div>
+        <div className="flex-shrink-0">
+          <FavoriteButton type="tool" id={tool.id} />
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+function HowItWorksStep({
+  step,
+  icon: Icon,
+  title,
+  description,
+}: {
+  step: number;
+  icon: any;
+  title: string;
+  description: string;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.1 * step }}
+      className="flex flex-col items-center text-center"
+    >
+      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-violet-500/10 dark:border-violet-500/30 dark:bg-violet-500/20">
+        <Icon className="h-6 w-6 text-violet-600 dark:text-violet-400" />
+      </div>
+      <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-violet-600 dark:text-violet-400">
+        Step {step}
+      </div>
+      <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
+        {title}
+      </h3>
+      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        {description}
+      </p>
+    </motion.div>
+  );
+}
+
 function EnhancedEmptyState() {
   const { data: t } = useDictionarySectionContext('lab');
+  const popularTools = getPopularTools()
+    .filter((tool) => tool.label !== 'coming-soon')
+    .slice(0, 6);
+
   return (
     <>
-      {/* Detailed Introduction Section */}
-      <section className="bg-white py-16 dark:bg-gray-800">
+      {/* Section 1: Popular Tools - Show what's available */}
+      <section className="relative py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-              {t?.empty?.introDescription ||
-                'Your Personal Lab is a curated workspace where you can star your most-used developer tools for instant access. From encoding utilities to security tools, build your personalized toolkit that evolves with your workflow. Everything stays private in your browser with no account required.'}
-            </p>
+          <div className="mb-8 flex items-center justify-between">
+            <div>
+              <div className="mb-2 flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-amber-500" />
+                <span className="text-sm font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                  Most searched
+                </span>
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                {t?.empty?.popularToolsTitle || 'Popular Developer Tools'}
+              </h2>
+              <p className="mt-1 text-slate-600 dark:text-slate-400">
+                {t?.empty?.popularToolsSubtitle ||
+                  'Try any tool instantly — star it to add to your Lab'}
+              </p>
+            </div>
+            <Link
+              href="/tools"
+              className="hidden items-center gap-1 text-sm font-medium text-violet-600 transition-colors hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300 sm:flex"
+            >
+              View all tools
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {popularTools.map((tool, index) => (
+              <PopularToolCard key={tool.id} tool={tool} index={index} />
+            ))}
+          </div>
+
+          <div className="mt-6 text-center sm:hidden">
+            <Link
+              href="/tools"
+              className="inline-flex items-center gap-2 text-sm font-medium text-violet-600 dark:text-violet-400"
+            >
+              View all {TOOLS_CONFIG.filter((t) => t.label !== 'coming-soon').length} tools
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Enhanced Empty State */}
+      {/* Section 2: How It Works - Micro-onboarding */}
+      <section className="border-y border-slate-200 bg-white/50 py-16 dark:border-white/[0.08] dark:bg-white/[0.03]">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 text-center">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              {t?.empty?.howItWorksTitle || 'Build Your Toolkit in 3 Steps'}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <HowItWorksStep
+              step={1}
+              icon={Search}
+              title={t?.empty?.step1Title || 'Explore Tools'}
+              description={
+                t?.empty?.step1Description ||
+                'Browse 70+ free developer tools — JSON formatters, encoders, generators and more.'
+              }
+            />
+            <HowItWorksStep
+              step={2}
+              icon={Star}
+              title={t?.empty?.step2Title || 'Star Favorites'}
+              description={
+                t?.empty?.step2Description ||
+                'Click the star on any tool to save it to your personal Lab for instant access.'
+              }
+            />
+            <HowItWorksStep
+              step={3}
+              icon={Zap}
+              title={t?.empty?.step3Title || 'Work Faster'}
+              description={
+                t?.empty?.step3Description ||
+                'Open your Lab to find all your tools in one place — no searching, no scrolling.'
+              }
+            />
+          </div>
+
+          {/* Connecting line between steps (desktop) */}
+          <div className="relative mx-auto mt-[-140px] hidden max-w-2xl md:block" aria-hidden="true">
+            <div className="h-0.5 bg-gradient-to-r from-violet-200 via-violet-400 to-violet-200 dark:from-violet-700/50 dark:via-violet-500 dark:to-violet-700/50" />
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3: Categories Grid */}
       <section className="py-16">
-        <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mx-auto max-w-lg"
-          >
-            {/* Enhanced Empty Lab Animation */}
-            <motion.div
-              className="relative mb-12"
-              animate={{
-                rotate: [0, -3, 3, 0],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            >
-              <div className="mb-6 flex justify-center">
-                <div className="rounded-full bg-gradient-to-br from-purple-100 to-violet-100 p-8 dark:from-purple-900/30 dark:to-violet-900/30">
-                  🧪
-                </div>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              {t?.empty?.categoriesTitle || 'Explore by Category'}
+            </h2>
+            <p className="mt-2 text-slate-600 dark:text-slate-400">
+              {t?.empty?.categoriesSubtitle ||
+                'Find the right tool for every task in your development workflow'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {CATEGORIES.map((category, index) => {
+              const categoryIcons: Record<string, React.ElementType> = {
+                data: Database, encoding: Lock, base64: Image, text: FileText,
+                generators: Rocket, web: Palette, dev: Settings,
+                formatters: Code2, social: Share2, pdf: FileText,
+              };
+              const categoryGradients: Record<string, string> = {
+                data: 'from-blue-500 to-cyan-500', encoding: 'from-emerald-500 to-green-500',
+                base64: 'from-teal-500 to-cyan-500', text: 'from-purple-500 to-pink-500',
+                web: 'from-pink-500 to-rose-500', dev: 'from-amber-500 to-orange-500',
+                generators: 'from-orange-500 to-red-500', formatters: 'from-indigo-500 to-purple-500',
+                social: 'from-rose-500 to-pink-500', pdf: 'from-red-600 to-orange-600',
+              };
+              const categoryGlowColors: Record<string, string> = {
+                data: 'rgba(59,130,246,0.07)', encoding: 'rgba(16,185,129,0.07)',
+                base64: 'rgba(20,184,166,0.07)', text: 'rgba(168,85,247,0.07)',
+                web: 'rgba(236,72,153,0.07)', dev: 'rgba(245,158,11,0.07)',
+                generators: 'rgba(249,115,22,0.07)', formatters: 'rgba(99,102,241,0.07)',
+                social: 'rgba(244,63,94,0.07)', pdf: 'rgba(239,68,68,0.07)',
+              };
+              const Icon = categoryIcons[category.id] || FileText;
+              const gradient = categoryGradients[category.id] || 'from-slate-500 to-slate-600';
+              const glowColor = categoryGlowColors[category.id] || 'rgba(139,92,246,0.06)';
+
+              return (
+                <motion.div
+                  key={category.id}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.04 }}
+                >
+                  <Link
+                    href={`/category/${category.id}`}
+                    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:bg-slate-100/50 hover:shadow-lg dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
+                  >
+                    {/* Category glow background */}
+                    <div
+                      className="absolute inset-0 opacity-40 transition-opacity duration-300 group-hover:opacity-100"
+                      style={{ background: glowColor }}
+                    />
+
+                    {/* Colored top border */}
+                    <div className={`absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r ${gradient}`} />
+
+                    <div className="relative z-10">
+                      {/* Icon */}
+                      <div className={`mb-4 inline-flex rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg`}>
+                        <Icon className="h-5 w-5" />
+                      </div>
+
+                      {/* Name */}
+                      <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
+                        {category.name}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                        {category.description}
+                      </p>
+
+                      {/* Footer: count + arrow */}
+                      <div className="flex items-center justify-between">
+                        <span className="inline-flex items-center rounded-full border border-slate-200/80 bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:border-white/[0.08] dark:bg-white/[0.05] dark:text-slate-300">
+                          {category.tools.length} {category.tools.length === 1 ? 'tool' : 'tools'}
+                        </span>
+                        <ChevronRight className="h-4 w-4 text-slate-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-violet-400" />
+                      </div>
+
+                      {/* Tool preview chips */}
+                      <div className="mt-4 flex flex-wrap gap-1">
+                        {category.tools.slice(0, 3).map((tool) => (
+                          <span
+                            key={tool.id}
+                            className="rounded-md border border-slate-200 bg-slate-50/60 px-2 py-0.5 text-xs text-slate-500 dark:border-white/[0.06] dark:bg-white/[0.02] dark:text-slate-400"
+                          >
+                            {tool.name}
+                          </span>
+                        ))}
+                        {category.tools.length > 3 && (
+                          <span className="rounded-md border border-slate-200 bg-slate-50/60 px-2 py-0.5 text-xs font-medium text-slate-400 dark:border-white/[0.06] dark:bg-white/[0.02]">
+                            +{category.tools.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4: Trust Pillars */}
+      <section className="border-t border-slate-200 py-16 dark:border-white/[0.08]">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center dark:border-white/[0.08] dark:bg-white/[0.04]">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-green-200 bg-green-500/10 dark:border-green-500/30 dark:bg-green-500/15">
+                <Shield className="h-6 w-6 text-green-600 dark:text-green-400" />
               </div>
-
-              {/* Floating particles */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                {[...Array(4)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute h-2 w-2 rounded-full bg-purple-400"
-                    animate={{
-                      y: [-15, -40, -15],
-                      x: [0, Math.sin(i) * 25, 0],
-                      opacity: [0.3, 1, 0.3],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      delay: i * 0.4,
-                      ease: 'easeInOut',
-                    }}
-                    style={{
-                      left: `${40 + i * 6}%`,
-                      top: '25%',
-                    }}
-                  />
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Main Message */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white lg:text-4xl">
-                {t?.empty?.mainMessage || 'Your Lab Awaits!'}
-              </h2>
-              <p className="mb-8 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                {t?.empty?.mainDescription ||
-                  'Start building your personalized developer toolkit by starring tools with a ⭐ to add them here.'}
-              </p>
-            </motion.div>
-
-            {/* Enhanced Action Buttons */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6, duration: 0.4 }}
-              className="mb-12 flex flex-col gap-4 sm:flex-row sm:justify-center"
-            >
-              <Link
-                href="/tools"
-                className={cn(
-                  'inline-flex items-center gap-2 rounded-full px-8 py-4',
-                  'bg-gradient-to-r from-purple-600 to-pink-600',
-                  'text-lg font-semibold text-white',
-                  'hover:from-purple-700 hover:to-pink-700',
-                  'transform transition-all hover:scale-105',
-                  'shadow-lg hover:shadow-xl'
-                )}
-              >
-                <Search className="h-5 w-5" />
-                {t?.empty?.exploreAllTools || 'Explore All Tools'}
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-
-              <Link
-                href="/categories"
-                className={cn(
-                  'inline-flex items-center gap-2 rounded-full px-8 py-4',
-                  'border-2 border-purple-600 text-purple-600',
-                  'hover:bg-purple-50 dark:hover:bg-purple-950/30',
-                  'text-lg font-semibold transition-all',
-                  'dark:border-purple-400 dark:text-purple-400'
-                )}
-              >
-                <Grid3X3 className="h-5 w-5" />
-                {t?.empty?.browseCategories || 'Browse Categories'}
-              </Link>
-            </motion.div>
-
-            {/* Enhanced Pro Tips */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.6 }}
-              className="rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-50 to-violet-50 p-6 dark:border-gray-700 dark:from-purple-950/20 dark:to-violet-950/20"
-            >
-              <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-white">
-                💡 {t?.empty?.proTipsTitle || 'Pro Tips for Your Lab:'}
+              <h3 className="mb-2 font-semibold text-slate-900 dark:text-white">
+                {t?.empty?.trustPrivacyTitle || '100% Private'}
               </h3>
-              <ul className="space-y-3 text-left text-gray-700 dark:text-gray-300">
-                <li className="flex items-start gap-3">
-                  <Star className="mt-1 h-5 w-5 flex-shrink-0 fill-amber-500 text-amber-500" />
-                  <span>
-                    {t?.empty?.proTip1 ||
-                      'Click the star on any tool card to add it to your personal collection'}
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Star className="mt-1 h-5 w-5 flex-shrink-0 fill-amber-500 text-amber-500" />
-                  <span>
-                    {t?.empty?.proTip2 ||
-                      'Star entire categories for quick access to related tools'}
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Shield className="mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
-                  <span>
-                    {t?.empty?.proTip3 ||
-                      'Everything stays completely private - stored locally in your browser with zero tracking'}
-                  </span>
-                </li>
-              </ul>
-            </motion.div>
-          </motion.div>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                {t?.empty?.trustPrivacyDescription ||
+                  'All data stays in your browser. No accounts, no server storage, no tracking.'}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center dark:border-white/[0.08] dark:bg-white/[0.04]">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-violet-200 bg-violet-500/10 dark:border-violet-500/30 dark:bg-violet-500/15">
+                <Heart className="h-6 w-6 text-violet-600 dark:text-violet-400" />
+              </div>
+              <h3 className="mb-2 font-semibold text-slate-900 dark:text-white">
+                {t?.empty?.trustFreeTitle || 'Free Forever'}
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                {t?.empty?.trustFreeDescription ||
+                  'Every tool is free with no usage limits. No premium tiers, no paywalls.'}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center dark:border-white/[0.08] dark:bg-white/[0.04]">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-amber-200 bg-amber-500/10 dark:border-amber-500/30 dark:bg-amber-500/15">
+                <Lock className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+              </div>
+              <h3 className="mb-2 font-semibold text-slate-900 dark:text-white">
+                {t?.empty?.trustNoSignupTitle || 'No Sign-Up Required'}
+              </h3>
+              <p className="text-sm text-slate-600 dark:text-slate-300">
+                {t?.empty?.trustNoSignupDescription ||
+                  'Start using any tool instantly. Your Lab preferences save automatically in your browser.'}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5: Bottom CTA */}
+      <section className="border-t border-slate-200 py-16 dark:border-white/[0.08]">
+        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+          <h2 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
+            {t?.empty?.bottomCtaTitle || 'Ready to build your toolkit?'}
+          </h2>
+          <p className="mb-8 text-slate-600 dark:text-slate-400">
+            {t?.empty?.bottomCtaDescription ||
+              'Explore our collection of free developer tools and start starring your favorites.'}
+          </p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+            <Link
+              href="/tools"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-violet-500 px-8 py-3.5 font-semibold text-white shadow-sm transition-all hover:shadow-md dark:shadow-violet-500/20 dark:hover:shadow-violet-500/30"
+            >
+              <Search className="h-5 w-5" />
+              {t?.empty?.exploreAllTools || 'Explore All Tools'}
+              <ArrowRight className="h-5 w-5" />
+            </Link>
+            <Link
+              href="/categories"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-violet-600 px-8 py-3.5 font-semibold text-violet-600 transition-all hover:bg-violet-50 dark:border-violet-400 dark:text-violet-400 dark:hover:bg-violet-950/20"
+            >
+              <Grid3X3 className="h-5 w-5" />
+              {t?.empty?.browseCategories || 'Browse Categories'}
+            </Link>
+          </div>
         </div>
       </section>
     </>
@@ -427,12 +627,12 @@ export default function LabHubContent() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
-        <div className="bg-gradient-to-r from-purple-600 via-violet-600 to-purple-800 py-20">
+      <div className="min-h-screen bg-background">
+        <div className="border-b border-slate-200 py-12 dark:border-white/[0.06]">
           <div className="animate-pulse">
-            <div className="mx-auto max-w-4xl px-4 text-center">
-              <div className="mx-auto mb-4 h-12 w-96 rounded bg-white/20" />
-              <div className="w-128 mx-auto mb-8 h-6 rounded bg-white/10" />
+            <div className="mx-auto max-w-4xl px-4">
+              <div className="mb-4 h-10 w-64 rounded bg-slate-200 dark:bg-white/[0.06]" />
+              <div className="h-5 w-96 rounded bg-slate-200 dark:bg-white/[0.06]" />
             </div>
           </div>
         </div>
@@ -442,7 +642,7 @@ export default function LabHubContent() {
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
-                  className="h-40 rounded-xl bg-gray-200 dark:bg-gray-800"
+                  className="h-40 rounded-2xl bg-slate-200 dark:bg-white/[0.06]"
                 />
               ))}
             </div>
@@ -470,90 +670,73 @@ export default function LabHubContent() {
 
   if (isEmpty) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+      <div className="min-h-screen bg-background">
+        {/* Grid Background */}
+        <div
+          className="pointer-events-none fixed inset-0 opacity-40 dark:opacity-20"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(139,92,246,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.035) 1px, transparent 1px)',
+            backgroundSize: '64px 64px',
+          }}
+        />
         <WelcomePopup />
 
-        {/* Enhanced Header with Gradient - Empty State */}
-        <section className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-violet-600 to-purple-800">
-          {/* Pattern Overlay */}
-          <div className="bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22https://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.1%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] absolute inset-0 opacity-50" />
-
-          {/* Gradient Decorations */}
-          <div className="absolute -right-40 -top-40 h-80 w-80 rounded-full bg-gradient-to-br from-white/20 to-white/5 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-gradient-to-br from-white/15 to-white/5 blur-3xl" />
+        {/* Hero - Compact, value-focused */}
+        <section className="relative overflow-hidden border-b border-slate-200 dark:border-white/[0.06]">
+          {/* Ambient Glows */}
+          <div className="pointer-events-none absolute -left-40 -top-40 h-80 w-80 rounded-full bg-violet-600/10 blur-3xl" />
+          <div className="pointer-events-none absolute -right-40 -top-20 h-60 w-60 rounded-full bg-amber-500/[0.07] blur-3xl" />
 
           <div className="relative py-12 lg:py-16">
             <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-              <div className="text-center">
-                {/* Breadcrumbs */}
-                <nav
-                  className="mb-6 flex justify-center"
-                  aria-label="Breadcrumb"
-                >
-                  <ol className="flex items-center space-x-2 text-sm text-white/70">
-                    <li>
-                      <Link
-                        href="/"
-                        className="transition-colors hover:text-white"
-                      >
-                        Home
-                      </Link>
-                    </li>
-                    <li>
-                      <ArrowRight className="h-3 w-3" />
-                    </li>
-                    <li className="font-medium text-white">Lab</li>
-                  </ol>
-                </nav>
+              {/* Breadcrumb */}
+              <nav className="mb-6" aria-label="Breadcrumb">
+                <ol className="flex items-center space-x-2 text-sm text-slate-500">
+                  <li>
+                    <Link
+                      href="/"
+                      className="transition-colors hover:text-slate-900 dark:hover:text-white"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li><span className="text-slate-400">/</span></li>
+                  <li className="font-medium text-slate-900 dark:text-white">Lab</li>
+                </ol>
+              </nav>
 
-                {/* Hero Icons */}
-                <div className="mb-6 flex items-center justify-center gap-4">
-                  <span className="animate-pulse text-6xl lg:text-7xl">🧪</span>
-                  <div className="h-12 w-px bg-white/30" />
-                  <span
-                    className="animate-pulse text-6xl lg:text-7xl"
-                    style={{ animationDelay: '0.5s' }}
-                  >
-                    ⚗️
+              <div className="max-w-3xl">
+                {/* Status badge */}
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-violet-500/10 px-4 py-1.5 text-sm font-medium text-violet-700 dark:text-violet-300">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-500 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-violet-500" />
                   </span>
+                  {TOOLS_CONFIG.filter((t) => t.label !== 'coming-soon').length} free tools · no signup · private
                 </div>
 
-                {/* Main Heading */}
-                <h1 className="mb-4 text-3xl font-bold text-white lg:text-4xl">
-                  {t?.empty?.headerTitle || 'Your Personal Developer Lab'}
+                <h1 className="mb-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-white lg:text-4xl">
+                  {t?.empty?.headerTitle || 'Your Developer Tools, One Workspace'}
                 </h1>
 
-                {/* Enhanced Subtitle */}
-                <p className="mx-auto mb-6 max-w-2xl text-lg text-white/90 lg:text-xl">
+                <p className="mb-8 max-w-2xl text-lg text-slate-600 dark:text-slate-400">
                   {t?.empty?.headerSubtitle ||
-                    'Streamline your workflow with curated tools and instant access'}
+                    'Star your go-to tools and access them all from your personal Lab. Free, private, instant — no account needed.'}
                 </p>
 
-                {/* Enhanced Tagline */}
-                <p className="mx-auto mb-4 max-w-2xl text-xl text-white/90 lg:text-2xl">
-                  {t?.empty?.headerTagline ||
-                    'Curate your favorite tools for instant access and streamlined workflows'}
-                </p>
-
-                {/* Enhanced Description */}
-                <p className="mx-auto mb-8 max-w-4xl text-lg leading-relaxed text-white/80">
-                  {t?.empty?.headerDescription ||
-                    'Build your personalized toolkit by starring tools across ToolsLab. Your Lab stays completely private - all data stored locally in your browser with no account required.'}
-                </p>
-
-                {/* Trust Badges */}
-                <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-white/90">
-                  <span className="flex items-center gap-2">
-                    <Shield className="h-4 w-4 text-green-300" />
-                    {t?.empty?.trustBadge1 || 'Completely Private'}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <Zap className="h-4 w-4 text-yellow-300" />
-                    {t?.empty?.trustBadge2 || 'Instant Access'}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <Heart className="h-4 w-4 text-pink-300" />
-                    {t?.empty?.trustBadge3 || 'Zero Setup'}
+                {/* CTA inline */}
+                <div className="flex flex-wrap items-center gap-4">
+                  <Link
+                    href="/tools"
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-violet-500 px-6 py-3 font-semibold text-white shadow-sm transition-all hover:shadow-md"
+                  >
+                    <Search className="h-4 w-4" />
+                    {t?.empty?.exploreAllTools || 'Explore All Tools'}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <span className="hidden text-sm text-slate-500 sm:inline">
+                    or scroll down to see popular tools
                   </span>
                 </div>
               </div>
@@ -562,80 +745,6 @@ export default function LabHubContent() {
         </section>
 
         <EnhancedEmptyState />
-
-        {/* SEO Content Section - Only show in empty state */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8"
-        >
-          <div className="rounded-2xl bg-gradient-to-br from-purple-50 to-violet-50 py-16 dark:from-purple-950/20 dark:to-violet-950/20">
-            <div className="mx-auto max-w-4xl px-8 text-center">
-              <h2 className="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
-                {t?.empty?.seoTitle || 'Why Create a Personal Developer Lab?'}
-              </h2>
-
-              <div className="prose prose-lg mx-auto max-w-none text-gray-700 dark:text-gray-300">
-                <p className="mb-6">
-                  {t?.empty?.seoIntro ||
-                    'Your Personal Lab transforms scattered tool usage into an organized, efficient workflow. By curating your favorite tools, you eliminate the time spent searching and create muscle memory for your most common development tasks.'}
-                </p>
-
-                <div className="grid gap-8 text-left md:grid-cols-2">
-                  <div>
-                    <div className="mb-4 flex items-center gap-3">
-                      <div className="rounded-lg bg-purple-100 p-2 dark:bg-purple-900/30">
-                        <Shield className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {t?.empty?.privacyControlTitle || 'Privacy & Control'}
-                      </h3>
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {t?.empty?.privacyControlDescription ||
-                        'Everything in your Lab is stored locally using browser localStorage. No accounts, no tracking, no server-side storage. Your workflow preferences stay completely private and under your control.'}
-                    </p>
-                  </div>
-
-                  <div>
-                    <div className="mb-4 flex items-center gap-3">
-                      <div className="rounded-lg bg-purple-100 p-2 dark:bg-purple-900/30">
-                        <Zap className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-                      </div>
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                        {t?.empty?.workflowOptimizationTitle ||
-                          'Workflow Optimization'}
-                      </h3>
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {t?.empty?.workflowOptimizationDescription ||
-                        'Star frequently-used tools like our JSON Formatter, Base64 Encoder, and security utilities to build workflows that match your development patterns.'}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/tools"
-                  className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-6 py-3 font-semibold text-white transition-all hover:scale-105 hover:bg-purple-700"
-                >
-                  <Search className="h-4 w-4" />
-                  {t?.empty?.exploreAllTools || 'Explore All Tools'}
-                </Link>
-
-                <Link
-                  href="/categories"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-purple-600 px-6 py-3 font-semibold text-purple-600 transition-all hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-950/20"
-                >
-                  <Grid3X3 className="h-4 w-4" />
-                  {t?.empty?.browseCategories || 'Browse Categories'}
-                </Link>
-              </div>
-            </div>
-          </div>
-        </motion.section>
       </div>
     );
   }
@@ -646,80 +755,78 @@ export default function LabHubContent() {
       : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+    <div className="min-h-screen bg-background">
+      {/* Grid Background */}
+      <div
+        className="pointer-events-none fixed inset-0 opacity-40 dark:opacity-20"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(139,92,246,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.035) 1px, transparent 1px)',
+          backgroundSize: '64px 64px',
+        }}
+      />
       <WelcomePopup />
       <HelpButton />
 
-      {/* Enhanced Header with Gradient - With Tools */}
-      <section className="relative overflow-hidden bg-gradient-to-r from-purple-600 via-violet-600 to-purple-800">
-        {/* Pattern Overlay */}
-        <div className="bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22https://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23ffffff%22 fill-opacity=%220.1%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] absolute inset-0 opacity-50" />
-
-        {/* Gradient Decorations */}
-        <div className="absolute -right-40 -top-40 h-80 w-80 rounded-full bg-gradient-to-br from-white/20 to-white/5 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-gradient-to-br from-white/15 to-white/5 blur-3xl" />
+      {/* Enhanced Header - With Tools */}
+      <section className="relative overflow-hidden border-b border-slate-200 dark:border-white/[0.06]">
+        {/* Ambient Glows */}
+        <div className="pointer-events-none absolute -left-40 -top-40 h-80 w-80 rounded-full bg-violet-600/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-40 -top-20 h-60 w-60 rounded-full bg-amber-500/[0.07] blur-3xl" />
 
         <div className="relative py-10 lg:py-12">
           <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
             <div className="text-center">
               {/* Breadcrumbs */}
               <nav className="mb-4 flex justify-center" aria-label="Breadcrumb">
-                <ol className="flex items-center space-x-2 text-sm text-white/70">
+                <ol className="flex items-center space-x-2 text-sm text-slate-500">
                   <li>
                     <Link
                       href="/"
-                      className="transition-colors hover:text-white"
+                      className="transition-colors hover:text-slate-900 dark:hover:text-white"
                     >
                       Home
                     </Link>
                   </li>
                   <li>
-                    <ArrowRight className="h-3 w-3" />
+                    <span className="text-slate-400">/</span>
                   </li>
-                  <li className="font-medium text-white">Lab</li>
+                  <li className="font-medium text-slate-900 dark:text-white">Lab</li>
                 </ol>
               </nav>
 
               {/* Hero Icons */}
               <div className="mb-5 flex items-center justify-center gap-3">
-                <span className="animate-pulse text-5xl lg:text-6xl">🧪</span>
-                <div className="h-10 w-px bg-white/30" />
-                <span
-                  className="animate-pulse text-5xl lg:text-6xl"
-                  style={{ animationDelay: '0.5s' }}
-                >
-                  ⚗️
-                </span>
+                <span className="text-5xl lg:text-6xl">🧪</span>
+                <div className="h-10 w-px bg-slate-300 dark:bg-white/[0.10]" />
+                <span className="text-5xl lg:text-6xl">⚗️</span>
               </div>
 
               {/* Main Heading with integrated stats */}
               <div className="mb-4 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-                <h1 className="text-2xl font-bold text-white lg:text-3xl">
-                  Your Personal{' '}
-                  <span className="bg-gradient-to-r from-white to-gray-100 bg-clip-text font-bold text-transparent">
-                    Developer Lab
-                  </span>
+                <h1 className="text-2xl font-bold text-slate-900 dark:text-white lg:text-3xl">
+                  Your Personal Developer Lab
                 </h1>
 
                 {/* Integrated Stats Pill Badge */}
-                <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 backdrop-blur-sm">
-                  <Bookmark className="h-4 w-4 text-white/90" />
-                  <span className="text-sm font-semibold text-white">
+                <div className="inline-flex items-center gap-2 rounded-full bg-violet-500/10 px-4 py-2">
+                  <Bookmark className="h-4 w-4 text-violet-600 dark:text-violet-400" />
+                  <span className="text-sm font-semibold text-violet-700 dark:text-violet-300">
                     {favoriteCount} Tools Saved
                   </span>
                 </div>
               </div>
 
               {/* Dynamic Tagline */}
-              <p className="mx-auto mb-4 max-w-2xl text-base text-white/90 lg:text-lg">
+              <p className="mx-auto mb-4 max-w-2xl text-base text-slate-600 dark:text-slate-400 lg:text-lg">
                 Streamline your workflow with curated tools and instant access
               </p>
 
               {/* Last Used Info */}
               {lastUsedTool && (
-                <p className="mb-4 text-sm text-white/70">
+                <p className="mb-4 text-sm text-slate-500">
                   Last used:{' '}
-                  <span className="font-medium text-white/90">
+                  <span className="font-medium text-slate-700 dark:text-slate-300">
                     {lastUsedTool.name}
                   </span>
                 </p>
@@ -729,14 +836,14 @@ export default function LabHubContent() {
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
                   href="/tools"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/30"
+                  className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 transition-all hover:bg-slate-200 dark:bg-white/[0.06] dark:text-slate-300 dark:hover:bg-white/[0.10]"
                 >
                   <Search className="h-4 w-4" />
                   Browse Tools
                 </Link>
                 <Link
                   href="/categories"
-                  className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-all hover:bg-white/30"
+                  className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 transition-all hover:bg-slate-200 dark:bg-white/[0.06] dark:text-slate-300 dark:hover:bg-white/[0.10]"
                 >
                   <Filter className="h-4 w-4" />
                   Categories
@@ -757,10 +864,10 @@ export default function LabHubContent() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
-              <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-gray-900 dark:text-white">
+              <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
                 <span>📁</span>
                 Favorite Categories
-                <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">
+                <span className="rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-700 dark:text-violet-300">
                   {validFavoriteCategories.length}
                 </span>
               </h2>
@@ -779,10 +886,10 @@ export default function LabHubContent() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-gray-900 dark:text-white">
+              <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
                 <span>⭐</span>
                 Favorite Tools
-                <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">
+                <span className="rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-700 dark:text-violet-300">
                   {standaloneFavoriteTools.length}
                 </span>
               </h2>
@@ -821,10 +928,10 @@ export default function LabHubContent() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-gray-900 dark:text-white">
+              <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
                 <span>🕒</span>
                 Recent Activity
-                <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-700 dark:bg-purple-900/30 dark:text-purple-300">
+                <span className="rounded-full bg-violet-500/10 px-3 py-1 text-sm font-medium text-violet-700 dark:text-violet-300">
                   {recentTools.length}
                 </span>
               </h2>
@@ -864,18 +971,18 @@ export default function LabHubContent() {
             transition={{ delay: 0.4 }}
             className="mt-16 text-center"
           >
-            <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-purple-50 to-violet-50 p-8 dark:border-gray-700 dark:from-purple-950/20 dark:to-violet-950/20">
+            <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-violet-50 to-violet-50/50 p-8 dark:border-white/[0.06] dark:from-violet-950/20 dark:to-violet-950/10">
               <div className="mb-6 flex justify-center">
-                <div className="rounded-full bg-gradient-to-r from-purple-100 to-violet-100 p-3 dark:from-purple-900/30 dark:to-violet-900/30">
-                  <Search className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+                <div className="rounded-full bg-gradient-to-r from-violet-100 to-violet-50 p-3 dark:from-violet-900/30 dark:to-violet-900/20">
+                  <Search className="h-8 w-8 text-violet-600 dark:text-violet-400" />
                 </div>
               </div>
 
-              <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+              <h2 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
                 {t?.empty?.needMoreTools || 'Need More Tools?'}
               </h2>
 
-              <p className="mx-auto mb-8 max-w-2xl text-gray-600 dark:text-gray-400">
+              <p className="mx-auto mb-8 max-w-2xl text-slate-600 dark:text-slate-400">
                 {t?.empty?.needMoreToolsDescription ||
                   'Explore our complete collection of developer tools across all categories. Find the perfect tool for your workflow and add it to your Lab.'}
               </p>
@@ -883,7 +990,7 @@ export default function LabHubContent() {
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <Link
                   href="/tools"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:shadow-xl"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-violet-500 px-6 py-3 font-semibold text-white shadow-sm transition-all hover:scale-105 hover:shadow-md"
                 >
                   <Search className="h-4 w-4" />
                   {t?.empty?.browseAllTools || 'Browse All Tools'}
@@ -892,7 +999,7 @@ export default function LabHubContent() {
 
                 <Link
                   href="/categories"
-                  className="inline-flex items-center gap-2 rounded-full border-2 border-purple-600 px-6 py-3 font-semibold text-purple-600 transition-all hover:bg-purple-50 dark:border-purple-400 dark:text-purple-400 dark:hover:bg-purple-950/20"
+                  className="inline-flex items-center gap-2 rounded-full border-2 border-violet-600 px-6 py-3 font-semibold text-violet-600 transition-all hover:bg-violet-50 dark:border-violet-400 dark:text-violet-400 dark:hover:bg-violet-950/20"
                 >
                   <Grid3X3 className="h-4 w-4" />
                   {t?.empty?.browseCategories || 'Browse Categories'}

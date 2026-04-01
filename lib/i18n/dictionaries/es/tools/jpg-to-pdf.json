@@ -7,70 +7,86 @@
     "steps": [
       {
         "title": "Sube imágenes JPG/JPEG",
-        "description": "Arrastra múltiples JPG o JPEG al área o haz clic para seleccionar. Soporta extensiones .jpg y .jpeg."
+        "description": "Arrastra múltiples JPG o JPEG al área de carga o haz clic para seleccionar archivos desde tu ordenador. Soporta extensiones .jpg y .jpeg."
       },
       {
         "title": "Reordena tus imágenes",
-        "description": "Usa botones de flecha para reorganizar JPG en orden deseado."
+        "description": "Usa los botones de flecha para reorganizar las imágenes JPG en el orden deseado. La secuencia determina el orden de páginas en el PDF final."
       },
       {
         "title": "Configura ajustes PDF",
-        "description": "Elige tamaño página, modo ajuste, márgenes y nombre archivo."
+        "description": "Elige tamaño de página (A4, Letter, A3, Legal, Tabloid, Personalizado), modo de ajuste, márgenes (0-100pt) y nombre de archivo."
       },
       {
         "title": "Genera y descarga PDF",
-        "description": "Haz clic Generar PDF. Cada imagen JPG se convierte en una página."
+        "description": "Haz clic en Generar PDF para crear el documento. Cada imagen JPG se convierte en una página del PDF final."
       }
     ],
     "features": [
-      "Convierte múltiples JPG/JPEG a un PDF",
-      "Soporte .jpg y .jpeg",
-      "Reordena con flechas",
-      "Tamaños: A4, Letter, A3, Legal, Tabloid, Personalizado",
-      "Modos ajuste: contener, cubrir, rellenar, ninguno",
-      "Márgenes 0-100pt",
-      "Nombre personalizado",
-      "Miniaturas vista previa",
-      "Procesamiento en navegador",
-      "Sin límites",
-      "Batch ilimitado",
-      "Mantiene calidad JPG"
+      "Convierte múltiples JPG/JPEG a un único PDF",
+      "Soporte para extensiones .jpg y .jpeg",
+      "Reordena imágenes con botones de flecha",
+      "Tamaños de página: A4, Letter, A3, Legal, Tabloid, Personalizado",
+      "Modos de ajuste: contener, cubrir, rellenar, ninguno",
+      "Márgenes ajustables de 0 a 100pt",
+      "Nombre de archivo personalizado",
+      "Miniaturas de vista previa",
+      "Procesamiento en navegador — seguro y privado",
+      "Sin límites de carga ni restricciones",
+      "Procesamiento por lotes ilimitado",
+      "Mantiene alta calidad JPG en el PDF resultante",
+      "Sin filigrana ni pérdida de calidad",
+      "Sin software, registro ni cuenta necesaria"
     ],
     "useCases": [
-      "Crea portafolios PDF de fotos JPG",
-      "Convierte escaneados JPG a PDF",
-      "Combina screenshots JPG",
-      "Fusiona imágenes producto JPG",
-      "Crea álbumes de fotos JPG",
-      "Convierte mockups JPG a PDF",
-      "Prepara informes de JPG",
-      "Archiva fotos JPG en PDF"
+      "Crea portafolios PDF de colecciones de fotos JPG",
+      "Convierte documentos escaneados JPG a PDF",
+      "Combina capturas de pantalla JPG en una presentación",
+      "Fusiona imágenes de productos JPG para catálogos",
+      "Crea álbumes de fotos JPG en formato PDF",
+      "Convierte mockups JPG a PDF para compartir",
+      "Prepara informes desde escaneos JPG",
+      "Archiva fotos JPG en formato PDF universal"
     ],
     "proTips": [
-      "Usa 'Contener' para preservar proporciones JPG",
-      "Elige 'Cubrir' para llenar página",
-      "Márgenes 0 para JPG sangrado",
-      "Tamaño 'Personalizado' para igualar JPG",
-      "Añade márgenes para impresión",
-      "Reordena antes de generar"
+      "Usa 'Contener' para preservar proporciones JPG sin recorte",
+      "Elige 'Cubrir' para rellenar página completa (puede recortar bordes)",
+      "Márgenes a 0 para JPG a sangrado completo",
+      "Usa tamaño 'Personalizado' para igualar las dimensiones JPG",
+      "Añade márgenes para mejor formato de impresión",
+      "Reordena antes de generar para ahorrar tiempo"
     ],
     "troubleshooting": [
       "JPG no carga: Verifica extensión .jpg o .jpeg",
-      "Mala calidad: Usa JPG alta resolución",
-      "Imágenes recortadas: Prueba 'Contener'",
-      "Archivo grande: Comprime JPG antes",
-      "Generación falló: Menos JPG",
-      "Imagen distorsionada: Evita 'Rellenar'"
+      "Mala calidad: Usa imágenes JPG de alta resolución",
+      "Imágenes recortadas: Prueba el modo 'Contener'",
+      "Archivo grande: Comprime JPG antes de subir",
+      "Generación falló: Intenta con menos JPG o archivos más pequeños",
+      "Imagen distorsionada: Evita 'Rellenar' si no quieres estiramiento"
     ],
     "keyboardShortcuts": [
-      { "keys": "Arrastrar y Soltar", "description": "Suelta archivos JPG" },
-      { "keys": "Clic", "description": "Selecciona archivos JPG" }
+      { "keys": "Arrastrar y Soltar", "description": "Suelta archivos JPG para cargarlos" },
+      { "keys": "Clic", "description": "Selecciona archivos JPG desde el ordenador" }
     ]
   },
   "meta": {
     "title": "Convertidor JPG a PDF - Herramienta Online Gratis",
-    "description": "Convierte JPG y JPEG a PDF online gratis. Combina múltiples JPG en un PDF. Tamaños personalizados. Convertidor seguro navegador."
+    "description": "Convierte JPG y JPEG a PDF online gratis, sin marca de agua ni registro. Combina varias fotos en un PDF con tamaño A4, márgenes y sin límite de archivos."
   },
   "tagline": "Convierte imágenes JPG y JPEG a PDF con tamaños de página y opciones de diseño profesionales",
-  "pageDescription": "Transforma imágenes JPG y JPEG en documentos PDF profesionales con control total sobre tamaños de página, modos de ajuste y márgenes. Perfecto para álbumes, documentación, portafolios y presentaciones de archivos JPG. Soporta JPG ilimitadas, batch processing, reordenamiento y dimensiones personalizadas. Conversión gratuita segura en navegador. Mantiene alta calidad JPG en salida PDF. Funciona con .jpg y .jpeg."
+  "pageDescription": "Transforma imágenes JPG y JPEG en documentos PDF profesionales con control total sobre tamaños de página, modos de ajuste y márgenes. Perfecto para álbumes de fotos, documentación, portafolios y presentaciones de archivos JPG. Soporta JPG ilimitadas, procesamiento por lotes, reordenamiento y dimensiones personalizadas. Conversión gratuita y segura en el navegador sin subir archivos a servidores. Convierte sin filigrana, sin instalar software y sin registro necesario. Funciona con extensiones .jpg y .jpeg.",
+  "longTailKeywords": [
+    "convertir JPG a PDF online gratis",
+    "convertir JPG a PDF sin registrarse",
+    "convertir varias fotos JPG en un solo PDF",
+    "convertir JPG a PDF sin marca de agua",
+    "cómo convertir imágenes JPG a PDF",
+    "convertir imágenes a PDF sin instalar software",
+    "convertir JPG a PDF tamaño A4 gratis",
+    "fusionar imágenes JPG en PDF con márgenes",
+    "convertir escaneados JPG a PDF online",
+    "crear álbum de fotos PDF desde imágenes JPG",
+    "mejor conversor JPG a PDF gratis online",
+    "convertir JPEG a PDF sin perder calidad"
+  ]
 }

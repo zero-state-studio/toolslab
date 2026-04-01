@@ -1,26 +1,40 @@
 {
-  "title": "YouTube Timestamp Generator",
+  "title": "YouTube-Timestamp-Generator",
   "description": "Erstellen Sie YouTube-Timestamps und Kapitel mit automatischer Link-Generierung und Zeitkonvertierung",
   "placeholder": "00:00",
   "meta": {
     "title": "YouTube-Timestamp-Generator",
-    "description": "YouTube-Videokapitel und Zeitstempel mit automatischer Zeitformatierung erstellen. Klickbare Links für Videobeschreibungen. Kostenloses Tool für Creator."
+    "description": "YouTube-Videokapitel und Zeitstempel mit automatischer Formatierung erstellen. Klickbare Links für Videobeschreibungen. Kostenloses Tool, ohne Anmeldung."
   },
   "tagline": "Generieren Sie YouTube-Kapitel und Timestamps mit automatischer Link-Erstellung und Zeitkonvertierung",
-  "pageDescription": "Professioneller YouTube-Timestamp-Generator fuer Content Creator und Video-Editoren. Erstellen Sie formatierte Timestamps fuer Videobeschreibungen, generieren Sie YouTube-Kapitel fuer verbesserte Navigation und konvertieren Sie sofort zwischen Zeitformaten. Fuegen Sie Timestamps mit Labels hinzu, importieren Sie vorhandene Kapitel und exportieren Sie in mehreren Formaten. Generieren Sie klickbare Timestamp-Links, wenn Sie eine Video-URL angeben. Der integrierte Zeitkonverter verarbeitet HH:MM:SS, MM:SS und Sekundenformate. Die gesamte Verarbeitung erfolgt in Ihrem Browser fuer vollstaendige Privatsphaere - keine Videodaten werden gespeichert oder hochgeladen.",
+  "pageDescription": "Professioneller YouTube-Timestamp-Generator für Content Creator und Video-Editoren — kostenlos, ohne Anmeldung. Erstellen Sie formatierte Timestamps für Videobeschreibungen, generieren Sie YouTube-Kapitel für verbesserte Navigation und SEO, und konvertieren Sie sofort zwischen Zeitformaten. Fügen Sie Timestamps mit Labels hinzu, importieren Sie vorhandene Kapitel und exportieren Sie in mehreren Formaten. Generieren Sie klickbare Timestamp-Links, wenn Sie eine Video-URL angeben. Der integrierte Zeitkonverter verarbeitet HH:MM:SS, MM:SS und Sekundenformate. Die gesamte Verarbeitung erfolgt in Ihrem Browser für vollständige Privatsphäre — keine Videodaten werden gespeichert oder hochgeladen.",
+  "longTailKeywords": [
+    "YouTube Timestamp Generator online kostenlos",
+    "YouTube Kapitel Videobeschreibung erstellen wie",
+    "YouTube Kapitel Generator ohne Anmeldung",
+    "klickbare YouTube Timestamp Links erstellen",
+    "YouTube Kapitel Format kopieren einfügen Beschreibung",
+    "YouTube Zeitstempel Tool für Content Creator",
+    "Zeitkonverter Sekunden MM:SS YouTube kostenlos",
+    "YouTube Kapitel für besseres Video SEO erstellen",
+    "bester kostenloser YouTube Kapitel Generator",
+    "YouTube Kapitel aus Textdatei importieren",
+    "YouTube Timestamp Links generieren teilen",
+    "Zeitstempel YouTube für Podcast Episoden"
+  ],
   "videoUrlPlaceholder": "https://www.youtube.com/watch?v=...",
-  "addTimestamp": "Timestamp Hinzufuegen",
+  "addTimestamp": "Timestamp Hinzufügen",
   "time": "Zeit",
   "label": "Label",
   "labelPlaceholder": "Kapiteltitel...",
   "timestamps": "Timestamps",
-  "noTimestamps": "Noch keine Timestamps. Fuegen Sie den ersten hinzu!",
+  "noTimestamps": "Noch keine Timestamps. Fügen Sie den ersten hinzu!",
   "generateChapters": "Kapitel Generieren",
   "importChapters": "Kapitel Importieren",
   "copyChapters": "Kapitel Kopieren",
   "copyLinks": "Mit Links Kopieren",
-  "clear": "Alles Loeschen",
-  "delete": "Loeschen",
+  "clear": "Alles Löschen",
+  "delete": "Löschen",
   "edit": "Bearbeiten",
   "save": "Speichern",
   "cancel": "Abbrechen",
@@ -28,45 +42,45 @@
   "linksFormat": "Timestamps mit Links",
   "videoUrl": "YouTube Video URL",
   "optional": "(optional)",
-  "invalidTime": "Ungueltiges Zeitformat. Verwenden Sie MM:SS oder HH:MM:SS",
-  "invalidUrl": "Ungueltige YouTube URL",
+  "invalidTime": "Ungültiges Zeitformat. Verwenden Sie MM:SS oder HH:MM:SS",
+  "invalidUrl": "Ungültige YouTube URL",
   "chaptersOutput": "Kapitel-Ausgabe",
   "linksOutput": "Link-Ausgabe",
   "copied": "Kopiert!",
-  "importPlaceholder": "Kapitel hier einfuegen (eines pro Zeile)...\nBeispiel:\n00:00 Einfuehrung\n01:30 Erstes Thema\n05:45 Zweites Thema",
+  "importPlaceholder": "Kapitel hier einfügen (eines pro Zeile)...\nBeispiel:\n00:00 Einführung\n01:30 Erstes Thema\n05:45 Zweites Thema",
   "importButton": "Importieren",
   "convertTime": "Zeitkonverter",
   "seconds": "Sekunden",
   "formatted": "Formatiert",
   "convert": "Konvertieren",
   "instructions": {
-    "title": "So verwenden Sie den YouTube Timestamp Generator",
+    "title": "So verwenden Sie den YouTube-Timestamp-Generator",
     "steps": [
       {
-        "title": "Fuegen Sie Ihren ersten Timestamp hinzu",
-        "description": "Geben Sie eine Zeit im Format MM:SS oder HH:MM:SS ein (z.B. 01:30 oder 1:30:00) und ein beschreibendes Label fuer das Kapitel. Das erste Kapitel bei 00:00 ist erforderlich, damit YouTube-Kapitel funktionieren. Klicken Sie auf 'Timestamp Hinzufuegen' oder druecken Sie Enter, um es zu Ihrer Liste hinzuzufuegen."
+        "title": "Fügen Sie Ihren ersten Timestamp hinzu",
+        "description": "Geben Sie eine Zeit im Format MM:SS oder HH:MM:SS ein (z.B. 01:30 oder 1:30:00) und ein beschreibendes Label für das Kapitel. Das erste Kapitel bei 00:00 ist erforderlich, damit YouTube-Kapitel funktionieren. Klicken Sie auf 'Timestamp Hinzufügen' oder drücken Sie Enter, um es zu Ihrer Liste hinzuzufügen."
       },
       {
         "title": "Erstellen Sie Ihre Kapitelliste",
-        "description": "Fuegen Sie weiterhin Timestamps fuer jeden Abschnitt Ihres Videos hinzu. YouTube erfordert mindestens 3 Kapitel, wobei das erste bei 00:00 beginnen muss. Kapitel muessen mindestens 10 Sekunden auseinander liegen. Bearbeiten oder loeschen Sie Timestamps jederzeit mit den Aktionsschaltflaechen in jeder Zeile."
+        "description": "Fügen Sie weiterhin Timestamps für jeden Abschnitt Ihres Videos hinzu. YouTube erfordert mindestens 3 Kapitel, wobei das erste bei 00:00 beginnen muss. Kapitel müssen mindestens 10 Sekunden auseinander liegen. Bearbeiten oder löschen Sie Timestamps jederzeit mit den Aktionsschaltflächen in jeder Zeile."
       },
       {
-        "title": "Fuegen Sie Ihre Video-URL hinzu (optional)",
-        "description": "Fuegen Sie Ihre YouTube-Video-URL ein, um klickbare Timestamp-Links zu generieren. Das Tool unterstuetzt alle YouTube-URL-Formate einschliesslich youtube.com/watch, youtu.be Kurzlinks und Embed-URLs. Links enthalten den &t= Parameter fuer direkte Navigation."
+        "title": "Fügen Sie Ihre Video-URL hinzu (optional)",
+        "description": "Fügen Sie Ihre YouTube-Video-URL ein, um klickbare Timestamp-Links zu generieren. Das Tool unterstützt alle YouTube-URL-Formate einschließlich youtube.com/watch, youtu.be Kurzlinks und Embed-URLs. Links enthalten den &t= Parameter für direkte Navigation."
       },
       {
         "title": "Kopieren und verwenden Sie Ihre Kapitel",
-        "description": "Klicken Sie auf 'Kapitel Kopieren', um die formatierten Timestamps fuer Ihre Videobeschreibung zu kopieren. Das Format ist genau das, was YouTube erwartet: Timestamp gefolgt vom Titel in jeder Zeile. Wenn Sie eine Video-URL hinzugefuegt haben, verwenden Sie 'Mit Links Kopieren' fuer klickbare Timestamp-Links."
+        "description": "Klicken Sie auf 'Kapitel Kopieren', um die formatierten Timestamps für Ihre Videobeschreibung zu kopieren. Das Format ist genau das, was YouTube erwartet: Timestamp gefolgt vom Titel in jeder Zeile. Wenn Sie eine Video-URL hinzugefügt haben, verwenden Sie 'Mit Links Kopieren' für klickbare Timestamp-Links."
       },
       {
         "title": "Importieren Sie vorhandene Kapitel",
-        "description": "Haben Sie Kapitel aus einer anderen Quelle? Klicken Sie auf 'Kapitel Importieren' und fuegen Sie sie im Standardformat ein (Timestamp Leerzeichen Titel). Das Tool analysiert und fuegt sie automatisch zu Ihrer Liste hinzu. Ideal fuer die Migration von Timestamps aus anderen Videos oder Textdateien."
+        "description": "Haben Sie Kapitel aus einer anderen Quelle? Klicken Sie auf 'Kapitel Importieren' und fügen Sie sie im Standardformat ein (Timestamp Leerzeichen Titel). Das Tool analysiert und fügt sie automatisch zu Ihrer Liste hinzu. Ideal für die Migration von Timestamps aus anderen Videos oder Textdateien."
       }
     ],
     "features": [
-      "YouTube-Kapitelformat-Ausgabe (fertig fuer Videobeschreibungen)",
+      "YouTube-Kapitelformat-Ausgabe (fertig für Videobeschreibungen)",
       "Automatische Zeitsortierung und -formatierung",
-      "Unterstuetzung fuer MM:SS und HH:MM:SS Formate",
+      "Unterstützung für MM:SS und HH:MM:SS Formate",
       "Klickbare Timestamp-Link-Generierung mit Video-URL",
       "Vorhandene Kapitel aus Text importieren",
       "Timestamps inline bearbeiten ohne Datenverlust",
@@ -74,47 +88,47 @@
       "Ein-Klick-Kopie in die Zwischenablage",
       "Video-ID-Extraktion aus jedem YouTube-URL-Format",
       "Automatische Validierung der YouTube-Kapitelanforderungen",
-      "Browserbasierte Verarbeitung - keine Uploads erforderlich",
+      "Browserbasierte Verarbeitung — keine Uploads erforderlich",
       "Timestamps mit oder ohne klickbare Links exportieren"
     ],
     "useCases": [
-      "Erstellen Sie YouTube-Kapitel fuer verbesserte Video-Navigation und SEO",
+      "Erstellen Sie YouTube-Kapitel für verbesserte Video-Navigation und SEO",
       "Generieren Sie Timestamp-Links zum Teilen bestimmter Videomomente",
-      "Erstellen Sie Kapitellisten fuer Podcast-Episoden auf YouTube",
-      "Erstellen Sie Navigation fuer lange Inhalte (Tutorials, Kurse)",
-      "Generieren Sie Timestamps fuer Lernvideoserien",
-      "Erstellen Sie Kapitelmarker fuer Livestream-VODs",
-      "Erstellen Sie Timestamp-Listen fuer Musikvideos mit mehreren Tracks",
-      "Generieren Sie Timestamps fuer Konferenzen und Praesentationen",
-      "Erstellen Sie Kapitelnavigation fuer Hoerbuchvideos",
-      "Erstellen Sie Timestamp-Listen fuer Compilationvideos"
+      "Erstellen Sie Kapitellisten für Podcast-Episoden auf YouTube",
+      "Erstellen Sie Navigation für lange Inhalte (Tutorials, Kurse)",
+      "Generieren Sie Timestamps für Lernvideoserien",
+      "Erstellen Sie Kapitelmarker für Livestream-VODs",
+      "Erstellen Sie Timestamp-Listen für Musikvideos mit mehreren Tracks",
+      "Generieren Sie Timestamps für Konferenzen und Präsentationen",
+      "Erstellen Sie Kapitelnavigation für Hörbuchvideos",
+      "Erstellen Sie Timestamp-Listen für Kompilationsvideos"
     ],
     "proTips": [
-      "Beginnen Sie immer mit 00:00 - YouTube erfordert, dass das erste Kapitel am Anfang beginnt",
-      "Verwenden Sie beschreibende aber praegnante Kapiteltitel (unter 100 Zeichen empfohlen)",
-      "Fuegen Sie mindestens 3 Kapitel hinzu - YouTube zeigt Kapitel mit weniger Eintraegen nicht an",
+      "Beginnen Sie immer mit 00:00 — YouTube erfordert, dass das erste Kapitel am Anfang beginnt",
+      "Verwenden Sie beschreibende aber prägnante Kapiteltitel (unter 100 Zeichen empfohlen)",
+      "Fügen Sie mindestens 3 Kapitel hinzu — YouTube zeigt Kapitel mit weniger Einträgen nicht an",
       "Halten Sie Kapitel mindestens 10 Sekunden auseinander, damit YouTube sie erkennt",
-      "Fuegen Sie Schluesselthemen in Kapiteltitel fuer bessere Suchsichtbarkeit ein",
-      "Verwenden Sie den Zeitkonverter, um schnell die Dauer zwischen Kapiteln zu pruefen",
+      "Fügen Sie Schlüsselthemen in Kapiteltitel für bessere Suchsichtbarkeit ein",
+      "Verwenden Sie den Zeitkonverter, um schnell die Dauer zwischen Kapiteln zu prüfen",
       "Importieren Sie Kapitel aus Ihrem Skript oder Ihrer Gliederung vor der Aufnahme",
-      "Kopieren Sie Kapitel als Backup in eine Textdatei vor der Veroeffentlichung",
+      "Kopieren Sie Kapitel als Backup in eine Textdatei vor der Veröffentlichung",
       "Verwenden Sie konsistente Benennungskonventionen in Ihrer Videoserie",
-      "Fuegen Sie die Video-URL hinzu, um teilbare Timestamp-Links fuer Social Media zu generieren"
+      "Fügen Sie die Video-URL hinzu, um teilbare Timestamp-Links für Social Media zu generieren"
     ],
     "troubleshooting": [
       "Kapitel werden auf YouTube nicht angezeigt: Stellen Sie sicher, dass Sie mindestens 3 Kapitel haben, das erste bei 00:00 beginnt und Kapitel mindestens 10 Sekunden auseinander liegen.",
-      "Ungueltiger Zeitfehler: Verwenden Sie das Format MM:SS (05:30) oder HH:MM:SS (1:05:30). Reine Sekunden funktionieren auch (90).",
-      "Video-URL nicht erkannt: Stellen Sie sicher, dass es eine gueltige YouTube-URL ist. Das Tool unterstuetzt youtube.com/watch, youtu.be und Embed-Formate.",
+      "Ungültiger Zeitfehler: Verwenden Sie das Format MM:SS (05:30) oder HH:MM:SS (1:05:30). Reine Sekunden funktionieren auch (90).",
+      "Video-URL nicht erkannt: Stellen Sie sicher, dass es eine gültige YouTube-URL ist. Das Tool unterstützt youtube.com/watch, youtu.be und Embed-Formate.",
       "Timestamps nicht in Reihenfolge: Das Tool sortiert Timestamps automatisch chronologisch bei der Ausgabegenerierung.",
       "Import funktioniert nicht: Jedes Kapitel muss in einer eigenen Zeile im Format 'MM:SS Titel' oder 'HH:MM:SS Titel' sein.",
-      "Links erscheinen nicht: Fuegen Sie eine gueltige YouTube-Video-URL hinzu, um die Timestamp-Link-Generierung zu aktivieren.",
-      "Kapiteltitel abgeschnitten: YouTube kuerzt lange Titel. Halten Sie sie unter 100 Zeichen.",
-      "Kopiert aber funktioniert nicht: Stellen Sie sicher, dass Sie in die Videobeschreibung einfuegen, nicht in den Titel oder das Tag-Feld."
+      "Links erscheinen nicht: Fügen Sie eine gültige YouTube-Video-URL hinzu, um die Timestamp-Link-Generierung zu aktivieren.",
+      "Kapiteltitel abgeschnitten: YouTube kürzt lange Titel. Halten Sie sie unter 100 Zeichen.",
+      "Kopiert aber funktioniert nicht: Stellen Sie sicher, dass Sie in die Videobeschreibung einfügen, nicht in den Titel oder das Tag-Feld."
     ],
     "keyboardShortcuts": [
       {
         "keys": "Enter",
-        "description": "Timestamp hinzufuegen (in Eingabefeldern)"
+        "description": "Timestamp hinzufügen (in Eingabefeldern)"
       },
       {
         "keys": "Strg+C",

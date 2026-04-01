@@ -35,6 +35,7 @@
     "seo:monitor": "tsx scripts/seo-monitor.ts",
     "seo:generate-key": "tsx scripts/generate-indexnow-key.ts",
     "seo:full": "npm run seo:discover && npm run seo:submit && npm run seo:monitor",
+    "warmup": "node scripts/warmup.mjs",
     "sitemap:generate": "tsx scripts/generate-sitemap.ts",
     "sitemap:validate": "tsx scripts/validate-sitemap.ts",
     "validate:hreflang": "tsx scripts/validate-hreflang.ts",

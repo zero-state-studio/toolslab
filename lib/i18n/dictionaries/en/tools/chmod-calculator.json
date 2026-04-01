@@ -4,10 +4,10 @@
   "placeholder": "Enter octal value (e.g., 755)",
   "meta": {
     "title": "Chmod Calculator - Linux File Permissions Octal & rwx Free",
-    "description": "Free online chmod calculator. Convert between octal (755, 644) and symbolic (rwxr-xr-x) Unix file permissions with visual grid, presets, and command generation."
+    "description": "Free chmod calculator online — convert octal (755, 644, 777) to symbolic (rwxr-xr-x) Unix permissions. Visual grid, presets, command generation. No signup needed."
   },
   "tagline": "Calculate and convert Unix file permissions with visual interface and common presets",
-  "pageDescription": "Free online chmod calculator for Unix/Linux file permissions. Convert between octal notation (755, 644, 777) and symbolic format (rwxr-xr-x). Features interactive permission grid, common presets, recursive flag option, and instant command generation. Perfect for system administrators, DevOps engineers, and Linux users managing file and directory permissions.",
+  "pageDescription": "Free online chmod calculator for Unix/Linux file permissions. Convert between octal notation (755, 644, 777) and symbolic format (rwxr-xr-x). Features interactive permission grid, common presets, recursive flag option, and instant command generation. Perfect for sysadmins, DevOps engineers, and Linux users. No signup required — works entirely in your browser.",
   "owner": "Owner",
   "group": "Group",
   "others": "Others",

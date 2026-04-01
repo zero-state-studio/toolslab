@@ -77,8 +77,8 @@
   },
   "meta": {
     "title": "UUID Generator - Free GUID & UUID v4 Bulk Generator Online",
-    "description": "Generate random UUIDs online with support for v1, v4, and v5 versions. Bulk generation, validation, and formatting options. Free, instant UUID generator."
+    "description": "Generate UUID v1, v4, v5 online free — bulk generation up to 1000, validation, formatting options. No signup required. Instant, secure, browser-based UUID generator."
   },
   "tagline": "Generate unique UUIDs and GUIDs instantly online",
-  "pageDescription": "Generate UUID v1 and v4 identifiers for databases, APIs, and applications. Create single UUIDs or bulk generate up to 1000 with customizable formatting. Perfect for developers building distributed systems, database schemas, and unique identification systems. Free, secure, and browser-based generation."
+  "pageDescription": "Generate UUID v1 and v4 identifiers for databases, APIs, and applications. Create single UUIDs or bulk generate up to 1000 with customizable formatting. Perfect for developers building distributed systems, database schemas, and unique identification systems. Free online with no signup required — secure, browser-based UUID generation instantly."
 }

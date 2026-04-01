@@ -1,36 +1,39 @@
 /**
- * Non-localized /tools route
- * Redirects to the English localized version
+ * Non-localized /tools route — English default
  */
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 import ToolsHubContent from '@/components/tools/ToolsHubContent';
 import { generateHreflangAlternates } from '@/lib/i18n/helpers';
+import { tools } from '@/lib/tools';
 
 export const revalidate = false;
 
 export const metadata: Metadata = {
-  title: 'All Developer Tools - Free Online Utilities | ToolsLab',
+  title: 'All Developer Tools - 69+ Free Online Utilities | ToolsLab',
   description:
-    'Discover 20+ free online tools for JSON formatting, Base64 encoding, URL decoding, hash generation, and more. All tools work entirely in your browser with no data transmission to servers. Perfect for development, debugging, and data processing workflows.',
+    '69+ free online tools for developers: JSON formatter, Base64 encoder, JWT decoder, hash generator, URL encoder, SQL formatter and more. 100% browser-based, no signup required, completely private.',
   keywords: [
     'online developer tools',
     'free developer utilities',
     'web development tools',
-    'json formatter',
-    'base64 encoder',
-    'url decoder',
-    'hash generator',
+    'json formatter online',
+    'base64 encoder decoder',
+    'url encoder decoder',
+    'hash generator online',
+    'jwt decoder online',
+    'sql formatter online',
     'browser based tools',
     'privacy first tools',
     'developer utilities',
-    'coding tools',
-    'programming utilities',
+    'coding tools online',
+    'programming utilities free',
+    'no signup developer tools',
   ],
   openGraph: {
-    title: 'All Developer Tools - Free Online Utilities | ToolsLab',
+    title: 'All Developer Tools - 69+ Free Online Utilities | ToolsLab',
     description:
-      'Complete collection of professional tools for developers, data analysts, and system administrators. 20+ tools, all free and privacy-first.',
+      '69+ free browser-based tools for JSON formatting, Base64 encoding, hash generation, and more. No signup, 100% private, instant results.',
     type: 'website',
     url: 'https://toolslab.dev/tools',
     siteName: 'ToolsLab',
@@ -47,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'All Developer Tools - ToolsLab',
     description:
-      'Free online developer tools for JSON, encoding, generators, and more. All browser-based with zero data transmission.',
+      '69+ free online developer tools for JSON, encoding, generators, and more. All browser-based with zero data transmission.',
     images: ['https://toolslab.dev/twitter-card.jpg'],
   },
   alternates: {
@@ -67,13 +70,69 @@ export const metadata: Metadata = {
   },
 };
 
+const BASE_URL = 'https://toolslab.dev';
+
+function buildStructuredData() {
+  const availableTools = tools.filter((t) => t.label !== 'coming-soon');
+
+  const collectionPage = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'All Developer Tools – Free Online Utilities',
+    description:
+      `${availableTools.length}+ free online developer tools: JSON formatter, Base64 encoder, JWT decoder, hash generator and more. 100% browser-based, no signup required.`,
+    url: `${BASE_URL}/tools`,
+    provider: {
+      '@type': 'Organization',
+      name: 'ToolsLab',
+      url: BASE_URL,
+    },
+    hasPart: availableTools.slice(0, 30).map((tool) => ({
+      '@type': 'SoftwareApplication',
+      name: tool.name,
+      description: tool.description,
+      url: `${BASE_URL}${tool.route}`,
+      applicationCategory: 'DeveloperApplication',
+      operatingSystem: 'Web Browser',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+    })),
+  };
+
+  const itemList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Free Developer Tools by ToolsLab',
+    description: 'Complete list of free online developer tools.',
+    url: `${BASE_URL}/tools`,
+    numberOfItems: availableTools.length,
+    itemListElement: availableTools.slice(0, 50).map((tool, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: tool.name,
+      description: tool.description,
+      url: `${BASE_URL}${tool.route}`,
+    })),
+  };
+
+  return [collectionPage, itemList];
+}
+
 export default async function ToolsPage() {
-  // This is the default English route (no locale prefix)
+  const structuredData = buildStructuredData();
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
-      <Suspense fallback={<div>Loading...</div>}>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Suspense fallback={<div className="min-h-screen bg-background" />}>
         <ToolsHubContent />
       </Suspense>
-    </div>
+    </>
   );
 }

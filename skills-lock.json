@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "skills": {
+    "better-icons": {
+      "source": "better-auth/better-icons",
+      "sourceType": "github",
+      "computedHash": "ec859a92bcb6fef5ae1fe8ab1d4b10c1d76fae7a809101c9bce1230944af1b0e"
+    },
+    "free-tool-strategy": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "de49a0fd426d4710fc05b2759244588c6f5b5014d9cd9331a0d54dc655f023bc"
+    },
+    "page-cro": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "9505748dba2319487b285f8ab8c1e5417fce38a512d596e1c9e2e87b34b196e1"
+    },
+    "programmatic-seo": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "40b8fe29a6c9cb0606e6fa77aff227cf275e3808adf66e5ef69e02dcf60a7303"
+    },
+    "seo-audit": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "ec3109d213dde1747614ad1112ef0e498e04b24e464538968e156dfbfadb2121"
+    },
+    "systematic-debugging": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "computedHash": "72e9ab72627e4fd8ed26a582e82309a98ecdc4f6e1c99418430ac05682c9e91d"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "c858d2d9023e73edb4e5504868cb0e36313e58fd56af12ef888b43c5634a3c17"
+    }
+  }
+}

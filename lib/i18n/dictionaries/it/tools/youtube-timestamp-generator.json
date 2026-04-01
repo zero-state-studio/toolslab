@@ -7,7 +7,21 @@
     "description": "Crea capitoli e timestamp YouTube con formattazione automatica del tempo. Link cliccabili per descrizioni video. Strumento gratuito per content creator."
   },
   "tagline": "Genera capitoli e timestamp YouTube con creazione automatica di link e conversione tempo",
-  "pageDescription": "Generatore professionale di timestamp YouTube per content creator e video editor. Crea timestamp formattati per le descrizioni video, genera Capitoli YouTube per una navigazione migliorata e converti tra formati di tempo istantaneamente. Aggiungi timestamp con etichette, importa capitoli esistenti ed esporta in piu formati. Genera link timestamp cliccabili quando fornisci un URL video. Il convertitore di tempo integrato gestisce i formati HH:MM:SS, MM:SS e secondi. Tutto il processo avviene nel browser per la massima privacy - nessun dato video viene salvato o caricato.",
+  "pageDescription": "Generatore professionale di timestamp YouTube per content creator e video editor — gratuito, senza registrazione. Crea timestamp formattati per le descrizioni video, genera Capitoli YouTube per una navigazione migliorata e SEO ottimizzato, converti tra formati di tempo istantaneamente. Aggiungi timestamp con etichette, importa capitoli esistenti ed esporta in più formati. Genera link timestamp cliccabili quando fornisci un URL video. Il convertitore di tempo integrato gestisce i formati HH:MM:SS, MM:SS e secondi. Tutto il processo avviene nel browser per la massima privacy — nessun dato video viene salvato o caricato.",
+  "longTailKeywords": [
+    "generatore timestamp YouTube online gratis",
+    "come aggiungere capitoli YouTube alla descrizione",
+    "generatore capitoli YouTube senza registrazione",
+    "creare timestamp YouTube cliccabili con link",
+    "formato timestamp YouTube capitoli copia incolla",
+    "strumento capitoli YouTube per content creator",
+    "convertitore tempo secondi MM:SS YouTube",
+    "come creare capitoli YouTube per SEO video",
+    "miglior generatore capitoli YouTube gratuito",
+    "importare capitoli YouTube da file di testo",
+    "generatore link timestamp YouTube condivisibili",
+    "timestamp YouTube per podcast episodi YouTube"
+  ],
   "videoUrlPlaceholder": "https://www.youtube.com/watch?v=...",
   "addTimestamp": "Aggiungi Timestamp",
   "time": "Tempo",
@@ -44,7 +58,7 @@
     "steps": [
       {
         "title": "Aggiungi il primo timestamp",
-        "description": "Inserisci un tempo in formato MM:SS o HH:MM:SS (es. 01:30 o 1:30:00) e un'etichetta descrittiva per il capitolo. Il primo capitolo a 00:00 e richiesto perche i Capitoli YouTube funzionino. Clicca 'Aggiungi Timestamp' o premi Invio per aggiungerlo alla lista."
+        "description": "Inserisci un tempo in formato MM:SS o HH:MM:SS (es. 01:30 o 1:30:00) e un'etichetta descrittiva per il capitolo. Il primo capitolo a 00:00 è richiesto perché i Capitoli YouTube funzionino. Clicca 'Aggiungi Timestamp' o premi Invio per aggiungerlo alla lista."
       },
       {
         "title": "Costruisci la lista dei capitoli",
@@ -56,11 +70,11 @@
       },
       {
         "title": "Copia e usa i capitoli",
-        "description": "Clicca 'Copia Capitoli' per copiare i timestamp formattati per la descrizione del video. Il formato e esattamente quello che YouTube si aspetta: timestamp seguito dal titolo su ogni riga. Se hai aggiunto un URL video, usa 'Copia con Link' per link timestamp cliccabili."
+        "description": "Clicca 'Copia Capitoli' per copiare i timestamp formattati per la descrizione del video. Il formato è esattamente quello che YouTube si aspetta: timestamp seguito dal titolo su ogni riga. Se hai aggiunto un URL video, usa 'Copia con Link' per link timestamp cliccabili."
       },
       {
         "title": "Importa capitoli esistenti",
-        "description": "Hai capitoli da un'altra fonte? Clicca 'Importa Capitoli' e incollali nel formato standard (timestamp spazio titolo). Lo strumento li analizzera e aggiungera alla lista automaticamente. Ottimo per migrare timestamp da altri video o file di testo."
+        "description": "Hai capitoli da un'altra fonte? Clicca 'Importa Capitoli' e incollali nel formato standard (timestamp spazio titolo). Lo strumento li analizzerà e aggiungerà alla lista automaticamente. Ottimo per migrare timestamp da altri video o file di testo."
       }
     ],
     "features": [
@@ -74,7 +88,7 @@
       "Copia negli appunti con un click",
       "Estrazione ID video da qualsiasi formato URL YouTube",
       "Validazione automatica requisiti Capitoli YouTube",
-      "Elaborazione nel browser - nessun upload necessario",
+      "Elaborazione nel browser — nessun upload necessario",
       "Esporta timestamp con o senza link cliccabili"
     ],
     "useCases": [
@@ -84,17 +98,17 @@
       "Crea navigazione per contenuti lunghi (tutorial, corsi)",
       "Genera timestamp per serie video educative",
       "Crea marcatori capitolo per VOD di live stream",
-      "Costruisci liste timestamp per video musicali con piu tracce",
+      "Costruisci liste timestamp per video musicali con più tracce",
       "Genera timestamp per conferenze e presentazioni",
       "Crea navigazione capitoli per video audiolibri",
       "Costruisci liste timestamp per video compilation"
     ],
     "proTips": [
-      "Inizia sempre con 00:00 - YouTube richiede che il primo capitolo inizi dall'inizio",
+      "Inizia sempre con 00:00 — YouTube richiede che il primo capitolo inizi dall'inizio",
       "Usa titoli capitolo descrittivi ma concisi (sotto 100 caratteri consigliato)",
-      "Aggiungi almeno 3 capitoli - YouTube non mostrera capitoli con meno voci",
-      "Mantieni i capitoli distanti almeno 10 secondi perche YouTube li riconosca",
-      "Includi argomenti chiave nei titoli dei capitoli per migliore visibilita nelle ricerche",
+      "Aggiungi almeno 3 capitoli — YouTube non mostrerà capitoli con meno voci",
+      "Mantieni i capitoli distanti almeno 10 secondi perché YouTube li riconosca",
+      "Includi argomenti chiave nei titoli dei capitoli per migliore visibilità nelle ricerche",
       "Usa il convertitore tempo per controllare rapidamente la durata tra i capitoli",
       "Importa capitoli dal tuo script o outline prima di registrare",
       "Copia i capitoli in un file di testo come backup prima di pubblicare",

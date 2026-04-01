@@ -4,7 +4,7 @@
   "placeholder": "Paste Base64 encoded PDF string here...",
   "meta": {
     "title": "Base64 to PDF Converter - Free Online Decoder & Download",
-    "description": "Free Base64 to PDF converter. Paste a Base64 string or data URI and download the decoded PDF instantly. 100% client-side, no upload needed."
+    "description": "Convert Base64 to PDF online free — paste a Base64 string or data URI and download the decoded PDF instantly. No signup required. 100% client-side, no upload needed."
   },
   "tagline": "Decode Base64 strings and download PDF files instantly — no upload required",
   "pageDescription": "Convert any Base64-encoded string to a PDF file directly in your browser — no server upload, no registration. Paste raw Base64 data or a data URI (data:application/pdf;base64,...) and download the decoded PDF in one click. Ideal for developers debugging REST API responses that return Base64 PDFs, handling email attachments encoded in Base64, testing document generation pipelines, and inspecting PDF files from data exports. Validates Base64 padding automatically, detects malformed input and previews the converted document before download.",

@@ -27,7 +27,7 @@
       "Real-time validation with automatic checksum calculation",
       "Multiple export formats: PNG (72-600 DPI), SVG, PDF, EPS, JPG",
       "Customizable size, colors, margins, rotation and text",
-      "Batch generation from CSV/TXT files with ZIP export",
+      "Batch generation from Excel, CSV, or TXT files with ZIP export",
       "Print-ready output with crop marks and bleed",
       "Scanner test using webcam to verify readability",
       "Label designer with templates for retail, shipping and inventory",
@@ -38,9 +38,9 @@
       "Create product labels for retail and e-commerce with EAN-13/UPC-A",
       "Generate ISBN barcodes for books and publications",
       "Design shipping labels with Code 128 for logistics and warehouses",
-      "Create inventory tracking systems with batch barcode generation",
+      "Create inventory management and tracking systems with batch barcode generation",
       "Generate QR codes for product authentication and traceability",
-      "Design price tags and shelf labels for retail stores",
+      "Design price tags and shelf labels for retail stores — print at home or at a print shop",
       "Create event badges and tickets with sequential numbering",
       "Generate pharmaceutical labels with Pharmacode and Data Matrix"
     ],
@@ -87,8 +87,8 @@
   },
   "meta": {
     "title": "Barcode Generator - EAN, QR, Code 128 & Batch Free Online",
-    "description": "Generate barcodes in 20+ formats: EAN-13, UPC-A, Code 128, ISBN, QR Code, Data Matrix. Batch generation with instant download as PNG, SVG, or PDF. Free tool."
+    "description": "Generate barcodes online free — 20+ formats: EAN-13, UPC-A, Code 128, ISBN, QR Code, Data Matrix. Batch CSV import, PNG/SVG/PDF export. No signup required."
   },
   "tagline": "Generate professional barcodes for retail, inventory, and shipping with advanced customization",
-  "pageDescription": "Professional barcode generator supporting all commercial formats: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) and 2D (QR Code, Data Matrix, PDF417, Aztec). Features include batch generation from CSV, label designer with templates, scanner verification, multiple export formats (PNG up to 600 DPI, SVG, PDF, EPS), color customization with contrast checker, and barcode decoder. Perfect for retail product labels, inventory management, shipping logistics, and pharmaceutical tracking. 100% browser-based with no data uploads."
+  "pageDescription": "Professional barcode generator supporting all commercial formats: EAN-13, UPC-A, Code 128, Code 39, ISBN, QR Code, Data Matrix, PDF417, and more. Features batch generation from CSV, label designer, scanner verification, PNG/SVG/PDF export, and color customization. Perfect for retail, inventory, and shipping. Free online with no signup required — 100% browser-based, no data uploads."
 }

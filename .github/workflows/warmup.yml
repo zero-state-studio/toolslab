@@ -1,0 +1,65 @@
+name: Post-Deploy Cache Warmup
+
+# Triggers:
+#   1. Automatically after each push to main (waits for Vercel deployment)
+#   2. Manually via GitHub Actions UI (Run workflow button)
+#   3. Via Vercel Webhook → repository_dispatch (most reliable, see setup below)
+#
+# ── Recommended setup for automatic trigger ────────────────────────────────
+# In Vercel Dashboard → Project → Settings → Webhooks:
+#   Add webhook for event: deployment.succeeded
+#   URL: https://api.github.com/repos/YOUR_ORG/YOUR_REPO/dispatches
+#   Headers:
+#     Authorization: Bearer <github-pat-with-repo-scope>
+#     Content-Type: application/json
+#     Accept: application/vnd.github.v3+json
+#   Body: {"event_type": "vercel-deploy-succeeded", "client_payload": {"site": "toolslab.dev"}}
+#
+# This fires the warmup exactly when Vercel finishes deploying — no guessing.
+# ───────────────────────────────────────────────────────────────────────────
+
+on:
+  # Option A: triggered by Vercel webhook (most reliable)
+  repository_dispatch:
+    types: [vercel-deploy-succeeded]
+
+  # Option B: push to main with a wait (simpler setup, slight delay)
+  push:
+    branches: [main]
+
+  # Option C: manual trigger (useful for one-off warmups)
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: 'Site URL to warm (leave empty for production)'
+        required: false
+        default: 'https://toolslab.dev'
+      concurrency:
+        description: 'Number of concurrent requests'
+        required: false
+        default: '10'
+
+jobs:
+  warmup:
+    name: Warm Edge Cache
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Only needed for push trigger — wait for Vercel to finish deploying.
+      # Skip this step when triggered by repository_dispatch (Vercel already done).
+      - name: Wait for Vercel deployment
+        if: github.event_name == 'push'
+        run: |
+          echo "⏳ Waiting 4 minutes for Vercel deployment to complete..."
+          sleep 240
+
+      - name: Run cache warmup
+        run: node scripts/warmup.mjs
+        env:
+          SITE_URL: ${{ github.event.inputs.site_url || 'https://toolslab.dev' }}
+          CONCURRENCY: ${{ github.event.inputs.concurrency || '10' }}
+          TIMEOUT_MS: '20000'
