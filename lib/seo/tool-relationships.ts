@@ -210,10 +210,17 @@ export const toolRelationships: ToolRelationships = {
     boostVisibility: true,
   },
 
+  'barcode-generator': {
+    workflow: ['qr-generator', 'image-optimizer'],
+    complementary: ['color-picker', 'favicon-generator'],
+    alternatives: ['qr-generator'],
+    boostVisibility: true,
+  },
+
   'qr-generator': {
-    workflow: ['uuid-generator', 'url-encode'],
-    complementary: ['favicon-generator', 'image-optimizer'],
-    alternatives: ['password-generator'],
+    workflow: ['uuid-generator', 'url-encode', 'barcode-generator'],
+    complementary: ['favicon-generator', 'image-optimizer', 'barcode-generator'],
+    alternatives: ['barcode-generator'],
   },
 
   'favicon-generator': {
