@@ -2,20 +2,36 @@
   "title": "Formateur JSON",
   "description": "Formatez, validez et embellissez les données JSON avec coloration syntaxique",
   "placeholder": "Collez votre JSON ici...",
+  "tagline": "Formatez, validez et embellissez JSON instantanément en ligne",
+  "pageDescription": "Formatez et validez des données JSON avec notre formateur JSON en ligne gratuit. Déboguez le JSON malformé, embellissez le code minifié et validez la syntaxe avec détection d'erreurs en temps réel. Parfait pour les développeurs travaillant avec des API, fichiers de configuration et traitement de données. Sans inscription — recherchez des clés, personnalisez l'indentation et traitez des fichiers en toute sécurité dans votre navigateur.",
+  "longTailKeywords": [
+    "formateur json en ligne gratuit",
+    "valider json en ligne gratuit",
+    "formateur json sans inscription",
+    "comment formater json en ligne",
+    "comment valider syntaxe json",
+    "embellir json en ligne gratuit",
+    "formater json sans installer logiciel",
+    "formateur json pour développeurs",
+    "formateur json avec coloration syntaxique",
+    "formater json minifié en ligne",
+    "meilleur formateur json gratuit",
+    "déboguer json malformé en ligne"
+  ],
   "instructions": {
     "title": "Comment utiliser Formateur JSON",
     "steps": [
       {
         "title": "Collez vos données JSON",
-        "description": "Copiez et collez vos données JSON dans la zone de saisie. L'outil accepte tout format et le traitera immédiatement."
+        "description": "Copiez et collez votre code JSON dans la zone de saisie. L'outil accepte le JSON compressé, formaté ou malformé et l'analysera immédiatement."
       },
       {
-        "title": "Configurez les options (si disponible)",
-        "description": "Ajustez les options de formatage, l'indentation ou d'autres paramètres pour correspondre à vos préférences."
+        "title": "Configurez les options",
+        "description": "Ajustez la taille d'indentation, triez les clés alphabétiquement ou choisissez le mode validation uniquement pour adapter la sortie à vos préférences."
       },
       {
         "title": "Examinez la sortie",
-        "description": "L'outil va formater et embellir votre saisie et afficher le résultat avec formatage et validation appropriés."
+        "description": "Le formateur embellira votre JSON avec coloration syntaxique et signalera toute erreur avec sa position exacte dans le code."
       },
       {
         "title": "Copiez ou téléchargez le résultat",
@@ -30,14 +46,15 @@
       "Copier dans le presse-papiers en un clic",
       "Télécharger les résultats sous forme de fichier",
       "Validation de syntaxe et mise en évidence des erreurs",
+      "Sans installation — fonctionne directement dans le navigateur",
       "Fonctionne hors ligne après le chargement initial"
     ],
     "useCases": [
       "Nettoyer et formater le JSON désordonné pour une meilleure lisibilité",
       "Standardiser le style de code dans les équipes de développement",
-      "Déboguer les structures complexes avec une indentation appropriée",
+      "Déboguer les structures JSON complexes avec une indentation appropriée",
       "Préparer le code pour la documentation et les revues de code",
-      "Convertir entre différents standards de formatage",
+      "Valider les réponses d'API et les fichiers de configuration JSON",
       "Valider la syntaxe avant le déploiement",
       "Traiter les données provenant de sources externes ou d'API",
       "Générer du code prêt pour la production"
@@ -45,35 +62,23 @@
     "proTips": [
       "Utilisez les raccourcis clavier pour un flux de travail plus rapide",
       "Traitez les gros fichiers en petits morceaux si les performances ralentissent",
-      "Validez votre saisie avant le traitement pour détecter les erreurs tôt",
-      "Enregistrez les paramètres fréquemment utilisés par défaut",
-      "Utilisez la fonction de téléchargement pour archiver les fichiers",
+      "Validez votre JSON avant le traitement pour détecter les erreurs tôt",
+      "Utilisez l'option trier les clés pour normaliser le JSON de différentes sources",
+      "Utilisez la fonction de téléchargement pour archiver les fichiers traités",
       "Vérifiez attentivement la sortie avant utilisation en production"
     ],
     "troubleshooting": [
-      "Erreurs de syntaxe : vérifiez les crochets, guillemets ou points-virgules manquants",
-      "Échec de traitement : assurez-vous que le format de saisie est valide",
+      "Erreurs de syntaxe : vérifiez les crochets, guillemets ou virgules manquants",
+      "Échec de traitement : assurez-vous que le format de saisie est du JSON valide",
       "Performance lente : essayez de traiter de plus petits morceaux de données",
       "Fonctionnalités manquantes : certaines syntaxes avancées peuvent nécessiter un formatage manuel",
       "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
     ],
     "keyboardShortcuts": [
-      {
-        "keys": "Ctrl+V",
-        "description": "Coller l'entrée"
-      },
-      {
-        "keys": "Ctrl+Enter",
-        "description": "Traiter/Formater"
-      },
-      {
-        "keys": "Ctrl+C",
-        "description": "Copier le résultat"
-      },
-      {
-        "keys": "Ctrl+S",
-        "description": "Télécharger le fichier"
-      }
+      { "keys": "Ctrl+V", "description": "Coller l'entrée" },
+      { "keys": "Ctrl+Enter", "description": "Traiter/Formater" },
+      { "keys": "Ctrl+C", "description": "Copier le résultat" },
+      { "keys": "Ctrl+S", "description": "Télécharger le fichier" }
     ]
   },
   "features": [
@@ -99,7 +104,5 @@
   "options": {
     "compact": "Compact",
     "expanded": "Étendu"
-  },
-  "tagline": "Format, validate and beautify JSON instantly online",
-  "pageDescription": "Format and validate JSON data with our free online JSON formatter. Debug malformed JSON, beautify minified code, and validate syntax with real-time error detection. Perfect for developers working with APIs, config files, and data processing. Search keys, customize indentation, and process large files securely in your browser."
+  }
 }

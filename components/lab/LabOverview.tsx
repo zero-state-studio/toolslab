@@ -6,6 +6,7 @@ import { useToolStore } from '@/lib/store/toolStore';
 import { getToolById } from '@/lib/tools';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 interface LabOverviewProps {
   onToolSelect: (toolId: string) => void;
@@ -93,8 +94,8 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
 
                     {/* Icon + Info */}
                     <div className="mb-3 flex items-start gap-4">
-                      <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-2xl transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                        {tool.icon}
+                      <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
+                        <ToolIcon id={tool.id} className="h-6 w-6 text-slate-600 dark:text-slate-400" />
                       </div>
                       <div className="min-w-0 flex-1">
                         <h3 className="font-semibold text-slate-900 dark:text-white">
@@ -151,8 +152,8 @@ function ToolOverviewCard({ tool, index, onClick }: ToolOverviewCardProps) {
 
       {/* Icon + Info */}
       <div className="mb-3 flex items-start gap-4">
-        <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-2xl transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
-          {tool.icon}
+        <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
+          <ToolIcon id={tool.id} className="h-6 w-6 text-slate-600 dark:text-slate-400" />
         </div>
         <div className="min-w-0 flex-1">
           <h3 className="font-semibold text-slate-900 dark:text-white">

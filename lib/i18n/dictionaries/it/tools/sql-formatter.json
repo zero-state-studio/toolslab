@@ -2,6 +2,20 @@
   "title": "SQL Formatter",
   "description": "Formatta e abbellisce query SQL",
   "placeholder": "Incolla qui la tua query SQL...",
+  "longTailKeywords": [
+    "formattatore sql online gratis",
+    "formattare query sql online",
+    "formattatore sql gratuito senza registrazione",
+    "come formattare query sql online",
+    "formattare sql senza installare nulla",
+    "formattare query mysql online gratis",
+    "indentare sql online gratis",
+    "abbellire query sql online",
+    "migliore formattatore sql gratuito",
+    "formattatore sql con evidenziazione sintassi",
+    "formattare sql direttamente dal browser",
+    "strumento formattazione sql online"
+  ],
   "instructions": {
     "title": "Come usare SQL Formatter",
     "steps": [
@@ -41,9 +55,9 @@
       "Standardizzare lo stile del codice SQL nei team di sviluppo",
       "Debug di query complesse con indentazione corretta",
       "Preparare script SQL per documentazione e code review",
-      "Convertire tra diversi standard di formattazione SQL",
-      "Pulire SQL auto-generato da query builder",
+      "Pulire SQL auto-generato da query builder e ORM",
       "Formattare stored procedure e script di migrazione database",
+      "Indentare SQL direttamente dal browser senza installare nulla",
       "Preparare query SQL per il deployment in produzione"
     ],
     "proTips": [
@@ -51,7 +65,7 @@
       "Scegli indentazione a 4 spazi per un equilibrio ottimale tra leggibilità e compattezza",
       "Seleziona il dialetto SQL corretto per garantire il riconoscimento corretto delle keyword",
       "Formatta script di grandi dimensioni in sezioni se le prestazioni rallentano",
-      "Preserva i commenti originali - contengono contesto importante",
+      "Preserva i commenti originali - contengono contesto importante per query complesse",
       "Usa formattazione consistente in tutto il tuo codebase"
     ],
     "troubleshooting": [
@@ -86,8 +100,8 @@
   },
   "meta": {
     "title": "SQL Formatter - Strumento Online Gratuito",
-    "description": "Formatta e abbellisci query SQL online con evidenziazione sintassi. Supporto per MySQL, PostgreSQL, SQLite e altri dialetti SQL. Strumento Formatter gratuito."
+    "description": "Formatta e abbellisci query SQL online gratis. MySQL, PostgreSQL, SQLite e altri dialetti. Indentazione automatica, evidenziazione sintassi. Senza registrazione richiesta."
   },
   "tagline": "Formatta e abbellisci query SQL con evidenziazione sintassi",
-  "pageDescription": "Formatta e abbellisci query SQL con indentazione corretta, evidenziazione keyword e validazione sintassi. Perfetto per sviluppatori database, data analyst e ottimizzazione SQL. Supporta dialetti SQL multipli (MySQL, PostgreSQL, SQLite) con opzioni formattazione personalizzabili. Formatter SQL gratuito e sicuro basato su browser senza caricamento dati."
+  "pageDescription": "Formatta e abbellisci query SQL con indentazione corretta, evidenziazione keyword e validazione sintassi. Perfetto per sviluppatori database, data analyst e ottimizzazione SQL. Supporta dialetti SQL multipli (MySQL, PostgreSQL, SQLite) con opzioni formattazione personalizzabili. Indenta SQL direttamente dal browser senza installare nulla e senza registrazione — formattatore SQL gratuito e sicuro senza caricamento dati."
 }

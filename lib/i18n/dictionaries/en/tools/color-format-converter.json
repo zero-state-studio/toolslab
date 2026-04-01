@@ -69,7 +69,8 @@
       "Export colors as JSON to share with your team or save for later",
       "Use CSS variable format for easy theming in your projects",
       "Try different harmony types to discover new color combinations",
-      "Save frequently used colors by keeping them in your recent history"
+      "Save frequently used colors by keeping them in your recent history",
+      "HEX is shorthand RGB in base-16 — use for CSS/HTML; HSL (Hue/Saturation/Lightness) is more intuitive for design adjustments; CMYK is for print — all represent the same color differently"
     ],
     "troubleshooting": [
       "Invalid format error: Ensure your color value matches standard syntax (e.g., #FF0000, rgb(255,0,0))",

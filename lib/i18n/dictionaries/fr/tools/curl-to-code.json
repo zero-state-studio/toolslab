@@ -1,67 +1,83 @@
 {
   "title": "cURL vers Code",
-  "description": "Convertissez les commandes cURL en code pour divers langages",
-  "placeholder": "Collez votre commande cURL...",
+  "description": "Convertissez les commandes cURL en code pour divers langages de programmation",
+  "placeholder": "Collez votre commande cURL ici...",
   "meta": {
     "title": "cURL vers Code - Outil en Ligne Gratuit",
-    "description": "Convertissez des commandes cURL en Python, JavaScript, Go, PHP et plus. Générez des extraits de code HTTP prêts à l'emploi. Convertisseur cURL en ligne gratuit."
+    "description": "Convertissez des commandes cURL en Python, JavaScript, Go, PHP. Générez des extraits de code HTTP prêts à l'emploi. Convertisseur cURL en ligne gratuit."
   },
-  "tagline": "Converti comandi cURL in codice production-ready in qualsiasi linguaggio",
-  "pageDescription": "Convertitore cURL in codice gratuito trasforma comandi cURL in codice production-ready per JavaScript, Python, Go, Java, PHP, Ruby e oltre 15 linguaggi. Funzionalità gestione automatica errori, inferenza tipi, supporto async/await e integrazione best practices. Perfetto per sviluppatori API che convertono esempi documentazione, debug richieste network e costruzione client SDK. Supporta tutti i flag cURL, metodi autenticazione, upload multipart e genera unit test. Conversione sicura basata su browser senza caricamento dati.",
+  "tagline": "Convertissez des commandes cURL en code prêt pour la production dans n'importe quel langage",
+  "pageDescription": "Convertisseur gratuit de cURL en code qui transforme les commandes cURL en code prêt pour la production pour JavaScript (fetch, axios), Python (requests), Go (net/http), PHP (Guzzle), Java, Ruby et plus de 15 langages. Gestion automatique des erreurs, inférence de types, support async/await et intégration des meilleures pratiques. Parfait pour les développeurs d'API qui convertissent des exemples de documentation, déboguent des requêtes réseau et construisent des clients SDK. Supporte tous les flags cURL, méthodes d'authentification, uploads multipart. Conversion sécurisée dans le navigateur sans chargement de données et sans inscription.",
+  "longTailKeywords": [
+    "convertir curl en python en ligne gratuit",
+    "convertir commande curl en javascript code en ligne",
+    "convertisseur curl python requests en ligne gratuit",
+    "comment convertir curl en python requests",
+    "convertir curl en go golang code en ligne",
+    "convertisseur curl en code sans inscription",
+    "générateur code http depuis curl en ligne gratuit",
+    "convertir curl en axios nodejs code",
+    "convertir curl documentation API en code production",
+    "meilleur convertisseur curl en code gratuit en ligne",
+    "convertir curl en java php ruby en ligne gratuit",
+    "convertir curl chrome devtools en code python"
+  ],
   "instructions": {
     "title": "Comment utiliser cURL vers Code",
     "steps": [
       {
-        "title": "Collez votre URL ou texte",
-        "description": "Copiez et collez votre URL ou texte dans la zone de saisie. L'outil accepte tout format et le traitera immédiatement."
+        "title": "Collez votre commande cURL",
+        "description": "Copiez une commande cURL depuis votre terminal, les DevTools du navigateur, la documentation d'API ou Postman et collez-la dans la zone de saisie. Supporte tous les flags cURL y compris les en-têtes, l'authentification et le corps de la requête."
       },
       {
-        "title": "Configurez les options (si disponible)",
-        "description": "Ajustez les options de formatage, l'indentation ou d'autres paramètres pour correspondre à vos préférences."
+        "title": "Sélectionnez le langage et la bibliothèque",
+        "description": "Choisissez votre langage cible (Python, JavaScript, Go, PHP, Java, Ruby, C#, etc.) et la bibliothèque HTTP (fetch, axios, requests, Guzzle, net/http). Le convertisseur génère du code idiomatique pour chacun."
       },
       {
-        "title": "Examinez la sortie",
-        "description": "L'outil va traiter votre saisie et afficher le résultat avec formatage et validation appropriés."
+        "title": "Examinez le code généré",
+        "description": "Le convertisseur génère instantanément du code prêt pour la production avec gestion des erreurs, patterns async/await, sécurité des types et meilleures pratiques pour votre langage choisi."
       },
       {
-        "title": "Copiez ou téléchargez le résultat",
-        "description": "Copiez le résultat traité dans votre presse-papiers pour utilisation immédiate ou téléchargez-le en tant que fichier."
+        "title": "Copiez et utilisez dans votre projet",
+        "description": "Copiez le code généré dans votre presse-papiers en un clic. Le code est prêt à être collé directement dans votre projet — inclut les imports, la gestion des erreurs et la configuration du client HTTP."
       }
     ],
     "features": [
-      "Traitement en temps réel avec résultats instantanés",
-      "Aucune limite de taille pour le traitement basé sur navigateur",
-      "Complètement sécurisé - tout le traitement se fait dans votre navigateur",
-      "Aucun téléchargement de données ou stockage serveur",
+      "Support pour 15+ langages de programmation et bibliothèques HTTP",
+      "Sortie JavaScript : fetch API, axios, node-fetch, got",
+      "Sortie Python : requests, httpx, aiohttp",
+      "Go, PHP (Guzzle/cURL), Java, Ruby, C#, Rust et plus",
+      "Gestion automatique des erreurs et support async/await",
+      "Analyse tous les flags cURL : en-têtes, auth, cookies, données, multipart",
+      "Complètement sécurisé — traitement dans le navigateur sans envoi de données",
+      "Aucun chargement de données, aucune inscription requise",
       "Copier dans le presse-papiers en un clic",
-      "Télécharger les résultats sous forme de fichier",
-      "Validation de syntaxe et mise en évidence des erreurs",
-      "Fonctionne hors ligne après le chargement initial"
+      "Coloration syntaxique pour le code généré"
     ],
     "useCases": [
-      "Nettoyer et formater le code désordonné pour une meilleure lisibilité",
-      "Standardiser le style de code dans les équipes de développement",
-      "Déboguer les structures complexes avec une indentation appropriée",
-      "Préparer le code pour la documentation et les revues de code",
-      "Convertir entre différents standards de formatage",
-      "Valider la syntaxe avant le déploiement",
-      "Traiter les données provenant de sources externes ou d'API",
-      "Générer du code prêt pour la production"
+      "Convertir des exemples cURL de documentation d'API dans votre langage",
+      "Transformer des exports cURL des Chrome DevTools en code de production",
+      "Générer du code client HTTP depuis des exports cURL de Postman",
+      "Construire des clients SDK depuis des commandes curl d'API REST",
+      "Déboguer des requêtes réseau en les convertissant en code lisible",
+      "Migrer des intégrations d'API entre langages de programmation",
+      "Créer des stubs de tests unitaires depuis de vraies requêtes API",
+      "Convertir des flux d'authentification (OAuth, Bearer, Basic) en code"
     ],
     "proTips": [
-      "Utilisez les raccourcis clavier pour un flux de travail plus rapide",
-      "Traitez les gros fichiers en petits morceaux si les performances ralentissent",
-      "Validez votre saisie avant le traitement pour détecter les erreurs tôt",
-      "Enregistrez les paramètres fréquemment utilisés par défaut",
-      "Utilisez la fonction de téléchargement pour archiver les fichiers",
-      "Vérifiez attentivement la sortie avant utilisation en production"
+      "Copiez cURL depuis Chrome DevTools : clic droit sur la requête > Copier > Copier en tant que cURL",
+      "Incluez tous les en-têtes pour une génération de code précise",
+      "Utilisez fetch pour les projets JavaScript modernes basés sur le navigateur",
+      "Utilisez axios pour les projets Node.js nécessitant des intercepteurs et des reprises",
+      "La bibliothèque requests Python est idéale pour les appels HTTP synchrones simples",
+      "Go net/http génère du code de production sans dépendances externes"
     ],
     "troubleshooting": [
-      "Erreurs de syntaxe : vérifiez les crochets, guillemets ou points-virgules manquants",
-      "Échec de traitement : assurez-vous que le format de saisie est valide",
-      "Performance lente : essayez de traiter de plus petits morceaux de données",
-      "Fonctionnalités manquantes : certaines syntaxes avancées peuvent nécessiter un formatage manuel",
-      "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
+      "Échec du parsing : assurez-vous que la commande cURL commence par 'curl' et a une syntaxe valide",
+      "En-têtes manquants dans la sortie : vérifiez que les flags -H sont correctement mis entre guillemets",
+      "Authentification non convertie : vérifiez que les flags -u ou --header Authorization sont présents",
+      "Corps non inclus : assurez-vous que les flags -d ou --data sont correctement formatés",
+      "Compatibilité navigateur : utilisez la dernière version de Chrome, Firefox ou Edge"
     ],
     "keyboardShortcuts": [
       {
@@ -70,7 +86,7 @@
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Traiter/Formater"
+        "description": "Traiter/Convertir"
       },
       {
         "keys": "Ctrl+C",

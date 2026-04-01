@@ -7,64 +7,66 @@
     "steps": [
       {
         "title": "Paste your CSS code",
-        "description": "Copy and paste your CSS code into the input area. The tool accepts any format and will process it immediately."
+        "description": "Copy and paste your CSS stylesheet into the input area. Accepts any valid CSS including CSS3, flexbox, grid, custom properties, animations, and vendor-prefixed rules."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Choose mode: minify or beautify",
+        "description": "Select Minify to compress your CSS for production, or Beautify to format and indent minified or messy CSS for readability. Both modes fully preserve your CSS functionality."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will minify and optimize your input and display the result with proper formatting and validation."
+        "title": "Configure optimization options",
+        "description": "Toggle advanced options: color value compression (#ffffff → #fff), vendor prefix removal, media query merging, selector deduplication, and rule merging for maximum file size reduction."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Copy or download the result",
+        "description": "Copy the minified CSS to your clipboard with one click, or download it as a .css file ready to replace your existing stylesheet in production."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Minify CSS to reduce file size by up to 60%",
+      "Beautify and format minified or poorly-structured CSS",
+      "Remove whitespace, comments, and redundant code",
+      "Compress color values (e.g., #ffffff → #fff, rgb(0,0,0) → #000)",
+      "CSS3, flexbox, grid, and custom property support",
+      "Vendor prefix optimization and removal",
+      "Media query optimization and merging",
+      "Selector deduplication and rule merging",
+      "Browser-based — no CSS data sent to servers",
+      "No signup or registration required"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Minify CSS stylesheets for production deployment",
+      "Optimize CSS to pass Google PageSpeed Insights score",
+      "Reduce website bandwidth usage and improve page load times",
+      "Beautify minified CSS from third-party libraries for debugging",
+      "Remove unused vendor prefixes from legacy stylesheets",
+      "Compress CSS for faster mobile loading performance",
+      "Prepare stylesheets for CDN deployment and aggressive caching",
+      "Clean up auto-generated CSS from frameworks or build tools"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Always keep a copy of your original CSS before minifying — minified code is hard to edit",
+      "Use beautification mode to read and debug third-party or auto-generated CSS",
+      "Color compression alone saves 5-15% on stylesheets with many repeated color values",
+      "Test minified CSS across all target browsers before deploying to production",
+      "Minifying CSS is most impactful for large frameworks — small files save relatively little",
+      "Combine CSS minification with HTML and JS minification for maximum performance gains"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Broken layout after minification: Check for missing semicolons on the last property in rule blocks in your original CSS",
+      "Vendor prefixes removed incorrectly: Disable vendor prefix optimization if targeting older browsers",
+      "Special comments preserved (/*!...*/): This is intentional — these comments are marked as important and cannot be removed",
+      "Colors look different after compression: Hex compressions change format but not the actual visual color output",
+      "Large file is slow: For stylesheets over 500KB, paste in sections or use a build tool like postcss instead"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Paste input"
+        "description": "Paste CSS"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Process/Format"
+        "description": "Minify/Beautify"
       },
       {
         "keys": "Ctrl+C",
@@ -72,7 +74,7 @@
       },
       {
         "keys": "Ctrl+S",
-        "description": "Download file"
+        "description": "Download .css file"
       }
     ]
   },

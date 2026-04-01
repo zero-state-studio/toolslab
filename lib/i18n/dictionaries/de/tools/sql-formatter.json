@@ -1,85 +1,107 @@
 {
   "title": "SQL-Formatierer",
-  "description": "Format und beautify SQL queries",
-  "placeholder": "Fügen Sie Ihre SQL query hier ein...",
+  "description": "SQL-Abfragen online formatieren und verschönern",
+  "placeholder": "SQL-Abfrage hier einfügen...",
+  "longTailKeywords": [
+    "sql formatierer online kostenlos",
+    "sql abfrage formatieren online",
+    "sql abfrage online formatieren kostenlos",
+    "wie sql abfrage online formatieren",
+    "bester sql formatter kostenlos",
+    "sql formatieren ohne software installieren",
+    "mysql abfrage formatieren online",
+    "postgresql abfrage formatieren online",
+    "sql einrücken online kostenlos",
+    "sql formatter mit syntax highlighting kostenlos",
+    "sql keywords groß schreiben online",
+    "sql formatter ohne registrierung"
+  ],
   "instructions": {
-    "title": "So verwenden Sie SQL-Formatierer",
+    "title": "So verwenden Sie den SQL-Formatierer",
     "steps": [
       {
-        "title": "Einfügen Ihre SQL query",
-        "description": "Kopieren und fügen Sie Ihre SQL query in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "SQL-Abfrage einfügen",
+        "description": "Kopieren Sie Ihre SQL-Abfrage oder Ihr SQL-Skript und fügen Sie es in das Eingabefeld ein. Das Tool akzeptiert unkomprimiertes und unformatiertes SQL aus beliebigen Datenbanksystemen."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "SQL-Dialekt auswählen",
+        "description": "Wählen Sie Ihr Datenbanksystem (MySQL, PostgreSQL, SQLite, SQL Server) für dialektspezifische Formatierung und korrekte Schlüsselworterkennung."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool formatiert und verschönert Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Formatierungsoptionen konfigurieren",
+        "description": "Passen Sie Einrückungsgröße, Groß-/Kleinschreibung der Schlüsselwörter und Zeilenumbrüche an Ihre Coding-Standards an."
+      },
+      {
+        "title": "Formatierte Ausgabe prüfen",
+        "description": "Das Tool validiert die SQL-Syntax und zeigt die formatierte Abfrage mit korrekter Einrückung, Schlüsselwort-Hervorhebung und verbesserter Lesbarkeit an."
       },
       {
         "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie das formatierte SQL in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "description": "Kopieren Sie das formatierte SQL in die Zwischenablage für sofortige Verwendung oder laden Sie es als .sql-Datei zur Archivierung und Weitergabe herunter."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Multi-Dialekt-Unterstützung (MySQL, PostgreSQL, SQLite, SQL Server)",
+      "Intelligente Schlüsselworterkennung mit Groß-/Kleinschreibungskonvertierung",
+      "Anpassbare Einrückung (2, 4 Leerzeichen oder Tabulator)",
+      "SQL-Syntaxvalidierung mit Fehlerhervorhebung",
+      "Verarbeitung komplexer Abfragen einschließlich CTEs, Unterabfragen und Joins",
+      "Erhalt und Formatierung von SQL-Kommentaren",
+      "Unterstützung großer SQL-Skripte bis zu 5 MB",
+      "Export des formatierten SQL als herunterladbare Datei"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Unübersichtliche SQL-Abfragen für bessere Lesbarkeit formatieren",
+      "SQL-Code-Stil im Entwicklungsteam standardisieren",
+      "Komplexe Abfragen mit korrekter Einrückung debuggen",
+      "SQL-Skripte für Dokumentation und Code-Reviews vorbereiten",
+      "Automatisch generierten SQL-Code aus Query-Buildern und ORM bereinigen",
+      "Stored Procedures und Datenbankmigrationsscripts formatieren",
+      "SQL direkt im Browser einrücken — ohne Software-Installation und ohne Registrierung",
+      "SQL-Abfragen für den Produktionseinsatz vorbereiten"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie Großbuchstaben für Schlüsselwörter, um die Lesbarkeit und SQL-Standards zu verbessern",
+      "Wählen Sie 4-Leerzeichen-Einrückung für ein optimales Gleichgewicht zwischen Lesbarkeit und Kompaktheit",
+      "Wählen Sie den richtigen SQL-Dialekt für korrekte Schlüsselworterkennung",
+      "Formatieren Sie sehr große Skripte abschnittsweise, wenn die Performance nachlässt",
+      "Behalten Sie die ursprünglichen Kommentare bei — sie enthalten wichtigen Kontext für komplexe Abfragen",
+      "Verwenden Sie konsistente Formatierung in Ihrem gesamten Code-Repository"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Syntaxfehler: Prüfen Sie auf fehlende Semikolons, Klammern oder nicht geschlossene Anführungszeichen",
+      "Nicht erkannte Schlüsselwörter: Überprüfen Sie, ob der ausgewählte SQL-Dialekt mit Ihrer Datenbank übereinstimmt",
+      "Formatierungsprobleme: Stellen Sie sicher, dass das SQL vor der Formatierung gültig ist",
+      "Langsame Performance: Teilen Sie sehr große Skripte in kleinere Teile auf",
+      "Fehlende Funktionen: Einige dialektspezifische Syntax erfordert möglicherweise manuelle Formatierung"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "description": "SQL-Abfrage einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+Enter",
+        "description": "SQL formatieren"
+      },
+      {
+        "keys": "Strg+A",
+        "description": "Gesamte formatierte Ausgabe auswählen"
       },
       {
         "keys": "Strg+C",
-        "description": "Ergebnis kopieren"
+        "description": "Formatiertes SQL kopieren"
       },
       {
         "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "description": "SQL-Datei herunterladen"
       }
     ]
   },
   "meta": {
-    "title": "SQL-Formatter - Online formatieren",
-    "description": "SQL-Abfragen online formatieren und verschönern. Syntax-Highlighting für MySQL, PostgreSQL, SQLite und weitere Dialekte. Kostenloses SQL-Formatierungstool."
+    "title": "SQL-Formatierer - Kostenlos online formatieren | ToolsLab",
+    "description": "SQL-Abfragen online kostenlos formatieren. MySQL, PostgreSQL, SQLite und weitere Dialekte. Syntax-Highlighting, automatische Einrückung. Ohne Registrierung."
   },
-  "tagline": "Format und beautify SQL queries mit Syntax-Highlighting",
-  "pageDescription": "Format und beautify SQL queries mit proper indentation, keyword highlighting, und syntax validation. Perfect für database developers, Daten analysts, und SQL optimization. Supports multiple SQL dialects (MySQL, PostgreSQL, SQLite) mit customizable formatting options. Kostenlos, secure browserbasiert SQL formatter mit no Daten uploads."
+  "tagline": "SQL-Abfragen online formatieren und verschönern mit Syntax-Highlighting",
+  "pageDescription": "Formatieren und verschönern Sie SQL-Abfragen mit korrekter Einrückung, Schlüsselwort-Hervorhebung und Syntaxvalidierung. Ideal für Datenbankentwickler, Datenanalysten und SQL-Optimierung. Unterstützt mehrere SQL-Dialekte (MySQL, PostgreSQL, SQLite, SQL Server) mit anpassbaren Formatierungsoptionen. SQL direkt im Browser einrücken — kostenloser SQL-Formatierer ohne Registrierung und ohne Software-Installation."
 }

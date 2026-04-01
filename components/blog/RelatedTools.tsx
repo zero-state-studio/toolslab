@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 import { tools } from '@/lib/tools';
 
 interface RelatedToolsProps {
@@ -39,7 +40,7 @@ export function RelatedTools({ toolIds }: RelatedToolsProps) {
           {relatedTools.map((tool) => (
             <Link key={tool.id} href={tool.route} className="group">
               <div className="flex items-start gap-3 rounded-lg border border-gray-200 p-3 transition-all group-hover:border-blue-500 group-hover:bg-gray-50 dark:border-gray-800 dark:group-hover:border-blue-400 dark:group-hover:bg-gray-900">
-                <span className="text-2xl">{tool.icon}</span>
+                <ToolIcon id={tool.id} className="h-6 w-6 flex-shrink-0 text-slate-600 dark:text-slate-400" />
                 <div className="flex-1">
                   <h4 className="font-medium text-gray-900 group-hover:text-blue-600 dark:text-gray-100 dark:group-hover:text-blue-400">
                     {tool.name}

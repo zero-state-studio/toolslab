@@ -3,76 +3,79 @@
   "description": "Convertissez les données JSON au format CSV",
   "placeholder": "Collez les données JSON...",
   "instructions": {
-    "title": "Comment utiliser JSON vers CSV",
+    "title": "Comment utiliser le Convertisseur JSON vers CSV",
     "steps": [
       {
-        "title": "Collez votre données JSON",
-        "description": "Copiez et collez votre données JSON dans la zone de saisie. L'outil accepte tout format et le traitera immédiatement."
+        "title": "Collez ou téléchargez votre JSON",
+        "description": "Collez directement vos données JSON dans la zone de saisie ou faites glisser un fichier JSON. L'outil accepte les tableaux JSON d'objets, les structures JSON imbriquées et les données complexes de réponses API."
       },
       {
-        "title": "Configurez les options (si disponible)",
-        "description": "Ajustez les options de formatage, l'indentation ou d'autres paramètres pour correspondre à vos préférences."
+        "title": "Configurez les options CSV",
+        "description": "Choisissez le délimiteur (virgule, point-virgule, tabulation), activez l'aplatissement des objets imbriqués, configurez des en-têtes personnalisés et réorganisez les colonnes par glisser-déposer."
       },
       {
-        "title": "Examinez la sortie",
-        "description": "L'outil va traiter votre saisie et afficher le résultat avec formatage et validation appropriés."
+        "title": "Prévisualisez le CSV résultant",
+        "description": "Voyez un aperçu en direct du CSV pendant la configuration. Les clés JSON imbriquées apparaissent comme noms de colonnes aplaties (ex. user.name, address.city) pour la compatibilité avec les tableurs."
       },
       {
-        "title": "Copiez ou téléchargez le résultat",
-        "description": "Copiez le JSON formaté dans votre presse-papiers pour utilisation immédiate ou téléchargez-le en tant que fichier."
+        "title": "Téléchargez ou copiez le CSV",
+        "description": "Cliquez sur Télécharger CSV pour enregistrer le fichier ou le copier dans le presse-papiers. Le CSV est compatible Excel et prêt pour Google Sheets, LibreOffice Calc ou toute application de tableur."
       }
     ],
     "features": [
-      "Traitement en temps réel avec résultats instantanés",
-      "Aucune limite de taille pour le traitement basé sur navigateur",
-      "Complètement sécurisé - tout le traitement se fait dans votre navigateur",
-      "Aucun téléchargement de données ou stockage serveur",
-      "Copier dans le presse-papiers en un clic",
-      "Télécharger les résultats sous forme de fichier",
-      "Validation de syntaxe et mise en évidence des erreurs",
-      "Fonctionne hors ligne après le chargement initial"
+      "Convertit les tableaux JSON en CSV en un clic",
+      "Aplatit automatiquement les objets JSON imbriqués (ex. address.city, user.name)",
+      "Délimiteurs personnalisés : virgule, point-virgule, tabulation, pipe",
+      "Ordonnancement de colonnes par glisser-déposer",
+      "Aperçu CSV en temps réel pendant la configuration",
+      "Noms d'en-têtes personnalisés par colonne",
+      "Exporte des fichiers CSV compatibles Excel",
+      "Traitement dans le navigateur — aucun envoi de fichiers à des serveurs",
+      "Aucune inscription ni compte requis",
+      "Sans installation de logiciel — fonctionne directement dans le navigateur",
+      "Compatible avec le JSON complexe des réponses API REST"
     ],
     "useCases": [
-      "Nettoyer et formater le code désordonné pour une meilleure lisibilité",
-      "Standardiser le style de code dans les équipes de développement",
-      "Déboguer les structures complexes avec une indentation appropriée",
-      "Préparer le code pour la documentation et les revues de code",
-      "Convertir entre différents standards de formatage",
-      "Valider la syntaxe avant le déploiement",
-      "Traiter les données provenant de sources externes ou d'API",
-      "Générer du code prêt pour la production"
+      "Exporter des réponses API REST en JSON vers CSV pour analyse",
+      "Convertir des exports de base de données JSON en format tableur",
+      "Transformer des objets JSON imbriqués en lignes CSV plates",
+      "Préparer des données JSON pour importation dans Excel ou Google Sheets",
+      "Convertir des fixtures JSON de tests API en CSV pour QA",
+      "Exporter des données JSON de configuration en CSV pour rapports",
+      "Aplatir des JSON imbriqués complexes pour imports de base de données",
+      "Convertir des tableaux JSON issus de web scraping en CSV"
     ],
     "proTips": [
-      "Utilisez les raccourcis clavier pour un flux de travail plus rapide",
-      "Traitez les gros fichiers en petits morceaux si les performances ralentissent",
-      "Validez votre saisie avant le traitement pour détecter les erreurs tôt",
-      "Enregistrez les paramètres fréquemment utilisés par défaut",
-      "Utilisez la fonction de téléchargement pour archiver les fichiers",
-      "Vérifiez attentivement la sortie avant utilisation en production"
+      "Utilisez des noms de colonnes en notation pointée (user.name) pour identifier les champs imbriqués aplatis",
+      "Choisissez le point-virgule comme délimiteur pour Excel européen",
+      "Réorganisez les colonnes par glisser-déposer avant de télécharger",
+      "Pour du JSON profondément imbriqué, l'aplatissement crée de longs noms de colonnes — utilisez des en-têtes personnalisés pour les renommer",
+      "Si les tableaux contiennent des objets, chaque objet devient une ligne CSV distincte",
+      "Ajoutez le BOM UTF-8 si les caractères spéciaux s'affichent incorrectement dans Excel"
     ],
     "troubleshooting": [
-      "Erreurs de syntaxe : vérifiez les crochets, guillemets ou points-virgules manquants",
-      "Échec de traitement : assurez-vous que le format de saisie est valide",
-      "Performance lente : essayez de traiter de plus petits morceaux de données",
-      "Fonctionnalités manquantes : certaines syntaxes avancées peuvent nécessiter un formatage manuel",
-      "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
+      "JSON invalide : validez votre JSON avant de convertir",
+      "Colonnes manquantes : certaines clés peuvent être imbriquées — activez l'aplatissement pour les exposer",
+      "Tableaux dans les valeurs : configurez la gestion des tableaux pour développer, stringifier ou ignorer",
+      "Mauvais encodage : activez le BOM UTF-8 si les caractères spéciaux s'affichent mal dans Excel",
+      "CSV vide : vérifiez que votre JSON est un tableau d'objets, pas un objet unique ou un primitif"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Ctrl+V",
-        "description": "Coller l'entrée"
+        "description": "Coller l'entrée JSON"
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Traiter/Formater"
+        "description": "Convertir en CSV"
       },
       {
         "keys": "Ctrl+C",
-        "description": "Copier le résultat"
+        "description": "Copier le résultat CSV"
       },
       {
         "keys": "Ctrl+S",
-        "description": "Télécharger le fichier"
+        "description": "Télécharger le fichier CSV"
       }
     ]
   },
@@ -80,6 +83,20 @@
     "title": "Convertisseur JSON vers CSV",
     "description": "Convertissez des données JSON en format CSV en ligne. Aplatissez objets et tableaux imbriqués avec mappage de colonnes personnalisable. Convertisseur gratuit."
   },
-  "tagline": "Convert JSON to CSV with advanced formatting and column mapping",
-  "pageDescription": "Free JSON to CSV converter with advanced flattening, column mapping, and formatting options. Transform JSON arrays, nested objects, and complex data structures into Excel-compatible CSV files. Features drag-and-drop column ordering, custom delimiters, header configuration, and real-time preview. Perfect for data export, API response conversion, and spreadsheet integration. Secure browser-based processing with no file uploads."
+  "tagline": "Convertissez JSON en CSV avec aplatissement avancé et export compatible Excel",
+  "pageDescription": "Convertisseur JSON vers CSV gratuit avec aplatissement avancé, mappage de colonnes et options de formatage. Transformez des tableaux JSON, des objets imbriqués et des structures de données complexes en fichiers CSV compatibles Excel. Inclut l'ordonnancement de colonnes glisser-déposer, des délimiteurs personnalisés, la configuration des en-têtes et un aperçu en temps réel. Idéal pour exporter des données d'API REST, convertir des réponses JSON et préparer des données pour tableurs. Traitement sécurisé dans le navigateur sans envoi de fichiers. Sans inscription, sans installation, sans limites.",
+  "longTailKeywords": [
+    "convertir JSON en CSV en ligne gratuit",
+    "convertir JSON en CSV sans inscription",
+    "convertir JSON en CSV sans logiciel",
+    "comment convertir JSON en CSV en ligne",
+    "convertir JSON imbriqué en CSV Excel",
+    "aplatir JSON imbriqué et exporter CSV",
+    "convertir réponse API JSON en CSV",
+    "exporter données JSON vers tableur Excel",
+    "convertisseur JSON CSV compatible Excel gratuit",
+    "meilleur convertisseur JSON vers CSV gratuit",
+    "convertir tableau JSON en CSV en ligne",
+    "transformer données JSON en CSV rapidement"
+  ]
 }

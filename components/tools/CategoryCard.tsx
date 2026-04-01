@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { ArrowRight, Zap } from 'lucide-react';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { useLocale } from '@/hooks/useLocale';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 
 interface CategoryCardProps {
   category: Category;
@@ -31,14 +32,14 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
         <div className="mb-6 flex items-start justify-between">
           <div className="flex items-center space-x-4">
             <div
-              className="flex h-14 w-14 items-center justify-center rounded-2xl border-2 text-2xl transition-all duration-300 group-hover:scale-110"
+              className="flex h-14 w-14 items-center justify-center rounded-2xl border-2 transition-all duration-300 group-hover:scale-110"
               style={{
                 backgroundColor: `var(--category-bg)`,
                 borderColor: `var(--category-border)`,
                 color: `var(--category-primary)`,
               }}
             >
-              {category.icon}
+              <ToolIcon id={category.id} type="category" className="h-7 w-7" />
             </div>
             <div>
               <div className="mb-1 flex items-center gap-2">
@@ -90,7 +91,7 @@ export function CategoryCard({ category, className }: CategoryCardProps) {
                 key={tool.id}
                 className="flex items-center space-x-3 rounded-lg bg-gray-50 p-3 transition-colors hover:bg-gray-100 dark:bg-gray-800/50 dark:hover:bg-gray-800"
               >
-                <span className="flex-shrink-0 text-lg">{tool.icon}</span>
+                <ToolIcon id={tool.id} className="h-4 w-4 flex-shrink-0 text-slate-500 dark:text-slate-400" />
                 <div className="min-w-0 flex-1">
                   <div className="truncate text-sm font-medium text-gray-900 dark:text-gray-100">
                     {tool.name}

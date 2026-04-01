@@ -1,0 +1,102 @@
+name: "🔧 Nuovo Tool"
+description: "Richiesta implementazione nuovo tool"
+title: "[TOOL] "
+labels: ["claude-code", "new-tool"]
+body:
+  - type: input
+    id: tool-name
+    attributes:
+      label: "Nome del tool"
+      placeholder: "Unix Timestamp Converter"
+    validations:
+      required: true
+  - type: input
+    id: tool-slug
+    attributes:
+      label: "Slug (route URL)"
+      placeholder: "unix-timestamp-converter"
+    validations:
+      required: true
+  - type: input
+    id: tool-emoji
+    attributes:
+      label: "Emoji icona"
+      placeholder: "⏱️"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: "Categoria"
+      options:
+        - "data — JSON, CSV, XML, YAML"
+        - "encoding — Base64, URL, Hash"
+        - "text — Diff, Regex, Markdown"
+        - "generators — UUID, QR, Password"
+        - "web — CSS, HTML, cURL"
+        - "dev — Timestamp, Cron, JWT"
+        - "design — Color, Gradient, Favicon"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: "Cosa fa il tool"
+      description: "Input, output, perché è utile"
+      placeholder: |
+        Converte timestamp Unix (secondi o millisecondi) ↔ data leggibile.
+        INPUT: numero Unix timestamp
+        OUTPUT: data formattata + timezone selezionabile
+    validations:
+      required: true
+  - type: textarea
+    id: features
+    attributes:
+      label: "Features richieste"
+      placeholder: |
+        - Auto-detect se l'input è in secondi o millisecondi
+        - Timezone picker con le 20 zone più comuni
+        - Bottone "Now" per timestamp corrente
+        - Copy to clipboard per ogni output
+        - Conversione inversa: data → timestamp
+    validations:
+      required: true
+  - type: input
+    id: similar-tool
+    attributes:
+      label: "Tool simile già presente (riferimento per struttura)"
+      placeholder: "base64-encode — stesso pattern input/output con copy button"
+  - type: input
+    id: tagline
+    attributes:
+      label: "Tagline SEO (10-15 parole)"
+      placeholder: "Convert Unix timestamps to human-readable dates instantly"
+  - type: textarea
+    id: seo-description
+    attributes:
+      label: "Descrizione SEO (30-70 parole)"
+      placeholder: |
+        Free online Unix timestamp converter. Instantly convert between Unix timestamps
+        and human-readable dates with timezone support. Works with seconds and milliseconds.
+        No installation required — entirely browser-based.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: "Acceptance Criteria"
+      placeholder: |
+        - [ ] Conversione timestamp ↔ data funzionante
+        - [ ] Auto-detect ms vs s
+        - [ ] Timezone picker
+        - [ ] Unit test coverage > 80%
+        - [ ] npm run lint OK
+        - [ ] npm run type-check OK
+        - [ ] Traduzioni IT/ES/FR
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: "Note / edge case / librerie suggerite"
+      placeholder: |
+        - Usare date-fns già installato per le conversioni
+        - Threshold ms vs s: se > 9999999999 allora millisecondi

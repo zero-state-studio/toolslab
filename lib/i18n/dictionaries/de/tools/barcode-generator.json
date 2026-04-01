@@ -1,6 +1,6 @@
 {
   "title": "Barcode-Generator",
-  "description": "Generiere alle Arten von Barcodes - EAN, UPC, Code 128, Data Matrix und mehr",
+  "description": "Eigenen Barcode oder Strichcode kostenlos erstellen - EAN, UPC, Code 128, Data Matrix und mehr",
   "placeholder": "Daten zum Kodieren eingeben...",
   "instructions": {
     "title": "So verwenden Sie den Barcode-Generator",
@@ -87,8 +87,22 @@
   },
   "meta": {
     "title": "Barcode-Generator - Kostenlos Online",
-    "description": "Barcodes in über 20 Formaten erstellen: EAN-13, UPC-A, Code 128, ISBN, QR-Code, Data Matrix. Batch-Erstellung mit Download als PNG, SVG oder PDF."
+    "description": "Kostenlos online Barcodes und Strichcodes erstellen ohne Anmeldung: EAN-13, UPC-A, Code 128, ISBN, QR-Code. Batch-Erstellung, Download als PNG, SVG oder PDF."
   },
-  "tagline": "Erstellen Sie professionelle Barcodes für Einzelhandel, Inventar und Versand mit erweiterten Anpassungen",
-  "pageDescription": "Professioneller Barcode-Generator mit Unterstützung für alle kommerziellen Formate: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) und 2D (QR Code, Data Matrix, PDF417, Aztec). Beinhaltet Batch-Generierung aus CSV, Etiketten-Designer, Scanner-Verifizierung, mehrere Exportformate (PNG bis 600 DPI, SVG, PDF, EPS), Farbanpassung und Decoder. Perfekt für Einzelhandels-Produktetiketten, Inventarverwaltung, Versandlogistik und pharmazeutisches Tracking. 100% Browser-basiert ohne Daten-Upload."
+  "tagline": "Eigenen Strichcode kostenlos erstellen und drucken – für Einzelhandel, Inventar, Lagerverwaltung und Versand",
+  "pageDescription": "Kostenloser Barcode-Generator online ohne Anmeldung – erstellen Sie Ihren eigenen Barcode oder Strichcode in allen kommerziellen Formaten: 1D (EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF-14, ISBN, ISSN) und 2D (QR Code, Data Matrix, PDF417, Aztec). Beinhaltet Batch-Generierung aus CSV-Dateien, Etiketten erstellen und drucken, Scanner-Verifizierung, mehrere Exportformate (PNG bis 600 DPI, SVG, PDF, EPS), Farbanpassung und Decoder. Perfekt für Produktetiketten im Einzelhandel, Inventar und Lagerverwaltung, Versandlogistik und pharmazeutisches Tracking. 100% Browser-basiert ohne Daten-Upload.",
+  "longTailKeywords": [
+    "barcode generator online kostenlos ohne anmeldung",
+    "ean-13 barcode generator kostenlos online",
+    "barcode erstellen kostenlos und drucken",
+    "strichcode erstellen kostenlos online",
+    "code 128 barcode generator kostenlos online",
+    "barcode etiketten erstellen und drucken kostenlos",
+    "barcode generator für produktetiketten kostenlos",
+    "barcode erstellen batch aus csv datei kostenlos",
+    "barcode generator für inventar und lagerverwaltung",
+    "isbn barcode erstellen kostenlos online",
+    "barcode als png svg pdf herunterladen kostenlos",
+    "eigenen barcode erstellen für produkte kostenlos"
+  ]
 }

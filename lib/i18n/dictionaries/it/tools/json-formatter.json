@@ -4,20 +4,34 @@
   "tagline": "Formatta, valida e abbellisci JSON istantaneamente online",
   "pageDescription": "Formatta e valida dati JSON con il nostro formatter JSON online gratuito. Debug di JSON malformato, abbellimento di codice minimizzato e validazione della sintassi con rilevamento errori in tempo reale. Perfetto per sviluppatori che lavorano con API, file di configurazione ed elaborazione dati. Cerca chiavi, personalizza l'indentazione ed elabora file di grandi dimensioni in modo sicuro nel tuo browser.",
   "placeholder": "Incolla qui il tuo JSON...",
+  "longTailKeywords": [
+    "formattatore json online gratuito",
+    "json formatter online gratis",
+    "abbellire json online gratis",
+    "come formattare json online",
+    "validare json online senza registrazione",
+    "json formatter senza installazione",
+    "come validare sintassi json",
+    "json formatter per sviluppatori",
+    "miglior formattatore json gratuito",
+    "formattare e validare json online",
+    "abbellitore json con evidenziazione sintassi",
+    "debug json malformato online"
+  ],
   "instructions": {
     "title": "Come usare JSON Formatter",
     "steps": [
       {
-        "title": "Incolla il tuo dati JSON",
-        "description": "Copia e incolla il tuo dati JSON nell'area di input. Lo strumento accetta qualsiasi formato e lo elaborerà immediatamente."
+        "title": "Incolla i tuoi dati JSON",
+        "description": "Copia e incolla il codice JSON nell'area di input. Lo strumento accetta JSON compresso, formattato o malformato e lo analizzerà immediatamente."
       },
       {
-        "title": "Configura le opzioni (se disponibile)",
-        "description": "Regola le opzioni di formattazione, indentazione o altre impostazioni per adattarle alle tue preferenze."
+        "title": "Configura le opzioni",
+        "description": "Regola la dimensione dell'indentazione, ordina le chiavi alfabeticamente o scegli la modalità solo validazione per adattare l'output alle tue preferenze."
       },
       {
         "title": "Esamina l'output",
-        "description": "Lo strumento formatterà ed abbellirà il tuo input e mostrerà il risultato con formattazione e validazione appropriate."
+        "description": "Il formatter abbellirà il JSON con evidenziazione della sintassi e segnalerà eventuali errori con la posizione esatta nel codice."
       },
       {
         "title": "Copia o scarica il risultato",
@@ -32,29 +46,30 @@
       "Copia negli appunti con un clic",
       "Scarica i risultati come file",
       "Validazione sintassi ed evidenziazione errori",
+      "Funziona senza installazione direttamente nel browser",
       "Funziona offline dopo il caricamento iniziale"
     ],
     "useCases": [
       "Pulire e formattare codice disordinato per una migliore leggibilità",
       "Standardizzare lo stile del codice nei team di sviluppo",
-      "Debug di strutture complesse con indentazione appropriata",
+      "Debug di strutture JSON complesse con indentazione appropriata",
       "Preparare il codice per documentazione e code review",
       "Convertire tra diversi standard di formattazione",
-      "Validare la sintassi prima del deploy",
-      "Elaborare dati da fonti esterne o API",
+      "Validare la sintassi JSON prima del deploy",
+      "Elaborare risposte API e file di configurazione JSON",
       "Generare codice pronto per la produzione"
     ],
     "proTips": [
       "Usa le scorciatoie da tastiera per un flusso di lavoro più veloce",
       "Elabora file di grandi dimensioni in blocchi più piccoli se le prestazioni rallentano",
-      "Valida il tuo input prima dell'elaborazione per individuare errori anticipatamente",
-      "Salva le impostazioni utilizzate frequentemente come predefinite",
+      "Valida il tuo JSON prima dell'elaborazione per individuare errori anticipatamente",
+      "Usa l'opzione ordina chiavi per normalizzare JSON da fonti diverse",
       "Usa la funzione di download per archiviare i file elaborati",
       "Controlla attentamente l'output prima di usarlo in produzione"
     ],
     "troubleshooting": [
-      "Errori di sintassi: controlla parentesi, virgolette o punti e virgola mancanti",
-      "Elaborazione fallita: assicurati che il formato di input sia valido",
+      "Errori di sintassi: controlla parentesi, virgolette o virgole mancanti",
+      "Elaborazione fallita: assicurati che il formato di input sia JSON valido",
       "Performance lenta: prova a elaborare blocchi di dati più piccoli",
       "Funzionalità mancanti: alcune sintassi avanzate potrebbero richiedere formattazione manuale",
       "Compatibilità browser: usa Chrome, Firefox o Edge per risultati migliori"
@@ -86,7 +101,7 @@
   ],
   "meta": {
     "title": "JSON Formatter - Strumento Online Gratuito",
-    "description": "Formatta, valida e abbellisci dati JSON con evidenziazione sintassi e vista ad albero. Strumento JSON Formatter online gratuito. Funziona nel browser."
+    "description": "Formatta e valida JSON online gratis. Evidenziazione sintassi, rilevamento errori in tempo reale e abbellimento JSON. Senza registrazione, tutto nel browser."
   },
   "labels": {
     "indentSize": "Dimensione rientro",

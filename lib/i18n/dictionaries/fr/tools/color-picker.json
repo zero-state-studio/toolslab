@@ -3,83 +3,101 @@
   "description": "Choisissez et convertissez les couleurs entre formats HEX, RGB, HSL",
   "placeholder": "Choisissez une couleur...",
   "meta": {
-    "title": "Sélecteur de Couleurs - Outil en Ligne Gratuit",
-    "description": "Sélectionnez des couleurs avec le sélecteur interactif. Conversion instantanée entre HEX, RGB et HSL. Extrayez et sauvegardez vos couleurs. Outil gratuit."
+    "title": "Sélecteur de Couleurs - Convertisseur HEX RGB HSL Gratuit en Ligne",
+    "description": "Sélecteur de couleur en ligne gratuit — choisissez des couleurs et convertissez entre HEX, RGB, HSL, CMYK. Contraste WCAG, générateur de palettes. Sans inscription."
   },
-  "tagline": "Scegli colori con controllo contrasto e generatore palette",
-  "pageDescription": "Color picker professionale per sviluppatori e designer con formati HEX, RGB, HSL, HSV, CMYK e LAB. Genera palette colori, controlla rapporti contrasto WCAG, simula daltonismo ed export CSS, Tailwind, Material Design. Funzionalità API eyedropper, generatore gradienti e integrazione design system. Strumento gratuito basato su browser con controllo conformità accessibilità.",
+  "tagline": "Choisissez des couleurs avec vérificateur de contraste et générateur de palettes",
+  "pageDescription": "Sélecteur de couleur professionnel en ligne gratuit pour développeurs et designers. Choisissez une couleur et convertissez instantanément entre les formats HEX, RGB, HSL, HSV, CMYK et LAB. Générez des palettes harmonieuses à partir d'une seule couleur, vérifiez le contraste WCAG pour l'accessibilité et simulez le daltonisme. Exportez directement en CSS, Tailwind et Material Design. Pipette intégrée pour extraire les couleurs de votre écran, générateur de dégradés et intégration avec les systèmes de design. Outil entièrement gratuit fonctionnant dans votre navigateur, sans inscription ni installation de logiciel.",
   "instructions": {
-    "title": "Comment utiliser Sélecteur de Couleurs",
+    "title": "Comment utiliser le Sélecteur de Couleurs",
     "steps": [
       {
-        "title": "Collez votre contenu",
-        "description": "Copiez et collez votre contenu dans la zone de saisie. L'outil accepte tout format et le traitera immédiatement."
+        "title": "Sélectionnez une couleur",
+        "description": "Utilisez le sélecteur visuel pour choisir votre couleur de base, ou saisissez directement une valeur HEX, RGB ou HSL dans le champ de saisie."
       },
       {
-        "title": "Configurez les options (si disponible)",
-        "description": "Ajustez les options de formatage, l'indentation ou d'autres paramètres pour correspondre à vos préférences."
+        "title": "Convertissez entre formats",
+        "description": "La couleur choisie est automatiquement convertie en HEX, RGB, HSL, HSV, CMYK et LAB. Cliquez sur un format pour le copier dans le presse-papiers."
       },
       {
-        "title": "Examinez la sortie",
-        "description": "L'outil va traiter votre saisie et afficher le résultat avec formatage et validation appropriés."
+        "title": "Vérifiez le contraste et l'accessibilité",
+        "description": "Testez le rapport de contraste entre deux couleurs selon les normes WCAG AA et AAA. L'outil indique si la combinaison est conforme pour le texte normal et le texte large."
       },
       {
-        "title": "Copiez ou téléchargez le résultat",
-        "description": "Copiez le résultat traité dans votre presse-papiers pour utilisation immédiate ou téléchargez-le en tant que fichier."
+        "title": "Générez une palette de couleurs",
+        "description": "À partir de votre couleur de base, générez des palettes complémentaires, analogues, triadiques ou monochromatiques pour votre projet de design."
+      },
+      {
+        "title": "Exportez et utilisez vos couleurs",
+        "description": "Copiez les valeurs de couleur dans le format souhaité (CSS, Tailwind, variables CSS) ou téléchargez votre palette complète pour l'intégrer dans votre projet."
       }
     ],
     "features": [
-      "Traitement en temps réel avec résultats instantanés",
-      "Aucune limite de taille pour le traitement basé sur navigateur",
-      "Complètement sécurisé - tout le traitement se fait dans votre navigateur",
-      "Aucun téléchargement de données ou stockage serveur",
-      "Copier dans le presse-papiers en un clic",
-      "Télécharger les résultats sous forme de fichier",
-      "Validation de syntaxe et mise en évidence des erreurs",
-      "Fonctionne hors ligne après le chargement initial"
+      "Conversion instantanée entre HEX, RGB, HSL, HSV, CMYK et LAB",
+      "Vérificateur de contraste WCAG AA/AAA pour l'accessibilité web",
+      "Générateur de palettes : complémentaire, analogue, triadique, monochromatique",
+      "Pipette (eyedropper) pour extraire les couleurs directement de l'écran",
+      "Simulation de daltonisme (protanopie, deutéranopie, tritanopie)",
+      "Export en CSS, variables CSS personnalisées et classes Tailwind",
+      "Générateur de dégradés linéaires et radiaux avec aperçu en temps réel",
+      "Traitement 100 % côté navigateur — aucune donnée envoyée au serveur"
     ],
     "useCases": [
-      "Nettoyer et formater le code désordonné pour une meilleure lisibilité",
-      "Standardiser le style de code dans les équipes de développement",
-      "Déboguer les structures complexes avec une indentation appropriée",
-      "Préparer le code pour la documentation et les revues de code",
-      "Convertir entre différents standards de formatage",
-      "Valider la syntaxe avant le déploiement",
-      "Traiter les données provenant de sources externes ou d'API",
-      "Générer du code prêt pour la production"
+      "Créer une charte graphique cohérente pour un site web ou une application",
+      "Vérifier la conformité WCAG des combinaisons de couleurs pour l'accessibilité",
+      "Générer des palettes harmonieuses à partir d'une couleur de marque existante",
+      "Convertir des couleurs HEX en RGB ou HSL pour le développement CSS",
+      "Tester le rendu des couleurs pour les utilisateurs daltoniens",
+      "Créer des dégradés CSS personnalisés pour des arrière-plans modernes",
+      "Extraire les couleurs exactes d'un design ou d'une maquette avec la pipette",
+      "Préparer des variables de couleur Tailwind ou CSS custom properties"
     ],
     "proTips": [
-      "Utilisez les raccourcis clavier pour un flux de travail plus rapide",
-      "Traitez les gros fichiers en petits morceaux si les performances ralentissent",
-      "Validez votre saisie avant le traitement pour détecter les erreurs tôt",
-      "Enregistrez les paramètres fréquemment utilisés par défaut",
-      "Utilisez la fonction de téléchargement pour archiver les fichiers",
-      "Vérifiez attentivement la sortie avant utilisation en production"
+      "Utilisez le format HSL pour ajuster facilement la luminosité et la saturation d'une couleur sans changer la teinte",
+      "Visez un rapport de contraste d'au moins 4.5:1 (WCAG AA) pour le texte normal et 3:1 pour le texte large",
+      "Partez d'une seule couleur de marque et utilisez les palettes analogues pour construire un système de couleurs cohérent",
+      "Testez toujours vos couleurs avec le simulateur de daltonisme — environ 8 % des hommes sont daltoniens",
+      "Copiez les valeurs en CSS custom properties (var(--primary)) pour faciliter les thèmes clair/sombre",
+      "Utilisez la pipette pour capturer rapidement les couleurs d'un site concurrent ou d'une inspiration"
     ],
     "troubleshooting": [
-      "Erreurs de syntaxe : vérifiez les crochets, guillemets ou points-virgules manquants",
-      "Échec de traitement : assurez-vous que le format de saisie est valide",
-      "Performance lente : essayez de traiter de plus petits morceaux de données",
-      "Fonctionnalités manquantes : certaines syntaxes avancées peuvent nécessiter un formatage manuel",
-      "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
+      "Couleur non reconnue : vérifiez le format saisi (HEX doit commencer par #, RGB entre 0-255, HSL entre 0-360/0-100)",
+      "Pipette non disponible : l'API EyeDropper nécessite Chrome 95+ ou Edge 95+. Firefox et Safari ne la supportent pas encore",
+      "Contraste insuffisant : essayez d'augmenter la luminosité de la couleur claire ou de réduire celle de la couleur foncée",
+      "Palette inadaptée : changez le type de palette (complémentaire, analogue, triadique) selon l'ambiance recherchée",
+      "Export Tailwind incorrect : assurez-vous d'utiliser les noms de classes Tailwind valides (ex. bg-blue-500, text-gray-900)"
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Ctrl+V",
-        "description": "Coller l'entrée"
-      },
-      {
-        "keys": "Ctrl+Enter",
-        "description": "Traiter/Formater"
-      },
-      {
         "keys": "Ctrl+C",
-        "description": "Copier le résultat"
+        "description": "Copier la valeur de couleur sélectionnée"
       },
       {
-        "keys": "Ctrl+S",
-        "description": "Télécharger le fichier"
+        "keys": "Ctrl+V",
+        "description": "Coller une valeur de couleur"
+      },
+      {
+        "keys": "Ctrl+Z",
+        "description": "Annuler la dernière modification de couleur"
+      },
+      {
+        "keys": "Ctrl+Shift+C",
+        "description": "Copier la couleur en format HEX"
       }
     ]
-  }
+  },
+  "longTailKeywords": [
+    "sélecteur de couleur en ligne gratuit",
+    "convertisseur couleurs hex rgb hsl gratuit",
+    "pipette couleur en ligne sans inscription",
+    "comment choisir couleurs pour site web",
+    "générateur palette couleurs en ligne gratuit",
+    "vérificateur contraste couleurs wcag gratuit",
+    "outil couleurs pour développeurs web gratuit",
+    "comment convertir hex en rgb en ligne",
+    "sélecteur couleur pour design web gratuit",
+    "meilleur outil couleur en ligne gratuit",
+    "palette couleurs à partir d'une seule couleur",
+    "convertisseur couleurs sans logiciel navigateur"
+  ]
 }

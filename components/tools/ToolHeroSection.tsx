@@ -1,7 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Sparkles, Zap } from 'lucide-react';
+import { getCurrentHoliday } from '@/lib/utils/holidays';
+import { HolidayOverlay } from '@/components/ui/HolidayOverlay';
+import type { HolidayDecoration } from '@/lib/utils/holidays';
 
 const categoryGradients: Record<string, string> = {
   data: 'from-blue-500 to-cyan-500',
@@ -14,6 +17,31 @@ const categoryGradients: Record<string, string> = {
   formatters: 'from-indigo-500 to-purple-500',
   pdf: 'from-red-600 to-orange-600',
 };
+
+// ─── Small hover badge ─────────────────────────────────────────────────────────
+
+interface HolidayBadgeProps {
+  holiday: HolidayDecoration;
+  onHover: (v: boolean) => void;
+  badgeSizeClass: string;
+}
+
+function HolidayBadge({ holiday, onHover, badgeSizeClass }: HolidayBadgeProps) {
+  return (
+    <span
+      onMouseEnter={() => onHover(true)}
+      onMouseLeave={() => onHover(false)}
+      className={`absolute -bottom-1 -right-1 z-20 flex cursor-default items-center justify-center rounded-full bg-white shadow-md ring-1 ring-white/80 dark:bg-slate-800 dark:ring-slate-700 ${badgeSizeClass}`}
+      title={holiday.greeting}
+      aria-hidden="true"
+      style={{ lineHeight: 1 }}
+    >
+      {holiday.emoji}
+    </span>
+  );
+}
+
+// ─── ToolHeroSectionProps ──────────────────────────────────────────────────────
 
 interface ToolHeroSectionProps {
   toolId: string;
@@ -38,7 +66,6 @@ export default function ToolHeroSection({
   toolPageDescription,
   categoryColor,
   categoryId,
-  categoryName,
   favoriteButton,
   categoryBadge,
   labelBadge,
@@ -46,26 +73,43 @@ export default function ToolHeroSection({
 }: ToolHeroSectionProps) {
   const gradient = categoryGradients[categoryId || ''] || 'from-violet-500 to-purple-500';
   const [isVisible, setIsVisible] = useState(false);
+  const [holidayHovered, setHolidayHovered] = useState(false);
+  const holiday = getCurrentHoliday();
 
-  // Use provided translations (from JSON granular files)
   const tagline = toolTagline || toolDescription;
   const pageDescription = toolPageDescription;
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  useEffect(() => { setIsVisible(true); }, []);
 
-  // Fallback for tools without SEO data
+  // ── Fallback layout (no SEO data) ──────────────────────────────────────────
   if (!toolTagline && !toolPageDescription) {
     return (
       <div className={`mb-8 text-center ${className}`}>
-        <div
-          className={`mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} text-white shadow-lg transition-all duration-500 ${
-            isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
-          }`}
-        >
-          <Zap className="h-10 w-10 text-white" />
+        <div className="relative mx-auto mb-6 h-20 w-20">
+          <div
+            className={`flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br ${gradient} text-white shadow-lg transition-all duration-500 ${
+              isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+            }`}
+          >
+            <Zap className="h-10 w-10 text-white" />
+          </div>
+          {holiday && (
+            <HolidayBadge
+              holiday={holiday}
+              onHover={setHolidayHovered}
+              badgeSizeClass="h-6 w-6 text-sm"
+            />
+          )}
         </div>
+
+        {holiday && (
+          <HolidayOverlay
+            holiday={holiday}
+            open={holidayHovered}
+            emojiRadius={160}
+          />
+        )}
+
         <h1
           className={`mb-2 text-3xl font-bold text-slate-900 transition-all delay-100 duration-500 dark:text-white sm:text-4xl lg:text-5xl ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
@@ -92,41 +136,51 @@ export default function ToolHeroSection({
     );
   }
 
+  // ── Main layout ────────────────────────────────────────────────────────────
   return (
     <div className={`mb-3 md:mb-5 ${className}`}>
-      {/* Inline header with icon, title, and badges */}
+      {holiday && (
+        <HolidayOverlay
+          holiday={holiday}
+          open={holidayHovered}
+          emojiRadius={160}
+        />
+      )}
+
       <div className="mb-2 flex items-center gap-2 sm:gap-3">
-        {/* Compact Icon */}
-        <div
-          className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-lg transition-all duration-300 sm:h-14 sm:w-14 ${
-            isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
-          }`}
-        >
-          <Sparkles className="h-6 w-6 text-white sm:h-7 sm:w-7" />
+        {/* z-10 ensures stacking above sibling flex items */}
+        <div className="relative z-10 flex-shrink-0">
+          <div
+            className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-lg transition-all duration-300 sm:h-14 sm:w-14 ${
+              isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
+            }`}
+          >
+            <Sparkles className="h-6 w-6 text-white sm:h-7 sm:w-7" />
+          </div>
+          {holiday && (
+            <HolidayBadge
+              holiday={holiday}
+              onHover={setHolidayHovered}
+              badgeSizeClass="h-5 w-5 text-xs sm:h-6 sm:w-6 sm:text-sm"
+            />
+          )}
         </div>
 
-        {/* Title and badges inline */}
+        {/* Title and badges */}
         <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:gap-3">
           <h1
             className={`text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl lg:text-4xl ${
-              isVisible
-                ? 'translate-y-0 opacity-100'
-                : 'translate-y-1 opacity-0'
+              isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
             } transition-all delay-75 duration-300`}
           >
             {toolName}
           </h1>
           {labelBadge && <div className="flex items-center">{labelBadge}</div>}
-          {favoriteButton && (
-            <div className="flex items-center">{favoriteButton}</div>
-          )}
-          {categoryBadge && (
-            <div className="flex items-center">{categoryBadge}</div>
-          )}
+          {favoriteButton && <div className="flex items-center">{favoriteButton}</div>}
+          {categoryBadge && <div className="flex items-center">{categoryBadge}</div>}
         </div>
       </div>
 
-      {/* Tagline/Description - use translated version if available */}
       <p
         className={`mb-2 text-base text-slate-700 transition-all delay-100 duration-300 dark:text-slate-300 sm:text-lg md:mb-4 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
@@ -135,7 +189,6 @@ export default function ToolHeroSection({
         {tagline}
       </p>
 
-      {/* Page Description - hidden on mobile to show textarea */}
       {pageDescription && (
         <p
           className={`hidden max-w-4xl text-sm leading-relaxed text-slate-600 transition-all delay-150 duration-300 dark:text-slate-400 sm:text-base md:block ${
@@ -146,7 +199,6 @@ export default function ToolHeroSection({
         </p>
       )}
 
-      {/* Subtle Gradient Background */}
       <div
         className="pointer-events-none absolute inset-0 -z-10 opacity-10"
         style={{

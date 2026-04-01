@@ -1,25 +1,41 @@
 {
   "title": "JSON-Formatierer",
-  "description": "Formatieren, validieren und verschönern JSON-Daten mit Syntax-Highlighting",
+  "description": "JSON-Daten online formatieren, validieren und verschönern mit Syntax-Highlighting",
   "placeholder": "Fügen Sie Ihr JSON hier ein...",
+  "tagline": "JSON online formatieren, validieren und verschönern",
+  "pageDescription": "Formatieren und validieren Sie JSON-Daten mit unserem kostenlosen Online-JSON-Formatierer. Debuggen Sie fehlerhaftes JSON, verschönern Sie minimierten Code und validieren Sie die Syntax mit Echtzeit-Fehlererkennung. Perfekt für Entwickler, die mit APIs, Konfigurationsdateien und Datenverarbeitung arbeiten. Ohne Anmeldung — Schlüssel suchen, Einrückung anpassen und Dateien sicher im Browser verarbeiten.",
+  "longTailKeywords": [
+    "json formatieren online kostenlos",
+    "json online validator kostenlos",
+    "json formatieren ohne anmeldung",
+    "wie json online formatieren",
+    "json syntax validieren online",
+    "json verschönern online kostenlos",
+    "json formatieren ohne software installieren",
+    "json formatter für entwickler kostenlos",
+    "json formatter mit syntax hervorhebung",
+    "komprimiertes json formatieren online",
+    "bester json formatter kostenlos online",
+    "fehlerhaftes json debuggen online"
+  ],
   "instructions": {
     "title": "So verwenden Sie JSON-Formatierer",
     "steps": [
       {
         "title": "JSON-Daten einfügen",
-        "description": "Kopieren und fügen Sie Ihre JSON-Daten in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "description": "Kopieren und fügen Sie Ihre JSON-Daten in den Eingabebereich ein. Das Tool akzeptiert komprimiertes, formatiertes oder fehlerhaftes JSON und verarbeitet es sofort."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Optionen konfigurieren",
+        "description": "Passen Sie die Einrückgröße an, sortieren Sie Schlüssel alphabetisch oder wählen Sie den Nur-Validierungsmodus, um die Ausgabe Ihren Präferenzen anzupassen."
       },
       {
         "title": "Ausgabe überprüfen",
-        "description": "Das Tool formatiert und verschönert Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "description": "Der Formatierer verschönert Ihr JSON mit Syntax-Highlighting und markiert Fehler mit ihrer genauen Position im Code."
       },
       {
         "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie das formatierte JSON in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "description": "Kopieren Sie das formatierte JSON in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei herunter."
       }
     ],
     "features": [
@@ -30,14 +46,15 @@
       "Mit einem Klick in die Zwischenablage kopieren",
       "Ergebnisse als Datei herunterladen",
       "Syntax-Validierung und Fehlerhervorhebung",
+      "Keine Installation erforderlich — funktioniert direkt im Browser",
       "Funktioniert offline nach dem ersten Laden der Seite"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
+      "Unordentliches JSON aufräumen und formatieren für bessere Lesbarkeit",
       "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
+      "Komplexe JSON-Strukturen mit richtiger Einrückung debuggen",
       "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
+      "API-Antworten und JSON-Konfigurationsdateien validieren",
       "Syntax vor Deployment validieren",
       "Daten von externen Quellen oder APIs verarbeiten",
       "Produktionsreifen Code aus Entwicklungsversionen generieren"
@@ -45,61 +62,47 @@
     "proTips": [
       "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
       "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
+      "Validieren Sie Ihr JSON vor der Verarbeitung, um Fehler früh zu erkennen",
+      "Verwenden Sie die Schlüssel-Sortierung, um JSON aus verschiedenen Quellen zu normalisieren",
       "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
       "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
+      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Kommas",
+      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihre Eingabe gültiges JSON ist",
       "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
       "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge"
     ],
     "keyboardShortcuts": [
-      {
-        "keys": "Strg+V",
-        "description": "Eingabe einfügen"
-      },
-      {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
-      },
-      {
-        "keys": "Strg+C",
-        "description": "Ergebnis kopieren"
-      },
-      {
-        "keys": "Strg+S",
-        "description": "Datei herunterladen"
-      }
+      { "keys": "Strg+V", "description": "Eingabe einfügen" },
+      { "keys": "Strg+Eingeben", "description": "Verarbeiten/Formatieren" },
+      { "keys": "Strg+C", "description": "Ergebnis kopieren" },
+      { "keys": "Strg+S", "description": "Datei herunterladen" }
     ]
   },
   "features": [
-    "Syntax highlighting",
-    "Fehler Erkennung",
-    "Pretty printing",
-    "Minification"
+    "Syntax-Highlighting",
+    "Fehlererkennung",
+    "Formatierte Ausgabe",
+    "Minifizierung"
   ],
   "meta": {
-    "title": "JSON-Formatter - Online formatieren",
-    "description": "JSON-Daten online formatieren, validieren und verschönern. Syntax-Highlighting und Baumansicht für übersichtliche Darstellung. Kostenloses Formatierungstool."
+    "title": "JSON-Formatter - Online formatieren und validieren",
+    "description": "JSON-Daten online formatieren, validieren und verschönern. Kostenlos ohne Anmeldung. Syntax-Highlighting, Fehlerhervorhebung und Schlüsselsortierung im Browser."
   },
   "labels": {
-    "indentSize": "Indent Size",
-    "sortKeys": "Sort Keys",
-    "validateOnly": "Validate Only"
+    "indentSize": "Einrückgröße",
+    "sortKeys": "Schlüssel sortieren",
+    "validateOnly": "Nur validieren"
   },
   "messages": {
-    "validJson": "Gültig JSON",
-    "invalidJson": "Ungültig JSON",
-    "formatted": "JSON formatted successfully"
+    "validJson": "Gültiges JSON",
+    "invalidJson": "Ungültiges JSON",
+    "formatted": "JSON erfolgreich formatiert"
   },
   "options": {
-    "compact": "Compact",
-    "expanded": "Expanded"
-  },
-  "tagline": "Formatieren, validieren und verschönern JSON instantly online",
-  "pageDescription": "Format und validate JSON-Daten mit our free online JSON formatter. Debug malformed JSON, beautify minified code, und validate syntax mit real-time Fehler Erkennung. Perfect für Entwickler working mit APIs, config files, und Daten processing. Search keys, customize indentation, und process large files securely in Ihre browser."
+    "compact": "Kompakt",
+    "expanded": "Erweitert"
+  }
 }

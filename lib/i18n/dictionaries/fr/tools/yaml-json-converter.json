@@ -1,61 +1,92 @@
 {
-  "title": "JSON vers YAML",
-  "description": "Convertissez JSON au format YAML",
-  "placeholder": "Collez les données JSON...",
+  "title": "Convertisseur YAML/JSON",
+  "description": "Convertissez entre les formats YAML et JSON avec conversion bidirectionnelle, validation de syntaxe et support des ancres",
+  "placeholder": "Collez votre YAML ou JSON ici...",
+  "meta": {
+    "title": "Convertisseur YAML/JSON - Bidirectionnel Gratuit",
+    "description": "Convertissez YAML en JSON et inversement en ligne, gratuit sans inscription. Bidirectionnel avec validation syntaxe pour Kubernetes, Docker Compose et CI/CD."
+  },
+  "tagline": "Convertissez entre YAML et JSON avec conversion bidirectionnelle et validation avancée",
+  "pageDescription": "Convertisseur YAML/JSON gratuit avec conversion bidirectionnelle, support multi-document et résolution d'ancres — sans inscription. Fonctionne dans votre navigateur. Convertissez des configurations Kubernetes, fichiers Docker Compose, pipelines CI/CD et spécifications Swagger instantanément. Inclut la validation en temps réel, la coloration syntaxique, la préservation des types et la gestion des commentaires. Compatible avec YAML 1.2 avec ancres, alias, clés de fusion et balises personnalisées. Exportez vers des interfaces TypeScript et JSON Schema. Idéal pour les ingénieurs DevOps et développeurs travaillant avec des fichiers de configuration.",
+  "longTailKeywords": [
+    "convertisseur YAML JSON en ligne gratuit",
+    "comment convertir YAML en JSON en ligne",
+    "convertisseur YAML JSON bidirectionnel sans inscription",
+    "convertir YAML en JSON Kubernetes en ligne",
+    "convertir fichiers YAML en JSON Docker Compose",
+    "convertisseur YAML JSON avec validation syntaxe",
+    "convertisseur JSON YAML pour fichiers de configuration",
+    "convertir YAML JSON gratuit dans le navigateur",
+    "meilleur convertisseur YAML JSON gratuit en ligne",
+    "convertir YAML JSON pour pipelines CI CD",
+    "conversion YAML JSON avec support multi-document",
+    "convertir YAML en JSON pour développeurs DevOps"
+  ],
   "instructions": {
-    "title": "Comment utiliser JSON vers YAML",
+    "title": "Comment utiliser le Convertisseur YAML/JSON",
     "steps": [
       {
-        "title": "Collez votre données JSON",
-        "description": "Copiez et collez votre données JSON dans la zone de saisie. L'outil accepte tout format et le traitera immédiatement."
+        "title": "Collez votre YAML ou JSON dans la zone de saisie",
+        "description": "Collez vos données YAML ou JSON dans la zone de saisie. Vous pouvez également charger un fichier .yaml, .yml ou .json. L'outil détecte automatiquement si votre entrée est YAML ou JSON et règle la direction de conversion automatiquement."
       },
       {
-        "title": "Configurez les options (si disponible)",
-        "description": "Ajustez les options de formatage, l'indentation ou d'autres paramètres pour correspondre à vos préférences."
+        "title": "Sélectionnez la direction de conversion et les options",
+        "description": "Choisissez la direction de conversion — YAML → JSON ou JSON → YAML — en utilisant les boutons en haut. Ajustez le niveau d'indentation pour la sortie YAML (défaut : 2 espaces). Les options prennent effet immédiatement."
       },
       {
-        "title": "Examinez la sortie",
-        "description": "L'outil va convertir votre saisie et afficher le résultat avec formatage et validation appropriés."
+        "title": "Consultez la conversion et la validation en temps réel",
+        "description": "La conversion s'effectue en temps réel pendant que vous tapez. Les erreurs de syntaxe apparaissent en ligne avec des messages descriptifs. Un indicateur d'état indique si votre document est valide. Pour les fichiers YAML multi-document (séparés par ---), chaque document est converti indépendamment."
       },
       {
-        "title": "Copiez ou téléchargez le résultat",
-        "description": "Copiez le JSON formaté dans votre presse-papiers pour utilisation immédiate ou téléchargez-le en tant que fichier."
+        "title": "Copiez ou téléchargez la sortie convertie",
+        "description": "Cliquez sur 'Copier' pour copier la sortie convertie dans votre presse-papiers, ou sur 'Télécharger' pour l'enregistrer en tant que fichier avec l'extension correcte (.yaml ou .json). Collez directement dans votre manifeste Kubernetes, Docker Compose ou fichier de workflow GitHub Actions."
+      },
+      {
+        "title": "Utilisez les fonctions avancées : ancres, export TypeScript",
+        "description": "Les ancres YAML (&nom) et les alias (*nom) sont résolus automatiquement dans la sortie JSON. Les clés de fusion (<<:) se développent correctement. Utilisez les boutons d'export TypeScript et JSON Schema pour générer des définitions de type depuis vos structures converties."
       }
     ],
     "features": [
-      "Traitement en temps réel avec résultats instantanés",
-      "Aucune limite de taille pour le traitement basé sur navigateur",
-      "Complètement sécurisé - tout le traitement se fait dans votre navigateur",
-      "Aucun téléchargement de données ou stockage serveur",
-      "Copier dans le presse-papiers en un clic",
-      "Télécharger les résultats sous forme de fichier",
-      "Validation de syntaxe et mise en évidence des erreurs",
-      "Fonctionne hors ligne après le chargement initial"
+      "Conversion bidirectionnelle YAML ↔ JSON avec détection automatique du format",
+      "Support YAML multi-document (séparateur ---) avec conversion par document",
+      "Résolution automatique des ancres, alias et clés de fusion",
+      "Préservation des types : chaînes, nombres, booléens, nuls, tableaux, objets",
+      "Gestion des commentaires YAML (supprimés dans la sortie JSON avec avertissement)",
+      "Validation de syntaxe en temps réel avec messages d'erreur en ligne",
+      "Coloration syntaxique pour YAML et JSON",
+      "Optimisé pour Kubernetes, Docker Compose, GitHub Actions et Ansible",
+      "Exporter des interfaces TypeScript depuis les structures YAML/JSON",
+      "Exporter JSON Schema pour la validation des données",
+      "Basé sur le navigateur — aucune donnée uploadée sur un serveur",
+      "Télécharger la sortie en tant que fichier .yaml ou .json"
     ],
     "useCases": [
-      "Nettoyer et formater le code désordonné pour une meilleure lisibilité",
-      "Standardiser le style de code dans les équipes de développement",
-      "Déboguer les structures complexes avec une indentation appropriée",
-      "Préparer le code pour la documentation et les revues de code",
-      "Convertir entre différents standards de formatage",
-      "Valider la syntaxe avant le déploiement",
-      "Traiter les données provenant de sources externes ou d'API",
-      "Générer du code prêt pour la production"
+      "Convertir des manifestes YAML Kubernetes en JSON pour les appels à l'API REST",
+      "Transformer des fichiers Docker Compose en JSON pour le traitement dans les scripts CI/CD",
+      "Convertir des workflows GitHub Actions de YAML en JSON pour l'analyse",
+      "Migrer des configurations de playbooks Ansible entre les formats",
+      "Convertir des spécifications OpenAPI/Swagger de YAML en JSON",
+      "Développement d'API : convertir des payloads JSON en YAML pour la documentation",
+      "Valider et corriger les erreurs de syntaxe YAML avant le déploiement",
+      "Convertir des configurations de pipelines CI/CD entre YAML et JSON",
+      "Générer des définitions JSON Schema depuis des structures YAML existantes",
+      "Transformer des fichiers de configuration d'application pour différents environnements"
     ],
     "proTips": [
-      "Utilisez les raccourcis clavier pour un flux de travail plus rapide",
-      "Traitez les gros fichiers en petits morceaux si les performances ralentissent",
-      "Validez votre saisie avant le traitement pour détecter les erreurs tôt",
-      "Enregistrez les paramètres fréquemment utilisés par défaut",
-      "Utilisez la fonction de téléchargement pour archiver les fichiers",
-      "Vérifiez attentivement la sortie avant utilisation en production"
+      "Kubernetes requiert du YAML avec une indentation correcte — utilisez la validation en temps réel avant d'appliquer des manifestes avec kubectl",
+      "Les ancres YAML doivent être définies avant les alias dans le même document, sinon la conversion échoue",
+      "JSON ne supporte pas les commentaires : les commentaires YAML sont supprimés dans la sortie — vérifiez l'indicateur d'avertissement",
+      "Pour les valeurs de port Docker Compose, vérifiez que les nombres ne sont pas convertis en chaînes dans la sortie JSON",
+      "YAML multi-document (---) convertit vers un tableau JSON — accédez au bon index dans votre code",
+      "Utilisez l'export TypeScript pour générer automatiquement des interfaces de type depuis vos fichiers de configuration"
     ],
     "troubleshooting": [
-      "Erreurs de syntaxe : vérifiez les crochets, guillemets ou points-virgules manquants",
-      "Échec de traitement : assurez-vous que le format de saisie est valide",
-      "Performance lente : essayez de traiter de plus petits morceaux de données",
-      "Fonctionnalités manquantes : certaines syntaxes avancées peuvent nécessiter un formatage manuel",
-      "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
+      "Erreur d'indentation : YAML requiert des espaces, pas des tabulations — vérifiez les caractères de tabulation dans votre entrée",
+      "Ancre non résolue : assurez-vous que l'ancre (&nom) est définie avant l'alias (*nom) dans le document",
+      "Commentaires perdus : les commentaires YAML (#) ne sont pas supportés en JSON et sont supprimés automatiquement",
+      "Types incorrects en JSON : YAML interprète '1.0' comme nombre — entourez-le de guillemets pour le garder comme chaîne",
+      "Résultat multi-document : la sortie JSON est un tableau — utilisez le bon index dans votre application",
+      "Performance avec les gros fichiers : pour les fichiers de plus de 1Mo, la conversion peut prendre quelques secondes"
     ],
     "keyboardShortcuts": [
       {
@@ -63,8 +94,8 @@
         "description": "Coller l'entrée"
       },
       {
-        "keys": "Ctrl+Enter",
-        "description": "Traiter/Formater"
+        "keys": "Ctrl+Entrée",
+        "description": "Convertir"
       },
       {
         "keys": "Ctrl+C",
@@ -75,11 +106,5 @@
         "description": "Télécharger le fichier"
       }
     ]
-  },
-  "meta": {
-    "title": "Convertisseur JSON/YAML - En Ligne",
-    "description": "Convertissez entre JSON et YAML en ligne avec sortie propre et lisible. Support des structures imbriquées et tableaux. Conversion bidirectionnelle. Gratuit."
-  },
-  "tagline": "Convert YAML to JSON and back with advanced validation features",
-  "pageDescription": "Free YAML to JSON converter with bidirectional conversion, multi-document support, and anchor resolution. Convert Kubernetes configs, Docker Compose files, CI/CD pipelines, and Swagger specifications instantly. Features real-time validation, syntax highlighting, type preservation, and comment handling. Supports YAML 1.2 with anchors, aliases, merge keys, and custom tags. Export to TypeScript interfaces and JSON Schema. Perfect for DevOps engineers, developers working with configuration files, and API documentation."
+  }
 }

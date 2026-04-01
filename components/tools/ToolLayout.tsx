@@ -1,6 +1,7 @@
 'use client';
 
 import { Tool, getCategoryColorClass, getCategoryByTool } from '@/lib/tools';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 import {
   ArrowLeft,
   Clock,
@@ -85,7 +86,7 @@ export function ToolLayout({ tool, children }: ToolLayoutProps) {
         {/* Tool Header */}
         <div className="tool-header">
           <div className="tool-icon-container">
-            <span className="text-4xl">{tool.icon}</span>
+            <ToolIcon id={tool.id} className="h-9 w-9 text-slate-700 dark:text-slate-300" />
           </div>
 
           <div className="tool-content">

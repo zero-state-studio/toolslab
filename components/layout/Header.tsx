@@ -23,12 +23,18 @@ import { GitHubStars } from '@/components/ui/github-stars';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import { useDictionarySection } from '@/hooks/useDictionary';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import { ToolIcon } from '@/components/ui/ToolIcon';
+import { getCurrentHoliday } from '@/lib/utils/holidays';
+import { HolidayOverlay } from '@/components/ui/HolidayOverlay';
 
 export function Header() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [holidayHover, setHolidayHover] = useState(false);   // desktop hover
+  const [holidayClick, setHolidayClick] = useState(false);   // mobile tap
+  const holiday = getCurrentHoliday();
   const pathname = usePathname();
   const newFavoritesCount = useToolStore(selectNewFavoritesCount);
   const isHydrated = useHydration();
@@ -71,6 +77,15 @@ export function Header() {
 
   return (
     <>
+      {/* Desktop hover: no backdrop (pointer-events-none). Mobile tap: backdrop+onClose. */}
+      {holiday && (
+        <HolidayOverlay
+          holiday={holiday}
+          open={holidayHover || holidayClick}
+          onClose={holidayClick ? () => setHolidayClick(false) : undefined}
+        />
+      )}
+
       <header
         className={cn(
           'sticky top-0 z-50 w-full border-b transition-all duration-300',
@@ -121,6 +136,19 @@ export function Header() {
               <Info className="h-3.5 w-3.5" />
               {common?.nav?.about || 'About'}
             </Link>
+
+            {/* Holiday greeting button — hover only, no backdrop */}
+            {holiday && (
+              <button
+                onMouseEnter={() => setHolidayHover(true)}
+                onMouseLeave={() => setHolidayHover(false)}
+                className="hidden items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium text-slate-600 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.05] dark:hover:text-white md:flex"
+                aria-label={holiday.greeting}
+              >
+                <span className="text-base leading-none">{holiday.emoji}</span>
+                <span className="hidden lg:inline">{holiday.greeting}</span>
+              </button>
+            )}
 
             {/* Divider */}
             <div className="mx-1.5 hidden h-4 w-px bg-slate-200 dark:bg-white/[0.08] md:block" />
@@ -269,7 +297,7 @@ export function Header() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.05]"
                 >
-                  <span className="w-5 text-center">{category.icon}</span>
+                  <ToolIcon id={category.id} type="category" className="h-4 w-4 flex-shrink-0 text-slate-500 dark:text-slate-400" />
                   <span className="flex-1">{category.name}</span>
                   <span className="font-mono text-xs text-slate-400 dark:text-slate-600">
                     {category.tools.length}
@@ -281,6 +309,16 @@ export function Header() {
 
           {/* Bottom controls */}
           <div className="mt-6 flex items-center gap-2 border-t border-slate-100 pt-5 dark:border-white/[0.06]">
+            {holiday && (
+              <button
+                onClick={() => { setIsMobileMenuOpen(false); setHolidayClick(true); }}
+                className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/[0.05]"
+                aria-label={holiday.greeting}
+              >
+                <span className="text-base leading-none">{holiday.emoji}</span>
+                <span>{holiday.greeting}</span>
+              </button>
+            )}
             <LanguageSwitcher currentLocale={locale} />
             {mounted && (
               <button

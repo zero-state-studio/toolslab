@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Tool } from '@/lib/tools';
 import { cn } from '@/lib/utils';
+import { ToolIcon } from '@/components/ui/ToolIcon';
 import { FavoriteButton } from '@/components/lab/FavoriteButton';
 import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { ToolLabel } from '@/lib/edge-config/types';
@@ -64,8 +65,8 @@ export function ToolCard({
         )}
       >
         <div className="mb-4 flex items-start gap-3">
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-xl dark:border-white/[0.08] dark:bg-white/[0.05]">
-            {typeof tool.icon === 'string' ? tool.icon : '📄'}
+          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 dark:border-white/[0.08] dark:bg-white/[0.05]">
+            <ToolIcon id={tool.id} className="h-5 w-5 text-slate-600 dark:text-slate-400" />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="mb-1 text-sm font-semibold text-slate-500 dark:text-slate-500 leading-tight">
@@ -93,10 +94,8 @@ export function ToolCard({
         <div className="mb-4 flex items-start justify-between gap-2">
           <div className="flex items-start gap-3">
             {/* Icon — neutral style like FeaturedTools */}
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-xl transition-transform duration-200 group-hover:scale-105 dark:border-white/[0.08] dark:bg-white/[0.05]">
-              <span aria-hidden="true">
-                {typeof tool.icon === 'string' ? tool.icon : '📄'}
-              </span>
+            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 transition-transform duration-200 group-hover:scale-105 dark:border-white/[0.08] dark:bg-white/[0.05]">
+              <ToolIcon id={tool.id} className="h-5 w-5 text-slate-600 dark:text-slate-400" />
             </div>
 
             {/* Label badge (popular / new) */}
