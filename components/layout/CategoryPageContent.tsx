@@ -94,10 +94,6 @@ export default function CategoryPageContent({
     });
   }, [categoryId, category, tools.length]);
 
-  if (!category) {
-    return <div>Category not found</div>;
-  }
-
   const getToolLabelForTool = (toolId: string) => {
     const tool = getToolById(toolId);
     return tool?.label || '';
@@ -168,6 +164,10 @@ export default function CategoryPageContent({
       })
     );
   }, [selectedKeyword, allDisplayTools]);
+
+  if (!category) {
+    return <div>Category not found</div>;
+  }
 
   return (
     <>
