@@ -59,10 +59,11 @@ export async function generateMetadata({
     'toolslab',
   ];
 
-  // Use pageDescription from JSON if available, fallback to generated one
-  const seoDescription = toolData?.pageDescription
-    ? toolData.pageDescription
-    : `${tool.description}. Use our free online ${tool.name.toLowerCase()} tool. No installation required, works in your browser. Fast, secure, and free.`;
+  // Use meta.description (optimized, ~155 chars) for the meta tag.
+  // pageDescription is the long visible text on the page, not for the meta tag.
+  const seoDescription = toolData?.meta?.description
+    || toolData?.pageDescription
+    || `${tool.description}. Use our free online ${tool.name.toLowerCase()} tool. No installation required, works in your browser. Fast, secure, and free.`;
 
   // Use meta title from JSON if available
   const metaTitle = toolData?.meta?.title;

@@ -964,7 +964,7 @@ export const tools: Tool[] = [
       'isbn barcode generator free online no registration',
       'barcode generator high resolution print quality 300 dpi',
     ],
-    searchVolume: 200000,
+    searchVolume: 350000,
     label: '',
   },
 
