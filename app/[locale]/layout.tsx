@@ -51,18 +51,5 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  // Inject an inline script that sets <html lang> immediately when the HTML is parsed.
-  // This runs before React hydration and before Googlebot reads the DOM, so search engines
-  // see the correct language even though the root layout defaults to lang="en".
-  // The locale is validated above against the allowlist, so no XSS risk.
-  return (
-    <>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `document.documentElement.lang="${locale}";`,
-        }}
-      />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
