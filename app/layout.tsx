@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Suspense } from 'react';
 import Script from 'next/script';
+import { headers } from 'next/headers';
 import './globals.css';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { UmamiProvider } from '@/components/analytics/UmamiProvider';
@@ -132,13 +133,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // lang="en" is the default for SSR. HtmlLangUpdater (client component) corrects
-  // it immediately for non-English routes on hydration. suppressHydrationWarning
-  // prevents React from complaining about the mismatch.
-  // This avoids await headers() which would force ALL pages into dynamic rendering,
-  // preventing static generation and CDN caching.
+  // Read locale from the X-Locale header set by middleware.
+  // This ensures the SSR HTML has the correct lang attribute for all locales,
+  // which is required for hreflang/html-lang consistency (Ahrefs, Google, etc.).
+  const locale = headers().get('x-locale') ?? 'en';
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         {/* DNS prefetch for faster subsequent requests */}
         <link rel="dns-prefetch" href="https://toolslab.dev" />

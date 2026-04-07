@@ -10,6 +10,19 @@ import { ToolLabel } from '@/lib/edge-config/types';
 import { useLocale } from '@/hooks/useLocale';
 import { useDictionary } from '@/hooks/useDictionary';
 
+const categoryColors: Record<string, string> = {
+  data: '#0EA5E9',
+  encoding: '#10B981',
+  base64: '#14B8A6',
+  text: '#8B5CF6',
+  generators: '#F97316',
+  web: '#EC4899',
+  dev: '#F59E0B',
+  formatters: '#6366F1',
+  social: '#F43F5E',
+  pdf: '#EF4444',
+};
+
 // Category gradient — one thin top-border per card gives a light color note
 const categoryGradients: Record<string, string> = {
   data: 'from-blue-500 to-cyan-500',
@@ -51,6 +64,7 @@ export function ToolCard({
   const translatedCategory =
     dictionary?.categories?.[categoryId]?.name || categoryId;
   const gradient = categoryGradients[categoryId] || 'from-violet-500 to-violet-400';
+  const color = categoryColors[categoryId] || '#6366F1';
   const comingSoonMessage =
     (dictionary?.common?.messages as any)?.comingSoon ||
     'This tool is coming soon. Stay tuned for updates!';
@@ -65,8 +79,11 @@ export function ToolCard({
         )}
       >
         <div className="mb-4 flex items-start gap-3">
-          <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 dark:border-white/[0.08] dark:bg-white/[0.05]">
-            <ToolIcon id={tool.id} className="h-5 w-5 text-slate-600 dark:text-slate-400" />
+          <div
+            className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
+            style={{ backgroundColor: `${color}18`, border: `1px solid ${color}30`, color }}
+          >
+            <ToolIcon id={tool.id} className="h-5 w-5" />
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="mb-1 text-sm font-semibold text-slate-500 dark:text-slate-500 leading-tight">
@@ -93,9 +110,12 @@ export function ToolCard({
         {/* Header: icon + label badge + favorite */}
         <div className="mb-4 flex items-start justify-between gap-2">
           <div className="flex items-start gap-3">
-            {/* Icon — neutral style like FeaturedTools */}
-            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 transition-transform duration-200 group-hover:scale-105 dark:border-white/[0.08] dark:bg-white/[0.05]">
-              <ToolIcon id={tool.id} className="h-5 w-5 text-slate-600 dark:text-slate-400" />
+            {/* Icon — category colored */}
+            <div
+              className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-105"
+              style={{ backgroundColor: `${color}18`, border: `1px solid ${color}30`, color }}
+            >
+              <ToolIcon id={tool.id} className="h-5 w-5" />
             </div>
 
             {/* Label badge (popular / new) */}

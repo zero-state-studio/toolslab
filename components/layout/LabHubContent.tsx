@@ -45,6 +45,19 @@ import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import { ToolIcon } from '@/components/ui/ToolIcon';
 
+const categoryColors: Record<string, string> = {
+  data: '#0EA5E9',
+  encoding: '#10B981',
+  base64: '#14B8A6',
+  text: '#8B5CF6',
+  generators: '#F97316',
+  web: '#EC4899',
+  dev: '#F59E0B',
+  formatters: '#6366F1',
+  social: '#F43F5E',
+  pdf: '#EF4444',
+};
+
 function formatTimeAgo(timestamp: number): string {
   const diff = Date.now() - timestamp;
   const minutes = Math.floor(diff / 60000);
@@ -161,10 +174,17 @@ function LabToolCard({
     );
   };
 
+  const color = categoryColors[tool.categories?.[0]] || '#6366F1';
+
   return (
     <CardContent>
       <div className="mb-3 flex items-start gap-3">
-        <ToolIcon id={tool.id} className="h-5 w-5 flex-shrink-0 text-slate-600 dark:text-slate-400" />
+        <div
+          className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg"
+          style={{ backgroundColor: `${color}18`, border: `1px solid ${color}30`, color }}
+        >
+          <ToolIcon id={tool.id} className="h-5 w-5" />
+        </div>
         <div className="min-w-0 flex-1">
           <h4
             className={cn(
@@ -240,6 +260,7 @@ function LabToolCard({
 }
 
 function PopularToolCard({ tool, index }: { tool: any; index: number }) {
+  const color = categoryColors[tool.categories?.[0]] || '#6366F1';
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -248,12 +269,20 @@ function PopularToolCard({ tool, index }: { tool: any; index: number }) {
     >
       <Link
         href={tool.route}
-        className="group relative flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-md dark:border-white/[0.08] dark:bg-white/[0.04] dark:hover:border-violet-500/40 dark:hover:shadow-violet-500/10"
+        className="group relative flex items-start gap-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-white/[0.08] dark:bg-white/[0.04]"
       >
-        {/* Top accent line */}
-        <div className="absolute inset-x-0 top-0 h-0.5 rounded-t-2xl bg-gradient-to-r from-violet-500/40 to-amber-500/30 transition-opacity group-hover:from-violet-500/80 group-hover:to-amber-500/60" />
+        {/* Top accent line — category color */}
+        <div
+          className="absolute inset-x-0 top-0 h-0.5 rounded-t-2xl"
+          style={{ background: `linear-gradient(to right, ${color}99, ${color}40)` }}
+        />
 
-        <ToolIcon id={tool.id} className="h-6 w-6 flex-shrink-0 text-slate-600 dark:text-slate-400" />
+        <div
+          className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl"
+          style={{ backgroundColor: `${color}18`, border: `1px solid ${color}30`, color }}
+        >
+          <ToolIcon id={tool.id} className="h-6 w-6" />
+        </div>
         <div className="min-w-0 flex-1">
           <h3 className="font-semibold text-slate-900 transition-colors group-hover:text-violet-600 dark:text-white dark:group-hover:text-violet-400">
             {tool.name}
