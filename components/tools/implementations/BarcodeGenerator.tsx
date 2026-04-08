@@ -441,7 +441,7 @@ export default function BarcodeGenerator() {
               {checksum && validation.valid && checksum !== 'Auto-calculated' && (
                 <div className="text-sm">
                   <span className="font-medium">Calculated Checksum:</span>{' '}
-                  <code className="rounded bg-gray-100 px-2 py-1 dark:bg-gray-800">
+                  <code className="rounded bg-muted px-2 py-1">
                     {checksum}
                   </code>
                 </div>
@@ -556,11 +556,40 @@ export default function BarcodeGenerator() {
 
               {/* Color Options */}
               <TabsContent value="appearance" className="mt-4 space-y-4">
+                {/* Color presets */}
+                <div>
+                  <Label className="mb-2 block text-sm font-medium">Quick Presets</Label>
+                  <div className="flex gap-2">
+                    {([
+                      { key: 'bw', label: '■ B/W', title: 'Black on White' },
+                      { key: 'wb', label: '□ W/B', title: 'White on Black' },
+                      { key: 'transparent', label: '⬜ Transparent', title: 'Transparent background' },
+                    ] as const).map(({ key, label, title }) => (
+                      <button
+                        key={key}
+                        onClick={() => handlePreset(key)}
+                        title={title}
+                        className={cn(
+                          'rounded-md border px-3 py-1.5 text-xs font-medium transition-colors',
+                          activePreset === key
+                            ? 'border-primary bg-primary text-primary-foreground'
+                            : 'border-border bg-muted hover:bg-muted/80'
+                        )}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="flex items-center space-x-2">
                   <Switch
                     id="use-colors"
                     checked={useColors}
-                    onCheckedChange={setUseColors}
+                    onCheckedChange={(v) => {
+                      setUseColors(v);
+                      if (!v) setActivePreset(null);
+                    }}
                   />
                   <Label htmlFor="use-colors">Enable custom colors</Label>
                 </div>
@@ -575,7 +604,7 @@ export default function BarcodeGenerator() {
                         id="bar-color"
                         type="color"
                         value={barColor}
-                        onChange={(e) => setBarColor(e.target.value)}
+                        onChange={(e) => { setBarColor(e.target.value); setActivePreset(null); }}
                         className="mt-2 h-10"
                       />
                     </div>
@@ -587,7 +616,7 @@ export default function BarcodeGenerator() {
                         id="bg-color"
                         type="color"
                         value={backgroundColor}
-                        onChange={(e) => setBackgroundColor(e.target.value)}
+                        onChange={(e) => { setBackgroundColor(e.target.value); setActivePreset(null); }}
                         className="mt-2 h-10"
                       />
                     </div>
@@ -602,7 +631,7 @@ export default function BarcodeGenerator() {
                         id="text-color"
                         type="color"
                         value={textColor}
-                        onChange={(e) => setTextColor(e.target.value)}
+                        onChange={(e) => { setTextColor(e.target.value); setActivePreset(null); }}
                         className="mt-2 h-10"
                       />
                     </div>
