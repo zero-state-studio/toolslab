@@ -468,6 +468,7 @@ export async function generateBarcodeSVG(
     return {
       success: true,
       svgString,
+      // width/height are not extracted from SVG string — consumers should use the image's intrinsic size
       metadata: { format, value, width: 0, height: 0 },
     };
   } catch (error) {
@@ -676,6 +677,7 @@ export function downloadBarcode(
  * Download barcode as SVG file
  */
 export function downloadSVG(svgString: string, filename: string) {
+  if (!svgString) return;
   const blob = new Blob([svgString], { type: 'image/svg+xml' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
