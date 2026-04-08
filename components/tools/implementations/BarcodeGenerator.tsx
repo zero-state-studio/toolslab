@@ -28,6 +28,7 @@ import {
   Ruler,
   ChevronDown,
   ChevronUp,
+  Printer,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToolStore } from '@/lib/store/toolStore';
@@ -446,13 +447,6 @@ export default function BarcodeGenerator() {
                 </div>
               )}
 
-              {/* Error Display */}
-              {error && (
-                <Alert variant="destructive">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
             </div>
           </Card>
 
@@ -695,52 +689,24 @@ export default function BarcodeGenerator() {
         <div className="lg:sticky lg:top-6 lg:self-start" ref={resultRef}>
           <Card className="p-4 sm:p-6">
             <div className="space-y-4">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h3 className="text-lg font-semibold">Generated Barcode</h3>
-                {barcodeDataUrl && (
-                  <div className="flex flex-wrap gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleCopy}
-                      className="flex-1 sm:flex-none"
-                    >
-                      {copied ? (
-                        <>
-                          <Check className="mr-2 h-4 w-4" />
-                          Copied!
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="mr-2 h-4 w-4" />
-                          Copy
-                        </>
-                      )}
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleDownload('png')}
-                      className="flex-1 sm:flex-none"
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      PNG
-                    </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleDownload('jpeg')}
-                      className="flex-1 sm:flex-none"
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      JPEG
-                    </Button>
-                  </div>
+              {/* Header */}
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold">Preview</h3>
+                {generating && (
+                  <RotateCw className="h-4 w-4 animate-spin text-muted-foreground" />
                 )}
               </div>
 
-              {/* Barcode Preview */}
-              <div className="flex items-center justify-center overflow-x-auto rounded-lg border-2 border-dashed border-gray-300 bg-white p-4 sm:p-8 min-h-[160px]">
+              {/* Barcode preview — dark mode fix: no bg-white */}
+              <div
+                className={cn(
+                  'flex min-h-[160px] items-center justify-center overflow-x-auto rounded-lg border-2 border-dashed border-border p-4 sm:p-8',
+                  backgroundColor === 'transparent'
+                    ? '[background:repeating-conic-gradient(#80808020_0%_25%,transparent_0%_50%)_0_0/20px_20px]'
+                    : ''
+                )}
+                style={backgroundColor !== 'transparent' ? { backgroundColor } : {}}
+              >
                 {barcodeDataUrl ? (
                   <img
                     src={barcodeDataUrl}
@@ -749,29 +715,75 @@ export default function BarcodeGenerator() {
                   />
                 ) : (
                   <p className="text-sm text-muted-foreground">
-                    Enter data to generate a barcode
+                    {value ? 'Generating...' : 'Enter data to generate barcode'}
                   </p>
                 )}
               </div>
 
-              {/* Barcode Info */}
+              {/* Error display */}
+              {error && (
+                <Alert variant="destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+
+              {/* Action buttons */}
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopy}
+                  disabled={!barcodeDataUrl}
+                  className="flex-1 sm:flex-none"
+                >
+                  {copied ? <Check className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
+                  {copied ? 'Copied!' : 'Copy'}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleDownload('png')}
+                  disabled={!barcodeDataUrl}
+                  className="flex-1 sm:flex-none"
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  PNG
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleDownloadSVG}
+                  disabled={!svgString}
+                  className="flex-1 sm:flex-none"
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  SVG
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handlePrint}
+                  disabled={!barcodeDataUrl}
+                  className="flex-1 sm:flex-none"
+                >
+                  <Printer className="mr-2 h-4 w-4" />
+                  Print
+                </Button>
+              </div>
+
+              {/* Barcode info */}
               {barcodeDataUrl && (
-                <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                  <p>
-                    <strong>Format:</strong> {currentMetadata?.name}
-                  </p>
+                <div className="space-y-1 text-sm text-muted-foreground">
+                  <p><strong>Format:</strong> {currentMetadata?.name}</p>
                   <p className="break-all">
                     <strong>Value:</strong>{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      {value}
-                    </code>
+                    <code className="rounded bg-muted px-1">{value}</code>
                   </p>
                   {checksum && checksum !== 'Auto-calculated' && (
                     <p>
                       <strong>Checksum:</strong>{' '}
-                      <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                        {checksum}
-                      </code>
+                      <code className="rounded bg-muted px-1">{checksum}</code>
                     </p>
                   )}
                 </div>
