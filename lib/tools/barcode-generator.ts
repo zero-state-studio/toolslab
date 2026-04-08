@@ -699,7 +699,7 @@ export interface CharacterLimit {
 export function getCharacterLimit(format: BarcodeFormat): CharacterLimit | null {
   const meta = BARCODE_FORMATS.find((f) => f.id === format);
   if (!meta) return null;
-  if (meta.fixedLength) return { fixed: meta.fixedLength };
+  if (meta.fixedLength !== undefined) return { fixed: meta.fixedLength };
   if (meta.minLength !== undefined && meta.maxLength !== undefined) {
     return { min: meta.minLength, max: meta.maxLength };
   }
