@@ -48,7 +48,6 @@ import {
   type BarcodeFormat,
   type BarcodeOptions,
   type FormatMetadata,
-  type CharacterLimit,
 } from '@/lib/tools/barcode-generator';
 
 const COLOR_PRESETS = {
@@ -184,7 +183,6 @@ export default function BarcodeGenerator() {
           timestamp: startTime,
         });
       }
-      setTimeout(() => scrollToResult(), 100);
     } else {
       setError(result.error || 'Failed to generate barcode');
       setBarcodeDataUrl(null);
@@ -211,6 +209,11 @@ export default function BarcodeGenerator() {
   }, [value, format, validation.valid, includeText, barWidth, barHeight, scale,
       textSize, paddingWidth, paddingHeight, rotation, barColor, backgroundColor,
       textColor, useColors, eclevel]);
+
+  // Scroll to result when barcode is generated (per CLAUDE.md: use useEffect, not direct call)
+  useEffect(() => {
+    if (barcodeDataUrl) scrollToResult();
+  }, [barcodeDataUrl, scrollToResult]);
 
   // Download barcode
   const handleDownload = (outputFormat: 'png' | 'jpeg' = 'png') => {
@@ -740,6 +743,7 @@ export default function BarcodeGenerator() {
                 style={backgroundColor !== 'transparent' ? { backgroundColor } : {}}
               >
                 {barcodeDataUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- data: URLs are not supported by next/image
                   <img
                     src={barcodeDataUrl}
                     alt={`${currentMetadata?.name || 'Barcode'} - ${value}`}
