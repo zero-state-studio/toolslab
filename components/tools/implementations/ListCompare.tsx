@@ -43,6 +43,7 @@ import {
   Settings,
   BarChart3,
   ChevronRight,
+  ChevronDown,
   AlertCircle,
   CheckCircle,
   X,
@@ -120,6 +121,9 @@ export default function ListCompare({
   const [exportFormat, setExportFormat] = useState<
     'javascript' | 'typescript' | 'python' | 'sql' | 'json' | 'csv' | 'markdown'
   >('json');
+
+  // Comparison options collapsed state
+  const [optionsExpanded, setOptionsExpanded] = useState(false);
 
   // Results tab state
   const [resultsTab, setResultsTab] = useState('union');
@@ -490,7 +494,12 @@ export default function ListCompare({
           </div>
         </div>
 
-        <div className="grid gap-4">
+        <div
+          className={cn('grid gap-4', {
+            'md:grid-cols-2': lists.length === 2 || lists.length >= 4,
+            'md:grid-cols-3': lists.length === 3,
+          })}
+        >
           {lists.map((list, index) => (
             <Card
               key={list.id}
@@ -537,7 +546,7 @@ export default function ListCompare({
                   value={list.content}
                   onChange={(e) => updateListContent(list.id, e.target.value)}
                   placeholder={`Enter items for ${list.name}, one per line or separated by commas...`}
-                  className="min-h-32 font-mono text-sm"
+                  className="min-h-32 font-mono text-sm md:min-h-56"
                   disabled={!list.visible}
                 />
                 {getProcessedItemsCount(list.id) > 0 && (
@@ -553,124 +562,137 @@ export default function ListCompare({
 
       {/* Quick Options Section */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Settings className="h-5 w-5" />
-            Comparison Options
+        <CardHeader
+          className="cursor-pointer select-none py-4"
+          onClick={() => setOptionsExpanded((prev) => !prev)}
+        >
+          <CardTitle className="flex items-center justify-between">
+            <span className="flex items-center gap-2">
+              <Settings className="h-5 w-5" />
+              Comparison Options
+            </span>
+            <ChevronDown
+              className={cn(
+                'h-4 w-4 text-muted-foreground transition-transform duration-200',
+                optionsExpanded && 'rotate-180'
+              )}
+            />
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="grid gap-6 md:grid-cols-3">
-            {/* Main Comparison Mode */}
-            <div className="space-y-3">
-              <Label className="text-sm font-medium">Comparison Mode</Label>
-              <Select
-                value={comparisonMode}
-                onValueChange={(value) =>
-                  setComparisonMode(value as ComparisonOptions['mode'])
-                }
-              >
-                <SelectTrigger className="h-9">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="set">Set Operations</SelectItem>
-                  <SelectItem value="sequential">Sequential Compare</SelectItem>
-                  <SelectItem value="smart">Smart Compare</SelectItem>
-                  <SelectItem value="fuzzy">Fuzzy Matching</SelectItem>
-                  <SelectItem value="developer">Developer Mode</SelectItem>
-                </SelectContent>
-              </Select>
-              {comparisonMode === 'fuzzy' && (
+        {optionsExpanded && (
+          <CardContent>
+            <div className="grid gap-6 md:grid-cols-3">
+              {/* Main Comparison Mode */}
+              <div className="space-y-3">
+                <Label className="text-sm font-medium">Comparison Mode</Label>
+                <Select
+                  value={comparisonMode}
+                  onValueChange={(value) =>
+                    setComparisonMode(value as ComparisonOptions['mode'])
+                  }
+                >
+                  <SelectTrigger className="h-9">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="set">Set Operations</SelectItem>
+                    <SelectItem value="sequential">Sequential Compare</SelectItem>
+                    <SelectItem value="smart">Smart Compare</SelectItem>
+                    <SelectItem value="fuzzy">Fuzzy Matching</SelectItem>
+                    <SelectItem value="developer">Developer Mode</SelectItem>
+                  </SelectContent>
+                </Select>
+                {comparisonMode === 'fuzzy' && (
+                  <div className="space-y-2">
+                    <Label className="text-xs">
+                      Similarity: {fuzzyThreshold[0]}%
+                    </Label>
+                    <Slider
+                      value={fuzzyThreshold}
+                      onValueChange={setFuzzyThreshold}
+                      max={100}
+                      min={50}
+                      step={5}
+                      className="w-full"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Processing Options */}
+              <div className="space-y-3">
+                <Label className="text-sm font-medium">Processing</Label>
                 <div className="space-y-2">
-                  <Label className="text-xs">
-                    Similarity: {fuzzyThreshold[0]}%
-                  </Label>
-                  <Slider
-                    value={fuzzyThreshold}
-                    onValueChange={setFuzzyThreshold}
-                    max={100}
-                    min={50}
-                    step={5}
-                    className="w-full"
-                  />
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm">Case Sensitive</Label>
+                    <Switch
+                      checked={caseSensitive}
+                      onCheckedChange={setCaseSensitive}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm">Remove Duplicates</Label>
+                    <Switch
+                      checked={removeDuplicates}
+                      onCheckedChange={setRemoveDuplicates}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm">Sort Before Compare</Label>
+                    <Switch
+                      checked={sortBeforeCompare}
+                      onCheckedChange={setSortBeforeCompare}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <Label className="text-sm">Trim Whitespace</Label>
+                    <Switch
+                      checked={trimWhitespace}
+                      onCheckedChange={setTrimWhitespace}
+                    />
+                  </div>
                 </div>
-              )}
-            </div>
+              </div>
 
-            {/* Processing Options */}
-            <div className="space-y-3">
-              <Label className="text-sm font-medium">Processing</Label>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm">Case Sensitive</Label>
-                  <Switch
-                    checked={caseSensitive}
-                    onCheckedChange={setCaseSensitive}
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm">Remove Duplicates</Label>
-                  <Switch
-                    checked={removeDuplicates}
-                    onCheckedChange={setRemoveDuplicates}
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm">Sort Before Compare</Label>
-                  <Switch
-                    checked={sortBeforeCompare}
-                    onCheckedChange={setSortBeforeCompare}
-                  />
-                </div>
-                <div className="flex items-center justify-between">
-                  <Label className="text-sm">Trim Whitespace</Label>
-                  <Switch
-                    checked={trimWhitespace}
-                    onCheckedChange={setTrimWhitespace}
-                  />
+              {/* Advanced Options */}
+              <div className="space-y-3">
+                <Label className="text-sm font-medium">Advanced</Label>
+                <div className="space-y-2">
+                  <div className="space-y-1">
+                    <Label className="text-xs">Separator</Label>
+                    <Select
+                      value={separator}
+                      onValueChange={(value) =>
+                        setSeparator(value as ParseListOptions['separator'])
+                      }
+                    >
+                      <SelectTrigger className="h-8">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="auto">Auto-detect</SelectItem>
+                        <SelectItem value="newline">Newline</SelectItem>
+                        <SelectItem value="comma">Comma</SelectItem>
+                        <SelectItem value="semicolon">Semicolon</SelectItem>
+                        <SelectItem value="tab">Tab</SelectItem>
+                        <SelectItem value="pipe">Pipe (|)</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-xs">Filter Pattern (Regex)</Label>
+                    <Input
+                      value={filterPattern}
+                      onChange={(e) => setFilterPattern(e.target.value)}
+                      placeholder="e.g., ^[a-z]"
+                      className="h-8 text-xs"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Advanced Options */}
-            <div className="space-y-3">
-              <Label className="text-sm font-medium">Advanced</Label>
-              <div className="space-y-2">
-                <div className="space-y-1">
-                  <Label className="text-xs">Separator</Label>
-                  <Select
-                    value={separator}
-                    onValueChange={(value) =>
-                      setSeparator(value as ParseListOptions['separator'])
-                    }
-                  >
-                    <SelectTrigger className="h-8">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="auto">Auto-detect</SelectItem>
-                      <SelectItem value="newline">Newline</SelectItem>
-                      <SelectItem value="comma">Comma</SelectItem>
-                      <SelectItem value="semicolon">Semicolon</SelectItem>
-                      <SelectItem value="tab">Tab</SelectItem>
-                      <SelectItem value="pipe">Pipe (|)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-1">
-                  <Label className="text-xs">Filter Pattern (Regex)</Label>
-                  <Input
-                    value={filterPattern}
-                    onChange={(e) => setFilterPattern(e.target.value)}
-                    placeholder="e.g., ^[a-z]"
-                    className="h-8 text-xs"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </CardContent>
+          </CardContent>
+        )}
       </Card>
 
       {/* Results Section */}
