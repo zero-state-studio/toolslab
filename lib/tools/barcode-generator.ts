@@ -223,10 +223,9 @@ export const BARCODE_FORMATS: FormatMetadata[] = [
     id: 'issn',
     name: 'ISSN',
     category: '1D',
-    description: 'International Standard Serial Number for periodicals',
-    charSet: 'Numeric (0-9)',
-    minLength: 8,
-    maxLength: 9,
+    description: 'International Standard Serial Number — use format XXXX-XXXX (e.g. 0749-0158)',
+    charSet: 'Numeric with dash (XXXX-XXXX)',
+    fixedLength: 9, // 8 digits + 1 dash
     hasChecksum: true,
     useCases: ['Magazines', 'Journals', 'Newspapers', 'Periodicals'],
   },
@@ -533,8 +532,6 @@ export function validateBarcodeInput(
     'itf14',
     'msi',
     'pharmacode',
-    'isbn',
-    'issn',
   ];
 
   if (numericFormats.includes(format) && !/^\d+$/.test(value)) {
@@ -542,6 +539,26 @@ export function validateBarcodeInput(
       valid: false,
       error: `${metadata.name} only accepts numeric characters (0-9)`,
     };
+  }
+
+  // ISSN: must be in the format XXXX-XXXX (e.g. 0749-0158)
+  if (format === 'issn') {
+    if (!/^\d{4}-\d{3}[\dXx]$/.test(value)) {
+      return {
+        valid: false,
+        error: 'ISSN must be in the format XXXX-XXXX (e.g. 0749-0158)',
+      };
+    }
+  }
+
+  // ISBN: must include dashes (ISBN-10: 11 or 13 chars, ISBN-13: 15 or 17 chars)
+  if (format === 'isbn') {
+    if (!/^[\d\-X]+$/.test(value) || !value.includes('-')) {
+      return {
+        valid: false,
+        error: 'ISBN must include dashes (e.g. 978-0-306-40615-7)',
+      };
+    }
   }
 
   return { valid: true };
@@ -558,9 +575,11 @@ export function calculateChecksum(
     case 'ean13':
     case 'ean8':
     case 'upca':
+      return calculateEANChecksum(value);
     case 'isbn':
     case 'issn':
-      return calculateEANChecksum(value);
+      // Strip dashes before checksum calculation
+      return calculateEANChecksum(value.replace(/-/g, ''));
 
     case 'upce':
       return calculateUPCEChecksum(value);
