@@ -306,6 +306,17 @@ export const BARCODE_FORMATS: FormatMetadata[] = [
 ];
 
 /**
+ * Sanitize bwip-js error messages into user-friendly text.
+ * bwip-js throws strings like "bwipp.ean13badCheckDigit#5312: Incorrect EAN-13 check digit provided"
+ */
+function sanitizeBwipError(error: unknown): string {
+  const msg = error instanceof Error ? error.message : String(error);
+  // Strip "bwipp.<code>#<n>: " prefix
+  const cleaned = msg.replace(/^bwipp\.\w+#\d+:\s*/, '');
+  return cleaned || 'Failed to generate barcode';
+}
+
+/**
  * Generate barcode and return as data URL or SVG
  */
 export async function generateBarcode(
@@ -399,11 +410,7 @@ export async function generateBarcode(
       },
     };
   } catch (error) {
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : 'Failed to generate barcode',
-    };
+    return { success: false, error: sanitizeBwipError(error) };
   }
 }
 
@@ -474,7 +481,7 @@ export async function generateBarcodeSVG(
   } catch (error) {
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Failed to generate SVG',
+      error: sanitizeBwipError(error),
     };
   }
 }
