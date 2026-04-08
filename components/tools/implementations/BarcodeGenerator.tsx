@@ -73,7 +73,7 @@ export default function BarcodeGenerator() {
   const [generating, setGenerating] = useState(false);
   const [showFormatInfo, setShowFormatInfo] = useState(false);
   const [svgString, setSvgString] = useState<string | null>(null);
-  const [activePreset, setActivePreset] = useState<'bw' | 'wb' | 'transparent' | null>(null);
+  const [activePreset, setActivePreset] = useState<'bw' | 'wb' | 'transparent' | null>('bw');
 
   // Customization options
   const [includeText, setIncludeText] = useState(true);
