@@ -686,3 +686,22 @@ export function getOptimalDimensions(format: BarcodeFormat): {
 
   return dimensionMap[format] || { width: 2, height: 12, scale: 5 };
 }
+
+export interface CharacterLimit {
+  fixed?: number;
+  min?: number;
+  max?: number;
+}
+
+/**
+ * Returns character limit info for a given format, or null if unlimited/variable.
+ */
+export function getCharacterLimit(format: BarcodeFormat): CharacterLimit | null {
+  const meta = BARCODE_FORMATS.find((f) => f.id === format);
+  if (!meta) return null;
+  if (meta.fixedLength) return { fixed: meta.fixedLength };
+  if (meta.minLength !== undefined && meta.maxLength !== undefined) {
+    return { min: meta.minLength, max: meta.maxLength };
+  }
+  return null;
+}
