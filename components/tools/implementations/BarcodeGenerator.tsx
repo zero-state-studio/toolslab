@@ -149,7 +149,10 @@ export default function BarcodeGenerator() {
     // Add color options if enabled
     if (useColors) {
       options.barcolor = barColor.replace('#', '');
-      options.backgroundcolor = backgroundColor.replace('#', '');
+      // 'transparent' is a CSS keyword; bwip-js expects a hex string — omit to use default
+      if (backgroundColor !== 'transparent') {
+        options.backgroundcolor = backgroundColor.replace('#', '');
+      }
       options.textcolor = textColor.replace('#', '');
     }
 
@@ -295,7 +298,7 @@ export default function BarcodeGenerator() {
                   <Label htmlFor="format" className="text-base font-semibold">
                     Barcode Format
                   </Label>
-                  <p className="mb-3 text-sm text-gray-500">
+                  <p className="mb-3 text-sm text-muted-foreground">
                     Select the type of barcode you want to generate
                   </p>
                 </div>
@@ -328,14 +331,14 @@ export default function BarcodeGenerator() {
                   {Object.entries(formatsByCategory).map(([category, formats]) =>
                     formats.length > 0 ? (
                       <div key={category}>
-                        <div className="px-2 py-1.5 text-xs font-semibold text-gray-500">
+                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground">
                           {category} Barcodes
                         </div>
                         {formats.map((fmt: FormatMetadata) => (
                           <SelectItem key={fmt.id} value={fmt.id}>
                             <div className="flex w-full items-center justify-between">
                               <span>{fmt.name}</span>
-                              <span className="ml-2 hidden text-xs text-gray-400 sm:inline">
+                              <span className="ml-2 hidden text-xs text-muted-foreground sm:inline">
                                 {fmt.charSet}
                               </span>
                             </div>
@@ -393,7 +396,7 @@ export default function BarcodeGenerator() {
                 <Label htmlFor="value" className="text-base font-semibold">
                   Data to Encode
                 </Label>
-                <p className="mb-3 text-sm text-gray-500">
+                <p className="mb-3 text-sm text-muted-foreground">
                   Enter the data you want to encode in the barcode
                 </p>
                 <Input
@@ -603,7 +606,7 @@ export default function BarcodeGenerator() {
                       <Input
                         id="bar-color"
                         type="color"
-                        value={barColor}
+                        value={barColor === 'transparent' ? '#000000' : barColor}
                         onChange={(e) => { setBarColor(e.target.value); setActivePreset(null); }}
                         className="mt-2 h-10"
                       />
@@ -615,7 +618,7 @@ export default function BarcodeGenerator() {
                       <Input
                         id="bg-color"
                         type="color"
-                        value={backgroundColor}
+                        value={backgroundColor === 'transparent' ? '#ffffff' : backgroundColor}
                         onChange={(e) => { setBackgroundColor(e.target.value); setActivePreset(null); }}
                         className="mt-2 h-10"
                       />
@@ -703,7 +706,7 @@ export default function BarcodeGenerator() {
                         <SelectItem value="H">High (30%)</SelectItem>
                       </SelectContent>
                     </Select>
-                    <p className="mt-2 text-xs text-gray-500">
+                    <p className="mt-2 text-xs text-muted-foreground">
                       Higher levels allow the code to be read even if partially
                       damaged
                     </p>
