@@ -31,6 +31,13 @@ import {
   ChevronUp,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+const COLOR_PRESETS = {
+  bw:          { barColor: '#000000', backgroundColor: '#ffffff', textColor: '#000000' },
+  wb:          { barColor: '#ffffff', backgroundColor: '#000000', textColor: '#ffffff' },
+  transparent: { barColor: '#000000', backgroundColor: 'transparent', textColor: '#000000' },
+} as const;
+
 import { useToolStore } from '@/lib/store/toolStore';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
@@ -67,7 +74,7 @@ export default function BarcodeGenerator() {
   const [generating, setGenerating] = useState(false);
   const [showFormatInfo, setShowFormatInfo] = useState(false);
   const [svgString, setSvgString] = useState<string | null>(null);
-  const [activePreset, setActivePreset] = useState<'bw' | 'wb' | 'transparent' | null>('bw');
+  const [activePreset, setActivePreset] = useState<'bw' | 'wb' | 'transparent' | null>(null);
 
   // Customization options
   const [includeText, setIncludeText] = useState(true);
@@ -232,13 +239,6 @@ export default function BarcodeGenerator() {
     }
   };
 
-  // Color presets
-  const COLOR_PRESETS = {
-    bw:          { barColor: '#000000', backgroundColor: '#ffffff', textColor: '#000000' },
-    wb:          { barColor: '#ffffff', backgroundColor: '#000000', textColor: '#ffffff' },
-    transparent: { barColor: '#000000', backgroundColor: 'transparent', textColor: '#000000' },
-  } as const;
-
   const handlePreset = (preset: 'bw' | 'wb' | 'transparent') => {
     const p = COLOR_PRESETS[preset];
     setBarColor(p.barColor);
@@ -268,7 +268,11 @@ export default function BarcodeGenerator() {
     iframe.contentDocument!.close();
     iframe.contentWindow!.focus();
     iframe.contentWindow!.print();
-    setTimeout(() => document.body.removeChild(iframe), 1000);
+    setTimeout(() => {
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    }, 1000);
   };
 
   // Calculate checksum if supported
@@ -422,27 +426,6 @@ export default function BarcodeGenerator() {
         </div>
       </Card>
 
-      {/* Generate Button */}
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <Button
-          onClick={handleGenerate}
-          disabled={!value || !validation.valid || generating}
-          className="flex-1"
-        >
-          {generating ? (
-            <>
-              <RotateCw className="mr-2 h-4 w-4 animate-spin" />
-              Generating...
-            </>
-          ) : (
-            <>
-              <Zap className="mr-2 h-4 w-4" />
-              Generate Barcode
-            </>
-          )}
-        </Button>
-      </div>
-
       {/* Error Display */}
       {error && (
         <Alert variant="destructive">
@@ -534,24 +517,6 @@ export default function BarcodeGenerator() {
           <Card className="mt-6 p-4 sm:p-6">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-base font-semibold">Customize Barcode</h3>
-              <Button
-                onClick={handleGenerate}
-                disabled={!value || !validation.valid || generating}
-                size="sm"
-                variant="default"
-              >
-                {generating ? (
-                  <>
-                    <RotateCw className="mr-2 h-4 w-4 animate-spin" />
-                    Updating...
-                  </>
-                ) : (
-                  <>
-                    <RotateCw className="mr-2 h-4 w-4" />
-                    Update
-                  </>
-                )}
-              </Button>
             </div>
             <Tabs
               value={activeTab}
