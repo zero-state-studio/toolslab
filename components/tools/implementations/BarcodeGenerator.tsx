@@ -26,18 +26,10 @@ import {
   RotateCw,
   Palette,
   Ruler,
-  FileText,
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-const COLOR_PRESETS = {
-  bw:          { barColor: '#000000', backgroundColor: '#ffffff', textColor: '#000000' },
-  wb:          { barColor: '#ffffff', backgroundColor: '#000000', textColor: '#ffffff' },
-  transparent: { barColor: '#000000', backgroundColor: 'transparent', textColor: '#000000' },
-} as const;
-
 import { useToolStore } from '@/lib/store/toolStore';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
@@ -57,6 +49,12 @@ import {
   type FormatMetadata,
   type CharacterLimit,
 } from '@/lib/tools/barcode-generator';
+
+const COLOR_PRESETS = {
+  bw:          { barColor: '#000000', backgroundColor: '#ffffff', textColor: '#000000' },
+  wb:          { barColor: '#ffffff', backgroundColor: '#000000', textColor: '#ffffff' },
+  transparent: { barColor: '#000000', backgroundColor: 'transparent', textColor: '#000000' },
+} as const;
 
 export default function BarcodeGenerator() {
   const isHydrated = useHydration();
@@ -408,7 +406,7 @@ export default function BarcodeGenerator() {
                   )}
                 />
                 {/* Character counter row */}
-                <div className="flex items-center justify-between text-xs mt-2">
+                <div className="mt-2 flex items-center justify-between text-xs">
                   {!validation.valid && value ? (
                     <span className="text-destructive text-xs">{validation.error}</span>
                   ) : (
