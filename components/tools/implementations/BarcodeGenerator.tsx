@@ -285,236 +285,181 @@ export default function BarcodeGenerator() {
 
   return (
     <div className="space-y-6">
-      {/* Format Selection */}
-      <Card className="p-4 sm:p-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        {/* LEFT COLUMN */}
         <div className="space-y-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1">
-              <Label htmlFor="format" className="text-base font-semibold">
-                Barcode Format
-              </Label>
-              <p className="mb-3 text-sm text-gray-500">
-                Select the type of barcode you want to generate
-              </p>
-            </div>
-            {currentMetadata && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowFormatInfo(!showFormatInfo)}
-                className="shrink-0"
-              >
-                <Info className="mr-1 h-4 w-4" />
-                Info
-                {showFormatInfo ? (
-                  <ChevronUp className="ml-1 h-4 w-4" />
-                ) : (
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                )}
-              </Button>
-            )}
-          </div>
-
-          <Select
-            value={format}
-            onValueChange={(value) => setFormat(value as BarcodeFormat)}
-          >
-            <SelectTrigger id="format">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {Object.entries(formatsByCategory).map(([category, formats]) =>
-                formats.length > 0 ? (
-                  <div key={category}>
-                    <div className="px-2 py-1.5 text-xs font-semibold text-gray-500">
-                      {category} Barcodes
-                    </div>
-                    {formats.map((fmt: FormatMetadata) => (
-                      <SelectItem key={fmt.id} value={fmt.id}>
-                        <div className="flex w-full items-center justify-between">
-                          <span>{fmt.name}</span>
-                          <span className="ml-2 hidden text-xs text-gray-400 sm:inline">
-                            {fmt.charSet}
-                          </span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </div>
-                ) : null
-              )}
-            </SelectContent>
-          </Select>
-
-          {/* Format Info - Collapsible */}
-          {showFormatInfo && currentMetadata && (
-            <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
-              <div className="space-y-2">
-                <p className="font-medium text-blue-900 dark:text-blue-100">
-                  {currentMetadata.name}
-                </p>
-                <p className="text-sm text-blue-800 dark:text-blue-200">
-                  {currentMetadata.description}
-                </p>
-                <div className="space-y-1 border-t border-blue-200 pt-2 text-xs text-blue-700 dark:border-blue-700 dark:text-blue-300">
-                  <p>
-                    <strong>Character Set:</strong> {currentMetadata.charSet}
-                  </p>
-                  {currentMetadata.fixedLength && (
-                    <p>
-                      <strong>Length:</strong> {currentMetadata.fixedLength}{' '}
-                      characters (fixed)
-                    </p>
-                  )}
-                  {currentMetadata.minLength && currentMetadata.maxLength && (
-                    <p>
-                      <strong>Length:</strong> {currentMetadata.minLength}-
-                      {currentMetadata.maxLength} characters
-                    </p>
-                  )}
-                  <p>
-                    <strong>Checksum:</strong>{' '}
-                    {currentMetadata.hasChecksum
-                      ? 'Auto-calculated'
-                      : 'Not required'}
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </Card>
-
-      {/* Input */}
-      <Card className="p-4 sm:p-6">
-        <div className="space-y-4">
-          <div>
-            <Label htmlFor="value" className="text-base font-semibold">
-              Data to Encode
-            </Label>
-            <p className="mb-3 text-sm text-gray-500">
-              Enter the data you want to encode in the barcode
-            </p>
-            <Input
-              id="value"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              placeholder={`Enter ${currentMetadata?.name || 'barcode'} data...`}
-              className={cn(
-                'font-mono',
-                !validation.valid && value && 'border-red-500'
-              )}
-            />
-          </div>
-
-          {/* Validation Error */}
-          {!validation.valid && value && (
-            <Alert variant="destructive">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{validation.error}</AlertDescription>
-            </Alert>
-          )}
-
-          {/* Checksum Display */}
-          {checksum && validation.valid && checksum !== 'Auto-calculated' && (
-            <div className="text-sm">
-              <span className="font-medium">Calculated Checksum:</span>{' '}
-              <code className="rounded bg-gray-100 px-2 py-1 dark:bg-gray-800">
-                {checksum}
-              </code>
-            </div>
-          )}
-        </div>
-      </Card>
-
-      {/* Error Display */}
-      {error && (
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
-
-      {/* Result */}
-      {barcodeDataUrl && (
-        <div ref={resultRef}>
+          {/* Format Selection */}
           <Card className="p-4 sm:p-6">
             <div className="space-y-4">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h3 className="text-lg font-semibold">Generated Barcode</h3>
-                <div className="flex flex-wrap gap-2">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <Label htmlFor="format" className="text-base font-semibold">
+                    Barcode Format
+                  </Label>
+                  <p className="mb-3 text-sm text-gray-500">
+                    Select the type of barcode you want to generate
+                  </p>
+                </div>
+                {currentMetadata && (
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="sm"
-                    onClick={handleCopy}
-                    className="flex-1 sm:flex-none"
+                    onClick={() => setShowFormatInfo(!showFormatInfo)}
+                    className="shrink-0"
                   >
-                    {copied ? (
-                      <>
-                        <Check className="mr-2 h-4 w-4" />
-                        Copied!
-                      </>
+                    <Info className="mr-1 h-4 w-4" />
+                    Info
+                    {showFormatInfo ? (
+                      <ChevronUp className="ml-1 h-4 w-4" />
                     ) : (
-                      <>
-                        <Copy className="mr-2 h-4 w-4" />
-                        Copy
-                      </>
+                      <ChevronDown className="ml-1 h-4 w-4" />
                     )}
                   </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleDownload('png')}
-                    className="flex-1 sm:flex-none"
-                  >
-                    <Download className="mr-2 h-4 w-4" />
-                    PNG
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleDownload('jpeg')}
-                    className="flex-1 sm:flex-none"
-                  >
-                    <Download className="mr-2 h-4 w-4" />
-                    JPEG
-                  </Button>
-                </div>
-              </div>
-
-              {/* Barcode Preview */}
-              <div className="flex items-center justify-center overflow-x-auto rounded-lg border-2 border-dashed border-gray-300 bg-white p-4 sm:p-8">
-                <img
-                  src={barcodeDataUrl}
-                  alt={`${currentMetadata?.name || 'Barcode'} - ${value}`}
-                  className="h-auto max-w-full"
-                />
-              </div>
-
-              {/* Barcode Info */}
-              <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                <p>
-                  <strong>Format:</strong> {currentMetadata?.name}
-                </p>
-                <p className="break-all">
-                  <strong>Value:</strong>{' '}
-                  <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                    {value}
-                  </code>
-                </p>
-                {checksum && checksum !== 'Auto-calculated' && (
-                  <p>
-                    <strong>Checksum:</strong>{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      {checksum}
-                    </code>
-                  </p>
                 )}
               </div>
+
+              <Select
+                value={format}
+                onValueChange={(value) => setFormat(value as BarcodeFormat)}
+              >
+                <SelectTrigger id="format">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.entries(formatsByCategory).map(([category, formats]) =>
+                    formats.length > 0 ? (
+                      <div key={category}>
+                        <div className="px-2 py-1.5 text-xs font-semibold text-gray-500">
+                          {category} Barcodes
+                        </div>
+                        {formats.map((fmt: FormatMetadata) => (
+                          <SelectItem key={fmt.id} value={fmt.id}>
+                            <div className="flex w-full items-center justify-between">
+                              <span>{fmt.name}</span>
+                              <span className="ml-2 hidden text-xs text-gray-400 sm:inline">
+                                {fmt.charSet}
+                              </span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </div>
+                    ) : null
+                  )}
+                </SelectContent>
+              </Select>
+
+              {/* Format Info - Collapsible */}
+              {showFormatInfo && currentMetadata && (
+                <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
+                  <div className="space-y-2">
+                    <p className="font-medium text-blue-900 dark:text-blue-100">
+                      {currentMetadata.name}
+                    </p>
+                    <p className="text-sm text-blue-800 dark:text-blue-200">
+                      {currentMetadata.description}
+                    </p>
+                    <div className="space-y-1 border-t border-blue-200 pt-2 text-xs text-blue-700 dark:border-blue-700 dark:text-blue-300">
+                      <p>
+                        <strong>Character Set:</strong> {currentMetadata.charSet}
+                      </p>
+                      {currentMetadata.fixedLength && (
+                        <p>
+                          <strong>Length:</strong> {currentMetadata.fixedLength}{' '}
+                          characters (fixed)
+                        </p>
+                      )}
+                      {currentMetadata.minLength && currentMetadata.maxLength && (
+                        <p>
+                          <strong>Length:</strong> {currentMetadata.minLength}-
+                          {currentMetadata.maxLength} characters
+                        </p>
+                      )}
+                      <p>
+                        <strong>Checksum:</strong>{' '}
+                        {currentMetadata.hasChecksum
+                          ? 'Auto-calculated'
+                          : 'Not required'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </Card>
 
-          {/* Customization Options - Under Result */}
-          <Card className="mt-6 p-4 sm:p-6">
+          {/* Input */}
+          <Card className="p-4 sm:p-6">
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="value" className="text-base font-semibold">
+                  Data to Encode
+                </Label>
+                <p className="mb-3 text-sm text-gray-500">
+                  Enter the data you want to encode in the barcode
+                </p>
+                <Input
+                  id="value"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  placeholder={`Enter ${currentMetadata?.name || 'barcode'} data...`}
+                  className={cn(
+                    'font-mono',
+                    !validation.valid && value && 'border-red-500'
+                  )}
+                />
+                {/* Character counter row */}
+                <div className="flex items-center justify-between text-xs mt-2">
+                  {!validation.valid && value ? (
+                    <span className="text-destructive text-xs">{validation.error}</span>
+                  ) : (
+                    <span />
+                  )}
+                  {charLimit ? (
+                    charLimit.fixed ? (
+                      <span className={cn(
+                        'font-mono',
+                        value.length === charLimit.fixed ? 'text-green-600 dark:text-green-400' : 'text-muted-foreground'
+                      )}>
+                        {value.length} / {charLimit.fixed}
+                      </span>
+                    ) : (
+                      <span className={cn(
+                        'font-mono',
+                        value.length > (charLimit.max ?? Infinity) ? 'text-destructive' : 'text-muted-foreground'
+                      )}>
+                        {value.length} / {charLimit.max}
+                      </span>
+                    )
+                  ) : (
+                    <span className="font-mono text-muted-foreground">
+                      {value.length} chars
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Checksum Display */}
+              {checksum && validation.valid && checksum !== 'Auto-calculated' && (
+                <div className="text-sm">
+                  <span className="font-medium">Calculated Checksum:</span>{' '}
+                  <code className="rounded bg-gray-100 px-2 py-1 dark:bg-gray-800">
+                    {checksum}
+                  </code>
+                </div>
+              )}
+
+              {/* Error Display */}
+              {error && (
+                <Alert variant="destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+            </div>
+          </Card>
+
+          {/* Customization Options — always visible */}
+          <Card className="p-4 sm:p-6">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-base font-semibold">Customize Barcode</h3>
             </div>
@@ -747,9 +692,98 @@ export default function BarcodeGenerator() {
             </Tabs>
           </Card>
         </div>
-      )}
 
-      {/* Use Cases */}
+        {/* RIGHT COLUMN — sticky preview */}
+        <div className="lg:sticky lg:top-6 lg:self-start" ref={resultRef}>
+          <Card className="p-4 sm:p-6">
+            <div className="space-y-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <h3 className="text-lg font-semibold">Generated Barcode</h3>
+                {barcodeDataUrl && (
+                  <div className="flex flex-wrap gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleCopy}
+                      className="flex-1 sm:flex-none"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="mr-2 h-4 w-4" />
+                          Copied!
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="mr-2 h-4 w-4" />
+                          Copy
+                        </>
+                      )}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleDownload('png')}
+                      className="flex-1 sm:flex-none"
+                    >
+                      <Download className="mr-2 h-4 w-4" />
+                      PNG
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleDownload('jpeg')}
+                      className="flex-1 sm:flex-none"
+                    >
+                      <Download className="mr-2 h-4 w-4" />
+                      JPEG
+                    </Button>
+                  </div>
+                )}
+              </div>
+
+              {/* Barcode Preview */}
+              <div className="flex items-center justify-center overflow-x-auto rounded-lg border-2 border-dashed border-gray-300 bg-white p-4 sm:p-8 min-h-[160px]">
+                {barcodeDataUrl ? (
+                  <img
+                    src={barcodeDataUrl}
+                    alt={`${currentMetadata?.name || 'Barcode'} - ${value}`}
+                    className="h-auto max-w-full"
+                  />
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Enter data to generate a barcode
+                  </p>
+                )}
+              </div>
+
+              {/* Barcode Info */}
+              {barcodeDataUrl && (
+                <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                  <p>
+                    <strong>Format:</strong> {currentMetadata?.name}
+                  </p>
+                  <p className="break-all">
+                    <strong>Value:</strong>{' '}
+                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
+                      {value}
+                    </code>
+                  </p>
+                  {checksum && checksum !== 'Auto-calculated' && (
+                    <p>
+                      <strong>Checksum:</strong>{' '}
+                      <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
+                        {checksum}
+                      </code>
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      {/* Use Cases — full width below grid */}
       {currentMetadata && currentMetadata.useCases.length > 0 && (
         <Card className="border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20 sm:p-6">
           <div className="space-y-3">
