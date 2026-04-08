@@ -450,4 +450,136 @@ function sortObjectKeys(obj: any): any {
   return obj;
 }
 
+// ─── Feature 2: Input type detection ────────────────────────────────────────
+
+export type InputType = 'empty' | 'valid-json' | 'js-object' | 'console-log' | 'unknown';
+
+export interface InputTypeResult {
+  type: InputType;
+  label: string;
+  description: string;
+}
+
+/**
+ * Detects the type of input string (valid JSON, JS object, console output, etc.)
+ */
+export function detectInputType(input: string): InputTypeResult {
+  const trimmed = input.trim();
+
+  if (!trimmed) {
+    return { type: 'empty', label: '', description: '' };
+  }
+
+  // Valid JSON
+  try {
+    JSON.parse(trimmed);
+    return {
+      type: 'valid-json',
+      label: 'Already valid JSON',
+      description: 'No conversion needed — this is already valid JSON',
+    };
+  } catch {}
+
+  // Browser console/DevTools patterns: Array(3) [...], Map(2) {...}, etc.
+  if (/^(Array|Map|Set|WeakMap|WeakSet)\(\d+\)\s*[\[{]/.test(trimmed)) {
+    return {
+      type: 'console-log',
+      label: 'Console output detected',
+      description: 'Looks like a browser DevTools console output',
+    };
+  }
+
+  // JS object literal (can be parsed)
+  const result = parseJsObject(trimmed);
+  if (result.success) {
+    return {
+      type: 'js-object',
+      label: 'JS object',
+      description: 'Valid JavaScript object literal — will be converted to JSON',
+    };
+  }
+
+  return {
+    type: 'unknown',
+    label: 'Unrecognized format',
+    description: 'Could not parse input as a JavaScript object',
+  };
+}
+
+// ─── Feature 4: TypeScript interface inference ───────────────────────────────
+
+/**
+ * Infers a TypeScript type string for a given value (recursive)
+ */
+function inferType(value: any, depth: number): string {
+  if (value === null) return 'null';
+  if (Array.isArray(value)) {
+    if (value.length === 0) return 'unknown[]';
+    // Collect all unique types from array items
+    const itemTypes = Array.from(
+      new Set(value.slice(0, 5).map((v) => inferType(v, depth)))
+    );
+    const itemType = itemTypes.length === 1 ? itemTypes[0] : `(${itemTypes.join(' | ')})`;
+    return `${itemType}[]`;
+  }
+  if (typeof value === 'object') {
+    const indent = '  '.repeat(depth + 1);
+    const closing = '  '.repeat(depth);
+    const props = Object.entries(value)
+      .map(([k, v]) => {
+        const safKey = /^[a-zA-Z_$][a-zA-Z0-9_$]*$/.test(k) ? k : `"${k}"`;
+        return `${indent}${safKey}: ${inferType(v, depth + 1)};`;
+      })
+      .join('\n');
+    return props ? `{\n${props}\n${closing}}` : '{}';
+  }
+  return typeof value;
+}
+
+/**
+ * Generates a TypeScript interface from a parsed JSON/JS object
+ */
+export function inferTypeScriptInterface(data: any, interfaceName = 'Root'): string {
+  if (typeof data !== 'object' || data === null) {
+    return `type ${interfaceName} = ${inferType(data, 0)};`;
+  }
+  if (Array.isArray(data)) {
+    return `type ${interfaceName} = ${inferType(data, 0)};`;
+  }
+  return `interface ${interfaceName} ${inferType(data, 0)}`;
+}
+
+// ─── Feature 3: Path extractor ───────────────────────────────────────────────
+
+export interface JsonPath {
+  path: string;
+  value: any;
+  type: string;
+}
+
+/**
+ * Extracts all paths from a parsed JSON object (leaf nodes + objects/arrays)
+ */
+export function extractJsonPaths(data: any, rootName = 'root'): JsonPath[] {
+  const paths: JsonPath[] = [];
+
+  function traverse(value: any, currentPath: string) {
+    if (Array.isArray(value)) {
+      paths.push({ path: currentPath, value: `Array(${value.length})`, type: 'array' });
+      value.forEach((item, i) => traverse(item, `${currentPath}[${i}]`));
+    } else if (value !== null && typeof value === 'object') {
+      paths.push({ path: currentPath, value: `Object(${Object.keys(value).length})`, type: 'object' });
+      Object.entries(value).forEach(([key, val]) => {
+        const childPath = `${currentPath}.${key}`;
+        traverse(val, childPath);
+      });
+    } else {
+      paths.push({ path: currentPath, value, type: typeof value });
+    }
+  }
+
+  traverse(data, rootName);
+  return paths;
+}
+
 export default jsObjectToJson;
