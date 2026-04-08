@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -36,15 +36,19 @@ import { useHydration } from '@/lib/hooks/useHydration';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 import {
   generateBarcode,
+  generateBarcodeSVG,
   validateBarcodeInput,
   getFormatsByCategory,
   getFormatMetadata,
   calculateChecksum,
   downloadBarcode,
+  downloadSVG,
   getOptimalDimensions,
+  getCharacterLimit,
   type BarcodeFormat,
   type BarcodeOptions,
   type FormatMetadata,
+  type CharacterLimit,
 } from '@/lib/tools/barcode-generator';
 
 export default function BarcodeGenerator() {
@@ -62,6 +66,8 @@ export default function BarcodeGenerator() {
   const [copied, setCopied] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [showFormatInfo, setShowFormatInfo] = useState(false);
+  const [svgString, setSvgString] = useState<string | null>(null);
+  const [activePreset, setActivePreset] = useState<'bw' | 'wb' | 'transparent' | null>('bw');
 
   // Customization options
   const [includeText, setIncludeText] = useState(true);
@@ -102,21 +108,6 @@ export default function BarcodeGenerator() {
     setBarHeight(optimalDims.height);
     setScale(optimalDims.scale);
   }, [format]);
-
-  // Auto-generate barcode when value or format changes (with debounce)
-  useEffect(() => {
-    if (!value || !validation.valid) {
-      setBarcodeDataUrl(null);
-      return;
-    }
-
-    const timeoutId = setTimeout(() => {
-      handleGenerate();
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, format, validation.valid]);
 
   // Generate barcode
   const handleGenerate = async () => {
@@ -168,24 +159,49 @@ export default function BarcodeGenerator() {
     if (result.success && result.dataUrl) {
       setBarcodeDataUrl(result.dataUrl);
 
-      // Track in analytics
+      // Generate SVG in parallel (non-blocking)
+      generateBarcodeSVG(options).then((svgResult) => {
+        if (svgResult.success && svgResult.svgString) {
+          setSvgString(svgResult.svgString);
+        }
+      });
+
       if (isHydrated) {
         addToHistory({
           id: crypto.randomUUID(),
           tool: 'barcode-generator',
           input: value,
-          output: result.dataUrl.substring(0, 100) + '...', // Truncate for storage
+          output: result.dataUrl.substring(0, 100) + '...',
           timestamp: startTime,
         });
       }
-
-      // Scroll to result
       setTimeout(() => scrollToResult(), 100);
     } else {
       setError(result.error || 'Failed to generate barcode');
       setBarcodeDataUrl(null);
+      setSvgString(null);
     }
   };
+
+  // Auto-update barcode using ref pattern to avoid stale closures
+  const handleGenerateRef = useRef(handleGenerate);
+  useEffect(() => {
+    handleGenerateRef.current = handleGenerate;
+  }, [handleGenerate]);
+
+  useEffect(() => {
+    if (!value || !validation.valid) {
+      setBarcodeDataUrl(null);
+      setSvgString(null);
+      return;
+    }
+    const timer = setTimeout(() => {
+      handleGenerateRef.current();
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [value, format, validation.valid, includeText, barWidth, barHeight, scale,
+      textSize, paddingWidth, paddingHeight, rotation, barColor, backgroundColor,
+      textColor, useColors, eclevel]);
 
   // Download barcode
   const handleDownload = (outputFormat: 'png' | 'jpeg' = 'png') => {
@@ -216,11 +232,52 @@ export default function BarcodeGenerator() {
     }
   };
 
+  // Color presets
+  const COLOR_PRESETS = {
+    bw:          { barColor: '#000000', backgroundColor: '#ffffff', textColor: '#000000' },
+    wb:          { barColor: '#ffffff', backgroundColor: '#000000', textColor: '#ffffff' },
+    transparent: { barColor: '#000000', backgroundColor: 'transparent', textColor: '#000000' },
+  } as const;
+
+  const handlePreset = (preset: 'bw' | 'wb' | 'transparent') => {
+    const p = COLOR_PRESETS[preset];
+    setBarColor(p.barColor);
+    setBackgroundColor(p.backgroundColor);
+    setTextColor(p.textColor);
+    setUseColors(true);
+    setActivePreset(preset);
+  };
+
+  // Download SVG
+  const handleDownloadSVG = () => {
+    if (!svgString) return;
+    downloadSVG(svgString, `barcode-${format}-${Date.now()}`);
+  };
+
+  // Print barcode
+  const handlePrint = () => {
+    if (!barcodeDataUrl) return;
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    iframe.contentDocument!.write(
+      `<html><body style="margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;">
+       <img src="${barcodeDataUrl}" style="max-width:100%;" />
+       </body></html>`
+    );
+    iframe.contentDocument!.close();
+    iframe.contentWindow!.focus();
+    iframe.contentWindow!.print();
+    setTimeout(() => document.body.removeChild(iframe), 1000);
+  };
+
   // Calculate checksum if supported
   const checksum = useMemo(() => {
     if (!value || !currentMetadata?.hasChecksum) return null;
     return calculateChecksum(format, value);
   }, [value, format, currentMetadata]);
+
+  const charLimit = useMemo(() => getCharacterLimit(format), [format]);
 
   return (
     <div className="space-y-6">
