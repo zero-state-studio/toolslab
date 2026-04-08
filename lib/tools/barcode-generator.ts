@@ -409,18 +409,73 @@ export async function generateBarcode(
 
 /**
  * Generate barcode as SVG string
- * Note: SVG generation in browser requires different approach than Canvas
- * For now, use PNG/Canvas generation and convert if needed
  */
 export async function generateBarcodeSVG(
   options: BarcodeOptions
-): Promise<BarcodeResult> {
-  // SVG generation not supported in browser environment
-  // Use Canvas/PNG generation instead
-  return {
-    success: false,
-    error: 'SVG generation not supported in browser. Use PNG format instead.',
-  };
+): Promise<BarcodeResult & { svgString?: string }> {
+  try {
+    const {
+      format,
+      value,
+      width = 2,
+      height = 50,
+      scale = 5,
+      includetext = true,
+      textsize = 16,
+      textcolor = '000000',
+      backgroundcolor = 'ffffff',
+      barcolor = '000000',
+      rotate = 'N',
+      paddingwidth = 10,
+      paddingheight = 10,
+      monochrome = true,
+      eclevel = 'M',
+    } = options;
+
+    const validation = validateBarcodeInput(format, value);
+    if (!validation.valid) {
+      return { success: false, error: validation.error };
+    }
+
+    const bcid = mapFormatToBcid(format);
+
+    const bwipOptions: any = {
+      bcid,
+      text: value,
+      scale,
+      height,
+      includetext,
+      textxalign: 'center',
+      paddingwidth,
+      paddingheight,
+    };
+
+    if (format === 'qrcode') {
+      bwipOptions.eclevel = eclevel;
+      delete bwipOptions.height;
+    }
+    if (!monochrome) {
+      bwipOptions.backgroundcolor = backgroundcolor;
+      bwipOptions.barcolor = barcolor;
+      bwipOptions.textcolor = textcolor;
+    }
+    if (rotate !== 'N') bwipOptions.rotate = rotate;
+    if (includetext && textsize !== 16) bwipOptions.textsize = textsize;
+    if (!is2DFormat(format)) bwipOptions.width = width;
+
+    const svgString = bwipjs.toSVG(bwipOptions);
+
+    return {
+      success: true,
+      svgString,
+      metadata: { format, value, width: 0, height: 0 },
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to generate SVG',
+    };
+  }
 }
 
 /**
@@ -615,6 +670,21 @@ export function downloadBarcode(
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+}
+
+/**
+ * Download barcode as SVG file
+ */
+export function downloadSVG(svgString: string, filename: string) {
+  const blob = new Blob([svgString], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${filename}.svg`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }
 
 /**
