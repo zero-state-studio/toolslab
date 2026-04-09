@@ -628,7 +628,7 @@ function mapFormatToBcid(format: BarcodeFormat): string {
     code39: 'code39',
     code93: 'code93',
     itf14: 'itf14',
-    codabar: 'codabar',
+    codabar: 'rationalizedCodabar',
     msi: 'msi',
     pharmacode: 'pharmacode',
     isbn: 'isbn',
