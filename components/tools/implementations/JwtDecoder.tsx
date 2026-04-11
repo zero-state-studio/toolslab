@@ -99,7 +99,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     JwtDecodeResult
   >();
   const { downloadText, downloadJSON } = useDownload();
-  const { trackUse, trackCustom, trackError } = useToolTracking('jwt-decoder');
+  const { trackCustom, trackError } = useToolTracking('jwt-decoder');
 
   const [countdown, setCountdown] = useState<{
     text: string;
@@ -123,14 +123,14 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
 
       if (diff <= 0) {
         setCountdown({
-          text: `Token scaduto — ${formatDuration(Math.abs(diff))} fa`,
+          text: `Token expired — ${formatDuration(Math.abs(diff))} ago`,
           color: 'gray',
         });
       } else {
         const color: 'green' | 'yellow' | 'red' =
           diff > 3600 ? 'green' : diff > 600 ? 'yellow' : 'red';
         setCountdown({
-          text: `Token valido — scade tra ${formatDuration(diff)}`,
+          text: `Token valid — expires in ${formatDuration(diff)}`,
           color,
         });
       }
@@ -869,9 +869,9 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   <div className="flex items-start gap-2 rounded-lg bg-green-50 p-3 dark:bg-green-950/30">
                     <Shield className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
                     <p className="text-sm text-green-800 dark:text-green-200">
-                      🔒 <strong>La tua chiave non lascia mai questo browser.</strong> La verifica
-                      avviene interamente in locale tramite la WebCrypto API nativa. Nessun dato
-                      viene inviato a server.{' '}
+                      🔒 <strong>Your key never leaves this browser.</strong> Verification runs
+                      entirely in-browser using the native WebCrypto API. No data is sent to any
+                      server.{' '}
                       <a
                         href="https://github.com/hellotoolslab/toolslab"
                         target="_blank"
@@ -889,7 +889,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     if (alg === 'none') {
                       return (
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                          Token non firmato — nessuna verifica possibile.
+                          Unsigned token — no verification possible.
                         </p>
                       );
                     }
@@ -898,11 +898,11 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     if (!isHmac && !isAsymmetric) {
                       return (
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                          Algoritmo{' '}
+                          Algorithm{' '}
                           <code className="rounded bg-gray-100 px-1 font-mono dark:bg-gray-700">
                             {alg}
                           </code>{' '}
-                          non supportato per la verifica.
+                          is not supported for verification.
                         </p>
                       );
                     }
@@ -971,19 +971,19 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                             {verifyResult === 'valid' && (
                               <>
                                 <Check className="h-4 w-4" />
-                                Firma valida
+                                Signature valid
                               </>
                             )}
                             {verifyResult === 'invalid' && (
                               <>
                                 <AlertTriangle className="h-4 w-4" />
-                                Firma non valida
+                                Signature invalid
                               </>
                             )}
                             {verifyResult === 'error' && (
                               <>
                                 <AlertTriangle className="h-4 w-4" />
-                                Chiave non valida o formato errato
+                                Invalid key or wrong format
                               </>
                             )}
                           </div>
