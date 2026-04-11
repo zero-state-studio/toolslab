@@ -177,7 +177,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
       // Error handled by useToolProcessor
       setResult(null);
     }
-  }, [input, options, processSync, trackUse, trackError]);
+  }, [input, options, processSync, trackCustom, trackError]);
 
   // Auto-decode when input changes
   useMemo(() => {
