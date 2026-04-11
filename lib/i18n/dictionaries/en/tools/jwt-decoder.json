@@ -77,9 +77,9 @@
     ]
   },
   "meta": {
-    "title": "JWT Decoder - Decode & Verify JSON Web Tokens Free Online",
-    "description": "Decode and inspect JWT tokens online free — view header, payload, verify signatures, analyze claims and expiration. No signup required. Secure browser-based JWT decoder."
+    "title": "JWT Decoder & Signature Verifier - Free Online Browser Tool",
+    "description": "Decode JWT tokens and verify signatures in-browser — HS256, RS256, ES256 & more. Live expiry countdown. Free, no signup, nothing uploaded to any server."
   },
-  "tagline": "Decode and analyze JWT tokens with security validation instantly",
-  "pageDescription": "Professional JWT decoder with claims analysis, security validation, and expiration checking. Decode JSON Web Tokens safely with detailed header, payload, and signature information. Perfect for debugging authentication issues and analyzing token claims. Supports all JWT algorithms with real-time security recommendations. Free online with no signup required — browser-based and secure."
+  "tagline": "Decode JWT tokens, verify signatures in-browser and track expiration live",
+  "pageDescription": "Free JWT decoder that decodes tokens and verifies signatures entirely in your browser — no server, no signup. Supports HS256, RS256, ES256, PS256 and all major JWT algorithms. Features a live expiration countdown, security analysis, and claims inspection. Perfect for debugging authentication issues, validating tokens, and checking signature integrity with full privacy."
 }

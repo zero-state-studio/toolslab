@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -26,9 +26,9 @@ import {
   RotateCw,
   Palette,
   Ruler,
-  FileText,
   ChevronDown,
   ChevronUp,
+  Printer,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToolStore } from '@/lib/store/toolStore';
@@ -36,16 +36,25 @@ import { useHydration } from '@/lib/hooks/useHydration';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 import {
   generateBarcode,
+  generateBarcodeSVG,
   validateBarcodeInput,
   getFormatsByCategory,
   getFormatMetadata,
   calculateChecksum,
   downloadBarcode,
+  downloadSVG,
   getOptimalDimensions,
+  getCharacterLimit,
   type BarcodeFormat,
   type BarcodeOptions,
   type FormatMetadata,
 } from '@/lib/tools/barcode-generator';
+
+const COLOR_PRESETS = {
+  bw:          { barColor: '#000000', backgroundColor: '#ffffff', textColor: '#000000' },
+  wb:          { barColor: '#ffffff', backgroundColor: '#000000', textColor: '#ffffff' },
+  transparent: { barColor: '#000000', backgroundColor: 'transparent', textColor: '#000000' },
+} as const;
 
 export default function BarcodeGenerator() {
   const isHydrated = useHydration();
@@ -62,6 +71,8 @@ export default function BarcodeGenerator() {
   const [copied, setCopied] = useState(false);
   const [generating, setGenerating] = useState(false);
   const [showFormatInfo, setShowFormatInfo] = useState(false);
+  const [svgString, setSvgString] = useState<string | null>(null);
+  const [activePreset, setActivePreset] = useState<'bw' | 'wb' | 'transparent' | null>('bw');
 
   // Customization options
   const [includeText, setIncludeText] = useState(true);
@@ -103,21 +114,6 @@ export default function BarcodeGenerator() {
     setScale(optimalDims.scale);
   }, [format]);
 
-  // Auto-generate barcode when value or format changes (with debounce)
-  useEffect(() => {
-    if (!value || !validation.valid) {
-      setBarcodeDataUrl(null);
-      return;
-    }
-
-    const timeoutId = setTimeout(() => {
-      handleGenerate();
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, format, validation.valid]);
-
   // Generate barcode
   const handleGenerate = async () => {
     if (!value) {
@@ -152,7 +148,10 @@ export default function BarcodeGenerator() {
     // Add color options if enabled
     if (useColors) {
       options.barcolor = barColor.replace('#', '');
-      options.backgroundcolor = backgroundColor.replace('#', '');
+      // 'transparent' is a CSS keyword; bwip-js expects a hex string — omit to use default
+      if (backgroundColor !== 'transparent') {
+        options.backgroundcolor = backgroundColor.replace('#', '');
+      }
       options.textcolor = textColor.replace('#', '');
     }
 
@@ -168,24 +167,53 @@ export default function BarcodeGenerator() {
     if (result.success && result.dataUrl) {
       setBarcodeDataUrl(result.dataUrl);
 
-      // Track in analytics
+      // Generate SVG in parallel (non-blocking)
+      generateBarcodeSVG(options).then((svgResult) => {
+        if (svgResult.success && svgResult.svgString) {
+          setSvgString(svgResult.svgString);
+        }
+      });
+
       if (isHydrated) {
         addToHistory({
           id: crypto.randomUUID(),
           tool: 'barcode-generator',
           input: value,
-          output: result.dataUrl.substring(0, 100) + '...', // Truncate for storage
+          output: result.dataUrl.substring(0, 100) + '...',
           timestamp: startTime,
         });
       }
-
-      // Scroll to result
-      setTimeout(() => scrollToResult(), 100);
     } else {
       setError(result.error || 'Failed to generate barcode');
       setBarcodeDataUrl(null);
+      setSvgString(null);
     }
   };
+
+  // Auto-update barcode using ref pattern to avoid stale closures
+  const handleGenerateRef = useRef(handleGenerate);
+  useEffect(() => {
+    handleGenerateRef.current = handleGenerate;
+  }, [handleGenerate]);
+
+  useEffect(() => {
+    if (!value || !validation.valid) {
+      setBarcodeDataUrl(null);
+      setSvgString(null);
+      return;
+    }
+    const timer = setTimeout(() => {
+      handleGenerateRef.current();
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [value, format, validation.valid, includeText, barWidth, barHeight, scale,
+      textSize, paddingWidth, paddingHeight, rotation, barColor, backgroundColor,
+      textColor, useColors, eclevel]);
+
+  // Scroll to result when barcode is generated (per CLAUDE.md: use useEffect, not direct call)
+  useEffect(() => {
+    if (barcodeDataUrl) scrollToResult();
+  }, [barcodeDataUrl, scrollToResult]);
 
   // Download barcode
   const handleDownload = (outputFormat: 'png' | 'jpeg' = 'png') => {
@@ -216,285 +244,222 @@ export default function BarcodeGenerator() {
     }
   };
 
+  const handlePreset = (preset: 'bw' | 'wb' | 'transparent') => {
+    const p = COLOR_PRESETS[preset];
+    setBarColor(p.barColor);
+    setBackgroundColor(p.backgroundColor);
+    setTextColor(p.textColor);
+    setUseColors(true);
+    setActivePreset(preset);
+  };
+
+  // Download SVG
+  const handleDownloadSVG = () => {
+    if (!svgString) return;
+    downloadSVG(svgString, `barcode-${format}-${Date.now()}`);
+  };
+
+  // Print barcode
+  const handlePrint = () => {
+    if (!barcodeDataUrl) return;
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    iframe.contentDocument!.write(
+      `<html><body style="margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;">
+       <img src="${barcodeDataUrl}" style="max-width:100%;" />
+       </body></html>`
+    );
+    iframe.contentDocument!.close();
+    iframe.contentWindow!.focus();
+    iframe.contentWindow!.print();
+    setTimeout(() => {
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    }, 1000);
+  };
+
   // Calculate checksum if supported
   const checksum = useMemo(() => {
     if (!value || !currentMetadata?.hasChecksum) return null;
     return calculateChecksum(format, value);
   }, [value, format, currentMetadata]);
 
+  const charLimit = useMemo(() => getCharacterLimit(format), [format]);
+
   return (
     <div className="space-y-6">
-      {/* Format Selection */}
-      <Card className="p-4 sm:p-6">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        {/* LEFT COLUMN */}
         <div className="space-y-4">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex-1">
-              <Label htmlFor="format" className="text-base font-semibold">
-                Barcode Format
-              </Label>
-              <p className="mb-3 text-sm text-gray-500">
-                Select the type of barcode you want to generate
-              </p>
-            </div>
-            {currentMetadata && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowFormatInfo(!showFormatInfo)}
-                className="shrink-0"
-              >
-                <Info className="mr-1 h-4 w-4" />
-                Info
-                {showFormatInfo ? (
-                  <ChevronUp className="ml-1 h-4 w-4" />
-                ) : (
-                  <ChevronDown className="ml-1 h-4 w-4" />
-                )}
-              </Button>
-            )}
-          </div>
-
-          <Select
-            value={format}
-            onValueChange={(value) => setFormat(value as BarcodeFormat)}
-          >
-            <SelectTrigger id="format">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {Object.entries(formatsByCategory).map(([category, formats]) =>
-                formats.length > 0 ? (
-                  <div key={category}>
-                    <div className="px-2 py-1.5 text-xs font-semibold text-gray-500">
-                      {category} Barcodes
-                    </div>
-                    {formats.map((fmt: FormatMetadata) => (
-                      <SelectItem key={fmt.id} value={fmt.id}>
-                        <div className="flex w-full items-center justify-between">
-                          <span>{fmt.name}</span>
-                          <span className="ml-2 hidden text-xs text-gray-400 sm:inline">
-                            {fmt.charSet}
-                          </span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </div>
-                ) : null
-              )}
-            </SelectContent>
-          </Select>
-
-          {/* Format Info - Collapsible */}
-          {showFormatInfo && currentMetadata && (
-            <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
-              <div className="space-y-2">
-                <p className="font-medium text-blue-900 dark:text-blue-100">
-                  {currentMetadata.name}
-                </p>
-                <p className="text-sm text-blue-800 dark:text-blue-200">
-                  {currentMetadata.description}
-                </p>
-                <div className="space-y-1 border-t border-blue-200 pt-2 text-xs text-blue-700 dark:border-blue-700 dark:text-blue-300">
-                  <p>
-                    <strong>Character Set:</strong> {currentMetadata.charSet}
-                  </p>
-                  {currentMetadata.fixedLength && (
-                    <p>
-                      <strong>Length:</strong> {currentMetadata.fixedLength}{' '}
-                      characters (fixed)
-                    </p>
-                  )}
-                  {currentMetadata.minLength && currentMetadata.maxLength && (
-                    <p>
-                      <strong>Length:</strong> {currentMetadata.minLength}-
-                      {currentMetadata.maxLength} characters
-                    </p>
-                  )}
-                  <p>
-                    <strong>Checksum:</strong>{' '}
-                    {currentMetadata.hasChecksum
-                      ? 'Auto-calculated'
-                      : 'Not required'}
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </Card>
-
-      {/* Input */}
-      <Card className="p-4 sm:p-6">
-        <div className="space-y-4">
-          <div>
-            <Label htmlFor="value" className="text-base font-semibold">
-              Data to Encode
-            </Label>
-            <p className="mb-3 text-sm text-gray-500">
-              Enter the data you want to encode in the barcode
-            </p>
-            <Input
-              id="value"
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              placeholder={`Enter ${currentMetadata?.name || 'barcode'} data...`}
-              className={cn(
-                'font-mono',
-                !validation.valid && value && 'border-red-500'
-              )}
-            />
-          </div>
-
-          {/* Validation Error */}
-          {!validation.valid && value && (
-            <Alert variant="destructive">
-              <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{validation.error}</AlertDescription>
-            </Alert>
-          )}
-
-          {/* Checksum Display */}
-          {checksum && validation.valid && checksum !== 'Auto-calculated' && (
-            <div className="text-sm">
-              <span className="font-medium">Calculated Checksum:</span>{' '}
-              <code className="rounded bg-gray-100 px-2 py-1 dark:bg-gray-800">
-                {checksum}
-              </code>
-            </div>
-          )}
-        </div>
-      </Card>
-
-      {/* Generate Button */}
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <Button
-          onClick={handleGenerate}
-          disabled={!value || !validation.valid || generating}
-          className="flex-1"
-        >
-          {generating ? (
-            <>
-              <RotateCw className="mr-2 h-4 w-4 animate-spin" />
-              Generating...
-            </>
-          ) : (
-            <>
-              <Zap className="mr-2 h-4 w-4" />
-              Generate Barcode
-            </>
-          )}
-        </Button>
-      </div>
-
-      {/* Error Display */}
-      {error && (
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
-
-      {/* Result */}
-      {barcodeDataUrl && (
-        <div ref={resultRef}>
+          {/* Format Selection */}
           <Card className="p-4 sm:p-6">
             <div className="space-y-4">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <h3 className="text-lg font-semibold">Generated Barcode</h3>
-                <div className="flex flex-wrap gap-2">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1">
+                  <Label htmlFor="format" className="text-base font-semibold">
+                    Barcode Format
+                  </Label>
+                  <p className="mb-3 text-sm text-muted-foreground">
+                    Select the type of barcode you want to generate
+                  </p>
+                </div>
+                {currentMetadata && (
                   <Button
-                    variant="outline"
+                    variant="ghost"
                     size="sm"
-                    onClick={handleCopy}
-                    className="flex-1 sm:flex-none"
+                    onClick={() => setShowFormatInfo(!showFormatInfo)}
+                    className="shrink-0"
                   >
-                    {copied ? (
-                      <>
-                        <Check className="mr-2 h-4 w-4" />
-                        Copied!
-                      </>
+                    <Info className="mr-1 h-4 w-4" />
+                    Info
+                    {showFormatInfo ? (
+                      <ChevronUp className="ml-1 h-4 w-4" />
                     ) : (
-                      <>
-                        <Copy className="mr-2 h-4 w-4" />
-                        Copy
-                      </>
+                      <ChevronDown className="ml-1 h-4 w-4" />
                     )}
                   </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleDownload('png')}
-                    className="flex-1 sm:flex-none"
-                  >
-                    <Download className="mr-2 h-4 w-4" />
-                    PNG
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => handleDownload('jpeg')}
-                    className="flex-1 sm:flex-none"
-                  >
-                    <Download className="mr-2 h-4 w-4" />
-                    JPEG
-                  </Button>
-                </div>
-              </div>
-
-              {/* Barcode Preview */}
-              <div className="flex items-center justify-center overflow-x-auto rounded-lg border-2 border-dashed border-gray-300 bg-white p-4 sm:p-8">
-                <img
-                  src={barcodeDataUrl}
-                  alt={`${currentMetadata?.name || 'Barcode'} - ${value}`}
-                  className="h-auto max-w-full"
-                />
-              </div>
-
-              {/* Barcode Info */}
-              <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                <p>
-                  <strong>Format:</strong> {currentMetadata?.name}
-                </p>
-                <p className="break-all">
-                  <strong>Value:</strong>{' '}
-                  <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                    {value}
-                  </code>
-                </p>
-                {checksum && checksum !== 'Auto-calculated' && (
-                  <p>
-                    <strong>Checksum:</strong>{' '}
-                    <code className="rounded bg-gray-100 px-1 dark:bg-gray-800">
-                      {checksum}
-                    </code>
-                  </p>
                 )}
               </div>
+
+              <Select
+                value={format}
+                onValueChange={(value) => setFormat(value as BarcodeFormat)}
+              >
+                <SelectTrigger id="format">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.entries(formatsByCategory).map(([category, formats]) =>
+                    formats.length > 0 ? (
+                      <div key={category}>
+                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground">
+                          {category} Barcodes
+                        </div>
+                        {formats.map((fmt: FormatMetadata) => (
+                          <SelectItem key={fmt.id} value={fmt.id}>
+                            <div className="flex w-full items-center justify-between">
+                              <span>{fmt.name}</span>
+                              <span className="ml-2 hidden text-xs text-muted-foreground sm:inline">
+                                {fmt.charSet}
+                              </span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </div>
+                    ) : null
+                  )}
+                </SelectContent>
+              </Select>
+
+              {/* Format Info - Collapsible */}
+              {showFormatInfo && currentMetadata && (
+                <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
+                  <div className="space-y-2">
+                    <p className="font-medium text-blue-900 dark:text-blue-100">
+                      {currentMetadata.name}
+                    </p>
+                    <p className="text-sm text-blue-800 dark:text-blue-200">
+                      {currentMetadata.description}
+                    </p>
+                    <div className="space-y-1 border-t border-blue-200 pt-2 text-xs text-blue-700 dark:border-blue-700 dark:text-blue-300">
+                      <p>
+                        <strong>Character Set:</strong> {currentMetadata.charSet}
+                      </p>
+                      {currentMetadata.fixedLength && (
+                        <p>
+                          <strong>Length:</strong> {currentMetadata.fixedLength}{' '}
+                          characters (fixed)
+                        </p>
+                      )}
+                      {currentMetadata.minLength && currentMetadata.maxLength && (
+                        <p>
+                          <strong>Length:</strong> {currentMetadata.minLength}-
+                          {currentMetadata.maxLength} characters
+                        </p>
+                      )}
+                      <p>
+                        <strong>Checksum:</strong>{' '}
+                        {currentMetadata.hasChecksum
+                          ? 'Auto-calculated'
+                          : 'Not required'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </Card>
 
-          {/* Customization Options - Under Result */}
-          <Card className="mt-6 p-4 sm:p-6">
+          {/* Input */}
+          <Card className="p-4 sm:p-6">
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="value" className="text-base font-semibold">
+                  Data to Encode
+                </Label>
+                <p className="mb-3 text-sm text-muted-foreground">
+                  Enter the data you want to encode in the barcode
+                </p>
+                <Input
+                  id="value"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  placeholder={`Enter ${currentMetadata?.name || 'barcode'} data...`}
+                  className={cn(
+                    'font-mono',
+                    !validation.valid && value && 'border-red-500'
+                  )}
+                />
+                {/* Character counter row */}
+                <div className="mt-2 flex items-center justify-between text-xs">
+                  {!validation.valid && value ? (
+                    <span className="text-destructive text-xs">{validation.error}</span>
+                  ) : (
+                    <span />
+                  )}
+                  {charLimit ? (
+                    charLimit.fixed ? (
+                      <span className={cn(
+                        'font-mono',
+                        value.length === charLimit.fixed ? 'text-green-600 dark:text-green-400' : 'text-muted-foreground'
+                      )}>
+                        {value.length} / {charLimit.fixed}
+                      </span>
+                    ) : (
+                      <span className={cn(
+                        'font-mono',
+                        value.length > (charLimit.max ?? Infinity) ? 'text-destructive' : 'text-muted-foreground'
+                      )}>
+                        {value.length} / {charLimit.max}
+                      </span>
+                    )
+                  ) : (
+                    <span className="font-mono text-muted-foreground">
+                      {value.length} chars
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Checksum Display */}
+              {checksum && validation.valid && checksum !== 'Auto-calculated' && (
+                <div className="text-sm">
+                  <span className="font-medium">Calculated Checksum:</span>{' '}
+                  <code className="rounded bg-muted px-2 py-1">
+                    {checksum}
+                  </code>
+                </div>
+              )}
+
+            </div>
+          </Card>
+
+          {/* Customization Options — always visible */}
+          <Card className="p-4 sm:p-6">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-base font-semibold">Customize Barcode</h3>
-              <Button
-                onClick={handleGenerate}
-                disabled={!value || !validation.valid || generating}
-                size="sm"
-                variant="default"
-              >
-                {generating ? (
-                  <>
-                    <RotateCw className="mr-2 h-4 w-4 animate-spin" />
-                    Updating...
-                  </>
-                ) : (
-                  <>
-                    <RotateCw className="mr-2 h-4 w-4" />
-                    Update
-                  </>
-                )}
-              </Button>
             </div>
             <Tabs
               value={activeTab}
@@ -597,11 +562,40 @@ export default function BarcodeGenerator() {
 
               {/* Color Options */}
               <TabsContent value="appearance" className="mt-4 space-y-4">
+                {/* Color presets */}
+                <div>
+                  <Label className="mb-2 block text-sm font-medium">Quick Presets</Label>
+                  <div className="flex gap-2">
+                    {([
+                      { key: 'bw', label: '■ B/W', title: 'Black on White' },
+                      { key: 'wb', label: '□ W/B', title: 'White on Black' },
+                      { key: 'transparent', label: '⬜ Transparent', title: 'Transparent background' },
+                    ] as const).map(({ key, label, title }) => (
+                      <button
+                        key={key}
+                        onClick={() => handlePreset(key)}
+                        title={title}
+                        className={cn(
+                          'rounded-md border px-3 py-1.5 text-xs font-medium transition-colors',
+                          activePreset === key
+                            ? 'border-primary bg-primary text-primary-foreground'
+                            : 'border-border bg-muted hover:bg-muted/80'
+                        )}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="flex items-center space-x-2">
                   <Switch
                     id="use-colors"
                     checked={useColors}
-                    onCheckedChange={setUseColors}
+                    onCheckedChange={(v) => {
+                      setUseColors(v);
+                      if (!v) setActivePreset(null);
+                    }}
                   />
                   <Label htmlFor="use-colors">Enable custom colors</Label>
                 </div>
@@ -615,8 +609,8 @@ export default function BarcodeGenerator() {
                       <Input
                         id="bar-color"
                         type="color"
-                        value={barColor}
-                        onChange={(e) => setBarColor(e.target.value)}
+                        value={barColor === 'transparent' ? '#000000' : barColor}
+                        onChange={(e) => { setBarColor(e.target.value); setActivePreset(null); }}
                         className="mt-2 h-10"
                       />
                     </div>
@@ -627,8 +621,8 @@ export default function BarcodeGenerator() {
                       <Input
                         id="bg-color"
                         type="color"
-                        value={backgroundColor}
-                        onChange={(e) => setBackgroundColor(e.target.value)}
+                        value={backgroundColor === 'transparent' ? '#ffffff' : backgroundColor}
+                        onChange={(e) => { setBackgroundColor(e.target.value); setActivePreset(null); }}
                         className="mt-2 h-10"
                       />
                     </div>
@@ -643,7 +637,7 @@ export default function BarcodeGenerator() {
                         id="text-color"
                         type="color"
                         value={textColor}
-                        onChange={(e) => setTextColor(e.target.value)}
+                        onChange={(e) => { setTextColor(e.target.value); setActivePreset(null); }}
                         className="mt-2 h-10"
                       />
                     </div>
@@ -715,7 +709,7 @@ export default function BarcodeGenerator() {
                         <SelectItem value="H">High (30%)</SelectItem>
                       </SelectContent>
                     </Select>
-                    <p className="mt-2 text-xs text-gray-500">
+                    <p className="mt-2 text-xs text-muted-foreground">
                       Higher levels allow the code to be read even if partially
                       damaged
                     </p>
@@ -725,9 +719,117 @@ export default function BarcodeGenerator() {
             </Tabs>
           </Card>
         </div>
-      )}
 
-      {/* Use Cases */}
+        {/* RIGHT COLUMN — sticky preview */}
+        <div className="lg:sticky lg:top-6 lg:self-start" ref={resultRef}>
+          <Card className="p-4 sm:p-6">
+            <div className="space-y-4">
+              {/* Header */}
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold">Preview</h3>
+                {generating && (
+                  <RotateCw className="h-4 w-4 animate-spin text-muted-foreground" />
+                )}
+              </div>
+
+              {/* Barcode preview — dark mode fix: no bg-white */}
+              <div
+                className={cn(
+                  'flex min-h-[160px] items-center justify-center overflow-x-auto rounded-lg border-2 border-dashed border-border p-4 sm:p-8',
+                  backgroundColor === 'transparent'
+                    ? '[background:repeating-conic-gradient(#80808020_0%_25%,transparent_0%_50%)_0_0/20px_20px]'
+                    : ''
+                )}
+                style={backgroundColor !== 'transparent' ? { backgroundColor } : {}}
+              >
+                {barcodeDataUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- data: URLs are not supported by next/image
+                  <img
+                    src={barcodeDataUrl}
+                    alt={`${currentMetadata?.name || 'Barcode'} - ${value}`}
+                    className="h-auto max-w-full"
+                  />
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    {value ? 'Generating...' : 'Enter data to generate barcode'}
+                  </p>
+                )}
+              </div>
+
+              {/* Error display */}
+              {error && (
+                <Alert variant="destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+
+              {/* Action buttons */}
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopy}
+                  disabled={!barcodeDataUrl}
+                  className="flex-1 sm:flex-none"
+                >
+                  {copied ? <Check className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
+                  {copied ? 'Copied!' : 'Copy'}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleDownload('png')}
+                  disabled={!barcodeDataUrl}
+                  className="flex-1 sm:flex-none"
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  PNG
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleDownloadSVG}
+                  disabled={!svgString}
+                  className="flex-1 sm:flex-none"
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  SVG
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handlePrint}
+                  disabled={!barcodeDataUrl}
+                  className="flex-1 sm:flex-none"
+                >
+                  <Printer className="mr-2 h-4 w-4" />
+                  Print
+                </Button>
+              </div>
+
+              {/* Barcode info */}
+              {barcodeDataUrl && (
+                <div className="space-y-1 text-sm text-muted-foreground">
+                  <p><strong>Format:</strong> {currentMetadata?.name}</p>
+                  <p className="break-all">
+                    <strong>Value:</strong>{' '}
+                    <code className="rounded bg-muted px-1">{value}</code>
+                  </p>
+                  {checksum && checksum !== 'Auto-calculated' && (
+                    <p>
+                      <strong>Checksum:</strong>{' '}
+                      <code className="rounded bg-muted px-1">{checksum}</code>
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </Card>
+        </div>
+      </div>
+
+      {/* Use Cases — full width below grid */}
       {currentMetadata && currentMetadata.useCases.length > 0 && (
         <Card className="border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20 sm:p-6">
           <div className="space-y-3">

@@ -254,6 +254,10 @@ private/
 *.secret
 auth.json
 
+# Local tooling (Claude Code / Playwright MCP)
+.superpowers/
+.playwright-mcp/
+
 # Local development overrides
 *.local.js
 *.local.ts

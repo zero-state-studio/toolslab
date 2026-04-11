@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -25,14 +25,22 @@ import {
   AlertCircle,
   CheckCircle2,
   Trash2,
-  RefreshCw,
   Settings,
   AlertTriangle,
+  Code2,
+  GitBranch,
+  FileJson,
 } from 'lucide-react';
 import { Textarea } from '@/components/ui/textarea';
+import { cn } from '@/lib/utils';
 import {
   jsObjectToJson,
+  detectInputType,
+  inferTypeScriptInterface,
+  extractJsonPaths,
   ConversionOptions,
+  type InputTypeResult,
+  type JsonPath,
 } from '@/lib/tools/js-object-to-json';
 import { useToolStore } from '@/lib/store/toolStore';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
@@ -88,6 +96,14 @@ export default function JsObjectToJson() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  // Feature 2: input type detection
+  const [inputType, setInputType] = useState<InputTypeResult>({ type: 'empty', label: '', description: '' });
+
+  // Feature 3 & 4: output view mode
+  const [outputMode, setOutputMode] = useState<'json' | 'typescript' | 'paths'>('json');
+  const [copiedPath, setCopiedPath] = useState<string | null>(null);
+  const [warningsExpanded, setWarningsExpanded] = useState(false);
 
   // Conversion options
   const [options, setOptions] = useState<ConversionOptions>({
@@ -178,6 +194,48 @@ export default function JsObjectToJson() {
     setWarnings([]);
   }, []);
 
+  // Feature 4: TypeScript interface derived from output
+  const tsInterface = useMemo(() => {
+    if (!output) return '';
+    try {
+      const parsed = JSON.parse(output);
+      return inferTypeScriptInterface(parsed, 'Root');
+    } catch {
+      return '';
+    }
+  }, [output]);
+
+  // Feature 3: Paths derived from output
+  const jsonPaths = useMemo<JsonPath[]>(() => {
+    if (!output) return [];
+    try {
+      const parsed = JSON.parse(output);
+      return extractJsonPaths(parsed);
+    } catch {
+      return [];
+    }
+  }, [output]);
+
+  const handleCopyPath = useCallback(async (path: string) => {
+    try {
+      await navigator.clipboard.writeText(path);
+      setCopiedPath(path);
+      setTimeout(() => setCopiedPath(null), 1500);
+    } catch {}
+  }, []);
+
+  // Copy active output mode content
+  const handleCopyActive = useCallback(async () => {
+    const text = outputMode === 'typescript' ? tsInterface : output;
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setError('Failed to copy to clipboard');
+    }
+  }, [outputMode, tsInterface, output]);
+
   // Load sample
   const handleLoadSample = useCallback((key: keyof typeof sampleData) => {
     setInput(sampleData[key]);
@@ -200,6 +258,26 @@ export default function JsObjectToJson() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleConvert]);
+
+  // Auto-convert with debounce
+  const handleConvertRef = useRef(handleConvert);
+  useEffect(() => {
+    handleConvertRef.current = handleConvert;
+  }, [handleConvert]);
+
+  useEffect(() => {
+    setInputType(detectInputType(input));
+    if (!input.trim()) {
+      setOutput('');
+      setError(null);
+      setWarnings([]);
+      return;
+    }
+    const timer = setTimeout(() => {
+      handleConvertRef.current();
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [input, options]);
 
   return (
     <div className="space-y-6">
@@ -419,11 +497,33 @@ export default function JsObjectToJson() {
         {/* Input Editor */}
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg">JavaScript Object</CardTitle>
-            <CardDescription>
-              Paste your JS object with unquoted keys, single quotes, trailing
-              commas, etc.
-            </CardDescription>
+            <div className="flex items-start justify-between gap-2">
+              <div>
+                <CardTitle className="text-lg">JavaScript Object</CardTitle>
+                <CardDescription>
+                  Paste your JS object with unquoted keys, single quotes,
+                  trailing commas, etc.
+                </CardDescription>
+              </div>
+              {inputType.label && (
+                <span
+                  className={cn(
+                    'shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium',
+                    inputType.type === 'valid-json' &&
+                      'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
+                    inputType.type === 'js-object' &&
+                      'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
+                    inputType.type === 'console-log' &&
+                      'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+                    inputType.type === 'unknown' &&
+                      'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300'
+                  )}
+                  title={inputType.description}
+                >
+                  {inputType.label}
+                </span>
+              )}
+            </div>
           </CardHeader>
           <CardContent>
             <Textarea
@@ -450,15 +550,21 @@ Example:
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg">JSON Output</CardTitle>
-                  <CardDescription>Valid JSON ready to use</CardDescription>
+                  <CardTitle className="text-lg">Output</CardTitle>
+                  <CardDescription>
+                    {isProcessing
+                      ? 'Converting...'
+                      : output
+                        ? 'Valid JSON ready to use'
+                        : 'Auto-converts as you type'}
+                  </CardDescription>
                 </div>
                 <div className="flex gap-2">
                   <Button
                     variant="outline"
                     size="sm"
-                    onClick={handleCopy}
-                    disabled={!output}
+                    onClick={handleCopyActive}
+                    disabled={!output || outputMode === 'paths'}
                   >
                     {copied ? (
                       <CheckCircle2 className="h-4 w-4 text-green-500" />
@@ -473,93 +579,170 @@ Example:
                     variant="outline"
                     size="sm"
                     onClick={handleDownload}
-                    disabled={!output}
+                    disabled={!output || outputMode !== 'json'}
                   >
                     <Download className="h-4 w-4" />
                     <span className="ml-1 hidden md:inline">Download</span>
                   </Button>
                 </div>
               </div>
+
+              {/* Output mode tabs */}
+              {output && (
+                <div className="mt-3 flex items-center gap-1 rounded-lg border p-1">
+                  <button
+                    onClick={() => setOutputMode('json')}
+                    className={cn(
+                      'flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors',
+                      outputMode === 'json'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:bg-muted'
+                    )}
+                  >
+                    <FileJson className="h-3.5 w-3.5" />
+                    JSON
+                  </button>
+                  <button
+                    onClick={() => setOutputMode('typescript')}
+                    className={cn(
+                      'flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors',
+                      outputMode === 'typescript'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:bg-muted'
+                    )}
+                  >
+                    <Code2 className="h-3.5 w-3.5" />
+                    TypeScript
+                  </button>
+                  <button
+                    onClick={() => setOutputMode('paths')}
+                    className={cn(
+                      'flex flex-1 items-center justify-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors',
+                      outputMode === 'paths'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-muted-foreground hover:bg-muted'
+                    )}
+                  >
+                    <GitBranch className="h-3.5 w-3.5" />
+                    Paths
+                    {jsonPaths.length > 0 && (
+                      <span className="ml-1 rounded-full bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
+                        {jsonPaths.length}
+                      </span>
+                    )}
+                  </button>
+
+                  {/* Warnings badge — inline, non-invasive */}
+                  {warnings.length > 0 && (
+                    <button
+                      onClick={() => setWarningsExpanded((p) => !p)}
+                      className="ml-1 flex shrink-0 items-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium text-amber-600 transition-colors hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-900/20"
+                      title="Show conversion warnings"
+                    >
+                      <AlertTriangle className="h-3.5 w-3.5" />
+                      {warnings.length}
+                    </button>
+                  )}
+                </div>
+              )}
             </CardHeader>
-            <CardContent>
-              <Textarea
-                value={output}
-                readOnly
-                placeholder="JSON output will appear here..."
-                className="min-h-[400px] font-mono text-sm"
-                rows={20}
-              />
+            <CardContent className="space-y-3">
+              {error && (
+                <Alert variant="destructive">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+              {warnings.length > 0 && warningsExpanded && (
+                <div className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 dark:border-amber-800 dark:bg-amber-900/10">
+                  <ul className="space-y-0.5">
+                    {warnings.map((warning, index) => (
+                      <li
+                        key={index}
+                        className="text-xs text-amber-700 dark:text-amber-400"
+                      >
+                        {warning}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* JSON output */}
+              {outputMode === 'json' && (
+                <Textarea
+                  value={output}
+                  readOnly
+                  placeholder="JSON output will appear here..."
+                  className="min-h-[400px] font-mono text-sm"
+                  rows={20}
+                />
+              )}
+
+              {/* TypeScript interface */}
+              {outputMode === 'typescript' && (
+                <Textarea
+                  value={tsInterface}
+                  readOnly
+                  placeholder="TypeScript interface will appear here..."
+                  className="min-h-[400px] font-mono text-sm"
+                  rows={20}
+                />
+              )}
+
+              {/* Path explorer */}
+              {outputMode === 'paths' && (
+                <div className="min-h-[400px] overflow-auto rounded-md border font-mono text-sm">
+                  <div className="sticky top-0 border-b bg-muted/60 px-3 py-2 text-xs text-muted-foreground backdrop-blur">
+                    Click any path to copy it to clipboard
+                  </div>
+                  <div className="divide-y">
+                    {jsonPaths.map((item) => (
+                      <button
+                        key={item.path}
+                        onClick={() => handleCopyPath(item.path)}
+                        className="group flex w-full items-center gap-3 px-3 py-2 text-left transition-colors hover:bg-muted/50"
+                      >
+                        <span
+                          className={cn(
+                            'shrink-0 rounded px-1.5 py-0.5 text-[10px] font-medium',
+                            item.type === 'string' &&
+                              'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
+                            item.type === 'number' &&
+                              'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
+                            item.type === 'boolean' &&
+                              'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400',
+                            item.type === 'object' &&
+                              'bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400',
+                            item.type === 'array' &&
+                              'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/30 dark:text-cyan-400',
+                            (item.type === 'null' ||
+                              item.value === null) &&
+                              'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-400'
+                          )}
+                        >
+                          {item.type}
+                        </span>
+                        <span className="flex-1 text-foreground">
+                          {item.path}
+                        </span>
+                        <span className="max-w-[120px] truncate text-xs text-muted-foreground">
+                          {item.type !== 'object' && item.type !== 'array'
+                            ? JSON.stringify(item.value)
+                            : item.value}
+                        </span>
+                        <span className="shrink-0 text-xs text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                          {copiedPath === item.path ? '✓ copied' : 'copy'}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
       </div>
-
-      {/* Convert Button */}
-      <div className="flex justify-center">
-        <Button
-          size="lg"
-          onClick={handleConvert}
-          disabled={!input || isProcessing}
-          className="min-w-[200px]"
-        >
-          {isProcessing ? (
-            <>
-              <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-              Converting...
-            </>
-          ) : (
-            'Convert to JSON'
-          )}
-        </Button>
-      </div>
-
-      {/* Keyboard shortcut hint */}
-      <p className="text-center text-sm text-gray-500">
-        Press{' '}
-        <kbd className="rounded bg-gray-100 px-1.5 py-0.5 text-xs dark:bg-gray-800">
-          Ctrl
-        </kbd>{' '}
-        +{' '}
-        <kbd className="rounded bg-gray-100 px-1.5 py-0.5 text-xs dark:bg-gray-800">
-          Enter
-        </kbd>{' '}
-        to convert
-      </p>
-
-      {/* Alerts */}
-      {error && (
-        <Alert variant="destructive">
-          <AlertCircle className="h-4 w-4" />
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
-
-      {warnings.length > 0 && (
-        <Alert className="border-yellow-200 bg-yellow-50 text-yellow-800 dark:border-yellow-800 dark:bg-yellow-900/10 dark:text-yellow-400">
-          <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
-          <AlertDescription>
-            <div className="space-y-1">
-              <strong>Conversion warnings:</strong>
-              <ul className="ml-4 list-disc">
-                {warnings.map((warning, index) => (
-                  <li key={index} className="text-sm">
-                    {warning}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </AlertDescription>
-        </Alert>
-      )}
-
-      {output && !error && (
-        <Alert className="border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-900/10 dark:text-green-400">
-          <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
-          <AlertDescription>
-            Conversion successful! Your JSON is ready to use.
-          </AlertDescription>
-        </Alert>
-      )}
     </div>
   );
 }

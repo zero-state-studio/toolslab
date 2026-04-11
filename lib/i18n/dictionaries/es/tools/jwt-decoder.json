@@ -77,9 +77,9 @@
     ]
   },
   "meta": {
-    "title": "Decodificador JWT - Herramienta Online Gratuita",
-    "description": "Decodifica y valida JSON Web Tokens (JWT) en línea. Inspecciona encabezado, carga útil y firma. Herramienta decodificadora JWT gratuita."
+    "title": "Decodificador JWT y Verificador de Firma – Herramienta Online Gratuita",
+    "description": "Decodifica tokens JWT y verifica firmas en el navegador — HS256, RS256, ES256 y más. Cuenta regresiva de expiración en tiempo real. Gratis, sin registro, sin datos enviados al servidor."
   },
-  "tagline": "Decode and analyze JWT tokens with security validation instantly",
-  "pageDescription": "Professional JWT decoder with claims analysis, security validation, and expiration checking. Decode JSON Web Tokens safely with detailed header, payload, and signature information. Perfect for debugging authentication issues, analyzing token claims, and validating JWT security. Supports all JWT algorithms with real-time security recommendations and time-based claim analysis."
+  "tagline": "Decodifica tokens JWT, verifica firmas en el navegador y rastrea la expiración",
+  "pageDescription": "Decodificador JWT gratuito que decodifica tokens y verifica firmas completamente en tu navegador — sin servidor, sin registro. Compatible con HS256, RS256, ES256, PS256 y todos los algoritmos JWT principales. Incluye cuenta regresiva de expiración en tiempo real, análisis de seguridad e inspección de claims. Ideal para depurar autenticación y validar integridad de tokens."
 }
