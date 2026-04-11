@@ -7,55 +7,52 @@
     "steps": [
       {
         "title": "Paste your JWT token",
-        "description": "Copy and paste your JWT token into the input area. The tool accepts any format and will process it immediately."
+        "description": "Copy your JWT from an API response, browser DevTools, or Authorization header and paste it into the input. The decoder instantly splits it into header, payload, and signature sections."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Inspect the decoded claims",
+        "description": "Browse the decoded header (algorithm, token type) and payload (user ID, roles, issued-at, expiration) in the structured panel. Timestamps display in both Unix and human-readable format."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will encode/decode your input and display the result with proper formatting and validation."
+        "title": "Track the live expiration countdown",
+        "description": "The color-coded bar shows exactly how long until the token expires: green (valid), yellow (expiring in less than 5 minutes), red (already expired)."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the processed output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Verify the signature (optional)",
+        "description": "Expand the Verify Signature section, paste your secret (HMAC) or PEM public key (RSA/EC), and click Verify to cryptographically confirm the token is untampered — entirely in your browser, nothing sent to any server."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
+      "Instant decoding of any JWT into header, payload, and signature",
+      "Live expiration countdown with color-coded status — valid, expiring, or expired",
+      "In-browser signature verification: HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, ES512, PS256",
+      "Zero data leakage — no token or key ever leaves your browser",
+      "Human-readable timestamps for exp, iat, nbf and all date claims",
+      "Header inspection — alg, kid, typ and any custom fields",
       "Works offline after initial page load"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Debug 401 Unauthorized errors by checking if the token has expired or contains wrong claims",
+      "Verify a new JWT library produces correctly-signed tokens during development",
+      "Inspect ID tokens from OAuth2/OIDC providers — Auth0, Okta, Cognito, Google",
+      "Confirm the algorithm in the header matches what your server expects",
+      "Validate that sensitive data is not accidentally stored in the JWT payload",
+      "Test JWT generation scripts and verify signature correctness with a known secret",
+      "Share decoded token content with teammates for debugging without exposing secret keys"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Copy tokens directly from browser DevTools — Network tab, Authorization header",
+      "For RS256/ES256, paste only the public key — never share your private key with any online tool",
+      "The kid (key ID) field in the header tells you which key from your JWKS endpoint signed the token",
+      "Test with a deliberately invalid token first to confirm the verifier correctly rejects it",
+      "Monitor the live countdown during load tests to catch short-lived tokens expiring mid-run"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "Invalid JWT format — the token must have exactly three dot-separated parts: header.payload.signature",
+      "Signature shows INVALID for HS256 — check the secret is the raw string, not base64-encoded",
+      "RS256/ES256 verify fails — ensure the public key is in PEM format and includes the BEGIN/END header lines",
+      "Claims show unexpected values — the payload is base64url-encoded, not encrypted; anyone with the token can decode it",
+      "Signature verification uses the Web Crypto API, available in all modern browsers (Chrome, Firefox, Edge, Safari)"
     ],
     "keyboardShortcuts": [
       {
