@@ -1,8 +1,8 @@
 {
   "title": "Decodificatore JWT",
   "description": "Decodifica e valida JSON Web Token",
-  "tagline": "Decodifica e analizza token JWT con validazione sicurezza istantaneamente",
-  "pageDescription": "Decodificatore JWT professionale con analisi claims, validazione sicurezza e controllo scadenza. Decodifica JSON Web Token in modo sicuro con informazioni dettagliate su header, payload e firma. Perfetto per debug problemi autenticazione, analisi claims token e validazione sicurezza JWT. Supporta tutti gli algoritmi JWT con raccomandazioni sicurezza in tempo reale e analisi claims temporali.",
+  "tagline": "Decodifica token JWT, verifica firme nel browser e controlla la scadenza",
+  "pageDescription": "Decodificatore JWT gratuito che decodifica token e verifica firme interamente nel browser — nessun server, nessuna registrazione. Supporta HS256, RS256, ES256, PS256 e tutti i principali algoritmi JWT. Include countdown scadenza in tempo reale, analisi sicurezza e ispezione claims. Perfetto per debug autenticazione e verifica integrità token.",
   "placeholder": "Incolla qui il tuo token JWT...",
   "instructions": {
     "title": "Come usare Decodificatore JWT",
@@ -79,7 +79,7 @@
     ]
   },
   "meta": {
-    "title": "Decodificatore JWT - Strumento Online Gratuito",
-    "description": "Decodifica e valida JSON Web Token (JWT) online. Ispeziona header, payload e firma. Strumento decodificatore JWT gratuito."
+    "title": "Decodificatore JWT e Verifica Firma – Strumento Online Gratuito",
+    "description": "Decodifica token JWT e verifica le firme nel browser — HS256, RS256, ES256 e altri. Countdown scadenza in tempo reale. Gratuito, senza registrazione, nessun dato inviato al server."
   }
 }
