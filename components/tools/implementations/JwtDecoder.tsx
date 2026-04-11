@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import {
   Key,
   Copy,
@@ -62,6 +62,55 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
   >();
   const { downloadText, downloadJSON } = useDownload();
   const { trackUse, trackCustom, trackError } = useToolTracking('jwt-decoder');
+
+  const [countdown, setCountdown] = useState<{
+    text: string;
+    color: 'green' | 'yellow' | 'red' | 'gray';
+  } | null>(null);
+
+  useEffect(() => {
+    const exp = result?.success ? result?.payload?.exp : undefined;
+    if (!exp) {
+      setCountdown(null);
+      return;
+    }
+
+    const computeCountdown = () => {
+      const now = Math.floor(Date.now() / 1000);
+      const diff = exp - now;
+
+      const formatDuration = (seconds: number): string => {
+        const d = Math.floor(seconds / 86400);
+        const h = Math.floor((seconds % 86400) / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = seconds % 60;
+        const parts: string[] = [];
+        if (d > 0) parts.push(`${d}d`);
+        if (h > 0) parts.push(`${h}h`);
+        if (m > 0) parts.push(`${m}m`);
+        parts.push(`${s}s`);
+        return parts.join(' ');
+      };
+
+      if (diff <= 0) {
+        setCountdown({
+          text: `Token scaduto — ${formatDuration(Math.abs(diff))} fa`,
+          color: 'gray',
+        });
+      } else {
+        const color: 'green' | 'yellow' | 'red' =
+          diff > 3600 ? 'green' : diff > 600 ? 'yellow' : 'red';
+        setCountdown({
+          text: `Token valido — scade tra ${formatDuration(diff)}`,
+          color,
+        });
+      }
+    };
+
+    computeCountdown();
+    const id = setInterval(computeCountdown, 1000);
+    return () => clearInterval(id);
+  }, [result]);
 
   // Process JWT token
   const handleDecode = useCallback(() => {
@@ -405,6 +454,24 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             </button>
           )}
         </div>
+
+        {/* Live Expiration Countdown */}
+        {result?.success && countdown && (
+          <div
+            className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium ${
+              countdown.color === 'green'
+                ? 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
+                : countdown.color === 'yellow'
+                  ? 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400'
+                  : countdown.color === 'red'
+                    ? 'bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400'
+                    : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+            }`}
+          >
+            <Clock className="h-4 w-4 flex-shrink-0" />
+            <span>{countdown.text}</span>
+          </div>
+        )}
 
         {/* Error Display */}
         {error && (
