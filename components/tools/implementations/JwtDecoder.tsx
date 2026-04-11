@@ -46,6 +46,8 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     header: true,
     payload: true,
     signature: true,
+    timeInfo: true,
+    verify: false,
     security: false,
     metadata: false,
   });
@@ -645,45 +647,53 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
 
             {/* Time Information */}
             {result.timeInfo && Object.keys(result.timeInfo).length > 0 && (
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700/30">
-                <div className="mb-3 flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-                  <h4 className="font-medium text-gray-900 dark:text-white">
-                    Time Information
-                  </h4>
-                </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  {result.timeInfo.issuedAt && (
-                    <div>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Issued At:
-                      </span>
-                      {formatTimeDisplay(
-                        result.timeInfo.issuedAt,
-                        result.timeInfo.age
+              <div className="rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700/30">
+                <button
+                  onClick={() => toggleSection('timeInfo')}
+                  className="flex w-full items-center justify-between p-4 text-left"
+                >
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      Time Information
+                    </span>
+                  </div>
+                  {expandedSections.timeInfo ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
+                </button>
+                {expandedSections.timeInfo && (
+                  <div className="border-t border-gray-200 p-4 dark:border-gray-600">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                      {result.timeInfo.issuedAt && (
+                        <div>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Issued At:
+                          </span>
+                          {formatTimeDisplay(result.timeInfo.issuedAt, result.timeInfo.age)}
+                        </div>
+                      )}
+                      {result.timeInfo.expiresAt && (
+                        <div>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Expires At:
+                          </span>
+                          {formatTimeDisplay(result.timeInfo.expiresAt, result.timeInfo.timeToExpiry)}
+                        </div>
+                      )}
+                      {result.timeInfo.notBefore && (
+                        <div>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Not Before:
+                          </span>
+                          {formatTimeDisplay(result.timeInfo.notBefore, undefined)}
+                        </div>
                       )}
                     </div>
-                  )}
-                  {result.timeInfo.expiresAt && (
-                    <div>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Expires At:
-                      </span>
-                      {formatTimeDisplay(
-                        result.timeInfo.expiresAt,
-                        result.timeInfo.timeToExpiry
-                      )}
-                    </div>
-                  )}
-                  {result.timeInfo.notBefore && (
-                    <div>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Not Before:
-                      </span>
-                      {formatTimeDisplay(result.timeInfo.notBefore, undefined)}
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             )}
 
