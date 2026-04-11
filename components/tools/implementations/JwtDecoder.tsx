@@ -45,6 +45,31 @@ function formatDuration(seconds: number): string {
   return parts.join(' ');
 }
 
+function pemToDer(pem: string): ArrayBuffer {
+  const base64 = pem
+    .replace(/-----BEGIN [^-]+-----/, '')
+    .replace(/-----END [^-]+-----/, '')
+    .replace(/\s/g, '');
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
+
+function base64UrlToBytes(b64url: string): Uint8Array<ArrayBuffer> {
+  const b64 = b64url.replace(/-/g, '+').replace(/_/g, '/');
+  const padded = b64.padEnd(b64.length + ((4 - (b64.length % 4)) % 4), '=');
+  const binary = atob(padded);
+  const buf = new ArrayBuffer(binary.length);
+  const bytes = new Uint8Array(buf);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
+}
+
 export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
   const [input, setInput] = useState('');
   const [result, setResult] = useState<JwtDecodeResult | null>(null);
@@ -81,6 +106,10 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     color: 'green' | 'yellow' | 'red' | 'gray';
   } | null>(null);
 
+  const [verifyKey, setVerifyKey] = useState('');
+  const [verifyResult, setVerifyResult] = useState<'valid' | 'invalid' | 'error' | null>(null);
+  const [verifying, setVerifying] = useState(false);
+
   useEffect(() => {
     const exp = result?.success ? result?.payload?.exp : undefined;
     if (!exp) {
@@ -110,6 +139,11 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     computeCountdown();
     const id = setInterval(computeCountdown, 1000);
     return () => clearInterval(id);
+  }, [result]);
+
+  useEffect(() => {
+    setVerifyResult(null);
+    setVerifyKey('');
   }, [result]);
 
   // Process JWT token
@@ -223,6 +257,91 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
       downloadJSON(data, 'decoded-jwt.json');
     }
   }, [result, downloadJSON]);
+
+  const handleVerify = useCallback(async () => {
+    if (!result?.success || !result.header?.alg || !result.signature || !verifyKey.trim()) return;
+
+    setVerifying(true);
+    setVerifyResult(null);
+
+    try {
+      const alg = result.header.alg as string;
+      const parts = input.trim().split('.');
+      if (parts.length !== 3) { setVerifyResult('error'); return; }
+
+      const [headerB64, payloadB64, sigB64] = parts;
+      const signedData = new TextEncoder().encode(`${headerB64}.${payloadB64}`);
+      const sigBytes = base64UrlToBytes(sigB64);
+
+      let cryptoKey: CryptoKey;
+      let valid = false;
+
+      if (/^HS(256|384|512)$/.test(alg)) {
+        const bits = alg.replace('HS', '');
+        cryptoKey = await crypto.subtle.importKey(
+          'raw',
+          new TextEncoder().encode(verifyKey),
+          { name: 'HMAC', hash: `SHA-${bits}` },
+          false,
+          ['verify']
+        );
+        valid = await crypto.subtle.verify('HMAC', cryptoKey, sigBytes, signedData);
+
+      } else if (/^RS(256|384|512)$/.test(alg)) {
+        const bits = alg.replace('RS', '');
+        cryptoKey = await crypto.subtle.importKey(
+          'spki',
+          pemToDer(verifyKey),
+          { name: 'RSASSA-PKCS1-v1_5', hash: `SHA-${bits}` },
+          false,
+          ['verify']
+        );
+        valid = await crypto.subtle.verify('RSASSA-PKCS1-v1_5', cryptoKey, sigBytes, signedData);
+
+      } else if (/^ES(256|384|512)$/.test(alg)) {
+        const bits = alg.replace('ES', '');
+        const curveMap: Record<string, string> = { '256': 'P-256', '384': 'P-384', '512': 'P-521' };
+        cryptoKey = await crypto.subtle.importKey(
+          'spki',
+          pemToDer(verifyKey),
+          { name: 'ECDSA', namedCurve: curveMap[bits] },
+          false,
+          ['verify']
+        );
+        valid = await crypto.subtle.verify(
+          { name: 'ECDSA', hash: { name: `SHA-${bits}` } },
+          cryptoKey,
+          sigBytes,
+          signedData
+        );
+
+      } else if (/^PS(256|384|512)$/.test(alg)) {
+        const bits = alg.replace('PS', '');
+        cryptoKey = await crypto.subtle.importKey(
+          'spki',
+          pemToDer(verifyKey),
+          { name: 'RSA-PSS', hash: `SHA-${bits}` },
+          false,
+          ['verify']
+        );
+        valid = await crypto.subtle.verify(
+          { name: 'RSA-PSS', saltLength: parseInt(bits) / 8 },
+          cryptoKey,
+          sigBytes,
+          signedData
+        );
+      } else {
+        setVerifyResult('error');
+        return;
+      }
+
+      setVerifyResult(valid ? 'valid' : 'invalid');
+    } catch {
+      setVerifyResult('error');
+    } finally {
+      setVerifying(false);
+    }
+  }, [result, input, verifyKey]);
 
   // Get status color based on token validity
   const getStatusColor = () => {
@@ -712,6 +831,169 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
               )}
             </div>
 
+            {/* Verify Signature */}
+            <div className="rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700/30">
+              <button
+                onClick={() => toggleSection('verify')}
+                className="flex w-full items-center justify-between p-4 text-left"
+              >
+                <div className="flex items-center gap-2">
+                  <Key className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    Verify Signature
+                  </span>
+                  {verifyResult === 'valid' && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                      <Check className="h-3 w-3" />
+                      Valid
+                    </span>
+                  )}
+                  {verifyResult === 'invalid' && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900/30 dark:text-red-300">
+                      <AlertTriangle className="h-3 w-3" />
+                      Invalid
+                    </span>
+                  )}
+                </div>
+                {expandedSections.verify ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
+
+              {expandedSections.verify && (
+                <div className="space-y-4 border-t border-gray-200 p-4 dark:border-gray-600">
+                  {/* Privacy notice — always visible */}
+                  <div className="flex items-start gap-2 rounded-lg bg-green-50 p-3 dark:bg-green-950/30">
+                    <Shield className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
+                    <p className="text-sm text-green-800 dark:text-green-200">
+                      🔒 <strong>La tua chiave non lascia mai questo browser.</strong> La verifica
+                      avviene interamente in locale tramite la WebCrypto API nativa. Nessun dato
+                      viene inviato a server.{' '}
+                      <a
+                        href="https://github.com/hellotoolslab/toolslab"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline hover:no-underline"
+                      >
+                        Codice sorgente su GitHub ↗
+                      </a>
+                    </p>
+                  </div>
+
+                  {/* Adaptive key input */}
+                  {(() => {
+                    const alg = result.header?.alg ?? '';
+                    if (alg === 'none') {
+                      return (
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          Token non firmato — nessuna verifica possibile.
+                        </p>
+                      );
+                    }
+                    const isHmac = /^HS(256|384|512)$/.test(alg);
+                    const isAsymmetric = /^(RS|ES|PS)(256|384|512)$/.test(alg);
+                    if (!isHmac && !isAsymmetric) {
+                      return (
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          Algoritmo{' '}
+                          <code className="rounded bg-gray-100 px-1 font-mono dark:bg-gray-700">
+                            {alg}
+                          </code>{' '}
+                          non supportato per la verifica.
+                        </p>
+                      );
+                    }
+                    return (
+                      <div className="space-y-3">
+                        <div>
+                          <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {isHmac ? `Secret Key (${alg})` : `Public Key — PEM (${alg})`}
+                          </label>
+                          {isHmac ? (
+                            <input
+                              type="password"
+                              value={verifyKey}
+                              onChange={(e) => {
+                                setVerifyKey(e.target.value);
+                                setVerifyResult(null);
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') handleVerify();
+                              }}
+                              placeholder="Enter HMAC secret key..."
+                              className="w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                            />
+                          ) : (
+                            <textarea
+                              value={verifyKey}
+                              onChange={(e) => {
+                                setVerifyKey(e.target.value);
+                                setVerifyResult(null);
+                              }}
+                              placeholder={`-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----`}
+                              rows={5}
+                              className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                            />
+                          )}
+                        </div>
+
+                        <button
+                          onClick={handleVerify}
+                          disabled={!verifyKey.trim() || verifying}
+                          className="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-purple-700 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+                        >
+                          {verifying ? (
+                            <>
+                              <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                              Verifying...
+                            </>
+                          ) : (
+                            <>
+                              <Shield className="h-4 w-4" />
+                              Verify
+                            </>
+                          )}
+                        </button>
+
+                        {verifyResult && (
+                          <div
+                            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium ${
+                              verifyResult === 'valid'
+                                ? 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
+                                : verifyResult === 'invalid'
+                                  ? 'bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400'
+                                  : 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400'
+                            }`}
+                          >
+                            {verifyResult === 'valid' && (
+                              <>
+                                <Check className="h-4 w-4" />
+                                Firma valida
+                              </>
+                            )}
+                            {verifyResult === 'invalid' && (
+                              <>
+                                <AlertTriangle className="h-4 w-4" />
+                                Firma non valida
+                              </>
+                            )}
+                            {verifyResult === 'error' && (
+                              <>
+                                <AlertTriangle className="h-4 w-4" />
+                                Chiave non valida o formato errato
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
+              )}
+            </div>
+
             {/* Time Information */}
             {result.timeInfo && Object.keys(result.timeInfo).length > 0 && (
               <div className="rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700/30">
@@ -927,7 +1209,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
               </p>
               <div className="space-y-1 text-sm text-amber-800 dark:text-amber-200">
                 <p>
-                  • This tool decodes JWT tokens but does not verify signatures
+                  • This tool decodes JWT tokens and can verify signatures in-browser
                 </p>
                 <p>
                   • Signature verification requires the secret key or public key
