@@ -261,13 +261,17 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
   const handleVerify = useCallback(async () => {
     if (!result?.success || !result.header?.alg || !result.signature || !verifyKey.trim()) return;
 
+    const alg = result.header.alg as string;
+    const parts = input.trim().split('.');
+    if (parts.length !== 3) { setVerifyResult('error'); return; }
+
+    const isKnownAlg = /^(HS|RS|ES|PS)(256|384|512)$/.test(alg);
+    if (!isKnownAlg) { setVerifyResult('error'); return; }
+
     setVerifying(true);
     setVerifyResult(null);
 
     try {
-      const alg = result.header.alg as string;
-      const parts = input.trim().split('.');
-      if (parts.length !== 3) { setVerifyResult('error'); return; }
 
       const [headerB64, payloadB64, sigB64] = parts;
       const signedData = new TextEncoder().encode(`${headerB64}.${payloadB64}`);
@@ -330,9 +334,6 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
           sigBytes,
           signedData
         );
-      } else {
-        setVerifyResult('error');
-        return;
       }
 
       setVerifyResult(valid ? 'valid' : 'invalid');
@@ -920,7 +921,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                                 setVerifyResult(null);
                               }}
                               onKeyDown={(e) => {
-                                if (e.key === 'Enter') handleVerify();
+                                if (e.key === 'Enter' && !verifying) handleVerify();
                               }}
                               placeholder="Enter HMAC secret key..."
                               className="w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
