@@ -32,6 +32,19 @@ import {
 
 interface JwtDecoderProps extends BaseToolProps {}
 
+function formatDuration(seconds: number): string {
+  const d = Math.floor(seconds / 86400);
+  const h = Math.floor((seconds % 86400) / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  const parts: string[] = [];
+  if (d > 0) parts.push(`${d}d`);
+  if (h > 0) parts.push(`${h}h`);
+  if (m > 0) parts.push(`${m}m`);
+  parts.push(`${s}s`);
+  return parts.join(' ');
+}
+
 export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
   const [input, setInput] = useState('');
   const [result, setResult] = useState<JwtDecodeResult | null>(null);
@@ -78,19 +91,6 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     const computeCountdown = () => {
       const now = Math.floor(Date.now() / 1000);
       const diff = exp - now;
-
-      const formatDuration = (seconds: number): string => {
-        const d = Math.floor(seconds / 86400);
-        const h = Math.floor((seconds % 86400) / 3600);
-        const m = Math.floor((seconds % 3600) / 60);
-        const s = seconds % 60;
-        const parts: string[] = [];
-        if (d > 0) parts.push(`${d}d`);
-        if (h > 0) parts.push(`${h}h`);
-        if (m > 0) parts.push(`${m}m`);
-        parts.push(`${s}s`);
-        return parts.join(' ');
-      };
 
       if (diff <= 0) {
         setCountdown({
