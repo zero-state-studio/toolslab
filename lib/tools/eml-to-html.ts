@@ -267,6 +267,12 @@ export interface ConversionOptions {
   maxAttachmentSize?: number; // in bytes
 }
 
+export interface ExtractedLink {
+  url: string;
+  text: string;
+  isTracking: boolean;
+}
+
 export interface ConversionResult {
   success: boolean;
   html?: string;
@@ -276,6 +282,7 @@ export interface ConversionResult {
   parsedEmail?: ParsedEmail;
   error?: string;
   warnings?: string[];
+  links?: ExtractedLink[];
 }
 
 /**
@@ -334,9 +341,13 @@ function decodeQuotedPrintable(text: string): string {
       return decoded;
     }
   } catch (e) {
+    _decodeWarnings.push('Quoted-printable decoding failed — original text preserved');
     return text;
   }
 }
+
+// Track decode warnings globally per conversion
+let _decodeWarnings: string[] = [];
 
 /**
  * Decodes base64 content
@@ -349,6 +360,7 @@ function decodeBase64(text: string): string {
     const decoded = atob(cleaned);
     return decodeURIComponent(escape(decoded));
   } catch (e) {
+    _decodeWarnings.push('Base64 decoding failed for a content section — original text preserved');
     return text;
   }
 }
@@ -606,10 +618,19 @@ function extractAttachments(parts: EmailPart[]): {
     );
     if (contentType.name) filename = contentType.name;
 
+    // Calculate real size (base64 is ~33% larger than actual)
+    let realSize = part.content.length;
+    const enc = (part.encoding || '').toLowerCase();
+    if (enc === 'base64') {
+      const cleaned = part.content.replace(/\s/g, '');
+      const padding = (cleaned.match(/=+$/) || [''])[0].length;
+      realSize = Math.floor((cleaned.length * 3) / 4) - padding;
+    }
+
     const attachment: EmailAttachment = {
       filename,
       contentType: part.contentType,
-      size: part.content.length,
+      size: realSize,
       encoding: part.encoding || '7bit',
       content: part.content,
       contentId: contentId?.replace(/^<|>$/g, ''),
@@ -984,6 +1005,36 @@ export function generateHeadersHtml(parsedEmail: ParsedEmail): string {
 }
 
 /**
+ * Extracts all links from HTML content
+ */
+export function extractLinks(html: string): ExtractedLink[] {
+  if (!html) return [];
+
+  const links: ExtractedLink[] = [];
+  const linkRegex = /<a\s[^>]*href\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  const trackingPatterns = [
+    /click\./i, /track\./i, /redirect\./i, /link\./i,
+    /utm_/i, /\?ref=/i, /\/click\?/i, /\/track\?/i,
+    /mailchimp\.com/i, /sendgrid\.net/i, /list-manage\.com/i,
+  ];
+
+  let match;
+  while ((match = linkRegex.exec(html)) !== null) {
+    const url = match[1];
+    const rawText = match[2].replace(/<[^>]*>/g, '').trim();
+    const text = rawText || url;
+
+    // Skip mailto, tel, cid
+    if (/^(mailto:|tel:|cid:|#)/i.test(url)) continue;
+
+    const isTracking = trackingPatterns.some((p) => p.test(url));
+    links.push({ url, text, isTracking });
+  }
+
+  return links;
+}
+
+/**
  * Main conversion function
  */
 export function convertEmlToHtml(
@@ -991,6 +1042,9 @@ export function convertEmlToHtml(
   options: ConversionOptions = {}
 ): ConversionResult {
   const warnings: string[] = [];
+
+  // Reset decode warnings
+  _decodeWarnings = [];
 
   // Validate input
   if (!emlContent || !emlContent.trim()) {
@@ -1017,6 +1071,9 @@ export function convertEmlToHtml(
   const rawView = emlContent;
   const sourceView = parsedEmail.htmlBody || '';
 
+  // Extract links from HTML
+  const links = extractLinks(html);
+
   // Add warnings
   if (parsedEmail.hasTracking) {
     warnings.push('This email contains tracking pixels');
@@ -1036,6 +1093,9 @@ export function convertEmlToHtml(
     warnings.push(`${largeAttachments.length} attachment(s) exceed size limit`);
   }
 
+  // Add decode warnings
+  warnings.push(..._decodeWarnings);
+
   return {
     success: true,
     html,
@@ -1044,6 +1104,7 @@ export function convertEmlToHtml(
     sourceView,
     parsedEmail,
     warnings: warnings.length > 0 ? warnings : undefined,
+    links: links.length > 0 ? links : undefined,
   };
 }
 
