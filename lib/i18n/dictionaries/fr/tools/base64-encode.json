@@ -1,61 +1,61 @@
 {
-  "title": "Décodeur Base64",
-  "description": "Décodez les chaînes Base64 en texte ou données binaires",
-  "placeholder": "Entrez la chaîne Base64 à décoder...",
+  "title": "Encodeur et Décodeur Base64",
+  "description": "Encodez du texte ou des fichiers en Base64, ou décodez des chaînes Base64 en texte et données binaires",
+  "placeholder": "Entrez le texte à encoder, ou une chaîne Base64 à décoder...",
   "instructions": {
-    "title": "Comment utiliser Décodeur Base64",
+    "title": "Comment utiliser l'Encodeur et Décodeur Base64",
     "steps": [
       {
-        "title": "Collez votre chaîne Base64",
-        "description": "Copiez et collez votre chaîne Base64 dans la zone de saisie. L'outil accepte tout format et le traitera immédiatement."
+        "title": "Entrez le texte ou le fichier",
+        "description": "Collez le texte à encoder en Base64, ou une chaîne Base64 à décoder. Vous pouvez aussi glisser-déposer un fichier directement dans la zone de saisie."
       },
       {
-        "title": "Configurez les options (si disponible)",
-        "description": "Ajustez les options de formatage, l'indentation ou d'autres paramètres pour correspondre à vos préférences."
+        "title": "Choisissez le mode",
+        "description": "Sélectionnez si vous souhaitez encoder (texte → Base64) ou décoder (Base64 → texte/fichier). L'outil détecte automatiquement le format dans la plupart des cas."
       },
       {
-        "title": "Examinez la sortie",
-        "description": "L'outil va encoder votre saisie et afficher le résultat avec formatage et validation appropriés."
+        "title": "Vérifiez le résultat",
+        "description": "Le résultat est généré instantanément. Vérifiez que l'encodage ou le décodage est correct avant de l'utiliser."
       },
       {
-        "title": "Copiez ou téléchargez le résultat",
-        "description": "Copiez le résultat traité dans votre presse-papiers pour utilisation immédiate ou téléchargez-le en tant que fichier."
+        "title": "Copiez ou téléchargez",
+        "description": "Copiez la chaîne Base64 dans le presse-papiers ou téléchargez le fichier décodé directement sur votre appareil."
       }
     ],
     "features": [
-      "Traitement en temps réel avec résultats instantanés",
-      "Aucune limite de taille pour le traitement basé sur navigateur",
-      "Complètement sécurisé - tout le traitement se fait dans votre navigateur",
-      "Aucun téléchargement de données ou stockage serveur",
-      "Copier dans le presse-papiers en un clic",
-      "Télécharger les résultats sous forme de fichier",
-      "Validation de syntaxe et mise en évidence des erreurs",
+      "Encodage et décodage Base64 en temps réel",
+      "Support de fichiers jusqu'à 50 Mo par glisser-déposer",
+      "Encodage UTF-8 complet pour les caractères spéciaux et emojis",
+      "Décodage automatique en texte ou fichier binaire",
+      "Traitement sécurisé entièrement dans le navigateur, aucun téléversement",
+      "Copie dans le presse-papiers ou téléchargement direct du résultat",
+      "Support des images, PDF et tout type de fichier",
       "Fonctionne hors ligne après le chargement initial"
     ],
     "useCases": [
-      "Nettoyer et formater le code désordonné pour une meilleure lisibilité",
-      "Standardiser le style de code dans les équipes de développement",
-      "Déboguer les structures complexes avec une indentation appropriée",
-      "Préparer le code pour la documentation et les revues de code",
-      "Convertir entre différents standards de formatage",
-      "Valider la syntaxe avant le déploiement",
-      "Traiter les données provenant de sources externes ou d'API",
-      "Générer du code prêt pour la production"
+      "Intégrer des images en HTML/CSS via des data URI",
+      "Transmettre des données binaires via des API REST et JSON",
+      "Encoder des pièces jointes d'e-mail au format MIME",
+      "Décoder des tokens et payloads de services web",
+      "Convertir des polices et icônes en chaînes Base64 pour le web",
+      "Stocker des données binaires dans des champs texte de bases de données",
+      "Déboguer des réponses API contenant des données encodées en Base64",
+      "Préparer des fichiers pour l'intégration dans des feuilles de style CSS"
     ],
     "proTips": [
-      "Utilisez les raccourcis clavier pour un flux de travail plus rapide",
-      "Traitez les gros fichiers en petits morceaux si les performances ralentissent",
-      "Validez votre saisie avant le traitement pour détecter les erreurs tôt",
-      "Enregistrez les paramètres fréquemment utilisés par défaut",
-      "Utilisez la fonction de téléchargement pour archiver les fichiers",
-      "Vérifiez attentivement la sortie avant utilisation en production"
+      "Utilisez le glisser-déposer pour encoder rapidement des images et fichiers",
+      "Les chaînes Base64 sont environ 33% plus volumineuses que l'original",
+      "Pour les images web, envisagez WebP avant d'encoder en Base64 pour économiser de l'espace",
+      "Vérifiez que le charset UTF-8 est correct lors de l'encodage de texte avec accents ou caractères spéciaux",
+      "Les data URI en Base64 peuvent ralentir le rendu si elles sont trop volumineuses (>100 Ko)",
+      "Utilisez Base64 pour les petites images (<10 Ko) en CSS afin de réduire les requêtes HTTP"
     ],
     "troubleshooting": [
-      "Erreurs de syntaxe : vérifiez les crochets, guillemets ou points-virgules manquants",
-      "Échec de traitement : assurez-vous que le format de saisie est valide",
-      "Performance lente : essayez de traiter de plus petits morceaux de données",
-      "Fonctionnalités manquantes : certaines syntaxes avancées peuvent nécessiter un formatage manuel",
-      "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
+      "Caractères étranges après décodage : vérifiez que l'encodage original est UTF-8",
+      "Fichier corrompu après décodage : assurez-vous que la chaîne Base64 est complète et sans espaces supplémentaires",
+      "Erreur de padding : les chaînes Base64 doivent avoir une longueur multiple de 4 (remplissage avec '=')",
+      "Image non affichée : vérifiez que le préfixe data URI est correct (ex. data:image/png;base64,)",
+      "Performance lente avec de gros fichiers : essayez avec des fichiers de moins de 10 Mo pour des résultats instantanés"
     ],
     "keyboardShortcuts": [
       {
@@ -64,7 +64,7 @@
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Traiter/Formater"
+        "description": "Encoder/Décoder"
       },
       {
         "keys": "Ctrl+C",
@@ -77,9 +77,9 @@
     ]
   },
   "meta": {
-    "title": "Décodeur Base64 - Outil en Ligne Gratuit",
-    "description": "Décodez les chaînes Base64 en texte ou téléchargez en tant que fichiers. Décodeur Base64 en ligne gratuit. Fonctionne instantanément dans votre navigateur."
+    "title": "Encodeur et Décodeur Base64 - Outil en Ligne Gratuit",
+    "description": "Encodez du texte et des fichiers en Base64 ou décodez des chaînes Base64 en texte en ligne gratuitement. Supporte UTF-8, fichiers binaires jusqu'à 50 Mo. Sécurisé, dans le navigateur, sans inscription."
   },
-  "tagline": "Encode and decode Base64 files and text instantly",
-  "pageDescription": "Free Base64 encoder and decoder for text, images, and files up to 50MB. Perfect for web developers embedding images in HTML/CSS, API data transmission, and email attachments. Drag-and-drop interface with secure browser-based processing. Download decoded files directly or copy encoded strings to clipboard."
+  "tagline": "Encodez et décodez fichiers et texte Base64 instantanément",
+  "pageDescription": "Encodeur et décodeur Base64 gratuit pour texte, images et fichiers jusqu'à 50 Mo. Parfait pour les développeurs web intégrant des images en HTML/CSS, la transmission de données API et les pièces jointes d'e-mail. Interface glisser-déposer avec traitement sécurisé dans le navigateur. Sans inscription — téléchargez les fichiers décodés ou copiez les chaînes encodées dans le presse-papiers."
 }

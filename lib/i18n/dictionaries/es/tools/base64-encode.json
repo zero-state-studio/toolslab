@@ -1,61 +1,61 @@
 {
-  "title": "Decodificador Base64",
-  "description": "Decodifica cadenas Base64 a texto o datos binarios",
-  "placeholder": "Ingresa cadena Base64 para decodificar...",
+  "title": "Codificador y Decodificador Base64",
+  "description": "Codifica texto o archivos a Base64, o decodifica cadenas Base64 a texto y datos binarios",
+  "placeholder": "Ingresa texto para codificar, o una cadena Base64 para decodificar...",
   "instructions": {
-    "title": "Cómo usar Decodificador Base64",
+    "title": "Cómo usar el Codificador y Decodificador Base64",
     "steps": [
       {
-        "title": "Pega tu cadena Base64",
-        "description": "Copia y pega tu cadena Base64 en el área de entrada. La herramienta acepta cualquier formato y lo procesará inmediatamente."
+        "title": "Ingresa el texto o archivo",
+        "description": "Pega el texto a codificar en Base64, o una cadena Base64 a decodificar. También puedes arrastrar un archivo directamente al área de entrada."
       },
       {
-        "title": "Configura las opciones (si disponible)",
-        "description": "Ajusta las opciones de formato, indentación u otras configuraciones para que coincidan con tus preferencias."
+        "title": "Elige el modo",
+        "description": "Selecciona si deseas codificar (texto → Base64) o decodificar (Base64 → texto/archivo). La herramienta detecta automáticamente el formato en la mayoría de los casos."
       },
       {
-        "title": "Examina la salida",
-        "description": "La herramienta codificará tu entrada y mostrará el resultado con formato y validación apropiados."
+        "title": "Revisa el resultado",
+        "description": "El resultado se genera instantáneamente. Verifica que la codificación o decodificación sea correcta antes de utilizarlo."
       },
       {
-        "title": "Copia o descarga el resultado",
-        "description": "Copia el resultado procesado al portapapeles para uso inmediato o descárgalo como archivo."
+        "title": "Copia o descarga",
+        "description": "Copia la cadena Base64 al portapapeles o descarga el archivo decodificado directamente en tu dispositivo."
       }
     ],
     "features": [
-      "Procesamiento en tiempo real con resultados instantáneos",
-      "Sin límite de tamaño para procesamiento basado en navegador",
-      "Completamente seguro - todo el procesamiento ocurre en tu navegador",
-      "Sin carga de datos ni almacenamiento en servidor",
-      "Copiar al portapapeles con un clic",
-      "Descargar resultados como archivo",
-      "Validación de sintaxis y resaltado de errores",
+      "Codificación y decodificación Base64 en tiempo real",
+      "Soporte de archivos hasta 50MB mediante arrastrar y soltar",
+      "Codificación UTF-8 completa para caracteres especiales y emojis",
+      "Decodificación automática a texto o archivo binario",
+      "Procesamiento seguro completamente en el navegador, sin subidas",
+      "Copia al portapapeles o descarga directa del resultado",
+      "Soporte para imágenes, PDF y cualquier tipo de archivo",
       "Funciona sin conexión después de la carga inicial"
     ],
     "useCases": [
-      "Limpiar y formatear código desordenado para mejor legibilidad",
-      "Estandarizar el estilo de código en equipos de desarrollo",
-      "Depurar estructuras complejas con indentación apropiada",
-      "Preparar código para documentación y revisiones de código",
-      "Convertir entre diferentes estándares de formato",
-      "Validar sintaxis antes del despliegue",
-      "Procesar datos de fuentes externas o APIs",
-      "Generar código listo para producción"
+      "Incorporar imágenes en HTML/CSS mediante data URI",
+      "Transmitir datos binarios a través de API REST y JSON",
+      "Codificar archivos adjuntos de correo en formato MIME",
+      "Decodificar tokens y payloads de servicios web",
+      "Convertir fuentes e iconos en cadenas Base64 para la web",
+      "Almacenar datos binarios en campos de texto de bases de datos",
+      "Depurar respuestas API que contienen datos codificados en Base64",
+      "Preparar archivos para embedding en hojas de estilo CSS"
     ],
     "proTips": [
-      "Usa atajos de teclado para un flujo de trabajo más rápido",
-      "Procesa archivos grandes en fragmentos más pequeños si el rendimiento disminuye",
-      "Valida tu entrada antes del procesamiento para detectar errores temprano",
-      "Guarda las configuraciones frecuentes como predeterminadas",
-      "Usa la función de descarga para archivar archivos procesados",
-      "Verifica cuidadosamente la salida antes de usar en producción"
+      "Usa arrastrar y soltar para codificar rápidamente imágenes y archivos",
+      "Las cadenas Base64 son aproximadamente un 33% más grandes que el original",
+      "Para imágenes web, considera WebP antes de codificar en Base64 para ahorrar espacio",
+      "Verifica que el charset UTF-8 sea correcto al codificar texto con acentos o caracteres especiales",
+      "Las data URI con Base64 pueden ralentizar el renderizado si son muy grandes (>100KB)",
+      "Usa Base64 para imágenes pequeñas (<10KB) en CSS para reducir las solicitudes HTTP"
     ],
     "troubleshooting": [
-      "Errores de sintaxis: verifica paréntesis, comillas o puntos y coma faltantes",
-      "Fallo de procesamiento: asegúrate de que el formato de entrada sea válido",
-      "Rendimiento lento: intenta procesar fragmentos de datos más pequeños",
-      "Funciones faltantes: algunas sintaxis avanzadas pueden requerir formato manual",
-      "Compatibilidad de navegador: usa Chrome, Firefox o Edge para mejores resultados"
+      "Caracteres extraños tras decodificar: verifica que la codificación original sea UTF-8",
+      "Archivo corrupto tras decodificar: asegúrate de que la cadena Base64 esté completa y sin espacios extra",
+      "Error de padding: las cadenas Base64 deben tener longitud múltiplo de 4 (relleno con '=')",
+      "Imagen no visualizada: comprueba que el prefijo data URI sea correcto (ej. data:image/png;base64,)",
+      "Rendimiento lento con archivos grandes: prueba con archivos menores de 10MB para resultados instantáneos"
     ],
     "keyboardShortcuts": [
       {
@@ -64,7 +64,7 @@
       },
       {
         "keys": "Ctrl+Enter",
-        "description": "Procesar/Formatear"
+        "description": "Codificar/Decodificar"
       },
       {
         "keys": "Ctrl+C",
@@ -77,9 +77,9 @@
     ]
   },
   "meta": {
-    "title": "Encoder/Decoder Base64 - Online",
-    "description": "Codifique texto en Base64 o decodifique cadenas Base64 a texto online. Soporte para archivos, UTF-8 y datos binarios. Herramienta Base64 gratuita y segura."
+    "title": "Codificador y Decodificador Base64 - Herramienta Online Gratuita",
+    "description": "Codifica texto y archivos a Base64 o decodifica cadenas Base64 a texto online gratis. Soporta UTF-8, archivos binarios hasta 50MB. Seguro, en el navegador, sin registro."
   },
-  "tagline": "Encode and decode Base64 files and text instantly",
-  "pageDescription": "Free Base64 encoder and decoder for text, images, and files up to 50MB. Perfect for web developers embedding images in HTML/CSS, API data transmission, and email attachments. Drag-and-drop interface with secure browser-based processing. Download decoded files directly or copy encoded strings to clipboard."
+  "tagline": "Codifica y decodifica archivos y texto Base64 al instante",
+  "pageDescription": "Codificador y decodificador Base64 gratuito para texto, imágenes y archivos de hasta 50MB. Perfecto para desarrolladores web que incorporan imágenes en HTML/CSS, transmisión de datos API y archivos adjuntos de correo. Interfaz de arrastrar y soltar con procesamiento seguro en el navegador. Sin registro — descarga archivos decodificados o copia cadenas codificadas al portapapeles."
 }
