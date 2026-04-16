@@ -325,11 +325,11 @@ export const tools: Tool[] = [
   {
     id: 'hash-generator',
     name: 'Hash Generator',
-    description: 'Generate MD5, SHA1, SHA256 and other hash functions',
+    description: 'Generate MD5, SHA-256, SHA-512 hashes and HMAC signatures — with file hashing, bulk mode, and hash comparison',
     icon: '#️⃣',
     route: '/tools/hash-generator',
     categories: ['encoding'],
-    keywords: ['hash', 'md5', 'sha1', 'sha256', 'checksum'],
+    keywords: ['hash', 'md5', 'sha1', 'sha256', 'sha512', 'hmac', 'checksum', 'file hash', 'hash compare', 'crc32'],
     longTailKeywords: [
       'hash generator online free no signup',
       'generate md5 sha256 hash online free no registration',

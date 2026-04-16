@@ -1,61 +1,61 @@
 {
   "title": "Hash Generator",
-  "description": "Generate MD5, SHA-1, SHA-256, and SHA-512 hashes",
+  "description": "Generate MD5, SHA-1, SHA-256, SHA-512 hashes and HMAC signatures",
   "placeholder": "Enter text to hash...",
   "instructions": {
     "title": "How to use Hash Generator",
     "steps": [
       {
-        "title": "Paste your content",
-        "description": "Copy and paste your content into the input area. The tool accepts any format and will process it immediately."
+        "title": "Enter your text or drop a file",
+        "description": "Type or paste text in the input area, drag & drop a file for file hashing, or switch to bulk mode for multiple inputs at once."
       },
       {
-        "title": "Configure options (if available)",
-        "description": "Adjust formatting options, indentation, or other settings to match your preferences and coding standards."
+        "title": "Choose your algorithm and mode",
+        "description": "Select a hash algorithm (SHA-256, SHA-512, MD5, etc.) and choose between standard hash or HMAC mode for keyed authentication."
       },
       {
-        "title": "Review the output",
-        "description": "The tool will generate your input and display the result with proper formatting and validation."
+        "title": "Configure options",
+        "description": "Optionally add a salt (prepend or append), set an HMAC key, or change the output format (hex, uppercase hex, or Base64)."
       },
       {
-        "title": "Copy or download result",
-        "description": "Copy the generated output to your clipboard for immediate use or download it as a file for storage and sharing."
+        "title": "Copy or compare results",
+        "description": "Copy individual hashes, copy all at once, or use Compare Mode to verify a hash against your input. The tool auto-detects hash type from length."
       }
     ],
     "features": [
-      "Real-time processing with instant results",
-      "No file size limits for browser-based processing",
-      "Completely secure - all processing happens in your browser",
-      "No data uploads or server storage",
-      "Copy to clipboard with one click",
-      "Download results as file",
-      "Syntax validation and error highlighting",
-      "Works offline after initial page load"
+      "Six algorithms: SHA-256, SHA-512, SHA-384, SHA-1, MD5, CRC32",
+      "HMAC support for SHA-based keyed authentication",
+      "File hashing with drag & drop and progress indicator",
+      "Bulk mode: hash multiple strings in one go",
+      "Output formats: hex lowercase, hex uppercase, Base64",
+      "Auto-detect hash type from pasted hash length",
+      "Salt support with prepend or append position",
+      "Security warnings for deprecated algorithms (MD5, SHA-1)"
     ],
     "useCases": [
-      "Clean up and format messy code for better readability",
-      "Standardize code style across development teams",
-      "Debug complex structures with proper indentation",
-      "Prepare code for documentation and code reviews",
-      "Convert between different formatting standards",
-      "Validate syntax before deployment",
-      "Process data from external sources or APIs",
-      "Generate production-ready code from development versions"
+      "Verify file integrity after download (checksum verification)",
+      "Generate HMAC signatures for API authentication",
+      "Hash passwords before storing (with salt)",
+      "Compare checksums of ISO images or software packages",
+      "Debug webhook signature verification",
+      "Generate content fingerprints for deduplication",
+      "Verify data integrity across network transfers",
+      "Create unique identifiers from text content"
     ],
     "proTips": [
-      "Use keyboard shortcuts for faster workflow",
-      "Process large files in smaller chunks if performance slows",
-      "Validate your input before processing to catch errors early",
-      "Save frequently used settings as defaults in your browser",
-      "Use the download feature for archiving processed files",
-      "Check the output carefully before using in production"
+      "Use SHA-256 or SHA-512 for security-sensitive hashing — MD5 and SHA-1 are broken",
+      "Always use HMAC (not salt + hash) when authenticating messages with a secret key",
+      "Drag & drop large files — the tool processes them in chunks with a progress bar",
+      "Paste any hash in Compare Mode and the tool auto-detects its algorithm",
+      "Use Base64 output format when working with JWT or web-based systems",
+      "Bulk mode accepts one input per line — perfect for hashing word lists or URLs"
     ],
     "troubleshooting": [
-      "Syntax errors: Check for missing brackets, quotes, or semicolons",
-      "Processing fails: Ensure your input format is valid",
-      "Slow performance: Try processing smaller chunks of data",
-      "Missing features: Some advanced syntax may require manual formatting",
-      "Browser compatibility: Use latest version of Chrome, Firefox, or Edge for best results"
+      "File hashing slow: Large files are processed in 2MB chunks — wait for the progress bar to complete",
+      "HMAC unavailable for MD5/CRC32: HMAC uses the Web Crypto API which only supports SHA algorithms",
+      "Hash mismatch: Check encoding — the same string in UTF-8 vs Latin-1 produces different hashes",
+      "Compare Mode shows no match: Ensure both hashes use the same format (hex vs Base64)",
+      "Browser compatibility: SHA hashing requires a modern browser with Web Crypto API support"
     ],
     "keyboardShortcuts": [
       {
@@ -63,23 +63,67 @@
         "description": "Paste input"
       },
       {
-        "keys": "Ctrl+Enter",
-        "description": "Process/Format"
-      },
-      {
         "keys": "Ctrl+C",
-        "description": "Copy result"
+        "description": "Copy selected hash"
       },
       {
-        "keys": "Ctrl+S",
-        "description": "Download file"
+        "keys": "Ctrl+Shift+C",
+        "description": "Copy all hashes"
       }
     ]
   },
   "meta": {
-    "title": "Hash Generator - MD5, SHA-256 & SHA-512 Free Online Tool",
-    "description": "Generate MD5, SHA-1, SHA-256, SHA-512 hashes online free — verify data integrity instantly. No signup required. Secure browser-based hash generator tool for developers."
+    "title": "Hash Generator - MD5, SHA-256, SHA-512 & HMAC Free Online Tool",
+    "description": "Generate MD5, SHA-1, SHA-256, SHA-512 hashes and HMAC signatures online free. File hashing, bulk mode, hash comparison and auto-detection. Secure browser-based tool — no signup required."
   },
-  "tagline": "Generate secure MD5, SHA256 and SHA512 hashes",
-  "pageDescription": "Generate cryptographic hash values using MD5, SHA-1, SHA-256, and SHA-512 algorithms. Perfect for password hashing, file integrity verification, and security auditing. Real-time hash generation with one-click copying. Free online with no signup required — all processing happens locally in your browser for maximum security and privacy."
+  "tagline": "Generate secure hashes and HMAC signatures with six algorithms",
+  "pageDescription": "Generate cryptographic hash values using MD5, SHA-1, SHA-256, SHA-384, SHA-512, and CRC32. Supports HMAC keyed authentication, file hashing with drag & drop, bulk hashing, output format conversion, and automatic hash type detection. All processing happens locally in your browser for maximum security and privacy. Free online with no signup required.",
+  "ui": {
+    "textToHash": "Text to Hash",
+    "algorithm": "Algorithm",
+    "saltOptional": "Salt (Optional)",
+    "saltPlaceholder": "Add salt to hash",
+    "saltPosition": "Salt Position",
+    "prepend": "Prepend",
+    "append": "Append",
+    "compareMode": "Compare",
+    "compareWith": "Compare with Hash",
+    "comparePlaceholder": "Paste hash to compare...",
+    "compareButton": "Compare",
+    "hashesMatch": "Hashes match!",
+    "hashesNoMatch": "Hashes do not match",
+    "detectedType": "Detected type",
+    "generatedHashes": "Generated Hashes",
+    "showOtherAlgorithms": "Show other algorithms",
+    "copyAll": "Copy All",
+    "copiedAll": "Copied!",
+    "characters": "characters",
+    "hashMode": "Hash",
+    "hmacMode": "HMAC",
+    "hmacKey": "HMAC Key",
+    "hmacKeyPlaceholder": "Enter secret key...",
+    "hmacKeyRequired": "HMAC key is required",
+    "hmacNotSupported": "HMAC not supported for this algorithm",
+    "outputFormat": "Format",
+    "hexLower": "hex",
+    "hexUpper": "HEX",
+    "base64": "Base64",
+    "textTab": "Text",
+    "fileTab": "File",
+    "bulkTab": "Bulk",
+    "dropFileHere": "Drop file here or click to select",
+    "dropFileActive": "Drop your file here...",
+    "browseFiles": "Browse files",
+    "supportedAnyFile": "Any file type supported",
+    "fileInfo": "File",
+    "fileSize": "Size",
+    "fileHashing": "Hashing file...",
+    "fileHashComplete": "Hashing complete",
+    "bulkPlaceholder": "Enter one text per line...",
+    "bulkInputs": "inputs",
+    "bulkResults": "Results",
+    "securityWarning": "Security Warning",
+    "infoText": "Cryptographic hash functions produce a fixed-size output from any input. The same input always produces the same hash, but it's computationally infeasible to reverse.",
+    "hmacInfoText": "HMAC (Hash-based Message Authentication Code) uses a secret key to produce an authenticated hash. Used for API signatures, webhook verification, and message authentication."
+  }
 }
