@@ -26,16 +26,14 @@ import { Input } from '@/components/ui/input';
 import {
   Copy,
   Download,
-  RefreshCw,
   Plus,
   Minus,
-  Palette,
-  Code,
   Shuffle,
   Heart,
-  Settings,
-  Eye,
-  MousePointer,
+  ArrowLeftRight,
+  Upload,
+  Check,
+  X,
 } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
@@ -43,7 +41,7 @@ import {
   generateRandomGradient,
   generateCompatibleCSS,
   gradientPresets,
-  extractColorsFromGradient,
+  parseGradientFromCSS,
   type GradientConfig,
   type GradientType,
   type ColorStop,
@@ -56,10 +54,18 @@ import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 
+interface SavedGradient {
+  name: string;
+  config: GradientConfig;
+}
+
+type OutputFormat = 'css' | 'react' | 'cssvar';
+
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface GradientGeneratorProps extends BaseToolProps {}
 
 export default function GradientGenerator({
-  categoryColor,
+  categoryColor: _categoryColor,
 }: GradientGeneratorProps) {
   // Main gradient configuration
   const [gradientConfig, setGradientConfig] = useState<GradientConfig>({
@@ -74,25 +80,27 @@ export default function GradientGenerator({
   // UI state
   const [activeTab, setActiveTab] = useState('editor');
   const [selectedStop, setSelectedStop] = useState<string | null>('stop-1');
-  const [previewSize, setPreviewSize] = useState({ width: 400, height: 300 });
   const [showCompatibleCSS, setShowCompatibleCSS] = useState(false);
-  const [savedGradients, setSavedGradients] = useState<GradientConfig[]>([]);
+  const [outputFormat, setOutputFormat] = useState<OutputFormat>('css');
+  const [savedGradients, setSavedGradients] = useState<SavedGradient[]>([]);
   const [selectedPresetCategory, setSelectedPresetCategory] = useState('all');
+  const [showImportPanel, setShowImportPanel] = useState(false);
+  const [importCssText, setImportCssText] = useState('');
+  const [importError, setImportError] = useState('');
+  const [showSaveInput, setShowSaveInput] = useState(false);
+  const [pendingSaveName, setPendingSaveName] = useState('');
+  const [editingOpacityStopId, setEditingOpacityStopId] = useState<string | null>(null);
 
   // Refs and hooks
-  const previewRef = useRef<HTMLDivElement>(null);
+  const gradientBarRef = useRef<HTMLDivElement>(null);
   const { copied, copy } = useCopy();
   const { downloadText } = useDownload();
   const { trackUse, trackError } = useToolTracking('gradient-generator');
 
-  // Generate CSS result
+  // Generate CSS result — pure computation, no side effects
   const gradientResult = useMemo(() => {
     try {
-      const result = generateGradientCSS(gradientConfig);
-      if (result.success && result.css) {
-        trackUse(JSON.stringify(gradientConfig), result.css, { success: true });
-      }
-      return result;
+      return generateGradientCSS(gradientConfig);
     } catch (error) {
       trackError(
         error instanceof Error ? error : new Error(String(error)),
@@ -100,14 +108,41 @@ export default function GradientGenerator({
       );
       return { success: false, error: 'Failed to generate gradient' };
     }
-  }, [gradientConfig, trackUse, trackError]);
+  }, [gradientConfig, trackError]);
 
-  // Load saved gradients from localStorage
+  // Derive output text from selected format
+  const outputText = useMemo(() => {
+    if (!gradientResult.success || !gradientResult.css) return '';
+    if (showCompatibleCSS) return generateCompatibleCSS(gradientConfig);
+    switch (outputFormat) {
+      case 'react':
+        return `style={{ background: '${gradientResult.css}' }}`;
+      case 'cssvar':
+        return `--my-gradient: ${gradientResult.css};\nbackground: var(--my-gradient);`;
+      default:
+        return `background: ${gradientResult.css};`;
+    }
+  }, [gradientResult, outputFormat, showCompatibleCSS, gradientConfig]);
+
+  // Load saved gradients from localStorage with format migration
   useEffect(() => {
     try {
       const saved = localStorage.getItem('gradient-generator-saved');
       if (saved) {
-        setSavedGradients(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          if ('config' in parsed[0]) {
+            setSavedGradients(parsed as SavedGradient[]);
+          } else {
+            // Migrate old GradientConfig[] format
+            setSavedGradients(
+              (parsed as GradientConfig[]).map((config, i) => ({
+                name: `Gradient ${i + 1}`,
+                config,
+              }))
+            );
+          }
+        }
       }
     } catch (error) {
       console.error('Failed to load saved gradients:', error);
@@ -122,7 +157,7 @@ export default function GradientGenerator({
     []
   );
 
-  // Update color stop
+  // Update a single color stop
   const updateColorStop = useCallback(
     (stopId: string, updates: Partial<ColorStop>) => {
       setGradientConfig((prev) => ({
@@ -159,10 +194,10 @@ export default function GradientGenerator({
     setSelectedStop(newStop.id);
   }, [gradientConfig.colorStops]);
 
-  // Remove color stop
+  // Remove color stop (minimum 2)
   const removeColorStop = useCallback(
     (stopId: string) => {
-      if (gradientConfig.colorStops.length <= 2) return; // Keep at least 2 stops
+      if (gradientConfig.colorStops.length <= 2) return;
 
       setGradientConfig((prev) => ({
         ...prev,
@@ -183,21 +218,100 @@ export default function GradientGenerator({
     setSelectedStop(randomGradient.colorStops[0]?.id || null);
   }, [gradientConfig.type]);
 
-  // Save gradient to favorites
-  const saveGradient = useCallback(() => {
-    const newSaved = [...savedGradients, gradientConfig];
+  // Reverse gradient — flip all stop positions
+  const reverseGradient = useCallback(() => {
+    setGradientConfig((prev) => ({
+      ...prev,
+      colorStops: prev.colorStops
+        .map((stop) => ({ ...stop, position: 100 - stop.position }))
+        .sort((a, b) => a.position - b.position),
+    }));
+  }, []);
+
+  // Drag color stop handle on the gradient bar
+  const handleStopPointerDown = useCallback(
+    (e: React.PointerEvent<HTMLDivElement>, stopId: string) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const handle = e.currentTarget;
+      handle.setPointerCapture(e.pointerId);
+
+      const bar = gradientBarRef.current;
+      if (!bar) return;
+      const barRect = bar.getBoundingClientRect();
+
+      const onPointerMove = (moveEvent: PointerEvent) => {
+        const pos = Math.max(
+          0,
+          Math.min(
+            100,
+            ((moveEvent.clientX - barRect.left) / barRect.width) * 100
+          )
+        );
+        updateColorStop(stopId, { position: Math.round(pos * 10) / 10 });
+      };
+
+      const onPointerUp = () => {
+        handle.removeEventListener('pointermove', onPointerMove);
+        handle.removeEventListener('pointerup', onPointerUp);
+      };
+
+      handle.addEventListener('pointermove', onPointerMove);
+      handle.addEventListener('pointerup', onPointerUp);
+    },
+    [updateColorStop]
+  );
+
+  // Start named save flow
+  const handleSaveStart = useCallback(() => {
+    setPendingSaveName(`Gradient ${savedGradients.length + 1}`);
+    setShowSaveInput(true);
+  }, [savedGradients.length]);
+
+  // Confirm save with name
+  const handleSaveConfirm = useCallback(() => {
+    const name =
+      pendingSaveName.trim() || `Gradient ${savedGradients.length + 1}`;
+    const newSaved: SavedGradient[] = [
+      ...savedGradients,
+      { name, config: gradientConfig },
+    ];
     setSavedGradients(newSaved);
     try {
       localStorage.setItem(
         'gradient-generator-saved',
         JSON.stringify(newSaved)
       );
-      toast.success('Gradient saved successfully!');
-    } catch (error) {
-      console.error('Failed to save gradient:', error);
+      toast.success('Gradient saved!');
+    } catch {
       toast.error('Failed to save gradient');
     }
-  }, [gradientConfig, savedGradients]);
+    setShowSaveInput(false);
+    setPendingSaveName('');
+  }, [pendingSaveName, savedGradients, gradientConfig]);
+
+  const handleSaveCancel = useCallback(() => {
+    setShowSaveInput(false);
+    setPendingSaveName('');
+  }, []);
+
+  // Import gradient from pasted CSS
+  const handleImportCSS = useCallback(() => {
+    if (!importCssText.trim()) return;
+    const parsed = parseGradientFromCSS(importCssText.trim());
+    if (parsed) {
+      setGradientConfig(parsed);
+      setSelectedStop(parsed.colorStops[0]?.id || null);
+      setImportCssText('');
+      setImportError('');
+      setShowImportPanel(false);
+      toast.success('Gradient imported!');
+    } else {
+      setImportError(
+        'Could not parse this CSS. Try: linear-gradient(90deg, #f00 0%, #00f 100%)'
+      );
+    }
+  }, [importCssText]);
 
   // Load preset gradient
   const loadPreset = useCallback((preset: GradientPreset) => {
@@ -205,26 +319,30 @@ export default function GradientGenerator({
     setSelectedStop(preset.gradient.colorStops[0]?.id || null);
   }, []);
 
-  // Copy CSS to clipboard
+  // Copy output text to clipboard
   const handleCopyCSS = useCallback(async () => {
-    if (gradientResult.success && gradientResult.css) {
-      const cssText = showCompatibleCSS
-        ? generateCompatibleCSS(gradientConfig)
-        : `background: ${gradientResult.css};`;
-      await copy(cssText);
-    }
-  }, [gradientResult, showCompatibleCSS, gradientConfig, copy]);
+    if (!outputText) return;
+    await copy(outputText);
+    trackUse(JSON.stringify(gradientConfig), outputText, { success: true });
+  }, [outputText, copy, gradientConfig, trackUse]);
 
-  // Download CSS file
+  // Download as CSS file
   const handleDownloadCSS = useCallback(() => {
-    if (gradientResult.success && gradientResult.css) {
-      const cssContent = showCompatibleCSS
-        ? generateCompatibleCSS(gradientConfig)
-        : `.gradient {\n  background: ${gradientResult.css};\n}`;
-
-      downloadText(cssContent, { filename: 'gradient.css' });
-    }
-  }, [gradientResult, showCompatibleCSS, gradientConfig, downloadText]);
+    if (!outputText) return;
+    const content =
+      outputFormat === 'css' && !showCompatibleCSS
+        ? `.gradient {\n  ${outputText}\n}`
+        : outputText;
+    downloadText(content, { filename: 'gradient.css' });
+    trackUse(JSON.stringify(gradientConfig), content, { success: true });
+  }, [
+    outputText,
+    outputFormat,
+    showCompatibleCSS,
+    gradientConfig,
+    downloadText,
+    trackUse,
+  ]);
 
   // Get filtered presets
   const filteredPresets = useMemo(() => {
@@ -263,7 +381,7 @@ export default function GradientGenerator({
             break;
           case 's':
             e.preventDefault();
-            saveGradient();
+            if (!showSaveInput) handleSaveStart();
             break;
         }
       }
@@ -271,7 +389,7 @@ export default function GradientGenerator({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleCopyCSS, generateRandom, saveGradient]);
+  }, [handleCopyCSS, generateRandom, handleSaveStart, showSaveInput]);
 
   return (
     <div className="mx-auto w-full max-w-7xl space-y-6">
@@ -287,90 +405,154 @@ export default function GradientGenerator({
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {/* Preview Panel */}
             <Card className="p-6">
-              <div className="mb-4 flex items-center justify-between">
+              <div className="mb-4 flex items-center justify-between gap-2">
                 <h3 className="text-lg font-semibold">Preview</h3>
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" onClick={generateRandom}>
-                    <Shuffle className="mr-2 h-4 w-4" />
-                    Random
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={saveGradient}>
-                    <Heart className="mr-2 h-4 w-4" />
-                    Save
-                  </Button>
+                <div className="flex items-center gap-2">
+                  {showSaveInput ? (
+                    <>
+                      <Input
+                        autoFocus
+                        value={pendingSaveName}
+                        onChange={(e) => setPendingSaveName(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') handleSaveConfirm();
+                          if (e.key === 'Escape') handleSaveCancel();
+                        }}
+                        placeholder="Name your gradient"
+                        className="h-8 w-36 text-sm"
+                      />
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleSaveConfirm}
+                      >
+                        <Check className="h-4 w-4" />
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleSaveCancel}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </>
+                  ) : (
+                    <>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={generateRandom}
+                      >
+                        <Shuffle className="mr-2 h-4 w-4" />
+                        Random
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={reverseGradient}
+                      >
+                        <ArrowLeftRight className="mr-2 h-4 w-4" />
+                        Reverse
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleSaveStart}
+                      >
+                        <Heart className="mr-2 h-4 w-4" />
+                        Save
+                      </Button>
+                    </>
+                  )}
                 </div>
               </div>
 
-              {/* Gradient Preview */}
-              <div className="space-y-4">
-                <div
-                  ref={previewRef}
-                  className="relative rounded-lg border shadow-inner"
-                  style={{
-                    width: previewSize.width,
-                    height: previewSize.height,
-                    background: gradientResult.success
-                      ? gradientResult.css
-                      : '#f0f0f0',
-                    maxWidth: '100%',
+              {/* Gradient Preview — responsive 4:3 aspect ratio */}
+              <div
+                className="w-full rounded-lg border shadow-inner"
+                style={{
+                  aspectRatio: '4/3',
+                  background: gradientResult.success
+                    ? gradientResult.css
+                    : '#f0f0f0',
+                }}
+              />
+
+              {/* Interactive Gradient Bar */}
+              <div className="mt-4">
+                <Label className="mb-2 block text-xs font-medium text-gray-500">
+                  Drag handles to reposition stops
+                </Label>
+                <div className="relative h-8">
+                  <div
+                    ref={gradientBarRef}
+                    className="absolute inset-0 rounded-full border shadow-inner"
+                    style={{
+                      background: gradientResult.success
+                        ? gradientResult.css
+                        : '#f0f0f0',
+                    }}
+                  />
+                  {gradientConfig.colorStops.map((stop) => (
+                    <div
+                      key={stop.id}
+                      className={`absolute top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 cursor-grab touch-none rounded-full border-2 border-white shadow-md active:cursor-grabbing ${
+                        selectedStop === stop.id
+                          ? 'ring-2 ring-blue-500 ring-offset-1'
+                          : ''
+                      }`}
+                      style={{
+                        left: `${stop.position}%`,
+                        backgroundColor: stop.color,
+                      }}
+                      onClick={() => setSelectedStop(stop.id)}
+                      onPointerDown={(e) => {
+                        setSelectedStop(stop.id);
+                        handleStopPointerDown(e, stop.id);
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Import CSS Panel */}
+              <div className="mt-4">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-7 text-xs text-gray-500"
+                  onClick={() => {
+                    setShowImportPanel(!showImportPanel);
+                    setImportError('');
                   }}
                 >
-                  {/* Color Stop Indicators */}
-                  {gradientConfig.type === 'linear' && (
-                    <div className="absolute inset-0 flex items-center">
-                      {gradientConfig.colorStops.map((stop) => (
-                        <div
-                          key={stop.id}
-                          className={`absolute h-4 w-4 cursor-pointer rounded-full border-2 border-white shadow-md transition-transform hover:scale-110 ${
-                            selectedStop === stop.id
-                              ? 'ring-2 ring-blue-500'
-                              : ''
-                          }`}
-                          style={{
-                            left: `${stop.position}%`,
-                            backgroundColor: stop.color,
-                            transform: 'translateX(-50%)',
-                          }}
-                          onClick={() => setSelectedStop(stop.id)}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
+                  <Upload className="mr-1.5 h-3.5 w-3.5" />
+                  {showImportPanel ? 'Hide import' : 'Import CSS gradient'}
+                </Button>
 
-                {/* Preview Size Controls */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label className="text-sm">
-                      Width: {previewSize.width}px
-                    </Label>
-                    <Slider
-                      value={[previewSize.width]}
-                      onValueChange={([width]) =>
-                        setPreviewSize((prev) => ({ ...prev, width }))
-                      }
-                      min={200}
-                      max={600}
-                      step={10}
-                      className="mt-2"
+                {showImportPanel && (
+                  <div className="mt-2 space-y-2">
+                    <Textarea
+                      value={importCssText}
+                      onChange={(e) => {
+                        setImportCssText(e.target.value);
+                        setImportError('');
+                      }}
+                      placeholder="linear-gradient(90deg, #f00 0%, #00f 100%)"
+                      className="min-h-[70px] font-mono text-sm"
                     />
+                    {importError && (
+                      <p className="text-xs text-red-500">{importError}</p>
+                    )}
+                    <Button
+                      size="sm"
+                      onClick={handleImportCSS}
+                      disabled={!importCssText.trim()}
+                    >
+                      Parse &amp; Import
+                    </Button>
                   </div>
-                  <div>
-                    <Label className="text-sm">
-                      Height: {previewSize.height}px
-                    </Label>
-                    <Slider
-                      value={[previewSize.height]}
-                      onValueChange={([height]) =>
-                        setPreviewSize((prev) => ({ ...prev, height }))
-                      }
-                      min={150}
-                      max={500}
-                      step={10}
-                      className="mt-2"
-                    />
-                  </div>
-                </div>
+                )}
               </div>
             </Card>
 
@@ -405,17 +587,38 @@ export default function GradientGenerator({
                 {gradientConfig.type === 'linear' && (
                   <div>
                     <Label className="mb-2 block text-sm font-medium">
-                      Angle: {gradientConfig.angle || 90}°
+                      Angle
                     </Label>
-                    <Slider
-                      value={[gradientConfig.angle || 90]}
-                      onValueChange={([angle]) =>
-                        updateGradientConfig({ angle })
-                      }
-                      min={0}
-                      max={360}
-                      step={1}
-                    />
+                    <div className="flex items-center gap-3">
+                      <Slider
+                        value={[gradientConfig.angle ?? 90]}
+                        onValueChange={([angle]) =>
+                          updateGradientConfig({ angle })
+                        }
+                        min={0}
+                        max={360}
+                        step={1}
+                        className="flex-1"
+                      />
+                      <div className="flex shrink-0 items-center gap-1">
+                        <Input
+                          type="number"
+                          value={gradientConfig.angle ?? 90}
+                          onChange={(e) => {
+                            const v = parseInt(e.target.value, 10);
+                            if (!isNaN(v)) {
+                              updateGradientConfig({
+                                angle: Math.max(0, Math.min(360, v)),
+                              });
+                            }
+                          }}
+                          min={0}
+                          max={360}
+                          className="h-8 w-16 text-center font-mono text-sm"
+                        />
+                        <span className="text-sm text-gray-500">°</span>
+                      </div>
+                    </div>
                   </div>
                 )}
 
@@ -475,45 +678,92 @@ export default function GradientGenerator({
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-4">
                       <div>
-                        <Label className="mb-2 block text-sm font-medium">
-                          Center X: {gradientConfig.position?.x || 50}%
+                        <Label className="mb-1 block text-sm font-medium">
+                          Center X
                         </Label>
-                        <Slider
-                          value={[gradientConfig.position?.x || 50]}
-                          onValueChange={([x]) =>
-                            updateGradientConfig({
-                              position: {
-                                ...gradientConfig.position,
-                                x,
-                                y: gradientConfig.position?.y || 50,
-                              },
-                            })
-                          }
-                          min={0}
-                          max={100}
-                          step={1}
-                        />
+                        <div className="flex items-center gap-3">
+                          <Slider
+                            value={[gradientConfig.position?.x ?? 50]}
+                            onValueChange={([x]) =>
+                              updateGradientConfig({
+                                position: {
+                                  x,
+                                  y: gradientConfig.position?.y ?? 50,
+                                },
+                              })
+                            }
+                            min={0}
+                            max={100}
+                            step={1}
+                            className="flex-1"
+                          />
+                          <div className="flex shrink-0 items-center gap-1">
+                            <Input
+                              type="number"
+                              value={gradientConfig.position?.x ?? 50}
+                              onChange={(e) => {
+                                const v = parseInt(e.target.value, 10);
+                                if (!isNaN(v)) {
+                                  updateGradientConfig({
+                                    position: {
+                                      x: Math.max(0, Math.min(100, v)),
+                                      y: gradientConfig.position?.y ?? 50,
+                                    },
+                                  });
+                                }
+                              }}
+                              min={0}
+                              max={100}
+                              className="h-8 w-14 text-center font-mono text-sm"
+                            />
+                            <span className="text-sm text-gray-500">%</span>
+                          </div>
+                        </div>
                       </div>
                       <div>
-                        <Label className="mb-2 block text-sm font-medium">
-                          Center Y: {gradientConfig.position?.y || 50}%
+                        <Label className="mb-1 block text-sm font-medium">
+                          Center Y
                         </Label>
-                        <Slider
-                          value={[gradientConfig.position?.y || 50]}
-                          onValueChange={([y]) =>
-                            updateGradientConfig({
-                              position: {
-                                x: gradientConfig.position?.x || 50,
-                                y,
-                              },
-                            })
-                          }
-                          min={0}
-                          max={100}
-                          step={1}
-                        />
+                        <div className="flex items-center gap-3">
+                          <Slider
+                            value={[gradientConfig.position?.y ?? 50]}
+                            onValueChange={([y]) =>
+                              updateGradientConfig({
+                                position: {
+                                  x: gradientConfig.position?.x ?? 50,
+                                  y,
+                                },
+                              })
+                            }
+                            min={0}
+                            max={100}
+                            step={1}
+                            className="flex-1"
+                          />
+                          <div className="flex shrink-0 items-center gap-1">
+                            <Input
+                              type="number"
+                              value={gradientConfig.position?.y ?? 50}
+                              onChange={(e) => {
+                                const v = parseInt(e.target.value, 10);
+                                if (!isNaN(v)) {
+                                  updateGradientConfig({
+                                    position: {
+                                      x: gradientConfig.position?.x ?? 50,
+                                      y: Math.max(0, Math.min(100, v)),
+                                    },
+                                  });
+                                }
+                              }}
+                              min={0}
+                              max={100}
+                              className="h-8 w-14 text-center font-mono text-sm"
+                            />
+                            <span className="text-sm text-gray-500">%</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -524,58 +774,126 @@ export default function GradientGenerator({
                   <>
                     <div>
                       <Label className="mb-2 block text-sm font-medium">
-                        Start Angle: {gradientConfig.angle || 0}°
+                        Start Angle
                       </Label>
-                      <Slider
-                        value={[gradientConfig.angle || 0]}
-                        onValueChange={([angle]) =>
-                          updateGradientConfig({ angle })
-                        }
-                        min={0}
-                        max={360}
-                        step={1}
-                      />
+                      <div className="flex items-center gap-3">
+                        <Slider
+                          value={[gradientConfig.angle ?? 0]}
+                          onValueChange={([angle]) =>
+                            updateGradientConfig({ angle })
+                          }
+                          min={0}
+                          max={360}
+                          step={1}
+                          className="flex-1"
+                        />
+                        <div className="flex shrink-0 items-center gap-1">
+                          <Input
+                            type="number"
+                            value={gradientConfig.angle ?? 0}
+                            onChange={(e) => {
+                              const v = parseInt(e.target.value, 10);
+                              if (!isNaN(v)) {
+                                updateGradientConfig({
+                                  angle: Math.max(0, Math.min(360, v)),
+                                });
+                              }
+                            }}
+                            min={0}
+                            max={360}
+                            className="h-8 w-16 text-center font-mono text-sm"
+                          />
+                          <span className="text-sm text-gray-500">°</span>
+                        </div>
+                      </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-4">
                       <div>
-                        <Label className="mb-2 block text-sm font-medium">
-                          Center X: {gradientConfig.position?.x || 50}%
+                        <Label className="mb-1 block text-sm font-medium">
+                          Center X
                         </Label>
-                        <Slider
-                          value={[gradientConfig.position?.x || 50]}
-                          onValueChange={([x]) =>
-                            updateGradientConfig({
-                              position: {
-                                ...gradientConfig.position,
-                                x,
-                                y: gradientConfig.position?.y || 50,
-                              },
-                            })
-                          }
-                          min={0}
-                          max={100}
-                          step={1}
-                        />
+                        <div className="flex items-center gap-3">
+                          <Slider
+                            value={[gradientConfig.position?.x ?? 50]}
+                            onValueChange={([x]) =>
+                              updateGradientConfig({
+                                position: {
+                                  x,
+                                  y: gradientConfig.position?.y ?? 50,
+                                },
+                              })
+                            }
+                            min={0}
+                            max={100}
+                            step={1}
+                            className="flex-1"
+                          />
+                          <div className="flex shrink-0 items-center gap-1">
+                            <Input
+                              type="number"
+                              value={gradientConfig.position?.x ?? 50}
+                              onChange={(e) => {
+                                const v = parseInt(e.target.value, 10);
+                                if (!isNaN(v)) {
+                                  updateGradientConfig({
+                                    position: {
+                                      x: Math.max(0, Math.min(100, v)),
+                                      y: gradientConfig.position?.y ?? 50,
+                                    },
+                                  });
+                                }
+                              }}
+                              min={0}
+                              max={100}
+                              className="h-8 w-14 text-center font-mono text-sm"
+                            />
+                            <span className="text-sm text-gray-500">%</span>
+                          </div>
+                        </div>
                       </div>
                       <div>
-                        <Label className="mb-2 block text-sm font-medium">
-                          Center Y: {gradientConfig.position?.y || 50}%
+                        <Label className="mb-1 block text-sm font-medium">
+                          Center Y
                         </Label>
-                        <Slider
-                          value={[gradientConfig.position?.y || 50]}
-                          onValueChange={([y]) =>
-                            updateGradientConfig({
-                              position: {
-                                x: gradientConfig.position?.x || 50,
-                                y,
-                              },
-                            })
-                          }
-                          min={0}
-                          max={100}
-                          step={1}
-                        />
+                        <div className="flex items-center gap-3">
+                          <Slider
+                            value={[gradientConfig.position?.y ?? 50]}
+                            onValueChange={([y]) =>
+                              updateGradientConfig({
+                                position: {
+                                  x: gradientConfig.position?.x ?? 50,
+                                  y,
+                                },
+                              })
+                            }
+                            min={0}
+                            max={100}
+                            step={1}
+                            className="flex-1"
+                          />
+                          <div className="flex shrink-0 items-center gap-1">
+                            <Input
+                              type="number"
+                              value={gradientConfig.position?.y ?? 50}
+                              onChange={(e) => {
+                                const v = parseInt(e.target.value, 10);
+                                if (!isNaN(v)) {
+                                  updateGradientConfig({
+                                    position: {
+                                      x: gradientConfig.position?.x ?? 50,
+                                      y: Math.max(0, Math.min(100, v)),
+                                    },
+                                  });
+                                }
+                              }}
+                              min={0}
+                              max={100}
+                              className="h-8 w-14 text-center font-mono text-sm"
+                            />
+                            <span className="text-sm text-gray-500">%</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -585,16 +903,14 @@ export default function GradientGenerator({
                 <div>
                   <div className="mb-3 flex items-center justify-between">
                     <Label className="text-sm font-medium">Color Stops</Label>
-                    <div className="flex gap-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={addColorStop}
-                        disabled={gradientConfig.colorStops.length >= 10}
-                      >
-                        <Plus className="h-4 w-4" />
-                      </Button>
-                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={addColorStop}
+                      disabled={gradientConfig.colorStops.length >= 10}
+                    >
+                      <Plus className="h-4 w-4" />
+                    </Button>
                   </div>
 
                   <div className="space-y-3">
@@ -608,10 +924,10 @@ export default function GradientGenerator({
                         }`}
                       >
                         <div className="space-y-3">
-                          {/* Color Preview and Controls Row */}
+                          {/* Color row */}
                           <div className="flex items-center gap-3">
                             <div
-                              className="h-8 w-8 cursor-pointer rounded border"
+                              className="h-8 w-8 shrink-0 cursor-pointer rounded border"
                               style={{ backgroundColor: stop.color }}
                               onClick={() => setSelectedStop(stop.id)}
                             />
@@ -623,19 +939,15 @@ export default function GradientGenerator({
                                   color: e.target.value,
                                 })
                               }
-                              className="h-8 w-16 cursor-pointer border-0"
+                              className="h-8 w-14 shrink-0 cursor-pointer border-0"
                               aria-label={`Color stop ${index + 1} picker`}
                             />
                             <div className="flex-1">
-                              <Label className="text-xs font-medium">
-                                HEX Color
-                              </Label>
                               <Input
                                 type="text"
                                 value={stop.color}
                                 onChange={(e) => {
                                   const hexValue = e.target.value;
-                                  // Validate HEX format
                                   if (
                                     /^#[0-9A-Fa-f]{0,6}$/.test(hexValue) ||
                                     hexValue === ''
@@ -647,13 +959,11 @@ export default function GradientGenerator({
                                 }}
                                 onBlur={(e) => {
                                   const hexValue = e.target.value;
-                                  // Auto-complete short HEX values and validate
                                   if (
                                     hexValue &&
                                     !/^#[0-9A-Fa-f]{6}$/.test(hexValue)
                                   ) {
                                     if (/^#[0-9A-Fa-f]{3}$/.test(hexValue)) {
-                                      // Convert #RGB to #RRGGBB
                                       const expanded =
                                         '#' +
                                         hexValue[1] +
@@ -669,8 +979,6 @@ export default function GradientGenerator({
                                       !/^#/.test(hexValue) &&
                                       /^[0-9A-Fa-f]{3,6}$/.test(hexValue)
                                     ) {
-                                      // Add # prefix if missing
-                                      const withHash = '#' + hexValue;
                                       if (hexValue.length === 3) {
                                         const expanded =
                                           '#' +
@@ -685,7 +993,7 @@ export default function GradientGenerator({
                                         });
                                       } else {
                                         updateColorStop(stop.id, {
-                                          color: withHash,
+                                          color: '#' + hexValue,
                                         });
                                       }
                                     }
@@ -705,20 +1013,111 @@ export default function GradientGenerator({
                             </Button>
                           </div>
 
-                          {/* Position Slider Row */}
+                          {/* Position Slider + numeric input */}
                           <div>
-                            <Label className="text-xs font-medium">
-                              Position: {stop.position}%
+                            <Label className="mb-1 block text-xs font-medium">
+                              Position
                             </Label>
+                            <div className="flex items-center gap-2">
+                              <Slider
+                                value={[stop.position]}
+                                onValueChange={([position]) =>
+                                  updateColorStop(stop.id, { position })
+                                }
+                                min={0}
+                                max={100}
+                                step={0.1}
+                                className="flex-1"
+                              />
+                              <div className="flex shrink-0 items-center gap-1">
+                                <Input
+                                  type="number"
+                                  value={stop.position}
+                                  onChange={(e) => {
+                                    const v = parseFloat(e.target.value);
+                                    if (!isNaN(v)) {
+                                      updateColorStop(stop.id, {
+                                        position: Math.max(
+                                          0,
+                                          Math.min(100, Math.round(v * 10) / 10)
+                                        ),
+                                      });
+                                    }
+                                  }}
+                                  min={0}
+                                  max={100}
+                                  step={0.1}
+                                  className="h-7 w-14 text-center font-mono text-xs"
+                                />
+                                <span className="text-xs text-gray-500">%</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Opacity Slider — double-click label to type exact value */}
+                          <div>
+                            <div className="mb-1 flex items-center gap-1.5">
+                              <span className="text-xs font-medium">
+                                Opacity:
+                              </span>
+                              {editingOpacityStopId === stop.id ? (
+                                <Input
+                                  autoFocus
+                                  type="number"
+                                  defaultValue={Math.round(
+                                    (stop.alpha ?? 1) * 100
+                                  )}
+                                  onBlur={(e) => {
+                                    const v = parseInt(e.target.value, 10);
+                                    if (!isNaN(v)) {
+                                      updateColorStop(stop.id, {
+                                        alpha:
+                                          Math.max(0, Math.min(100, v)) / 100,
+                                      });
+                                    }
+                                    setEditingOpacityStopId(null);
+                                  }}
+                                  onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                      const v = parseInt(
+                                        (e.target as HTMLInputElement).value,
+                                        10
+                                      );
+                                      if (!isNaN(v)) {
+                                        updateColorStop(stop.id, {
+                                          alpha:
+                                            Math.max(0, Math.min(100, v)) / 100,
+                                        });
+                                      }
+                                      setEditingOpacityStopId(null);
+                                    }
+                                    if (e.key === 'Escape')
+                                      setEditingOpacityStopId(null);
+                                  }}
+                                  min={0}
+                                  max={100}
+                                  className="h-5 w-12 px-1 text-center font-mono text-xs"
+                                />
+                              ) : (
+                                <span
+                                  className="cursor-text rounded px-1 text-xs text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
+                                  title="Double-click to type exact value"
+                                  onDoubleClick={() =>
+                                    setEditingOpacityStopId(stop.id)
+                                  }
+                                >
+                                  {Math.round((stop.alpha ?? 1) * 100)}%
+                                </span>
+                              )}
+                            </div>
                             <Slider
-                              value={[stop.position]}
-                              onValueChange={([position]) =>
-                                updateColorStop(stop.id, { position })
+                              value={[(stop.alpha ?? 1) * 100]}
+                              onValueChange={([v]) =>
+                                updateColorStop(stop.id, { alpha: v / 100 })
                               }
                               min={0}
                               max={100}
-                              step={0.1}
-                              className="mt-1"
+                              step={1}
                             />
                           </div>
                         </div>
@@ -732,20 +1131,33 @@ export default function GradientGenerator({
 
           {/* Generated Code Section */}
           <Card className="p-6">
-            <div className="mb-4 flex items-center justify-between">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
               <h3 className="text-lg font-semibold">Generated Code</h3>
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowCompatibleCSS(!showCompatibleCSS)}
+              <div className="flex flex-wrap items-center gap-2">
+                <Select
+                  value={showCompatibleCSS ? 'compatible' : outputFormat}
+                  onValueChange={(v) => {
+                    if (v === 'compatible') {
+                      setShowCompatibleCSS(true);
+                    } else {
+                      setShowCompatibleCSS(false);
+                      setOutputFormat(v as OutputFormat);
+                    }
+                  }}
                 >
-                  <Settings className="mr-2 h-4 w-4" />
-                  {showCompatibleCSS ? 'Simple' : 'Compatible'}
-                </Button>
+                  <SelectTrigger className="h-8 w-36 text-sm">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="css">CSS property</SelectItem>
+                    <SelectItem value="react">React style</SelectItem>
+                    <SelectItem value="cssvar">CSS variable</SelectItem>
+                    <SelectItem value="compatible">With fallback</SelectItem>
+                  </SelectContent>
+                </Select>
                 <Button variant="outline" size="sm" onClick={handleCopyCSS}>
                   <Copy className="mr-2 h-4 w-4" />
-                  {copied ? 'Copied!' : 'Copy CSS'}
+                  {copied ? 'Copied!' : 'Copy'}
                 </Button>
                 <Button variant="outline" size="sm" onClick={handleDownloadCSS}>
                   <Download className="mr-2 h-4 w-4" />
@@ -756,35 +1168,12 @@ export default function GradientGenerator({
 
             {gradientResult.success ? (
               <div className="space-y-4">
-                {/* CSS Output */}
-                <div>
-                  <Label className="mb-2 block text-sm font-medium">CSS</Label>
-                  <Textarea
-                    value={
-                      showCompatibleCSS
-                        ? generateCompatibleCSS(gradientConfig)
-                        : `background: ${gradientResult.css};`
-                    }
-                    readOnly
-                    className="min-h-[150px] font-mono text-sm"
-                  />
-                </div>
+                <Textarea
+                  value={outputText}
+                  readOnly
+                  className="min-h-[100px] font-mono text-sm"
+                />
 
-                {/* Tailwind CSS */}
-                {gradientResult.tailwindClass && (
-                  <div>
-                    <Label className="mb-2 block text-sm font-medium">
-                      Tailwind CSS (Approximation)
-                    </Label>
-                    <Textarea
-                      value={`<div class="${gradientResult.tailwindClass}"></div>`}
-                      readOnly
-                      className="min-h-[60px] font-mono text-sm"
-                    />
-                  </div>
-                )}
-
-                {/* SVG Output */}
                 {gradientResult.svg &&
                   !gradientResult.svg.includes('not supported') && (
                     <div>
@@ -812,7 +1201,6 @@ ${gradientResult.svg}
         </TabsContent>
 
         <TabsContent value="presets" className="space-y-6">
-          {/* Preset Categories */}
           <Card className="p-6">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold">Gradient Presets</h3>
@@ -838,7 +1226,10 @@ ${gradientResult.svg}
                 <div
                   key={preset.id}
                   className="cursor-pointer rounded-lg border p-4 transition-all hover:shadow-md"
-                  onClick={() => loadPreset(preset)}
+                  onClick={() => {
+                    loadPreset(preset);
+                    setActiveTab('editor');
+                  }}
                 >
                   <div
                     className="mb-3 h-20 rounded border"
@@ -871,20 +1262,23 @@ ${gradientResult.svg}
                     key={index}
                     className="cursor-pointer rounded-lg border p-4 transition-all hover:shadow-md"
                     onClick={() => {
-                      setGradientConfig(saved);
-                      setSelectedStop(saved.colorStops[0]?.id || null);
+                      setGradientConfig(saved.config);
+                      setSelectedStop(saved.config.colorStops[0]?.id || null);
                       setActiveTab('editor');
-                      toast.success('Gradient loaded successfully!');
+                      toast.success('Gradient loaded!');
                     }}
                   >
                     <div
                       className="mb-3 h-20 rounded border"
                       style={{
-                        background: generateGradientCSS(saved).css || '#f0f0f0',
+                        background:
+                          generateGradientCSS(saved.config).css || '#f0f0f0',
                       }}
                     />
-                    <div className="text-sm text-gray-600">
-                      {saved.type} • {saved.colorStops.length} stops
+                    <div className="text-sm font-medium">{saved.name}</div>
+                    <div className="mt-0.5 text-xs text-gray-500">
+                      {saved.config.type} •{' '}
+                      {saved.config.colorStops.length} stops
                     </div>
                     <Button
                       variant="outline"
@@ -900,7 +1294,7 @@ ${gradientResult.svg}
                           'gradient-generator-saved',
                           JSON.stringify(newSaved)
                         );
-                        toast.success('Gradient removed from saved');
+                        toast.success('Gradient removed');
                       }}
                     >
                       Remove
@@ -920,35 +1314,27 @@ ${gradientResult.svg}
 
       {/* Keyboard Shortcuts */}
       <Card className="p-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4 text-sm text-gray-600">
-            <span>Keyboard shortcuts:</span>
-            <div className="flex gap-4">
+        <div className="flex items-center gap-4 text-sm text-gray-600">
+          <span className="shrink-0">Shortcuts:</span>
+          <div className="flex flex-wrap gap-4">
+            <div className="flex items-center gap-1.5">
               <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
                 Ctrl+C
               </kbd>
-              <span className="text-xs">Copy CSS</span>
+              <span className="text-xs">Copy</span>
+            </div>
+            <div className="flex items-center gap-1.5">
               <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
                 Ctrl+R
               </kbd>
               <span className="text-xs">Random</span>
+            </div>
+            <div className="flex items-center gap-1.5">
               <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
                 Ctrl+S
               </kbd>
               <span className="text-xs">Save</span>
             </div>
-          </div>
-
-          {/* Quick Actions */}
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setActiveTab('presets')}
-            >
-              <Palette className="mr-2 h-4 w-4" />
-              Presets
-            </Button>
           </div>
         </div>
       </Card>
