@@ -1,9 +1,9 @@
 {
-  "title": "Bcrypt Hash Generator",
+  "title": "Bcrypt-Hash-Generator",
   "description": "Generieren und verifizieren Sie bcrypt-Passwort-Hashes mit konfigurierbarem Kostenfaktor",
   "placeholder": "Passwort zum Hashen eingeben...",
   "instructions": {
-    "title": "So verwenden Sie den Bcrypt Hash Generator",
+    "title": "So verwenden Sie den Bcrypt-Hash-Generator",
     "steps": [
       {
         "title": "Geben Sie Ihr Passwort ein",
