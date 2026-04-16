@@ -70,7 +70,7 @@ export default function AdminToolEditPage() {
           seo_level: tool.seo_level,
           seo_notes: tool.seo_notes,
           optimizations: tool.optimizations,
-          action_needed: tool.action_needed,
+          action_needed: tool.action_needed || '',
           lang_en: tool.lang_en,
           lang_it: tool.lang_it,
           lang_es: tool.lang_es,
@@ -147,7 +147,7 @@ export default function AdminToolEditPage() {
                 Action Needed
               </label>
               <select
-                value={tool.action_needed}
+                value={tool.action_needed || ''}
                 onChange={(e) => update('action_needed', e.target.value)}
                 className="w-full px-3 py-2 border rounded-lg text-sm bg-white"
               >
