@@ -80,6 +80,6 @@
     "title": "Generador Código QR - Gratis",
     "description": "Genere códigos QR para URLs, texto, WiFi, vCards y más. Personalice colores, tamaño y corrección de errores. Descargue como PNG o SVG. Generador QR gratuito."
   },
-  "tagline": "Generate advanced QR codes with logos, batch processing and developer tools",
-  "pageDescription": "Professional QR code generator with logo embedding, WiFi/vCard creation, and batch processing. Features SVG export, API integration, error correction levels, and size optimization. Perfect for developers building authentication systems, contact sharing, and marketing campaigns. Supports URL, email, SMS, geo-location, and crypto addresses with real-time validation."
+  "tagline": "Genera códigos QR avanzados con logos, procesamiento por lotes y herramientas para desarrolladores",
+  "pageDescription": "Generador de códigos QR profesional con inserción de logos, creación de WiFi/vCard y procesamiento por lotes. Incluye exportación SVG, integración API, niveles de corrección de errores y optimización de tamaño. Perfecto para desarrolladores que crean sistemas de autenticación, compartir contactos y campañas de marketing. Soporta URL, email, SMS, geolocalización y direcciones crypto con validación en tiempo real."
 }

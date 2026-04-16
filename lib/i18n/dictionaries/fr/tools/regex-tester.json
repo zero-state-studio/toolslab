@@ -80,6 +80,6 @@
     "title": "Testeur de Regex - Outil en Ligne Gratuit",
     "description": "Testez et déboguez les expressions régulières en ligne. Support pour plusieurs drapeaux regex. Testeur regex gratuit avec mise en évidence des correspondances."
   },
-  "tagline": "Test and debug regular expressions with live matching",
-  "pageDescription": "Test regular expressions with real-time matching and highlighting. Debug regex patterns with live feedback, capture group details, and match positions. Perfect for developers validating email addresses, parsing data, and building text processing applications. Supports global, case-insensitive, and multiline flags."
+  "tagline": "Testez et déboguez les expressions régulières avec correspondance en temps réel",
+  "pageDescription": "Testez les expressions régulières avec correspondance et mise en évidence en temps réel. Déboguez les patterns regex avec retour en direct, détails des groupes de capture et positions de correspondance. Parfait pour les développeurs validant des adresses email, analysant des données et construisant des applications de traitement de texte. Supporte les flags global, insensible à la casse et multiligne."
 }

@@ -80,6 +80,6 @@
     "title": "Décodeur URL - Outil en Ligne Gratuit",
     "description": "Encodez et décodez des URL en ligne. Convertissez les caractères spéciaux en encodage pourcentage ou décodez les paramètres URL. Outil encoder/decoder gratuit."
   },
-  "tagline": "Encode and decode URLs and query parameters safely",
-  "pageDescription": "URL encode and decode components and query parameters for web development. Handle special characters, spaces, and international text in URLs safely. Perfect for API developers, web forms, and HTTP request handling. Supports percent-encoding standards with real-time conversion and validation."
+  "tagline": "Encodez et décodez les URLs et paramètres de requête en toute sécurité",
+  "pageDescription": "Encodez et décodez les composants URL et paramètres de requête pour le développement web. Gérez les caractères spéciaux, espaces et texte international dans les URLs en toute sécurité. Parfait pour les développeurs d'APIs, formulaires web et gestion de requêtes HTTP. Supporte les standards de percent-encoding avec conversion et validation en temps réel."
 }

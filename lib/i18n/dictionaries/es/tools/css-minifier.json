@@ -80,6 +80,6 @@
     "title": "Minificador CSS - Herramienta Online Gratuita",
     "description": "Minifica y comprime código CSS en línea. Reduce el tamaño del archivo y mejora la velocidad de carga. Herramienta minificadora CSS gratuita."
   },
-  "tagline": "Minify and optimize CSS files instantly for faster websites",
-  "pageDescription": "Professional CSS minifier and beautifier that reduces file size by up to 60% while preserving functionality. Features advanced optimization options including color compression, rule merging, vendor prefix handling, and media query optimization. Process CSS instantly in your browser with complete privacy - no data is sent to servers. Perfect for optimizing stylesheets for production deployment with support for CSS3, CSS4, and modern properties."
+  "tagline": "Minifica y optimiza archivos CSS al instante para sitios web más rápidos",
+  "pageDescription": "Minificador y embellecedor CSS profesional que reduce el tamaño de archivo hasta un 60% preservando la funcionalidad. Incluye opciones avanzadas de optimización como compresión de colores, fusión de reglas, manejo de prefijos de navegador y optimización de media queries. Procesa CSS al instante en tu navegador con total privacidad — ningún dato se envía a servidores. Perfecto para optimizar hojas de estilo para producción con soporte para CSS3, CSS4 y propiedades modernas."
 }

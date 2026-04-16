@@ -79,6 +79,6 @@
     "title": "Comparador Diferencias - Online",
     "description": "Compare dos textos lado a lado y encuentre diferencias con resaltado línea por línea o por carácter. Detecte adiciones y eliminaciones. Herramienta diff."
   },
-  "tagline": "Compare files and code with professional diff visualization",
-  "pageDescription": "Professional text comparison tool with syntax highlighting, patch generation, and side-by-side diff views. Compare code files, documents, and text with line-by-line differences, change tracking, and unified diff output. Features Git-style patches, whitespace options, and export to HTML/PDF. Perfect for developers reviewing code changes."
+  "tagline": "Compara archivos y código con visualización de diferencias profesional",
+  "pageDescription": "Herramienta profesional de comparación de texto con resaltado de sintaxis, generación de parches y vistas de diferencias lado a lado. Compara archivos de código, documentos y texto con diferencias línea por línea, seguimiento de cambios y salida diff unificada. Incluye parches estilo Git, opciones de espacios en blanco y exportación a HTML/PDF. Perfecto para desarrolladores que revisan cambios de código."
 }

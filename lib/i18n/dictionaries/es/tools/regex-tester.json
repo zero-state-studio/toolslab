@@ -80,6 +80,6 @@
     "title": "Probador de Regex - Herramienta Online Gratuita",
     "description": "Prueba y depura expresiones regulares en línea. Soporte para múltiples banderas regex. Probador regex gratuito con resaltado de coincidencias."
   },
-  "tagline": "Test and debug regular expressions with live matching",
-  "pageDescription": "Test regular expressions with real-time matching and highlighting. Debug regex patterns with live feedback, capture group details, and match positions. Perfect for developers validating email addresses, parsing data, and building text processing applications. Supports global, case-insensitive, and multiline flags."
+  "tagline": "Prueba y depura expresiones regulares con coincidencias en tiempo real",
+  "pageDescription": "Prueba expresiones regulares con coincidencias y resaltado en tiempo real. Depura patrones regex con retroalimentación en vivo, detalles de grupos de captura y posiciones de coincidencia. Perfecto para desarrolladores que validan direcciones de correo, analizan datos y construyen aplicaciones de procesamiento de texto. Soporta flags global, insensible a mayúsculas y multilínea."
 }

@@ -80,6 +80,6 @@
     "title": "Decodificador URL - Herramienta Online Gratuita",
     "description": "Decodifica texto codificado en URL en línea. Convierte parámetros URL de vuelta a texto legible. Herramienta decodificadora URL gratuita."
   },
-  "tagline": "Encode and decode URLs and query parameters safely",
-  "pageDescription": "URL encode and decode components and query parameters for web development. Handle special characters, spaces, and international text in URLs safely. Perfect for API developers, web forms, and HTTP request handling. Supports percent-encoding standards with real-time conversion and validation."
+  "tagline": "Codifica y decodifica URLs y parámetros de consulta de forma segura",
+  "pageDescription": "Codifica y decodifica componentes URL y parámetros de consulta para desarrollo web. Maneja caracteres especiales, espacios y texto internacional en URLs de forma segura. Perfecto para desarrolladores de APIs, formularios web y manejo de solicitudes HTTP. Soporta estándares de percent-encoding con conversión y validación en tiempo real."
 }
