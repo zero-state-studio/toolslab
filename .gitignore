@@ -268,3 +268,8 @@ local-config/
 *.db
 *.sqlite
 *.sqlite3
+
+# Admin DB (local-only admin panel, committed intentionally)
+!data/admin.db
+data/admin.db-wal
+data/admin.db-shm
