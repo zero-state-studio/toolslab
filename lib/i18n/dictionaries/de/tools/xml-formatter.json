@@ -1,84 +1,84 @@
 {
   "title": "XML-Formatierer",
-  "description": "Format, validate und minify XML documents mit Syntax-Highlighting und XPath support",
-  "placeholder": "",
+  "description": "XML-Dokumente formatieren, validieren und minifizieren mit Syntaxhervorhebung und XPath-Unterstützung",
+  "placeholder": "XML hier einfügen...",
   "meta": {
-    "title": "XML-Formatter - Online formatieren",
-    "description": "XML-Dokumente online formatieren, verschönern und validieren. Syntax-Highlighting und XPath-Unterstützung. Benutzerdefinierte Einrückung. Kostenloses Tool."
+    "title": "XML-Formatierer - Online formatieren und validieren",
+    "description": "XML-Dokumente online formatieren, verschönern und validieren. Syntaxhervorhebung, XPath-Suche und Namespace-Analyse. Benutzerdefinierte Einrückung. Kostenloses Browser-Tool."
   },
-  "tagline": "Format, validate und minify XML mit XPath search und namespace support",
-  "pageDescription": "Professioneller XML formatter mit syntax validation, beautification und minification. Features XPath search, namespace analysis und structure visualization. Perfect für SOAP, RSS, SVG und configuration files. Handles large XML documents efficiently mit real-time validation und Fehler highlighting. Kostenlos und secure browserbasiert XML processing.",
+  "tagline": "XML formatieren, validieren und minifizieren mit XPath-Suche und Namespace-Unterstützung",
+  "pageDescription": "Professioneller XML-Formatierer mit Syntaxvalidierung, Verschönerung und Minifizierung. Bietet XPath-Suche, Namespace-Analyse und Strukturvisualisierung. Perfekt für SOAP, RSS, SVG und Konfigurationsdateien. Verarbeitet große XML-Dokumente effizient mit Echtzeitvalidierung und Fehlerhervorhebung. Kostenlos und sicher im Browser.",
   "instructions": {
-    "title": "So verwenden Sie XML-Formatierer",
+    "title": "So verwenden Sie den XML-Formatierer",
     "steps": [
       {
-        "title": "Einfügen Ihre XML Daten",
-        "description": "Kopieren und fügen Sie Ihre XML Daten in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "XML-Daten einfügen",
+        "description": "Kopieren und fügen Sie Ihre XML-Daten in den Eingabebereich ein oder laden Sie eine XML-Datei hoch. Das Tool erkennt die Struktur automatisch."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Formatierungsoptionen wählen",
+        "description": "Wählen Sie zwischen Verschönern (mit Einrückung) oder Minifizieren (kompakt). Passen Sie die Einrückungsgröße und den Stil nach Ihren Wünschen an."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool formatiert und verschönert Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Ergebnis überprüfen",
+        "description": "Das Tool formatiert Ihre XML-Daten sofort mit Syntaxhervorhebung. Validierungsfehler werden mit Zeilennummer und Beschreibung angezeigt."
       },
       {
         "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "description": "Kopieren Sie das formatierte XML in die Zwischenablage oder laden Sie es als .xml-Datei herunter."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "XML-Verschönerung mit anpassbarer Einrückung",
+      "XML-Minifizierung für kleinere Dateigrößen",
+      "Echtzeit-Syntaxvalidierung mit Fehlerhervorhebung",
+      "XPath-Suche zum Finden von Elementen in der Struktur",
+      "Namespace-Erkennung und -Analyse",
+      "Baumstruktur-Visualisierung des XML-Dokuments",
+      "100% browserbasierte Verarbeitung — keine Daten werden hochgeladen",
+      "Unterstützung für große XML-Dateien"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "SOAP-Nachrichten und Webservice-Antworten formatieren",
+      "RSS- und Atom-Feeds lesbar machen",
+      "SVG-Dateien überprüfen und formatieren",
+      "Konfigurationsdateien (web.config, pom.xml) verschönern",
+      "XML-Daten vor dem Deployment validieren",
+      "API-Antworten im XML-Format debuggen",
+      "XML-Exporte aus Datenbanken formatieren",
+      "XSLT-Transformationen überprüfen und testen"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie die XPath-Suche, um bestimmte Elemente in großen Dokumenten schnell zu finden",
+      "Minifiziertes XML spart Bandbreite bei der API-Übertragung",
+      "Validieren Sie Ihre XML-Daten immer vor dem Deployment, um Parsing-Fehler zu vermeiden",
+      "Die Baumansicht hilft bei der Navigation in tief verschachtelten Strukturen",
+      "Achten Sie auf korrekte Namespace-Deklarationen bei SOAP-Nachrichten",
+      "Verwenden Sie die Fehlerhervorhebung, um fehlende schließende Tags schnell zu finden"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Syntaxfehler: Prüfen Sie auf fehlende schließende Tags oder nicht geschlossene Attribute",
+      "Namespace-Fehler: Stellen Sie sicher, dass alle verwendeten Präfixe deklariert sind",
+      "Encoding-Probleme: Überprüfen Sie die XML-Deklaration (<?xml version=\"1.0\" encoding=\"UTF-8\"?>)",
+      "Langsame Verarbeitung: Sehr große XML-Dateien (>5MB) können länger dauern",
+      "XPath liefert keine Ergebnisse: Beachten Sie Namespaces in Ihren XPath-Ausdrücken"
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "keys": "Ctrl+V",
+        "description": "XML einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Ctrl+Enter",
+        "description": "Formatieren"
       },
       {
-        "keys": "Strg+C",
+        "keys": "Ctrl+C",
         "description": "Ergebnis kopieren"
       },
       {
-        "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "keys": "Ctrl+S",
+        "description": "XML-Datei herunterladen"
       }
     ]
   }
