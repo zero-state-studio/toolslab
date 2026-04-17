@@ -26,8 +26,10 @@ import { BaseToolProps } from '@/lib/types/tools';
 import {
   decodeJwt,
   generateSampleJwts,
+  signJwt,
   JwtDecodeResult,
   JwtDecodeOptions,
+  JwtAlgorithm,
 } from '@/lib/tools/jwt-decoder';
 
 interface JwtDecoderProps extends BaseToolProps {}
@@ -70,9 +72,44 @@ function base64UrlToBytes(b64url: string): Uint8Array<ArrayBuffer> {
   return bytes;
 }
 
+const SIGN_ALGORITHMS: JwtAlgorithm[] = [
+  'HS256',
+  'HS384',
+  'HS512',
+  'RS256',
+  'RS384',
+  'RS512',
+  'ES256',
+  'ES384',
+  'ES512',
+  'none',
+];
+
+const DEFAULT_ENCODE_PAYLOAD = JSON.stringify(
+  {
+    sub: '1234567890',
+    name: 'John Doe',
+    iat: Math.floor(Date.now() / 1000),
+  },
+  null,
+  2
+);
+
 export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
+  const [mode, setMode] = useState<'decode' | 'encode'>('decode');
   const [input, setInput] = useState('');
   const [result, setResult] = useState<JwtDecodeResult | null>(null);
+
+  // Encode state
+  const [encodeAlg, setEncodeAlg] = useState<JwtAlgorithm>('HS256');
+  const [encodePayload, setEncodePayload] = useState(DEFAULT_ENCODE_PAYLOAD);
+  const [encodeSecret, setEncodeSecret] = useState('your-256-bit-secret');
+  const [encodePrivateKey, setEncodePrivateKey] = useState('');
+  const [encodeExtraHeader, setEncodeExtraHeader] = useState('{}');
+  const [encodeOutput, setEncodeOutput] = useState<string | null>(null);
+  const [encodeError, setEncodeError] = useState<string | null>(null);
+  const [encoding, setEncoding] = useState(false);
+  const [copiedEncoded, setCopiedEncoded] = useState(false);
   const [options, setOptions] = useState<JwtDecodeOptions>({
     validateStructure: true,
     analyzeTime: true,
@@ -184,6 +221,94 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     const debounceTimer = setTimeout(handleDecode, 500);
     return () => clearTimeout(debounceTimer);
   }, [handleDecode]);
+
+  // Sign JWT
+  const handleSign = useCallback(async () => {
+    setEncodeError(null);
+    setEncodeOutput(null);
+
+    let payloadObj: Record<string, any>;
+    try {
+      payloadObj = JSON.parse(encodePayload);
+    } catch (err) {
+      setEncodeError(
+        `Invalid payload JSON: ${err instanceof Error ? err.message : 'parse error'}`
+      );
+      return;
+    }
+
+    let extraHeader: Record<string, any> = {};
+    if (encodeExtraHeader.trim() && encodeExtraHeader.trim() !== '{}') {
+      try {
+        extraHeader = JSON.parse(encodeExtraHeader);
+      } catch (err) {
+        setEncodeError(
+          `Invalid extra header JSON: ${err instanceof Error ? err.message : 'parse error'}`
+        );
+        return;
+      }
+    }
+
+    setEncoding(true);
+    try {
+      const startTime = Date.now();
+      const res = await signJwt({
+        header: { alg: encodeAlg, typ: 'JWT', ...extraHeader },
+        payload: payloadObj,
+        secret: encodeSecret,
+        privateKeyPem: encodePrivateKey,
+      });
+
+      if (!res.success) {
+        setEncodeError(res.error || 'Failed to sign JWT');
+        trackError(new Error(res.error || 'signJwt failed'), encodePayload.length);
+        return;
+      }
+
+      setEncodeOutput(res.token!);
+      trackCustom({
+        inputSize: encodePayload.length,
+        outputSize: res.token!.length,
+        success: true,
+        algorithm: encodeAlg,
+        mode: 'encode',
+        processingTime: Date.now() - startTime,
+      });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      setEncodeError(msg);
+      trackError(err instanceof Error ? err : new Error(msg), encodePayload.length);
+    } finally {
+      setEncoding(false);
+    }
+  }, [
+    encodeAlg,
+    encodePayload,
+    encodeSecret,
+    encodePrivateKey,
+    encodeExtraHeader,
+    trackCustom,
+    trackError,
+  ]);
+
+  const copyEncoded = useCallback(async () => {
+    if (!encodeOutput) return;
+    const success = await copyToClipboard(encodeOutput);
+    if (success) {
+      setCopiedEncoded(true);
+      setTimeout(() => setCopiedEncoded(false), 2000);
+    }
+  }, [encodeOutput, copyToClipboard]);
+
+  const encodeAlgIsHmac = /^HS(256|384|512)$/.test(encodeAlg);
+  const encodeAlgIsAsymmetric = /^(RS|ES)(256|384|512)$/.test(encodeAlg);
+  const encodeAlgIsNone = encodeAlg === 'none';
+
+  const isSignDisabled =
+    encoding ||
+    !encodePayload.trim() ||
+    (encodeAlgIsHmac && !encodeSecret.trim()) ||
+    (encodeAlgIsAsymmetric && !encodePrivateKey.trim());
 
   // Load sample JWT
   const loadSample = useCallback((sampleKey: string) => {
@@ -384,13 +509,13 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 px-6 py-4 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <Key className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            JWT Decoder
+            JWT Encoder/Decoder
           </h3>
-          {result && (
+          {mode === 'decode' && result && (
             <div
               className={`flex items-center gap-1 text-sm font-medium ${getStatusColor()}`}
             >
@@ -409,22 +534,301 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             </div>
           )}
         </div>
+
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setShowOptions(!showOptions)}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+          {/* Mode toggle */}
+          <div
+            role="tablist"
+            className="inline-flex rounded-lg border border-gray-200 bg-gray-100 p-0.5 dark:border-gray-600 dark:bg-gray-700"
           >
-            Options
-            {showOptions ? (
-              <ChevronUp className="h-4 w-4" />
-            ) : (
-              <ChevronDown className="h-4 w-4" />
-            )}
-          </button>
+            <button
+              role="tab"
+              aria-selected={mode === 'decode'}
+              onClick={() => setMode('decode')}
+              className={`rounded-md px-3 py-1 text-sm font-medium transition-colors ${
+                mode === 'decode'
+                  ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-white'
+                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+              }`}
+            >
+              Decode
+            </button>
+            <button
+              role="tab"
+              aria-selected={mode === 'encode'}
+              onClick={() => setMode('encode')}
+              className={`rounded-md px-3 py-1 text-sm font-medium transition-colors ${
+                mode === 'encode'
+                  ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-white'
+                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+              }`}
+            >
+              Encode
+            </button>
+          </div>
+
+          {mode === 'decode' && (
+            <button
+              onClick={() => setShowOptions(!showOptions)}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+            >
+              Options
+              {showOptions ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
+            </button>
+          )}
         </div>
       </div>
 
       <div className="space-y-6 p-6">
+        {mode === 'encode' && (
+          <div className="space-y-4">
+            {/* Algorithm picker */}
+            <div>
+              <label
+                htmlFor="jwt-encode-alg"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Algorithm
+              </label>
+              <select
+                id="jwt-encode-alg"
+                value={encodeAlg}
+                onChange={(e) => {
+                  setEncodeAlg(e.target.value as JwtAlgorithm);
+                  setEncodeOutput(null);
+                  setEncodeError(null);
+                }}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              >
+                {SIGN_ALGORITHMS.map((alg) => (
+                  <option key={alg} value={alg}>
+                    {alg}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Payload editor */}
+            <div>
+              <label
+                htmlFor="jwt-encode-payload"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Payload (JSON)
+              </label>
+              <textarea
+                id="jwt-encode-payload"
+                value={encodePayload}
+                onChange={(e) => {
+                  setEncodePayload(e.target.value);
+                  setEncodeOutput(null);
+                  setEncodeError(null);
+                }}
+                rows={8}
+                className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                placeholder='{"sub":"1234567890","name":"John Doe"}'
+              />
+            </div>
+
+            {/* Extra header claims (optional) */}
+            <div>
+              <label
+                htmlFor="jwt-encode-extra-header"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Extra header claims (optional JSON, e.g. {'{ "kid": "..." }'})
+              </label>
+              <textarea
+                id="jwt-encode-extra-header"
+                value={encodeExtraHeader}
+                onChange={(e) => {
+                  setEncodeExtraHeader(e.target.value);
+                  setEncodeOutput(null);
+                  setEncodeError(null);
+                }}
+                rows={2}
+                className="w-full resize-none rounded-lg border border-gray-300 px-4 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                placeholder="{}"
+              />
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                Merged into the final header. <code>alg</code> and <code>typ</code> are set automatically.
+              </p>
+            </div>
+
+            {/* Key input (adaptive) */}
+            {encodeAlgIsHmac && (
+              <div>
+                <label
+                  htmlFor="jwt-encode-secret"
+                  className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Secret Key ({encodeAlg})
+                </label>
+                <input
+                  id="jwt-encode-secret"
+                  type="password"
+                  value={encodeSecret}
+                  onChange={(e) => {
+                    setEncodeSecret(e.target.value);
+                    setEncodeOutput(null);
+                    setEncodeError(null);
+                  }}
+                  placeholder="Enter HMAC secret..."
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                />
+              </div>
+            )}
+            {encodeAlgIsAsymmetric && (
+              <div>
+                <label
+                  htmlFor="jwt-encode-privkey"
+                  className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Private Key — PEM ({encodeAlg})
+                </label>
+                <textarea
+                  id="jwt-encode-privkey"
+                  value={encodePrivateKey}
+                  onChange={(e) => {
+                    setEncodePrivateKey(e.target.value);
+                    setEncodeOutput(null);
+                    setEncodeError(null);
+                  }}
+                  rows={6}
+                  placeholder={
+                    '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----'
+                  }
+                  className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                />
+              </div>
+            )}
+            {encodeAlgIsNone && (
+              <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-800 dark:bg-amber-900/20">
+                <p className="flex items-start gap-2 text-sm text-amber-800 dark:text-amber-200">
+                  <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                  <span>
+                    <strong>Insecure:</strong> <code>alg=none</code> produces an
+                    unsigned token. Use only for local testing — never accept
+                    such tokens in production.
+                  </span>
+                </p>
+              </div>
+            )}
+
+            {/* Privacy notice */}
+            <div className="flex items-start gap-2 rounded-lg bg-green-50 p-3 dark:bg-green-950/30">
+              <Shield className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
+              <p className="text-sm text-green-800 dark:text-green-200">
+                🔒 <strong>Your key never leaves this browser.</strong> Signing
+                runs entirely in-browser via the native WebCrypto API. No data
+                is sent to any server.
+              </p>
+            </div>
+
+            {/* Action */}
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={handleSign}
+                disabled={isSignDisabled}
+                className="inline-flex items-center gap-2 rounded-lg px-6 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+                style={{ backgroundColor: categoryColor }}
+              >
+                {encoding ? (
+                  <>
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                    Signing...
+                  </>
+                ) : (
+                  <>
+                    <Key className="h-4 w-4" />
+                    Sign JWT
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => {
+                  setEncodeOutput(null);
+                  setEncodeError(null);
+                  setEncodePayload(DEFAULT_ENCODE_PAYLOAD);
+                  setEncodeExtraHeader('{}');
+                }}
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+              >
+                Reset
+              </button>
+            </div>
+
+            {/* Error */}
+            {encodeError && (
+              <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-950/30">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
+                  <div>
+                    <p className="font-medium text-red-600 dark:text-red-400">
+                      Signing Error
+                    </p>
+                    <p className="text-red-600 dark:text-red-400">
+                      {encodeError}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Output */}
+            {encodeOutput && (
+              <div className="rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700/30">
+                <div className="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-600">
+                  <div className="flex items-center gap-2">
+                    <Key className="h-5 w-5 text-green-600 dark:text-green-400" />
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      Signed JWT
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      ({encodeOutput.length} chars)
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={copyEncoded}
+                      className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-1 text-xs text-gray-600 transition-colors hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+                    >
+                      {copiedEncoded ? (
+                        <Check className="h-3 w-3" />
+                      ) : (
+                        <Copy className="h-3 w-3" />
+                      )}
+                      {copiedEncoded ? 'Copied!' : 'Copy'}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setInput(encodeOutput);
+                        setMode('decode');
+                      }}
+                      className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-1 text-xs text-gray-600 transition-colors hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+                    >
+                      Decode ↗
+                    </button>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <pre className="overflow-x-auto rounded-lg bg-white p-3 text-sm dark:bg-gray-800">
+                    <code className="break-all font-mono text-gray-900 dark:text-white">
+                      {encodeOutput}
+                    </code>
+                  </pre>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {mode === 'decode' && (
+          <>
         {/* Options Panel */}
         {showOptions && (
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700/30">
@@ -1224,6 +1628,8 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             </div>
           </div>
         </div>
+          </>
+        )}
       </div>
     </div>
   );

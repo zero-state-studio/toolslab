@@ -1,69 +1,65 @@
 {
   "title": "UUID-Generator",
-  "description": "Zufällig generieren UUIDs (v1, v4, v5)",
+  "description": "Zufällige UUIDs generieren (v1, v4, v5)",
   "instructions": {
-    "title": "So verwenden Sie UUID-Generator",
+    "title": "So verwenden Sie den UUID-Generator",
     "steps": [
       {
-        "title": "Inhalt einfügen",
-        "description": "Kopieren und fügen Sie Ihre content in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "UUID-Version auswählen",
+        "description": "Wählen Sie die gewünschte UUID-Version: v1 (zeitbasiert), v4 (zufällig) oder v5 (namensbasiert). Für die meisten Anwendungsfälle wird UUID v4 empfohlen."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Anzahl und Optionen festlegen",
+        "description": "Geben Sie an, wie viele UUIDs Sie generieren möchten (bis zu 1000 auf einmal). Konfigurieren Sie Formatierungsoptionen wie Großschreibung oder das Entfernen von Bindestrichen."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool generiert Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "UUIDs generieren",
+        "description": "Klicken Sie auf die Schaltfläche zum Generieren, um sofort neue UUIDs zu erstellen. Jede UUID ist garantiert einzigartig und entspricht dem RFC 4122 Standard."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die generierte Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Ergebnisse kopieren oder herunterladen",
+        "description": "Kopieren Sie einzelne UUIDs oder alle generierten UUIDs in Ihre Zwischenablage. Laden Sie die Liste als Datei herunter, um sie in Ihren Projekten zu verwenden."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
+      "Sofortige Generierung von UUID v1, v4 und v5",
+      "Massenerzeugung von bis zu 1000 UUIDs auf einmal",
+      "Anpassbare Formatierung (Großbuchstaben, ohne Bindestriche, mit Klammern)",
+      "UUID-Validierung zur Prüfung vorhandener Zeichenketten",
+      "RFC 4122-konforme Generierung",
+      "Vollständig sicher - alle Generierungen erfolgen in Ihrem Browser",
+      "Keine Datenuploads oder serverseitige Speicherung",
       "Funktioniert offline nach dem ersten Laden der Seite"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Primärschlüssel für Datenbankeinträge generieren",
+      "Eindeutige Bezeichner für API-Endpunkte und Ressourcen erstellen",
+      "Sitzungs-IDs und Korrelations-IDs für verteilte Systeme erzeugen",
+      "Test- und Entwicklungsdaten mit realistischen UUIDs vorbereiten",
+      "Eindeutige Dateinamen und Referenzen für Dateisysteme erstellen",
+      "Transaktions-IDs für Zahlungs- und Bestellsysteme generieren",
+      "Geräte- und Benutzeridentifikation in IoT-Anwendungen",
+      "Nachrichtenschlüssel für Warteschlangen und Event-Systeme erstellen"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie UUID v4 für die meisten Anwendungsfälle - sie bieten die beste Kombination aus Einzigartigkeit und Einfachheit",
+      "UUID v1 enthält einen Zeitstempel und eignet sich für die chronologische Sortierung",
+      "Für Datenbank-Primärschlüssel sind UUIDs ohne Bindestriche oft effizienter bei der Speicherung",
+      "Nutzen Sie die Massenerzeugung, um Testdaten schnell zu generieren",
+      "UUID v5 verwendet einen Namensraum und einen Namen, um deterministische UUIDs zu erzeugen",
+      "Überprüfen Sie bestehende UUIDs mit der Validierungsfunktion, bevor Sie sie in der Produktion verwenden"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
+      "UUID wird nicht akzeptiert: Prüfen Sie, ob das Format korrekt ist (8-4-4-4-12 hexadezimale Zeichen mit Bindestrichen)",
+      "Doppelte UUIDs: Bei UUID v4 ist die Wahrscheinlichkeit einer Kollision astronomisch gering - wenn Duplikate auftreten, prüfen Sie Ihren Code auf Fehler",
+      "Falsche Version: Prüfen Sie das dritte Segment der UUID - die erste Ziffer gibt die Version an (z. B. 4xxxxxxx für v4)",
+      "Großbuchstaben vs. Kleinbuchstaben: UUIDs sind laut Standard nicht an Groß-/Kleinschreibung gebunden, aber Kleinbuchstaben sind die Konvention",
       "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Strg+V",
-        "description": "Eingabe einfügen"
-      },
-      {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+Eingabe",
+        "description": "Neue UUIDs generieren"
       },
       {
         "keys": "Strg+C",
@@ -72,13 +68,17 @@
       {
         "keys": "Strg+S",
         "description": "Datei herunterladen"
+      },
+      {
+        "keys": "Strg+A",
+        "description": "Alle auswählen"
       }
     ]
   },
   "meta": {
-    "title": "UUID-Generator - Online erstellen",
-    "description": "Zufällige UUIDs online generieren. Unterstützung für v1, v4 und v5 mit Massenerzeugung, Validierung und Formatierungsoptionen. Kostenloses UUID-Generator-Tool."
+    "title": "UUID-Generator - Kostenloser GUID- und UUID-v4-Massengenerator online",
+    "description": "UUID v1, v4 und v5 kostenlos online generieren - Massenerzeugung bis zu 1000 Stück, Validierung und Formatierungsoptionen. Keine Registrierung erforderlich. Sofortiger, sicherer, browserbasierter UUID-Generator."
   },
-  "tagline": "Generieren unique UUIDs und GUIDs instantly online",
-  "pageDescription": "Generieren UUID v1 und v4 identifiers für databases, APIs, und applications. Erstellen single UUIDs oder bulk generieren up zu 1000 mit customizable formatting. Perfect für Entwickler building distributed Systeme, database schemas, und unique identification Systeme. Kostenlos, secure, und browserbasiert Generierung."
+  "tagline": "Einzigartige UUIDs und GUIDs sofort online generieren",
+  "pageDescription": "UUID-v1- und v4-Bezeichner für Datenbanken, APIs und Anwendungen generieren. Erstellen Sie einzelne UUIDs oder erzeugen Sie bis zu 1000 auf einmal mit anpassbarer Formatierung. Ideal für Entwickler, die verteilte Systeme, Datenbankschemata und eindeutige Identifikationssysteme aufbauen. Kostenlos online nutzbar ohne Registrierung - sichere, browserbasierte UUID-Generierung in Sekundenschnelle."
 }

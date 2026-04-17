@@ -1,9 +1,9 @@
 {
-  "title": "JWT-Decoder",
-  "description": "JSON Web Tokens dekodieren und validieren",
-  "tagline": "JWT-Token dekodieren, Signaturen im Browser prüfen und Ablauf verfolgen",
-  "pageDescription": "Kostenloser JWT-Decoder, der Token dekodiert und Signaturen vollständig im Browser prüft — kein Server, keine Registrierung. Unterstützt HS256, RS256, ES256, PS256 und alle gängigen JWT-Algorithmen. Enthält Echtzeit-Ablauf-Countdown, Sicherheitsanalyse und Claims-Inspektion. Ideal zum Debuggen von Authentifizierungsproblemen und Validieren von Token-Integrität.",
-  "placeholder": "Fügen Sie Ihren JWT-Token hier ein...",
+  "title": "JWT-Encoder/Decoder",
+  "description": "JSON Web Tokens dekodieren, verifizieren, encodieren und signieren",
+  "tagline": "JWT-Token vollständig im Browser dekodieren, verifizieren, encodieren und signieren",
+  "pageDescription": "Kostenloser JWT-Encoder und -Decoder, der beide Richtungen vollständig im Browser abwickelt — kein Server, keine Registrierung, keine übertragenen Daten. Dekodieren Sie jeden JWT mit Live-Ablauf-Countdown, Sicherheitsanalyse und Claims-Inspektion. Encodieren und signieren Sie neue Token mit HS256/384/512, RS256/384/512, ES256/384/512 oder alg=none für lokale Tests. Signaturen werden über die Web Crypto API verifiziert, ohne Secrets oder private Schlüssel jemals preiszugeben. Ideal zum Debuggen von Authentifizierungsproblemen, zum Erzeugen von Testtoken für APIs und zur vollständig privaten Validierung von JWT-Workflows.",
+  "placeholder": "JWT-Token hier einfügen...",
   "longTailKeywords": [
     "JWT Token online kostenlos dekodieren ohne Anmeldung",
     "JWT Signatur online kostenlos verifizieren",
@@ -16,59 +16,80 @@
     "JWT Authentifizierung debuggen ohne Server",
     "bester kostenloser JWT Decoder online",
     "JWT im Browser verifizieren ohne Daten hochzuladen",
-    "JWT Ablauf-Countdown online in Echtzeit"
+    "JWT Ablauf-Countdown online in Echtzeit",
+    "JWT Encoder online kostenlos ohne Anmeldung",
+    "JWT Token online erstellen kostenlos",
+    "JWT im Browser signieren ohne Server",
+    "JWT Generator HS256 RS256 kostenlos",
+    "wie erstellt man ein JWT Token online",
+    "JWT mit privatem RSA-Schlüssel online signieren",
+    "JWT Encoder und Decoder in einem Tool",
+    "signierten JWT für API-Tests erstellen",
+    "JWT ES256 ECDSA im Browser signieren",
+    "JWT Tool für Entwickler kostenlos online"
   ],
   "instructions": {
-    "title": "So verwenden Sie JWT-Decoder",
+    "title": "So verwenden Sie JWT-Encoder/Decoder",
     "steps": [
       {
-        "title": "JWT-Token einfügen",
-        "description": "Kopieren Sie Ihren JWT aus einer API-Antwort, den Browser-DevTools oder dem Authorization-Header und fügen Sie ihn in das Eingabefeld ein. Der Decoder teilt ihn sofort in Header, Payload und Signatur auf."
+        "title": "Modus wählen — Dekodieren oder Encodieren",
+        "description": "Verwenden Sie den Tab Dekodieren, um einen vorhandenen JWT zu prüfen und zu verifizieren, oder wechseln Sie zu Encodieren, um aus einem Header und Payload einen neuen Token zu erstellen und zu signieren. Der Moduswechsel ist sofort und lokal — nichts wird an einen Server gesendet."
       },
       {
-        "title": "Decodierte Claims prüfen",
-        "description": "Durchsuchen Sie den decodierten Header (Algorithmus, Token-Typ) und Payload (Benutzer-ID, Rollen, iat, Ablaufzeit) im strukturierten Panel. Zeitstempel werden sowohl als Unix-Timestamp als auch lesbar angezeigt."
+        "title": "Dekodieren: JWT-Token einfügen",
+        "description": "Kopieren Sie den JWT aus einer API-Antwort, den Browser-DevTools oder dem Authorization-Header und fügen Sie ihn in das Eingabefeld ein. Der Decoder zerlegt ihn sofort in Header, Payload und Signatur mit einem farbcodierten Ablauf-Countdown."
       },
       {
-        "title": "Live-Ablauf-Countdown verfolgen",
-        "description": "Die farbkodierte Leiste zeigt genau, wie viel Zeit bis zum Ablauf verbleibt: grün (gültig), gelb (läuft in weniger als 5 Minuten ab), rot (bereits abgelaufen)."
+        "title": "Dekodieren: Signatur verifizieren (optional)",
+        "description": "Klappen Sie den Bereich Signatur verifizieren auf, fügen Sie Ihr Secret (HMAC) oder den öffentlichen PEM-Schlüssel (RSA/EC) ein und klicken Sie auf Verifizieren, um kryptografisch zu bestätigen, dass der Token unverändert ist — alles im Browser über die Web Crypto API."
       },
       {
-        "title": "Signatur verifizieren (optional)",
-        "description": "Erweitern Sie den Abschnitt Signatur verifizieren, fügen Sie Ihr Secret (HMAC) oder den öffentlichen PEM-Schlüssel (RSA/EC) ein und klicken Sie auf Verifizieren, um kryptografisch zu bestätigen, dass der Token unverändert ist — alles in Ihrem Browser, nichts wird an einen Server gesendet."
+        "title": "Encodieren: Algorithmus wählen und Claims schreiben",
+        "description": "Wählen Sie einen Algorithmus (HS256/384/512, RS256/384/512, ES256/384/512 oder none), bearbeiten Sie das Payload-JSON mit Ihren Claims (sub, exp, iat, eigene) und fügen Sie optional weitere Header-Felder wie kid hinzu."
+      },
+      {
+        "title": "Encodieren: Signierschlüssel angeben und signieren",
+        "description": "Für HS*-Algorithmen geben Sie einen geheimen String ein. Für RS*/ES*-Algorithmen fügen Sie Ihren privaten PKCS#8-PEM-Schlüssel ein. Klicken Sie auf JWT signieren, um einen signierten Token zu erzeugen — der Schlüssel verlässt Ihren Browser zu keiner Zeit."
       }
     ],
     "features": [
-      "Sofortige Dekodierung jedes JWTs in Header, Payload und Signatur",
-      "Live-Ablauf-Countdown mit farbkodiertem Status — gültig, läuft ab oder abgelaufen",
-      "Signaturverifikation im Browser: HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, ES512, PS256",
-      "Null Datenleck — kein Token oder Schlüssel verlässt jemals Ihren Browser",
+      "Beide Richtungen in einem Tool — bestehende Token dekodieren und neue erstellen",
+      "Sofortige Dekodierung in Header, Payload und Signatur mit Live-Ablauf-Countdown in Farbe",
+      "Signieren im Browser: HS256/384/512, RS256/384/512, ES256/384/512, alg=none",
+      "Verifizieren im Browser: HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, ES512, PS256",
+      "Kein Datenleck — kein Token, Secret oder Schlüssel verlässt jemals Ihren Browser",
       "Lesbare Zeitstempel für exp, iat, nbf und alle Datums-Claims",
       "Header-Inspektion — alg, kid, typ und benutzerdefinierte Felder",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Basiert auf der nativen Web Crypto API — keine externen Abhängigkeiten, funktioniert offline"
     ],
     "useCases": [
-      "401 Unauthorized-Fehler debuggen, indem geprüft wird, ob der Token abgelaufen ist oder falsche Claims enthält",
-      "Verifizieren, dass eine neue JWT-Bibliothek korrekt signierte Token generiert",
-      "ID-Token von OAuth2/OIDC-Anbietern inspizieren — Auth0, Okta, Cognito, Google",
-      "Bestätigen, dass der Algorithmus im Header dem entspricht, was der Server erwartet",
+      "401-Unauthorized-Fehler debuggen, indem geprüft wird, ob der Token abgelaufen ist oder falsche Claims enthält",
+      "Signierte Testtoken erzeugen, um die API zu testen, ohne den gesamten Authentifizierungsstack aufzubauen",
+      "Erwartetes Payload mit dem vergleichen, was der Server tatsächlich ausgibt",
+      "ID-Token von OAuth2/OIDC-Anbietern inspizieren — Auth0, Okta, Cognito, Google, Firebase",
+      "Sicherstellen, dass der Algorithmus im Header dem entspricht, was der Server erwartet",
+      "Token mit benutzerdefiniertem kid oder Claims für Multi-Tenant-Signing-Flows erzeugen",
       "Prüfen, dass keine sensiblen Daten versehentlich im JWT-Payload gespeichert werden",
-      "JWT-Generierungsskripte testen und Signaturkorrektheit mit bekanntem Secret überprüfen",
-      "Decodierten Token-Inhalt mit Teammitgliedern teilen, ohne geheime Schlüssel preiszugeben"
+      "Dekodierten Token-Inhalt zur Fehlersuche mit Teammitgliedern teilen, ohne geheime Schlüssel preiszugeben"
     ],
     "proTips": [
-      "Token direkt aus Browser-DevTools kopieren — Netzwerk-Tab, Authorization-Header",
-      "Für RS256/ES256 nur den öffentlichen Schlüssel einfügen — niemals den privaten Schlüssel mit einem Online-Tool teilen",
+      "Token direkt aus den Browser-DevTools kopieren — Netzwerk-Tab, Authorization-Header",
+      "alg=none nur für lokale Tests verwenden — jeder echte Dienst muss unsignierte Token ablehnen",
+      "Für RS*/ES*-Signierung den privaten Schlüssel verwenden; zur Verifikation nur den öffentlichen Schlüssel einfügen — niemals private Schlüssel mit einem Online-Tool teilen",
       "Das kid-Feld im Header zeigt, welcher Schlüssel Ihres JWKS-Endpoints den Token signiert hat",
-      "Zuerst mit einem absichtlich ungültigen Token testen, um sicherzustellen, dass der Verifizierer ihn ablehnt",
-      "Live-Countdown bei Lasttests überwachen, um kurzlebige Token zu erkennen, die während des Tests ablaufen"
+      "Nach dem Signieren auf Decode ↗ in der Ausgabe klicken, um den Token zu round-trippen und die Claims visuell zu prüfen",
+      "Zuerst mit einem absichtlich ungültigen Secret testen, um zu bestätigen, dass der Verifizierer es ablehnt",
+      "Den Live-Countdown bei Lasttests überwachen, um kurzlebige Token zu erkennen, die während des Tests ablaufen"
     ],
     "troubleshooting": [
       "Ungültiges JWT-Format — der Token muss genau drei durch Punkte getrennte Teile haben: Header.Payload.Signatur",
-      "Signatur zeigt INVALID für HS256 — prüfen Sie, ob das Secret die rohe Zeichenkette ist und nicht base64-codiert",
-      "RS256/ES256-Verifizierung schlägt fehl — sicherstellen, dass der öffentliche Schlüssel im PEM-Format vorliegt und die BEGIN/END-Zeilen enthält",
+      "Signierfehler 'requires a secret' — HMAC-Algorithmen benötigen einen nicht leeren Secret-String im Feld Secret Key",
+      "Signierfehler 'requires a private key (PEM)' — RSA/EC-Algorithmen benötigen einen privaten PKCS#8-PEM-Schlüssel mit BEGIN/END-Zeilen",
+      "Signatur zeigt INVALID für HS256 — prüfen, ob das Secret die rohe Zeichenkette ist, nicht base64-codiert",
+      "RS256/ES256-Verifizierung schlägt fehl — sicherstellen, dass der öffentliche Schlüssel im PEM-Format vorliegt und die BEGIN/END-Kopfzeilen enthält",
+      "Ungültiges Payload-JSON beim Encodieren — der Editor erwartet gültiges JSON; auf abschließende Kommas oder Keys ohne Anführungszeichen prüfen",
       "Claims zeigen unerwartete Werte — der Payload ist base64url-codiert, nicht verschlüsselt; jeder mit dem Token kann ihn dekodieren",
-      "Signaturverifizierung nutzt die Web Crypto API, verfügbar in allen modernen Browsern (Chrome, Firefox, Edge, Safari)"
+      "Signieren und Verifizieren nutzen die Web Crypto API, die in allen modernen Browsern verfügbar ist (Chrome, Firefox, Edge, Safari)"
     ],
     "keyboardShortcuts": [
       {
@@ -90,7 +111,7 @@
     ]
   },
   "meta": {
-    "title": "JWT-Decoder & Signaturprüfer – Kostenloses Online-Tool",
-    "description": "JWT-Token im Browser dekodieren und Signaturen prüfen — HS256, RS256, ES256 u.v.m. Live-Ablauf-Countdown. Kostenlos, ohne Anmeldung, keine Daten an Server."
+    "title": "JWT-Encoder/Decoder — Token signieren & prüfen",
+    "description": "JWT-Token im Browser dekodieren, verifizieren, encodieren und signieren — HS256, RS256, ES256. Kostenlos, ohne Anmeldung. Live-Ablauf-Countdown."
   }
 }

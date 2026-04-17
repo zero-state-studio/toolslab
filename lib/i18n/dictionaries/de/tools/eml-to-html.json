@@ -1,119 +1,119 @@
 {
-  "title": "EML zu HTML Converter",
-  "description": "Konvertieren EML email files zu HTML mit header extraction, attachment handling, und multi-anzeigen rendering",
-  "placeholder": "Upload an EML file oder einfügen EML content hier ein...",
+  "title": "EML-zu-HTML-Konverter",
+  "description": "EML-E-Mail-Dateien in HTML umwandeln mit Kopfzeilen-Extraktion, Anhangverarbeitung und mehreren Anzeigemodi",
+  "placeholder": "Laden Sie eine EML-Datei hoch oder fuegen Sie den EML-Inhalt hier ein...",
   "meta": {
-    "title": "EML zu HTML Konverter - Online",
-    "description": "EML-E-Mail-Dateien sofort in HTML konvertieren. Header analysieren, Anhänge extrahieren und E-Mail-Inhalte anzeigen. MIME- und RFC822-Unterstützung. Kostenlos."
+    "title": "EML-zu-HTML-Konverter - MIME, Anhaenge und Kopfzeilen analysieren",
+    "description": "EML-Dateien kostenlos online in HTML umwandeln - MIME-Kopfzeilen analysieren, Anhaenge extrahieren, E-Mail-Inhalte anzeigen. Unterstuetzt Outlook und Thunderbird. Ohne Anmeldung."
   },
-  "tagline": "Konvertieren EML email files zu HTML mit advanced parsing und multi-anzeigen rendering",
-  "pageDescription": "Professioneller EML zu HTML converter mit MIME parsing, header extraction, attachment handling, und security sanitization. Konvertieren emails von Outlook, Thunderbird, Apple Mail, und other clients. Features include raw anzeigen, rendered HTML anzeigen, headers table, source anzeigen, und attachment extraction. Perfect für email migration, template analysis, forensics, und archiving. Supports quoted-printable, base64 encoding, multipart messages, inline images, und alle RFC822/2822 Standards.",
+  "tagline": "EML-E-Mail-Dateien in HTML umwandeln mit erweiterter Analyse und mehreren Anzeigemodi",
+  "pageDescription": "Professioneller EML-zu-HTML-Konverter mit MIME-Analyse, Kopfzeilen-Extraktion, Anhangverarbeitung und Sicherheitsbereinigung. Wandeln Sie E-Mails aus Outlook, Thunderbird, Apple Mail und anderen Programmen um. Bietet Rohdatenansicht, gerenderte HTML-Ansicht, Kopfzeilen-Tabelle und Anhang-Extraktion. Ideal fuer E-Mail-Migration, Forensik und Archivierung. Kostenlos online ohne Anmeldung - vollstaendig clientseitige Verarbeitung.",
   "instructions": {
-    "title": "So verwenden Sie EML zu HTML Converter",
+    "title": "So verwenden Sie den EML-zu-HTML-Konverter",
     "steps": [
       {
-        "title": "Upload oder einfügen Ihre EML file",
-        "description": "Upload an .eml file von Ihre computer oder einfügen die EML content directly in den Eingabebereich ein. The Tool accepts standard RFC822/2822 email Format von jede email client."
+        "title": "EML-Datei hochladen oder einfuegen",
+        "description": "Laden Sie eine .eml-Datei von Ihrem Computer hoch oder fuegen Sie den EML-Inhalt direkt in den Eingabebereich ein. Das Tool akzeptiert das Standard-E-Mail-Format RFC822/2822 von jedem E-Mail-Programm."
       },
       {
-        "title": "Wählen Ihre anzeigen mode",
-        "description": "Auswählen von Raw Anzeigen (original EML), Rendered Anzeigen (HTML as it appears), Headers Anzeigen (structured metadata table), oder Source Anzeigen (extracted HTML-Code) zu analyze verschieden aspects of die email."
+        "title": "Anzeigemodus waehlen",
+        "description": "Waehlen Sie zwischen Rohdatenansicht (Original-EML), gerenderter Ansicht (HTML-Darstellung), Kopfzeilen-Ansicht (strukturierte Metadaten-Tabelle) oder Quellansicht (extrahierter HTML-Code), um verschiedene Aspekte der E-Mail zu analysieren."
       },
       {
-        "title": "Review extracted components",
-        "description": "Examine email headers (From, To, Subject, Date), anzeigen die HTML oder plain text body, und zugreifen die attachments list mit metadata including file names, types, und sizes."
+        "title": "Extrahierte Bestandteile pruefen",
+        "description": "Untersuchen Sie die E-Mail-Kopfzeilen (Absender, Empfaenger, Betreff, Datum), sehen Sie sich den HTML- oder Nur-Text-Inhalt an und greifen Sie auf die Anhangliste mit Metadaten wie Dateinamen, Dateitypen und Groessen zu."
       },
       {
-        "title": "Exportieren oder download results",
-        "description": "Download die converted HTML as a standalone file, exportieren headers as JSON für programmatic verwenden, speichern attachments separately, oder kopieren die HTML source code zu clipboard."
+        "title": "Ergebnisse exportieren oder herunterladen",
+        "description": "Laden Sie das konvertierte HTML als eigenstaendige Datei herunter, exportieren Sie Kopfzeilen als JSON fuer die programmatische Nutzung, speichern Sie Anhaenge einzeln oder kopieren Sie den HTML-Quellcode in die Zwischenablage."
       }
     ],
     "features": [
-      "Multi-anzeigen rendering: Raw, Rendered, Headers, Source",
-      "Complete MIME parsing mit RFC822/2822 support",
-      "Automatisch encoding Erkennung und Konvertierung (UTF-8, ISO-8859-1, Windows-1252)",
-      "Quoted-printable und Base64 decoding",
-      "Multipart/alternative und multipart/mixed handling",
-      "Inline image extraction mit CID Referenz Konvertierung",
-      "Attachment listing mit download capability",
-      "Email header parsing und JSON exportieren",
-      "HTML sanitization für XSS protection",
-      "JavaScript und event handler removal",
-      "DKIM/SPF header highlighting",
-      "Tracking pixel Erkennung",
-      "Link analysis und extraction",
-      "Email client Erkennung",
-      "Template recognition (MailChimp, SendGrid, etc.)",
-      "Dark mode HTML Konvertierung",
-      "Responsive mobile/desktop preview",
-      "Batch processing für multiple EML files",
-      "CSS inlining für email compatibility",
-      "No server upload - 100% client-side processing"
+      "Mehrere Anzeigemodi: Rohdaten, gerendert, Kopfzeilen, Quellcode",
+      "Vollstaendige MIME-Analyse mit RFC822/2822-Unterstuetzung",
+      "Automatische Zeichensatz-Erkennung und -Konvertierung (UTF-8, ISO-8859-1, Windows-1252)",
+      "Quoted-Printable- und Base64-Dekodierung",
+      "Verarbeitung von Multipart/Alternative und Multipart/Mixed",
+      "Eingebettete Bilder extrahieren und CID-Referenzen umwandeln",
+      "Anhangliste mit Download-Moeglichkeit",
+      "E-Mail-Kopfzeilen analysieren und als JSON exportieren",
+      "HTML-Bereinigung zum Schutz vor XSS-Angriffen",
+      "Entfernung von JavaScript und Ereignishandlern",
+      "DKIM/SPF-Kopfzeilen hervorheben",
+      "Erkennung von Tracking-Pixeln",
+      "Verknuepfungsanalyse und -extraktion",
+      "Erkennung des E-Mail-Programms",
+      "Vorlagenerkennung (MailChimp, SendGrid usw.)",
+      "HTML-Konvertierung fuer den Dunkelmodus",
+      "Responsive Vorschau fuer Mobilgeraete und Desktop",
+      "Stapelverarbeitung fuer mehrere EML-Dateien",
+      "CSS-Inlining fuer E-Mail-Kompatibilitaet",
+      "Kein Server-Upload - 100 % clientseitige Verarbeitung"
     ],
     "useCases": [
-      "Email migration zwischen platforms und Systeme",
-      "Email template analysis und reverse engineering",
-      "Email forensics und header troubleshooting",
-      "Legal Konformität und email archiving",
-      "Converting archived emails zu readable HTML Format",
-      "Extracting email templates für Dokumentation",
-      "Debugging email rendering Probleme",
-      "Testing email client compatibility",
-      "Analyzing spam und phishing emails safely",
-      "Recovering email content von backups",
-      "Converting Outlook PST exports zu HTML",
-      "Verarbeitening Thunderbird mbox archives",
-      "Extracting marketing email designs",
-      "Creating email Dokumentation von templates"
+      "E-Mail-Migration zwischen verschiedenen Plattformen und Systemen",
+      "E-Mail-Vorlagen analysieren und nachbauen",
+      "E-Mail-Forensik und Fehlersuche bei Kopfzeilen",
+      "Rechtliche Konformitaet und E-Mail-Archivierung",
+      "Archivierte E-Mails in lesbares HTML-Format umwandeln",
+      "E-Mail-Vorlagen fuer Dokumentationszwecke extrahieren",
+      "Darstellungsprobleme bei E-Mails untersuchen",
+      "Kompatibilitaet mit verschiedenen E-Mail-Programmen testen",
+      "Spam- und Phishing-E-Mails sicher analysieren",
+      "E-Mail-Inhalte aus Sicherungskopien wiederherstellen",
+      "Outlook-PST-Exporte in HTML umwandeln",
+      "Thunderbird-Mbox-Archive verarbeiten",
+      "Designs von Marketing-E-Mails extrahieren",
+      "E-Mail-Dokumentation aus Vorlagen erstellen"
     ],
     "proTips": [
-      "Verwenden Raw Anzeigen zu inspect die original MIME structure und debug parsing Probleme",
-      "Headers Anzeigen shows authentication Daten (DKIM, SPF) useful für troubleshooting deliverability",
-      "Exportieren headers as JSON zu analyze email routing und server hops programmatically",
-      "The Tool detects und highlights tracking pixels - useful für privacy analysis",
-      "Batch mode lets you process entire folders of archived emails bei once",
-      "Aktivieren CSS inlining when exporting templates für better email client compatibility",
-      "Verwenden Link Analysis zu extract alle URLs von marketing emails",
-      "Template Erkennung identifies common ESP patterns (MailChimp, SendGrid, etc.)",
-      "Dark Mode Konvertierung automatically adjusts Farben für dark theme viewing",
-      "Download as standalone HTML includes alle inline images as Daten URIs"
+      "Verwenden Sie die Rohdatenansicht, um die originale MIME-Struktur zu untersuchen und Analysefehler zu beheben",
+      "Die Kopfzeilen-Ansicht zeigt Authentifizierungsdaten (DKIM, SPF) - nuetzlich bei Zustellbarkeitsproblemen",
+      "Exportieren Sie Kopfzeilen als JSON, um E-Mail-Weiterleitungen und Server-Hops programmatisch zu analysieren",
+      "Das Tool erkennt und hebt Tracking-Pixel hervor - nuetzlich fuer die Datenschutzanalyse",
+      "Im Stapelmodus koennen Sie ganze Ordner archivierter E-Mails auf einmal verarbeiten",
+      "Aktivieren Sie CSS-Inlining beim Exportieren von Vorlagen fuer bessere E-Mail-Kompatibilitaet",
+      "Verwenden Sie die Verknuepfungsanalyse, um alle URLs aus Marketing-E-Mails zu extrahieren",
+      "Die Vorlagenerkennung identifiziert gaengige Versanddienstmuster (MailChimp, SendGrid usw.)",
+      "Die Dunkelmodus-Konvertierung passt Farben automatisch fuer die dunkle Ansicht an",
+      "Beim Herunterladen als eigenstaendiges HTML werden alle eingebetteten Bilder als Daten-URIs eingebunden"
     ],
     "troubleshooting": [
-      "Ungültig EML Format: Sicherstellen file starts mit email headers und follows RFC822/2822 structure",
-      "Encoding Probleme: Versuchen manual charset Auswahl if special characters appear garbled",
-      "Missing images: Inline images mit CID references are converted zu Daten URIs, external images may not load",
-      "Large file processing: Files over 10MB may be slow - consider splitting oder using batch mode",
-      "HTML not rendering: Some emails only contain plain text - prüfen die Rendered Anzeigen tab",
-      "Corrupt attachments: Base64 decoding errors indicate corrupted oder non-standard encoding",
-      "JavaScript warnings: The Tool automatically removes scripts für security - this is expected behavior",
-      "Slow performance: Disable preview rendering für very large HTML emails zu improve speed",
-      "Browser compatibility: Verwenden Chrome, Firefox, Safari, oder Edge für full feature support",
-      "Missing headers: Some email clients may strip headers - die Tool shows alle available Daten"
+      "Ungueltiges EML-Format: Stellen Sie sicher, dass die Datei mit E-Mail-Kopfzeilen beginnt und der RFC822/2822-Struktur entspricht",
+      "Zeichensatzprobleme: Versuchen Sie eine manuelle Zeichensatzauswahl, wenn Sonderzeichen falsch dargestellt werden",
+      "Fehlende Bilder: Eingebettete Bilder mit CID-Referenzen werden in Daten-URIs umgewandelt, externe Bilder werden moeglicherweise nicht geladen",
+      "Grosse Dateien: Dateien ueber 10 MB koennen langsam sein - teilen Sie sie auf oder verwenden Sie den Stapelmodus",
+      "HTML wird nicht dargestellt: Manche E-Mails enthalten nur reinen Text - pruefen Sie den Reiter 'Gerenderte Ansicht'",
+      "Beschaedigte Anhaenge: Base64-Dekodierungsfehler deuten auf beschaedigte oder nicht standardmaessige Kodierung hin",
+      "JavaScript-Warnungen: Das Tool entfernt Skripte automatisch aus Sicherheitsgruenden - dieses Verhalten ist beabsichtigt",
+      "Langsame Leistung: Deaktivieren Sie die Vorschau-Darstellung bei sehr grossen HTML-E-Mails, um die Geschwindigkeit zu verbessern",
+      "Browser-Kompatibilitaet: Verwenden Sie Chrome, Firefox, Safari oder Edge fuer vollstaendige Funktionsunterstuetzung",
+      "Fehlende Kopfzeilen: Manche E-Mail-Programme entfernen Kopfzeilen - das Tool zeigt alle verfuegbaren Daten an"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Einfügen EML content"
+        "description": "EML-Inhalt einfuegen"
       },
       {
         "keys": "Strg+O",
-        "description": "Open file dialog"
+        "description": "Datei-Dialog oeffnen"
       },
       {
         "keys": "Strg+1/2/3/4",
-        "description": "Switch anzeigen modes"
+        "description": "Anzeigemodus wechseln"
       },
       {
         "keys": "Strg+C",
-        "description": "Kopieren aktuell anzeigen"
+        "description": "Aktuelle Ansicht kopieren"
       },
       {
         "keys": "Strg+S",
-        "description": "Download HTML"
+        "description": "HTML herunterladen"
       },
       {
         "keys": "Strg+E",
-        "description": "Exportieren headers JSON"
+        "description": "Kopfzeilen als JSON exportieren"
       }
     ]
   }

@@ -1,8 +1,8 @@
 {
-  "title": "Decodificador JWT",
-  "description": "Decodifica y valida JSON Web Tokens",
-  "tagline": "Decodifica tokens JWT, verifica firmas en el navegador y rastrea la expiración",
-  "pageDescription": "Decodificador JWT gratuito que decodifica tokens y verifica firmas completamente en tu navegador — sin servidor, sin registro. Compatible con HS256, RS256, ES256, PS256 y todos los algoritmos JWT principales. Incluye cuenta regresiva de expiración en tiempo real, análisis de seguridad e inspección de claims. Ideal para depurar autenticación y validar integridad de tokens.",
+  "title": "Codificador/Decodificador JWT",
+  "description": "Decodifica, verifica, codifica y firma JSON Web Tokens",
+  "tagline": "Decodifica, verifica, codifica y firma tokens JWT enteros en tu navegador",
+  "pageDescription": "Codificador y decodificador JWT gratuito que gestiona ambas direcciones completamente en tu navegador — sin servidor, sin registro, nada se sube. Decodifica cualquier JWT con cuenta regresiva de expiración en tiempo real, análisis de seguridad e inspección de claims. Codifica y firma nuevos tokens con HS256/384/512, RS256/384/512, ES256/384/512 o alg=none para pruebas locales. Verifica firmas mediante la Web Crypto API sin exponer jamás secretos ni claves privadas. Ideal para depurar problemas de autenticación, generar tokens de prueba para APIs y validar flujos JWT con total privacidad.",
   "placeholder": "Pega tu token JWT aquí...",
   "longTailKeywords": [
     "decodificador JWT online gratis sin registro",
@@ -16,59 +16,80 @@
     "depurar autenticación JWT sin servidor",
     "mejor decodificador JWT gratuito online",
     "verificar JWT en el navegador sin subir datos",
-    "contador expiración token JWT en tiempo real"
+    "contador expiración token JWT en tiempo real",
+    "codificador JWT online gratis sin registro",
+    "crear token JWT online gratis",
+    "firmar JWT online en el navegador",
+    "generador JWT HS256 RS256 gratuito",
+    "cómo crear un token JWT online",
+    "firmar JWT con clave privada RSA online",
+    "codificador y decodificador JWT en la misma herramienta",
+    "generar JWT firmado para pruebas de API",
+    "firmar JWT ES256 ECDSA en el navegador",
+    "herramienta JWT gratis para desarrolladores"
   ],
   "instructions": {
-    "title": "Cómo usar Decodificador JWT",
+    "title": "Cómo usar Codificador/Decodificador JWT",
     "steps": [
       {
-        "title": "Pega tu token JWT",
-        "description": "Copia el JWT desde la respuesta de API, DevTools del navegador o el header Authorization y pégalo en el campo de entrada. El decodificador lo divide instantáneamente en header, payload y firma."
+        "title": "Elige el modo — Decodificar o Codificar",
+        "description": "Usa la pestaña Decodificar para inspeccionar y verificar un JWT existente, o cambia a Codificar para construir y firmar un token nuevo desde un header y payload. El cambio de modo es instantáneo y local — nada se envía a ningún servidor."
       },
       {
-        "title": "Inspecciona los claims decodificados",
-        "description": "Examina el header decodificado (algoritmo, tipo de token) y el payload (ID de usuario, roles, iat, expiración) en el panel estructurado. Los timestamps se muestran en formato Unix y legible."
+        "title": "Decodificar: pega tu token JWT",
+        "description": "Copia el JWT desde una respuesta de API, los DevTools del navegador o el header Authorization y pégalo en el campo de entrada. El decodificador lo divide al instante en header, payload y firma con un contador de expiración codificado por colores."
       },
       {
-        "title": "Monitorea el countdown de expiración en vivo",
-        "description": "La barra de colores muestra exactamente cuánto tiempo queda antes de que el token expire: verde (válido), amarillo (expirando en menos de 5 minutos), rojo (ya expirado)."
+        "title": "Decodificar: verifica la firma (opcional)",
+        "description": "Despliega la sección Verificar Firma, pega tu secreto (HMAC) o clave pública PEM (RSA/EC) y haz clic en Verificar para confirmar criptográficamente que el token no ha sido alterado — todo en tu navegador mediante la Web Crypto API."
       },
       {
-        "title": "Verifica la firma (opcional)",
-        "description": "Expande la sección Verificar Firma, pega tu secreto (HMAC) o clave pública PEM (RSA/EC) y haz clic en Verificar para confirmar criptográficamente que el token no ha sido alterado — todo en tu navegador, nada enviado a ningún servidor."
+        "title": "Codificar: elige un algoritmo y escribe los claims",
+        "description": "Selecciona un algoritmo (HS256/384/512, RS256/384/512, ES256/384/512 o none), edita el JSON del payload con tus claims (sub, exp, iat, personalizados) y añade opcionalmente campos extra al header como kid."
+      },
+      {
+        "title": "Codificar: proporciona la clave de firma y firma",
+        "description": "Para algoritmos HS* introduce una cadena secreta. Para RS*/ES* pega tu clave privada PKCS#8 PEM. Haz clic en Firmar JWT para obtener un token firmado — la clave permanece en tu navegador en todo momento."
       }
     ],
     "features": [
-      "Decodificación instantánea de cualquier JWT en header, payload y firma",
-      "Countdown de expiración en vivo con estado por colores — válido, expirando o expirado",
-      "Verificación de firma en el navegador: HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, ES512, PS256",
-      "Cero pérdida de datos — ningún token ni clave sale jamás de tu navegador",
+      "Ambas direcciones en una sola herramienta — decodifica tokens existentes y crea nuevos",
+      "Decodificación instantánea en header, payload y firma con contador de expiración en vivo codificado por colores",
+      "Firma en el navegador: HS256/384/512, RS256/384/512, ES256/384/512, alg=none",
+      "Verificación en el navegador: HS256, HS384, HS512, RS256, RS384, RS512, ES256, ES384, ES512, PS256",
+      "Cero pérdida de datos — ningún token, secreto ni clave sale jamás de tu navegador",
       "Timestamps legibles para exp, iat, nbf y todos los claims de fecha",
       "Inspección de header — alg, kid, typ y campos personalizados",
-      "Funciona sin conexión después de la carga inicial"
+      "Basado en la Web Crypto API nativa — sin dependencias externas, funciona sin conexión"
     ],
     "useCases": [
-      "Depurar errores 401 No autorizado verificando si el token ha expirado o tiene claims incorrectos",
-      "Verificar que una nueva librería JWT genera tokens con firma correcta durante el desarrollo",
-      "Inspeccionar tokens de identidad de proveedores OAuth2/OIDC — Auth0, Okta, Cognito, Google",
+      "Depurar errores 401 No autorizado verificando si el token ha expirado o contiene claims incorrectos",
+      "Generar tokens de prueba firmados para ejercitar tu API sin levantar una pila de autenticación completa",
+      "Comparar el payload esperado con el que tu servidor emite realmente",
+      "Inspeccionar tokens de identidad de proveedores OAuth2/OIDC — Auth0, Okta, Cognito, Google, Firebase",
       "Confirmar que el algoritmo en el header coincide con lo que espera tu servidor",
+      "Producir tokens con kid o claims personalizados para probar flujos de firma multi-tenant",
       "Validar que datos sensibles no se almacenan accidentalmente en el payload JWT",
-      "Probar scripts de generación JWT y verificar la corrección de la firma con un secreto conocido",
-      "Compartir el contenido decodificado del token con compañeros sin exponer las claves secretas"
+      "Compartir el contenido decodificado del token con compañeros para depurar sin exponer claves secretas"
     ],
     "proTips": [
-      "Copia tokens directamente desde el DevTools del navegador — pestaña Network, header Authorization",
-      "Para RS256/ES256 pega solo la clave pública — nunca compartas la clave privada con ninguna herramienta online",
+      "Copia tokens directamente desde el DevTools del navegador — pestaña Red, header Authorization",
+      "Usa alg=none solo para pruebas locales — cualquier servicio real debe rechazar tokens sin firmar",
+      "Para firmar RS*/ES* usa la clave privada; para verificar pega solo la clave pública — nunca compartas claves privadas con ninguna herramienta online",
       "El campo kid en el header indica qué clave de tu endpoint JWKS firmó el token",
-      "Primero prueba con un token deliberadamente inválido para confirmar que el verificador lo rechaza correctamente",
-      "Monitorea el countdown en vivo durante pruebas de carga para detectar tokens de corta vida que expiran durante la prueba"
+      "Después de firmar, haz clic en Decode ↗ en la salida para hacer un round-trip del token y confirmar visualmente los claims",
+      "Prueba primero con un secreto deliberadamente inválido para confirmar que el verificador lo rechaza correctamente",
+      "Monitorea el contador en vivo durante pruebas de carga para detectar tokens de corta vida que expiran durante la ejecución"
     ],
     "troubleshooting": [
       "Formato JWT inválido — el token debe tener exactamente tres partes separadas por puntos: header.payload.firma",
+      "Error de firma 'requires a secret' — los algoritmos HMAC requieren un secreto no vacío en el campo Secret Key",
+      "Error de firma 'requires a private key (PEM)' — los algoritmos RSA/EC requieren una clave privada PKCS#8 PEM con las líneas BEGIN/END",
       "La firma aparece INVÁLIDA para HS256 — verifica que el secreto sea la cadena cruda, no codificada en base64",
-      "La verificación RS256/ES256 falla — asegúrate de que la clave pública esté en formato PEM con las líneas BEGIN/END",
+      "La verificación RS256/ES256 falla — asegúrate de que la clave pública esté en formato PEM con las líneas de cabecera BEGIN/END",
+      "Payload JSON inválido al codificar — el editor requiere JSON válido; revisa comas finales o claves sin comillas",
       "Los claims muestran valores inesperados — el payload está codificado en base64url, no cifrado; cualquiera con el token puede decodificarlo",
-      "La verificación de firma usa la Web Crypto API disponible en todos los navegadores modernos (Chrome, Firefox, Edge, Safari)"
+      "La firma y verificación usan la Web Crypto API, disponible en todos los navegadores modernos (Chrome, Firefox, Edge, Safari)"
     ],
     "keyboardShortcuts": [
       {
@@ -90,7 +111,7 @@
     ]
   },
   "meta": {
-    "title": "Decodificador JWT y Verificador de Firma – Herramienta Online Gratuita",
-    "description": "Decodifica tokens JWT y verifica firmas en el navegador — HS256, RS256, ES256. Expiración en tiempo real. Gratis, sin registro, sin datos enviados al servidor."
+    "title": "Codificador/Decodificador JWT — Firma y Verifica Online",
+    "description": "Decodifica, verifica, codifica y firma tokens JWT en el navegador — HS256, RS256, ES256. Gratis, sin registro. Contador de expiración en vivo."
   }
 }

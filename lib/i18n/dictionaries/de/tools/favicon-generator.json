@@ -1,84 +1,82 @@
 {
   "title": "Favicon-Generator",
-  "description": "Generieren favicons für websites in various Formate",
-  "placeholder": "",
+  "description": "Favicons für Websites in verschiedenen Formaten und Größen erstellen",
+  "placeholder": "Bild hochladen oder Text für das Favicon eingeben...",
   "meta": {
-    "title": "Favicon-Generator - Alle Formate",
-    "description": "Favicons für Ihre Website in allen Formaten und Größen erstellen. ICO-, PNG-, SVG-Favicons aus jedem Bild generieren. Kostenloses Online-Tool mit Live-Vorschau."
+    "title": "Favicon-Generator - ICO- und PNG-Favicons kostenlos online erstellen",
+    "description": "Favicons kostenlos online erstellen - ICO, PNG, SVG in allen Größen (16x16 bis 512x512) mit Apple Touch Icons generieren. Ohne Anmeldung. Kostenloser Favicon-Generator mit Live-Vorschau."
   },
-  "tagline": "Generieren complete favicon packages für alle devices",
-  "pageDescription": "Erstellen professional favicons von jede image. Generieren alle required sizes (16x16 zu 512x512) in ICO, PNG und SVG Formate. Includes Apple Touch Icons, Android Chrome icons und complete HTML implementation code. Perfect für web developers und designers building professional websites.",
+  "tagline": "Vollständige Favicon-Pakete für alle Geräte erstellen",
+  "pageDescription": "Erstellen Sie professionelle Favicons aus jedem Bild. Generieren Sie alle benötigten Größen (16x16 bis 512x512) in den Formaten ICO, PNG und SVG. Beinhaltet Apple Touch Icons, Android Chrome Icons und den vollständigen HTML-Einbettungscode. Ideal für Webentwickler und Designer. Kostenlos online ohne Anmeldung - die gesamte Verarbeitung erfolgt in Ihrem Browser.",
   "instructions": {
-    "title": "So verwenden Sie Favicon-Generator",
+    "title": "So verwenden Sie den Favicon-Generator",
     "steps": [
       {
-        "title": "Inhalt einfügen",
-        "description": "Kopieren und fügen Sie Ihre content in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Bild hochladen",
+        "description": "Laden Sie ein Bild (PNG, JPG, SVG oder GIF) von Ihrem Computer hoch. Für beste Ergebnisse verwenden Sie ein quadratisches Bild mit mindestens 512x512 Pixeln."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Größen und Formate auswählen",
+        "description": "Wählen Sie die gewünschten Favicon-Größen und Formate aus: ICO für den Browser-Tab, PNG für verschiedene Geräte, Apple Touch Icon für iOS und Android Chrome Icons."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool generiert Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Vorschau prüfen",
+        "description": "Sehen Sie sich die Live-Vorschau Ihrer Favicons in verschiedenen Größen und Kontexten an - im Browser-Tab, als Lesezeichen-Symbol und auf dem Startbildschirm."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die generierte Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Favicons herunterladen und einbinden",
+        "description": "Laden Sie das komplette Favicon-Paket herunter und kopieren Sie den generierten HTML-Code in den Head-Bereich Ihrer Website, um alle Favicon-Varianten einzubinden."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Generierung aller gängigen Favicon-Größen (16x16, 32x32, 48x48, 64x64, 128x128, 256x256, 512x512)",
+      "ICO-Format mit mehreren eingebetteten Größen",
+      "PNG-Favicons in allen Standardgrößen",
+      "SVG-Favicon-Unterstützung für scharfe Darstellung auf allen Bildschirmen",
+      "Apple Touch Icons (180x180) für iOS-Geräte",
+      "Android Chrome Icons (192x192, 512x512) mit Web-App-Manifest",
+      "Automatisch generierter HTML-Einbettungscode",
+      "Live-Vorschau in verschiedenen Kontexten (Browser-Tab, Lesezeichen, Startbildschirm)",
+      "Bildoptimierung und -komprimierung für schnelle Ladezeiten",
+      "Vollständig clientseitige Verarbeitung - kein Upload auf einen Server"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Favicons für neue Websites und Webanwendungen erstellen",
+      "Bestehende Favicons auf alle modernen Formate und Größen aktualisieren",
+      "Apple Touch Icons für iOS-Lesezeichen und Startbildschirm generieren",
+      "Android Chrome Icons für progressive Web-Apps bereitstellen",
+      "Konsistente Markendarstellung auf allen Geräten und Browsern sicherstellen",
+      "HTML-Einbettungscode für die schnelle Integration in Webprojekte erzeugen",
+      "Favicons aus Firmenlogos für verschiedene Websites erstellen",
+      "Web-App-Manifest-Icons für installierbare Webanwendungen generieren"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie ein quadratisches Ausgangsbild mit mindestens 512x512 Pixeln für die beste Qualität in allen Größen",
+      "Einfache, kontrastreiche Motive funktionieren am besten - feine Details gehen bei kleinen Größen verloren",
+      "Testen Sie Ihre Favicons in verschiedenen Browsern und auf dem dunklen sowie hellen Hintergrund des Betriebssystems",
+      "SVG-Favicons bieten die schärfste Darstellung auf hochauflösenden Bildschirmen",
+      "Vergessen Sie nicht das Apple Touch Icon - viele iOS-Nutzer speichern Websites auf dem Startbildschirm",
+      "Fügen Sie den generierten HTML-Code vollständig in den Head-Bereich ein, um alle Geräte abzudecken"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Unscharfe Favicons: Verwenden Sie ein Ausgangsbild mit hoher Auflösung (mindestens 512x512 Pixel)",
+      "Favicon wird nicht angezeigt: Leeren Sie den Browser-Cache und prüfen Sie den HTML-Einbettungscode im Head-Bereich",
+      "Falsches Format: Stellen Sie sicher, dass das Ausgangsbild im Format PNG, JPG, SVG oder GIF vorliegt",
+      "Favicon auf iOS nicht sichtbar: Prüfen Sie, ob das Apple Touch Icon (180x180) generiert und korrekt eingebunden wurde",
+      "Grosse Dateien: Optimieren Sie das Ausgangsbild vor dem Hochladen, um kleinere Favicon-Dateien zu erhalten"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Eingabe einfügen"
-      },
-      {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "description": "Bild einfügen"
       },
       {
         "keys": "Strg+C",
-        "description": "Ergebnis kopieren"
+        "description": "HTML-Code kopieren"
       },
       {
         "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "description": "Favicon-Paket herunterladen"
       }
     ]
   }

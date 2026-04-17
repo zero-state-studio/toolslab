@@ -1,8 +1,16 @@
+import { webcrypto } from 'crypto';
+
+if (!(globalThis as any).crypto?.subtle) {
+  (globalThis as any).crypto = webcrypto;
+}
+
 import {
   decodeJwt,
   generateSampleJwts,
   decodeMultipleJwts,
+  signJwt,
   JwtDecodeOptions,
+  JwtSignOptions,
 } from '@/lib/tools/jwt-decoder';
 
 describe('JWT Decoder', () => {
@@ -594,6 +602,290 @@ eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiIxMjM0NTY3ODkwIn0.
       expect(result.payload?.decimal).toBe(123.456);
       expect(result.payload?.empty_array).toEqual([]);
       expect(result.payload?.empty_object).toEqual({});
+    });
+  });
+
+  describe('signJwt', () => {
+    async function generateRsaPemKeyPair(
+      hash: 'SHA-256' | 'SHA-384' | 'SHA-512'
+    ): Promise<{ privatePem: string; publicPem: string }> {
+      const keyPair = (await (globalThis as any).crypto.subtle.generateKey(
+        {
+          name: 'RSASSA-PKCS1-v1_5',
+          modulusLength: 2048,
+          publicExponent: new Uint8Array([1, 0, 1]),
+          hash,
+        },
+        true,
+        ['sign', 'verify']
+      )) as { privateKey: CryptoKey; publicKey: CryptoKey };
+
+      const priv = new Uint8Array(
+        await (globalThis as any).crypto.subtle.exportKey(
+          'pkcs8',
+          keyPair.privateKey
+        )
+      );
+      const pub = new Uint8Array(
+        await (globalThis as any).crypto.subtle.exportKey(
+          'spki',
+          keyPair.publicKey
+        )
+      );
+
+      const toPem = (buf: Uint8Array, label: string) => {
+        const b64 = Buffer.from(buf).toString('base64');
+        const lines = b64.match(/.{1,64}/g) || [b64];
+        return `-----BEGIN ${label}-----\n${lines.join('\n')}\n-----END ${label}-----`;
+      };
+
+      return {
+        privatePem: toPem(priv, 'PRIVATE KEY'),
+        publicPem: toPem(pub, 'PUBLIC KEY'),
+      };
+    }
+
+    async function generateEcPemKeyPair(
+      namedCurve: 'P-256' | 'P-384' | 'P-521'
+    ): Promise<{ privatePem: string; publicPem: string }> {
+      const keyPair = (await (globalThis as any).crypto.subtle.generateKey(
+        { name: 'ECDSA', namedCurve },
+        true,
+        ['sign', 'verify']
+      )) as { privateKey: CryptoKey; publicKey: CryptoKey };
+
+      const priv = new Uint8Array(
+        await (globalThis as any).crypto.subtle.exportKey(
+          'pkcs8',
+          keyPair.privateKey
+        )
+      );
+      const pub = new Uint8Array(
+        await (globalThis as any).crypto.subtle.exportKey(
+          'spki',
+          keyPair.publicKey
+        )
+      );
+
+      const toPem = (buf: Uint8Array, label: string) => {
+        const b64 = Buffer.from(buf).toString('base64');
+        const lines = b64.match(/.{1,64}/g) || [b64];
+        return `-----BEGIN ${label}-----\n${lines.join('\n')}\n-----END ${label}-----`;
+      };
+
+      return {
+        privatePem: toPem(priv, 'PRIVATE KEY'),
+        publicPem: toPem(pub, 'PUBLIC KEY'),
+      };
+    }
+
+    const basePayload = {
+      sub: '1234567890',
+      name: 'John Doe',
+      iat: 1516239022,
+    };
+
+    it('should sign HS256 and produce a decodable token with 3 parts', async () => {
+      const result = await signJwt({
+        header: { alg: 'HS256', typ: 'JWT' },
+        payload: basePayload,
+        secret: 'my-256-bit-secret',
+      });
+
+      expect(result.success).toBe(true);
+      expect(result.error).toBeUndefined();
+      expect(result.token).toBeDefined();
+      expect(result.token!.split('.')).toHaveLength(3);
+
+      const decoded = decodeJwt(result.token!);
+      expect(decoded.success).toBe(true);
+      expect(decoded.header).toEqual({ alg: 'HS256', typ: 'JWT' });
+      expect(decoded.payload).toEqual(basePayload);
+      expect(decoded.signature!.length).toBeGreaterThan(0);
+    });
+
+    it('should match the canonical HS256 test vector', async () => {
+      // Reference vector (commonly cited): header {"alg":"HS256","typ":"JWT"},
+      // payload {"sub":"1234567890","name":"John Doe","iat":1516239022},
+      // secret "your-256-bit-secret"
+      // → token suffix "SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+      const result = await signJwt({
+        header: { alg: 'HS256', typ: 'JWT' },
+        payload: { sub: '1234567890', name: 'John Doe', iat: 1516239022 },
+        secret: 'your-256-bit-secret',
+      });
+
+      expect(result.success).toBe(true);
+      expect(result.token).toBe(
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+      );
+    });
+
+    it('should sign HS384 and produce a decodable token', async () => {
+      const result = await signJwt({
+        header: { alg: 'HS384', typ: 'JWT' },
+        payload: basePayload,
+        secret: 'hs384-secret',
+      });
+
+      expect(result.success).toBe(true);
+      const decoded = decodeJwt(result.token!);
+      expect(decoded.header?.alg).toBe('HS384');
+    });
+
+    it('should sign HS512 and produce a decodable token', async () => {
+      const result = await signJwt({
+        header: { alg: 'HS512', typ: 'JWT' },
+        payload: basePayload,
+        secret: 'hs512-secret',
+      });
+
+      expect(result.success).toBe(true);
+      const decoded = decodeJwt(result.token!);
+      expect(decoded.header?.alg).toBe('HS512');
+    });
+
+    it('should sign RS256 with a PEM private key', async () => {
+      const { privatePem } = await generateRsaPemKeyPair('SHA-256');
+
+      const result = await signJwt({
+        header: { alg: 'RS256', typ: 'JWT' },
+        payload: basePayload,
+        privateKeyPem: privatePem,
+      });
+
+      expect(result.success).toBe(true);
+      const decoded = decodeJwt(result.token!);
+      expect(decoded.header?.alg).toBe('RS256');
+      expect(decoded.payload).toEqual(basePayload);
+      expect(decoded.signature!.length).toBeGreaterThan(0);
+    });
+
+    it('should sign RS384 with a PEM private key', async () => {
+      const { privatePem } = await generateRsaPemKeyPair('SHA-384');
+
+      const result = await signJwt({
+        header: { alg: 'RS384', typ: 'JWT' },
+        payload: basePayload,
+        privateKeyPem: privatePem,
+      });
+
+      expect(result.success).toBe(true);
+    });
+
+    it('should sign ES256 with a PEM private key', async () => {
+      const { privatePem } = await generateEcPemKeyPair('P-256');
+
+      const result = await signJwt({
+        header: { alg: 'ES256', typ: 'JWT' },
+        payload: basePayload,
+        privateKeyPem: privatePem,
+      });
+
+      expect(result.success).toBe(true);
+      const decoded = decodeJwt(result.token!);
+      expect(decoded.header?.alg).toBe('ES256');
+    });
+
+    it('should sign ES384 with a PEM private key', async () => {
+      const { privatePem } = await generateEcPemKeyPair('P-384');
+
+      const result = await signJwt({
+        header: { alg: 'ES384', typ: 'JWT' },
+        payload: basePayload,
+        privateKeyPem: privatePem,
+      });
+
+      expect(result.success).toBe(true);
+    });
+
+    it('should produce an unsigned token with alg=none and empty signature', async () => {
+      const result = await signJwt({
+        header: { alg: 'none', typ: 'JWT' },
+        payload: basePayload,
+      });
+
+      expect(result.success).toBe(true);
+      const parts = result.token!.split('.');
+      expect(parts).toHaveLength(3);
+      expect(parts[2]).toBe('');
+    });
+
+    it('should return error when HS256 secret is missing', async () => {
+      const result = await signJwt({
+        header: { alg: 'HS256', typ: 'JWT' },
+        payload: basePayload,
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('secret');
+      expect(result.token).toBeUndefined();
+    });
+
+    it('should return error when RS256 private key is missing', async () => {
+      const result = await signJwt({
+        header: { alg: 'RS256', typ: 'JWT' },
+        payload: basePayload,
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.error).toContain('private key');
+    });
+
+    it('should return error for unsupported algorithm', async () => {
+      const result = await signJwt({
+        header: { alg: 'BOGUS' as any, typ: 'JWT' },
+        payload: basePayload,
+        secret: 'x',
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.error).toMatch(/unsupported|algorithm/i);
+    });
+
+    it('should return error when header alg is missing', async () => {
+      const result = await signJwt({
+        header: {} as any,
+        payload: basePayload,
+        secret: 'x',
+      });
+
+      expect(result.success).toBe(false);
+      expect(result.error).toMatch(/alg/i);
+    });
+
+    it('should preserve custom header fields like kid', async () => {
+      const result = await signJwt({
+        header: { alg: 'HS256', typ: 'JWT', kid: 'key-123' },
+        payload: basePayload,
+        secret: 'x',
+      });
+
+      expect(result.success).toBe(true);
+      const decoded = decodeJwt(result.token!);
+      expect(decoded.header?.kid).toBe('key-123');
+    });
+
+    it('should handle complex nested payloads', async () => {
+      const complexPayload = {
+        sub: 'user-1',
+        roles: ['admin', 'editor'],
+        meta: {
+          org: 'acme',
+          flags: { beta: true, tier: 3 },
+        },
+        scope: ['read', 'write'],
+      };
+
+      const result = await signJwt({
+        header: { alg: 'HS256', typ: 'JWT' },
+        payload: complexPayload,
+        secret: 'nested',
+      });
+
+      expect(result.success).toBe(true);
+      const decoded = decodeJwt(result.token!);
+      expect(decoded.payload).toEqual(complexPayload);
     });
   });
 });

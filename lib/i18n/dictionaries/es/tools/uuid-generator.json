@@ -79,6 +79,6 @@
     "title": "Generador UUID - Herramienta Online Gratuita",
     "description": "Genera UUIDs aleatorios en línea. Soporte para versiones UUID v1, v4 y v5. Generador UUID gratuito con generación masiva."
   },
-  "tagline": "Generate unique UUIDs and GUIDs instantly online",
-  "pageDescription": "Generate UUID v1 and v4 identifiers for databases, APIs, and applications. Create single UUIDs or bulk generate up to 1000 with customizable formatting. Perfect for developers building distributed systems, database schemas, and unique identification systems. Free, secure, and browser-based generation."
+  "tagline": "Genera UUIDs y GUIDs únicos instantáneamente en línea",
+  "pageDescription": "Genera identificadores UUID v1 y v4 para bases de datos, APIs y aplicaciones. Crea UUIDs individuales o genera en masa hasta 1000 con formato personalizable. Perfecto para desarrolladores que construyen sistemas distribuidos, esquemas de bases de datos y sistemas de identificación únicos. Generación gratuita, segura y basada en el navegador."
 }
