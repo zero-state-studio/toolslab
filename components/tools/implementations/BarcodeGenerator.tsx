@@ -76,12 +76,12 @@ export default function BarcodeGenerator() {
 
   // Customization options
   const [includeText, setIncludeText] = useState(true);
-  const [barWidth, setBarWidth] = useState(2);
+  const [barWidth, setBarWidth] = useState(0);
   const [barHeight, setBarHeight] = useState(15);
   const [scale, setScale] = useState(3);
-  const [textSize, setTextSize] = useState(16); // Increased from 10 to 16 for readability
-  const [paddingWidth, setPaddingWidth] = useState(10);
-  const [paddingHeight, setPaddingHeight] = useState(10);
+  const [textSize, setTextSize] = useState(12);
+  const [paddingWidth, setPaddingWidth] = useState(5);
+  const [paddingHeight, setPaddingHeight] = useState(5);
   const [rotation, setRotation] = useState<'N' | 'R' | 'L' | 'I'>('N');
   const [barColor, setBarColor] = useState('#000000');
   const [backgroundColor, setBackgroundColor] = useState('#ffffff');
@@ -488,29 +488,9 @@ export default function BarcodeGenerator() {
 
               {/* Size Options */}
               <TabsContent value="size" className="mt-4 space-y-4">
-                {![
-                  'qrcode',
-                  'datamatrix',
-                  'pdf417',
-                  'azteccode',
-                  'maxicode',
-                ].includes(format) && (
-                  <div>
-                    <Label>Bar Width: {barWidth}x</Label>
-                    <Slider
-                      value={[barWidth]}
-                      onValueChange={(v) => setBarWidth(v[0])}
-                      min={1}
-                      max={8}
-                      step={1}
-                      className="mt-2"
-                    />
-                  </div>
-                )}
-
                 <div>
                   <Label>
-                    Height: {barHeight} modules (~{barHeight * scale}px)
+                    Height: {barHeight}mm (~{barHeight * scale}px)
                   </Label>
                   <Slider
                     value={[barHeight]}
