@@ -61,8 +61,7 @@ interface SavedGradient {
 
 type OutputFormat = 'css' | 'react' | 'cssvar';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface GradientGeneratorProps extends BaseToolProps {}
+type GradientGeneratorProps = BaseToolProps;
 
 export default function GradientGenerator({
   categoryColor: _categoryColor,
