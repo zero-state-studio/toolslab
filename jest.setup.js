@@ -1,4 +1,21 @@
 import '@testing-library/jest-dom';
+import { TextEncoder, TextDecoder } from 'util';
+import { webcrypto } from 'crypto';
+
+// jsdom polyfills for Node Web APIs not provided by default
+if (typeof global.TextEncoder === 'undefined') {
+  global.TextEncoder = TextEncoder;
+}
+if (typeof global.TextDecoder === 'undefined') {
+  global.TextDecoder = TextDecoder;
+}
+if (!global.crypto || !global.crypto.subtle) {
+  Object.defineProperty(global, 'crypto', {
+    value: webcrypto,
+    writable: true,
+    configurable: true,
+  });
+}
 
 // Mock Web Workers
 global.Worker = class Worker {
