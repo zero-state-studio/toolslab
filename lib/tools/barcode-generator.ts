@@ -325,17 +325,17 @@ export async function generateBarcode(
     const {
       format,
       value,
-      width = 2,
-      height = 50,
-      scale = 5,
+      width = 0,
+      height = 15,
+      scale = 3,
       includetext = true,
-      textsize = 16, // Increased from 10 to 16 for readability
+      textsize = 12,
       textcolor = '000000',
       backgroundcolor = 'ffffff',
       barcolor = '000000',
       rotate = 'N',
-      paddingwidth = 10,
-      paddingheight = 10,
+      paddingwidth = 5,
+      paddingheight = 5,
       monochrome = true,
       eclevel = 'M',
     } = options;
@@ -383,7 +383,7 @@ export async function generateBarcode(
     }
 
     // Add text size
-    if (includetext && textsize !== 16) {
+    if (includetext && textsize !== 12) {
       bwipOptions.textsize = textsize;
     }
 
@@ -423,17 +423,17 @@ export async function generateBarcodeSVG(
     const {
       format,
       value,
-      width = 2,
-      height = 50,
-      scale = 5,
+      width = 0,
+      height = 15,
+      scale = 3,
       includetext = true,
-      textsize = 16,
+      textsize = 12,
       textcolor = '000000',
       backgroundcolor = 'ffffff',
       barcolor = '000000',
       rotate = 'N',
-      paddingwidth = 10,
-      paddingheight = 10,
+      paddingwidth = 5,
+      paddingheight = 5,
       monochrome = true,
       eclevel = 'M',
     } = options;
@@ -466,7 +466,7 @@ export async function generateBarcodeSVG(
       bwipOptions.textcolor = textcolor;
     }
     if (rotate !== 'N') bwipOptions.rotate = rotate;
-    if (includetext && textsize !== 16) bwipOptions.textsize = textsize;
+    if (includetext && textsize !== 12) bwipOptions.textsize = textsize;
     if (!is2DFormat(format)) bwipOptions.width = width;
 
     const svgString = bwipjs.toSVG(bwipOptions);
@@ -752,37 +752,38 @@ export function getOptimalDimensions(format: BarcodeFormat): {
   }
 
   // 1D barcodes - balanced for ~60px height with readable text
-  // height in modules × scale = final pixels (12 × 5 = 60px)
-  // width controls bar thickness
+  // bwip-js units: width/height in millimeters, scale in pixels per mm.
+  // width: 0 = auto-size from content (recommended for proper aspect ratio).
+  // Target ratio ~3:1 (wide:tall) for scannable retail barcodes.
   const dimensionMap: Record<
     string,
     { width: number; height: number; scale: number }
   > = {
-    // Code formats - ~60px height (12 modules × 5 scale)
-    code128: { width: 3, height: 12, scale: 5 },
-    code39: { width: 3, height: 12, scale: 5 },
-    code93: { width: 3, height: 12, scale: 5 },
+    // Code formats - auto-width, 15mm bar height, scale 3 → ~597×191px for 14 chars
+    code128: { width: 0, height: 15, scale: 3 },
+    code39: { width: 0, height: 15, scale: 3 },
+    code93: { width: 0, height: 15, scale: 3 },
 
     // EAN/UPC - standard retail dimensions
-    ean13: { width: 2, height: 12, scale: 5 },
-    ean8: { width: 2, height: 11, scale: 5 },
-    upca: { width: 2, height: 12, scale: 5 },
-    upce: { width: 2, height: 11, scale: 5 },
+    ean13: { width: 0, height: 15, scale: 3 },
+    ean8: { width: 0, height: 14, scale: 3 },
+    upca: { width: 0, height: 15, scale: 3 },
+    upce: { width: 0, height: 14, scale: 3 },
 
     // ITF-14 - slightly larger for carton labels
-    itf14: { width: 3, height: 13, scale: 5 },
+    itf14: { width: 0, height: 16, scale: 3 },
 
     // ISBN/ISSN - similar to EAN
-    isbn: { width: 2, height: 12, scale: 5 },
-    issn: { width: 2, height: 12, scale: 5 },
+    isbn: { width: 0, height: 15, scale: 3 },
+    issn: { width: 0, height: 15, scale: 3 },
 
     // Others
-    codabar: { width: 2, height: 12, scale: 5 },
-    msi: { width: 2, height: 12, scale: 5 },
-    pharmacode: { width: 2, height: 10, scale: 5 },
+    codabar: { width: 0, height: 15, scale: 3 },
+    msi: { width: 0, height: 15, scale: 3 },
+    pharmacode: { width: 0, height: 12, scale: 3 },
   };
 
-  return dimensionMap[format] || { width: 2, height: 12, scale: 5 };
+  return dimensionMap[format] || { width: 0, height: 15, scale: 3 };
 }
 
 export interface CharacterLimit {
