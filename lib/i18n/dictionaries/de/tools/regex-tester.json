@@ -1,70 +1,70 @@
 {
   "title": "Regex-Tester",
-  "description": "Testen und debug regular expressions",
-  "placeholder": "Eingeben Ihre regex pattern...",
+  "description": "Reguläre Ausdrücke testen und debuggen",
+  "placeholder": "Geben Sie Ihr Regex-Muster ein...",
   "instructions": {
-    "title": "So verwenden Sie Regex-Tester",
+    "title": "So verwenden Sie den Regex-Tester",
     "steps": [
       {
-        "title": "Einfügen Ihre regular expression",
-        "description": "Kopieren und fügen Sie Ihre regular expression in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Regex-Muster eingeben",
+        "description": "Geben Sie Ihren regulären Ausdruck in das Musterfeld ein. Das Tool validiert die Syntax in Echtzeit und zeigt sofort eventuelle Fehler an."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Testtext eingeben",
+        "description": "Fügen Sie den Text ein, gegen den Sie Ihr Regex-Muster testen möchten. Treffer werden sofort farblich hervorgehoben."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "The Tool will testen Ihre input und display die result mit proper formatting und validation."
+        "title": "Flags konfigurieren",
+        "description": "Wählen Sie die gewünschten Flags: global (g) für alle Treffer, Groß-/Kleinschreibung ignorieren (i), mehrzeilig (m) oder andere Optionen je nach Bedarf."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Ergebnisse analysieren",
+        "description": "Überprüfen Sie die hervorgehobenen Treffer, Erfassungsgruppen und Trefferpositionen. Kopieren Sie das getestete Regex-Muster für die Verwendung in Ihrem Code."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
+      "Echtzeit-Trefferhervorhebung bei jeder Eingabe",
+      "Detaillierte Anzeige von Erfassungsgruppen und deren Inhalten",
+      "Unterstützung aller gängigen Regex-Flags (g, i, m, s, u, y)",
+      "Anzeige der genauen Trefferpositionen im Text",
+      "Syntaxvalidierung mit verständlichen Fehlermeldungen",
+      "Vollständig sicher - alle Verarbeitung erfolgt im Browser",
+      "Keine Datenuploads oder Serverspeicherung",
       "Funktioniert offline nach dem ersten Laden der Seite"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "E-Mail-Adressen, Telefonnummern oder URLs in Texten validieren",
+      "Muster für die Datenextraktion aus Logdateien entwickeln und testen",
+      "Such- und Ersetzungsmuster für Texteditoren erstellen",
+      "Eingabevalidierung für Webformulare prüfen",
+      "Textverarbeitungs-Pipelines mit regulären Ausdrücken debuggen",
+      "HTML- oder XML-Tags mit Regex-Mustern extrahieren",
+      "Datumsformate, Postleitzahlen oder IDs in Texten erkennen",
+      "Komplexe Zeichenkettenmuster für die Programmierung entwickeln"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Beginnen Sie mit einfachen Mustern und erweitern Sie schrittweise, um Fehler leichter zu finden",
+      "Nutzen Sie nicht-gierige Quantifizierer (.*?) um minimale Treffer zu erhalten",
+      "Verwenden Sie Erfassungsgruppen mit (?:...) wenn Sie keine Rückwärtsreferenz benötigen",
+      "Testen Sie Ihre Muster mit Grenzfällen wie leeren Zeichenketten und Sonderzeichen",
+      "Nutzen Sie Zeichenklassen [a-zA-Z0-9] anstelle von vielen Alternativen mit dem Pipe-Zeichen",
+      "Verwenden Sie Anker (^ und $) um Treffer auf den Anfang oder das Ende zu beschränken"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Keine Treffer: Prüfen Sie, ob das Flag für Groß-/Kleinschreibung (i) aktiviert sein sollte",
+      "Zu viele Treffer: Verwenden Sie spezifischere Muster oder Anker (^ und $)",
+      "Unerwartete Treffer: Maskieren Sie Sonderzeichen wie Punkt, Klammern oder Fragezeichen mit einem Backslash",
+      "Regex ist zu langsam: Vermeiden Sie verschachtelte Quantifizierer wie (a+)+ die zu katastrophalem Backtracking führen",
+      "Mehrzeilige Texte: Aktivieren Sie das Mehrzeilen-Flag (m) damit ^ und $ auf jede Zeile wirken"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "description": "Muster oder Text einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+Eingabe",
+        "description": "Regex-Muster testen"
       },
       {
         "keys": "Strg+C",
@@ -72,14 +72,14 @@
       },
       {
         "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "description": "Ergebnis herunterladen"
       }
     ]
   },
   "meta": {
-    "title": "Regex-Tester - Online Debugger",
-    "description": "Reguläre Ausdrücke online testen und debuggen. Echtzeit-Hervorhebung von Treffern und Gruppenerfassung. Mehrere Regex-Flags unterstützt. Kostenloses Tool."
+    "title": "Regex-Tester - Reguläre Ausdrücke kostenlos online testen und debuggen",
+    "description": "Reguläre Ausdrücke online kostenlos testen und debuggen - mit Echtzeit-Trefferhervorhebung, Erfassungsgruppen-Anzeige und mehreren Flags. Keine Anmeldung erforderlich. Browserbasierter Regex-Tester."
   },
-  "tagline": "Testen und debug regular expressions mit live matching",
-  "pageDescription": "Testen regular expressions mit real-time matching und highlighting. Debug regex patterns mit live feedback, capture group details, und abgleichen positions. Perfect für Entwickler validating email addresses, parsing Daten, und building text processing applications. Supports global, case-insensitive, und multiline flags."
+  "tagline": "Reguläre Ausdrücke mit Echtzeit-Trefferhervorhebung testen und debuggen",
+  "pageDescription": "Testen Sie reguläre Ausdrücke mit Echtzeit-Trefferhervorhebung und sofortigem Feedback. Debuggen Sie Regex-Muster mit detaillierter Anzeige von Erfassungsgruppen und Trefferpositionen. Ideal für Entwickler zur Validierung von E-Mail-Adressen, zum Parsen von Daten und zur Erstellung von Textverarbeitungsanwendungen. Unterstützt globale, groß-/kleinschreibungsignorierende und mehrzeilige Flags. Kostenlos online ohne Anmeldung - browserbasierter Regex-Tester."
 }

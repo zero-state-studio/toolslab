@@ -237,9 +237,9 @@
   </url>
   <url>
     <loc>https://toolslab.dev/pt/tools/jwt-decoder</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2026-04-17</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/jwt-decoder"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/jwt-decoder"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/jwt-decoder"/>

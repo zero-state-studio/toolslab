@@ -1,85 +1,85 @@
 {
-  "title": "QR Code Generator",
-  "description": "Generieren QR codes für text, URLs, und more",
-  "placeholder": "Text eingeben oder URL...",
+  "title": "QR-Code-Generator",
+  "description": "QR-Codes erstellen für Texte, URLs und vieles mehr",
+  "placeholder": "Text oder URL eingeben...",
   "instructions": {
-    "title": "So verwenden Sie QR Code Generator",
+    "title": "So verwenden Sie den QR-Code-Generator",
     "steps": [
       {
-        "title": "Inhalt einfügen",
-        "description": "Kopieren und fügen Sie Ihre content in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Inhalt eingeben",
+        "description": "Geben Sie den gewünschten Inhalt in das Eingabefeld ein: eine URL, einen Text, WLAN-Zugangsdaten, eine vCard oder andere Daten. Der QR-Code wird in Echtzeit generiert."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "QR-Code anpassen",
+        "description": "Passen Sie Farben, Größe und Fehlerkorrekturstufe an. Sie können auch ein Logo in die Mitte des QR-Codes einbetten, um ihn individueller zu gestalten."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool generiert Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Vorschau prüfen",
+        "description": "Überprüfen Sie die QR-Code-Vorschau, um sicherzustellen, dass der Code korrekt lesbar ist und Ihr gewünschter Inhalt richtig codiert wurde."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die generierte Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Herunterladen oder teilen",
+        "description": "Laden Sie den fertigen QR-Code als PNG- oder SVG-Datei herunter. SVG eignet sich besonders für den Druck in hoher Auflösung."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Echtzeit-Vorschau bei jeder Eingabeänderung",
+      "Unterstützung für URLs, Texte, WLAN, vCards, E-Mail und SMS",
+      "Anpassbare Farben für Vordergrund und Hintergrund",
+      "Logo-Einbettung in der Mitte des QR-Codes",
+      "Einstellbare Fehlerkorrekturstufen (L, M, Q, H)",
+      "Export als PNG oder SVG für Druck und Web",
+      "Stapelverarbeitung für mehrere QR-Codes gleichzeitig",
+      "Vollständig sicher - alle Verarbeitung erfolgt im Browser"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Links zu Webseiten oder Landingpages schnell teilbar machen",
+      "WLAN-Zugangsdaten als QR-Code für Gäste bereitstellen",
+      "Visitenkarten (vCards) als QR-Code für Veranstaltungen erstellen",
+      "Marketingkampagnen mit QR-Codes auf Flyern und Plakaten unterstützen",
+      "Zahlungslinks oder Kryptowährungsadressen als QR-Code teilen",
+      "Standortdaten oder Geo-Koordinaten als QR-Code weitergeben",
+      "Produktverpackungen mit QR-Codes für weitere Informationen versehen",
+      "Kontaktdaten per QR-Code auf Messen und Konferenzen austauschen"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie eine höhere Fehlerkorrekturstufe (H), wenn Sie ein Logo einbetten möchten",
+      "Testen Sie den QR-Code immer mit verschiedenen Lesegeräten und Smartphone-Kameras",
+      "Verwenden Sie SVG für druckfähige QR-Codes in beliebiger Größe ohne Qualitätsverlust",
+      "Halten Sie den Kontrast zwischen Vorder- und Hintergrundfarbe hoch für optimale Lesbarkeit",
+      "Kürzen Sie lange URLs mit einem URL-Verkürzer, bevor Sie den QR-Code erstellen",
+      "Nutzen Sie die Stapelverarbeitung, um mehrere QR-Codes auf einmal zu erstellen"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "QR-Code wird nicht gescannt: Stellen Sie sicher, dass der Farbkontrast ausreichend hoch ist",
+      "Logo verdeckt zu viel: Reduzieren Sie die Logo-Größe oder erhöhen Sie die Fehlerkorrekturstufe auf H",
+      "Code ist zu komplex: Kürzen Sie den Inhalt oder verwenden Sie einen URL-Verkürzer",
+      "Unscharfer Druck: Verwenden Sie das SVG-Format anstelle von PNG für hochauflösenden Druck",
+      "Sonderzeichen fehlen: Stellen Sie sicher, dass die Zeichenkodierung UTF-8 verwendet wird"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "description": "Inhalt einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+Eingabe",
+        "description": "QR-Code generieren"
       },
       {
         "keys": "Strg+C",
-        "description": "Ergebnis kopieren"
+        "description": "QR-Code kopieren"
       },
       {
         "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "description": "QR-Code herunterladen"
       }
     ]
   },
   "meta": {
-    "title": "QR-Code-Generator - Kostenlos",
-    "description": "QR-Codes für URLs, Text, WLAN, vCards und mehr erstellen. Farben, Größe und Fehlerkorrektur anpassen. Download als PNG oder SVG. Kostenloses Online-Tool."
+    "title": "QR-Code-Generator - Kostenlos für URLs, WLAN, vCards und mehr",
+    "description": "QR-Codes online kostenlos erstellen - für URLs, WLAN, vCards und individuelle Farben mit Logo-Einbettung. Als PNG oder SVG herunterladen. Keine Anmeldung erforderlich. Professioneller kostenloser QR-Code-Generator."
   },
-  "tagline": "Generieren advanced QR codes mit logos, batch processing und developer Tools",
-  "pageDescription": "Professioneller QR code Generator mit logo embedding, WiFi/vCard creation, und batch processing. Features SVG exportieren, API Integration, Fehler correction levels, und size optimization. Perfect für Entwickler building authentication Systeme, contact sharing, und marketing campaigns. Supports URL, email, SMS, geo-location, und crypto addresses mit real-time validation."
+  "tagline": "Erstellen Sie professionelle QR-Codes mit Logo, Stapelverarbeitung und Entwicklerwerkzeugen",
+  "pageDescription": "Professioneller QR-Code-Generator mit Logo-Einbettung, WLAN-/vCard-Erstellung und Stapelverarbeitung. Mit SVG-Export, API-Integration, einstellbaren Fehlerkorrekturstufen und Größenoptimierung. Ideal zum Teilen von Kontaktdaten, für Marketingkampagnen und Entwicklerwerkzeuge. Unterstützt URL, E-Mail, SMS, Geo-Standort und Kryptowährungsadressen. Kostenlos online ohne Anmeldung - alle Verarbeitung erfolgt direkt im Browser."
 }

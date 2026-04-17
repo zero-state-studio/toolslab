@@ -9,6 +9,19 @@ import { type Locale, defaultLocale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { useLocale } from '@/hooks/useLocale';
 
+const categoryColors: Record<string, string> = {
+  data: '#0EA5E9',
+  encoding: '#10B981',
+  base64: '#14B8A6',
+  text: '#8B5CF6',
+  generators: '#F97316',
+  web: '#EC4899',
+  dev: '#F59E0B',
+  formatters: '#6366F1',
+  social: '#F43F5E',
+  pdf: '#EF4444',
+};
+
 // Sort by searchVolume to show the most-searched tools first
 const featuredTools = tools
   .filter((t) => t.label !== 'coming-soon')
@@ -72,9 +85,17 @@ export function FeaturedTools({
 
                   <div className="flex items-start gap-4">
                     {/* Tool icon */}
-                    <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 transition-transform duration-200 group-hover:scale-110 dark:border-white/[0.08] dark:bg-white/[0.05]">
-                      <ToolIcon id={tool.id} className="h-6 w-6 text-slate-600 dark:text-slate-400" />
-                    </div>
+                    {(() => {
+                      const color = categoryColors[tool.categories?.[0]] || '#6366F1';
+                      return (
+                        <div
+                          className="flex h-14 w-14 items-center justify-center rounded-xl transition-transform duration-200 group-hover:scale-110"
+                          style={{ backgroundColor: `${color}18`, border: `1px solid ${color}30`, color }}
+                        >
+                          <ToolIcon id={tool.id} className="h-6 w-6" />
+                        </div>
+                      );
+                    })()}
 
                     {/* Tool info */}
                     <div className="flex-1">

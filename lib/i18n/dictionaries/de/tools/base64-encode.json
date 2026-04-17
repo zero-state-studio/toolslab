@@ -1,85 +1,85 @@
 {
-  "title": "Base64-Decoder",
-  "description": "Dekodieren Base64 strings zu text oder binary Daten",
-  "placeholder": "Eingeben Base64 string zu decode...",
+  "title": "Base64-Encoder und -Decoder",
+  "description": "Text oder Dateien in Base64 kodieren, oder Base64-Zeichenketten in Text und Binärdaten dekodieren",
+  "placeholder": "Text zum Kodieren eingeben, oder Base64-Zeichenkette zum Dekodieren...",
   "instructions": {
-    "title": "So verwenden Sie Base64-Decoder",
+    "title": "So verwenden Sie den Base64-Encoder und -Decoder",
     "steps": [
       {
-        "title": "Einfügen Ihre Base64 string oder file",
-        "description": "Kopieren und fügen Sie Ihre Base64 string oder file in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Text oder Datei eingeben",
+        "description": "Fügen Sie den zu kodierenden Text ein oder eine Base64-Zeichenkette zum Dekodieren. Sie können auch eine Datei per Drag-and-Drop direkt in den Eingabebereich ziehen."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Modus wählen",
+        "description": "Wählen Sie, ob Sie kodieren (Text → Base64) oder dekodieren (Base64 → Text/Datei) möchten. Das Tool erkennt in den meisten Fällen automatisch das Format."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool verarbeitet Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Ergebnis prüfen",
+        "description": "Das Ergebnis wird sofort erzeugt. Überprüfen Sie, ob die Kodierung oder Dekodierung korrekt ist, bevor Sie es verwenden."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Kopieren oder herunterladen",
+        "description": "Kopieren Sie die Base64-Zeichenkette in die Zwischenablage oder laden Sie die dekodierte Datei direkt auf Ihr Gerät herunter."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Base64-Kodierung und -Dekodierung in Echtzeit",
+      "Dateiunterstützung bis 50MB per Drag-and-Drop",
+      "Vollständige UTF-8-Kodierung für Sonderzeichen und Emojis",
+      "Automatische Dekodierung in Text oder Binärdatei",
+      "Sichere Verarbeitung vollständig im Browser, kein Upload",
+      "In die Zwischenablage kopieren oder Ergebnis direkt herunterladen",
+      "Unterstützung für Bilder, PDFs und alle Dateitypen",
+      "Funktioniert offline nach dem ersten Laden"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Bilder in HTML/CSS über Data-URIs einbetten",
+      "Binärdaten über REST-APIs und JSON übertragen",
+      "E-Mail-Anhänge im MIME-Format kodieren",
+      "Token und Payloads von Webdiensten dekodieren",
+      "Schriftarten und Icons in Base64-Zeichenketten für das Web konvertieren",
+      "Binärdaten in Textfeldern von Datenbanken speichern",
+      "API-Antworten mit Base64-kodierten Daten debuggen",
+      "Dateien für die Einbettung in CSS-Stylesheets vorbereiten"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie Drag-and-Drop um Bilder und Dateien schnell zu kodieren",
+      "Base64-Zeichenketten sind etwa 33% größer als das Original",
+      "Für Webbilder sollten Sie WebP vor der Base64-Kodierung in Betracht ziehen, um Platz zu sparen",
+      "Überprüfen Sie bei Text mit Umlauten oder Sonderzeichen, dass UTF-8 korrekt eingestellt ist",
+      "Data-URIs mit Base64 können das Rendering verlangsamen, wenn sie zu groß sind (>100KB)",
+      "Verwenden Sie Base64 für kleine Bilder (<10KB) in CSS, um HTTP-Anfragen zu reduzieren"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Seltsame Zeichen nach dem Dekodieren: Überprüfen Sie, ob die Originalkodierung UTF-8 ist",
+      "Beschädigte Datei nach dem Dekodieren: Stellen Sie sicher, dass die Base64-Zeichenkette vollständig ist und keine zusätzlichen Leerzeichen enthält",
+      "Padding-Fehler: Base64-Zeichenketten müssen eine Länge haben, die ein Vielfaches von 4 ist (Auffüllung mit '=')",
+      "Bild wird nicht angezeigt: Überprüfen Sie, ob das Data-URI-Präfix korrekt ist (z.B. data:image/png;base64,)",
+      "Langsame Verarbeitung bei großen Dateien: Versuchen Sie es mit Dateien unter 10MB für sofortige Ergebnisse"
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Strg+V",
+        "keys": "Ctrl+V",
         "description": "Eingabe einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Ctrl+Enter",
+        "description": "Kodieren/Dekodieren"
       },
       {
-        "keys": "Strg+C",
+        "keys": "Ctrl+C",
         "description": "Ergebnis kopieren"
       },
       {
-        "keys": "Strg+S",
+        "keys": "Ctrl+S",
         "description": "Datei herunterladen"
       }
     ]
   },
   "meta": {
-    "title": "Base64-Encoder & Decoder - Online",
-    "description": "Text in Base64 kodieren oder Base64-Zeichenketten in Klartext dekodieren. Unterstützung für Dateien, UTF-8 und Binärdaten. Kostenloses, sicheres Browser-Tool."
+    "title": "Base64-Encoder und -Decoder - Kostenloses Online-Tool",
+    "description": "Text und Dateien in Base64 kodieren oder Base64-Zeichenketten online kostenlos dekodieren. Unterstützt UTF-8, Binärdateien bis 50MB. Sicher, im Browser, ohne Anmeldung."
   },
-  "tagline": "Kodieren und decode Base64 files und text instantly",
-  "pageDescription": "Kostenlos Base64 encoder und decoder für text, images, und files up zu 50MB. Perfect für web developers embedding images in HTML/CSS, API Daten transmission, und email attachments. Drag-und-drop interface mit secure browserbasiert processing. Download decoded files directly oder kopieren encoded strings zu clipboard."
+  "tagline": "Base64-Dateien und -Text sofort kodieren und dekodieren",
+  "pageDescription": "Kostenloser Base64-Encoder und -Decoder für Text, Bilder und Dateien bis 50MB. Perfekt für Webentwickler, die Bilder in HTML/CSS einbetten, API-Datenübertragung und E-Mail-Anhänge. Drag-and-Drop-Oberfläche mit sicherer browserbasierter Verarbeitung. Ohne Anmeldung — dekodierte Dateien direkt herunterladen oder kodierte Zeichenketten in die Zwischenablage kopieren."
 }

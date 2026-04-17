@@ -1,61 +1,61 @@
 {
   "title": "Generatore Hash",
-  "description": "Genera hash MD5, SHA-1, SHA-256 e SHA-512",
+  "description": "Genera hash MD5, SHA-1, SHA-256, SHA-512 e firme HMAC",
   "placeholder": "Inserisci il testo da hashare...",
   "instructions": {
-    "title": "Come usare Generatore Hash",
+    "title": "Come usare il Generatore Hash",
     "steps": [
       {
-        "title": "Incolla il tuo contenuto",
-        "description": "Copia e incolla il tuo contenuto nell'area di input. Lo strumento accetta qualsiasi formato e lo elaborerà immediatamente."
+        "title": "Inserisci il testo o trascina un file",
+        "description": "Digita o incolla il testo nell'area di input, trascina un file per calcolarne l'hash, o passa alla modalit\u00e0 batch per pi\u00f9 input contemporaneamente."
       },
       {
-        "title": "Configura le opzioni (se disponibile)",
-        "description": "Regola le opzioni di formattazione, indentazione o altre impostazioni per adattarle alle tue preferenze."
+        "title": "Scegli algoritmo e modalit\u00e0",
+        "description": "Seleziona un algoritmo hash (SHA-256, SHA-512, MD5, ecc.) e scegli tra hash standard o modalit\u00e0 HMAC per l'autenticazione con chiave."
       },
       {
-        "title": "Esamina l'output",
-        "description": "Lo strumento genererà il tuo input e mostrerà il risultato con formattazione e validazione appropriate."
+        "title": "Configura le opzioni",
+        "description": "Aggiungi opzionalmente un salt (prima o dopo), imposta una chiave HMAC, o cambia il formato di output (hex, hex maiuscolo, o Base64)."
       },
       {
-        "title": "Copia o scarica il risultato",
-        "description": "Copia il risultato elaborato negli appunti per uso immediato o scaricalo come file."
+        "title": "Copia o confronta i risultati",
+        "description": "Copia i singoli hash, copiali tutti insieme, o usa la Modalit\u00e0 Confronto per verificare un hash rispetto al tuo input. Il tipo di hash viene rilevato automaticamente."
       }
     ],
     "features": [
-      "Elaborazione in tempo reale con risultati istantanei",
-      "Nessun limite di dimensione per l'elaborazione basata su browser",
-      "Completamente sicuro - tutta l'elaborazione avviene nel tuo browser",
-      "Nessun caricamento dati o archiviazione server",
-      "Copia negli appunti con un clic",
-      "Scarica i risultati come file",
-      "Validazione sintassi ed evidenziazione errori",
-      "Funziona offline dopo il caricamento iniziale"
+      "Sei algoritmi: SHA-256, SHA-512, SHA-384, SHA-1, MD5, CRC32",
+      "Supporto HMAC per autenticazione con chiave basata su SHA",
+      "Hash di file con drag & drop e indicatore di progresso",
+      "Modalit\u00e0 batch: genera hash di pi\u00f9 stringhe in una volta",
+      "Formati output: hex minuscolo, hex maiuscolo, Base64",
+      "Rilevamento automatico del tipo di hash dalla lunghezza",
+      "Supporto salt con posizione prima o dopo il testo",
+      "Avvisi di sicurezza per algoritmi deprecati (MD5, SHA-1)"
     ],
     "useCases": [
-      "Pulire e formattare codice disordinato per una migliore leggibilità",
-      "Standardizzare lo stile del codice nei team di sviluppo",
-      "Debug di strutture complesse con indentazione appropriata",
-      "Preparare il codice per documentazione e code review",
-      "Convertire tra diversi standard di formattazione",
-      "Validare la sintassi prima del deploy",
-      "Elaborare dati da fonti esterne o API",
-      "Generare codice pronto per la produzione"
+      "Verificare l'integrit\u00e0 di file scaricati (verifica checksum)",
+      "Generare firme HMAC per autenticazione API",
+      "Hashare password prima della memorizzazione (con salt)",
+      "Confrontare checksum di immagini ISO o pacchetti software",
+      "Debug della verifica delle firme webhook",
+      "Generare impronte digitali del contenuto per deduplicazione",
+      "Verificare l'integrit\u00e0 dei dati nei trasferimenti di rete",
+      "Creare identificatori univoci dal contenuto testuale"
     ],
     "proTips": [
-      "Usa le scorciatoie da tastiera per un flusso di lavoro più veloce",
-      "Elabora file di grandi dimensioni in blocchi più piccoli se le prestazioni rallentano",
-      "Valida il tuo input prima dell'elaborazione per individuare errori anticipatamente",
-      "Salva le impostazioni utilizzate frequentemente come predefinite",
-      "Usa la funzione di download per archiviare i file elaborati",
-      "Controlla attentamente l'output prima di usarlo in produzione"
+      "Usa SHA-256 o SHA-512 per hashing sensibile alla sicurezza \u2014 MD5 e SHA-1 sono compromessi",
+      "Usa sempre HMAC (non salt + hash) per autenticare messaggi con una chiave segreta",
+      "Trascina file grandi \u2014 il tool li elabora a blocchi con una barra di progresso",
+      "Incolla qualsiasi hash nella Modalit\u00e0 Confronto e il tool rileva automaticamente l'algoritmo",
+      "Usa il formato Base64 quando lavori con JWT o sistemi web",
+      "La modalit\u00e0 batch accetta un input per riga \u2014 perfetto per hashare liste di parole o URL"
     ],
     "troubleshooting": [
-      "Errori di sintassi: controlla parentesi, virgolette o punti e virgola mancanti",
-      "Elaborazione fallita: assicurati che il formato di input sia valido",
-      "Performance lenta: prova a elaborare blocchi di dati più piccoli",
-      "Funzionalità mancanti: alcune sintassi avanzate potrebbero richiedere formattazione manuale",
-      "Compatibilità browser: usa Chrome, Firefox o Edge per risultati migliori"
+      "Hash file lento: i file grandi vengono elaborati in blocchi da 2MB \u2014 attendi il completamento della barra",
+      "HMAC non disponibile per MD5/CRC32: HMAC usa la Web Crypto API che supporta solo algoritmi SHA",
+      "Hash non corrispondente: controlla la codifica \u2014 la stessa stringa in UTF-8 vs Latin-1 produce hash diversi",
+      "Nessuna corrispondenza nel Confronto: assicurati che entrambi gli hash usino lo stesso formato",
+      "Compatibilit\u00e0 browser: l'hashing SHA richiede un browser moderno con supporto Web Crypto API"
     ],
     "keyboardShortcuts": [
       {
@@ -63,23 +63,67 @@
         "description": "Incolla input"
       },
       {
-        "keys": "Ctrl+Enter",
-        "description": "Elabora/Formatta"
-      },
-      {
         "keys": "Ctrl+C",
-        "description": "Copia risultato"
+        "description": "Copia hash selezionato"
       },
       {
-        "keys": "Ctrl+S",
-        "description": "Scarica file"
+        "keys": "Ctrl+Shift+C",
+        "description": "Copia tutti gli hash"
       }
     ]
   },
   "meta": {
-    "title": "Generatore Hash - Strumento Online Gratuito",
-    "description": "Genera hash MD5, SHA-1, SHA-256 e SHA-512 online gratis. Strumento sicuro per hashing password, verifica integrità file e checksum. Elaborazione nel browser."
+    "title": "Generatore Hash - MD5, SHA-256, SHA-512 e HMAC Online Gratis",
+    "description": "Genera hash MD5, SHA-1, SHA-256, SHA-512 e firme HMAC online gratis. Hash di file, modalit\u00e0 batch, confronto hash e rilevamento automatico. Strumento sicuro basato su browser."
   },
-  "tagline": "Genera hash sicuri MD5, SHA256 e SHA512",
-  "pageDescription": "Genera valori hash crittografici usando algoritmi MD5, SHA-1, SHA-256 e SHA-512. Perfetto per hashing password, verifica integrità file e audit sicurezza. Generazione hash in tempo reale con copia con un clic. Tutta l'elaborazione avviene localmente nel tuo browser per massima sicurezza e privacy."
+  "tagline": "Genera hash sicuri e firme HMAC con sei algoritmi",
+  "pageDescription": "Genera valori hash crittografici usando MD5, SHA-1, SHA-256, SHA-384, SHA-512 e CRC32. Supporta autenticazione HMAC con chiave, hash di file con drag & drop, hashing batch, conversione formato output e rilevamento automatico del tipo di hash. Tutta l'elaborazione avviene localmente nel browser per massima sicurezza e privacy. Online gratis senza registrazione.",
+  "ui": {
+    "textToHash": "Testo da hashare",
+    "algorithm": "Algoritmo",
+    "saltOptional": "Salt (Opzionale)",
+    "saltPlaceholder": "Aggiungi salt all'hash",
+    "saltPosition": "Posizione Salt",
+    "prepend": "Prima",
+    "append": "Dopo",
+    "compareMode": "Confronta",
+    "compareWith": "Confronta con Hash",
+    "comparePlaceholder": "Incolla l'hash da confrontare...",
+    "compareButton": "Confronta",
+    "hashesMatch": "Gli hash corrispondono!",
+    "hashesNoMatch": "Gli hash non corrispondono",
+    "detectedType": "Tipo rilevato",
+    "generatedHashes": "Hash Generati",
+    "showOtherAlgorithms": "Mostra altri algoritmi",
+    "copyAll": "Copia Tutti",
+    "copiedAll": "Copiato!",
+    "characters": "caratteri",
+    "hashMode": "Hash",
+    "hmacMode": "HMAC",
+    "hmacKey": "Chiave HMAC",
+    "hmacKeyPlaceholder": "Inserisci la chiave segreta...",
+    "hmacKeyRequired": "La chiave HMAC \u00e8 obbligatoria",
+    "hmacNotSupported": "HMAC non supportato per questo algoritmo",
+    "outputFormat": "Formato",
+    "hexLower": "hex",
+    "hexUpper": "HEX",
+    "base64": "Base64",
+    "textTab": "Testo",
+    "fileTab": "File",
+    "bulkTab": "Batch",
+    "dropFileHere": "Trascina un file qui o clicca per selezionare",
+    "dropFileActive": "Rilascia il file qui...",
+    "browseFiles": "Sfoglia file",
+    "supportedAnyFile": "Qualsiasi tipo di file supportato",
+    "fileInfo": "File",
+    "fileSize": "Dimensione",
+    "fileHashing": "Calcolo hash in corso...",
+    "fileHashComplete": "Hash completato",
+    "bulkPlaceholder": "Inserisci un testo per riga...",
+    "bulkInputs": "input",
+    "bulkResults": "Risultati",
+    "securityWarning": "Avviso di Sicurezza",
+    "infoText": "Le funzioni hash crittografiche producono un output a dimensione fissa da qualsiasi input. Lo stesso input produce sempre lo stesso hash, ma \u00e8 computazionalmente impossibile invertirlo.",
+    "hmacInfoText": "HMAC (Hash-based Message Authentication Code) usa una chiave segreta per produrre un hash autenticato. Usato per firme API, verifica webhook e autenticazione messaggi."
+  }
 }

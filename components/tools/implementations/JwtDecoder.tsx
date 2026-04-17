@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import {
   Key,
   Copy,
@@ -26,15 +26,90 @@ import { BaseToolProps } from '@/lib/types/tools';
 import {
   decodeJwt,
   generateSampleJwts,
+  signJwt,
   JwtDecodeResult,
   JwtDecodeOptions,
+  JwtAlgorithm,
 } from '@/lib/tools/jwt-decoder';
 
 interface JwtDecoderProps extends BaseToolProps {}
 
+function formatDuration(seconds: number): string {
+  const d = Math.floor(seconds / 86400);
+  const h = Math.floor((seconds % 86400) / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  const parts: string[] = [];
+  if (d > 0) parts.push(`${d}d`);
+  if (h > 0) parts.push(`${h}h`);
+  if (m > 0) parts.push(`${m}m`);
+  parts.push(`${s}s`);
+  return parts.join(' ');
+}
+
+function pemToDer(pem: string): ArrayBuffer {
+  const base64 = pem
+    .replace(/-----BEGIN [^-]+-----/, '')
+    .replace(/-----END [^-]+-----/, '')
+    .replace(/\s/g, '');
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes.buffer;
+}
+
+function base64UrlToBytes(b64url: string): Uint8Array<ArrayBuffer> {
+  const b64 = b64url.replace(/-/g, '+').replace(/_/g, '/');
+  const padded = b64.padEnd(b64.length + ((4 - (b64.length % 4)) % 4), '=');
+  const binary = atob(padded);
+  const buf = new ArrayBuffer(binary.length);
+  const bytes = new Uint8Array(buf);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
+}
+
+const SIGN_ALGORITHMS: JwtAlgorithm[] = [
+  'HS256',
+  'HS384',
+  'HS512',
+  'RS256',
+  'RS384',
+  'RS512',
+  'ES256',
+  'ES384',
+  'ES512',
+  'none',
+];
+
+const DEFAULT_ENCODE_PAYLOAD = JSON.stringify(
+  {
+    sub: '1234567890',
+    name: 'John Doe',
+    iat: Math.floor(Date.now() / 1000),
+  },
+  null,
+  2
+);
+
 export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
+  const [mode, setMode] = useState<'decode' | 'encode'>('decode');
   const [input, setInput] = useState('');
   const [result, setResult] = useState<JwtDecodeResult | null>(null);
+
+  // Encode state
+  const [encodeAlg, setEncodeAlg] = useState<JwtAlgorithm>('HS256');
+  const [encodePayload, setEncodePayload] = useState(DEFAULT_ENCODE_PAYLOAD);
+  const [encodeSecret, setEncodeSecret] = useState('your-256-bit-secret');
+  const [encodePrivateKey, setEncodePrivateKey] = useState('');
+  const [encodeExtraHeader, setEncodeExtraHeader] = useState('{}');
+  const [encodeOutput, setEncodeOutput] = useState<string | null>(null);
+  const [encodeError, setEncodeError] = useState<string | null>(null);
+  const [encoding, setEncoding] = useState(false);
+  const [copiedEncoded, setCopiedEncoded] = useState(false);
   const [options, setOptions] = useState<JwtDecodeOptions>({
     validateStructure: true,
     analyzeTime: true,
@@ -46,6 +121,8 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     header: true,
     payload: true,
     signature: true,
+    timeInfo: true,
+    verify: false,
     security: false,
     metadata: false,
   });
@@ -59,7 +136,52 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     JwtDecodeResult
   >();
   const { downloadText, downloadJSON } = useDownload();
-  const { trackUse, trackCustom, trackError } = useToolTracking('jwt-decoder');
+  const { trackCustom, trackError } = useToolTracking('jwt-decoder');
+
+  const [countdown, setCountdown] = useState<{
+    text: string;
+    color: 'green' | 'yellow' | 'red' | 'gray';
+  } | null>(null);
+
+  const [verifyKey, setVerifyKey] = useState('');
+  const [verifyResult, setVerifyResult] = useState<'valid' | 'invalid' | 'error' | null>(null);
+  const [verifying, setVerifying] = useState(false);
+
+  useEffect(() => {
+    const exp = result?.success ? result?.payload?.exp : undefined;
+    if (!exp) {
+      setCountdown(null);
+      return;
+    }
+
+    const computeCountdown = () => {
+      const now = Math.floor(Date.now() / 1000);
+      const diff = exp - now;
+
+      if (diff <= 0) {
+        setCountdown({
+          text: `Token expired — ${formatDuration(Math.abs(diff))} ago`,
+          color: 'gray',
+        });
+      } else {
+        const color: 'green' | 'yellow' | 'red' =
+          diff > 3600 ? 'green' : diff > 600 ? 'yellow' : 'red';
+        setCountdown({
+          text: `Token valid — expires in ${formatDuration(diff)}`,
+          color,
+        });
+      }
+    };
+
+    computeCountdown();
+    const id = setInterval(computeCountdown, 1000);
+    return () => clearInterval(id);
+  }, [result]);
+
+  useEffect(() => {
+    setVerifyResult(null);
+    setVerifyKey('');
+  }, [result]);
 
   // Process JWT token
   const handleDecode = useCallback(() => {
@@ -92,13 +214,101 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
       // Error handled by useToolProcessor
       setResult(null);
     }
-  }, [input, options, processSync, trackUse, trackError]);
+  }, [input, options, processSync, trackCustom, trackError]);
 
   // Auto-decode when input changes
   useMemo(() => {
     const debounceTimer = setTimeout(handleDecode, 500);
     return () => clearTimeout(debounceTimer);
   }, [handleDecode]);
+
+  // Sign JWT
+  const handleSign = useCallback(async () => {
+    setEncodeError(null);
+    setEncodeOutput(null);
+
+    let payloadObj: Record<string, any>;
+    try {
+      payloadObj = JSON.parse(encodePayload);
+    } catch (err) {
+      setEncodeError(
+        `Invalid payload JSON: ${err instanceof Error ? err.message : 'parse error'}`
+      );
+      return;
+    }
+
+    let extraHeader: Record<string, any> = {};
+    if (encodeExtraHeader.trim() && encodeExtraHeader.trim() !== '{}') {
+      try {
+        extraHeader = JSON.parse(encodeExtraHeader);
+      } catch (err) {
+        setEncodeError(
+          `Invalid extra header JSON: ${err instanceof Error ? err.message : 'parse error'}`
+        );
+        return;
+      }
+    }
+
+    setEncoding(true);
+    try {
+      const startTime = Date.now();
+      const res = await signJwt({
+        header: { alg: encodeAlg, typ: 'JWT', ...extraHeader },
+        payload: payloadObj,
+        secret: encodeSecret,
+        privateKeyPem: encodePrivateKey,
+      });
+
+      if (!res.success) {
+        setEncodeError(res.error || 'Failed to sign JWT');
+        trackError(new Error(res.error || 'signJwt failed'), encodePayload.length);
+        return;
+      }
+
+      setEncodeOutput(res.token!);
+      trackCustom({
+        inputSize: encodePayload.length,
+        outputSize: res.token!.length,
+        success: true,
+        algorithm: encodeAlg,
+        mode: 'encode',
+        processingTime: Date.now() - startTime,
+      });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
+      setEncodeError(msg);
+      trackError(err instanceof Error ? err : new Error(msg), encodePayload.length);
+    } finally {
+      setEncoding(false);
+    }
+  }, [
+    encodeAlg,
+    encodePayload,
+    encodeSecret,
+    encodePrivateKey,
+    encodeExtraHeader,
+    trackCustom,
+    trackError,
+  ]);
+
+  const copyEncoded = useCallback(async () => {
+    if (!encodeOutput) return;
+    const success = await copyToClipboard(encodeOutput);
+    if (success) {
+      setCopiedEncoded(true);
+      setTimeout(() => setCopiedEncoded(false), 2000);
+    }
+  }, [encodeOutput, copyToClipboard]);
+
+  const encodeAlgIsHmac = /^HS(256|384|512)$/.test(encodeAlg);
+  const encodeAlgIsAsymmetric = /^(RS|ES)(256|384|512)$/.test(encodeAlg);
+  const encodeAlgIsNone = encodeAlg === 'none';
+
+  const isSignDisabled =
+    encoding ||
+    !encodePayload.trim() ||
+    (encodeAlgIsHmac && !encodeSecret.trim()) ||
+    (encodeAlgIsAsymmetric && !encodePrivateKey.trim());
 
   // Load sample JWT
   const loadSample = useCallback((sampleKey: string) => {
@@ -173,6 +383,92 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     }
   }, [result, downloadJSON]);
 
+  const handleVerify = useCallback(async () => {
+    if (!result?.success || !result.header?.alg || !result.signature || !verifyKey.trim()) return;
+
+    const alg = result.header.alg as string;
+    const parts = input.trim().split('.');
+    if (parts.length !== 3) { setVerifyResult('error'); return; }
+
+    const isKnownAlg = /^(HS|RS|ES|PS)(256|384|512)$/.test(alg);
+    if (!isKnownAlg) { setVerifyResult('error'); return; }
+
+    setVerifying(true);
+    setVerifyResult(null);
+
+    try {
+
+      const [headerB64, payloadB64, sigB64] = parts;
+      const signedData = new TextEncoder().encode(`${headerB64}.${payloadB64}`);
+      const sigBytes = base64UrlToBytes(sigB64);
+
+      let cryptoKey: CryptoKey;
+      let valid = false;
+
+      if (/^HS(256|384|512)$/.test(alg)) {
+        const bits = alg.replace('HS', '');
+        cryptoKey = await crypto.subtle.importKey(
+          'raw',
+          new TextEncoder().encode(verifyKey),
+          { name: 'HMAC', hash: `SHA-${bits}` },
+          false,
+          ['verify']
+        );
+        valid = await crypto.subtle.verify('HMAC', cryptoKey, sigBytes, signedData);
+
+      } else if (/^RS(256|384|512)$/.test(alg)) {
+        const bits = alg.replace('RS', '');
+        cryptoKey = await crypto.subtle.importKey(
+          'spki',
+          pemToDer(verifyKey),
+          { name: 'RSASSA-PKCS1-v1_5', hash: `SHA-${bits}` },
+          false,
+          ['verify']
+        );
+        valid = await crypto.subtle.verify('RSASSA-PKCS1-v1_5', cryptoKey, sigBytes, signedData);
+
+      } else if (/^ES(256|384|512)$/.test(alg)) {
+        const bits = alg.replace('ES', '');
+        const curveMap: Record<string, string> = { '256': 'P-256', '384': 'P-384', '512': 'P-521' };
+        cryptoKey = await crypto.subtle.importKey(
+          'spki',
+          pemToDer(verifyKey),
+          { name: 'ECDSA', namedCurve: curveMap[bits] },
+          false,
+          ['verify']
+        );
+        valid = await crypto.subtle.verify(
+          { name: 'ECDSA', hash: { name: `SHA-${bits}` } },
+          cryptoKey,
+          sigBytes,
+          signedData
+        );
+
+      } else if (/^PS(256|384|512)$/.test(alg)) {
+        const bits = alg.replace('PS', '');
+        cryptoKey = await crypto.subtle.importKey(
+          'spki',
+          pemToDer(verifyKey),
+          { name: 'RSA-PSS', hash: `SHA-${bits}` },
+          false,
+          ['verify']
+        );
+        valid = await crypto.subtle.verify(
+          { name: 'RSA-PSS', saltLength: parseInt(bits) / 8 },
+          cryptoKey,
+          sigBytes,
+          signedData
+        );
+      }
+
+      setVerifyResult(valid ? 'valid' : 'invalid');
+    } catch {
+      setVerifyResult('error');
+    } finally {
+      setVerifying(false);
+    }
+  }, [result, input, verifyKey]);
+
   // Get status color based on token validity
   const getStatusColor = () => {
     if (!result || !result.success) return 'text-red-600 dark:text-red-400';
@@ -213,13 +509,13 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 px-6 py-4 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <Key className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            JWT Decoder
+            JWT Encoder/Decoder
           </h3>
-          {result && (
+          {mode === 'decode' && result && (
             <div
               className={`flex items-center gap-1 text-sm font-medium ${getStatusColor()}`}
             >
@@ -238,22 +534,301 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             </div>
           )}
         </div>
+
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setShowOptions(!showOptions)}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+          {/* Mode toggle */}
+          <div
+            role="tablist"
+            className="inline-flex rounded-lg border border-gray-200 bg-gray-100 p-0.5 dark:border-gray-600 dark:bg-gray-700"
           >
-            Options
-            {showOptions ? (
-              <ChevronUp className="h-4 w-4" />
-            ) : (
-              <ChevronDown className="h-4 w-4" />
-            )}
-          </button>
+            <button
+              role="tab"
+              aria-selected={mode === 'decode'}
+              onClick={() => setMode('decode')}
+              className={`rounded-md px-3 py-1 text-sm font-medium transition-colors ${
+                mode === 'decode'
+                  ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-white'
+                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+              }`}
+            >
+              Decode
+            </button>
+            <button
+              role="tab"
+              aria-selected={mode === 'encode'}
+              onClick={() => setMode('encode')}
+              className={`rounded-md px-3 py-1 text-sm font-medium transition-colors ${
+                mode === 'encode'
+                  ? 'bg-white text-gray-900 shadow-sm dark:bg-gray-800 dark:text-white'
+                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+              }`}
+            >
+              Encode
+            </button>
+          </div>
+
+          {mode === 'decode' && (
+            <button
+              onClick={() => setShowOptions(!showOptions)}
+              className="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+            >
+              Options
+              {showOptions ? (
+                <ChevronUp className="h-4 w-4" />
+              ) : (
+                <ChevronDown className="h-4 w-4" />
+              )}
+            </button>
+          )}
         </div>
       </div>
 
       <div className="space-y-6 p-6">
+        {mode === 'encode' && (
+          <div className="space-y-4">
+            {/* Algorithm picker */}
+            <div>
+              <label
+                htmlFor="jwt-encode-alg"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Algorithm
+              </label>
+              <select
+                id="jwt-encode-alg"
+                value={encodeAlg}
+                onChange={(e) => {
+                  setEncodeAlg(e.target.value as JwtAlgorithm);
+                  setEncodeOutput(null);
+                  setEncodeError(null);
+                }}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              >
+                {SIGN_ALGORITHMS.map((alg) => (
+                  <option key={alg} value={alg}>
+                    {alg}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {/* Payload editor */}
+            <div>
+              <label
+                htmlFor="jwt-encode-payload"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Payload (JSON)
+              </label>
+              <textarea
+                id="jwt-encode-payload"
+                value={encodePayload}
+                onChange={(e) => {
+                  setEncodePayload(e.target.value);
+                  setEncodeOutput(null);
+                  setEncodeError(null);
+                }}
+                rows={8}
+                className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                placeholder='{"sub":"1234567890","name":"John Doe"}'
+              />
+            </div>
+
+            {/* Extra header claims (optional) */}
+            <div>
+              <label
+                htmlFor="jwt-encode-extra-header"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Extra header claims (optional JSON, e.g. {'{ "kid": "..." }'})
+              </label>
+              <textarea
+                id="jwt-encode-extra-header"
+                value={encodeExtraHeader}
+                onChange={(e) => {
+                  setEncodeExtraHeader(e.target.value);
+                  setEncodeOutput(null);
+                  setEncodeError(null);
+                }}
+                rows={2}
+                className="w-full resize-none rounded-lg border border-gray-300 px-4 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                placeholder="{}"
+              />
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                Merged into the final header. <code>alg</code> and <code>typ</code> are set automatically.
+              </p>
+            </div>
+
+            {/* Key input (adaptive) */}
+            {encodeAlgIsHmac && (
+              <div>
+                <label
+                  htmlFor="jwt-encode-secret"
+                  className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Secret Key ({encodeAlg})
+                </label>
+                <input
+                  id="jwt-encode-secret"
+                  type="password"
+                  value={encodeSecret}
+                  onChange={(e) => {
+                    setEncodeSecret(e.target.value);
+                    setEncodeOutput(null);
+                    setEncodeError(null);
+                  }}
+                  placeholder="Enter HMAC secret..."
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                />
+              </div>
+            )}
+            {encodeAlgIsAsymmetric && (
+              <div>
+                <label
+                  htmlFor="jwt-encode-privkey"
+                  className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  Private Key — PEM ({encodeAlg})
+                </label>
+                <textarea
+                  id="jwt-encode-privkey"
+                  value={encodePrivateKey}
+                  onChange={(e) => {
+                    setEncodePrivateKey(e.target.value);
+                    setEncodeOutput(null);
+                    setEncodeError(null);
+                  }}
+                  rows={6}
+                  placeholder={
+                    '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----'
+                  }
+                  className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                />
+              </div>
+            )}
+            {encodeAlgIsNone && (
+              <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-800 dark:bg-amber-900/20">
+                <p className="flex items-start gap-2 text-sm text-amber-800 dark:text-amber-200">
+                  <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                  <span>
+                    <strong>Insecure:</strong> <code>alg=none</code> produces an
+                    unsigned token. Use only for local testing — never accept
+                    such tokens in production.
+                  </span>
+                </p>
+              </div>
+            )}
+
+            {/* Privacy notice */}
+            <div className="flex items-start gap-2 rounded-lg bg-green-50 p-3 dark:bg-green-950/30">
+              <Shield className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
+              <p className="text-sm text-green-800 dark:text-green-200">
+                🔒 <strong>Your key never leaves this browser.</strong> Signing
+                runs entirely in-browser via the native WebCrypto API. No data
+                is sent to any server.
+              </p>
+            </div>
+
+            {/* Action */}
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                onClick={handleSign}
+                disabled={isSignDisabled}
+                className="inline-flex items-center gap-2 rounded-lg px-6 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+                style={{ backgroundColor: categoryColor }}
+              >
+                {encoding ? (
+                  <>
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                    Signing...
+                  </>
+                ) : (
+                  <>
+                    <Key className="h-4 w-4" />
+                    Sign JWT
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => {
+                  setEncodeOutput(null);
+                  setEncodeError(null);
+                  setEncodePayload(DEFAULT_ENCODE_PAYLOAD);
+                  setEncodeExtraHeader('{}');
+                }}
+                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+              >
+                Reset
+              </button>
+            </div>
+
+            {/* Error */}
+            {encodeError && (
+              <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-950/30">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
+                  <div>
+                    <p className="font-medium text-red-600 dark:text-red-400">
+                      Signing Error
+                    </p>
+                    <p className="text-red-600 dark:text-red-400">
+                      {encodeError}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Output */}
+            {encodeOutput && (
+              <div className="rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700/30">
+                <div className="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-600">
+                  <div className="flex items-center gap-2">
+                    <Key className="h-5 w-5 text-green-600 dark:text-green-400" />
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      Signed JWT
+                    </span>
+                    <span className="text-sm text-gray-500">
+                      ({encodeOutput.length} chars)
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={copyEncoded}
+                      className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-1 text-xs text-gray-600 transition-colors hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+                    >
+                      {copiedEncoded ? (
+                        <Check className="h-3 w-3" />
+                      ) : (
+                        <Copy className="h-3 w-3" />
+                      )}
+                      {copiedEncoded ? 'Copied!' : 'Copy'}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setInput(encodeOutput);
+                        setMode('decode');
+                      }}
+                      className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-1 text-xs text-gray-600 transition-colors hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+                    >
+                      Decode ↗
+                    </button>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <pre className="overflow-x-auto rounded-lg bg-white p-3 text-sm dark:bg-gray-800">
+                    <code className="break-all font-mono text-gray-900 dark:text-white">
+                      {encodeOutput}
+                    </code>
+                  </pre>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {mode === 'decode' && (
+          <>
         {/* Options Panel */}
         {showOptions && (
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700/30">
@@ -403,6 +978,24 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             </button>
           )}
         </div>
+
+        {/* Live Expiration Countdown */}
+        {result?.success && countdown && (
+          <div
+            className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium ${
+              countdown.color === 'green'
+                ? 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
+                : countdown.color === 'yellow'
+                  ? 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400'
+                  : countdown.color === 'red'
+                    ? 'bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400'
+                    : 'bg-gray-100 text-gray-600 dark:bg-gray-700 dark:text-gray-400'
+            }`}
+          >
+            <Clock className="h-4 w-4 flex-shrink-0" />
+            <span>{countdown.text}</span>
+          </div>
+        )}
 
         {/* Error Display */}
         {error && (
@@ -643,47 +1236,218 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
               )}
             </div>
 
+            {/* Verify Signature */}
+            <div className="rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700/30">
+              <button
+                onClick={() => toggleSection('verify')}
+                className="flex w-full items-center justify-between p-4 text-left"
+              >
+                <div className="flex items-center gap-2">
+                  <Key className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                  <span className="font-medium text-gray-900 dark:text-white">
+                    Verify Signature
+                  </span>
+                  {verifyResult === 'valid' && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900/30 dark:text-green-300">
+                      <Check className="h-3 w-3" />
+                      Valid
+                    </span>
+                  )}
+                  {verifyResult === 'invalid' && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900/30 dark:text-red-300">
+                      <AlertTriangle className="h-3 w-3" />
+                      Invalid
+                    </span>
+                  )}
+                </div>
+                {expandedSections.verify ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
+
+              {expandedSections.verify && (
+                <div className="space-y-4 border-t border-gray-200 p-4 dark:border-gray-600">
+                  {/* Privacy notice — always visible */}
+                  <div className="flex items-start gap-2 rounded-lg bg-green-50 p-3 dark:bg-green-950/30">
+                    <Shield className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
+                    <p className="text-sm text-green-800 dark:text-green-200">
+                      🔒 <strong>Your key never leaves this browser.</strong> Verification runs
+                      entirely in-browser using the native WebCrypto API. No data is sent to any
+                      server.{' '}
+                      <a
+                        href="https://github.com/hellotoolslab/toolslab"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline hover:no-underline"
+                      >
+                        Codice sorgente su GitHub ↗
+                      </a>
+                    </p>
+                  </div>
+
+                  {/* Adaptive key input */}
+                  {(() => {
+                    const alg = result.header?.alg ?? '';
+                    if (alg === 'none') {
+                      return (
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          Unsigned token — no verification possible.
+                        </p>
+                      );
+                    }
+                    const isHmac = /^HS(256|384|512)$/.test(alg);
+                    const isAsymmetric = /^(RS|ES|PS)(256|384|512)$/.test(alg);
+                    if (!isHmac && !isAsymmetric) {
+                      return (
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          Algorithm{' '}
+                          <code className="rounded bg-gray-100 px-1 font-mono dark:bg-gray-700">
+                            {alg}
+                          </code>{' '}
+                          is not supported for verification.
+                        </p>
+                      );
+                    }
+                    return (
+                      <div className="space-y-3">
+                        <div>
+                          <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {isHmac ? `Secret Key (${alg})` : `Public Key — PEM (${alg})`}
+                          </label>
+                          {isHmac ? (
+                            <input
+                              type="password"
+                              value={verifyKey}
+                              onChange={(e) => {
+                                setVerifyKey(e.target.value);
+                                setVerifyResult(null);
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' && !verifying) handleVerify();
+                              }}
+                              placeholder="Enter HMAC secret key..."
+                              className="w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                            />
+                          ) : (
+                            <textarea
+                              value={verifyKey}
+                              onChange={(e) => {
+                                setVerifyKey(e.target.value);
+                                setVerifyResult(null);
+                              }}
+                              placeholder={`-----BEGIN PUBLIC KEY-----\n...\n-----END PUBLIC KEY-----`}
+                              rows={5}
+                              className="w-full resize-none rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                            />
+                          )}
+                        </div>
+
+                        <button
+                          onClick={handleVerify}
+                          disabled={!verifyKey.trim() || verifying}
+                          className="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-purple-700 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+                        >
+                          {verifying ? (
+                            <>
+                              <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                              Verifying...
+                            </>
+                          ) : (
+                            <>
+                              <Shield className="h-4 w-4" />
+                              Verify
+                            </>
+                          )}
+                        </button>
+
+                        {verifyResult && (
+                          <div
+                            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium ${
+                              verifyResult === 'valid'
+                                ? 'bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400'
+                                : verifyResult === 'invalid'
+                                  ? 'bg-red-50 text-red-700 dark:bg-red-900/20 dark:text-red-400'
+                                  : 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-400'
+                            }`}
+                          >
+                            {verifyResult === 'valid' && (
+                              <>
+                                <Check className="h-4 w-4" />
+                                Signature valid
+                              </>
+                            )}
+                            {verifyResult === 'invalid' && (
+                              <>
+                                <AlertTriangle className="h-4 w-4" />
+                                Signature invalid
+                              </>
+                            )}
+                            {verifyResult === 'error' && (
+                              <>
+                                <AlertTriangle className="h-4 w-4" />
+                                Invalid key or wrong format
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
+              )}
+            </div>
+
             {/* Time Information */}
             {result.timeInfo && Object.keys(result.timeInfo).length > 0 && (
-              <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700/30">
-                <div className="mb-3 flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-                  <h4 className="font-medium text-gray-900 dark:text-white">
-                    Time Information
-                  </h4>
-                </div>
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-                  {result.timeInfo.issuedAt && (
-                    <div>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Issued At:
-                      </span>
-                      {formatTimeDisplay(
-                        result.timeInfo.issuedAt,
-                        result.timeInfo.age
+              <div className="rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-600 dark:bg-gray-700/30">
+                <button
+                  onClick={() => toggleSection('timeInfo')}
+                  className="flex w-full items-center justify-between p-4 text-left"
+                >
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      Time Information
+                    </span>
+                  </div>
+                  {expandedSections.timeInfo ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
+                </button>
+                {expandedSections.timeInfo && (
+                  <div className="border-t border-gray-200 p-4 dark:border-gray-600">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                      {result.timeInfo.issuedAt && (
+                        <div>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Issued At:
+                          </span>
+                          {formatTimeDisplay(result.timeInfo.issuedAt, result.timeInfo.age)}
+                        </div>
+                      )}
+                      {result.timeInfo.expiresAt && (
+                        <div>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Expires At:
+                          </span>
+                          {formatTimeDisplay(result.timeInfo.expiresAt, result.timeInfo.timeToExpiry)}
+                        </div>
+                      )}
+                      {result.timeInfo.notBefore && (
+                        <div>
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Not Before:
+                          </span>
+                          {formatTimeDisplay(result.timeInfo.notBefore, undefined)}
+                        </div>
                       )}
                     </div>
-                  )}
-                  {result.timeInfo.expiresAt && (
-                    <div>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Expires At:
-                      </span>
-                      {formatTimeDisplay(
-                        result.timeInfo.expiresAt,
-                        result.timeInfo.timeToExpiry
-                      )}
-                    </div>
-                  )}
-                  {result.timeInfo.notBefore && (
-                    <div>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Not Before:
-                      </span>
-                      {formatTimeDisplay(result.timeInfo.notBefore, undefined)}
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             )}
 
@@ -850,7 +1614,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
               </p>
               <div className="space-y-1 text-sm text-amber-800 dark:text-amber-200">
                 <p>
-                  • This tool decodes JWT tokens but does not verify signatures
+                  • This tool decodes JWT tokens and can verify signatures in-browser
                 </p>
                 <p>
                   • Signature verification requires the secret key or public key
@@ -864,6 +1628,8 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             </div>
           </div>
         </div>
+          </>
+        )}
       </div>
     </div>
   );

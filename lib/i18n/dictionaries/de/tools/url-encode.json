@@ -1,70 +1,70 @@
 {
-  "title": "URL Decoder",
-  "description": "Dekodieren URL-encoded text",
-  "placeholder": "Eingeben URL-encoded text...",
+  "title": "URL-Encoder und -Decoder",
+  "description": "URL-Zeichenketten und Abfrageparameter mit Prozent-Kodierung kodieren und dekodieren",
+  "placeholder": "URL oder Text zum Kodieren/Dekodieren eingeben...",
   "instructions": {
-    "title": "So verwenden Sie URL Decoder",
+    "title": "So verwenden Sie den URL-Encoder und -Decoder",
     "steps": [
       {
-        "title": "Einfügen Ihre URL oder text",
-        "description": "Kopieren und fügen Sie Ihre URL oder text in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "URL oder Text eingeben",
+        "description": "Geben Sie die URL oder den Text ein, den Sie kodieren oder dekodieren möchten. Das Tool akzeptiert vollständige URLs, einzelne Abfrageparameter oder beliebigen Text mit Sonderzeichen."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Kodierung oder Dekodierung wählen",
+        "description": "Wählen Sie zwischen Kodierung (Sonderzeichen in Prozent-Kodierung umwandeln) und Dekodierung (Prozent-kodierte Zeichen zurück in lesbaren Text umwandeln)."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool verarbeitet Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Ergebnis überprüfen",
+        "description": "Das Tool wandelt Ihre Eingabe in Echtzeit um und zeigt das kodierte oder dekodierte Ergebnis sofort an. Sonderzeichen werden korrekt in die Prozent-Kodierung überführt oder daraus wiederhergestellt."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Ergebnis kopieren und verwenden",
+        "description": "Kopieren Sie die kodierte oder dekodierte Zeichenkette in Ihre Zwischenablage, um sie direkt in URLs, API-Aufrufen oder Webformularen zu verwenden."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
+      "Echtzeit-Konvertierung zwischen kodiertem und dekodiertem Format",
+      "Unterstützung für vollständige URLs und einzelne Abfrageparameter",
+      "Korrekte Behandlung von Sonderzeichen, Leerzeichen und Umlauten",
+      "Unterstützung für internationale Zeichen und UTF-8-Kodierung",
+      "Prozent-Kodierung gemäß RFC 3986 Standard",
       "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
+      "Keine Datenuploads oder serverseitige Speicherung",
       "Funktioniert offline nach dem ersten Laden der Seite"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Sonderzeichen in URLs für API-Aufrufe korrekt kodieren",
+      "Kodierte URL-Parameter aus Browserleisten oder Protokolldateien dekodieren",
+      "Abfrageparameter für Webformulare und HTTP-Anfragen vorbereiten",
+      "Internationale Zeichen und Umlaute in URLs sicher umwandeln",
+      "Kodierte Weiterleitungs-URLs in Webapplikationen debuggen",
+      "Leerzeichen und Sonderzeichen für sichere URL-Übertragung behandeln",
+      "URL-Parameter aus Analytics-Tracking-Links analysieren",
+      "Kodierte Daten aus API-Antworten in lesbaren Text zurückwandeln"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie die Kodierung für einzelne Parameter, nicht für die gesamte URL - Schrägstriche und Doppelpunkte sollten in der URL-Struktur erhalten bleiben",
+      "Prüfen Sie bei doppelt kodierten Zeichenketten, ob die Dekodierung zweimal angewendet werden muss",
+      "Leerzeichen werden als %20 (RFC 3986) oder + (Formular-Kodierung) dargestellt - achten Sie auf den Kontext",
+      "Testen Sie kodierte URLs in einem Browser, bevor Sie sie in Produktion verwenden",
+      "Bei Umlauten (ä, ö, ü) und Sonderzeichen wird UTF-8-Kodierung verwendet",
+      "Verwenden Sie das Tool zum Debuggen von fehlerhaften Weiterleitungen und defekten Links"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
+      "Doppelte Kodierung: Wenn %25 statt % erscheint, wurde der Text möglicherweise zweimal kodiert - dekodieren Sie ihn zweimal",
+      "Kaputte Sonderzeichen: Stellen Sie sicher, dass die Eingabe in UTF-8 vorliegt, insbesondere bei Umlauten und internationalen Zeichen",
+      "Plus-Zeichen vs. Leerzeichen: In Formulardaten steht + für ein Leerzeichen, in URL-Pfaden verwenden Sie %20",
+      "Ungültige URL: Prüfen Sie, ob die URL-Struktur (Protokoll, Domain, Pfad) korrekt ist, bevor Sie einzelne Parameter kodieren",
       "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "description": "URL oder Text einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+Eingabe",
+        "description": "Kodieren/Dekodieren"
       },
       {
         "keys": "Strg+C",
@@ -77,9 +77,9 @@
     ]
   },
   "meta": {
-    "title": "URL-Encoder & Decoder - Online",
-    "description": "URL-Zeichenketten online kodieren und dekodieren. Sonderzeichen in Prozent-Kodierung umwandeln oder URL-Parameter in lesbaren Text konvertieren. Kostenlos."
+    "title": "URL-Encoder und -Decoder - Kostenloses Online-Tool für Prozent-Kodierung",
+    "description": "URL-Zeichenketten kostenlos online kodieren und dekodieren - Sonderzeichen in Prozent-Kodierung umwandeln oder URL-Parameter entschlüsseln. Keine Registrierung erforderlich. Schnelles, sicheres URL-Encoder-/Decoder-Tool."
   },
-  "tagline": "Kodieren und decode URLs und query parameters safely",
-  "pageDescription": "URL encode und decode components und query parameters für web Entwicklung. Handle special characters, spaces, und international text in URLs safely. Perfect für API developers, web forms, und HTTP request handling. Supports percent-encoding Standards mit real-time Konvertierung und validation."
+  "tagline": "URLs und Abfrageparameter sicher kodieren und dekodieren",
+  "pageDescription": "URL-Komponenten und Abfrageparameter für die Webentwicklung kodieren und dekodieren. Sonderzeichen, Leerzeichen und internationale Texte in URLs sicher verarbeiten. Ideal für API-Entwickler, Webformulare und HTTP-Anfragenverarbeitung. Unterstützt Prozent-Kodierungsstandards mit Echtzeit-Konvertierung. Kostenlos online nutzbar ohne Registrierung - browserbasiert und sofort einsatzbereit."
 }

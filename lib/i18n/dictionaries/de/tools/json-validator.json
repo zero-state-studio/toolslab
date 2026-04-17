@@ -1,84 +1,84 @@
 {
   "title": "JSON-Validator",
-  "description": "Validate JSON syntax und structure",
-  "placeholder": "",
+  "description": "JSON-Syntax und -Struktur validieren",
+  "placeholder": "JSON zum Validieren einfügen...",
   "meta": {
-    "title": "JSON-Validator - Syntax prüfen",
-    "description": "JSON-Syntax und -Struktur online validieren. Detaillierte Fehlermeldungen mit Zeilennummern. Fehlerhafte JSON-Daten schnell debuggen. Kostenloses Tool."
+    "title": "JSON-Validator - Syntaxprüfung und Schema-Validierung kostenlos",
+    "description": "JSON online kostenlos validieren — Syntaxprüfung mit Schema-Unterstützung (Draft 7/2019-09), detaillierte Fehlermeldungen und Zeilennummern. Ohne Anmeldung. Sofortiger JSON-Validator."
   },
-  "tagline": "Validate JSON mit advanced schema support und Fehler Erkennung",
-  "pageDescription": "Advanced JSON validator mit JSON Schema support, real-time Fehler reporting und security audit. Validate API responses, configuration files und Daten structures mit Draft 7/2019-09/2020-12 schema support. Features syntax highlighting, detailed Fehler diagnostics, performance metrics und security vulnerability Erkennung. Perfect für Entwickler und API testing.",
+  "tagline": "JSON validieren mit erweiterter Schema-Unterstützung und Fehlererkennung",
+  "pageDescription": "Erweiterter JSON-Validator mit JSON-Schema-Unterstützung, Echtzeit-Fehlermeldungen und Sicherheitsaudit. Validieren Sie API-Antworten, Konfigurationsdateien und Datenstrukturen mit Draft 7/2019-09/2020-12 Schema-Unterstützung. Bietet Syntaxhervorhebung, detaillierte Fehlerdiagnose, Leistungsmetriken und Erkennung von Sicherheitslücken. Kostenlos online ohne Anmeldung — perfekt für Entwickler und API-Tests.",
   "instructions": {
-    "title": "So verwenden Sie JSON-Validator",
+    "title": "So verwenden Sie den JSON-Validator",
     "steps": [
       {
         "title": "JSON-Daten einfügen",
-        "description": "Kopieren und fügen Sie Ihre JSON-Daten in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "description": "Kopieren und fügen Sie Ihre JSON-Daten in den Eingabebereich ein. Das Tool erkennt automatisch das Format und beginnt sofort mit der Validierung."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Validierungsmodus wählen",
+        "description": "Wählen Sie zwischen einfacher Syntaxprüfung oder erweiterter Schema-Validierung. Laden Sie optional ein JSON-Schema hoch, um die Struktur Ihrer Daten zu prüfen."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "The Tool will validate Ihre input und display die result mit proper formatting und validation."
+        "title": "Fehler analysieren",
+        "description": "Überprüfen Sie die Validierungsergebnisse mit detaillierten Fehlermeldungen, Zeilennummern und Korrekturvorschlägen. Fehler werden direkt im Quelltext hervorgehoben."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie das formatierte JSON in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Korrigiertes JSON kopieren",
+        "description": "Nach der Korrektur kopieren Sie das validierte JSON in die Zwischenablage oder laden es als Datei herunter."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Echtzeit-Syntaxvalidierung mit sofortiger Fehlermeldung",
+      "JSON-Schema-Unterstützung (Draft 7, 2019-09, 2020-12)",
+      "Detaillierte Fehlermeldungen mit Zeilennummer und Position",
+      "Syntaxhervorhebung und automatische Formatierung",
+      "Sicherheitsaudit zur Erkennung potenzieller Schwachstellen",
+      "Leistungsmetriken für große JSON-Dateien",
+      "100% browserbasierte Verarbeitung — keine Daten werden hochgeladen",
+      "Unterstützung für verschachtelte und komplexe JSON-Strukturen"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "API-Antworten auf korrekte Struktur und Datentypen prüfen",
+      "Konfigurationsdateien vor dem Deployment validieren",
+      "JSON-Daten aus externen Quellen auf Fehler prüfen",
+      "JSON-Schema-Konformität in CI/CD-Pipelines sicherstellen",
+      "Fehler in großen JSON-Dateien schnell lokalisieren",
+      "Datenbank-Exporte auf gültiges JSON-Format prüfen",
+      "Webhook-Payloads vor der Verarbeitung validieren",
+      "JSON-Fixtures für Tests auf Korrektheit prüfen"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie JSON-Schema-Validierung für strukturierte Daten wie API-Antworten",
+      "Die Zeilennummern in Fehlermeldungen helfen beim schnellen Auffinden von Problemen",
+      "Häufige Fehler: fehlende Kommas, doppelte Schlüssel, einfache statt doppelte Anführungszeichen",
+      "Große JSON-Dateien können in Abschnitten validiert werden für bessere Übersicht",
+      "Aktivieren Sie den Sicherheitsaudit-Modus um potenziell problematische Werte zu erkennen",
+      "Verwenden Sie den Validator regelmäßig während der Entwicklung, nicht nur vor dem Deploy"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Syntaxfehler an unerwarteter Stelle: Prüfen Sie die Zeile davor auf fehlende Kommas oder Klammern",
+      "Schema-Validierung fehlgeschlagen: Stellen Sie sicher, dass das Schema zur JSON-Version passt",
+      "Keine Fehler gefunden aber Daten falsch: Verwenden Sie Schema-Validierung für Strukturprüfung",
+      "Langsame Validierung: Teilen Sie sehr große JSON-Dateien (>5MB) in kleinere Abschnitte",
+      "Encoding-Probleme: Stellen Sie sicher, dass die Datei UTF-8 kodiert ist"
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "keys": "Ctrl+V",
+        "description": "JSON einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Ctrl+Enter",
+        "description": "Validieren"
       },
       {
-        "keys": "Strg+C",
+        "keys": "Ctrl+C",
         "description": "Ergebnis kopieren"
       },
       {
-        "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "keys": "Ctrl+S",
+        "description": "JSON-Datei herunterladen"
       }
     ]
   }

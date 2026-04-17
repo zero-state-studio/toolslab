@@ -2,108 +2,108 @@
 
 ## 🤖 AUTOMAZIONI CLAUDE CODE ATTIVE
 
-Questo progetto usa automazioni Claude Code per velocizzare lo sviluppo e garantire qualità. **Usale sempre.**
+Progetto usa automazioni Claude Code per velocizzare sviluppo e garantire qualità. **Usale sempre.**
 
 ### 🔌 MCP Server: context7
-Fornisce documentazione aggiornata delle librerie in uso (Next.js, Zustand, Zod, Radix UI, Tailwind, ecc.).
-**Uso**: quando hai dubbi su API di una libreria, chiedi esplicitamente `use context7` nella query.
+Documentazione aggiornata librerie in uso (Next.js, Zustand, Zod, Radix UI, Tailwind, ecc.).
+**Uso**: dubbi su API libreria → chiedi `use context7` nella query.
 ```
 Esempio: "Come si usa useEffect in Next.js 14 App Router? use context7"
 ```
 
 ### 🎯 Skill: `/new-tool [tool-id] [Tool Name] [category]`
-Scaffold automatico completo per un nuovo tool, seguendo i 13 step obbligatori.
-**Usa SEMPRE questa skill quando crei un nuovo tool.** Garantisce che nessuno step venga saltato.
+Scaffold automatico completo nuovo tool, segue 13 step obbligatori.
+**Usa SEMPRE questa skill per nuovo tool.** Garantisce nessuno step saltato.
 ```
 Esempio: /new-tool json-diff "JSON Diff" dev
 ```
-Al termine esegue automaticamente `tool-completeness-reviewer` per verifica finale.
+Esegue automaticamente `tool-completeness-reviewer` per verifica finale.
 
-**🔍 SEO OBBLIGATORIO dopo `/new-tool`** — Dopo la creazione dello scaffold, esegui SEMPRE nell'ordine:
-1. **`programmatic-seo`** — ottimizza `meta.title`, `meta.description`, `tagline`, `pageDescription` e keywords in `tools.ts` usando i playbook (Conversions, Templates, ecc.). Aggiorna anche il file i18n EN.
-2. **`seo-audit`** — verifica che il tool sia nella sitemap (`public/sitemap-*.xml`), che lo schema JSON-LD sia corretto, che canonical/hreflang siano presenti, e che OG/Twitter usino la meta description ottimizzata.
-3. **Aggiungi il tool alla sitemap** — il file è statico: aggiungere manualmente l'entry in tutti i 5 file `public/sitemap-{en,it,es,fr,de,pt}.xml` con priority `0.8` e tutti gli hreflang.
+**🔍 SEO OBBLIGATORIO dopo `/new-tool`** — Dopo scaffold, esegui SEMPRE in ordine:
+1. **`programmatic-seo`** — ottimizza `meta.title`, `meta.description`, `tagline`, `pageDescription` e keywords in `tools.ts` usando playbook (Conversions, Templates, ecc.). Aggiorna anche file i18n EN.
+2. **`seo-audit`** — verifica tool in sitemap (`public/sitemap-*.xml`), schema JSON-LD corretto, canonical/hreflang presenti, OG/Twitter con meta description ottimizzata.
+3. **Aggiungi tool a sitemap** — file statico: aggiungere manualmente entry in tutti 5 file `public/sitemap-{en,it,es,fr,de,pt}.xml` con priority `0.8` e tutti hreflang.
 
 ### 🎯 Skill: `/i18n-check`
-Verifica che tutti i tool abbiano traduzioni complete per tutte le 6 lingue (en, it, es, fr, de, pt).
-**Usa questa skill prima di ogni deploy** o quando aggiungi nuove traduzioni.
+Verifica tutti tool abbiano traduzioni complete per tutte 6 lingue (en, it, es, fr, de, pt).
+**Usa prima di ogni deploy** o quando aggiungi traduzioni.
 ```
 Esempio: /i18n-check
 ```
 
 ### ⚡ Hooks attivi (automatici)
-- **PostToolUse** — Dopo ogni modifica a file `.ts/.tsx`, esegue `tsc --noEmit` automaticamente. Se vedi errori TypeScript nell'output, correggili prima di continuare.
-- **PreToolUse** — Blocca qualsiasi tentativo di modificare `.env.local` via Claude. Per modificare le credenziali, usa il terminale direttamente.
+- **PostToolUse** — Dopo modifica a file `.ts/.tsx`, esegue `tsc --noEmit` automaticamente. Errori TypeScript → correggili prima di continuare.
+- **PreToolUse** — Blocca modifica `.env.local` via Claude. Credenziali → usa terminale direttamente.
 
 ### 🤖 Subagent: `tool-completeness-reviewer`
-Verifica che un tool abbia completato tutti i 13 step. Viene invocato automaticamente da `/new-tool`, ma puoi usarlo manualmente:
+Verifica tool ha completato tutti 13 step. Invocato automaticamente da `/new-tool`, usabile manualmente:
 ```
 "Invoca tool-completeness-reviewer per verificare il tool json-diff"
 ```
 
 ### 📦 Skills esterne installate — Trigger automatici
 
-Le seguenti skills sono installate in `.agents/skills/` e **DEVI attivarle autonomamente** quando riconosci le situazioni descritte, senza aspettare che l'utente le chieda esplicitamente.
+Skills in `.agents/skills/` — **DEVI attivarle autonomamente** quando riconosci situazioni descritte, senza aspettare richiesta utente.
 
 #### `vercel-react-best-practices` → attiva quando:
-- Scrivi o modifichi un componente React/Next.js (`.tsx`)
+- Scrivi/modifichi componente React/Next.js (`.tsx`)
 - Implementi data fetching, `useEffect`, o lazy loading
-- L'utente chiede ottimizzazione performance o bundle size
-- Rilevi pattern potenzialmente inefficienti (waterfall, re-render eccessivi)
+- Utente chiede ottimizzazione performance o bundle size
+- Rilevi pattern inefficienti (waterfall, re-render eccessivi)
 
 #### `systematic-debugging` → attiva quando:
-- C'è un errore che non si riproduce in locale ma appare in produzione
-- Un bug persiste dopo il primo tentativo di fix
-- Hai un errore di hydration React (es. Error #425)
-- Il build Vercel fallisce senza una causa ovvia
-- Stai per applicare un terzo fix allo stesso problema → **fermati e usa questa skill**
+- Errore non riproducibile locale ma presente in produzione
+- Bug persiste dopo primo tentativo fix
+- Errore hydration React (es. Error #425)
+- Build Vercel fallisce senza causa ovvia
+- Stai per applicare terzo fix stesso problema → **fermati e usa questa skill**
 
 #### `free-tool-strategy` → attiva quando:
-- L'utente chiede quale tool implementare tra più opzioni
-- Si discute di priorità nella roadmap (`IMPLEMENTATION_ROADMAP.md`)
-- Si valuta il potenziale SEO/traffic di un nuovo tool
-- Si pianifica uno sprint di sviluppo
+- Utente chiede quale tool implementare tra opzioni
+- Discussione priorità roadmap (`IMPLEMENTATION_ROADMAP.md`)
+- Valutazione potenziale SEO/traffic nuovo tool
+- Pianificazione sprint sviluppo
 
 #### `programmatic-seo` → attiva quando:
-- Scrivi `tagline` o `seoDescription` per un nuovo tool in `tool-seo.ts`
-- Si pianifica una nuova categoria di tool o pagina aggregatrice
-- L'utente chiede come ottimizzare il ranking di una pagina tool
-- Si discute di keyword strategy o struttura URL
+- Scrivi `tagline` o `seoDescription` per nuovo tool in `tool-seo.ts`
+- Pianificazione nuova categoria tool o pagina aggregatrice
+- Utente chiede ottimizzare ranking pagina tool
+- Discussione keyword strategy o struttura URL
 
 #### `seo-audit` → attiva quando:
-- L'utente chiede di verificare/migliorare la SEO di un tool o pagina
-- Prima di un deploy importante che tocca routing, metadata o sitemap
-- Dopo aver aggiunto 5+ tool nuovi senza audit recente
-- Si rilevano problemi con hreflang, canonical o schema markup
+- Utente chiede verificare/migliorare SEO tool o pagina
+- Prima deploy importante che tocca routing, metadata o sitemap
+- Dopo 5+ tool nuovi senza audit recente
+- Problemi con hreflang, canonical o schema markup
 
 #### `long-tail-seo` → attiva quando:
-- L'utente chiede di aggiungere long-tail keywords a un tool
-- Si crea un nuovo tool e si vuole ottimizzare SEO keyword
-- L'utente chiede "keyword research" o "long-tail" per un tool
-- Si vuole verificare la copertura keyword nel contenuto visibile
-- L'utente chiede quali tool non hanno long-tail keywords
+- Utente chiede aggiungere long-tail keywords a tool
+- Creazione nuovo tool con ottimizzazione SEO keyword
+- Utente chiede "keyword research" o "long-tail" per tool
+- Verifica copertura keyword in contenuto visibile
+- Utente chiede quali tool senza long-tail keywords
 
 #### `page-cro` → attiva quando:
-- L'utente chiede di migliorare un tool page (conversioni, engagement, UX)
-- Si lavora su tool ad alto `searchVolume` in `tools.ts` (>10K)
-- Si scrivono o revisionano CTA, headline o descrizioni pagina
-- L'utente menziona bounce rate, retention o miglioramento UI
+- Utente chiede migliorare tool page (conversioni, engagement, UX)
+- Lavoro su tool con alto `searchVolume` in `tools.ts` (>10K)
+- Scrittura/revisione CTA, headline o descrizioni pagina
+- Utente menziona bounce rate, retention o miglioramento UI
 
 ---
 
 ## 🗺️ Tool Development Roadmap
 
-**La roadmap completa per l'implementazione dei nuovi tool è disponibile in:**
+**Roadmap completa implementazione nuovi tool:**
 📍 **`/documentation/todo/IMPLEMENTATION_ROADMAP.md`**
 
-Questo documento contiene:
-- 87 tool da implementare organizzati per priorità (Maximum, High, Medium, Low)
-- Stime di difficoltà e tempo di sviluppo per ogni tool
-- Fasi di implementazione con timeline dettagliate
-- Proiezioni di revenue e metriche di successo
-- Tool già implementati (37) esclusi dalla roadmap
+Contiene:
+- 87 tool da implementare per priorità (Maximum, High, Medium, Low)
+- Stime difficoltà e tempo sviluppo per tool
+- Fasi implementazione con timeline dettagliate
+- Proiezioni revenue e metriche successo
+- Tool già implementati (37) esclusi da roadmap
 
-**Per la pianificazione dello sviluppo, consultare sempre questo file.**
+**Per pianificazione sviluppo, consultare sempre questo file.**
 
 ---
 
@@ -126,25 +126,25 @@ npm update
 
 #### Creazione di nuovi tool
 
-**🎯 METODO RAPIDO**: Usa la skill `/new-tool [tool-id] [Tool Name] [category]` — esegue automaticamente tutti i 13 step e verifica la completezza. Vedi sezione "AUTOMAZIONI CLAUDE CODE ATTIVE" in cima a questo file.
+**🎯 METODO RAPIDO**: Usa skill `/new-tool [tool-id] [Tool Name] [category]` — esegue automaticamente tutti 13 step e verifica completezza. Vedi sezione "AUTOMAZIONI CLAUDE CODE ATTIVE" sopra.
 
-**⚠️ IMPORTANTE**: Usa SOLO il sistema in `/lib/tools.ts` per gestire tools e categories.
+**⚠️ IMPORTANTE**: Usa SOLO sistema in `/lib/tools.ts` per gestire tools e categories.
 
 **🚨 ARCHITETTURA UNIFICATA OBBLIGATORIA (AGGIORNAMENTO 26/09/2024)**:
 - **❌ MAI creare pagine dedicate** in `app/tools/[tool-name]/page.tsx`
-- **✅ SEMPRE usare il sistema dinamico** che gestisce tutto tramite `app/tools/[tool]/page.tsx`
-- **Tutti i nuovi tool DEVONO usare il sistema unificato** per lazy loading e performance ottimali
+- **✅ SEMPRE usare sistema dinamico** che gestisce tutto tramite `app/tools/[tool]/page.tsx`
+- **Tutti nuovi tool DEVONO usare sistema unificato** per lazy loading e performance ottimali
 
 **Workflow completo:**
-1. **Registra il tool** in `/lib/tools.ts` con tutti i metadati richiesti
+1. **Registra tool** in `/lib/tools.ts` con tutti metadati richiesti
 2. **Crea contenuti SEO** in `/lib/tool-seo.ts` con tagline e descrizione ottimizzate
 3. **Definisci istruzioni** in `/lib/tool-instructions.ts` con contenuti tool-specifici
-4. Crea prima i test in `__tests__/unit/tools/[tool-name].test.ts`
-5. Implementa la logica in `lib/tools/[tool-name].ts`
-6. Crea il componente UI in `components/tools/implementations/[ToolName].tsx`
-   **⚠️ SE il componente usa `useToolStore` o `useCrontabStore`:**
+4. Crea prima test in `__tests__/unit/tools/[tool-name].test.ts`
+5. Implementa logica in `lib/tools/[tool-name].ts`
+6. Crea componente UI in `components/tools/implementations/[ToolName].tsx`
+   **⚠️ SE componente usa `useToolStore` o `useCrontabStore`:**
    - Importa `useHydration` hook: `import { useHydration } from '@/lib/hooks/useHydration'`
-   - Chiama il hook: `const isHydrated = useHydration()`
+   - Chiama hook: `const isHydrated = useHydration()`
    - Crea safe arrays: `const safeData = isHydrated ? storeData : []`
    - Nei `useEffect`: aggiungi `if (!isHydrated) return;` prima di accedere allo store
 7. **Registra nel LazyToolLoader** in `components/tools/LazyToolLoader.tsx`:
@@ -161,13 +161,13 @@ npm update
      'your-tool-id',  // ⚠️ DEVE matchare l'ID in tools.ts
    ];
    ```
-   **⚠️ Se dimentichi questo step, le traduzioni non verranno caricate e il tool mostrerà testi generici!**
+   **⚠️ Se dimentichi questo step, traduzioni non caricate e tool mostra testi generici!**
 9. **Crea traduzioni per tutte le lingue** in `/lib/i18n/dictionaries/{en,it,es,fr}/tools/`:
    - Crea `tool-name.json` per ogni lingua con: title, description, placeholder, meta, tagline, pageDescription, instructions
-   - Le instructions devono includere: steps, features, useCases, proTips, troubleshooting, keyboardShortcuts (opzionale)
-10. **❌ NON creare route dedicata** - il sistema dinamico `[tool]/page.tsx` gestirà automaticamente il routing
-11. **La sitemap viene aggiornata automaticamente** - il sistema legge da `/lib/tools.ts`
-12. **✅ ANALYTICS AUTO-TRACKING** - Quando il tool processa dati, usa `addToHistory()`:
+   - Instructions devono includere: steps, features, useCases, proTips, troubleshooting, keyboardShortcuts (opzionale)
+10. **❌ NON creare route dedicata** - sistema dinamico `[tool]/page.tsx` gestisce routing automaticamente
+11. **Sitemap aggiornata automaticamente** - sistema legge da `/lib/tools.ts`
+12. **✅ ANALYTICS AUTO-TRACKING** - Quando tool processa dati, usa `addToHistory()`:
    ```typescript
    import { useToolStore } from '@/lib/store/toolStore';
 
@@ -188,7 +188,7 @@ npm update
      return output;
    };
    ```
-   **Non serve altro!** Il sistema traccia automaticamente:
+   **Non serve altro!** Sistema traccia automaticamente:
    - Tool usage event in Umami
    - Input/output sizes
    - Processing time
@@ -231,8 +231,8 @@ npm update
    }
    ```
    **⚠️ IMPORTANTE**:
-   - Usa sempre `useEffect` per lo scroll, non chiamare `scrollToResult()` direttamente dopo `setOutput()` perché React potrebbe non aver ancora aggiornato il DOM
-   - **Usa SEMPRE `onlyIfNotVisible: false`** per garantire scroll affidabile - il default `true` causa problemi quando il risultato è parzialmente visibile
+   - Usa sempre `useEffect` per scroll, non chiamare `scrollToResult()` direttamente dopo `setOutput()` — React potrebbe non aver aggiornato DOM
+   - **Usa SEMPRE `onlyIfNotVisible: false`** per scroll affidabile — default `true` causa problemi quando risultato parzialmente visibile
 
    **Per tool con caricamento immagini/preview (Base64, etc.):**
    ```typescript
@@ -272,10 +272,10 @@ npm update
    return <div ref={resultRef}>{output && <Result />}</div>;
    ```
 
-   **📋 Tool che HANNO già useScrollToResult:**
+   **📋 Tool con `useScrollToResult` già implementato:**
    - ✅ Base64-to-WebP, Base64-to-JPG, Base64-to-PNG, Base64-to-GIF, Base64-to-PDF
 
-   **⚠️ Tool che devono ancora essere aggiornati:** SQL Formatter, JSON Formatter, e altri tool con output lungo
+   **⚠️ Tool da aggiornare:** SQL Formatter, JSON Formatter, e altri tool con output lungo
 
 **🚨 ERRORE CRITICO DA EVITARE - Pagine dedicate:**
 ```typescript
@@ -296,7 +296,7 @@ export default function ToolPage() {
 }
 ```
 
-**📋 Template per aggiungere un tool in `/lib/tools.ts`:**
+**📋 Template per aggiungere tool in `/lib/tools.ts`:**
 ```typescript
 {
   id: 'tool-slug',
@@ -313,7 +313,7 @@ export default function ToolPage() {
 ```
 
 **⚠️ IMPORTANTE - Label Policy:**
-- **NON usare mai `label: 'new'`** per i nuovi tool
+- **NON usare mai `label: 'new'`** per nuovi tool
 - Usa sempre `label: ''` (stringa vuota) di default
 - Usa `label: 'popular'` solo se esplicitamente richiesto
 - Usa `label: 'coming-soon'` solo per tool in sviluppo
@@ -329,11 +329,11 @@ export default function ToolPage() {
 - `formatters`: Formatters
 - `pdf`: PDF Tools
 
-**⛔ NON creare file in `/data/tools.ts` o `/data/categories.ts` - sono stati eliminati!**
+**⛔ NON creare file in `/data/tools.ts` o `/data/categories.ts` - eliminati!**
 
 ## 📝 CONTENUTI OBBLIGATORI PER OGNI NUOVO TOOL
 
-Per garantire un'esperienza utente consistente e ottimizzazione SEO, OGNI nuovo tool deve includere:
+Per UX consistente e SEO, OGNI nuovo tool deve includere:
 
 ### 🎯 SEO Content (in `/lib/tool-seo.ts`)
 ```typescript
@@ -364,38 +364,38 @@ Per garantire un'esperienza utente consistente e ottimizzazione SEO, OGNI nuovo 
 ```
 
 ### 📋 Content Guidelines
-- **Tagline**: Must include action verb, tool function, and benefit
-- **SEO Description**: Primary keyword in first 15 words, mention "free", "secure", "browser-based"
-- **Instructions**: Tool-specific steps, not generic
-- **Features**: Technical capabilities unique to the tool
-- **Use Cases**: Real-world scenarios for the target audience
-- **Pro Tips**: Advanced usage tips and best practices
-- **Troubleshooting**: Common issues and solutions specific to the tool
+- **Tagline**: Deve includere action verb, tool function, e benefit
+- **SEO Description**: Primary keyword in prime 15 parole, menzionare "free", "secure", "browser-based"
+- **Instructions**: Step tool-specifici, non generici
+- **Features**: Capacità tecniche uniche del tool
+- **Use Cases**: Scenari reali per target audience
+- **Pro Tips**: Consigli avanzati e best practices
+- **Troubleshooting**: Problemi comuni e soluzioni specifiche del tool
 
 ### ❌ Content Requirements Violations
-- Generic instructions like "Enter your data" without tool-specific context
-- Duplicate content across different tools
-- Missing SEO tagline or description
-- Fewer than 4 instruction steps
-- No troubleshooting section for complex tools
+- Istruzioni generiche tipo "Enter your data" senza contesto tool-specifico
+- Contenuto duplicato tra tool diversi
+- SEO tagline o description mancante
+- Meno di 4 instruction steps
+- Nessuna sezione troubleshooting per tool complessi
 
 #### Standard di codice
 
-- Usa TypeScript strict mode
-- Tutti i componenti devono avere props tipizzate
-- Usa Zod per la validazione runtime
-- Documenta le funzioni complesse con JSDoc
-- Mantieni le funzioni pure in `lib/tools/`
+- TypeScript strict mode
+- Tutti componenti con props tipizzate
+- Zod per validazione runtime
+- JSDoc per funzioni complesse
+- Funzioni pure in `lib/tools/`
 
 ### 3. PRIMA DI OGNI COMMIT
 
 #### Checklist obbligatoria
 
-- [ ] I test passano localmente (`npm run test`)
-- [ ] Il linter non riporta errori (`npm run lint`)
-- [ ] La build funziona (`npm run build`)
-- [ ] Le performance sono verificate (`npm run analyze:size`)
-- [ ] La documentazione è aggiornata
+- [ ] Test passano localmente (`npm run test`)
+- [ ] Linter senza errori (`npm run lint`)
+- [ ] Build funziona (`npm run build`)
+- [ ] Performance verificate (`npm run analyze:size`)
+- [ ] Documentazione aggiornata
 
 #### Processo di commit automatizzato
 
@@ -448,7 +448,7 @@ git commit -m "tipo: descrizione breve"
 
 #### Test data requirements
 
-- Sempre usare i fixtures da `__tests__/fixtures/`
+- Sempre usare fixtures da `__tests__/fixtures/`
 - Testare edge cases: empty, null, undefined, very large
 - Includere caratteri unicode e special chars
 - Testare input malformati per ogni tool
@@ -496,14 +496,14 @@ vercel --prod
 
 Dopo ogni deploy, verifica:
 
-1. Umami Analytics: controlla che gli eventi siano tracciati
+1. Umami Analytics: eventi tracciati
 2. Sentry: nessun nuovo errore nelle prime 2 ore
 3. Vercel Analytics: Core Web Vitals in range
 4. API monitoring: response time < 200ms
 
 ### 8. ROLLBACK PROCEDURE
 
-Se ci sono problemi critici:
+Problemi critici:
 
 ```bash
 # 1. Immediate rollback
@@ -529,35 +529,35 @@ Ogni venerdì:
 - [ ] Review Sentry errors
 - [ ] Check bundle size trends
 - [ ] Update dependencies (`npm outdated`)
-- [ ] Review analytics for optimization opportunities
+- [ ] Review analytics per ottimizzazione
 - [ ] Backup production data
 
 ### 10. SITEMAP E SEO AUTOMATICI
 
-Il sistema gestisce automaticamente la generazione della sitemap per tutti i tool:
+Sistema gestisce automaticamente generazione sitemap per tutti tool:
 
 #### 🔄 Processo Automatico
 - **Scansiona** `app/tools/` per nuovi tool directory
 - **Estrae metadata** dai file `page.tsx` (title, description)
 - **Prioritizza** tool featured > popular > new > altri
-- **Aggiorna** la sitemap ad ogni build automaticamente
+- **Aggiorna** sitemap ad ogni build automaticamente
 
-#### 📊 Sorgenti Sitemap (in ordine di priorità)
-1. **Static Data** (`lib/tools.ts`) - **FONTE UFFICIALE** per tutti i tool e categorie
-2. **Filesystem** (`app/tools/*/page.tsx`) - verifica esistenza dei tool
-3. **Edge Config** (`lib/edge-config/`) - configurazione dinamica  
+#### 📊 Sorgenti Sitemap (ordine priorità)
+1. **Static Data** (`lib/tools.ts`) - **FONTE UFFICIALE** per tutti tool e categorie
+2. **Filesystem** (`app/tools/*/page.tsx`) - verifica esistenza tool
+3. **Edge Config** (`lib/edge-config/`) - configurazione dinamica
 4. **Dynamic Routes** (se presenti route `[tool]`)
 
 #### 🎯 Priorità SEO Automatiche
 - Homepage: 1.0 (massima)
 - Tool Featured: 0.9
-- Tool New: 0.85  
+- Tool New: 0.85
 - Tool Popular: 0.8
-- Tool Standard: 0.7 (degradante con l'ordine)
+- Tool Standard: 0.7 (degradante con ordine)
 - Categorie: 0.7
 - Pagine statiche: 0.6-0.8
 
-#### ⚡ Per aggiungere un tool alla sitemap
+#### ⚡ Per aggiungere tool a sitemap
 ```bash
 # 1. Crea la directory del tool
 mkdir app/tools/nuovo-tool
@@ -583,16 +583,16 @@ curl https://toolslab.dev/sitemap.xml
 - Vercel Status: https://vercel-status.com
 - Umami Status: https://status.umami.is
 - Domain issues: Cloudflare dashboard
-- Critical bugs: Create issue with 'critical' label
+- Critical bugs: Create issue con label 'critical'
 
 ## 📊 Tool Development Metrics
 
-Track these metrics for each new tool:
+Metriche per ogni nuovo tool:
 
-- Development time: target < 4 hours
-- Test coverage: minimum 85%
-- Bundle size impact: maximum +30KB
-- Performance score: minimum 95/100
+- Development time: target < 4 ore
+- Test coverage: minimo 85%
+- Bundle size impact: max +30KB
+- Performance score: minimo 95/100
 
 ## 🚀 Quick Commands Reference
 
@@ -646,14 +646,14 @@ chore: update dependencies and fix vulnerabilities
 
 ## 🎯 Project Information
 
-**URL**: octotools.org  
-**Tech Stack**: Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Zustand  
-**Business Model**: Free forever + EthicalAds + Donations  
-**Core Principle**: Dual Mode - Serve both single-task users (90%) and workflow power users (10%)
+**URL**: octotools.org
+**Tech Stack**: Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Zustand
+**Business Model**: Free forever + EthicalAds + Donations
+**Core Principle**: Dual Mode - Serve single-task users (90%) e workflow power users (10%)
 
 ## 📦 Tool Template
 
-Quando crei un nuovo tool, segui questa struttura:
+Struttura per nuovo tool:
 
 ```typescript
 // lib/tools/[tool-name].ts
@@ -686,7 +686,7 @@ export function processToolName(input: string, options?: any): ToolResult {
 
 ## 🏗️ ARCHITETTURA TOOL UNIFICATA (SISTEMA DINAMICO)
 
-**Dal 26/09/2024 tutti i tool usano il sistema dinamico unificato:**
+**Dal 26/09/2024 tutti tool usano sistema dinamico unificato:**
 
 ```
 app/tools/
@@ -727,7 +727,7 @@ lib/
 
 ### Quando Usare useHydration
 
-**SEMPRE** quando un componente accede a `useToolStore` o `useCrontabStore`:
+**SEMPRE** quando componente accede a `useToolStore` o `useCrontabStore`:
 
 ```typescript
 'use client';
@@ -785,11 +785,11 @@ return <div>{safe.length}</div>;
 - ❌ React Error #425 in produzione
 - ❌ Dati persistenti (favoriti, cronologia) spariscono dopo refresh
 - ❌ Build Vercel fallisce
-- ❌ Esperienza utente compromessa
+- ❌ UX compromessa
 
 ### Componenti Aggiornati (Riferimento)
 
-Tutti questi componenti seguono il pattern corretto:
+Tutti seguono pattern corretto:
 - `components/layout/LabHubContent.tsx`
 - `components/layout/NewLabHubContent.tsx`
 - `components/layout/Header.tsx`
@@ -804,17 +804,17 @@ Tutti questi componenti seguono il pattern corretto:
 
 ## 🔒 Security Guidelines
 
-1. **Mai committare segreti**: Usa sempre variabili d'ambiente
-2. **Sanitizza input utente**: Valida e sanitizza tutti gli input
-3. **Evita eval()**: Non usare mai eval o Function constructor con input utente
+1. **Mai committare segreti**: Usa variabili d'ambiente
+2. **Sanitizza input utente**: Valida e sanitizza tutti input
+3. **Evita eval()**: Mai usare eval o Function constructor con input utente
 4. **CSP Headers**: Mantieni Content Security Policy stringente
-5. **Dependencies**: Aggiorna regolarmente e controlla vulnerabilità
+5. **Dependencies**: Aggiorna regolarmente, controlla vulnerabilità
 
 ## 📈 ANALYTICS SYSTEM (DICEMBRE 2024) ⭐ NEW
 
 ### Sistema Centralizzato con Auto-Tracking
 
-ToolsLab usa un **sistema analytics centralizzato** basato su **Umami Cloud** che traccia automaticamente:
+ToolsLab usa **sistema analytics centralizzato** basato su **Umami Cloud** che traccia automaticamente:
 - ✅ Tool usage (quando usi `addToHistory()`)
 - ✅ Pageview normalizzati (URL multilingua unificati)
 - ✅ Session tracking (durata accurata anche se chiudi browser tramite sendBeacon)
@@ -889,22 +889,22 @@ http://localhost:3000/tools/json-formatter?debug=analytics
 
 ### 🔥 Features Chiave
 
-1. **Batching Intelligente**: Eventi raggruppati (max 5 eventi o 1 secondo) → 80-90% riduzione network requests
-2. **sendBeacon Delivery**: Eventi critici (`session.end`) sopravvivono alla chiusura browser - garantito al 97% browser support
-3. **No Retry Logic**: sendBeacon fornisce già best-effort guaranteed delivery - retry logic disabilitata per evitare duplicati
-4. **PII Sanitization**: Auto-rimozione email, IP, carte credito, API keys da tutti gli eventi
-5. **Bot Detection**: Client-side detection - distingue search engines (OK) da malicious bots (bloccati)
-6. **URL Normalization**: Multilingua gestito automaticamente - nessun duplicato in Umami
+1. **Batching Intelligente**: Eventi raggruppati (max 5 o 1 secondo) → 80-90% riduzione network requests
+2. **sendBeacon Delivery**: Eventi critici (`session.end`) sopravvivono chiusura browser — 97% browser support
+3. **No Retry Logic**: sendBeacon fornisce best-effort guaranteed delivery — retry disabilitata per evitare duplicati
+4. **PII Sanitization**: Auto-rimozione email, IP, carte credito, API keys da tutti eventi
+5. **Bot Detection**: Client-side — distingue search engines (OK) da malicious bots (bloccati)
+6. **URL Normalization**: Multilingua gestito automaticamente — nessun duplicato in Umami
 
 ### 📚 Documentazione Completa
 
-**Tutta la documentazione è in `/documentation/analytics/`:**
+**Tutta in `/documentation/analytics/`:**
 
 | File | Descrizione |
 |------|-------------|
 | **[README.md](./documentation/analytics/README.md)** | 📖 Overview generale, quick start, features |
-| **[DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md)** | 👨‍💻 **Inizia qui!** Guida pratica per sviluppatori |
-| **[ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md)** | 🏗️ Design completo del sistema, decisioni tecniche |
+| **[DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md)** | 👨‍💻 **Inizia qui!** Guida pratica sviluppatori |
+| **[ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md)** | 🏗️ Design completo sistema, decisioni tecniche |
 | **[PAGEVIEW_TRACKING.md](./documentation/analytics/PAGEVIEW_TRACKING.md)** | 📊 PageViewTracker, metriche avanzate, UTM |
 
 **Learning Path consigliato:**
@@ -914,7 +914,7 @@ http://localhost:3000/tools/json-formatter?debug=analytics
 
 ### ⚠️ Importante
 
-- **timestamp in addToHistory**: DEVE essere quando **inizia** il processing, non quando finisce
+- **timestamp in addToHistory**: DEVE essere quando **inizia** processing, non quando finisce
   ```typescript
   // ✅ CORRETTO
   const startTime = Date.now();
@@ -926,11 +926,11 @@ http://localhost:3000/tools/json-formatter?debug=analytics
   addToHistory({ ..., timestamp: Date.now() });
   ```
 
-- **Tool ID**: DEVE matchare esattamente con l'ID in `/lib/tools.ts` (kebab-case)
+- **Tool ID**: DEVE matchare esattamente con ID in `/lib/tools.ts` (kebab-case)
 
-- **NON serve tracciare manualmente** - `addToHistory()` fa tutto automaticamente
+- **NON serve tracciare manualmente** — `addToHistory()` fa tutto automaticamente
 
-- **Debug Mode**: Usa `?debug=analytics` durante development per verificare che eventi vengano tracciati
+- **Debug Mode**: Usa `?debug=analytics` durante development per verificare eventi tracciati
 
 ### 🔧 Configurazione
 
@@ -952,9 +952,9 @@ NEXT_PUBLIC_ANALYTICS_FLUSH_INTERVAL=1000 # Flush interval ms (default: 1000)
 
 ### 🎓 Per Saperne di Più
 
-Consulta la documentazione completa per:
+Documentazione completa per:
 - **Come tracciare eventi custom** → [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md#-advanced-custom-events-optional)
-- **Come funziona il batching** → [ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md#performance-optimizations)
+- **Come funziona batching** → [ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md#performance-optimizations)
 - **Troubleshooting** → [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md#-troubleshooting)
 - **API completa** → [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md#-api-reference)
 
@@ -962,14 +962,14 @@ Consulta la documentazione completa per:
 
 ### Architettura Multilingua
 
-Il sistema multilingua di ToolsLab supporta attualmente **Italiano** con una struttura scalabile per aggiungere facilmente nuove lingue.
+Sistema multilingua ToolsLab supporta **Italiano** con struttura scalabile per nuove lingue.
 
 #### Struttura URL
 - **Inglese (default)**: `/tools/json-formatter` (nessun prefisso)
 - **Italiano**: `/it/tools/json-formatter`
 - **Future lingue**: `/{locale}/tools/json-formatter` (fr, es, de, pt, nl, pl, tr)
 
-⚠️ **IMPORTANTE**: Il tool slug (`json-formatter`) NON viene mai tradotto e rimane identico in tutte le lingue.
+⚠️ **IMPORTANTE**: Tool slug (`json-formatter`) MAI tradotto, identico in tutte lingue.
 
 #### File e Directory
 
@@ -995,7 +995,7 @@ app/
 
 ### Workflow per Aggiungere Traduzioni
 
-#### 1. Aggiungere traduzioni per un nuovo tool
+#### 1. Aggiungere traduzioni per nuovo tool
 
 1. **Aggiungi in `en.json`**:
 ```json
@@ -1027,7 +1027,7 @@ app/
 }
 ```
 
-#### 2. Aggiungere una nuova lingua
+#### 2. Aggiungere nuova lingua
 
 1. **Aggiorna `lib/i18n/config.ts`**:
 ```typescript
@@ -1049,17 +1049,17 @@ export const localeFlags: Record<Locale, string> = {
 
 2. **Crea `lib/i18n/dictionaries/fr.json`** copiando struttura da `en.json`
 
-3. **Deploy** - il sistema gestisce automaticamente routing e SEO
+3. **Deploy** — sistema gestisce automaticamente routing e SEO
 
 ### SEO e Hreflang
 
-Il sistema genera automaticamente:
+Sistema genera automaticamente:
 - Tag hreflang per ogni pagina
 - Sitemap multilingua
 - Meta tag tradotti
 - Schema.org localizzato
 
-Esempio di hreflang generato:
+Esempio hreflang generato:
 ```html
 <link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/json-formatter" />
 <link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/json-formatter" />
@@ -1068,15 +1068,15 @@ Esempio di hreflang generato:
 
 ### Best Practices Multilingua
 
-1. **MAI tradurre gli slug dei tool** - mantenerli in inglese per consistenza
+1. **MAI tradurre slug tool** — mantenerli in inglese per consistenza
 2. **Sempre includere meta.title e meta.description** per SEO ottimale
-3. **Usare placeholder tradotti** per migliorare UX
-4. **Mantenere consistenza** nei termini tecnici tra lingue
-5. **Testare sempre** il language switcher su diverse pagine
+3. **Usare placeholder tradotti** per UX migliore
+4. **Mantenere consistenza** termini tecnici tra lingue
+5. **Testare sempre** language switcher su diverse pagine
 
 ### Verifica Traduzioni con i18n-check
 
-**Prima di ogni deploy**, esegui la skill `/i18n-check` per verificare che tutti i tool abbiano tutte e 6 le traduzioni complete. La skill riporta file mancanti, campi incompleti e tool non registrati in `load-tools.ts`.
+**Prima di ogni deploy**, esegui `/i18n-check` per verificare tutti tool abbiano tutte 6 traduzioni complete. Riporta file mancanti, campi incompleti e tool non registrati in `load-tools.ts`.
 
 ### Testing Multilingua
 
@@ -1094,38 +1094,38 @@ curl http://localhost:3000/sitemap.xml
 
 ### Componenti che Richiedono Localizzazione
 
-Quando modifichi questi componenti, assicurati di passare le traduzioni:
+Quando modifichi questi componenti, assicurati di passare traduzioni:
 
-- `HomePageContent` - riceve `locale` e `dictionary` props
-- `ToolPageClient` - riceve `locale` e `dictionary` props
-- `Header/Footer` - devono usare il dizionario per navigazione
-- `CategoryCard` - deve mostrare nomi categoria tradotti
+- `HomePageContent` — riceve `locale` e `dictionary` props
+- `ToolPageClient` — riceve `locale` e `dictionary` props
+- `Header/Footer` — devono usare dizionario per navigazione
+- `CategoryCard` — deve mostrare nomi categoria tradotti
 
 ### Debug e Troubleshooting
 
-Se le traduzioni non appaiono:
-1. Verifica che il file JSON sia valido
-2. Controlla che il tool ID corrisponda tra `tools.ts` e dizionari
-3. Verifica il locale nella URL
-4. Controlla i log del server per errori di caricamento dizionario
+Se traduzioni non appaiono:
+1. Verifica file JSON valido
+2. Controlla tool ID corrisponde tra `tools.ts` e dizionari
+3. Verifica locale nella URL
+4. Controlla log server per errori caricamento dizionario
 
 ## 📚 Documentazione Completa
 
-Per informazioni dettagliate sul progetto, consulta la documentazione nella cartella `/documentation`:
+Info dettagliate progetto in `/documentation`:
 
 ### 🏗️ Documentazione Tecnica
-- **[Architecture Overview](./documentation/ARCHITECTURE.md)** - Architettura del sistema e decisioni tecniche
-- **[Tool Development Guide](./documentation/TOOL_DEVELOPMENT.md)** - Guida completa per sviluppare nuovi tool
-- **[API Documentation](./documentation/API_DOCUMENTATION.md)** - Documentazione completa delle API
-- **[Tools Catalog](./documentation/TOOLS_CATALOG.md)** - Catalogo completo di tutti i tool disponibili
-- **[Multi Language Guide](./documentation/MULTI_LANGUAGE.md)** - Guida dettagliata al sistema multilingua
-- **[Blog Structure Guide](./documentation/BLOG-STRUCTURE.md)** - Struttura e gestione del blog
+- **[Architecture Overview](./documentation/ARCHITECTURE.md)** — Architettura sistema e decisioni tecniche
+- **[Tool Development Guide](./documentation/TOOL_DEVELOPMENT.md)** — Guida completa sviluppo nuovi tool
+- **[API Documentation](./documentation/API_DOCUMENTATION.md)** — Documentazione completa API
+- **[Tools Catalog](./documentation/TOOLS_CATALOG.md)** — Catalogo completo tool disponibili
+- **[Multi Language Guide](./documentation/MULTI_LANGUAGE.md)** — Guida dettagliata sistema multilingua
+- **[Blog Structure Guide](./documentation/BLOG-STRUCTURE.md)** — Struttura e gestione blog
 
 ### 🚀 Deployment e Contributing
-- **[Deployment Guide](./documentation/DEPLOYMENT.md)** - Guida al deployment e configurazione produzione
-- **[Contributing Guidelines](./documentation/CONTRIBUTING.md)** - Linee guida per contribuire al progetto
+- **[Deployment Guide](./documentation/DEPLOYMENT.md)** — Guida deployment e configurazione produzione
+- **[Contributing Guidelines](./documentation/CONTRIBUTING.md)** — Linee guida per contribuire
 
 ### 📖 Overview
-- **[Project README](./documentation/README.md)** - Overview completo del progetto e tecnologie
+- **[Project README](./documentation/README.md)** — Overview completo progetto e tecnologie
 
-💡 **Nota**: La documentazione in `/documentation` fornisce informazioni di alto livello e specifiche tecniche, mentre questo file CLAUDE.md contiene gli standard operativi quotidiani per lo sviluppo.
+💡 **Nota**: Documentazione in `/documentation` fornisce info alto livello e specifiche tecniche, questo CLAUDE.md contiene standard operativi quotidiani per sviluppo.

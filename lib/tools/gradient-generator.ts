@@ -622,6 +622,179 @@ export function extractColorsFromGradient(config: GradientConfig): string[] {
 }
 
 /**
+ * Split a string at top-level commas (ignoring commas inside parentheses)
+ */
+function splitTopLevel(str: string): string[] {
+  const parts: string[] = [];
+  let depth = 0;
+  let current = '';
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    if (c === '(') depth++;
+    else if (c === ')') depth--;
+    else if (c === ',' && depth === 0) {
+      parts.push(current.trim());
+      current = '';
+      continue;
+    }
+    current += c;
+  }
+  if (current.trim()) parts.push(current.trim());
+  return parts;
+}
+
+/**
+ * Normalize a color string to #RRGGBB hex. Returns null for named/unsupported colors.
+ */
+function normalizeColorToHex(color: string): string | null {
+  const c = color.trim();
+  // Already valid 6-digit hex
+  if (/^#[0-9a-f]{6}$/i.test(c)) return c;
+  // 3-digit hex → expand
+  if (/^#[0-9a-f]{3}$/i.test(c)) {
+    return '#' + c[1] + c[1] + c[2] + c[2] + c[3] + c[3];
+  }
+  // 8-digit hex (with alpha) → strip alpha
+  if (/^#[0-9a-f]{8}$/i.test(c)) return c.slice(0, 7);
+  // rgb / rgba
+  const rgbMatch = c.match(/^rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+  if (rgbMatch) {
+    return rgbToHex(Number(rgbMatch[1]), Number(rgbMatch[2]), Number(rgbMatch[3]));
+  }
+  // hsl / hsla
+  const hslMatch = c.match(/^hsla?\s*\(\s*([\d.]+)\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%/i);
+  if (hslMatch) {
+    const rgb = hslToRgb(Number(hslMatch[1]), Number(hslMatch[2]), Number(hslMatch[3]));
+    return rgbToHex(rgb.r, rgb.g, rgb.b);
+  }
+  return null;
+}
+
+/**
+ * Parse a single color stop string into a ColorStop object
+ */
+function parseColorStopStr(part: string, index: number, total: number): ColorStop {
+  const trimmed = part.trim();
+  // Match trailing percentage (handles colors with commas inside parens because we already split at top-level)
+  const trailingPct = trimmed.match(/^([\s\S]+?)\s+([\d.]+)%(?:\s+[\d.]+%)?$/);
+  let colorStr: string;
+  let position: number;
+
+  if (trailingPct) {
+    colorStr = trailingPct[1].trim();
+    position = parseFloat(trailingPct[2]);
+  } else {
+    colorStr = trimmed;
+    position = total <= 1 ? 0 : Math.round((index / (total - 1)) * 1000) / 10;
+  }
+
+  const hex = normalizeColorToHex(colorStr);
+  return {
+    id: `stop-${index}-${Date.now() + index}`,
+    color: hex ?? (colorStr.startsWith('#') ? colorStr : '#808080'),
+    position,
+  };
+}
+
+function parseLinearArgs(parts: string[]): GradientConfig | null {
+  let angle = 90;
+  let colorStartIndex = 0;
+  const first = parts[0];
+
+  if (/^[\d.]+deg$/i.test(first)) {
+    angle = parseFloat(first);
+    colorStartIndex = 1;
+  } else if (/^to\s+/i.test(first)) {
+    const dirMap: Record<string, number> = {
+      'to right': 90, 'to left': 270, 'to bottom': 180, 'to top': 0,
+      'to bottom right': 135, 'to right bottom': 135,
+      'to bottom left': 225, 'to left bottom': 225,
+      'to top right': 45, 'to right top': 45,
+      'to top left': 315, 'to left top': 315,
+    };
+    angle = dirMap[first.toLowerCase()] ?? 90;
+    colorStartIndex = 1;
+  }
+
+  const stopParts = parts.slice(colorStartIndex);
+  if (stopParts.length < 2) return null;
+  const colorStops = stopParts.map((p, i) => parseColorStopStr(p, i, stopParts.length));
+  return { type: 'linear', angle, colorStops };
+}
+
+function parseRadialArgs(parts: string[]): GradientConfig | null {
+  let shape: RadialShape = 'ellipse';
+  let size: RadialSize = 'farthest-corner';
+  let position = { x: 50, y: 50 };
+  let colorStartIndex = 0;
+  const first = parts[0];
+
+  if (/^(?:circle|ellipse|closest|farthest|at\s)/i.test(first)) {
+    const shapeM = first.match(/\b(circle|ellipse)\b/i);
+    if (shapeM) shape = shapeM[1].toLowerCase() as RadialShape;
+    const sizeM = first.match(/\b(closest-side|closest-corner|farthest-side|farthest-corner)\b/i);
+    if (sizeM) size = sizeM[1].toLowerCase() as RadialSize;
+    const posM = first.match(/at\s+([\d.]+)%\s+([\d.]+)%/i);
+    if (posM) position = { x: parseFloat(posM[1]), y: parseFloat(posM[2]) };
+    colorStartIndex = 1;
+  }
+
+  const stopParts = parts.slice(colorStartIndex);
+  if (stopParts.length < 2) return null;
+  const colorStops = stopParts.map((p, i) => parseColorStopStr(p, i, stopParts.length));
+  return { type: 'radial', shape, size, position, colorStops };
+}
+
+function parseConicArgs(parts: string[]): GradientConfig | null {
+  let angle = 0;
+  let position = { x: 50, y: 50 };
+  let colorStartIndex = 0;
+  const first = parts[0];
+
+  if (/^from\s+|^at\s+/i.test(first)) {
+    const angleM = first.match(/from\s+([\d.]+)deg/i);
+    if (angleM) angle = parseFloat(angleM[1]);
+    const posM = first.match(/at\s+([\d.]+)%\s+([\d.]+)%/i);
+    if (posM) position = { x: parseFloat(posM[1]), y: parseFloat(posM[2]) };
+    colorStartIndex = 1;
+  }
+
+  const stopParts = parts.slice(colorStartIndex);
+  if (stopParts.length < 2) return null;
+  const colorStops = stopParts.map((p, i) => parseColorStopStr(p, i, stopParts.length));
+  return { type: 'conic', angle, position, colorStops };
+}
+
+/**
+ * Parse a CSS gradient string into a GradientConfig.
+ * Accepts: background/background-image prefix, vendor prefixes, bare gradient functions.
+ * Returns null if parsing fails.
+ */
+export function parseGradientFromCSS(cssText: string): GradientConfig | null {
+  try {
+    const text = cssText
+      .trim()
+      .replace(/^(background-image|background)\s*:\s*/i, '')
+      .replace(/;[\s\S]*$/, '')
+      .trim()
+      .replace(/^-(?:webkit|moz|ms|o)-/, '');
+
+    const match = text.match(/^(linear|radial|conic)-gradient\(\s*([\s\S]+)\s*\)$/i);
+    if (!match) return null;
+
+    const gradType = match[1].toLowerCase() as GradientType;
+    const parts = splitTopLevel(match[2]);
+
+    if (gradType === 'linear') return parseLinearArgs(parts);
+    if (gradType === 'radial') return parseRadialArgs(parts);
+    if (gradType === 'conic') return parseConicArgs(parts);
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Interpolate between two colors
  */
 export function interpolateColors(
@@ -642,30 +815,17 @@ export function interpolateColors(
 }
 
 /**
- * Generate CSS with browser compatibility
+ * Generate CSS with solid-color fallback (no vendor prefixes — all are obsolete since 2013)
  */
 export function generateCompatibleCSS(config: GradientConfig): string {
   const result = generateGradientCSS(config);
   if (!result.success || !result.css) return '';
 
-  const gradient = result.css;
   const fallbackColor = config.colorStops[0]?.color || '#000000';
 
-  return `/* Fallback for older browsers */
+  return `/* Solid color fallback for very old browsers */
 background: ${fallbackColor};
 
-/* Modern browsers */
-background: ${gradient};
-
-/* Webkit browsers */
-background: -webkit-${gradient};
-
-/* Mozilla browsers */
-background: -moz-${gradient};
-
-/* Opera browsers */
-background: -o-${gradient};
-
-/* Internet Explorer 10+ */
-background: -ms-${gradient};`;
+/* Standard — supported in all modern browsers */
+background: ${result.css};`;
 }

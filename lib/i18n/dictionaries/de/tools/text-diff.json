@@ -1,69 +1,69 @@
 {
-  "title": "Diff Prüfer",
-  "description": "Compare two texts und find differences",
+  "title": "Textvergleich",
+  "description": "Zwei Texte vergleichen und Unterschiede finden",
   "instructions": {
-    "title": "So verwenden Sie Diff Prüfer",
+    "title": "So verwenden Sie den Textvergleich",
     "steps": [
       {
-        "title": "Inhalt einfügen",
-        "description": "Kopieren und fügen Sie Ihre content in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Originaltexte einfügen",
+        "description": "Fügen Sie den ursprünglichen Text in das linke Eingabefeld und den geänderten Text in das rechte Eingabefeld ein. Das Tool akzeptiert beliebige Textformate."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Vergleichsoptionen einstellen",
+        "description": "Wählen Sie zwischen Zeilen- oder Zeichenvergleich und legen Sie fest, ob Leerzeichen und Groß-/Kleinschreibung berücksichtigt werden sollen."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool verarbeitet Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Unterschiede analysieren",
+        "description": "Überprüfen Sie die farblich hervorgehobenen Unterschiede: Grün markiert hinzugefügte Abschnitte, Rot markiert entfernte Abschnitte. Nutzen Sie die Nebeneinander- oder Einheitliche-Ansicht."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Ergebnis exportieren",
+        "description": "Kopieren Sie die Vergleichsergebnisse in die Zwischenablage oder exportieren Sie sie als Datei. Nutzen Sie das Patch-Format für die Integration in Versionsverwaltungssysteme."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Nebeneinanderstellung und einheitliche Diff-Ansicht",
+      "Hervorhebung auf Zeilen- und Zeichenebene",
+      "Erkennung von Hinzufügungen, Löschungen und Änderungen",
+      "Optionale Berücksichtigung von Leerzeichen",
+      "Patch-Erstellung im Git-Stil für Versionsverwaltung",
+      "HTML-Export der Vergleichsergebnisse",
+      "Vollständig sicher - alle Verarbeitung erfolgt im Browser",
+      "Keine Datenuploads oder Serverspeicherung"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Codeänderungen vor einem Commit überprüfen und nachvollziehen",
+      "Verschiedene Versionen von Konfigurationsdateien vergleichen",
+      "Textänderungen in Dokumenten und Verträgen nachverfolgen",
+      "Datenbankexporte oder CSV-Dateien auf Unterschiede prüfen",
+      "API-Antworten zwischen verschiedenen Versionen vergleichen",
+      "Übersetzungsdateien auf fehlende oder geänderte Einträge prüfen",
+      "Build-Ausgaben zwischen verschiedenen Versionen vergleichen",
+      "Markdown- oder HTML-Dateien auf inhaltliche Unterschiede analysieren"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Nutzen Sie die Zeichenebene-Hervorhebung, um kleine Änderungen innerhalb einer Zeile zu erkennen",
+      "Aktivieren Sie die Leerzeichen-Option, um Formatierungsunterschiede sichtbar zu machen",
+      "Verwenden Sie den Patch-Export für die Integration mit Git und anderen Versionsverwaltungssystemen",
+      "Sortieren Sie Texte vor dem Vergleich alphabetisch, um Reihenfolge-Unterschiede auszublenden",
+      "Nutzen Sie die einheitliche Ansicht für einen schnellen Überblick bei wenigen Änderungen",
+      "Verwenden Sie die Nebeneinanderstellung für umfangreiche Änderungen zur besseren Übersicht"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Keine Unterschiede erkannt: Prüfen Sie auf unsichtbare Zeichen wie Leerzeichen oder Zeilenumbrüche",
+      "Zu viele Unterschiede: Aktivieren Sie die Option Leerzeichen ignorieren, um Formatierungsänderungen auszublenden",
+      "Langsame Verarbeitung: Teilen Sie sehr große Texte in kleinere Abschnitte auf",
+      "Falsche Zuordnung der Zeilen: Stellen Sie sicher, dass beide Texte die gleiche Zeilenumbruch-Konvention verwenden (LF oder CRLF)",
+      "Export-Probleme: Verwenden Sie den HTML-Export für eine druckfreundliche Darstellung der Unterschiede"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "description": "Text einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+Eingabe",
+        "description": "Vergleich starten"
       },
       {
         "keys": "Strg+C",
@@ -71,14 +71,14 @@
       },
       {
         "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "description": "Ergebnis herunterladen"
       }
     ]
   },
   "meta": {
-    "title": "Text-Vergleich - Unterschiede finden",
-    "description": "Zwei Texte nebeneinander vergleichen und Unterschiede mit Zeilen- oder Zeichenhervorhebung finden. Hinzufügungen und Löschungen erkennen. Kostenloses Diff-Tool."
+    "title": "Textvergleich - Dateien und Codeänderungen kostenlos online vergleichen",
+    "description": "Zwei Texte online kostenlos vergleichen - mit Nebeneinanderstellung, Zeilen- und Zeichenhervorhebung, Erkennung von Hinzufügungen und Löschungen. Keine Anmeldung erforderlich. Kostenloses Online-Vergleichstool."
   },
-  "tagline": "Compare files und code mit professional diff visualization",
-  "pageDescription": "Professioneller text comparison Tool mit Syntax-Highlighting, patch Generierung, und side-by-side diff views. Compare code files, documents, und text mit line-by-line differences, change tracking, und unified diff output. Features Git-style patches, whitespace options, und exportieren zu HTML/PDF. Perfect für Entwickler reviewing code changes."
+  "tagline": "Dateien und Code mit professioneller Diff-Darstellung vergleichen",
+  "pageDescription": "Professionelles Textvergleichstool mit Syntaxhervorhebung, Patch-Erstellung und Nebeneinander-Diff-Ansichten. Vergleichen Sie Codedateien, Dokumente und Texte mit zeilenweisen Unterschieden, Änderungsverfolgung und einheitlicher Diff-Ausgabe. Mit Patches im Git-Stil, Leerzeichenoptionen und HTML-Export. Kostenlos online ohne Anmeldung - ideal für Entwickler, die Codeänderungen überprüfen."
 }

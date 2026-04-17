@@ -1,84 +1,76 @@
 {
-  "title": "Bild-Optimierer",
-  "description": "Optimize und compress images",
-  "placeholder": "",
+  "title": "Bildoptimierer",
+  "description": "Bilder optimieren und komprimieren für schnellere Ladezeiten",
+  "placeholder": "Bild hierher ziehen oder klicken zum Hochladen...",
   "meta": {
-    "title": "Bildoptimierer - Online komprimieren",
-    "description": "Bilder online optimieren und komprimieren. JPEG, PNG, WebP und GIF bei gleichbleibender Qualität verkleinern. Intelligente Komprimierung. Kostenloses Tool."
+    "title": "Bildoptimierer - JPEG, PNG und WebP kostenlos komprimieren",
+    "description": "Bilder online kostenlos komprimieren und optimieren — JPEG, PNG, WebP Dateigröße um bis zu 80% reduzieren bei erhaltener Qualität. Ohne Anmeldung. Schneller, browserbasierter Bildoptimierer."
   },
-  "tagline": "Compress images mit smart optimization für web und mobile",
-  "pageDescription": "Professioneller image optimization Tool that reduces file size by up zu 80% while maintaining visuell quality. Supports JPG, PNG, WebP, und AVIF Formate mit adjustable compression levels. Perfect für web developers optimizing page speed und mobile app developers reducing bundle size. Batch process multiple images mit real-time preview.",
+  "tagline": "Bilder intelligent komprimieren für Web und Mobilgeräte",
+  "pageDescription": "Professionelles Bildoptimierungstool, das die Dateigröße um bis zu 80% reduziert und dabei die visuelle Qualität beibehält. Unterstützt JPG, PNG, WebP und AVIF mit einstellbaren Komprimierungsstufen. Perfekt für Webentwickler zur Optimierung der Seitengeschwindigkeit und App-Entwickler zur Reduzierung der Bundle-Größe. Stapelverarbeitung mehrerer Bilder mit Echtzeitvorschau. Kostenlos online ohne Anmeldung.",
   "instructions": {
-    "title": "So verwenden Sie Bild-Optimierer",
+    "title": "So verwenden Sie den Bildoptimierer",
     "steps": [
       {
-        "title": "Inhalt einfügen",
-        "description": "Kopieren und fügen Sie Ihre content in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Bild hochladen",
+        "description": "Ziehen Sie ein Bild in den Upload-Bereich oder klicken Sie, um eine Datei auszuwählen. Unterstützt werden JPEG, PNG, WebP und AVIF."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Komprimierungsstufe einstellen",
+        "description": "Passen Sie den Qualitätsregler an, um das richtige Gleichgewicht zwischen Dateigröße und Bildqualität zu finden. Niedrigere Werte bedeuten kleinere Dateien."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool verarbeitet Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Vorschau prüfen",
+        "description": "Vergleichen Sie das Original mit dem optimierten Bild in der Echtzeitvorschau. Die Einsparung in Dateigröße und Prozent wird angezeigt."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Optimiertes Bild herunterladen",
+        "description": "Laden Sie das komprimierte Bild herunter oder verarbeiten Sie weitere Bilder im Stapelmodus."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "Komprimierung um bis zu 80% bei erhaltener visueller Qualität",
+      "Unterstützung für JPEG, PNG, WebP und AVIF Formate",
+      "Einstellbare Komprimierungsstufen mit Echtzeitvorschau",
+      "Stapelverarbeitung mehrerer Bilder gleichzeitig",
+      "Vorher/Nachher-Vergleich mit Dateigrößenanzeige",
+      "100% browserbasierte Verarbeitung — keine Daten werden hochgeladen",
+      "Optimierte Bilder direkt herunterladen",
+      "Funktioniert offline nach dem ersten Laden"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "Website-Bilder für schnellere Ladezeiten optimieren",
+      "Produktbilder für E-Commerce-Shops komprimieren",
+      "Bilder für E-Mail-Kampagnen und Newsletter verkleinern",
+      "App-Assets für kleinere Bundle-Größen optimieren",
+      "Blog-Bilder vor dem Upload komprimieren",
+      "Social-Media-Bilder auf optimale Größe bringen",
+      "Fotogalerien für schnelleres Laden vorbereiten",
+      "Core Web Vitals durch kleinere Bilddateien verbessern"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "WebP bietet die beste Komprimierung für Webbilder — konvertieren Sie JPEG/PNG wenn möglich",
+      "Für Fotos reicht oft 75-80% Qualität ohne sichtbaren Unterschied",
+      "PNG eignet sich besser für Grafiken mit transparentem Hintergrund",
+      "Verwenden Sie die Stapelverarbeitung um ganze Bildergalerien auf einmal zu optimieren",
+      "Prüfen Sie die Vorschau auf Artefakte bei niedrigen Qualitätsstufen",
+      "Bilder unter 100KB laden deutlich schneller auf Mobilgeräten"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Qualitätsverlust sichtbar: Erhöhen Sie die Qualitätsstufe schrittweise",
+      "Datei zu groß nach Komprimierung: Versuchen Sie einen niedrigeren Qualitätswert oder ein anderes Format",
+      "Upload schlägt fehl: Stellen Sie sicher, dass die Datei ein unterstütztes Bildformat ist",
+      "Langsame Verarbeitung: Sehr große Bilder (>10MB) können länger dauern",
+      "Transparenz geht verloren: Verwenden Sie PNG oder WebP statt JPEG für transparente Bilder"
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "keys": "Ctrl+V",
+        "description": "Bild einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
-      },
-      {
-        "keys": "Strg+C",
-        "description": "Ergebnis kopieren"
-      },
-      {
-        "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "keys": "Ctrl+S",
+        "description": "Optimiertes Bild herunterladen"
       }
     ]
   }

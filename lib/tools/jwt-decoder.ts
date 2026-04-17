@@ -155,6 +155,29 @@ const ALGORITHM_SECURITY: Record<
 };
 
 /**
+ * Base64URL encode a UTF-8 string or raw bytes (no padding, URL-safe alphabet)
+ */
+function base64UrlEncode(input: string | Uint8Array): string {
+  let bytes: Uint8Array;
+  if (typeof input === 'string') {
+    bytes = new TextEncoder().encode(input);
+  } else {
+    bytes = input;
+  }
+
+  let binary = '';
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  const base64 =
+    typeof btoa !== 'undefined'
+      ? btoa(binary)
+      : Buffer.from(binary, 'binary').toString('base64');
+
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+/**
  * Base64URL decode function
  */
 function base64UrlDecode(str: string): string {
@@ -614,6 +637,215 @@ export function generateSampleJwts(): { [key: string]: string } {
     'Unsigned JWT (alg: none)':
       'eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.',
   };
+}
+
+// ============================================================================
+// JWT Signing (encode)
+// ============================================================================
+
+export type JwtAlgorithm =
+  | 'HS256'
+  | 'HS384'
+  | 'HS512'
+  | 'RS256'
+  | 'RS384'
+  | 'RS512'
+  | 'ES256'
+  | 'ES384'
+  | 'ES512'
+  | 'none';
+
+export interface JwtSignHeader {
+  alg: JwtAlgorithm;
+  typ?: string;
+  kid?: string;
+  [key: string]: any;
+}
+
+export interface JwtSignOptions {
+  header: JwtSignHeader;
+  payload: Record<string, any>;
+  secret?: string;
+  privateKeyPem?: string;
+}
+
+export interface JwtSignResult {
+  success: boolean;
+  token?: string;
+  error?: string;
+}
+
+const HMAC_HASHES: Record<string, string> = {
+  HS256: 'SHA-256',
+  HS384: 'SHA-384',
+  HS512: 'SHA-512',
+};
+
+const RSA_HASHES: Record<string, string> = {
+  RS256: 'SHA-256',
+  RS384: 'SHA-384',
+  RS512: 'SHA-512',
+};
+
+const ECDSA_PARAMS: Record<string, { hash: string; namedCurve: string }> = {
+  ES256: { hash: 'SHA-256', namedCurve: 'P-256' },
+  ES384: { hash: 'SHA-384', namedCurve: 'P-384' },
+  ES512: { hash: 'SHA-512', namedCurve: 'P-521' },
+};
+
+function pemToPkcs8DerBytes(pem: string): Uint8Array {
+  const normalized = pem
+    .replace(/-----BEGIN [^-]+-----/g, '')
+    .replace(/-----END [^-]+-----/g, '')
+    .replace(/\s+/g, '');
+  const binary =
+    typeof atob !== 'undefined'
+      ? atob(normalized)
+      : Buffer.from(normalized, 'base64').toString('binary');
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return bytes;
+}
+
+function requireSubtleCrypto(): SubtleCrypto {
+  const subtle =
+    typeof globalThis !== 'undefined' &&
+    (globalThis as any).crypto &&
+    (globalThis as any).crypto.subtle;
+  if (!subtle) {
+    throw new Error(
+      'Web Crypto API (crypto.subtle) is not available in this environment'
+    );
+  }
+  return subtle as SubtleCrypto;
+}
+
+/**
+ * Sign a JWT with the given header, payload, and secret/private key.
+ * Returns `{ success: true, token }` on success, or `{ success: false, error }` on failure.
+ */
+export async function signJwt(
+  options: JwtSignOptions
+): Promise<JwtSignResult> {
+  try {
+    const { header, payload, secret, privateKeyPem } = options;
+
+    if (!header || typeof header !== 'object') {
+      return { success: false, error: 'Header is required' };
+    }
+    if (!header.alg) {
+      return { success: false, error: 'Header "alg" is required' };
+    }
+    if (!payload || typeof payload !== 'object') {
+      return { success: false, error: 'Payload is required' };
+    }
+
+    const alg = header.alg;
+
+    // Preserve caller's key order; only inject typ=JWT if missing
+    const fullHeader: Record<string, any> = { ...header };
+    if (fullHeader.typ === undefined) {
+      fullHeader.typ = 'JWT';
+    }
+
+    const headerB64 = base64UrlEncode(JSON.stringify(fullHeader));
+    const payloadB64 = base64UrlEncode(JSON.stringify(payload));
+    const signingInput = `${headerB64}.${payloadB64}`;
+    const signingBytes = new TextEncoder().encode(signingInput);
+
+    // alg=none → empty signature
+    if (alg === 'none') {
+      return { success: true, token: `${signingInput}.` };
+    }
+
+    // HMAC family
+    if (alg in HMAC_HASHES) {
+      if (!secret) {
+        return {
+          success: false,
+          error: `${alg} requires a secret`,
+        };
+      }
+      const subtle = requireSubtleCrypto();
+      const keyBytes = new TextEncoder().encode(secret);
+      const cryptoKey = await subtle.importKey(
+        'raw',
+        keyBytes,
+        { name: 'HMAC', hash: HMAC_HASHES[alg] },
+        false,
+        ['sign']
+      );
+      const sigBuffer = await subtle.sign('HMAC', cryptoKey, signingBytes);
+      const signatureB64 = base64UrlEncode(new Uint8Array(sigBuffer));
+      return { success: true, token: `${signingInput}.${signatureB64}` };
+    }
+
+    // RSASSA-PKCS1-v1_5 family
+    if (alg in RSA_HASHES) {
+      if (!privateKeyPem) {
+        return {
+          success: false,
+          error: `${alg} requires a private key (PEM)`,
+        };
+      }
+      const subtle = requireSubtleCrypto();
+      const der = pemToPkcs8DerBytes(privateKeyPem);
+      const cryptoKey = await subtle.importKey(
+        'pkcs8',
+        der as any,
+        { name: 'RSASSA-PKCS1-v1_5', hash: RSA_HASHES[alg] },
+        false,
+        ['sign']
+      );
+      const sigBuffer = await subtle.sign(
+        'RSASSA-PKCS1-v1_5',
+        cryptoKey,
+        signingBytes
+      );
+      const signatureB64 = base64UrlEncode(new Uint8Array(sigBuffer));
+      return { success: true, token: `${signingInput}.${signatureB64}` };
+    }
+
+    // ECDSA family
+    if (alg in ECDSA_PARAMS) {
+      if (!privateKeyPem) {
+        return {
+          success: false,
+          error: `${alg} requires a private key (PEM)`,
+        };
+      }
+      const subtle = requireSubtleCrypto();
+      const { hash, namedCurve } = ECDSA_PARAMS[alg];
+      const der = pemToPkcs8DerBytes(privateKeyPem);
+      const cryptoKey = await subtle.importKey(
+        'pkcs8',
+        der as any,
+        { name: 'ECDSA', namedCurve },
+        false,
+        ['sign']
+      );
+      const sigBuffer = await subtle.sign(
+        { name: 'ECDSA', hash },
+        cryptoKey,
+        signingBytes
+      );
+      // Web Crypto returns raw r||s concatenation — the exact format JWT expects.
+      const signatureB64 = base64UrlEncode(new Uint8Array(sigBuffer));
+      return { success: true, token: `${signingInput}.${signatureB64}` };
+    }
+
+    return {
+      success: false,
+      error: `Unsupported algorithm: ${alg}`,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Failed to sign JWT',
+    };
+  }
 }
 
 /**

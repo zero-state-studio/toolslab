@@ -12,6 +12,19 @@ import { useHydration } from '@/lib/hooks/useHydration';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import { ToolIcon } from '@/components/ui/ToolIcon';
 
+const categoryColors: Record<string, string> = {
+  data: '#0EA5E9',
+  encoding: '#10B981',
+  base64: '#14B8A6',
+  text: '#8B5CF6',
+  generators: '#F97316',
+  web: '#EC4899',
+  dev: '#F59E0B',
+  formatters: '#6366F1',
+  social: '#F43F5E',
+  pdf: '#EF4444',
+};
+
 interface LabSidebarProps {
   selectedToolId: string | null;
   onToolSelect: (toolId: string) => void;
@@ -173,7 +186,11 @@ function ToolSidebarItem({
       whileTap={{ scale: 0.98 }}
     >
       <div className="flex min-w-0 flex-1 items-center gap-2">
-        <ToolIcon id={tool.id} className="h-4 w-4 flex-shrink-0 text-slate-500 dark:text-slate-400" />
+        <ToolIcon
+          id={tool.id}
+          className="h-4 w-4 flex-shrink-0"
+          style={{ color: isSelected ? undefined : (categoryColors[tool.categories?.[0]] || '#6366F1') }}
+        />
 
         <AnimatePresence mode="wait">
           {!isCollapsed && (

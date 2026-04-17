@@ -1,84 +1,88 @@
 {
-  "title": "Markdown-Vorschau",
-  "description": "Live preview markdown mit Syntax-Highlighting",
-  "placeholder": "",
+  "title": "Markdown-Vorschau und -Editor",
+  "description": "Markdown bearbeiten und in Echtzeit als Vorschau anzeigen, nach HTML/PDF exportieren und umfassende Statistiken einsehen",
+  "placeholder": "# Beginnen Sie hier mit Ihrem Markdown...\n\n## Funktionen\n- GitHub Flavored Markdown\n- Live-Vorschau\n- Export nach HTML/PDF\n- Automatisches Speichern\n\nProbieren Sie **fetten** oder *kursiven* Text aus!",
   "meta": {
-    "title": "Markdown-Editor - Live-Vorschau",
-    "description": "Markdown schreiben und in Echtzeit mit Live-Rendering und GitHub-Markdown-Unterstützung anzeigen. Export als HTML oder PDF. Kostenloses Online-Editor-Tool."
+    "title": "Markdown-Vorschau und -Editor - Live-Darstellung kostenlos online",
+    "description": "Markdown kostenlos online schreiben und als Vorschau anzeigen - Live-Darstellung mit GitHub Flavored Markdown, Export nach HTML oder PDF, automatisches Speichern, Statistiken. Ohne Anmeldung."
   },
-  "tagline": "Preview markdown in real-time mit GitHub-flavored rendering",
-  "pageDescription": "Professioneller markdown editor mit live preview und GitHub-flavored markdown support. Features syntax highlighting, table support, task lists, und emoji rendering. Perfect für Entwickler writing Dokumentation, README files, und technical content. Exportieren zu HTML mit customizable Themen.",
+  "tagline": "Markdown bearbeiten, als Vorschau anzeigen und exportieren - mit Live-Darstellung und umfassenden Statistiken",
+  "pageDescription": "Professioneller Markdown-Editor mit geteilter Ansicht, Unterstützung für GitHub Flavored Markdown, Export in mehrere Formate (HTML, PDF, MD), Statistik-Uebersicht, Vorlagenbibliothek und automatischem Speichern. Kostenlos online ohne Anmeldung - die gesamte Verarbeitung erfolgt in Ihrem Browser, sicher und schnell.",
   "instructions": {
-    "title": "So verwenden Sie Markdown-Vorschau",
+    "title": "So verwenden Sie die Markdown-Vorschau und den -Editor",
     "steps": [
       {
-        "title": "Einfügen Ihre Markdown text",
-        "description": "Kopieren und fügen Sie Ihre Markdown text in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Markdown schreiben oder importieren",
+        "description": "Beginnen Sie mit der Eingabe im Editor-Bereich oder importieren Sie eine vorhandene .md-Datei über die Import-Schaltfläche. Das Tool speichert Ihre Arbeit automatisch im lokalen Speicher des Browsers."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Vorschau in Echtzeit ansehen",
+        "description": "Sehen Sie Ihren formatierten Inhalt sofort im Vorschaubereich. Wechseln Sie über die Symbolleiste zwischen geteilter Ansicht, reinem Editor oder reiner Vorschau."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool verarbeitet Ihre Eingabe und zeigt das Ergebnis mit richtiger Formatierung und Validierung an."
+        "title": "Vorlagen verwenden",
+        "description": "Starten Sie schnell mit fertigen Vorlagen für README-Dateien, Blogbeiträge, Dokumentationen, Besprechungsnotizen, Aufgabenlisten und Änderungsprotokolle."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die verarbeitete Ausgabe in Ihre Zwischenablage für sofortige Verwendung oder laden Sie es als Datei zum Speichern und Teilen herunter."
+        "title": "Statistiken einsehen",
+        "description": "Klicken Sie auf die Statistik-Schaltfläche, um die Wortanzahl, Zeichenanzahl, geschätzte Lesezeit, Anzahl der Überschriften, Verknüpfungen, Bilder und weitere Informationen anzuzeigen."
+      },
+      {
+        "title": "Arbeit exportieren",
+        "description": "Laden Sie Ihren Inhalt als Markdown (.md), gestaltetes HTML oder PDF herunter. Der HTML-Export enthält die Stilvorlage für die sofortige Verwendung."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
-      "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
-      "Funktioniert offline nach dem ersten Laden der Seite"
+      "GitHub Flavored Markdown (GFM) mit Tabellen, Aufgabenlisten und Durchstreichungen",
+      "Geteilte Live-Ansicht mit synchronisierter Bearbeitung",
+      "Export nach Markdown, HTML (mit Stilvorlage) und PDF",
+      "Umfassende Statistiken: Wörter, Zeichen, Zeilen, Lesezeit, Überschriften, Verknüpfungen, Bilder",
+      "Vorlagenbibliothek: README, Blogbeitrag, Dokumentation, Besprechungsnotizen, Aufgabenliste, Änderungsprotokoll",
+      "Helles und dunkles Design (im GitHub-Stil)",
+      "Automatisches Speichern im lokalen Speicher - Ihre Arbeit geht nie verloren",
+      "Direkter Import von .md- und .txt-Dateien"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "README-Dateien für GitHub-Repositories verfassen",
+      "Blogbeiträge und Artikel in Markdown erstellen",
+      "Technische Dokumentation mit Codeabschnitten und Tabellen entwerfen",
+      "Besprechungsnotizen mit formatierten Abschnitten erstellen",
+      "Aufgabenlisten mit Kontrollkästchen verwalten",
+      "Änderungsprotokolle für Software-Veröffentlichungen schreiben",
+      "Markdown-Vorschau vor dem Einchecken in Git prüfen",
+      "Markdown für die Weitergabe in PDF umwandeln"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Verwenden Sie Strg+B für Fettdruck, Strg+I für Kursivschrift und Strg+K für Verknüpfungen",
+      "Der Editor speichert automatisch jede Sekunde - Ihre Arbeit ist sicher, auch wenn Sie den Tab schliessen",
+      "Klicken Sie auf das Statistik-Symbol für detaillierte Auswertungen einschließlich der geschätzten Lesezeit",
+      "Wechseln Sie zum dunklen Design für angenehmes Schreiben bei Nacht",
+      "Exportieren Sie nach HTML mit integrierter Stilvorlage für die sofortige Verwendung auf Websites",
+      "Nutzen Sie Vorlagen als Ausgangspunkt und passen Sie sie nach Bedarf an"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
-      "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
+      "Vorschau aktualisiert sich nicht? Stellen Sie sicher, dass Sie im Editor-Bereich schreiben - die Vorschau aktualisiert sich automatisch",
+      "Arbeit verloren? Prüfen Sie, ob das automatische Speichern funktioniert - es speichert jede Sekunde im lokalen Speicher",
+      "PDF-Export sieht falsch aus? Stellen Sie sicher, dass die Vorschau vollständig gerendert ist, bevor Sie exportieren",
+      "HTML-Export ohne Formatierung? Vergewissern Sie sich, dass die Option 'CSS einbinden' aktiviert ist",
+      "Import funktioniert nicht? Nur .md-, .markdown- und .txt-Dateien werden unterstützt"
     ],
     "keyboardShortcuts": [
       {
-        "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "keys": "Strg+B / Cmd+B",
+        "description": "Fettdruck"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+I / Cmd+I",
+        "description": "Kursivschrift"
+      },
+      {
+        "keys": "Strg+K / Cmd+K",
+        "description": "Verknüpfung einfügen"
       },
       {
         "keys": "Strg+C",
-        "description": "Ergebnis kopieren"
-      },
-      {
-        "keys": "Strg+S",
-        "description": "Datei herunterladen"
+        "description": "HTML kopieren"
       }
     ]
   }

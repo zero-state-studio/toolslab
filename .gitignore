@@ -254,6 +254,10 @@ private/
 *.secret
 auth.json
 
+# Local tooling (Claude Code / Playwright MCP)
+.superpowers/
+.playwright-mcp/
+
 # Local development overrides
 *.local.js
 *.local.ts
@@ -264,3 +268,8 @@ local-config/
 *.db
 *.sqlite
 *.sqlite3
+
+# Admin DB (local-only admin panel, committed intentionally)
+!data/admin.db
+data/admin.db-wal
+data/admin.db-shm

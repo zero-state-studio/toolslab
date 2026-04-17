@@ -1,70 +1,70 @@
 {
-  "title": "Unix-Timestamp-Konverter",
-  "description": "Konvertieren zwischen Unix timestamp und date",
-  "placeholder": "Eingeben timestamp oder auswählen date...",
+  "title": "Unix-Zeitstempel-Konverter",
+  "description": "Zwischen Unix-Zeitstempeln und Datumsangaben konvertieren",
+  "placeholder": "Zeitstempel eingeben oder Datum auswählen...",
   "instructions": {
-    "title": "So verwenden Sie Unix-Timestamp-Konverter",
+    "title": "So verwenden Sie den Unix-Zeitstempel-Konverter",
     "steps": [
       {
-        "title": "Inhalt einfügen",
-        "description": "Kopieren und fügen Sie Ihren Inhalt in den Eingabebereich ein. Das Tool akzeptiert jedes Format und verarbeitet es sofort."
+        "title": "Unix-Zeitstempel eingeben",
+        "description": "Geben Sie einen Unix-Zeitstempel (in Sekunden oder Millisekunden) in das Eingabefeld ein. Das Tool erkennt das Format automatisch und konvertiert es sofort in ein lesbares Datum."
       },
       {
-        "title": "Optionen konfigurieren (falls verfügbar)",
-        "description": "Passen Sie Formatierungsoptionen, Einrückung oder andere Einstellungen an Ihre Präferenzen und Coding-Standards an."
+        "title": "Datum und Uhrzeit auswählen",
+        "description": "Alternativ können Sie ein Datum und eine Uhrzeit über die Datumsauswahl eingeben, um den entsprechenden Unix-Zeitstempel zu erhalten."
       },
       {
-        "title": "Ausgabe überprüfen",
-        "description": "Das Tool wird Ihre Eingabe konvertieren und das Ergebnis mit richtiger Formatierung und Validierung anzeigen."
+        "title": "Zeitzone konfigurieren",
+        "description": "Wählen Sie die gewünschte Zeitzone aus der IANA-Zeitzonendatenbank aus, um die Konvertierung an Ihren Standort oder Ihre Zielzeitzone anzupassen."
       },
       {
-        "title": "Ergebnis kopieren oder herunterladen",
-        "description": "Kopieren Sie die konvertierten Daten in Ihre Zwischenablage für sofortige Verwendung oder laden Sie sie als Datei zum Speichern und Teilen herunter."
+        "title": "Ergebnis kopieren oder Code-Beispiele verwenden",
+        "description": "Kopieren Sie das konvertierte Datum oder den Zeitstempel in Ihre Zwischenablage. Nutzen Sie die generierten Code-Beispiele für JavaScript, Python oder PHP direkt in Ihrem Projekt."
       }
     ],
     "features": [
-      "Echtzeitverarbeitung mit sofortigen Ergebnissen",
-      "Keine Dateigrößenbeschränkungen für browserbasierte Verarbeitung",
+      "Echtzeit-Konvertierung zwischen Unix-Zeitstempel und lesbarem Datum",
+      "Unterstützung für Sekunden und Millisekunden",
+      "Zeitzonen-Auswahl mit vollständiger IANA-Datenbank",
+      "Code-Beispiele für JavaScript, Python, PHP und weitere Sprachen",
+      "Ausgabe in ISO 8601, RFC 2822 und benutzerdefinierten Formaten",
+      "Relative Zeitberechnung (z. B. vor 3 Stunden)",
       "Vollständig sicher - alle Verarbeitungen erfolgen in Ihrem Browser",
-      "Keine Datenuploads oder Server-Speicherung",
-      "Mit einem Klick in die Zwischenablage kopieren",
-      "Ergebnisse als Datei herunterladen",
-      "Syntax-Validierung und Fehlerhervorhebung",
       "Funktioniert offline nach dem ersten Laden der Seite"
     ],
     "useCases": [
-      "Unordentlichen Code aufräumen und formatieren für bessere Lesbarkeit",
-      "Code-Stil über Entwicklungsteams hinweg standardisieren",
-      "Komplexe Strukturen mit richtiger Einrückung debuggen",
-      "Code für Dokumentation und Code-Reviews vorbereiten",
-      "Zwischen verschiedenen Formatierungsstandards konvertieren",
-      "Syntax vor Deployment validieren",
-      "Daten von externen Quellen oder APIs verarbeiten",
-      "Produktionsreifen Code aus Entwicklungsversionen generieren"
+      "API-Antworten mit Unix-Zeitstempeln in lesbare Datumsangaben umwandeln",
+      "Datenbank-Zeitstempel für Berichte und Analysen konvertieren",
+      "Serverprotokolle und Logdateien mit Epoch-Zeiten auswerten",
+      "Zeitstempel aus verschiedenen Zeitzonen vergleichen und umrechnen",
+      "Code-Beispiele für die Zeitstempelverarbeitung in verschiedenen Programmiersprachen generieren",
+      "Cron-Jobs und geplante Aufgaben mit Unix-Zeiten debuggen",
+      "Zeitbasierte Daten aus externen APIs und Systemen verarbeiten",
+      "Ablaufdaten von Tokens und Zertifikaten prüfen"
     ],
     "proTips": [
-      "Verwenden Sie Tastenkombinationen für einen schnelleren Workflow",
-      "Verarbeiten Sie große Dateien in kleineren Blöcken, wenn die Performance nachlässt",
-      "Validieren Sie Ihre Eingabe vor der Verarbeitung, um Fehler früh zu erkennen",
-      "Speichern Sie häufig verwendete Einstellungen als Standard in Ihrem Browser",
-      "Verwenden Sie die Download-Funktion zum Archivieren verarbeiteter Dateien",
-      "Überprüfen Sie die Ausgabe sorgfältig, bevor Sie sie in der Produktion verwenden"
+      "Prüfen Sie, ob Ihr Zeitstempel in Sekunden (10 Stellen) oder Millisekunden (13 Stellen) vorliegt",
+      "Verwenden Sie die Zeitzoneneinstellung, um Zeiten zwischen UTC und lokaler Zeit umzurechnen",
+      "Kopieren Sie die Code-Beispiele direkt in Ihre Entwicklungsumgebung",
+      "Negative Zeitstempel repräsentieren Daten vor dem 1. Januar 1970",
+      "Nutzen Sie die relative Zeitanzeige, um schnell zu erkennen, wie weit ein Zeitpunkt zurückliegt",
+      "Überprüfen Sie bei API-Debugging immer, ob Sekunden oder Millisekunden erwartet werden"
     ],
     "troubleshooting": [
-      "Syntaxfehler: Prüfen Sie auf fehlende Klammern, Anführungszeichen oder Semikolons",
-      "Verarbeitung schlägt fehl: Stellen Sie sicher, dass Ihr Eingabeformat gültig ist",
-      "Langsame Performance: Versuchen Sie, kleinere Datenblöcke zu verarbeiten",
-      "Fehlende Features: Einige erweiterte Syntax erfordert möglicherweise manuelle Formatierung",
+      "Falsches Datum: Prüfen Sie, ob der Zeitstempel in Sekunden oder Millisekunden vorliegt - das Tool erkennt dies automatisch",
+      "Zeitzonenabweichung: Stellen Sie sicher, dass die richtige Zeitzone ausgewählt ist, insbesondere bei der Arbeit mit Servern in anderen Regionen",
+      "Ungültiger Zeitstempel: Stellen Sie sicher, dass nur Zahlen ohne Sonderzeichen eingegeben werden",
+      "Unerwartetes Datum: Zeitstempel mit 13 Stellen sind Millisekunden, 10 Stellen sind Sekunden",
       "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge für beste Ergebnisse"
     ],
     "keyboardShortcuts": [
       {
         "keys": "Strg+V",
-        "description": "Eingabe einfügen"
+        "description": "Zeitstempel einfügen"
       },
       {
-        "keys": "Strg+Eingeben",
-        "description": "Verarbeiten/Formatieren"
+        "keys": "Strg+Eingabe",
+        "description": "Konvertierung starten"
       },
       {
         "keys": "Strg+C",
@@ -77,9 +77,9 @@
     ]
   },
   "meta": {
-    "title": "Unix-Timestamp-Konverter - Online",
-    "description": "Zwischen Unix-Zeitstempeln und lesbaren Datumsangaben konvertieren. Millisekunden, Sekunden und verschiedene Zeitzonen unterstützt. Kostenloses Konverter-Tool."
+    "title": "Unix-Zeitstempel-Konverter - Epoch in Datum und Uhrzeit kostenlos umwandeln",
+    "description": "Unix-Zeitstempel kostenlos online in Datumsangaben umwandeln - keine Registrierung erforderlich. Unterstützt Sekunden, Millisekunden und Zeitzonen. Generiert Code-Beispiele für JavaScript, Python und PHP."
   },
-  "tagline": "Konvertieren Unix timestamps zu human dates mit timezone support",
-  "pageDescription": "Professioneller Unix timestamp converter mit timezone support, batch processing, und code Generierung. Konvertieren epoch time zu readable dates und vice versa mit real-time validation. Features multiple date Formate, relative time calculations, developer code examples, und timezone-aware conversions. Perfect für Entwickler working mit APIs, databases, logs, und system integrations. Supports seconds und milliseconds mit IANA timezone database."
+  "tagline": "Unix-Zeitstempel in lesbare Datumsangaben mit Zeitzonen-Unterstützung umwandeln",
+  "pageDescription": "Professioneller Unix-Zeitstempel-Konverter mit Zeitzonen-Unterstützung, Stapelverarbeitung und Code-Generierung. Wandeln Sie Epoch-Zeiten in lesbare Datumsangaben um und umgekehrt - mit Echtzeit-Validierung. Bietet mehrere Datumsformate, relative Zeitberechnungen, Code-Beispiele für Entwickler und zeitzonenbewusste Konvertierungen. Ideal für Entwickler, die mit APIs, Datenbanken, Protokolldateien und Systemintegrationen arbeiten. Unterstützt Sekunden und Millisekunden mit der IANA-Zeitzonendatenbank. Kostenlos online nutzbar ohne Registrierung. Generiert Code-Beispiele für JavaScript, Python, PHP und weitere Sprachen. Ausgabe in ISO 8601, RFC 2822 und benutzerdefinierten Datumsformaten."
 }

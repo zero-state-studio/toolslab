@@ -80,6 +80,6 @@
     "title": "Convertisseur Timestamp Unix",
     "description": "Convertissez entre timestamps Unix et dates lisibles en ligne. Support millisecondes, secondes et fuseaux horaires multiples. Convertisseur gratuit en ligne."
   },
-  "tagline": "Convert Unix timestamps to human dates with timezone support",
-  "pageDescription": "Professional Unix timestamp converter with timezone support, batch processing, and code generation. Convert epoch time to readable dates and vice versa with real-time validation. Features multiple date formats, relative time calculations, developer code examples, and timezone-aware conversions. Perfect for developers working with APIs, databases, logs, and system integrations. Supports seconds and milliseconds with IANA timezone database."
+  "tagline": "Convertissez les horodatages Unix en dates lisibles avec support des fuseaux horaires",
+  "pageDescription": "Convertisseur professionnel de timestamps Unix avec support des fuseaux horaires, traitement par lots et génération de code. Convertissez l'epoch time en dates lisibles et inversement avec validation en temps réel. Inclut plusieurs formats de date, calculs de temps relatif, exemples de code pour développeurs et conversions avec fuseau horaire. Parfait pour les développeurs travaillant avec les APIs, bases de données, logs et intégrations système. Supporte secondes et millisecondes avec la base de données IANA des fuseaux horaires."
 }

@@ -214,9 +214,8 @@ export const BARCODE_FORMATS: FormatMetadata[] = [
     id: 'isbn',
     name: 'ISBN',
     category: '1D',
-    description: 'International Standard Book Number for books',
-    charSet: 'Numeric (0-9)',
-    fixedLength: 13,
+    description: 'International Standard Book Number for books (include dashes, e.g. 978-0-306-40615-7)',
+    charSet: 'Numeric (0-9) with dashes',
     hasChecksum: true,
     useCases: ['Book publishing', 'Library systems', 'Bookstores'],
   },
@@ -224,9 +223,9 @@ export const BARCODE_FORMATS: FormatMetadata[] = [
     id: 'issn',
     name: 'ISSN',
     category: '1D',
-    description: 'International Standard Serial Number for periodicals',
-    charSet: 'Numeric (0-9)',
-    fixedLength: 13,
+    description: 'International Standard Serial Number — use format XXXX-XXXX (e.g. 0749-0158)',
+    charSet: 'Numeric with dash (XXXX-XXXX)',
+    fixedLength: 9, // 8 digits + 1 dash
     hasChecksum: true,
     useCases: ['Magazines', 'Journals', 'Newspapers', 'Periodicals'],
   },
@@ -304,6 +303,17 @@ export const BARCODE_FORMATS: FormatMetadata[] = [
     useCases: ['UPS shipping', 'Package sorting', 'Logistics'],
   },
 ];
+
+/**
+ * Sanitize bwip-js error messages into user-friendly text.
+ * bwip-js throws strings like "bwipp.ean13badCheckDigit#5312: Incorrect EAN-13 check digit provided"
+ */
+function sanitizeBwipError(error: unknown): string {
+  const msg = error instanceof Error ? error.message : String(error);
+  // Strip "bwipp.<code>#<n>: " prefix
+  const cleaned = msg.replace(/^bwipp\.\w+#\d+:\s*/, '');
+  return cleaned || 'Failed to generate barcode';
+}
 
 /**
  * Generate barcode and return as data URL or SVG
@@ -399,28 +409,80 @@ export async function generateBarcode(
       },
     };
   } catch (error) {
-    return {
-      success: false,
-      error:
-        error instanceof Error ? error.message : 'Failed to generate barcode',
-    };
+    return { success: false, error: sanitizeBwipError(error) };
   }
 }
 
 /**
  * Generate barcode as SVG string
- * Note: SVG generation in browser requires different approach than Canvas
- * For now, use PNG/Canvas generation and convert if needed
  */
 export async function generateBarcodeSVG(
   options: BarcodeOptions
-): Promise<BarcodeResult> {
-  // SVG generation not supported in browser environment
-  // Use Canvas/PNG generation instead
-  return {
-    success: false,
-    error: 'SVG generation not supported in browser. Use PNG format instead.',
-  };
+): Promise<BarcodeResult & { svgString?: string }> {
+  try {
+    const {
+      format,
+      value,
+      width = 2,
+      height = 50,
+      scale = 5,
+      includetext = true,
+      textsize = 16,
+      textcolor = '000000',
+      backgroundcolor = 'ffffff',
+      barcolor = '000000',
+      rotate = 'N',
+      paddingwidth = 10,
+      paddingheight = 10,
+      monochrome = true,
+      eclevel = 'M',
+    } = options;
+
+    const validation = validateBarcodeInput(format, value);
+    if (!validation.valid) {
+      return { success: false, error: validation.error };
+    }
+
+    const bcid = mapFormatToBcid(format);
+
+    const bwipOptions: any = {
+      bcid,
+      text: value,
+      scale,
+      height,
+      includetext,
+      textxalign: 'center',
+      paddingwidth,
+      paddingheight,
+    };
+
+    if (format === 'qrcode') {
+      bwipOptions.eclevel = eclevel;
+      delete bwipOptions.height;
+    }
+    if (!monochrome) {
+      bwipOptions.backgroundcolor = backgroundcolor;
+      bwipOptions.barcolor = barcolor;
+      bwipOptions.textcolor = textcolor;
+    }
+    if (rotate !== 'N') bwipOptions.rotate = rotate;
+    if (includetext && textsize !== 16) bwipOptions.textsize = textsize;
+    if (!is2DFormat(format)) bwipOptions.width = width;
+
+    const svgString = bwipjs.toSVG(bwipOptions);
+
+    return {
+      success: true,
+      svgString,
+      // width/height are not extracted from SVG string — consumers should use the image's intrinsic size
+      metadata: { format, value, width: 0, height: 0 },
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: sanitizeBwipError(error),
+    };
+  }
 }
 
 /**
@@ -470,8 +532,6 @@ export function validateBarcodeInput(
     'itf14',
     'msi',
     'pharmacode',
-    'isbn',
-    'issn',
   ];
 
   if (numericFormats.includes(format) && !/^\d+$/.test(value)) {
@@ -479,6 +539,26 @@ export function validateBarcodeInput(
       valid: false,
       error: `${metadata.name} only accepts numeric characters (0-9)`,
     };
+  }
+
+  // ISSN: must be in the format XXXX-XXXX (e.g. 0749-0158)
+  if (format === 'issn') {
+    if (!/^\d{4}-\d{3}[\dXx]$/.test(value)) {
+      return {
+        valid: false,
+        error: 'ISSN must be in the format XXXX-XXXX (e.g. 0749-0158)',
+      };
+    }
+  }
+
+  // ISBN: must include dashes (ISBN-10: 11 or 13 chars, ISBN-13: 15 or 17 chars)
+  if (format === 'isbn') {
+    if (!/^[\d\-X]+$/.test(value) || !value.includes('-')) {
+      return {
+        valid: false,
+        error: 'ISBN must include dashes (e.g. 978-0-306-40615-7)',
+      };
+    }
   }
 
   return { valid: true };
@@ -495,9 +575,11 @@ export function calculateChecksum(
     case 'ean13':
     case 'ean8':
     case 'upca':
+      return calculateEANChecksum(value);
     case 'isbn':
     case 'issn':
-      return calculateEANChecksum(value);
+      // Strip dashes before checksum calculation
+      return calculateEANChecksum(value.replace(/-/g, ''));
 
     case 'upce':
       return calculateUPCEChecksum(value);
@@ -546,7 +628,7 @@ function mapFormatToBcid(format: BarcodeFormat): string {
     code39: 'code39',
     code93: 'code93',
     itf14: 'itf14',
-    codabar: 'codabar',
+    codabar: 'rationalizedCodabar',
     msi: 'msi',
     pharmacode: 'pharmacode',
     isbn: 'isbn',
@@ -618,6 +700,22 @@ export function downloadBarcode(
 }
 
 /**
+ * Download barcode as SVG file
+ */
+export function downloadSVG(svgString: string, filename: string) {
+  if (!svgString) return;
+  const blob = new Blob([svgString], { type: 'image/svg+xml' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${filename}.svg`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+/**
  * Batch generate barcodes from array of values
  */
 export async function batchGenerateBarcodes(
@@ -685,4 +783,23 @@ export function getOptimalDimensions(format: BarcodeFormat): {
   };
 
   return dimensionMap[format] || { width: 2, height: 12, scale: 5 };
+}
+
+export interface CharacterLimit {
+  fixed?: number;
+  min?: number;
+  max?: number;
+}
+
+/**
+ * Returns character limit info for a given format, or null if unlimited/variable.
+ */
+export function getCharacterLimit(format: BarcodeFormat): CharacterLimit | null {
+  const meta = BARCODE_FORMATS.find((f) => f.id === format);
+  if (!meta) return null;
+  if (meta.fixedLength !== undefined) return { fixed: meta.fixedLength };
+  if (meta.minLength !== undefined && meta.maxLength !== undefined) {
+    return { min: meta.minLength, max: meta.maxLength };
+  }
+  return null;
 }

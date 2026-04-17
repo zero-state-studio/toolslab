@@ -3,6 +3,7 @@ const nextConfig = {
   // IMPORTANTE: Disabilita features sperimentali che causano problemi di cache
   experimental: {
     optimizeCss: true,
+    serverComponentsExternalPackages: ['better-sqlite3'],
   },
 
   // Disable static export for now - use dev mode for Tauri
