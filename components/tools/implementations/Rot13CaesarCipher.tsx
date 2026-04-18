@@ -145,7 +145,7 @@ export default function Rot13CaesarCipher({
                 const v = parseInt(e.target.value, 10);
                 if (!Number.isNaN(v)) setShift(Math.min(25, Math.max(1, v)));
               }}
-              className="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:w-28"
+              className="h-10 w-full rounded-md border border-input bg-card px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:w-28"
             />
           </div>
         )}
