@@ -15,6 +15,7 @@
   ],
   "title": "Minimizzatore JavaScript",
   "description": "Minimizza e comprimi codice JavaScript",
+  "placeholder": "Incolla qui il tuo codice JavaScript...",
   "meta": {
     "title": "Minificatore JavaScript - Online",
     "description": "Minifica codice JavaScript online gratis senza registrazione. Comprimi JS fino al 70%, rimuovi codice morto. Supporto ES6+. Alternativa UglifyJS nel browser."

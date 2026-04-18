@@ -1,6 +1,7 @@
 {
   "title": "Generatore Favicon",
   "description": "Genera favicon per siti web in vari formati",
+  "placeholder": "Carica immagine o inserisci testo per favicon...",
   "meta": {
     "title": "Generatore Favicon - Strumento Online Gratuito",
     "description": "Crea favicon per il tuo sito in tutti i formati e dimensioni. Genera ICO, PNG, SVG da qualsiasi immagine. Generatore favicon online gratuito con anteprima live."

@@ -1,6 +1,7 @@
 {
   "title": "Convertitore Unix Timestamp",
   "description": "Converti tra timestamp Unix e date leggibili con supporto fuso orario ed elaborazione batch",
+  "placeholder": "Inserisci timestamp o seleziona data...",
   "meta": {
     "title": "Convertitore Timestamp Unix - Online",
     "description": "Converti tra timestamp Unix e date leggibili online. Supporto per millisecondi, secondi e fusi orari multipli. Strumento convertitore timestamp gratuito online."

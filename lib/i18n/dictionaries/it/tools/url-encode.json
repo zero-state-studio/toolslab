@@ -1,6 +1,7 @@
 {
   "title": "Codificatore/Decodificatore URL",
   "description": "Codifica e decodifica componenti URL e parametri query",
+  "placeholder": "Inserisci URL o testo da codificare/decodificare...",
   "meta": {
     "title": "Encoder/Decoder URL - Online",
     "description": "Codifica e decodifica URL online. Converti caratteri speciali in formato percentuale o parametri URL in testo leggibile. Strumento encoder/decoder URL gratuito."
