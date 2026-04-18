@@ -1,6 +1,7 @@
 {
   "title": "Convertisseur de Casse de Chaînes",
   "description": "Convertir du texte entre différentes conventions de nommage",
+  "placeholder": "Entrez le texte à convertir (ex. myVariableName)",
   "inputLabel": "Entrez votre texte",
   "inputPlaceholder": "Entrez le texte à convertir (ex. myVariableName)",
   "convert": "Convertir",

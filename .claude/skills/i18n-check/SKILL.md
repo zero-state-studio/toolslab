@@ -52,12 +52,30 @@ Ogni file JSON deve contenere:
 
 - `title` — nome del tool tradotto
 - `description` — descrizione tradotta
-- `placeholder` — testo placeholder per l'input
+- `placeholder` — testo placeholder per l'input (vedi esenzioni sotto)
 - `meta.title` — meta title SEO (max 60 char)
 - `meta.description` — meta description SEO (max 160 char)
 - `tagline` — tagline tradotta
 - `pageDescription` — descrizione pagina tradotta
 - `instructions` — oggetto con steps, features, useCases, proTips, troubleshooting
+
+#### Esenzione `placeholder`
+
+I tool **pure-generator** non hanno campi di input testo libero (solo checkbox, slider, select, pulsanti). Per questi `placeholder` è intenzionalmente assente e **non deve essere segnalato** come campo mancante. Decisione presa in RIC-6.
+
+Lista tool esentati da `placeholder`:
+
+```
+lorem-ipsum-generator
+password-generator
+uuid-generator
+qr-generator
+barcode-generator
+hash-generator
+bcrypt-hash-generator
+```
+
+Se aggiungi un nuovo tool pure-generator, estendi questa lista. Gli altri tool (anche quelli con interfaccia complessa come `string-case-converter`, `text-diff`, `crontab-builder`) hanno un textarea di input e DEVONO avere `placeholder` in tutti 6 i locali.
 
 ### 5. Genera il report
 

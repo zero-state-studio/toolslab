@@ -1,6 +1,7 @@
 {
   "title": "Textvergleich",
   "description": "Zwei Texte vergleichen und Unterschiede finden",
+  "placeholder": "Text hier einfügen oder eingeben, oder Datei hierher ziehen...",
   "instructions": {
     "title": "So verwenden Sie den Textvergleich",
     "steps": [
