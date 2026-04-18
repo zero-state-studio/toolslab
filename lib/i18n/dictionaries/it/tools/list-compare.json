@@ -1,6 +1,7 @@
 {
   "title": "Confronto Liste",
   "description": "Confronta due liste per trovare differenze, intersezioni e unioni",
+  "placeholder": "Inserisci qui la tua prima lista...",
   "meta": {
     "title": "Confronto Liste - Strumento Online Gratuito",
     "description": "Confronta due liste online per trovare differenze, intersezioni e unioni. Ordina, rimuovi duplicati ed esporta risultati. Strumento di confronto liste gratuito."

@@ -1,6 +1,7 @@
 {
   "title": "Conversor de Case de Strings",
   "description": "Converter texto entre diferentes convenções de nomenclatura",
+  "placeholder": "Digite o texto para converter (ex. myVariableName)",
   "inputLabel": "Digite seu texto",
   "inputPlaceholder": "Digite o texto para converter (ex. myVariableName)",
   "convert": "Converter",

@@ -1,6 +1,7 @@
 {
   "title": "Validatore JSON",
   "description": "Valida sintassi e struttura JSON",
+  "placeholder": "Incolla JSON da validare...",
   "meta": {
     "title": "Validatore JSON - Strumento Online Gratuito",
     "description": "Valida sintassi e struttura JSON online con messaggi di errore dettagliati e numeri di riga. Correggi JSON malformato velocemente. Validatore gratuito."

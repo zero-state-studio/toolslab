@@ -1,0 +1,85 @@
+{
+  "title": "ROT13 / Chiffre de César",
+  "description": "Encodez et décodez du texte avec ROT13 ou tout décalage César de 1 à 25",
+  "placeholder": "Entrez le texte à encoder ou décoder...",
+  "meta": {
+    "title": "ROT13 et Chiffre de César - Encoder/Décoder en Ligne Gratuit",
+    "description": "Encodez et décodez du texte avec ROT13 ou chiffre de César (décalage 1-25) en ligne gratuit. Force brute sur les 25 rotations. Sans inscription."
+  },
+  "tagline": "Encodez et décodez du texte avec ROT13, décalage César ou force brute sur 25 rotations",
+  "pageDescription": "Encodez et décodez du texte avec ROT13, chiffre de César ou force brute sur les 25 rotations à la fois. Conçu pour développeurs, étudiants et amateurs de CTF — gère tout décalage de 1 à 25, préserve la casse et la ponctuation, ignore les caractères non alphabétiques. Parfait pour décoder les balises spoiler de Reddit, les exercices de cryptographie classique et identifier rapidement le décalage utilisé sur un ciphertext donné. En ligne gratuit sans inscription — tout traitement se fait dans votre navigateur.",
+  "longTailKeywords": [
+    "rot13 encodeur décodeur en ligne gratuit",
+    "chiffre de césar en ligne gratuit",
+    "décodeur rot13 en ligne sans inscription",
+    "chiffre de césar avec décalage en ligne gratuit",
+    "comment décoder un message rot13 en ligne",
+    "comment résoudre chiffre de césar sans connaître décalage",
+    "chiffre de césar force brute 25 rotations en ligne",
+    "convertisseur rot13 texte gratuit",
+    "décodeur chiffre de césar pour défis ctf",
+    "générateur rot13 pour spoilers reddit",
+    "meilleur outil chiffre de césar gratuit en ligne",
+    "chiffre de césar classique pour apprentissage cryptographie"
+  ],
+  "instructions": {
+    "title": "Comment utiliser ROT13 / Chiffre de César",
+    "steps": [
+      {
+        "title": "Choisissez un mode",
+        "description": "Sélectionnez ROT13 pour encoder/décoder en un clic, César encode/décode avec décalage personnalisé, ou force brute pour voir les 25 rotations possibles."
+      },
+      {
+        "title": "Entrez votre texte",
+        "description": "Collez ou tapez votre texte dans la zone de saisie. Les lettres sont pivotées ; chiffres, ponctuation, espaces et caractères unicode passent sans modification."
+      },
+      {
+        "title": "Choisissez un décalage (modes César uniquement)",
+        "description": "Pour encode ou décode, choisissez un décalage de 1 à 25. ROT13 est fixé à 13 — son propre inverse, la même opération encode et décode."
+      },
+      {
+        "title": "Traitez et copiez",
+        "description": "Cliquez sur Process (ou Montrer les 25 rotations). Copiez la sortie dans le presse-papiers, ou utilisez la sortie comme nouvelle entrée pour enchaîner les opérations."
+      }
+    ],
+    "features": [
+      "Encodage et décodage ROT13 en un clic (son propre inverse)",
+      "Chiffre de César classique avec tout décalage de 1 à 25",
+      "Mode force brute affiche les 25 rotations côte à côte",
+      "Préserve la casse des lettres",
+      "Caractères non alphabétiques (chiffres, ponctuation, unicode) passent sans modification",
+      "Copiez toute rotation unique en un clic",
+      "Gère les très grandes entrées (100k+ caractères) sans upload serveur",
+      "Entièrement basé navigateur — aucune donnée ne quitte votre machine"
+    ],
+    "useCases": [
+      "Décoder les balises spoiler ROT13 sur Reddit ou forums",
+      "Résoudre des défis de cryptographie Capture-the-Flag avec force brute",
+      "Enseigner les bases de cryptographie classique à l'école ou en bootcamp",
+      "Masquer le contenu spoiler lors du partage sans texte brut",
+      "Tester rapidement la logique de chiffrement pendant le développement",
+      "Démontrer comment fonctionnent les chiffres à substitution",
+      "Préparer exercices et quiz avec ciphertext à décalage connu",
+      "Identifier rapidement un décalage César inconnu en scannant les 25 rotations"
+    ],
+    "proTips": [
+      "ROT13 est son propre inverse — l'appliquer deux fois renvoie le texte original",
+      "Utilisez la force brute quand vous ne connaissez pas le décalage : une des 25 lignes sera lisible",
+      "Les décalages 0 et 26 sont l'identité — nous limitons l'entrée à 1–25",
+      "Le chiffre de César est trivialement cassable — ne l'utilisez jamais pour de vrais secrets",
+      "La préservation de la casse rend les aller-retours sûrs : encode puis décode revient à l'original",
+      "Utilisez 'Use output as input' pour enchaîner des opérations avec différents décalages"
+    ],
+    "troubleshooting": [
+      "Sortie identique à l'entrée : vérifiez que le décalage n'est pas un multiple de 26 et que le texte contient des lettres",
+      "Chiffres ou ponctuation inchangés : comportement attendu — seuls A-Z et a-z sont pivotés",
+      "Caractères accentués (é, ñ, ü) non pivotés : par conception, seules les lettres ASCII sont décalées",
+      "Sortie de force brute difficile à scanner : collez quelques mots d'abord, repérez la ligne lisible, puis appliquez ce décalage au texte complet"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Coller l'entrée" },
+      { "keys": "Ctrl+C", "description": "Copier la sortie" },
+      { "keys": "Ctrl+Enter", "description": "Traiter" }
+    ]
+  }
+}

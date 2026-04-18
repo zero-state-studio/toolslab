@@ -1,0 +1,85 @@
+{
+  "title": "ROT13 / Cäsar-Chiffre",
+  "description": "Text mit ROT13 oder beliebiger Cäsar-Verschiebung von 1 bis 25 kodieren und dekodieren",
+  "placeholder": "Text zum Kodieren oder Dekodieren eingeben...",
+  "meta": {
+    "title": "ROT13 & Cäsar-Chiffre - Text Online Kodieren/Dekodieren",
+    "description": "Text mit ROT13 oder Cäsar-Chiffre (Verschiebung 1-25) online kostenlos kodieren und dekodieren. Brute-Force aller 25 Rotationen. Keine Anmeldung."
+  },
+  "tagline": "Text mit ROT13, Cäsar-Verschiebung oder Brute-Force über 25 Rotationen kodieren und dekodieren",
+  "pageDescription": "Kodieren und dekodieren Sie Text mit ROT13, Cäsar-Chiffre oder Brute-Force über alle 25 Rotationen gleichzeitig. Entwickelt für Entwickler, Studenten und CTF-Spieler — unterstützt jede Verschiebung von 1 bis 25, erhält Groß-/Kleinschreibung und Interpunktion, ignoriert nicht-alphabetische Zeichen. Perfekt zum Dekodieren von Reddit-Spoiler-Tags, klassischen Kryptografie-Übungen und schneller Identifikation der verwendeten Verschiebung in einem Ciphertext. Kostenlos online ohne Anmeldung — alle Verarbeitung im Browser.",
+  "longTailKeywords": [
+    "rot13 encoder decoder online kostenlos",
+    "cäsar chiffre online kostenlos",
+    "rot13 decoder online ohne anmeldung",
+    "cäsar chiffre mit verschiebung online gratis",
+    "wie rot13 nachricht online dekodieren",
+    "wie cäsar chiffre ohne shift lösen",
+    "cäsar chiffre brute force 25 rotationen online",
+    "rot13 text konverter kostenlos",
+    "cäsar chiffre decoder für ctf challenges",
+    "rot13 generator für reddit spoiler",
+    "bestes kostenloses cäsar chiffre tool online",
+    "klassisches cäsar chiffre für kryptographie lernen"
+  ],
+  "instructions": {
+    "title": "So verwenden Sie ROT13 / Cäsar-Chiffre",
+    "steps": [
+      {
+        "title": "Modus wählen",
+        "description": "Wählen Sie ROT13 für Ein-Klick-Kodierung/Dekodierung, Cäsar encode/decode mit benutzerdefinierter Verschiebung, oder Brute-Force, um alle 25 möglichen Rotationen zu sehen."
+      },
+      {
+        "title": "Text eingeben",
+        "description": "Fügen Sie Ihren Text in das Eingabefeld ein oder tippen Sie ihn. Buchstaben werden rotiert; Ziffern, Interpunktion, Leerzeichen und Unicode-Zeichen bleiben unverändert."
+      },
+      {
+        "title": "Verschiebung wählen (nur Cäsar-Modi)",
+        "description": "Für encode oder decode wählen Sie eine Verschiebung von 1 bis 25. ROT13 ist fest auf 13 — es ist sein eigenes Inverses, dieselbe Operation kodiert und dekodiert."
+      },
+      {
+        "title": "Verarbeiten und kopieren",
+        "description": "Klicken Sie auf Process (oder Alle 25 Rotationen anzeigen). Kopieren Sie die Ausgabe in die Zwischenablage oder verwenden Sie die Ausgabe als neue Eingabe."
+      }
+    ],
+    "features": [
+      "Ein-Klick-ROT13-Kodierung und -Dekodierung (sein eigenes Inverses)",
+      "Klassische Cäsar-Chiffre mit beliebiger Verschiebung von 1 bis 25",
+      "Brute-Force-Modus zeigt alle 25 Rotationen nebeneinander",
+      "Erhält Groß-/Kleinschreibung",
+      "Nicht-alphabetische Zeichen (Ziffern, Interpunktion, Unicode) bleiben unverändert",
+      "Kopieren Sie jede einzelne Rotation mit einem Klick",
+      "Verarbeitet sehr große Eingaben (100k+ Zeichen) ohne Server-Upload",
+      "Vollständig browserbasiert — keine Daten verlassen Ihren Computer"
+    ],
+    "useCases": [
+      "Reddit- oder Forum-Spoiler-Tags mit ROT13 dekodieren",
+      "Capture-the-Flag (CTF) Kryptografie-Challenges mit Brute-Force-Modus lösen",
+      "Grundlagen der klassischen Kryptografie in Schule oder Bootcamp lehren",
+      "Spoiler-Inhalt beim Teilen ohne Klartext verschleiern",
+      "Chiffre-Logik während der Entwicklung schnell testen",
+      "Demonstrieren, wie Substitutions-Chiffren funktionieren",
+      "Übungen und Quizze mit bekannter Verschiebung vorbereiten",
+      "Unbekannte Cäsar-Verschiebung durch Scannen aller 25 Rotationen schnell identifizieren"
+    ],
+    "proTips": [
+      "ROT13 ist sein eigenes Inverses — zweimal anwenden ergibt den Originaltext",
+      "Verwenden Sie Brute-Force, wenn Sie die Verschiebung nicht kennen: eine der 25 Zeilen wird lesbar sein",
+      "Verschiebungen 0 und 26 sind die Identität — wir beschränken die Eingabe auf 1–25",
+      "Cäsar-Chiffre ist trivial zu brechen — verwenden Sie sie niemals für echte Geheimnisse",
+      "Beibehaltene Groß-/Kleinschreibung macht Round-Trips sicher: encode dann decode ergibt das Original",
+      "Verwenden Sie 'Use output as input', um Operationen mit verschiedenen Verschiebungen zu verketten"
+    ],
+    "troubleshooting": [
+      "Ausgabe gleich der Eingabe: Prüfen Sie, ob die Verschiebung kein Vielfaches von 26 ist und der Text Buchstaben enthält",
+      "Zahlen oder Interpunktion unverändert: erwartet — nur A-Z und a-z werden rotiert",
+      "Umlaute (ä, ö, ü) nicht rotiert: bewusst — nur reine ASCII-Buchstaben werden verschoben",
+      "Brute-Force-Ausgabe schwer zu scannen: erst wenige Wörter einfügen, lesbare Zeile identifizieren, dann die Verschiebung auf den vollen Text anwenden"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Strg+V", "description": "Eingabe einfügen" },
+      { "keys": "Strg+C", "description": "Ausgabe kopieren" },
+      { "keys": "Strg+Eingabe", "description": "Verarbeiten" }
+    ]
+  }
+}

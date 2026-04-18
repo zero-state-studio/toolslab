@@ -1,6 +1,7 @@
 {
   "title": "Ottimizzatore Immagini",
   "description": "Ottimizza e comprimi immagini",
+  "placeholder": "Trascina immagine o clicca per caricare...",
   "meta": {
     "title": "Ottimizzatore Immagini - Online",
     "description": "Ottimizza e comprimi immagini online. Riduci dimensioni JPEG, PNG, WebP e GIF mantenendo la qualità. Compressione intelligente. Strumento gratuito nel browser."

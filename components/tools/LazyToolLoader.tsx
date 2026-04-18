@@ -122,6 +122,9 @@ const toolComponents = {
   ),
   'yaml-validator': lazy(() => import('./implementations/YamlValidator')),
   'html-to-markdown': lazy(() => import('./implementations/HtmlToMarkdown')),
+  'rot13-caesar-cipher': lazy(
+    () => import('./implementations/Rot13CaesarCipher')
+  ),
   // Add more as needed
 } as const;
 

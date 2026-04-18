@@ -1,6 +1,7 @@
 {
   "title": "Diff Checker",
   "description": "Compare two texts and find differences",
+  "placeholder": "Paste or type text here, or drag and drop a file...",
   "instructions": {
     "title": "How to use Diff Checker",
     "steps": [

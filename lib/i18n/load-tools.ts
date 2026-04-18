@@ -99,6 +99,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'js-object-to-json',
     'bcrypt-hash-generator',
     'html-to-markdown',
+    'rot13-caesar-cipher',
   ];
 
   const tools: Record<string, any> = {};

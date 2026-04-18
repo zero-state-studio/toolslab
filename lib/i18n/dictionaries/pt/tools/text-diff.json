@@ -1,6 +1,7 @@
 {
   "title": "Verificador de Diferenças",
   "description": "Compare dois textos e encontre diferenças",
+  "placeholder": "Cole ou digite o texto aqui, ou arraste e solte um arquivo...",
   "instructions": {
     "title": "Como usar o Verificador de Diferenças",
     "steps": [

@@ -1,6 +1,7 @@
 {
   "title": "Costruttore Espressioni Crontab",
   "description": "Analizza, costruisci e valida espressioni cron con costruttore visuale, preset e prossime esecuzioni",
+  "placeholder": "Configura la tua pianificazione cron...",
   "meta": {
     "title": "Costruttore Crontab - Strumento Online Gratuito",
     "description": "Costruisci e valida espressioni cron con editor visuale. Genera pianificazioni crontab con descrizioni leggibili e orari esecuzione. Strumento cron gratuito."

@@ -1,6 +1,7 @@
 {
   "title": "Comparador de Diferencias",
   "description": "Compara dos textos y encuentra diferencias",
+  "placeholder": "Pega o escribe el texto aquí, o arrastra y suelta un archivo...",
   "instructions": {
     "title": "Cómo usar Comparador de Diferencias",
     "steps": [

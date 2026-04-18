@@ -1,6 +1,7 @@
 {
   "title": "XML Formatter",
   "description": "Formatta, valida e minimizza documenti XML con evidenziazione sintassi e supporto XPath",
+  "placeholder": "Incolla XML da formattare...",
   "meta": {
     "title": "XML Formatter - Strumento Online Gratuito",
     "description": "Formatta, valida e minimizza documenti XML online con evidenziazione sintassi e supporto XPath. Indentazione personalizzabile. Strumento XML gratuito e sicuro."
