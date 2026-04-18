@@ -1,0 +1,85 @@
+{
+  "title": "ROT13 / Caesar Cipher",
+  "description": "Encode and decode text with ROT13 or any Caesar shift from 1 to 25",
+  "placeholder": "Enter text to encode or decode...",
+  "meta": {
+    "title": "ROT13 & Caesar Cipher - Encode/Decode Text Online Free",
+    "description": "Encode and decode text with ROT13 or Caesar cipher (shift 1-25) online free. Brute-force all 25 rotations for unknown shifts. No signup required."
+  },
+  "tagline": "Encode and decode text with ROT13, Caesar shift, or brute-force all 25 rotations",
+  "pageDescription": "Encode and decode text with ROT13, Caesar cipher, or brute-force all 25 rotations at once. Built for developers, students and CTF solvers — handles any shift from 1 to 25, preserves case and punctuation, and ignores non-alphabetic characters. Perfect for decoding Reddit spoiler tags, classical cryptography exercises, and quickly testing which shift was used on a given ciphertext. Free online with no signup required — all processing happens in your browser.",
+  "longTailKeywords": [
+    "rot13 encoder decoder online free no signup",
+    "caesar cipher online free no registration",
+    "rot13 decoder online free instant",
+    "caesar cipher encoder with shift online free",
+    "how to decode rot13 message online",
+    "how to solve caesar cipher without knowing shift",
+    "caesar cipher brute force all 25 rotations online",
+    "rot13 text converter free no watermark",
+    "caesar cipher decoder for ctf challenges",
+    "rot13 generator for reddit spoiler tags",
+    "best free caesar cipher tool online",
+    "classical caesar cipher tool for cryptography learning"
+  ],
+  "instructions": {
+    "title": "How to use ROT13 / Caesar Cipher",
+    "steps": [
+      {
+        "title": "Choose a mode",
+        "description": "Select ROT13 for one-click encoding/decoding, Caesar encode/decode with a custom shift, or brute-force to see all 25 possible rotations at once."
+      },
+      {
+        "title": "Enter your text",
+        "description": "Paste or type your text into the input area. Letters are rotated; digits, punctuation, spaces and unicode characters pass through unchanged."
+      },
+      {
+        "title": "Pick a shift (Caesar modes only)",
+        "description": "For encode or decode mode, choose a shift from 1 to 25. ROT13 is fixed at 13 — its own inverse, so the same operation encodes and decodes."
+      },
+      {
+        "title": "Process and copy",
+        "description": "Click Process (or Show all 25 rotations). Copy the output to your clipboard, or use the output as new input to chain operations."
+      }
+    ],
+    "features": [
+      "One-click ROT13 encoding and decoding (its own inverse)",
+      "Classical Caesar cipher with any shift from 1 to 25",
+      "Brute-force mode shows all 25 possible rotations side by side",
+      "Preserves letter case — uppercase stays uppercase",
+      "Non-alphabetic characters (digits, punctuation, unicode) pass through unchanged",
+      "Copy any single rotation with one click",
+      "Handles very large inputs (100k+ characters) without server uploads",
+      "Fully browser-based — no data ever leaves your machine"
+    ],
+    "useCases": [
+      "Decode Reddit or forum spoiler tags encoded with ROT13",
+      "Solve Capture-the-Flag (CTF) cryptography challenges with brute-force mode",
+      "Teach classical cryptography basics in school or bootcamp",
+      "Obfuscate spoiler content when sharing without plaintext",
+      "Test cipher logic quickly during development without writing boilerplate",
+      "Demo how substitution ciphers work on arbitrary text",
+      "Prepare exercises and quizzes with known-shift ciphertext",
+      "Quickly identify an unknown Caesar shift by scanning all 25 rotations"
+    ],
+    "proTips": [
+      "ROT13 is its own inverse — applying it twice returns the original text",
+      "Use brute-force mode when you don't know the shift: one of the 25 rows will be readable",
+      "Shifts of 0 and 26 are the identity transform — we constrain input to 1–25",
+      "Caesar cipher is trivially breakable — never use it for real secrets",
+      "Preserved case makes round-tripping safe: encode then decode returns the original",
+      "Use 'Use output as input' to chain operations with different shifts"
+    ],
+    "troubleshooting": [
+      "Output matches input: verify the shift is not a multiple of 26 and the text contains alphabetic characters",
+      "Numbers or punctuation unchanged: expected — only A-Z and a-z are rotated",
+      "Accented characters (é, ñ, ü) not rotated: by design, only plain ASCII letters are shifted",
+      "Brute-force output is hard to scan: paste a few words first, spot the readable row, then apply that shift to the full text"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Paste input" },
+      { "keys": "Ctrl+C", "description": "Copy output" },
+      { "keys": "Ctrl+Enter", "description": "Process" }
+    ]
+  }
+}

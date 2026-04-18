@@ -989,4 +989,17 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/pdf"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/pdf"/>
   </url>
+  <url>
+    <loc>https://toolslab.dev/pt/tools/rot13-caesar-cipher</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/rot13-caesar-cipher"/>
+  </url>
 </urlset>
