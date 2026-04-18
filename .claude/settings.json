@@ -1,5 +1,14 @@
 {
   "enabledPlugins": {
     "github@claude-plugins-official": true
+  },
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Linear__list_issue_labels",
+      "mcp__claude_ai_Linear__list_issue_statuses",
+      "mcp__claude_ai_Linear__list_projects",
+      "mcp__claude_ai_Linear__list_issues",
+      "mcp__claude_ai_Linear__list_milestones"
+    ]
   }
 }
