@@ -241,8 +241,15 @@ export const toolRelationships: ToolRelationships = {
   'curl-to-code': {
     workflow: ['api-tester', 'jwt-decoder'],
     complementary: ['json-formatter', 'url-encode', 'crontab-builder'],
-    alternatives: ['hash-generator'],
+    alternatives: ['curl-to-php', 'hash-generator'],
     boostVisibility: true, // Orphan tool - only 1 link
+  },
+
+  'curl-to-php': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code'],
+    boostVisibility: true,
   },
 
   'api-tester': {

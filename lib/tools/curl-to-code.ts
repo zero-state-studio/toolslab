@@ -129,9 +129,9 @@ export const SUPPORTED_LANGUAGES: Record<string, LanguageEntry> = {
   php: {
     name: 'PHP',
     frameworks: [
-      { id: 'curl', implemented: false },
-      { id: 'guzzle', implemented: false },
-      { id: 'file_get_contents', implemented: false },
+      { id: 'curl', implemented: true },
+      { id: 'guzzle', implemented: true },
+      { id: 'file_get_contents', implemented: true },
     ],
     fileExtension: 'php',
   },
@@ -1062,6 +1062,261 @@ export class PythonRequestsGenerator extends CodeGenerator {
   }
 }
 
+// ============================================================================
+// PHP Generators (RIC-114)
+// ============================================================================
+
+/**
+ * Helpers shared across PHP generators.
+ */
+function phpEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+function phpAssocArray(obj: Record<string, unknown>, indent: string): string {
+  const lines = Object.entries(obj).map(
+    ([k, v]) =>
+      `${indent}${indent}'${phpEscape(k)}' => '${phpEscape(String(v))}',`
+  );
+  return `[\n${lines.join('\n')}\n${indent}]`;
+}
+
+/**
+ * PHP + Guzzle (GuzzleHttp\\Client).
+ * Modern PHP HTTP client; requires `composer require guzzlehttp/guzzle`.
+ */
+export class PhpGuzzleGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const imports = ['use GuzzleHttp\\Client;', 'use GuzzleHttp\\RequestOptions;'];
+    const envVars = this.extractEnvVars(curl);
+
+    let code = '<?php\n\n';
+    code += 'require_once __DIR__ . \'/vendor/autoload.php\';\n\n';
+    for (const imp of imports) code += imp + '\n';
+    code += '\n$client = new Client([\n';
+    code += `${this.indent}'base_uri' => '${phpEscape(curl.url)}',\n`;
+    if (curl.options.timeout) {
+      code += `${this.indent}'timeout'  => ${curl.options.timeout / 1000},\n`;
+    }
+    if (curl.options.insecure) {
+      code += `${this.indent}'verify'   => false,\n`;
+    }
+    code += ']);\n\n';
+
+    const requestOpts: string[] = [];
+    if (Object.keys(curl.headers).length > 0) {
+      requestOpts.push(
+        `${this.indent}'headers' => ${phpAssocArray(curl.headers, this.indent)}`
+      );
+    }
+    if (curl.queryParams) {
+      requestOpts.push(
+        `${this.indent}'query' => ${phpAssocArray(curl.queryParams, this.indent)}`
+      );
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        requestOpts.push(
+          `${this.indent}'json' => ${phpAssocArray(curl.body as Record<string, unknown>, this.indent)}`
+        );
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        requestOpts.push(
+          `${this.indent}'form_params' => ${phpAssocArray(curl.body as Record<string, unknown>, this.indent)}`
+        );
+      } else {
+        requestOpts.push(
+          `${this.indent}'body' => '${phpEscape(String(curl.body))}'`
+        );
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      requestOpts.push(
+        `${this.indent}'auth' => ['${phpEscape(curl.auth.credentials.username)}', '${phpEscape(curl.auth.credentials.password)}']`
+      );
+    }
+
+    code += 'try {\n';
+    if (requestOpts.length > 0) {
+      code += `${this.indent}$response = $client->request('${method}', '', [\n`;
+      code += requestOpts.join(',\n') + ',\n';
+      code += `${this.indent}]);\n`;
+    } else {
+      code += `${this.indent}$response = $client->request('${method}', '');\n`;
+    }
+    code += `${this.indent}$body = $response->getBody()->getContents();\n`;
+    code += `${this.indent}$data = json_decode($body, true);\n`;
+    code += `${this.indent}print_r($data);\n`;
+    code += '} catch (\\GuzzleHttp\\Exception\\RequestException $e) {\n';
+    code += `${this.indent}echo 'Request failed: ' . $e->getMessage();\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'php',
+      framework: 'guzzle',
+      fileName: 'api_request',
+      fileExtension: 'php',
+      imports,
+      envVars,
+      dependencies: ['guzzlehttp/guzzle'],
+    };
+  }
+}
+
+/**
+ * PHP + native cURL extension (ext-curl).
+ * Zero-dependency, works on any PHP install with curl extension enabled.
+ */
+export class PhpCurlGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      const qs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      url += (url.includes('?') ? '&' : '?') + qs;
+    }
+
+    let code = '<?php\n\n';
+    code += `$ch = curl_init('${phpEscape(url)}');\n\n`;
+    code += `curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);\n`;
+    code += `curl_setopt($ch, CURLOPT_CUSTOMREQUEST, '${method}');\n`;
+
+    if (curl.options.timeout) {
+      code += `curl_setopt($ch, CURLOPT_TIMEOUT, ${curl.options.timeout / 1000});\n`;
+    }
+    if (curl.options.insecure) {
+      code += `curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);\n`;
+      code += `curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);\n`;
+    }
+    if (curl.options.followRedirects) {
+      code += `curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);\n`;
+    }
+
+    if (Object.keys(curl.headers).length > 0) {
+      const hdrs = Object.entries(curl.headers)
+        .map(([k, v]) => `'${phpEscape(k)}: ${phpEscape(String(v))}'`)
+        .join(', ');
+      code += `curl_setopt($ch, CURLOPT_HTTPHEADER, [${hdrs}]);\n`;
+    }
+
+    if (curl.auth?.type === 'basic') {
+      code += `curl_setopt($ch, CURLOPT_USERPWD, '${phpEscape(curl.auth.credentials.username)}:${phpEscape(curl.auth.credentials.password)}');\n`;
+    }
+
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `$payload = json_encode(${phpAssocArray(curl.body as Record<string, unknown>, this.indent)});\n`;
+        code += `curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);\n`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        code += `curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(${phpAssocArray(curl.body as Record<string, unknown>, this.indent)}));\n`;
+      } else {
+        code += `curl_setopt($ch, CURLOPT_POSTFIELDS, '${phpEscape(String(curl.body))}');\n`;
+      }
+    }
+
+    code += '\n$response = curl_exec($ch);\n';
+    code += '$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);\n';
+    code += '$error = curl_error($ch);\n';
+    code += 'curl_close($ch);\n\n';
+    code += 'if ($error) {\n';
+    code += `${this.indent}echo 'Request failed: ' . $error;\n`;
+    code += '} else {\n';
+    code += `${this.indent}$data = json_decode($response, true);\n`;
+    code += `${this.indent}print_r($data);\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'php',
+      framework: 'curl',
+      fileName: 'api_request',
+      fileExtension: 'php',
+      imports: [],
+      envVars,
+      dependencies: ['ext-curl'],
+    };
+  }
+}
+
+/**
+ * PHP + file_get_contents via stream context.
+ * Zero-dependency, no ext-curl required. Limited to simple use cases.
+ */
+export class PhpFileGetContentsGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      const qs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      url += (url.includes('?') ? '&' : '?') + qs;
+    }
+
+    const headerLines = Object.entries(curl.headers).map(
+      ([k, v]) => `${k}: ${v}`
+    );
+    if (curl.auth?.type === 'basic') {
+      const token = `base64_encode('${phpEscape(curl.auth.credentials.username)}:${phpEscape(curl.auth.credentials.password)}')`;
+      headerLines.push(`Authorization: Basic ' . ${token} . '`);
+    }
+
+    let code = '<?php\n\n';
+    code += '$options = [\n';
+    code += `${this.indent}'http' => [\n`;
+    code += `${this.indent}${this.indent}'method'  => '${method}',\n`;
+    if (headerLines.length > 0) {
+      code += `${this.indent}${this.indent}'header'  => "${headerLines.map(phpEscape).join('\\r\\n')}",\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}'content' => json_encode(${phpAssocArray(curl.body as Record<string, unknown>, this.indent + this.indent)}),\n`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}'content' => http_build_query(${phpAssocArray(curl.body as Record<string, unknown>, this.indent + this.indent)}),\n`;
+      } else {
+        code += `${this.indent}${this.indent}'content' => '${phpEscape(String(curl.body))}',\n`;
+      }
+    }
+    if (curl.options.timeout) {
+      code += `${this.indent}${this.indent}'timeout' => ${curl.options.timeout / 1000},\n`;
+    }
+    if (curl.options.insecure) {
+      code += `${this.indent}'ssl' => [\n`;
+      code += `${this.indent}${this.indent}'verify_peer' => false,\n`;
+      code += `${this.indent}${this.indent}'verify_peer_name' => false,\n`;
+      code += `${this.indent}],\n`;
+    }
+    code += `${this.indent}],\n`;
+    code += '];\n\n';
+    code += `$context = stream_context_create($options);\n`;
+    code += `$response = @file_get_contents('${phpEscape(url)}', false, $context);\n\n`;
+    code += 'if ($response === false) {\n';
+    code += `${this.indent}echo 'Request failed';\n`;
+    code += '} else {\n';
+    code += `${this.indent}$data = json_decode($response, true);\n`;
+    code += `${this.indent}print_r($data);\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'php',
+      framework: 'file_get_contents',
+      fileName: 'api_request',
+      fileExtension: 'php',
+      imports: [],
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
 // Main converter function
 export function convertCurlToCode(
   curlCommand: string,
@@ -1111,6 +1366,15 @@ export function convertCurlToCode(
       options.framework === 'requests'
     ) {
       generator = new PythonRequestsGenerator(options);
+    } else if (options.language === 'php' && options.framework === 'guzzle') {
+      generator = new PhpGuzzleGenerator(options);
+    } else if (options.language === 'php' && options.framework === 'curl') {
+      generator = new PhpCurlGenerator(options);
+    } else if (
+      options.language === 'php' &&
+      options.framework === 'file_get_contents'
+    ) {
+      generator = new PhpFileGetContentsGenerator(options);
     } else {
       // Safety net: registry marked implemented but dispatcher missing case.
       // This indicates a bug in the isImplemented flags or a missing generator

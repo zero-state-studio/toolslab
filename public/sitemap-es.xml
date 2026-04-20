@@ -574,6 +574,19 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-code"/>
   </url>
   <url>
+    <loc>https://toolslab.dev/es/tools/curl-to-php</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-php"/>
+  </url>
+  <url>
     <loc>https://toolslab.dev/es/tools/json-to-typescript</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
