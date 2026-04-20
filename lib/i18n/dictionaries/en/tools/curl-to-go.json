@@ -1,0 +1,62 @@
+{
+  "title": "cURL to Go Converter",
+  "description": "Convert cURL commands to Go code using net/http (stdlib) or Resty HTTP client",
+  "placeholder": "Paste your cURL command here...",
+  "meta": {
+    "title": "cURL to Go Converter - net/http & Resty | ToolsLab",
+    "description": "Convert cURL commands to Go code online free. Generate net/http stdlib or Resty snippets with context, timeout, and proper error handling. No signup, browser-based."
+  },
+  "tagline": "Turn cURL commands into idiomatic Go — stdlib net/http or go-resty/resty/v2",
+  "pageDescription": "Free cURL to Go converter transforms cURL commands into production-ready Go using the standard library net/http package or github.com/go-resty/resty/v2. Emits context.Background with timeout, http.NewRequestWithContext, defer resp.Body.Close(), and proper error propagation via if err != nil. Perfect for Go developers translating API documentation, Postman requests, or Chrome DevTools exports into gofmt-clean code. Browser-based conversion means your cURL command never leaves your device.",
+  "instructions": {
+    "title": "How to use cURL to Go Converter",
+    "steps": [
+      { "title": "Paste cURL command", "description": "Copy from terminal, DevTools, API docs or Postman and paste." },
+      { "title": "Pick net/http or Resty", "description": "net/http for zero-dependency stdlib code; Resty for fluent API popular in microservices." },
+      { "title": "Copy generated Go", "description": "Code includes imports, context, timeout, defer Body.Close, error checks. Paste directly into main.go." },
+      { "title": "Adjust options", "description": "Tweak error handling, timeout, SSL verify via Options panel." }
+    ],
+    "features": [
+      "Stdlib net/http — zero third-party dependencies",
+      "Resty — fluent API, popular in Go microservices",
+      "context.Background with timeout via context.WithTimeout",
+      "Proper error handling: if err != nil pattern throughout",
+      "defer resp.Body.Close() always emitted",
+      "Handles JSON, form-encoded, multipart bodies",
+      "Basic auth, bearer tokens, custom headers supported",
+      "gofmt-clean output ready to paste",
+      "100% browser-based processing"
+    ],
+    "useCases": [
+      "Translate API docs cURL examples into Go microservice code",
+      "Port Postman collections to Go HTTP clients",
+      "Build SDK clients for third-party APIs",
+      "Debug service-to-service calls by converting cURL to readable Go",
+      "Generate Kubernetes controller HTTP code from cURL",
+      "Migrate legacy bash+cURL scripts to Go CLIs",
+      "Prepare Go examples for internal API documentation",
+      "Scaffold Go integration tests from real cURL requests"
+    ],
+    "proTips": [
+      "Prefer net/http in libraries to avoid forcing dependencies downstream",
+      "Use Resty in application code for readable fluent calls",
+      "Always propagate context — enables graceful cancellation",
+      "Run gofmt on generated code before committing",
+      "Disable InsecureSkipVerify only in dev — never in production",
+      "Prefer http.NewRequestWithContext over http.NewRequest"
+    ],
+    "troubleshooting": [
+      "Import cycle: keep HTTP client initialization in main or a dedicated package",
+      "context deadline exceeded: increase timeout or profile slow upstream",
+      "TLS cert errors: verify CA bundle or use a trusted HTTPS endpoint",
+      "Body not sent: ensure payload is passed as io.Reader (bytes.NewBuffer or strings.NewReader)",
+      "Resty import not found: run 'go get github.com/go-resty/resty/v2'"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Paste input" },
+      { "keys": "Ctrl+Enter", "description": "Generate Go" },
+      { "keys": "Ctrl+C", "description": "Copy result" },
+      { "keys": "Ctrl+S", "description": "Download .go file" }
+    ]
+  }
+}

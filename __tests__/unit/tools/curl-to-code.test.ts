@@ -40,8 +40,16 @@ describe('curl-to-code dispatcher safety', () => {
       expect(isImplemented('php', 'file_get_contents')).toBe(true);
     });
 
-    it('returns false for go + net-http (not yet implemented)', () => {
-      expect(isImplemented('go', 'net-http')).toBe(false);
+    it('returns true for go + net-http (implemented in RIC-115)', () => {
+      expect(isImplemented('go', 'net-http')).toBe(true);
+    });
+
+    it('returns true for go + resty (implemented in RIC-115)', () => {
+      expect(isImplemented('go', 'resty')).toBe(true);
+    });
+
+    it('returns false for java + okhttp (not yet implemented)', () => {
+      expect(isImplemented('java', 'okhttp')).toBe(false);
     });
 
     it('returns false for unknown language', () => {
@@ -121,10 +129,10 @@ describe('curl-to-code dispatcher safety', () => {
       expect(result.generatedCode).toBeUndefined();
     });
 
-    it('refuses go + net-http (not yet implemented) with explicit error', () => {
+    it('refuses java + okhttp (not yet implemented) with explicit error', () => {
       const result = convertCurlToCode(baseCurl, {
-        language: 'go',
-        framework: 'net-http',
+        language: 'java',
+        framework: 'okhttp',
         errorHandling: 'basic',
         async: false,
         extractEnvVars: false,
@@ -196,6 +204,59 @@ describe('curl-to-code dispatcher safety', () => {
       expect(result.generatedCode?.code).toContain('CURLOPT_HTTPHEADER');
       expect(result.generatedCode?.code).toContain('curl_exec');
       expect(result.generatedCode?.dependencies).toEqual(['ext-curl']);
+    });
+
+    it('generates Go net/http code with context and defer Body.Close', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'go',
+        framework: 'net-http',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 4,
+        indentType: 'tabs',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('package main');
+      expect(result.generatedCode?.code).toContain('"net/http"');
+      expect(result.generatedCode?.code).toContain('context.WithTimeout');
+      expect(result.generatedCode?.code).toContain('http.NewRequestWithContext');
+      expect(result.generatedCode?.code).toContain('defer resp.Body.Close()');
+      expect(result.generatedCode?.dependencies).toEqual([]);
+    });
+
+    it('generates Go Resty code with fluent client', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'go',
+        framework: 'resty',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 4,
+        indentType: 'tabs',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('resty.New()');
+      expect(result.generatedCode?.code).toContain('client.R()');
+      expect(result.generatedCode?.dependencies).toContain(
+        'github.com/go-resty/resty/v2'
+      );
     });
 
     it('generates PHP file_get_contents code with stream_context_create', () => {

@@ -248,7 +248,14 @@ export const toolRelationships: ToolRelationships = {
   'curl-to-php': {
     workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
     complementary: ['url-encode', 'base64-encode', 'hash-generator'],
-    alternatives: ['curl-to-code'],
+    alternatives: ['curl-to-code', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
+  'curl-to-go': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-php'],
     boostVisibility: true,
   },
 

@@ -72,6 +72,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'crontab-builder',
     'list-compare',
     'curl-to-code',
+    'curl-to-go',
     'curl-to-php',
     'json-to-typescript',
     'css-minifier',

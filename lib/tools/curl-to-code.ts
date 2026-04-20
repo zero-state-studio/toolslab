@@ -138,8 +138,8 @@ export const SUPPORTED_LANGUAGES: Record<string, LanguageEntry> = {
   go: {
     name: 'Go',
     frameworks: [
-      { id: 'net-http', implemented: false },
-      { id: 'resty', implemented: false },
+      { id: 'net-http', implemented: true },
+      { id: 'resty', implemented: true },
     ],
     fileExtension: 'go',
   },
@@ -1317,6 +1317,184 @@ export class PhpFileGetContentsGenerator extends CodeGenerator {
   }
 }
 
+// ============================================================================
+// Go Generators (RIC-115)
+// ============================================================================
+
+function goEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+/**
+ * Go stdlib `net/http` generator. Zero third-party dependencies,
+ * production-grade ergonomics: context.Background, defer Body.Close,
+ * proper error handling via `if err != nil`.
+ */
+export class GoNetHttpGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = new Set<string>([
+      'bytes',
+      'context',
+      'fmt',
+      'io',
+      'net/http',
+      'time',
+    ]);
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      const qs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      url += (url.includes('?') ? '&' : '?') + qs;
+    }
+
+    const hasBody = !!curl.body;
+    let bodyInit = '';
+    if (hasBody) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        bodyInit = `payload := []byte(\`${JSON.stringify(curl.body)}\`)\n${this.indent}body := bytes.NewBuffer(payload)`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        imports.add('net/url');
+        imports.add('strings');
+        const form = Object.entries(curl.body as Record<string, unknown>)
+          .map(([k, v]) => `${this.indent}${this.indent}"${goEscape(k)}": {"${goEscape(String(v))}"},`)
+          .join('\n');
+        bodyInit = `form := url.Values{\n${form}\n${this.indent}}\n${this.indent}body := strings.NewReader(form.Encode())`;
+      } else {
+        imports.add('strings');
+        bodyInit = `body := strings.NewReader("${goEscape(String(curl.body))}")`;
+      }
+    }
+
+    const timeoutSec = (curl.options.timeout || 30000) / 1000;
+
+    let code = 'package main\n\n';
+    code += 'import (\n';
+    for (const imp of Array.from(imports).sort())
+      code += `${this.indent}"${imp}"\n`;
+    code += ')\n\n';
+    code += 'func main() {\n';
+    code += `${this.indent}ctx, cancel := context.WithTimeout(context.Background(), ${timeoutSec}*time.Second)\n`;
+    code += `${this.indent}defer cancel()\n\n`;
+
+    if (hasBody) code += `${this.indent}${bodyInit}\n\n`;
+
+    code += `${this.indent}req, err := http.NewRequestWithContext(ctx, "${method}", "${goEscape(url)}", `;
+    code += hasBody ? 'body)\n' : 'nil)\n';
+    code += `${this.indent}if err != nil {\n`;
+    code += `${this.indent}${this.indent}fmt.Println("failed to build request:", err)\n`;
+    code += `${this.indent}${this.indent}return\n`;
+    code += `${this.indent}}\n\n`;
+
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}req.Header.Set("${goEscape(k)}", "${goEscape(String(v))}")\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}req.SetBasicAuth("${goEscape(curl.auth.credentials.username)}", "${goEscape(curl.auth.credentials.password)}")\n`;
+    }
+
+    code += `\n${this.indent}client := &http.Client{Timeout: ${timeoutSec} * time.Second}\n`;
+    if (curl.options.insecure) {
+      imports.add('crypto/tls');
+      code += `${this.indent}// NOTE: TLS verification disabled — do not use in production.\n`;
+      code += `${this.indent}client.Transport = &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}\n`;
+    }
+    code += `${this.indent}resp, err := client.Do(req)\n`;
+    code += `${this.indent}if err != nil {\n`;
+    code += `${this.indent}${this.indent}fmt.Println("request failed:", err)\n`;
+    code += `${this.indent}${this.indent}return\n`;
+    code += `${this.indent}}\n`;
+    code += `${this.indent}defer resp.Body.Close()\n\n`;
+    code += `${this.indent}respBody, err := io.ReadAll(resp.Body)\n`;
+    code += `${this.indent}if err != nil {\n`;
+    code += `${this.indent}${this.indent}fmt.Println("read body failed:", err)\n`;
+    code += `${this.indent}${this.indent}return\n`;
+    code += `${this.indent}}\n`;
+    code += `${this.indent}fmt.Printf("status: %s\\n", resp.Status)\n`;
+    code += `${this.indent}fmt.Println(string(respBody))\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'go',
+      framework: 'net-http',
+      fileName: 'main',
+      fileExtension: 'go',
+      imports: Array.from(imports),
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+/**
+ * Go + `github.com/go-resty/resty/v2`. Fluent HTTP client popular for
+ * production API clients and service-to-service calls.
+ */
+export class GoRestyGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['fmt', 'time', 'github.com/go-resty/resty/v2'];
+
+    let code = 'package main\n\n';
+    code += 'import (\n';
+    for (const imp of imports) code += `${this.indent}"${imp}"\n`;
+    code += ')\n\n';
+    code += 'func main() {\n';
+    code += `${this.indent}client := resty.New().SetTimeout(${(curl.options.timeout || 30000) / 1000} * time.Second)\n`;
+    if (curl.options.insecure) {
+      code += `${this.indent}client.SetTLSClientConfig(nil) // TODO: set InsecureSkipVerify if really needed\n`;
+    }
+
+    code += `${this.indent}req := client.R()\n`;
+
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}req.SetHeader("${goEscape(k)}", "${goEscape(String(v))}")\n`;
+    }
+    if (curl.queryParams) {
+      for (const [k, v] of Object.entries(curl.queryParams)) {
+        code += `${this.indent}req.SetQueryParam("${goEscape(k)}", "${goEscape(String(v))}")\n`;
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}req.SetBasicAuth("${goEscape(curl.auth.credentials.username)}", "${goEscape(curl.auth.credentials.password)}")\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}req.SetHeader("Content-Type", "application/json")\n`;
+        code += `${this.indent}req.SetBody(\`${JSON.stringify(curl.body)}\`)\n`;
+      } else {
+        code += `${this.indent}req.SetBody(\`${String(curl.body).replace(/`/g, '\\`')}\`)\n`;
+      }
+    }
+
+    const methodFn = method.charAt(0) + method.slice(1).toLowerCase();
+    code += `\n${this.indent}resp, err := req.${methodFn}("${goEscape(curl.url)}")\n`;
+    code += `${this.indent}if err != nil {\n`;
+    code += `${this.indent}${this.indent}fmt.Println("request failed:", err)\n`;
+    code += `${this.indent}${this.indent}return\n`;
+    code += `${this.indent}}\n`;
+    code += `${this.indent}fmt.Printf("status: %d\\n", resp.StatusCode())\n`;
+    code += `${this.indent}fmt.Println(string(resp.Body()))\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'go',
+      framework: 'resty',
+      fileName: 'main',
+      fileExtension: 'go',
+      imports,
+      envVars,
+      dependencies: ['github.com/go-resty/resty/v2'],
+    };
+  }
+}
+
 // Main converter function
 export function convertCurlToCode(
   curlCommand: string,
@@ -1375,6 +1553,10 @@ export function convertCurlToCode(
       options.framework === 'file_get_contents'
     ) {
       generator = new PhpFileGetContentsGenerator(options);
+    } else if (options.language === 'go' && options.framework === 'net-http') {
+      generator = new GoNetHttpGenerator(options);
+    } else if (options.language === 'go' && options.framework === 'resty') {
+      generator = new GoRestyGenerator(options);
     } else {
       // Safety net: registry marked implemented but dispatcher missing case.
       // This indicates a bug in the isImplemented flags or a missing generator

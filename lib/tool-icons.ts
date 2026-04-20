@@ -123,6 +123,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
   'crontab-builder': CalendarClock,
   'list-compare': ListFilter,
   'curl-to-code': Terminal,
+  'curl-to-go': Terminal,
   'curl-to-php': Terminal,
   'json-to-typescript': Braces,
   'css-minifier': FileType2,
