@@ -4,6 +4,9 @@ import {
   validateXml,
   parseXmlMetadata,
   searchXmlElements,
+  evaluateXPath,
+  buildXmlTree,
+  getNamespaceStats,
   XmlFormatterOptions,
 } from '@/lib/tools/xml-formatter';
 
@@ -410,6 +413,165 @@ describe('XML Formatter', () => {
       expect(result.success).toBe(true);
       expect(result.formatted).toContain('<groupId>com.example</groupId>');
       expect(result.formatted).toContain('<artifactId>app</artifactId>');
+    });
+  });
+
+  describe('evaluateXPath', () => {
+    const xml =
+      '<?xml version="1.0"?><users><user id="1"><name>Alice</name></user><user id="2"><name>Bob</name></user></users>';
+
+    it('should reject empty input', () => {
+      const result = evaluateXPath('', '//user');
+      expect(result.success).toBe(false);
+      expect(result.error).toBeDefined();
+    });
+
+    it('should reject empty expression', () => {
+      const result = evaluateXPath(xml, '');
+      expect(result.success).toBe(false);
+      expect(result.error).toBeDefined();
+    });
+
+    it('should fail on malformed XML', () => {
+      const result = evaluateXPath('<root><child></root>', '//child');
+      expect(result.success).toBe(false);
+    });
+
+    it('should fail on invalid XPath', () => {
+      const result = evaluateXPath(xml, '//[bad');
+      expect(result.success).toBe(false);
+      expect(result.error).toBeDefined();
+    });
+
+    it('should evaluate element selector', () => {
+      const result = evaluateXPath(xml, '//user');
+      expect(result.success).toBe(true);
+      expect(result.results.length).toBe(2);
+      expect(result.results[0].type).toBe('element');
+    });
+
+    it('should evaluate attribute selector', () => {
+      const result = evaluateXPath(xml, '//user/@id');
+      expect(result.success).toBe(true);
+      expect(result.results.length).toBe(2);
+      expect(result.results[0].type).toBe('attribute');
+      expect(result.results.map((r) => r.value).sort()).toEqual(['1', '2']);
+    });
+
+    it('should evaluate count() function', () => {
+      const result = evaluateXPath(xml, 'count(//user)');
+      expect(result.success).toBe(true);
+      expect(result.results[0].type).toBe('number');
+      expect(result.results[0].value).toBe('2');
+    });
+
+    it('should resolve declared namespace prefixes', () => {
+      const soap =
+        '<?xml version="1.0"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><Payload/></soap:Body></soap:Envelope>';
+      const result = evaluateXPath(soap, '//soap:Body');
+      expect(result.success).toBe(true);
+      expect(result.results.length).toBe(1);
+    });
+  });
+
+  describe('buildXmlTree', () => {
+    it('should reject empty input', () => {
+      const result = buildXmlTree('');
+      expect(result.success).toBe(false);
+    });
+
+    it('should fail on malformed XML', () => {
+      const result = buildXmlTree('<root><child></root>');
+      expect(result.success).toBe(false);
+    });
+
+    it('should build tree with root element', () => {
+      const result = buildXmlTree('<root><child>text</child></root>');
+      expect(result.success).toBe(true);
+      expect(result.tree?.name).toBe('root');
+      expect(result.tree?.type).toBe('element');
+      expect(result.tree?.children.length).toBe(1);
+      expect(result.tree?.children[0].name).toBe('child');
+    });
+
+    it('should capture attributes', () => {
+      const result = buildXmlTree('<user id="1" name="Alice"/>');
+      expect(result.success).toBe(true);
+      expect(result.tree?.attributes.length).toBe(2);
+      expect(result.tree?.attributes.find((a) => a.name === 'id')?.value).toBe(
+        '1'
+      );
+    });
+
+    it('should capture text nodes', () => {
+      const result = buildXmlTree('<p>hello world</p>');
+      expect(result.success).toBe(true);
+      const textChild = result.tree?.children.find((c) => c.type === 'text');
+      expect(textChild?.value).toBe('hello world');
+    });
+
+    it('should capture CDATA nodes', () => {
+      const result = buildXmlTree(
+        '<root><data><![CDATA[raw <xml> here]]></data></root>'
+      );
+      expect(result.success).toBe(true);
+      const data = result.tree?.children[0];
+      const cdata = data?.children.find((c) => c.type === 'cdata');
+      expect(cdata?.value).toBe('raw <xml> here');
+    });
+
+    it('should index repeated siblings in path', () => {
+      const result = buildXmlTree('<root><item/><item/><item/></root>');
+      expect(result.success).toBe(true);
+      expect(result.tree?.children[0].path).toBe('/root/item');
+      expect(result.tree?.children[1].path).toBe('/root/item[2]');
+      expect(result.tree?.children[2].path).toBe('/root/item[3]');
+    });
+  });
+
+  describe('getNamespaceStats', () => {
+    it('should reject empty input', () => {
+      const result = getNamespaceStats('');
+      expect(result.success).toBe(false);
+    });
+
+    it('should return empty list when no namespaces declared', () => {
+      const result = getNamespaceStats('<root><child/></root>');
+      expect(result.success).toBe(true);
+      expect(result.namespaces).toEqual([]);
+    });
+
+    it('should detect default namespace', () => {
+      const xml =
+        '<svg xmlns="http://www.w3.org/2000/svg"><rect/><circle/></svg>';
+      const result = getNamespaceStats(xml);
+      expect(result.success).toBe(true);
+      expect(result.namespaces.length).toBe(1);
+      expect(result.namespaces[0].isDefault).toBe(true);
+      expect(result.namespaces[0].uri).toBe('http://www.w3.org/2000/svg');
+      expect(result.namespaces[0].elementCount).toBeGreaterThanOrEqual(3);
+    });
+
+    it('should detect multiple prefixed namespaces', () => {
+      const xml =
+        '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://example.com/ws"><soap:Body><web:Get/></soap:Body></soap:Envelope>';
+      const result = getNamespaceStats(xml);
+      expect(result.success).toBe(true);
+      expect(result.namespaces.length).toBe(2);
+      const soap = result.namespaces.find((n) => n.prefix === 'soap');
+      const web = result.namespaces.find((n) => n.prefix === 'web');
+      expect(soap?.elementCount).toBeGreaterThanOrEqual(2);
+      expect(web?.elementCount).toBeGreaterThanOrEqual(1);
+    });
+
+    it('should collect sample elements per namespace', () => {
+      const xml =
+        '<svg xmlns="http://www.w3.org/2000/svg"><rect/><circle/><text/></svg>';
+      const result = getNamespaceStats(xml);
+      expect(result.namespaces[0].sampleElements.length).toBeGreaterThan(0);
+      expect(result.namespaces[0].sampleElements).toEqual(
+        expect.arrayContaining(['svg'])
+      );
     });
   });
 });

@@ -81,5 +81,19 @@
         "description": "Download file"
       }
     ]
+  },
+  "v2": {
+    "xpath": "XPath",
+    "xpathPlaceholder": "//user[@id='1']/email | count(//user) | //ns:Body",
+    "xpathHelp": "Supports XPath 1.0. Namespace prefixes declared in the XML are resolved automatically.",
+    "xpathEvaluate": "Evaluate",
+    "xpathNoResults": "No matches for this expression.",
+    "tree": "Tree View",
+    "treeExpandAll": "Expand all",
+    "treeCollapseAll": "Collapse all",
+    "treeUnavailable": "Tree unavailable — format valid XML first.",
+    "namespaces": "Namespaces",
+    "namespacesEmpty": "No namespaces declared in this document.",
+    "namespaceDefault": "default"
   }
 }

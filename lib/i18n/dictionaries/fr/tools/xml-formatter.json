@@ -81,5 +81,19 @@
         "description": "Télécharger le fichier"
       }
     ]
+  },
+  "v2": {
+    "xpath": "XPath",
+    "xpathPlaceholder": "//utilisateur[@id='1']/email | count(//utilisateur) | //ns:Body",
+    "xpathHelp": "Prend en charge XPath 1.0. Les préfixes de namespace déclarés dans le XML sont résolus automatiquement.",
+    "xpathEvaluate": "Évaluer",
+    "xpathNoResults": "Aucune correspondance pour cette expression.",
+    "tree": "Vue en arbre",
+    "treeExpandAll": "Tout développer",
+    "treeCollapseAll": "Tout réduire",
+    "treeUnavailable": "Arbre indisponible — formatez d'abord du XML valide.",
+    "namespaces": "Espaces de noms",
+    "namespacesEmpty": "Aucun namespace déclaré dans ce document.",
+    "namespaceDefault": "par défaut"
   }
 }

@@ -56,6 +56,46 @@ export interface XmlSearchResult {
   type: 'element' | 'attribute' | 'text';
 }
 
+export interface XPathResult {
+  path: string;
+  value: string;
+  type: 'element' | 'attribute' | 'text' | 'number' | 'boolean' | 'string';
+  nodeName?: string;
+}
+
+export interface XPathEvaluationResult {
+  success: boolean;
+  results: XPathResult[];
+  error?: string;
+  resultType?: string;
+}
+
+export interface XmlTreeNode {
+  name: string;
+  type: 'element' | 'text' | 'comment' | 'cdata' | 'processing-instruction';
+  path: string;
+  attributes: { name: string; value: string; namespace?: string }[];
+  children: XmlTreeNode[];
+  value?: string;
+  namespace?: string;
+  namespaceUri?: string;
+}
+
+export interface NamespaceStat {
+  prefix: string;
+  uri: string;
+  isDefault: boolean;
+  elementCount: number;
+  attributeCount: number;
+  sampleElements: string[];
+}
+
+export interface NamespaceStatsResult {
+  success: boolean;
+  namespaces: NamespaceStat[];
+  error?: string;
+}
+
 export function formatXml(
   input: string,
   options: XmlFormatterOptions = {}
@@ -589,6 +629,343 @@ export function searchXmlElements(
   } catch (error) {
     return results;
   }
+}
+
+function buildNodePath(node: Node, root: Node): string {
+  const segments: string[] = [];
+  let current: Node | null = node;
+
+  while (current && current !== root && current.parentNode) {
+    if (current.nodeType === 1 /* ELEMENT_NODE */) {
+      const el = current as Element;
+      const parent = current.parentNode as Element;
+      const siblings = Array.from(parent.childNodes).filter(
+        (n) => n.nodeType === 1 && (n as Element).nodeName === el.nodeName
+      );
+      const index = siblings.indexOf(el) + 1;
+      const segment =
+        siblings.length > 1 ? `${el.nodeName}[${index}]` : el.nodeName;
+      segments.unshift(segment);
+    } else if (current.nodeType === 2 /* ATTRIBUTE_NODE */) {
+      segments.unshift(`@${(current as Attr).name}`);
+    } else if (current.nodeType === 3 /* TEXT_NODE */) {
+      segments.unshift('text()');
+    }
+    current = current.parentNode;
+  }
+
+  if (root.nodeType === 1) {
+    segments.unshift((root as Element).nodeName);
+  }
+
+  return '/' + segments.join('/');
+}
+
+function collectNamespaceDeclarations(
+  xml: string
+): { prefix: string; uri: string; isDefault: boolean }[] {
+  const declarations: { prefix: string; uri: string; isDefault: boolean }[] = [];
+  const seen = new Set<string>();
+  const regex = /xmlns(?::([\w.-]+))?\s*=\s*["']([^"']+)["']/g;
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(xml)) !== null) {
+    const prefix = match[1] ?? '';
+    const uri = match[2];
+    const key = `${prefix}|${uri}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    declarations.push({ prefix, uri, isDefault: prefix === '' });
+  }
+  return declarations;
+}
+
+function parseXmlDocument(input: string): Document | { error: string } {
+  if (typeof DOMParser === 'undefined') {
+    return { error: 'DOMParser not available in this environment' };
+  }
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(input, 'application/xml');
+  const errorNode = doc.getElementsByTagName('parsererror')[0];
+  if (errorNode) {
+    return { error: errorNode.textContent ?? 'Invalid XML' };
+  }
+  return doc;
+}
+
+export function evaluateXPath(
+  input: string,
+  expression: string
+): XPathEvaluationResult {
+  if (!input || !input.trim()) {
+    return { success: false, results: [], error: 'XML input is required' };
+  }
+  if (!expression || !expression.trim()) {
+    return { success: false, results: [], error: 'XPath expression is required' };
+  }
+
+  const parsed = parseXmlDocument(input);
+  if ('error' in parsed) {
+    return { success: false, results: [], error: parsed.error };
+  }
+
+  const doc = parsed;
+  const declarations = collectNamespaceDeclarations(input);
+  const nsMap = new Map<string, string>();
+  for (const d of declarations) {
+    if (d.prefix) nsMap.set(d.prefix, d.uri);
+  }
+  const resolver = (prefix: string | null): string | null =>
+    prefix ? nsMap.get(prefix) ?? null : null;
+
+  try {
+    const xpathResult = doc.evaluate(
+      expression,
+      doc,
+      resolver,
+      0 /* ANY_TYPE */,
+      null
+    );
+
+    const results: XPathResult[] = [];
+    let resultTypeLabel = 'unknown';
+
+    switch (xpathResult.resultType) {
+      case 1 /* NUMBER_TYPE */:
+        resultTypeLabel = 'number';
+        results.push({
+          path: expression,
+          value: String(xpathResult.numberValue),
+          type: 'number',
+        });
+        break;
+      case 2 /* STRING_TYPE */:
+        resultTypeLabel = 'string';
+        results.push({
+          path: expression,
+          value: xpathResult.stringValue,
+          type: 'string',
+        });
+        break;
+      case 3 /* BOOLEAN_TYPE */:
+        resultTypeLabel = 'boolean';
+        results.push({
+          path: expression,
+          value: String(xpathResult.booleanValue),
+          type: 'boolean',
+        });
+        break;
+      case 4 /* UNORDERED_NODE_ITERATOR_TYPE */:
+      case 5 /* ORDERED_NODE_ITERATOR_TYPE */: {
+        resultTypeLabel = 'node-set';
+        let node = xpathResult.iterateNext();
+        while (node) {
+          const path = buildNodePath(node, doc);
+          if (node.nodeType === 1) {
+            results.push({
+              path,
+              value: (node as Element).outerHTML ?? node.nodeName,
+              type: 'element',
+              nodeName: node.nodeName,
+            });
+          } else if (node.nodeType === 2) {
+            results.push({
+              path,
+              value: (node as Attr).value,
+              type: 'attribute',
+              nodeName: (node as Attr).name,
+            });
+          } else {
+            results.push({
+              path,
+              value: node.nodeValue ?? '',
+              type: 'text',
+            });
+          }
+          node = xpathResult.iterateNext();
+        }
+        break;
+      }
+      default:
+        resultTypeLabel = 'other';
+    }
+
+    return { success: true, results, resultType: resultTypeLabel };
+  } catch (error) {
+    return {
+      success: false,
+      results: [],
+      error: error instanceof Error ? error.message : 'Invalid XPath expression',
+    };
+  }
+}
+
+export function buildXmlTree(input: string): {
+  success: boolean;
+  tree?: XmlTreeNode;
+  error?: string;
+} {
+  if (!input || !input.trim()) {
+    return { success: false, error: 'XML input is required' };
+  }
+
+  const parsed = parseXmlDocument(input);
+  if ('error' in parsed) {
+    return { success: false, error: parsed.error };
+  }
+
+  const root = parsed.documentElement;
+  if (!root) {
+    return { success: false, error: 'No root element found' };
+  }
+
+  function convert(node: Node, parentPath: string, siblingIndex?: number): XmlTreeNode | null {
+    if (node.nodeType === 1) {
+      const el = node as Element;
+      const name = el.nodeName;
+      const path =
+        siblingIndex !== undefined && siblingIndex > 0
+          ? `${parentPath}/${name}[${siblingIndex + 1}]`
+          : `${parentPath}/${name}`;
+
+      const attributes = Array.from(el.attributes).map((attr) => ({
+        name: attr.name,
+        value: attr.value,
+        namespace: attr.namespaceURI ?? undefined,
+      }));
+
+      const childrenByName = new Map<string, number>();
+      const children: XmlTreeNode[] = [];
+      for (const child of Array.from(el.childNodes)) {
+        if (child.nodeType === 1) {
+          const childName = (child as Element).nodeName;
+          const count = childrenByName.get(childName) ?? 0;
+          const totalSameName = Array.from(el.childNodes).filter(
+            (n) => n.nodeType === 1 && (n as Element).nodeName === childName
+          ).length;
+          const idx = totalSameName > 1 ? count : undefined;
+          const converted = convert(child, path, idx);
+          if (converted) children.push(converted);
+          childrenByName.set(childName, count + 1);
+        } else if (child.nodeType === 3) {
+          const text = (child.nodeValue ?? '').trim();
+          if (text) {
+            children.push({
+              name: '#text',
+              type: 'text',
+              path: `${path}/text()`,
+              attributes: [],
+              children: [],
+              value: text,
+            });
+          }
+        } else if (child.nodeType === 8) {
+          children.push({
+            name: '#comment',
+            type: 'comment',
+            path: `${path}/comment()`,
+            attributes: [],
+            children: [],
+            value: child.nodeValue ?? '',
+          });
+        } else if (child.nodeType === 4) {
+          children.push({
+            name: '#cdata',
+            type: 'cdata',
+            path: `${path}/cdata()`,
+            attributes: [],
+            children: [],
+            value: child.nodeValue ?? '',
+          });
+        } else if (child.nodeType === 7) {
+          children.push({
+            name: (child as ProcessingInstruction).target,
+            type: 'processing-instruction',
+            path,
+            attributes: [],
+            children: [],
+            value: child.nodeValue ?? '',
+          });
+        }
+      }
+
+      return {
+        name,
+        type: 'element',
+        path,
+        attributes,
+        children,
+        namespace: el.prefix ?? undefined,
+        namespaceUri: el.namespaceURI ?? undefined,
+      };
+    }
+    return null;
+  }
+
+  const tree = convert(root, '');
+  if (!tree) {
+    return { success: false, error: 'Failed to build tree' };
+  }
+  return { success: true, tree };
+}
+
+export function getNamespaceStats(input: string): NamespaceStatsResult {
+  if (!input || !input.trim()) {
+    return { success: false, namespaces: [], error: 'XML input is required' };
+  }
+
+  const parsed = parseXmlDocument(input);
+  if ('error' in parsed) {
+    return { success: false, namespaces: [], error: parsed.error };
+  }
+
+  const declarations = collectNamespaceDeclarations(input);
+  const stats = new Map<string, NamespaceStat>();
+  for (const d of declarations) {
+    const key = d.uri;
+    if (!stats.has(key)) {
+      stats.set(key, {
+        prefix: d.prefix,
+        uri: d.uri,
+        isDefault: d.isDefault,
+        elementCount: 0,
+        attributeCount: 0,
+        sampleElements: [],
+      });
+    }
+  }
+
+  const walk = (node: Node) => {
+    if (node.nodeType === 1) {
+      const el = node as Element;
+      const uri = el.namespaceURI ?? '';
+      if (uri && stats.has(uri)) {
+        const stat = stats.get(uri)!;
+        stat.elementCount += 1;
+        if (
+          stat.sampleElements.length < 5 &&
+          !stat.sampleElements.includes(el.nodeName)
+        ) {
+          stat.sampleElements.push(el.nodeName);
+        }
+      }
+      for (const attr of Array.from(el.attributes)) {
+        const attrUri = attr.namespaceURI ?? '';
+        if (attrUri && stats.has(attrUri)) {
+          stats.get(attrUri)!.attributeCount += 1;
+        }
+      }
+      for (const child of Array.from(el.childNodes)) walk(child);
+    }
+  };
+
+  if (parsed.documentElement) walk(parsed.documentElement);
+
+  return {
+    success: true,
+    namespaces: Array.from(stats.values()).sort((a, b) =>
+      a.isDefault ? -1 : b.isDefault ? 1 : a.prefix.localeCompare(b.prefix)
+    ),
+  };
 }
 
 // Sample XML data for testing and examples
