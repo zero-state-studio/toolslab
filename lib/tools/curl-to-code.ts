@@ -80,68 +80,138 @@ export interface ConversionResult {
 }
 
 // Language/Framework configurations
-export const SUPPORTED_LANGUAGES = {
+// Each framework has an `implemented` flag. UI shows unimplemented combos
+// with a "Coming soon" label but prevents selection. The dispatcher in
+// `convertCurlToCode` refuses unimplemented combos with an explicit message.
+// Tracking for future implementation: RIC-112 epic (children RIC-114..118).
+export interface FrameworkEntry {
+  id: string;
+  implemented: boolean;
+}
+
+export interface LanguageEntry {
+  name: string;
+  frameworks: FrameworkEntry[];
+  fileExtension: string;
+}
+
+export const SUPPORTED_LANGUAGES: Record<string, LanguageEntry> = {
   javascript: {
     name: 'JavaScript',
-    frameworks: ['fetch', 'axios', 'node-https', 'jquery', 'xhr'],
+    frameworks: [
+      { id: 'fetch', implemented: true },
+      { id: 'axios', implemented: false },
+      { id: 'node-https', implemented: false },
+      { id: 'jquery', implemented: false },
+      { id: 'xhr', implemented: false },
+    ],
     fileExtension: 'js',
   },
   typescript: {
     name: 'TypeScript',
-    frameworks: ['fetch', 'axios', 'node-https'],
+    frameworks: [
+      { id: 'fetch', implemented: true },
+      { id: 'axios', implemented: false },
+      { id: 'node-https', implemented: false },
+    ],
     fileExtension: 'ts',
   },
   python: {
     name: 'Python',
-    frameworks: ['requests', 'urllib', 'httpx', 'aiohttp'],
+    frameworks: [
+      { id: 'requests', implemented: true },
+      { id: 'urllib', implemented: false },
+      { id: 'httpx', implemented: false },
+      { id: 'aiohttp', implemented: false },
+    ],
     fileExtension: 'py',
   },
   php: {
     name: 'PHP',
-    frameworks: ['curl', 'guzzle', 'file_get_contents'],
+    frameworks: [
+      { id: 'curl', implemented: false },
+      { id: 'guzzle', implemented: false },
+      { id: 'file_get_contents', implemented: false },
+    ],
     fileExtension: 'php',
   },
   go: {
     name: 'Go',
-    frameworks: ['net-http', 'resty'],
+    frameworks: [
+      { id: 'net-http', implemented: false },
+      { id: 'resty', implemented: false },
+    ],
     fileExtension: 'go',
   },
   java: {
     name: 'Java',
-    frameworks: ['httpurlconnection', 'apache-httpclient', 'okhttp', 'spring'],
+    frameworks: [
+      { id: 'httpurlconnection', implemented: false },
+      { id: 'apache-httpclient', implemented: false },
+      { id: 'okhttp', implemented: false },
+      { id: 'spring', implemented: false },
+    ],
     fileExtension: 'java',
   },
   csharp: {
     name: 'C#',
-    frameworks: ['httpclient', 'restsharp', 'webrequest'],
+    frameworks: [
+      { id: 'httpclient', implemented: false },
+      { id: 'restsharp', implemented: false },
+      { id: 'webrequest', implemented: false },
+    ],
     fileExtension: 'cs',
   },
   ruby: {
     name: 'Ruby',
-    frameworks: ['net-http', 'restclient', 'httparty'],
+    frameworks: [
+      { id: 'net-http', implemented: false },
+      { id: 'restclient', implemented: false },
+      { id: 'httparty', implemented: false },
+    ],
     fileExtension: 'rb',
   },
   rust: {
     name: 'Rust',
-    frameworks: ['reqwest', 'hyper'],
+    frameworks: [
+      { id: 'reqwest', implemented: false },
+      { id: 'hyper', implemented: false },
+    ],
     fileExtension: 'rs',
   },
   swift: {
     name: 'Swift',
-    frameworks: ['urlsession', 'alamofire'],
+    frameworks: [
+      { id: 'urlsession', implemented: false },
+      { id: 'alamofire', implemented: false },
+    ],
     fileExtension: 'swift',
   },
   kotlin: {
     name: 'Kotlin',
-    frameworks: ['okhttp', 'ktor', 'retrofit'],
+    frameworks: [
+      { id: 'okhttp', implemented: false },
+      { id: 'ktor', implemented: false },
+      { id: 'retrofit', implemented: false },
+    ],
     fileExtension: 'kt',
   },
   shell: {
     name: 'Shell',
-    frameworks: ['wget', 'httpie', 'powershell'],
+    frameworks: [
+      { id: 'wget', implemented: false },
+      { id: 'httpie', implemented: false },
+      { id: 'powershell', implemented: false },
+    ],
     fileExtension: 'sh',
   },
 };
+
+export function isImplemented(language: string, framework: string): boolean {
+  const lang = SUPPORTED_LANGUAGES[language];
+  if (!lang) return false;
+  return lang.frameworks.some((f) => f.id === framework && f.implemented);
+}
 
 // cURL Parser
 export class CurlParser {
@@ -1010,31 +1080,44 @@ export function convertCurlToCode(
       };
     }
 
-    // Generate code based on language and framework
+    // Generate code based on language and framework.
+    // Any combo not implemented returns an explicit error — never fall
+    // back silently to a different framework (previous bug).
+    const lang = SUPPORTED_LANGUAGES[options.language];
+    if (!lang) {
+      return {
+        success: false,
+        error: `Language "${options.language}" is not recognized`,
+      };
+    }
+
+    if (!isImplemented(options.language, options.framework)) {
+      return {
+        success: false,
+        error: `${lang.name} + "${options.framework}" generator is coming soon. Pick an available combination (e.g., JavaScript + fetch or Python + requests).`,
+      };
+    }
+
     let generator: CodeGenerator;
 
     if (
-      options.language === 'javascript' ||
-      options.language === 'typescript'
+      (options.language === 'javascript' ||
+        options.language === 'typescript') &&
+      options.framework === 'fetch'
     ) {
-      if (options.framework === 'fetch') {
-        generator = new FetchGenerator(options);
-      } else {
-        // Add other JavaScript frameworks here
-        generator = new FetchGenerator(options);
-      }
-    } else if (options.language === 'python') {
-      if (options.framework === 'requests') {
-        generator = new PythonRequestsGenerator(options);
-      } else {
-        // Add other Python frameworks here
-        generator = new PythonRequestsGenerator(options);
-      }
+      generator = new FetchGenerator(options);
+    } else if (
+      options.language === 'python' &&
+      options.framework === 'requests'
+    ) {
+      generator = new PythonRequestsGenerator(options);
     } else {
-      // Add other languages here
+      // Safety net: registry marked implemented but dispatcher missing case.
+      // This indicates a bug in the isImplemented flags or a missing generator
+      // class — surface explicitly instead of falling back.
       return {
         success: false,
-        error: `Language "${options.language}" with framework "${options.framework}" is not yet supported`,
+        error: `Internal: generator missing for ${options.language} + ${options.framework}. Please report this.`,
       };
     }
 
