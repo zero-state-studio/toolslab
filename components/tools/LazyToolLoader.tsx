@@ -71,9 +71,11 @@ const toolComponents = {
   'curl-to-code': lazy(() => import('./implementations/CurlToCode')),
   'curl-to-csharp': lazy(() => import('./implementations/CurlToCsharp')),
   'curl-to-go': lazy(() => import('./implementations/CurlToGo')),
+  'curl-to-httpie': lazy(() => import('./implementations/CurlToHttpie')),
   'curl-to-httpx': lazy(() => import('./implementations/CurlToHttpx')),
   'curl-to-java': lazy(() => import('./implementations/CurlToJava')),
   'curl-to-php': lazy(() => import('./implementations/CurlToPhp')),
+  'curl-to-ruby': lazy(() => import('./implementations/CurlToRuby')),
   'json-to-typescript': lazy(
     () => import('./implementations/JsonToTypeScript')
   ),

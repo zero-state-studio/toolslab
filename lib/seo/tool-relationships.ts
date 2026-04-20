@@ -287,6 +287,20 @@ export const toolRelationships: ToolRelationships = {
     boostVisibility: true,
   },
 
+  'curl-to-ruby': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-php', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
+  'curl-to-httpie': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-axios', 'curl-to-php'],
+    boostVisibility: true,
+  },
+
   'api-tester': {
     workflow: ['curl-to-code', 'jwt-decoder', 'unix-timestamp-converter'],
     complementary: ['json-formatter', 'json-validator', 'crontab-builder'],

@@ -56,8 +56,16 @@ describe('curl-to-code dispatcher safety', () => {
       expect(isImplemented('csharp', 'httpclient')).toBe(true);
     });
 
-    it('returns false for ruby + net-http (not yet implemented)', () => {
-      expect(isImplemented('ruby', 'net-http')).toBe(false);
+    it('returns true for ruby + net-http (implemented in RIC-118)', () => {
+      expect(isImplemented('ruby', 'net-http')).toBe(true);
+    });
+
+    it('returns true for shell + httpie (implemented in RIC-118)', () => {
+      expect(isImplemented('shell', 'httpie')).toBe(true);
+    });
+
+    it('returns false for rust + reqwest (intentionally unimplemented)', () => {
+      expect(isImplemented('rust', 'reqwest')).toBe(false);
     });
 
     it('returns false for unknown language', () => {
@@ -235,6 +243,124 @@ describe('curl-to-code dispatcher safety', () => {
       expect(result.generatedCode?.dependencies).toContain('RestSharp');
     });
 
+    it('generates Ruby Net::HTTP code with URI.parse + Net::HTTP.start block', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'ruby',
+        framework: 'net-http',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 2,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('require "net/http"');
+      expect(result.generatedCode?.code).toContain('URI(');
+      expect(result.generatedCode?.code).toContain('Net::HTTP.start');
+    });
+
+    it('generates Ruby HTTParty code with options hash', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'ruby',
+        framework: 'httparty',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 2,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('require "httparty"');
+      expect(result.generatedCode?.code).toContain('HTTParty.get');
+      expect(result.generatedCode?.dependencies).toContain('httparty');
+    });
+
+    it('generates HTTPie command with short-hand syntax', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'shell',
+        framework: 'httpie',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 2,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('http');
+      expect(result.generatedCode?.code).toContain('GET');
+      expect(result.generatedCode?.dependencies).toContain('httpie');
+    });
+
+    it('generates wget command with --method and -qO-', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'shell',
+        framework: 'wget',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 2,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('wget');
+      expect(result.generatedCode?.code).toContain('--method=GET');
+    });
+
+    it('generates PowerShell Invoke-RestMethod command', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'shell',
+        framework: 'powershell',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 2,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('Invoke-RestMethod');
+      expect(result.generatedCode?.code).toContain('-Method GET');
+    });
+
     it('generates Python httpx code with Client context manager', () => {
       const result = convertCurlToCode(baseCurl, {
         language: 'python',
@@ -260,10 +386,10 @@ describe('curl-to-code dispatcher safety', () => {
       expect(result.generatedCode?.dependencies).toContain('httpx');
     });
 
-    it('refuses ruby + net-http (not yet implemented) with explicit error', () => {
+    it('refuses rust + reqwest (intentionally unimplemented) with explicit error', () => {
       const result = convertCurlToCode(baseCurl, {
-        language: 'ruby',
-        framework: 'net-http',
+        language: 'rust',
+        framework: 'reqwest',
         errorHandling: 'basic',
         async: false,
         extractEnvVars: false,
