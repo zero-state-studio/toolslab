@@ -119,23 +119,29 @@ export default function CurlToCodeConverter() {
     includeTests: false,
   });
 
-  // Get available frameworks for selected language
+  // Get available frameworks for selected language (all, with implemented flag)
   const availableFrameworks = useMemo(() => {
-    return (
-      SUPPORTED_LANGUAGES[selectedLanguage as keyof typeof SUPPORTED_LANGUAGES]
-        ?.frameworks || []
-    );
+    return SUPPORTED_LANGUAGES[selectedLanguage]?.frameworks || [];
   }, [selectedLanguage]);
 
-  // Update framework when language changes
+  // Update framework when language changes — prefer an implemented one
   useEffect(() => {
-    if (
-      availableFrameworks.length > 0 &&
-      !availableFrameworks.includes(selectedFramework)
-    ) {
-      setSelectedFramework(availableFrameworks[0]);
+    if (availableFrameworks.length === 0) return;
+    const stillValid = availableFrameworks.some(
+      (f) => f.id === selectedFramework && f.implemented
+    );
+    if (!stillValid) {
+      const firstImplemented = availableFrameworks.find((f) => f.implemented);
+      setSelectedFramework(
+        firstImplemented ? firstImplemented.id : availableFrameworks[0].id
+      );
     }
   }, [availableFrameworks, selectedFramework]);
+
+  // Check if any framework of the currently selected language is implemented
+  const languageHasImplementation = useMemo(() => {
+    return availableFrameworks.some((f) => f.implemented);
+  }, [availableFrameworks]);
 
   // Update options when language/framework changes
   useEffect(() => {
@@ -330,11 +336,26 @@ export default function CurlToCodeConverter() {
                     </SelectTrigger>
                     <SelectContent>
                       {Object.entries(SUPPORTED_LANGUAGES).map(
-                        ([key, lang]) => (
-                          <SelectItem key={key} value={key}>
-                            {lang.name}
-                          </SelectItem>
-                        )
+                        ([key, lang]) => {
+                          const anyImplemented = lang.frameworks.some(
+                            (f) => f.implemented
+                          );
+                          return (
+                            <SelectItem key={key} value={key}>
+                              <span className="flex items-center gap-2">
+                                {lang.name}
+                                {!anyImplemented && (
+                                  <Badge
+                                    variant="secondary"
+                                    className="text-[10px]"
+                                  >
+                                    Coming soon
+                                  </Badge>
+                                )}
+                              </span>
+                            </SelectItem>
+                          );
+                        }
                       )}
                     </SelectContent>
                   </Select>
@@ -350,16 +371,45 @@ export default function CurlToCodeConverter() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      {availableFrameworks.map((framework) => (
-                        <SelectItem key={framework} value={framework}>
-                          {framework.charAt(0).toUpperCase() +
-                            framework.slice(1).replace(/-/g, ' ')}
-                        </SelectItem>
-                      ))}
+                      {availableFrameworks.map((framework) => {
+                        const label =
+                          framework.id.charAt(0).toUpperCase() +
+                          framework.id.slice(1).replace(/-/g, ' ');
+                        return (
+                          <SelectItem
+                            key={framework.id}
+                            value={framework.id}
+                            disabled={!framework.implemented}
+                          >
+                            <span className="flex items-center gap-2">
+                              {label}
+                              {!framework.implemented && (
+                                <Badge
+                                  variant="secondary"
+                                  className="text-[10px]"
+                                >
+                                  Coming soon
+                                </Badge>
+                              )}
+                            </span>
+                          </SelectItem>
+                        );
+                      })}
                     </SelectContent>
                   </Select>
                 </div>
               </div>
+
+              {!languageHasImplementation && (
+                <Alert>
+                  <AlertDescription>
+                    Generator for <strong>{SUPPORTED_LANGUAGES[selectedLanguage]?.name}</strong>{' '}
+                    is coming soon. Pick a language with an available framework
+                    (e.g., JavaScript + fetch, Python + requests) to generate
+                    code now.
+                  </AlertDescription>
+                </Alert>
+              )}
 
               {/* Options */}
               <div className="space-y-4">
