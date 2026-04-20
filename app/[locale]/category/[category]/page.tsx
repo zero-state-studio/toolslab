@@ -62,22 +62,44 @@ export async function generateMetadata({
 
   const dict = await getDictionary(locale as Locale);
   const categoryDict = dict.categories[categoryId];
+  const categoryName = categoryDict?.name || category.name;
+  const categoryNameLower = categoryName.toLowerCase();
+  const toolCount = category.tools.length;
 
-  // Generate localized metadata
-  const title =
-    locale === 'it'
-      ? `${categoryDict?.name || category.name} - Strumenti Gratuiti Online | ToolsLab`
-      : `${seoContent.h1Title} - Free Online Tools | ToolsLab`;
+  // Localized brand suffix appended to the category H1 for the <title> tag.
+  // Prevents mixed-language titles like "Outils d'Encodage - Free Online Tools | ToolsLab"
+  // which weakens E-A-T signals for non-EN locales (see RIC-119).
+  const brandSuffix: Record<Locale, string> = {
+    en: 'Free Online Tools | ToolsLab',
+    it: 'Strumenti Gratuiti Online | ToolsLab',
+    es: 'Herramientas Gratis Online | ToolsLab',
+    fr: 'Outils en Ligne Gratuits | ToolsLab',
+    de: 'Kostenlose Online-Tools | ToolsLab',
+    pt: 'Ferramentas Grátis Online | ToolsLab',
+  };
 
+  // Localized H1 prefix. Falls back to seoContent.h1Title for EN and any
+  // locale-specific SEO override loaded from the per-locale dictionary.
+  const localizedTitlePrefix =
+    locale === 'it' ? categoryName : seoContent.h1Title;
+
+  const title = `${localizedTitlePrefix} - ${brandSuffix[locale as Locale]}`;
+
+  // Localized description. For IT we keep the existing richer copy. For every
+  // other locale we use `seoContent.metaDescription` which is already fully
+  // translated per-locale in `lib/i18n/dictionaries/<locale>/category-seo.json`.
+  const descriptionByLocale: Partial<Record<Locale, string>> = {
+    it: `Scopri ${toolCount} strumenti professionali per ${categoryNameLower}. Gratuiti, sicuri e senza registrazione. Perfetti per sviluppatori e professionisti.`,
+  };
   const description =
-    locale === 'it'
-      ? `Scopri ${category.tools.length} strumenti professionali per ${categoryDict?.name?.toLowerCase() || category.name.toLowerCase()}. Gratuiti, sicuri e senza registrazione. Perfetti per sviluppatori e professionisti.`
-      : seoContent.metaDescription;
+    descriptionByLocale[locale as Locale] ?? seoContent.metaDescription;
 
-  const keywords =
-    locale === 'it'
-      ? `strumenti ${categoryDict?.name?.toLowerCase() || category.name.toLowerCase()}, strumenti online gratuiti, ${categoryDict?.name?.toLowerCase()} italiano, toolslab, sviluppatori`
-      : seoContent.keywords;
+  // Localized keywords. For IT we keep the custom keyword set; for other
+  // locales we use the translated keyword array from the per-locale JSON.
+  const keywordsByLocale: Partial<Record<Locale, string>> = {
+    it: `strumenti ${categoryNameLower}, strumenti online gratuiti, ${categoryNameLower} italiano, toolslab, sviluppatori`,
+  };
+  const keywords = keywordsByLocale[locale as Locale] ?? seoContent.keywords;
 
   return {
     title,
