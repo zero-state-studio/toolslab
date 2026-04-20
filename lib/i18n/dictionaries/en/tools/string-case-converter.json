@@ -1,6 +1,7 @@
 {
   "title": "String Case Converter",
   "description": "Convert text between different naming conventions",
+  "placeholder": "Enter text to convert (e.g., myVariableName)",
   "inputLabel": "Enter your text",
   "inputPlaceholder": "Enter text to convert (e.g., myVariableName)",
   "convert": "Convert",

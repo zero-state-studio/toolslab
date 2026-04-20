@@ -1,0 +1,85 @@
+{
+  "title": "ROT13 / Cifra de César",
+  "description": "Codifique e decodifique texto com ROT13 ou qualquer deslocamento César de 1 a 25",
+  "placeholder": "Digite o texto a codificar ou decodificar...",
+  "meta": {
+    "title": "ROT13 e Cifra de César - Codificar/Decodificar Online Grátis",
+    "description": "Codifique e decodifique texto com ROT13 ou cifra de César (deslocamento 1-25) online grátis. Força bruta nas 25 rotações. Sem cadastro."
+  },
+  "tagline": "Codifique e decodifique texto com ROT13, deslocamento César ou força bruta em 25 rotações",
+  "pageDescription": "Codifique e decodifique texto com ROT13, cifra de César ou força bruta nas 25 rotações de uma vez. Feito para desenvolvedores, estudantes e competidores de CTF — suporta qualquer deslocamento de 1 a 25, preserva maiúsculas/minúsculas e pontuação, ignora caracteres não alfabéticos. Perfeito para decodificar tags spoiler do Reddit, exercícios de criptografia clássica e identificar rapidamente o deslocamento usado em um ciphertext. Online grátis sem cadastro — todo processamento no seu navegador.",
+  "longTailKeywords": [
+    "rot13 codificador decodificador online grátis",
+    "cifra de césar online grátis",
+    "decodificador rot13 online sem cadastro",
+    "cifra de césar com deslocamento online grátis",
+    "como decodificar mensagem rot13 online",
+    "como resolver cifra de césar sem saber shift",
+    "cifra de césar força bruta 25 rotações online",
+    "conversor rot13 texto grátis sem marca d'água",
+    "decodificador cifra de césar para desafios ctf",
+    "gerador rot13 para spoilers reddit",
+    "melhor ferramenta cifra de césar gratuita online",
+    "cifra de césar clássica para aprender criptografia"
+  ],
+  "instructions": {
+    "title": "Como usar ROT13 / Cifra de César",
+    "steps": [
+      {
+        "title": "Escolha um modo",
+        "description": "Selecione ROT13 para codificar/decodificar em um clique, César encode/decode com deslocamento personalizado, ou força bruta para ver as 25 rotações possíveis."
+      },
+      {
+        "title": "Digite seu texto",
+        "description": "Cole ou digite seu texto na área de entrada. Letras são rotacionadas; dígitos, pontuação, espaços e caracteres unicode passam sem modificação."
+      },
+      {
+        "title": "Escolha um deslocamento (apenas modos César)",
+        "description": "Para encode ou decode, escolha um deslocamento de 1 a 25. ROT13 é fixo em 13 — é seu próprio inverso, a mesma operação codifica e decodifica."
+      },
+      {
+        "title": "Processe e copie",
+        "description": "Clique em Process (ou Mostrar as 25 rotações). Copie a saída para a área de transferência, ou use a saída como nova entrada para encadear operações."
+      }
+    ],
+    "features": [
+      "Codificação e decodificação ROT13 em um clique (seu próprio inverso)",
+      "Cifra de César clássica com qualquer deslocamento de 1 a 25",
+      "Modo força bruta mostra as 25 rotações lado a lado",
+      "Preserva maiúsculas e minúsculas",
+      "Caracteres não alfabéticos (dígitos, pontuação, unicode) passam sem modificação",
+      "Copie qualquer rotação individual com um clique",
+      "Lida com entradas muito grandes (100k+ caracteres) sem upload para servidor",
+      "Totalmente baseado no navegador — nenhum dado sai da sua máquina"
+    ],
+    "useCases": [
+      "Decodificar tags spoiler ROT13 no Reddit ou fóruns",
+      "Resolver desafios de criptografia Capture-the-Flag com modo força bruta",
+      "Ensinar fundamentos de criptografia clássica na escola ou bootcamp",
+      "Ofuscar conteúdo spoiler ao compartilhar sem texto plano",
+      "Testar lógica de cifragem rapidamente durante o desenvolvimento",
+      "Demonstrar como cifras de substituição funcionam",
+      "Preparar exercícios e quizzes com ciphertext de deslocamento conhecido",
+      "Identificar rapidamente um deslocamento César desconhecido escaneando as 25 rotações"
+    ],
+    "proTips": [
+      "ROT13 é seu próprio inverso — aplicá-lo duas vezes retorna o texto original",
+      "Use força bruta quando não souber o deslocamento: uma das 25 linhas será legível",
+      "Deslocamentos 0 e 26 são identidade — restringimos a entrada para 1–25",
+      "A cifra de César é trivialmente quebrável — nunca use para segredos reais",
+      "Preservar maiúsculas torna os round-trips seguros: encode depois decode retorna ao original",
+      "Use 'Use output as input' para encadear operações com deslocamentos diferentes"
+    ],
+    "troubleshooting": [
+      "Saída igual à entrada: verifique se o deslocamento não é múltiplo de 26 e o texto contém letras",
+      "Números ou pontuação inalterados: comportamento esperado — apenas A-Z e a-z são rotacionados",
+      "Caracteres acentuados (é, ñ, ü) não rotacionados: por design, apenas letras ASCII são deslocadas",
+      "Saída de força bruta difícil de escanear: cole poucas palavras primeiro, identifique a linha legível, depois aplique esse deslocamento ao texto completo"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Colar entrada" },
+      { "keys": "Ctrl+C", "description": "Copiar saída" },
+      { "keys": "Ctrl+Enter", "description": "Processar" }
+    ]
+  }
+}

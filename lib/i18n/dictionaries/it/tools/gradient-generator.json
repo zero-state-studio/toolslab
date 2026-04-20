@@ -1,6 +1,7 @@
 {
   "title": "Generatore Gradienti",
   "description": "Genera gradienti CSS personalizzati",
+  "placeholder": "Configura colori e direzione del gradiente...",
   "meta": {
     "title": "Generatore Gradienti CSS - Online",
     "description": "Crea gradienti CSS con editor visuale. Genera gradienti lineari, radiali e conici con colori personalizzati. Copia il codice CSS. Strumento online gratuito."

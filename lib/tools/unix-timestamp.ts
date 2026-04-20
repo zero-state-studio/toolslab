@@ -10,7 +10,7 @@ import {
   subHours,
   subMinutes,
 } from 'date-fns';
-import { formatInTimeZone, toZonedTime } from 'date-fns-tz';
+import { formatInTimeZone, fromZonedTime, toZonedTime } from 'date-fns-tz';
 
 export interface TimestampConversionOptions {
   timezone?: string;
@@ -29,6 +29,7 @@ export interface ConversionResult {
   metadata?: {
     inputType?: 'timestamp' | 'date';
     timezone?: string;
+    timezoneOffset?: string;
     unit?: 'seconds' | 'milliseconds';
     original?: string;
     formats?: Record<string, string>;
@@ -218,6 +219,7 @@ export function timestampToDate(
       metadata: {
         inputType: 'timestamp',
         timezone,
+        timezoneOffset: getTimezoneInfo(timezone)?.offset,
         unit,
         original: input,
         formats,
@@ -232,36 +234,75 @@ export function timestampToDate(
   }
 }
 
+// Matches ISO-style offsets (Z, +HH:MM, +HHMM) at the end of the string,
+// as well as trailing UTC/GMT markers. Used to decide whether the input
+// already carries its own timezone information.
+const EXPLICIT_TZ_SUFFIX = /(?:Z|[+-]\d{2}:?\d{2}|\s(?:UTC|GMT))$/i;
+
+function hasExplicitTimezone(input: string): boolean {
+  return EXPLICIT_TZ_SUFFIX.test(input.trim());
+}
+
 export function dateToTimestamp(
   input: string,
   options: TimestampConversionOptions = {}
 ): ConversionResult {
   try {
     const timezone = options.timezone || 'UTC';
-    let date: Date;
+    const trimmed = input.trim();
+    const hasTz = hasExplicitTimezone(trimmed);
+    let utcDate: Date;
 
-    // Try parsing the date
-    try {
-      // First try as ISO string
-      date = parseISO(input.trim());
-      if (isNaN(date.getTime())) {
-        // Fall back to Date constructor
-        date = new Date(input.trim());
+    if (hasTz) {
+      // Input carries its own TZ info — parse as absolute. Selected timezone
+      // only affects the display formats downstream, not the instant itself.
+      try {
+        utcDate = parseISO(trimmed);
+        if (isNaN(utcDate.getTime())) {
+          utcDate = new Date(trimmed);
+        }
+      } catch {
+        utcDate = new Date(trimmed);
       }
-    } catch {
-      date = new Date(input.trim());
+    } else {
+      // Input is a naive wall-clock time — interpret it as being in `timezone`.
+      // Normalise "2024-01-15 10:00:00" to ISO-like "2024-01-15T10:00:00"
+      // so date-fns-tz's fromZonedTime can parse it.
+      const normalised = trimmed.replace(' ', 'T');
+      try {
+        utcDate = fromZonedTime(normalised, timezone);
+        if (isNaN(utcDate.getTime())) {
+          throw new Error('Invalid parse');
+        }
+      } catch {
+        // Fallback: let Date constructor parse (assumes browser local TZ),
+        // then re-interpret the wall-clock fields in the selected timezone.
+        const fallback = new Date(trimmed);
+        if (isNaN(fallback.getTime())) {
+          utcDate = fallback;
+        } else {
+          const isoWall =
+            `${fallback.getFullYear()}-` +
+            `${String(fallback.getMonth() + 1).padStart(2, '0')}-` +
+            `${String(fallback.getDate()).padStart(2, '0')}T` +
+            `${String(fallback.getHours()).padStart(2, '0')}:` +
+            `${String(fallback.getMinutes()).padStart(2, '0')}:` +
+            `${String(fallback.getSeconds()).padStart(2, '0')}`;
+          try {
+            utcDate = fromZonedTime(isoWall, timezone);
+          } catch {
+            utcDate = fallback;
+          }
+        }
+      }
     }
 
-    if (isNaN(date.getTime())) {
+    if (isNaN(utcDate.getTime())) {
       return {
         success: false,
         error: 'Invalid date format. Please enter a valid date string.',
       };
     }
-
-    // For now, use the date as-is
-    // TODO: Implement proper timezone conversion when needed
-    const utcDate = date;
 
     const unit = options.unit || 'seconds';
     const timestamp =
@@ -287,6 +328,7 @@ export function dateToTimestamp(
       metadata: {
         inputType: 'date',
         timezone,
+        timezoneOffset: getTimezoneInfo(timezone)?.offset,
         unit,
         original: input,
         formats,

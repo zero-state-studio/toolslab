@@ -1,6 +1,7 @@
 {
   "title": "Color Picker",
   "description": "Scegli e converti colori tra formati HEX, RGB, HSL",
+  "placeholder": "Inserisci colore (HEX, RGB, HSL)...",
   "meta": {
     "title": "Color Picker - Selettore Colori HEX RGB HSL Online Gratis",
     "description": "Color picker online gratis — seleziona colori e converti tra HEX, RGB, HSL, CMYK. Contrasto WCAG, generatore palette. Senza registrazione, nel browser."

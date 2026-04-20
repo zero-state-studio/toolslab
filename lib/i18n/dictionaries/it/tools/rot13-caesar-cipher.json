@@ -1,0 +1,85 @@
+{
+  "title": "ROT13 / Cifrario di Cesare",
+  "description": "Codifica e decodifica testo con ROT13 o qualsiasi shift Cesare da 1 a 25",
+  "placeholder": "Inserisci il testo da codificare o decodificare...",
+  "meta": {
+    "title": "ROT13 e Cifrario di Cesare - Codifica Online Gratis",
+    "description": "Codifica e decodifica testo con ROT13 o cifrario di Cesare (shift 1-25) online gratis. Brute force su tutte le 25 rotazioni. Senza registrazione."
+  },
+  "tagline": "Codifica e decodifica testo con ROT13, shift Cesare o brute force di 25 rotazioni",
+  "pageDescription": "Codifica e decodifica testo con ROT13, cifrario di Cesare o brute force su tutte le 25 rotazioni in un colpo solo. Pensato per sviluppatori, studenti e appassionati di CTF — gestisce qualsiasi shift da 1 a 25, preserva maiuscole/minuscole e punteggiatura, ignora i caratteri non alfabetici. Perfetto per decodificare spoiler su Reddit, esercizi di crittografia classica e identificare rapidamente lo shift usato su un dato ciphertext. Online gratis senza registrazione — tutto elaborato nel tuo browser.",
+  "longTailKeywords": [
+    "rot13 codificatore decodificatore online gratis",
+    "cifrario di cesare online gratuito",
+    "decodificatore rot13 online senza registrazione",
+    "cifrario di cesare con shift personalizzato online",
+    "come decodificare messaggio rot13 online",
+    "come risolvere cifrario di cesare senza shift",
+    "cifrario di cesare brute force 25 rotazioni",
+    "convertitore rot13 testo gratis",
+    "decodificatore cifrario cesare per sfide ctf",
+    "generatore rot13 per spoiler reddit",
+    "miglior strumento cifrario di cesare gratuito",
+    "cifrario di cesare classico per apprendimento crittografia"
+  ],
+  "instructions": {
+    "title": "Come usare ROT13 / Cifrario di Cesare",
+    "steps": [
+      {
+        "title": "Scegli una modalità",
+        "description": "Seleziona ROT13 per codifica/decodifica in un clic, Cesare encode/decode con shift personalizzato o brute force per vedere tutte le 25 rotazioni possibili."
+      },
+      {
+        "title": "Inserisci il testo",
+        "description": "Incolla o digita il testo nell'area di input. Le lettere vengono ruotate; cifre, punteggiatura, spazi e caratteri unicode passano invariati."
+      },
+      {
+        "title": "Scegli uno shift (solo modalità Cesare)",
+        "description": "Per encode o decode, scegli uno shift da 1 a 25. ROT13 è fisso a 13 — è la sua stessa inversa, quindi la stessa operazione codifica e decodifica."
+      },
+      {
+        "title": "Elabora e copia",
+        "description": "Clicca Process (o Mostra tutte le 25 rotazioni). Copia l'output negli appunti, oppure usa l'output come nuovo input per concatenare operazioni."
+      }
+    ],
+    "features": [
+      "Codifica e decodifica ROT13 in un clic (è la sua stessa inversa)",
+      "Cifrario di Cesare classico con qualsiasi shift da 1 a 25",
+      "Modalità brute force mostra tutte le 25 rotazioni affiancate",
+      "Preserva maiuscole e minuscole",
+      "Caratteri non alfabetici (cifre, punteggiatura, unicode) restano invariati",
+      "Copia qualsiasi singola rotazione con un clic",
+      "Gestisce input molto grandi (100k+ caratteri) senza upload al server",
+      "Completamente basato su browser — nessun dato esce dalla tua macchina"
+    ],
+    "useCases": [
+      "Decodificare tag spoiler ROT13 su Reddit o forum",
+      "Risolvere sfide di crittografia Capture-the-Flag con modalità brute force",
+      "Insegnare basi di crittografia classica a scuola o bootcamp",
+      "Offuscare contenuto spoiler quando condividi senza plaintext",
+      "Testare rapidamente logica di cifratura durante lo sviluppo",
+      "Dimostrare come funzionano i cifrari a sostituzione",
+      "Preparare esercizi e quiz con ciphertext a shift noto",
+      "Identificare rapidamente uno shift Cesare sconosciuto scansionando le 25 rotazioni"
+    ],
+    "proTips": [
+      "ROT13 è la sua stessa inversa — applicandolo due volte torni al testo originale",
+      "Usa la modalità brute force quando non conosci lo shift: una delle 25 righe sarà leggibile",
+      "Shift 0 e 26 sono identità — accettiamo solo 1–25 per evitare clic inutili",
+      "Il cifrario di Cesare è banalmente decifrabile — non usarlo mai per segreti veri",
+      "Il preserving delle maiuscole rende sicuri i round-trip: encode poi decode torna all'originale",
+      "Usa 'Use output as input' per concatenare operazioni con shift diversi"
+    ],
+    "troubleshooting": [
+      "Output uguale all'input: verifica che lo shift non sia multiplo di 26 e che il testo contenga lettere",
+      "Numeri o punteggiatura invariati: è il comportamento atteso — solo A-Z e a-z vengono ruotate",
+      "Caratteri accentati (é, ñ, ü) non ruotati: per design, solo lettere ASCII vengono shiftate",
+      "Output brute force difficile da leggere: incolla prima poche parole, individua la riga leggibile, poi applica quello shift al testo completo"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Incolla input" },
+      { "keys": "Ctrl+C", "description": "Copia output" },
+      { "keys": "Ctrl+Enter", "description": "Elabora" }
+    ]
+  }
+}

@@ -1,6 +1,7 @@
 {
   "title": "Convertidor de Case de Cadenas",
   "description": "Convierte texto entre diferentes convenciones de nomenclatura",
+  "placeholder": "Ingresa texto a convertir (ej. myVariableName)",
   "inputLabel": "Ingresa tu texto",
   "inputPlaceholder": "Ingresa texto a convertir (ej. myVariableName)",
   "convert": "Convertir",

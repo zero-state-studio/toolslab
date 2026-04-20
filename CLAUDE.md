@@ -31,6 +31,8 @@ Verifica tutti tool abbiano traduzioni complete per tutte 6 lingue (en, it, es, 
 Esempio: /i18n-check
 ```
 
+**Esenzione campo `placeholder`** (decisione RIC-6): i tool pure-generator senza input testo libero NON richiedono `placeholder`. Lista esentati: `lorem-ipsum-generator`, `password-generator`, `uuid-generator`, `qr-generator`, `barcode-generator`, `hash-generator`, `bcrypt-hash-generator`. Se aggiungi un nuovo pure-generator, estendi la lista in `.claude/skills/i18n-check/SKILL.md`.
+
 ### ⚡ Hooks attivi (automatici)
 - **PostToolUse** — Dopo modifica a file `.ts/.tsx`, esegue `tsc --noEmit` automaticamente. Errori TypeScript → correggili prima di continuare.
 - **PreToolUse** — Blocca modifica `.env.local` via Claude. Credenziali → usa terminale direttamente.
