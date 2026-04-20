@@ -48,8 +48,16 @@ describe('curl-to-code dispatcher safety', () => {
       expect(isImplemented('go', 'resty')).toBe(true);
     });
 
-    it('returns false for java + okhttp (not yet implemented)', () => {
-      expect(isImplemented('java', 'okhttp')).toBe(false);
+    it('returns true for java + okhttp (implemented in RIC-117)', () => {
+      expect(isImplemented('java', 'okhttp')).toBe(true);
+    });
+
+    it('returns true for csharp + httpclient (implemented in RIC-117)', () => {
+      expect(isImplemented('csharp', 'httpclient')).toBe(true);
+    });
+
+    it('returns false for ruby + net-http (not yet implemented)', () => {
+      expect(isImplemented('ruby', 'net-http')).toBe(false);
     });
 
     it('returns false for unknown language', () => {
@@ -131,6 +139,102 @@ describe('curl-to-code dispatcher safety', () => {
       expect(result.generatedCode?.dependencies).toContain('axios');
     });
 
+    it('generates Java HttpClient code with URI + HttpRequest.Builder', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'java',
+        framework: 'httpurlconnection',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 4,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('java.net.http.HttpClient');
+      expect(result.generatedCode?.code).toContain('HttpRequest.newBuilder');
+      expect(result.generatedCode?.code).toContain('HttpResponse.BodyHandlers.ofString');
+    });
+
+    it('generates Java OkHttp code with Request.Builder', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'java',
+        framework: 'okhttp',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 4,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('OkHttpClient');
+      expect(result.generatedCode?.code).toContain('Request.Builder');
+      expect(result.generatedCode?.dependencies).toContain('com.squareup.okhttp3:okhttp');
+    });
+
+    it('generates C# HttpClient code with async/await', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'csharp',
+        framework: 'httpclient',
+        errorHandling: 'basic',
+        async: true,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 4,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('System.Net.Http');
+      expect(result.generatedCode?.code).toContain('HttpRequestMessage');
+      expect(result.generatedCode?.code).toContain('EnsureSuccessStatusCode');
+    });
+
+    it('generates C# RestSharp code with RestClient', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'csharp',
+        framework: 'restsharp',
+        errorHandling: 'basic',
+        async: true,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 4,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('using RestSharp');
+      expect(result.generatedCode?.code).toContain('new RestClient');
+      expect(result.generatedCode?.dependencies).toContain('RestSharp');
+    });
+
     it('generates Python httpx code with Client context manager', () => {
       const result = convertCurlToCode(baseCurl, {
         language: 'python',
@@ -156,10 +260,10 @@ describe('curl-to-code dispatcher safety', () => {
       expect(result.generatedCode?.dependencies).toContain('httpx');
     });
 
-    it('refuses java + okhttp (not yet implemented) with explicit error', () => {
+    it('refuses ruby + net-http (not yet implemented) with explicit error', () => {
       const result = convertCurlToCode(baseCurl, {
-        language: 'java',
-        framework: 'okhttp',
+        language: 'ruby',
+        framework: 'net-http',
         errorHandling: 'basic',
         async: false,
         extractEnvVars: false,

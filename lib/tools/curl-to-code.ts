@@ -146,9 +146,9 @@ export const SUPPORTED_LANGUAGES: Record<string, LanguageEntry> = {
   java: {
     name: 'Java',
     frameworks: [
-      { id: 'httpurlconnection', implemented: false },
+      { id: 'httpurlconnection', implemented: true },
       { id: 'apache-httpclient', implemented: false },
-      { id: 'okhttp', implemented: false },
+      { id: 'okhttp', implemented: true },
       { id: 'spring', implemented: false },
     ],
     fileExtension: 'java',
@@ -156,8 +156,8 @@ export const SUPPORTED_LANGUAGES: Record<string, LanguageEntry> = {
   csharp: {
     name: 'C#',
     frameworks: [
-      { id: 'httpclient', implemented: false },
-      { id: 'restsharp', implemented: false },
+      { id: 'httpclient', implemented: true },
+      { id: 'restsharp', implemented: true },
       { id: 'webrequest', implemented: false },
     ],
     fileExtension: 'cs',
@@ -1889,6 +1889,234 @@ export class PythonUrllibGenerator extends CodeGenerator {
   }
 }
 
+// ============================================================================
+// Java + C# Generators (RIC-117)
+// ============================================================================
+
+function javaEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+export class JavaHttpClientGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = [
+      'import java.net.URI;',
+      'import java.net.http.HttpClient;',
+      'import java.net.http.HttpRequest;',
+      'import java.net.http.HttpResponse;',
+      'import java.time.Duration;',
+    ];
+
+    const bodyPublisher =
+      curl.body && curl.dataType === 'json' && typeof curl.body === 'object'
+        ? `HttpRequest.BodyPublishers.ofString("${javaEscape(JSON.stringify(curl.body))}")`
+        : curl.body
+          ? `HttpRequest.BodyPublishers.ofString("${javaEscape(String(curl.body))}")`
+          : 'HttpRequest.BodyPublishers.noBody()';
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'public class ApiRequest {\n';
+    code += `${this.indent}public static void main(String[] args) throws Exception {\n`;
+    code += `${this.indent}${this.indent}HttpClient client = HttpClient.newBuilder()\n`;
+    code += `${this.indent}${this.indent}${this.indent}.connectTimeout(Duration.ofSeconds(${(curl.options.timeout || 30000) / 1000}))\n`;
+    code += `${this.indent}${this.indent}${this.indent}.build();\n\n`;
+    code += `${this.indent}${this.indent}HttpRequest.Builder reqBuilder = HttpRequest.newBuilder()\n`;
+    code += `${this.indent}${this.indent}${this.indent}.uri(URI.create("${javaEscape(curl.url)}"))\n`;
+    code += `${this.indent}${this.indent}${this.indent}.timeout(Duration.ofSeconds(${(curl.options.timeout || 30000) / 1000}))\n`;
+    code += `${this.indent}${this.indent}${this.indent}.method("${method}", ${bodyPublisher});\n\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}${this.indent}reqBuilder.header("${javaEscape(k)}", "${javaEscape(String(v))}");\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}String creds = java.util.Base64.getEncoder().encodeToString("${javaEscape(curl.auth.credentials.username)}:${javaEscape(curl.auth.credentials.password)}".getBytes());\n`;
+      code += `${this.indent}${this.indent}reqBuilder.header("Authorization", "Basic " + creds);\n`;
+    }
+    code += `\n${this.indent}${this.indent}HttpResponse<String> response = client.send(reqBuilder.build(), HttpResponse.BodyHandlers.ofString());\n`;
+    code += `${this.indent}${this.indent}System.out.println("status: " + response.statusCode());\n`;
+    code += `${this.indent}${this.indent}System.out.println(response.body());\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'java',
+      framework: 'httpurlconnection',
+      fileName: 'ApiRequest',
+      fileExtension: 'java',
+      imports,
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+export class JavaOkHttpGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = [
+      'import okhttp3.*;',
+      'import java.util.concurrent.TimeUnit;',
+    ];
+
+    const hasJsonBody =
+      curl.body && curl.dataType === 'json' && typeof curl.body === 'object';
+    const mediaType = hasJsonBody ? 'application/json' : 'text/plain';
+    const bodyStr = hasJsonBody
+      ? JSON.stringify(curl.body)
+      : curl.body
+        ? String(curl.body)
+        : '';
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'public class ApiRequest {\n';
+    code += `${this.indent}public static void main(String[] args) throws Exception {\n`;
+    code += `${this.indent}${this.indent}OkHttpClient client = new OkHttpClient.Builder()\n`;
+    code += `${this.indent}${this.indent}${this.indent}.connectTimeout(${(curl.options.timeout || 30000) / 1000}, TimeUnit.SECONDS)\n`;
+    code += `${this.indent}${this.indent}${this.indent}.readTimeout(${(curl.options.timeout || 30000) / 1000}, TimeUnit.SECONDS)\n`;
+    code += `${this.indent}${this.indent}${this.indent}.build();\n\n`;
+    if (curl.body) {
+      code += `${this.indent}${this.indent}RequestBody body = RequestBody.create("${javaEscape(bodyStr)}", MediaType.parse("${mediaType}"));\n\n`;
+    }
+    code += `${this.indent}${this.indent}Request.Builder reqBuilder = new Request.Builder()\n`;
+    code += `${this.indent}${this.indent}${this.indent}.url("${javaEscape(curl.url)}")\n`;
+    code += `${this.indent}${this.indent}${this.indent}.method("${method}", ${curl.body ? 'body' : 'null'});\n\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}${this.indent}reqBuilder.header("${javaEscape(k)}", "${javaEscape(String(v))}");\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}reqBuilder.header("Authorization", Credentials.basic("${javaEscape(curl.auth.credentials.username)}", "${javaEscape(curl.auth.credentials.password)}"));\n`;
+    }
+    code += `\n${this.indent}${this.indent}try (Response response = client.newCall(reqBuilder.build()).execute()) {\n`;
+    code += `${this.indent}${this.indent}${this.indent}System.out.println("status: " + response.code());\n`;
+    code += `${this.indent}${this.indent}${this.indent}System.out.println(response.body() != null ? response.body().string() : "");\n`;
+    code += `${this.indent}${this.indent}}\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'java',
+      framework: 'okhttp',
+      fileName: 'ApiRequest',
+      fileExtension: 'java',
+      imports,
+      envVars,
+      dependencies: ['com.squareup.okhttp3:okhttp'],
+    };
+  }
+}
+
+function csEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+export class CsharpHttpClientGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = [
+      'using System;',
+      'using System.Net.Http;',
+      'using System.Net.Http.Headers;',
+      'using System.Text;',
+      'using System.Threading.Tasks;',
+    ];
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'public class ApiRequest {\n';
+    code += `${this.indent}public static async Task<string> SendAsync() {\n`;
+    code += `${this.indent}${this.indent}using var client = new HttpClient();\n`;
+    code += `${this.indent}${this.indent}client.Timeout = TimeSpan.FromSeconds(${(curl.options.timeout || 30000) / 1000});\n\n`;
+    code += `${this.indent}${this.indent}var request = new HttpRequestMessage(new HttpMethod("${method}"), "${csEscape(curl.url)}");\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      if (k.toLowerCase() === 'content-type') continue; // set on body below
+      code += `${this.indent}${this.indent}request.Headers.TryAddWithoutValidation("${csEscape(k)}", "${csEscape(String(v))}");\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}var creds = Convert.ToBase64String(Encoding.UTF8.GetBytes("${csEscape(curl.auth.credentials.username)}:${csEscape(curl.auth.credentials.password)}"));\n`;
+      code += `${this.indent}${this.indent}request.Headers.Authorization = new AuthenticationHeaderValue("Basic", creds);\n`;
+    }
+    if (curl.body) {
+      const payload =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? JSON.stringify(curl.body)
+          : String(curl.body);
+      const mediaType =
+        curl.dataType === 'json'
+          ? 'application/json'
+          : curl.dataType === 'form'
+            ? 'application/x-www-form-urlencoded'
+            : 'text/plain';
+      code += `${this.indent}${this.indent}request.Content = new StringContent("${csEscape(payload)}", Encoding.UTF8, "${mediaType}");\n`;
+    }
+    code += `\n${this.indent}${this.indent}var response = await client.SendAsync(request);\n`;
+    code += `${this.indent}${this.indent}response.EnsureSuccessStatusCode();\n`;
+    code += `${this.indent}${this.indent}return await response.Content.ReadAsStringAsync();\n`;
+    code += `${this.indent}}\n\n`;
+    code += `${this.indent}public static async Task Main() {\n`;
+    code += `${this.indent}${this.indent}var body = await SendAsync();\n`;
+    code += `${this.indent}${this.indent}Console.WriteLine(body);\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'csharp',
+      framework: 'httpclient',
+      fileName: 'ApiRequest',
+      fileExtension: 'cs',
+      imports,
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+export class CsharpRestSharpGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['using RestSharp;', 'using System.Threading.Tasks;'];
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'public class ApiRequest {\n';
+    code += `${this.indent}public static async Task<RestResponse> SendAsync() {\n`;
+    code += `${this.indent}${this.indent}var options = new RestClientOptions("${csEscape(curl.url)}") { MaxTimeout = ${curl.options.timeout || 30000} };\n`;
+    code += `${this.indent}${this.indent}var client = new RestClient(options);\n`;
+    code += `${this.indent}${this.indent}var request = new RestRequest("", Method.${method.charAt(0) + method.slice(1).toLowerCase()});\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}${this.indent}request.AddHeader("${csEscape(k)}", "${csEscape(String(v))}");\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}client.Authenticator = new RestSharp.Authenticators.HttpBasicAuthenticator("${csEscape(curl.auth.credentials.username)}", "${csEscape(curl.auth.credentials.password)}");\n`;
+    }
+    if (curl.body) {
+      const payload =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? JSON.stringify(curl.body)
+          : String(curl.body);
+      code += `${this.indent}${this.indent}request.AddStringBody("${csEscape(payload)}", DataFormat.${curl.dataType === 'json' ? 'Json' : 'None'});\n`;
+    }
+    code += `${this.indent}${this.indent}return await client.ExecuteAsync(request);\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'csharp',
+      framework: 'restsharp',
+      fileName: 'ApiRequest',
+      fileExtension: 'cs',
+      imports,
+      envVars,
+      dependencies: ['RestSharp'],
+    };
+  }
+}
+
 // Main converter function
 export function convertCurlToCode(
   curlCommand: string,
@@ -1982,6 +2210,26 @@ export function convertCurlToCode(
       options.framework === 'urllib'
     ) {
       generator = new PythonUrllibGenerator(options);
+    } else if (
+      options.language === 'java' &&
+      options.framework === 'httpurlconnection'
+    ) {
+      generator = new JavaHttpClientGenerator(options);
+    } else if (
+      options.language === 'java' &&
+      options.framework === 'okhttp'
+    ) {
+      generator = new JavaOkHttpGenerator(options);
+    } else if (
+      options.language === 'csharp' &&
+      options.framework === 'httpclient'
+    ) {
+      generator = new CsharpHttpClientGenerator(options);
+    } else if (
+      options.language === 'csharp' &&
+      options.framework === 'restsharp'
+    ) {
+      generator = new CsharpRestSharpGenerator(options);
     } else {
       // Safety net: registry marked implemented but dispatcher missing case.
       // This indicates a bug in the isImplemented flags or a missing generator

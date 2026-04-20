@@ -273,6 +273,20 @@ export const toolRelationships: ToolRelationships = {
     boostVisibility: true,
   },
 
+  'curl-to-java': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-csharp', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
+  'curl-to-csharp': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-java', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
   'api-tester': {
     workflow: ['curl-to-code', 'jwt-decoder', 'unix-timestamp-converter'],
     complementary: ['json-formatter', 'json-validator', 'crontab-builder'],

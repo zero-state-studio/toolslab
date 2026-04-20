@@ -1,0 +1,62 @@
+{
+  "title": "Convertidor cURL a Java",
+  "description": "Convierte comandos cURL en código Java usando HttpClient (Java 11+) o OkHttp",
+  "placeholder": "Pega aquí tu comando cURL...",
+  "meta": {
+    "title": "Convertidor cURL a Java - HttpClient y OkHttp | ToolsLab",
+    "description": "Convierte cURL a Java online gratis. Genera snippets HttpClient (Java 11+) o OkHttp con headers, auth y body. Stdlib sin dependencias o Square OkHttp3.",
+    "keywords": "cURL a Java, convertidor curl java, cURL a HttpClient, cURL a OkHttp, generador http client java"
+  },
+  "tagline": "Transforma comandos cURL en Java idiomático — stdlib HttpClient o OkHttp3",
+  "pageDescription": "Convertidor gratuito cURL a Java que transforma comandos cURL en código listo para producción usando la standard library de Java 11+ java.net.http.HttpClient o OkHttp3 de Square. Emite HttpRequest.Builder fluido, try-with-resources cuando aplica, Basic auth en Base64 y configuración de timeout. Perfecto para Spring Boot, Jakarta EE o backends Android. Conversión 100% en el navegador.",
+  "instructions": {
+    "title": "Cómo usar el Convertidor cURL a Java",
+    "steps": [
+      { "title": "Pega el comando cURL", "description": "Desde terminal, Chrome DevTools, docs de API o Postman." },
+      { "title": "Elige HttpClient u OkHttp", "description": "HttpClient para Java 11+ sin deps; OkHttp es el cliente 3rd-party más común." },
+      { "title": "Copia el Java generado", "description": "Incluye imports, try-with-resources, manejo correcto de headers y auth." },
+      { "title": "Ajusta opciones", "description": "Modifica timeout, verificación SSL desde el panel." }
+    ],
+    "features": [
+      "HttpClient de Java 11+ (stdlib, sin dependencias)",
+      "OkHttp3 — cliente HTTP 3rd-party más popular",
+      "API fluida HttpRequest.Builder",
+      "try-with-resources para Response en OkHttp",
+      "Basic auth en Base64",
+      "Timeouts configurables (connect + read)",
+      "Maneja bodies JSON, form-encoded, plain text",
+      "Procesamiento en navegador sin dependencias"
+    ],
+    "useCases": [
+      "Traduce docs de API cURL a llamadas HTTP Spring Boot",
+      "Migra colecciones Postman a clientes Java",
+      "Construye SDK clients para APIs de terceros",
+      "Depura llamadas de red Android desde cURL",
+      "Genera stubs de REST client para Jakarta EE",
+      "Migra código Apache HttpClient legacy a HttpClient moderno",
+      "Prepara ejemplos Java para documentación de API",
+      "Crea tests de integración a partir de cURL reales"
+    ],
+    "proTips": [
+      "Prefiere HttpClient de Java 11+ en código nuevo — sin deps extra",
+      "Usa OkHttp cuando necesites interceptors o control de pool de conexiones",
+      "Comparte una sola instancia HttpClient/OkHttpClient en toda la app",
+      "Cierra siempre Response en OkHttp (try-with-resources)",
+      "Define timeouts explícitos — los defaults son muy permisivos",
+      "Nunca desactives la verificación TLS en producción"
+    ],
+    "troubleshooting": [
+      "HttpClient no encontrado: asegúrate de target Java 11+ (pom/Gradle)",
+      "OkHttp faltante: añade dependencia 'com.squareup.okhttp3:okhttp'",
+      "Fallo TLS handshake: verifica truststore y versión TLS",
+      "Connection pool agotado: reutiliza la misma instancia de cliente",
+      "Body no enviado: verifica flags -d/--data en el cURL origen"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Pegar entrada" },
+      { "keys": "Ctrl+Enter", "description": "Generar Java" },
+      { "keys": "Ctrl+C", "description": "Copiar resultado" },
+      { "keys": "Ctrl+S", "description": "Descargar archivo" }
+    ]
+  }
+}

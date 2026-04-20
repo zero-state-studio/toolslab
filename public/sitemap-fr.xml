@@ -626,6 +626,32 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-httpx"/>
   </url>
   <url>
+    <loc>https://toolslab.dev/fr/tools/curl-to-java</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-java"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-java"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-java"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-java"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-java"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-java"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-java"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/fr/tools/curl-to-csharp</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-csharp"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-csharp"/>
+  </url>
+  <url>
     <loc>https://toolslab.dev/fr/tools/json-to-typescript</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
