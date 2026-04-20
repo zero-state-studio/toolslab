@@ -1,0 +1,62 @@
+{
+  "title": "Convertisseur cURL vers Axios",
+  "description": "Convertit les commandes cURL en code JavaScript axios avec async/await et support TypeScript",
+  "placeholder": "Collez ici votre commande cURL...",
+  "meta": {
+    "title": "Convertisseur cURL vers Axios - JavaScript & TypeScript | ToolsLab",
+    "description": "Convertissez cURL en axios gratuitement. Génère AxiosRequestConfig avec method, headers, data, params, auth et gestion d'erreurs via axios.isAxiosError. Prêt pour TypeScript.",
+    "keywords": "cURL vers axios, générateur axios, axios depuis curl, convertisseur axios typescript, node axios cURL"
+  },
+  "tagline": "Convertit les commandes cURL en code axios prêt pour la production avec async/await et gestion d'erreurs propre",
+  "pageDescription": "Convertisseur gratuit cURL vers axios qui génère du code JavaScript et TypeScript avec le client HTTP axios. Émet un AxiosRequestConfig complet avec method, url, headers, params, data, auth et timeout. Encapsule les requêtes dans async/await avec try/catch et narrowing via axios.isAxiosError, prêt à coller dans des services Node.js, des API routes Next.js ou des composants React. Conversion 100% dans le navigateur.",
+  "instructions": {
+    "title": "Comment utiliser le convertisseur cURL vers Axios",
+    "steps": [
+      { "title": "Collez la commande cURL", "description": "Depuis terminal, Chrome DevTools, doc d'API ou Postman." },
+      { "title": "Choisissez JavaScript ou TypeScript", "description": "TypeScript émet l'import AxiosRequestConfig pour la type safety." },
+      { "title": "Copiez le code axios généré", "description": "Fonction async avec try/catch et narrowing axios.isAxiosError." },
+      { "title": "Ajustez les options", "description": "Modifiez gestion d'erreurs, timeout, vérification SSL via le panneau." }
+    ],
+    "features": [
+      "Sortie AxiosRequestConfig complète avec toutes les options",
+      "TypeScript-first avec import de type AxiosRequestConfig",
+      "async/await + try/catch + narrowing axios.isAxiosError",
+      "Gère les données JSON, params, headers, basic auth, timeout",
+      "Fonctionne dans Node.js et les navigateurs modernes",
+      "Traitement navigateur sans dépendance",
+      "Copie dans le presse-papiers en un clic",
+      "Coloration syntaxique sur le code généré"
+    ],
+    "useCases": [
+      "Convertir des exemples cURL de docs d'API en axios pour Node/React",
+      "Porter cURL de Chrome DevTools en appels axios côté frontend",
+      "Construire des SDK clients axios pour des APIs tierces",
+      "Migrer du code fetch vers axios pour les intercepteurs",
+      "Générer des helpers axios depuis des collections Postman",
+      "Échafauder des tests d'intégration axios depuis de vraies cURL",
+      "Créer des API clients typés pour les API routes Next.js",
+      "Convertir des flows d'authentification (bearer/basic) en axios"
+    ],
+    "proTips": [
+      "Utilisez axios.create() dans les grosses apps pour partager baseURL et intercepteurs",
+      "Préférez le type AxiosRequestConfig en TypeScript pour la sécurité à la compilation",
+      "Narrow les erreurs via axios.isAxiosError pour accéder à response",
+      "Définissez un timeout explicite — le défaut est aucun",
+      "Utilisez les cancel tokens ou AbortController pour annuler les requêtes",
+      "Désactivez la vérification SSL uniquement en dev — jamais en production"
+    ],
+    "troubleshooting": [
+      "Module introuvable : exécutez 'npm install axios'",
+      "Erreur CORS dans le navigateur : configurez CORS côté serveur",
+      "timeout dépassé : augmentez le timeout ou profilez l'upstream lent",
+      "Body non envoyé : vérifiez que les flags -d/--data sont présents",
+      "Erreurs TypeScript : installez @types HTTP si nécessaire"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Coller l'entrée" },
+      { "keys": "Ctrl+Enter", "description": "Générer le code axios" },
+      { "keys": "Ctrl+C", "description": "Copier le résultat" },
+      { "keys": "Ctrl+S", "description": "Télécharger le fichier" }
+    ]
+  }
+}

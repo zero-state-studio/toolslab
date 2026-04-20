@@ -20,12 +20,12 @@ describe('curl-to-code dispatcher safety', () => {
       expect(isImplemented('python', 'requests')).toBe(true);
     });
 
-    it('returns false for js + axios (not yet implemented)', () => {
-      expect(isImplemented('javascript', 'axios')).toBe(false);
+    it('returns true for js + axios (implemented in RIC-116)', () => {
+      expect(isImplemented('javascript', 'axios')).toBe(true);
     });
 
-    it('returns false for python + httpx (not yet implemented)', () => {
-      expect(isImplemented('python', 'httpx')).toBe(false);
+    it('returns true for python + httpx (implemented in RIC-116)', () => {
+      expect(isImplemented('python', 'httpx')).toBe(true);
     });
 
     it('returns true for php + guzzle (implemented in RIC-114)', () => {
@@ -106,7 +106,7 @@ describe('curl-to-code dispatcher safety', () => {
       expect(result.generatedCode?.code).toContain('requests');
     });
 
-    it('refuses js + axios (not implemented) with explicit error — no silent fallback', () => {
+    it('generates JS axios code with AxiosRequestConfig pattern', () => {
       const result = convertCurlToCode(baseCurl, {
         language: 'javascript',
         framework: 'axios',
@@ -124,9 +124,36 @@ describe('curl-to-code dispatcher safety', () => {
         validateSSL: true,
         includeTests: false,
       });
-      expect(result.success).toBe(false);
-      expect(result.error).toMatch(/coming soon/i);
-      expect(result.generatedCode).toBeUndefined();
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain("import axios");
+      expect(result.generatedCode?.code).toContain('axios.request(config)');
+      expect(result.generatedCode?.code).toContain('axios.isAxiosError');
+      expect(result.generatedCode?.dependencies).toContain('axios');
+    });
+
+    it('generates Python httpx code with Client context manager', () => {
+      const result = convertCurlToCode(baseCurl, {
+        language: 'python',
+        framework: 'httpx',
+        errorHandling: 'basic',
+        async: false,
+        extractEnvVars: false,
+        includeTypes: false,
+        retryLogic: false,
+        retryAttempts: 3,
+        includeLogging: false,
+        includeComments: false,
+        indentSize: 4,
+        indentType: 'spaces',
+        timeout: 30000,
+        validateSSL: true,
+        includeTests: false,
+      });
+      expect(result.success).toBe(true);
+      expect(result.generatedCode?.code).toContain('import httpx');
+      expect(result.generatedCode?.code).toContain('httpx.Client');
+      expect(result.generatedCode?.code).toContain('raise_for_status()');
+      expect(result.generatedCode?.dependencies).toContain('httpx');
     });
 
     it('refuses java + okhttp (not yet implemented) with explicit error', () => {

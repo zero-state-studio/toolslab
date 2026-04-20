@@ -67,8 +67,10 @@ const toolComponents = {
   'gradient-generator': lazy(
     () => import('./implementations/GradientGenerator')
   ),
+  'curl-to-axios': lazy(() => import('./implementations/CurlToAxios')),
   'curl-to-code': lazy(() => import('./implementations/CurlToCode')),
   'curl-to-go': lazy(() => import('./implementations/CurlToGo')),
+  'curl-to-httpx': lazy(() => import('./implementations/CurlToHttpx')),
   'curl-to-php': lazy(() => import('./implementations/CurlToPhp')),
   'json-to-typescript': lazy(
     () => import('./implementations/JsonToTypeScript')

@@ -1,0 +1,62 @@
+{
+  "title": "Convertitore cURL in Axios",
+  "description": "Converte comandi cURL in codice JavaScript axios con async/await e supporto TypeScript",
+  "placeholder": "Incolla qui il tuo comando cURL...",
+  "meta": {
+    "title": "Convertitore cURL in Axios - JavaScript e TypeScript | ToolsLab",
+    "description": "Converti cURL in axios online gratis. Genera AxiosRequestConfig con method, headers, data, params, auth e gestione errori via axios.isAxiosError. Pronto per TypeScript.",
+    "keywords": "cURL a axios, axios generator, axios da curl, convertitore axios typescript, node axios da cURL"
+  },
+  "tagline": "Converte comandi cURL in codice axios production-ready con async/await e gestione errori corretta",
+  "pageDescription": "Convertitore gratuito cURL in axios che genera codice JavaScript e TypeScript usando il popolare client HTTP axios. Emette AxiosRequestConfig completo con method, url, headers, params, data, auth e timeout. Avvolge le richieste in async/await con try/catch e narrowing via axios.isAxiosError, pronto da incollare in servizi Node.js, API routes Next.js o componenti React. Conversione 100% nel browser.",
+  "instructions": {
+    "title": "Come usare il convertitore cURL in Axios",
+    "steps": [
+      { "title": "Incolla comando cURL", "description": "Da terminale, Chrome DevTools, documentazione API o Postman." },
+      { "title": "Scegli JavaScript o TypeScript", "description": "TypeScript emette import AxiosRequestConfig per type safety." },
+      { "title": "Copia codice axios generato", "description": "Funzione async con try/catch e narrowing axios.isAxiosError." },
+      { "title": "Personalizza opzioni", "description": "Regola error handling, timeout, verifica SSL dal pannello opzioni." }
+    ],
+    "features": [
+      "Output AxiosRequestConfig completo con tutte le opzioni",
+      "TypeScript-first con import tipo AxiosRequestConfig",
+      "async/await + try/catch + narrowing axios.isAxiosError",
+      "Gestisce JSON data, params, headers, basic auth, timeout",
+      "Funziona in Node.js e browser moderni",
+      "Processamento browser senza dipendenze",
+      "Copia negli appunti con un click",
+      "Syntax highlighting sul codice generato"
+    ],
+    "useCases": [
+      "Converti esempi cURL di doc API in axios per Node/React",
+      "Porta cURL di Chrome DevTools in chiamate axios frontend",
+      "Costruisci SDK client basati su axios per API terze",
+      "Migra codice fetch ad axios per avere interceptor",
+      "Genera helper axios da collection Postman",
+      "Impalca test di integrazione axios da cURL reali",
+      "Crea API client tipizzati per API route Next.js",
+      "Converti flow di autenticazione (bearer/basic) in axios"
+    ],
+    "proTips": [
+      "Usa axios.create() in app grandi per condividere baseURL e interceptor",
+      "Preferisci il tipo AxiosRequestConfig in TypeScript per sicurezza a compile-time",
+      "Narrowa sempre gli errori via axios.isAxiosError per accedere ai campi response",
+      "Imposta timeout esplicito — il default è nessuno",
+      "Usa cancel token o AbortController per annullare richieste",
+      "Disabilita verifica SSL solo in dev — mai in produzione"
+    ],
+    "troubleshooting": [
+      "Modulo non trovato: esegui 'npm install axios'",
+      "Errore CORS nel browser: configura CORS lato server, non axios",
+      "timeout superato: aumenta il timeout o profila l'upstream lento",
+      "Body non inviato: verifica che i flag -d/--data siano presenti nel cURL sorgente",
+      "Errori TypeScript: installa @types HTTP se necessario"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Incolla input" },
+      { "keys": "Ctrl+Enter", "description": "Genera codice axios" },
+      { "keys": "Ctrl+C", "description": "Copia risultato" },
+      { "keys": "Ctrl+S", "description": "Scarica file" }
+    ]
+  }
+}

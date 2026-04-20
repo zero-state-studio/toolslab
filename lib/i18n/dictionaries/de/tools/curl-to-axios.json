@@ -1,0 +1,62 @@
+{
+  "title": "cURL zu Axios Konverter",
+  "description": "Konvertiert cURL-Befehle in JavaScript axios-Code mit async/await und TypeScript-Unterstützung",
+  "placeholder": "Fügen Sie Ihren cURL-Befehl hier ein...",
+  "meta": {
+    "title": "cURL zu Axios Konverter - JavaScript & TypeScript | ToolsLab",
+    "description": "Konvertieren Sie cURL kostenlos online in axios. Generiert AxiosRequestConfig mit method, headers, data, params, auth und Fehlerbehandlung via axios.isAxiosError. TypeScript-ready.",
+    "keywords": "cURL zu axios, axios Generator, axios von curl, axios TypeScript Konverter, node axios cURL"
+  },
+  "tagline": "Konvertieren Sie cURL-Befehle in produktionsreifen axios-Code mit async/await und sauberer Fehlerbehandlung",
+  "pageDescription": "Kostenloser cURL zu axios Konverter, der JavaScript- und TypeScript-Code mit dem beliebten axios HTTP-Client generiert. Emittiert eine vollständige AxiosRequestConfig mit method, url, headers, params, data, auth und timeout. Verpackt Requests in async/await mit try/catch und axios.isAxiosError-Narrowing — bereit für Node.js-Services, Next.js API-Routen oder React-Komponenten. Konvertierung 100% im Browser.",
+  "instructions": {
+    "title": "So verwenden Sie den cURL zu Axios Konverter",
+    "steps": [
+      { "title": "cURL-Befehl einfügen", "description": "Aus Terminal, Chrome DevTools, API-Dokumentation oder Postman." },
+      { "title": "JavaScript oder TypeScript wählen", "description": "TypeScript emittiert den AxiosRequestConfig-Typ für Type Safety." },
+      { "title": "Generierten axios-Code kopieren", "description": "async-Funktion mit try/catch und axios.isAxiosError-Narrowing." },
+      { "title": "Optionen anpassen", "description": "Fehlerbehandlung, Timeout, SSL-Verifikation über das Panel anpassen." }
+    ],
+    "features": [
+      "Vollständige AxiosRequestConfig-Ausgabe mit allen Optionen",
+      "TypeScript-first mit AxiosRequestConfig-Typimport",
+      "async/await + try/catch + axios.isAxiosError-Narrowing",
+      "Verarbeitet JSON-Daten, params, Header, Basic Auth, Timeout",
+      "Läuft in Node.js und modernen Browsern",
+      "Abhängigkeitsfreie Browser-Verarbeitung",
+      "Ein-Klick-Kopie in die Zwischenablage",
+      "Syntax-Highlighting für generierten Code"
+    ],
+    "useCases": [
+      "API-Docs cURL-Beispiele in axios für Node/React umwandeln",
+      "Chrome DevTools cURL in Frontend-axios-Aufrufe portieren",
+      "axios-basierte SDK-Clients für Drittanbieter-APIs bauen",
+      "fetch-Code zu axios migrieren für Interceptor-Support",
+      "axios-Request-Helpers aus Postman-Collections generieren",
+      "axios-Integrationstests aus echten cURL-Requests aufbauen",
+      "Typisierte API-Clients für Next.js API-Routen erstellen",
+      "Authentifizierungs-Flows (bearer/basic) zu axios konvertieren"
+    ],
+    "proTips": [
+      "In größeren Apps axios.create() für geteilte baseURL + Interceptors verwenden",
+      "In TypeScript AxiosRequestConfig-Typ für Compile-Time-Sicherheit bevorzugen",
+      "Fehler immer über axios.isAxiosError narrowen, um response-Felder zu nutzen",
+      "Timeout explizit setzen — der Default ist keiner",
+      "axios-Cancel-Tokens oder AbortController für Request-Abbruch nutzen",
+      "SSL-Verifikation nur in Dev deaktivieren — nie in Produktion"
+    ],
+    "troubleshooting": [
+      "Module not found: 'npm install axios' im Projekt ausführen",
+      "CORS-Fehler im Browser: CORS server-seitig konfigurieren, nicht axios",
+      "timeout überschritten: Timeout erhöhen oder langsamen Upstream profilen",
+      "Body wird nicht gesendet: -d oder --data-Flags im Quell-cURL prüfen",
+      "TypeScript-Fehler: @types für HTTP-Typen installieren, falls nötig"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Eingabe einfügen" },
+      { "keys": "Ctrl+Enter", "description": "axios-Code generieren" },
+      { "keys": "Ctrl+C", "description": "Ergebnis kopieren" },
+      { "keys": "Ctrl+S", "description": "Datei herunterladen" }
+    ]
+  }
+}

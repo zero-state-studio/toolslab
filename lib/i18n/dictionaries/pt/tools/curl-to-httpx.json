@@ -1,0 +1,62 @@
+{
+  "title": "Conversor cURL para httpx",
+  "description": "Converte comandos cURL em código Python httpx com suporte Client sync e AsyncClient async",
+  "placeholder": "Cole aqui o seu comando cURL...",
+  "meta": {
+    "title": "Conversor cURL para httpx - Python Sync e Async | ToolsLab",
+    "description": "Converta cURL em Python httpx online grátis. Gera código Client ou AsyncClient com headers, params, json body, auth e raise_for_status. Pronto para async/await.",
+    "keywords": "cURL para httpx, httpx a partir de curl, python httpx generator, async httpx, conversor httpx python"
+  },
+  "tagline": "Transforme comandos cURL em código Python httpx moderno — sync ou async",
+  "pageDescription": "Conversor gratuito cURL para httpx que gera código Python usando a biblioteca moderna httpx — o sucessor async-capable do requests. Emite httpx.Client com context manager, headers, params, json body, tupla auth e response.raise_for_status() para propagação limpa de erros. Use a variante async para FastAPI, pipelines asyncio ou clients de alta concorrência. Conversão 100% no navegador.",
+  "instructions": {
+    "title": "Como usar o Conversor cURL para httpx",
+    "steps": [
+      { "title": "Cole o comando cURL", "description": "Do terminal, Chrome DevTools, docs de API ou Postman." },
+      { "title": "Selecione modo sync", "description": "O gerador usa httpx.Client síncrono por padrão; mude para aiohttp para padrão async." },
+      { "title": "Copie o Python gerado", "description": "Padrão context manager + raise_for_status + response.json(). Cole em script ou módulo." },
+      { "title": "Ajuste opções", "description": "Altere timeout, verificação SSL, verbosidade pelo painel de opções." }
+    ],
+    "features": [
+      "Padrão httpx.Client com context manager",
+      "response.raise_for_status() para tratamento limpo de erros",
+      "Lida com body JSON, form data, query params, cabeçalhos personalizados",
+      "Tupla basic auth emitida quando -u está presente",
+      "Timeout configurável via --max-time ou opções",
+      "Compatível com httpx sync + async",
+      "100% navegador — sem roundtrip de servidor",
+      "Cópia para área de transferência, syntax highlighting"
+    ],
+    "useCases": [
+      "Traduza documentação de API em código httpx",
+      "Porte código baseado em requests para httpx async-capable",
+      "Construa clients downstream para FastAPI",
+      "Gere snippets httpx para pipelines asyncio",
+      "Migre scripts legados urllib para httpx",
+      "Crie testes de integração httpx a partir de requests cURL reais",
+      "Crie wrappers retry/backoff ao redor de httpx.Client",
+      "Converta cURL do Chrome DevTools em scripts Python de debug"
+    ],
+    "proTips": [
+      "Use httpx.AsyncClient em frameworks async (FastAPI, asyncio)",
+      "Compartilhe um único Client entre requests — reuso de conexão HTTP/2",
+      "Chame sempre raise_for_status() para capturar 4xx/5xx",
+      "Defina timeout explícito via httpx.Timeout para controle fino",
+      "Configure retries com wrapper de transport se necessário",
+      "Desative verificação SSL apenas em dev — nunca em produção"
+    ],
+    "troubleshooting": [
+      "ModuleNotFoundError: execute 'pip install httpx'",
+      "timeout: ajuste httpx.Timeout(connect=..., read=...)",
+      "SSL: verifique CA bundle ou httpx.Client(verify=ca_path)",
+      "Reuso de conexão não funciona: use um Client compartilhado",
+      "Erros async: garanta que está em um event loop asyncio"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Colar entrada" },
+      { "keys": "Ctrl+Enter", "description": "Gerar código httpx" },
+      { "keys": "Ctrl+C", "description": "Copiar resultado" },
+      { "keys": "Ctrl+S", "description": "Baixar arquivo" }
+    ]
+  }
+}

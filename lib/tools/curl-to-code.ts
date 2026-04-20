@@ -100,10 +100,10 @@ export const SUPPORTED_LANGUAGES: Record<string, LanguageEntry> = {
     name: 'JavaScript',
     frameworks: [
       { id: 'fetch', implemented: true },
-      { id: 'axios', implemented: false },
-      { id: 'node-https', implemented: false },
-      { id: 'jquery', implemented: false },
-      { id: 'xhr', implemented: false },
+      { id: 'axios', implemented: true },
+      { id: 'node-https', implemented: true },
+      { id: 'jquery', implemented: true },
+      { id: 'xhr', implemented: true },
     ],
     fileExtension: 'js',
   },
@@ -111,8 +111,8 @@ export const SUPPORTED_LANGUAGES: Record<string, LanguageEntry> = {
     name: 'TypeScript',
     frameworks: [
       { id: 'fetch', implemented: true },
-      { id: 'axios', implemented: false },
-      { id: 'node-https', implemented: false },
+      { id: 'axios', implemented: true },
+      { id: 'node-https', implemented: true },
     ],
     fileExtension: 'ts',
   },
@@ -120,9 +120,9 @@ export const SUPPORTED_LANGUAGES: Record<string, LanguageEntry> = {
     name: 'Python',
     frameworks: [
       { id: 'requests', implemented: true },
-      { id: 'urllib', implemented: false },
-      { id: 'httpx', implemented: false },
-      { id: 'aiohttp', implemented: false },
+      { id: 'urllib', implemented: true },
+      { id: 'httpx', implemented: true },
+      { id: 'aiohttp', implemented: true },
     ],
     fileExtension: 'py',
   },
@@ -1495,6 +1495,400 @@ export class GoRestyGenerator extends CodeGenerator {
   }
 }
 
+// ============================================================================
+// JavaScript / TypeScript additional generators (RIC-116)
+// ============================================================================
+
+function jsEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/`/g, '\\`');
+}
+
+/**
+ * axios generator — the most popular JS HTTP client for Node and browsers.
+ */
+export class AxiosGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toLowerCase();
+    const envVars = this.extractEnvVars(curl);
+    const isTs = this.options.language === 'typescript';
+    const imports = [
+      isTs
+        ? "import axios, { AxiosRequestConfig } from 'axios';"
+        : "import axios from 'axios';",
+    ];
+
+    const config: string[] = [];
+    config.push(`method: '${method}'`);
+    config.push(`url: '${jsEscape(curl.url)}'`);
+    if (Object.keys(curl.headers).length > 0) {
+      config.push(`headers: ${JSON.stringify(curl.headers, null, 2)}`);
+    }
+    if (curl.queryParams) {
+      config.push(`params: ${JSON.stringify(curl.queryParams, null, 2)}`);
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        config.push(`data: ${JSON.stringify(curl.body, null, 2)}`);
+      } else {
+        config.push(`data: \`${jsEscape(String(curl.body))}\``);
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      config.push(
+        `auth: { username: '${jsEscape(curl.auth.credentials.username)}', password: '${jsEscape(curl.auth.credentials.password)}' }`
+      );
+    }
+    if (curl.options.timeout) {
+      config.push(`timeout: ${curl.options.timeout}`);
+    }
+
+    const cfgType = isTs ? ': AxiosRequestConfig' : '';
+    let code = imports.join('\n') + '\n\n';
+    code += `const config${cfgType} = {\n${this.indent}${config.join(`,\n${this.indent}`)},\n};\n\n`;
+    code += 'async function request() {\n';
+    code += `${this.indent}try {\n`;
+    code += `${this.indent}${this.indent}const response = await axios.request(config);\n`;
+    code += `${this.indent}${this.indent}console.log(response.data);\n`;
+    code += `${this.indent}${this.indent}return response.data;\n`;
+    code += `${this.indent}} catch (error) {\n`;
+    code += `${this.indent}${this.indent}if (axios.isAxiosError(error)) {\n`;
+    code += `${this.indent}${this.indent}${this.indent}console.error('Axios error:', error.response?.status, error.response?.data);\n`;
+    code += `${this.indent}${this.indent}} else {\n`;
+    code += `${this.indent}${this.indent}${this.indent}console.error('Unexpected error:', error);\n`;
+    code += `${this.indent}${this.indent}}\n`;
+    code += `${this.indent}${this.indent}throw error;\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n\nrequest();\n';
+
+    return {
+      code,
+      language: this.options.language,
+      framework: 'axios',
+      fileName: 'api_request',
+      fileExtension: isTs ? 'ts' : 'js',
+      imports,
+      envVars,
+      dependencies: ['axios'],
+    };
+  }
+}
+
+/**
+ * Node.js stdlib https module.
+ */
+export class NodeHttpsGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ["const https = require('https');", "const { URL } = require('url');"];
+
+    let code = imports.join('\n') + '\n\n';
+    code += `const target = new URL('${jsEscape(curl.url)}');\n\n`;
+    code += 'const options = {\n';
+    code += `${this.indent}hostname: target.hostname,\n`;
+    code += `${this.indent}port: target.port || 443,\n`;
+    code += `${this.indent}path: target.pathname + target.search,\n`;
+    code += `${this.indent}method: '${method}',\n`;
+    if (Object.keys(curl.headers).length > 0) {
+      code += `${this.indent}headers: ${JSON.stringify(curl.headers, null, 2).replace(/\n/g, '\n' + this.indent)},\n`;
+    }
+    if (curl.options.timeout) code += `${this.indent}timeout: ${curl.options.timeout},\n`;
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}auth: '${jsEscape(curl.auth.credentials.username)}:${jsEscape(curl.auth.credentials.password)}',\n`;
+    }
+    code += '};\n\n';
+    code += 'const req = https.request(options, (res) => {\n';
+    code += `${this.indent}let data = '';\n`;
+    code += `${this.indent}res.on('data', (chunk) => { data += chunk; });\n`;
+    code += `${this.indent}res.on('end', () => {\n`;
+    code += `${this.indent}${this.indent}console.log('status:', res.statusCode);\n`;
+    code += `${this.indent}${this.indent}console.log(data);\n`;
+    code += `${this.indent}});\n`;
+    code += '});\n\n';
+    code += "req.on('error', (err) => console.error('request failed:', err));\n";
+    if (curl.body) {
+      const payload =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? JSON.stringify(curl.body)
+          : String(curl.body);
+      code += `req.write(\`${jsEscape(payload)}\`);\n`;
+    }
+    code += 'req.end();\n';
+
+    return {
+      code,
+      language: this.options.language,
+      framework: 'node-https',
+      fileName: 'api_request',
+      fileExtension: this.options.language === 'typescript' ? 'ts' : 'js',
+      imports,
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+/**
+ * jQuery $.ajax (legacy browser codebases).
+ */
+export class JQueryGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    let code = '$.ajax({\n';
+    code += `${this.indent}url: '${jsEscape(curl.url)}',\n`;
+    code += `${this.indent}method: '${method}',\n`;
+    if (Object.keys(curl.headers).length > 0) {
+      code += `${this.indent}headers: ${JSON.stringify(curl.headers, null, 2).replace(/\n/g, '\n' + this.indent)},\n`;
+    }
+    if (curl.queryParams) {
+      code += `${this.indent}data: ${JSON.stringify(curl.queryParams, null, 2).replace(/\n/g, '\n' + this.indent)},\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}contentType: 'application/json',\n`;
+        code += `${this.indent}data: JSON.stringify(${JSON.stringify(curl.body)}),\n`;
+      } else {
+        code += `${this.indent}data: \`${jsEscape(String(curl.body))}\`,\n`;
+      }
+    }
+    if (curl.options.timeout) code += `${this.indent}timeout: ${curl.options.timeout},\n`;
+    code += `${this.indent}success: (data, status, xhr) => {\n`;
+    code += `${this.indent}${this.indent}console.log('response:', data);\n`;
+    code += `${this.indent}},\n`;
+    code += `${this.indent}error: (xhr, status, err) => {\n`;
+    code += `${this.indent}${this.indent}console.error('request failed:', status, err);\n`;
+    code += `${this.indent}},\n`;
+    code += '});\n';
+
+    return {
+      code,
+      language: this.options.language,
+      framework: 'jquery',
+      fileName: 'api_request',
+      fileExtension: 'js',
+      imports: [],
+      envVars,
+      dependencies: ['jquery'],
+    };
+  }
+}
+
+/**
+ * XMLHttpRequest (educational / pre-fetch codebases).
+ */
+export class XhrGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      const qs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      url += (url.includes('?') ? '&' : '?') + qs;
+    }
+
+    let code = 'const xhr = new XMLHttpRequest();\n';
+    code += `xhr.open('${method}', '${jsEscape(url)}');\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `xhr.setRequestHeader('${jsEscape(k)}', '${jsEscape(String(v))}');\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      const token = `btoa('${jsEscape(curl.auth.credentials.username)}:${jsEscape(curl.auth.credentials.password)}')`;
+      code += `xhr.setRequestHeader('Authorization', 'Basic ' + ${token});\n`;
+    }
+    if (curl.options.timeout) code += `xhr.timeout = ${curl.options.timeout};\n`;
+    code += '\nxhr.onload = () => {\n';
+    code += `${this.indent}if (xhr.status >= 200 && xhr.status < 300) console.log(xhr.responseText);\n`;
+    code += `${this.indent}else console.error('HTTP', xhr.status, xhr.statusText);\n`;
+    code += '};\n';
+    code += "xhr.onerror = () => console.error('network error');\n";
+
+    if (curl.body) {
+      const payload =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? `JSON.stringify(${JSON.stringify(curl.body)})`
+          : `\`${jsEscape(String(curl.body))}\``;
+      code += `xhr.send(${payload});\n`;
+    } else {
+      code += 'xhr.send();\n';
+    }
+
+    return {
+      code,
+      language: this.options.language,
+      framework: 'xhr',
+      fileName: 'api_request',
+      fileExtension: 'js',
+      imports: [],
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+// ============================================================================
+// Python additional generators (RIC-116)
+// ============================================================================
+
+function pyDict(obj: Record<string, unknown>, indent: string): string {
+  const items = Object.entries(obj).map(
+    ([k, v]) =>
+      `${indent}${indent}"${k}": ${typeof v === 'string' ? `"${v}"` : JSON.stringify(v)},`
+  );
+  return `{\n${items.join('\n')}\n${indent}}`;
+}
+
+export class PythonHttpxGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toLowerCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['import httpx'];
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'def main():\n';
+    code += `${this.indent}with httpx.Client(timeout=${(curl.options.timeout || 30000) / 1000}`;
+    if (curl.options.insecure) code += ', verify=False';
+    code += ') as client:\n';
+    code += `${this.indent}${this.indent}response = client.${method}(\n`;
+    code += `${this.indent}${this.indent}${this.indent}"${curl.url}",\n`;
+    if (Object.keys(curl.headers).length > 0) {
+      code += `${this.indent}${this.indent}${this.indent}headers=${pyDict(curl.headers, this.indent + this.indent + this.indent)},\n`;
+    }
+    if (curl.queryParams) {
+      code += `${this.indent}${this.indent}${this.indent}params=${pyDict(curl.queryParams, this.indent + this.indent + this.indent)},\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}${this.indent}json=${pyDict(curl.body as Record<string, unknown>, this.indent + this.indent + this.indent)},\n`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}${this.indent}data=${pyDict(curl.body as Record<string, unknown>, this.indent + this.indent + this.indent)},\n`;
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}${this.indent}auth=("${curl.auth.credentials.username}", "${curl.auth.credentials.password}"),\n`;
+    }
+    code += `${this.indent}${this.indent})\n`;
+    code += `${this.indent}${this.indent}response.raise_for_status()\n`;
+    code += `${this.indent}${this.indent}print(response.json())\n\n`;
+    code += 'if __name__ == "__main__":\n';
+    code += `${this.indent}main()\n`;
+
+    return {
+      code,
+      language: 'python',
+      framework: 'httpx',
+      fileName: 'api_request',
+      fileExtension: 'py',
+      imports,
+      envVars,
+      dependencies: ['httpx'],
+    };
+  }
+}
+
+export class PythonAioHttpGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toLowerCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['import aiohttp', 'import asyncio'];
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'async def main():\n';
+    code += `${this.indent}timeout = aiohttp.ClientTimeout(total=${(curl.options.timeout || 30000) / 1000})\n`;
+    code += `${this.indent}async with aiohttp.ClientSession(timeout=timeout) as session:\n`;
+    code += `${this.indent}${this.indent}async with session.${method}(\n`;
+    code += `${this.indent}${this.indent}${this.indent}"${curl.url}",\n`;
+    if (Object.keys(curl.headers).length > 0) {
+      code += `${this.indent}${this.indent}${this.indent}headers=${pyDict(curl.headers, this.indent + this.indent + this.indent)},\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}${this.indent}json=${pyDict(curl.body as Record<string, unknown>, this.indent + this.indent + this.indent)},\n`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}${this.indent}data=${pyDict(curl.body as Record<string, unknown>, this.indent + this.indent + this.indent)},\n`;
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}${this.indent}auth=aiohttp.BasicAuth("${curl.auth.credentials.username}", "${curl.auth.credentials.password}"),\n`;
+    }
+    code += `${this.indent}${this.indent}) as response:\n`;
+    code += `${this.indent}${this.indent}${this.indent}response.raise_for_status()\n`;
+    code += `${this.indent}${this.indent}${this.indent}data = await response.json()\n`;
+    code += `${this.indent}${this.indent}${this.indent}print(data)\n\n`;
+    code += 'asyncio.run(main())\n';
+
+    return {
+      code,
+      language: 'python',
+      framework: 'aiohttp',
+      fileName: 'api_request',
+      fileExtension: 'py',
+      imports,
+      envVars,
+      dependencies: ['aiohttp'],
+    };
+  }
+}
+
+export class PythonUrllibGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['import json', 'import urllib.request', 'import urllib.parse'];
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      imports.push('from urllib.parse import urlencode');
+      url += (url.includes('?') ? '&' : '?') + '<QUERY>';
+    }
+
+    let code = imports.join('\n') + '\n\n';
+    if (curl.queryParams) {
+      code += `query = urlencode(${pyDict(curl.queryParams, this.indent)})\n`;
+      code += `url = f"${curl.url}${curl.url.includes('?') ? '&' : '?'}{query}"\n\n`;
+    } else {
+      code += `url = "${curl.url}"\n\n`;
+    }
+
+    const bodyVar = curl.body
+      ? curl.dataType === 'json' && typeof curl.body === 'object'
+        ? `json.dumps(${pyDict(curl.body as Record<string, unknown>, this.indent)}).encode()`
+        : curl.dataType === 'form' && typeof curl.body === 'object'
+          ? `urllib.parse.urlencode(${pyDict(curl.body as Record<string, unknown>, this.indent)}).encode()`
+          : `b"${String(curl.body)}"`
+      : 'None';
+
+    code += `req = urllib.request.Request(url, method="${method}", data=${bodyVar})\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `req.add_header("${k}", "${v}")\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `import base64\n`;
+      code += `creds = base64.b64encode(b"${curl.auth.credentials.username}:${curl.auth.credentials.password}").decode()\n`;
+      code += `req.add_header("Authorization", f"Basic {creds}")\n`;
+    }
+    code += '\nwith urllib.request.urlopen(req) as response:\n';
+    code += `${this.indent}body = response.read().decode()\n`;
+    code += `${this.indent}print(f"status: {response.status}")\n`;
+    code += `${this.indent}print(body)\n`;
+
+    return {
+      code,
+      language: 'python',
+      framework: 'urllib',
+      fileName: 'api_request',
+      fileExtension: 'py',
+      imports,
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
 // Main converter function
 export function convertCurlToCode(
   curlCommand: string,
@@ -1557,6 +1951,37 @@ export function convertCurlToCode(
       generator = new GoNetHttpGenerator(options);
     } else if (options.language === 'go' && options.framework === 'resty') {
       generator = new GoRestyGenerator(options);
+    } else if (
+      (options.language === 'javascript' ||
+        options.language === 'typescript') &&
+      options.framework === 'axios'
+    ) {
+      generator = new AxiosGenerator(options);
+    } else if (
+      (options.language === 'javascript' ||
+        options.language === 'typescript') &&
+      options.framework === 'node-https'
+    ) {
+      generator = new NodeHttpsGenerator(options);
+    } else if (
+      options.language === 'javascript' &&
+      options.framework === 'jquery'
+    ) {
+      generator = new JQueryGenerator(options);
+    } else if (options.language === 'javascript' && options.framework === 'xhr') {
+      generator = new XhrGenerator(options);
+    } else if (options.language === 'python' && options.framework === 'httpx') {
+      generator = new PythonHttpxGenerator(options);
+    } else if (
+      options.language === 'python' &&
+      options.framework === 'aiohttp'
+    ) {
+      generator = new PythonAioHttpGenerator(options);
+    } else if (
+      options.language === 'python' &&
+      options.framework === 'urllib'
+    ) {
+      generator = new PythonUrllibGenerator(options);
     } else {
       // Safety net: registry marked implemented but dispatcher missing case.
       // This indicates a bug in the isImplemented flags or a missing generator
