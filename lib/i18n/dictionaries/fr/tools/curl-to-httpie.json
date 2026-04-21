@@ -1,0 +1,62 @@
+{
+  "title": "Convertisseur cURL vers HTTPie",
+  "description": "Convertit les commandes cURL en syntaxe CLI HTTPie http / https avec mode JSON et flags courts",
+  "placeholder": "Collez ici votre commande cURL...",
+  "meta": {
+    "title": "Convertisseur cURL vers HTTPie - Syntaxe CLI http/https | ToolsLab",
+    "description": "Convertissez cURL en HTTPie gratuitement. Génère une commande http avec auth courte, en-têtes, query params et bodies JSON. One-liners shell-friendly pour tester les APIs.",
+    "keywords": "cURL vers HTTPie, httpie depuis curl, http command depuis curl, httpie cli generator, convertisseur shell curl"
+  },
+  "tagline": "Traduisez vos commandes cURL en syntaxe CLI HTTPie — plus lisible et shell-friendly",
+  "pageDescription": "Convertisseur gratuit cURL vers HTTPie qui transforme les commandes cURL en syntaxe CLI http / https de HTTPie, plus lisible. Émet en-têtes courts (clé:valeur), query (clé==valeur), body JSON (clé=valeur pour chaînes, clé:=valeur pour JSON brut), --auth pour Basic auth, --timeout et --verify=no pour sauter SSL. One-liners parfaits pour tester rapidement des APIs, partager sur Slack ou documenter. Conversion 100% dans le navigateur.",
+  "instructions": {
+    "title": "Comment utiliser le convertisseur cURL vers HTTPie",
+    "steps": [
+      { "title": "Collez la commande cURL", "description": "Depuis terminal, DevTools ou doc d'API." },
+      { "title": "Copiez le one-liner HTTPie", "description": "Syntaxe courte avec en-têtes clé:valeur et champs body clé=valeur." },
+      { "title": "Exécutez la commande HTTPie", "description": "Installez HTTPie (pip install httpie) et collez la commande dans votre shell." },
+      { "title": "Ajustez les options", "description": "Modifiez timeout, vérification SSL via le panneau." }
+    ],
+    "features": [
+      "CLI http et https avec syntaxe courte",
+      "Syntaxe en-têtes : 'Header:Value'",
+      "Syntaxe query : 'clé==valeur'",
+      "Syntaxe body JSON : 'clé=valeur' (chaîne) et 'clé:=valeur' (JSON brut)",
+      "--auth='user:pass' pour Basic auth",
+      "--verify=no pour sauter SSL en dev",
+      "--timeout pour timeout de requête",
+      "Sortie one-liner shell-friendly"
+    ],
+    "useCases": [
+      "Partager des exemples d'API sur Slack/docs avec des commandes HTTPie propres",
+      "Remplacer du cURL verbeux dans README.md par du HTTPie lisible",
+      "Debug rapide d'APIs depuis le terminal",
+      "Enseigner REST avec des requêtes lisibles",
+      "Convertir cURL de Chrome DevTools en raccourcis HTTPie",
+      "Préparer des scripts smoke-test CI",
+      "Migrer la doc d'équipe de cURL aux idioms HTTPie",
+      "Générer des commandes HTTPie depuis des exports Postman"
+    ],
+    "proTips": [
+      "Utilisez 'clé:=valeur' quand la valeur est un nombre, booléen ou JSON imbriqué",
+      "Enchaînez plusieurs query params en répétant 'clé==valeur'",
+      "Pipez la sortie HTTPie dans jq pour explorer le JSON",
+      "Utilisez --session=nom pour partager l'auth sur plusieurs appels",
+      "Installez HTTPie via 'pip install httpie' ou 'brew install httpie'",
+      "Désactivez la vérification SSL (--verify=no) uniquement en dev — jamais en production"
+    ],
+    "troubleshooting": [
+      "Commande introuvable : installez HTTPie ('pip install httpie' ou 'brew install httpie')",
+      "Erreur de body : utilisez 'clé=valeur' pour les chaînes, 'clé:=valeur' pour JSON brut",
+      "Erreur SSL : ajoutez --verify=no uniquement en dev local ou pour des endpoints internes fiables",
+      "Problèmes de quoting : enveloppez les valeurs avec caractères spéciaux dans des apostrophes",
+      "En-têtes manquants : vérifiez que les flags -H sont bien convertis en 'Header:Value'"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Coller l'entrée" },
+      { "keys": "Ctrl+Enter", "description": "Générer HTTPie" },
+      { "keys": "Ctrl+C", "description": "Copier le résultat" },
+      { "keys": "Ctrl+S", "description": "Télécharger le fichier .sh" }
+    ]
+  }
+}

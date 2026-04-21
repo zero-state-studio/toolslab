@@ -1,0 +1,61 @@
+{
+  "title": "cURL to Java Converter",
+  "description": "Convert cURL commands to Java code using HttpClient (Java 11+) or OkHttp client",
+  "placeholder": "Paste your cURL command here...",
+  "meta": {
+    "title": "cURL to Java Converter - HttpClient & OkHttp | ToolsLab",
+    "description": "Convert cURL to Java online free. Generates HttpClient (Java 11+) or OkHttp snippets with headers, auth, and body. Zero-dep stdlib or Square OkHttp3."
+  },
+  "tagline": "Turn cURL commands into idiomatic Java — stdlib HttpClient or OkHttp3",
+  "pageDescription": "Free cURL to Java converter transforms cURL commands into production-ready Java using the Java 11+ java.net.http.HttpClient standard library or Square's OkHttp3. Emits HttpRequest.Builder fluent calls, try-with-resources where applicable, Base64-encoded Basic auth, and timeout configuration. Perfect for Spring Boot, Jakarta EE, or Android backends. Browser-based conversion means your cURL command never leaves your device.",
+  "instructions": {
+    "title": "How to use cURL to Java Converter",
+    "steps": [
+      { "title": "Paste cURL command", "description": "From terminal, Chrome DevTools, API docs, or Postman." },
+      { "title": "Pick HttpClient or OkHttp", "description": "HttpClient for Java 11+ stdlib zero deps; OkHttp for most common 3rd-party client." },
+      { "title": "Copy generated Java", "description": "Includes imports, try-with-resources, proper header + auth handling." },
+      { "title": "Adjust options", "description": "Tweak timeout, SSL verify via Options panel." }
+    ],
+    "features": [
+      "Java 11+ HttpClient (stdlib, zero deps)",
+      "OkHttp3 — most popular 3rd-party HTTP client",
+      "HttpRequest.Builder fluent API",
+      "try-with-resources for Response in OkHttp",
+      "Base64-encoded Basic auth",
+      "Configurable timeouts (connect + read)",
+      "Handles JSON, form-encoded, plain text bodies",
+      "Zero-dependency browser processing"
+    ],
+    "useCases": [
+      "Translate API docs cURL to Spring Boot HTTP calls",
+      "Port Postman collections to Java integration clients",
+      "Build SDK clients for third-party APIs",
+      "Debug Android network calls from cURL",
+      "Generate Jakarta EE REST client stubs",
+      "Migrate Apache HttpClient legacy code to modern HttpClient",
+      "Prepare Java examples for API documentation",
+      "Scaffold integration tests from real cURL requests"
+    ],
+    "proTips": [
+      "Prefer Java 11+ HttpClient in new code — no extra deps",
+      "Use OkHttp when you need interceptors or connection pooling control",
+      "Share a single HttpClient/OkHttpClient instance application-wide",
+      "Always close Response in OkHttp (try-with-resources)",
+      "Set explicit timeouts — defaults are too permissive",
+      "Never disable TLS verification in production"
+    ],
+    "troubleshooting": [
+      "HttpClient not found: ensure Java 11+ target (pom/Gradle)",
+      "OkHttp missing: add 'com.squareup.okhttp3:okhttp' dependency",
+      "SSL handshake failure: verify truststore and TLS version",
+      "Connection pool exhausted: reuse the same client instance",
+      "Body not sent: verify -d or --data flags in source cURL"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Paste input" },
+      { "keys": "Ctrl+Enter", "description": "Generate Java" },
+      { "keys": "Ctrl+C", "description": "Copy result" },
+      { "keys": "Ctrl+S", "description": "Download file" }
+    ]
+  }
+}

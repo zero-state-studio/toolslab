@@ -84,14 +84,32 @@ const showToast = (message: string, type: 'success' | 'error' = 'success') => {
   // In a real implementation, this would show a toast notification
 };
 
-export default function CurlToCodeConverter() {
+interface CurlToCodeConverterProps {
+  /**
+   * Tool identifier used for analytics tracking. Defaults to the generic
+   * `curl-to-code` tool; language-specific landing pages (curl-to-php,
+   * curl-to-go, etc.) pass their own id so Umami segments traffic per
+   * landing page.
+   */
+  toolId?: string;
+  /** Pre-select a language (e.g. 'php' for /tools/curl-to-php). */
+  defaultLanguage?: string;
+  /** Pre-select a framework within the chosen language (e.g. 'guzzle'). */
+  defaultFramework?: string;
+}
+
+export default function CurlToCodeConverter({
+  toolId = 'curl-to-code',
+  defaultLanguage = 'javascript',
+  defaultFramework = 'fetch',
+}: CurlToCodeConverterProps = {}) {
   const { theme } = useTheme();
-  const { trackUse, trackError } = useToolTracking('curl-to-code');
+  const { trackUse, trackError } = useToolTracking(toolId);
 
   // State
   const [curlCommand, setCurlCommand] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState('javascript');
-  const [selectedFramework, setSelectedFramework] = useState('fetch');
+  const [selectedLanguage, setSelectedLanguage] = useState(defaultLanguage);
+  const [selectedFramework, setSelectedFramework] = useState(defaultFramework);
   const [generatedCode, setGeneratedCode] = useState<ConversionResult | null>(
     null
   );
@@ -102,8 +120,8 @@ export default function CurlToCodeConverter() {
 
   // Generation options
   const [options, setOptions] = useState<CodeGenerationOptions>({
-    language: 'javascript',
-    framework: 'fetch',
+    language: defaultLanguage,
+    framework: defaultFramework,
     errorHandling: 'basic',
     async: true,
     extractEnvVars: true,

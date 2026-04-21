@@ -1,0 +1,62 @@
+{
+  "title": "Convertisseur cURL vers httpx",
+  "description": "Convertit les commandes cURL en code Python httpx avec support Client sync et AsyncClient async",
+  "placeholder": "Collez ici votre commande cURL...",
+  "meta": {
+    "title": "Convertisseur cURL vers httpx - Python Sync & Async | ToolsLab",
+    "description": "Convertissez cURL en Python httpx gratuitement. Génère du code Client ou AsyncClient avec headers, params, json body, auth et raise_for_status. Prêt pour async/await.",
+    "keywords": "cURL vers httpx, httpx depuis curl, python httpx generator, async httpx, convertisseur httpx python"
+  },
+  "tagline": "Transformez vos commandes cURL en code Python httpx moderne — sync ou async",
+  "pageDescription": "Convertisseur gratuit cURL vers httpx qui génère du code Python avec la bibliothèque moderne httpx — le successeur async-capable de requests. Émet httpx.Client avec context manager, headers, params, body JSON, tuple auth et response.raise_for_status() pour une propagation d'erreurs propre. Utilisez la variante async pour FastAPI, les pipelines asyncio ou les clients à haute concurrence. Conversion 100% dans le navigateur.",
+  "instructions": {
+    "title": "Comment utiliser le convertisseur cURL vers httpx",
+    "steps": [
+      { "title": "Collez la commande cURL", "description": "Depuis terminal, Chrome DevTools, doc d'API ou Postman." },
+      { "title": "Sélectionnez le mode sync", "description": "Le générateur utilise httpx.Client synchrone par défaut ; passez à aiohttp pour l'async." },
+      { "title": "Copiez le Python généré", "description": "Motif context manager + raise_for_status + response.json(). Collez dans script ou module." },
+      { "title": "Ajustez les options", "description": "Modifiez timeout, vérification SSL, verbosité via le panneau d'options." }
+    ],
+    "features": [
+      "Motif httpx.Client avec context manager",
+      "response.raise_for_status() pour gestion d'erreurs propre",
+      "Gère les bodies JSON, form data, query params, en-têtes personnalisés",
+      "Tuple basic auth émis quand -u est présent",
+      "Timeout configurable depuis --max-time ou les options",
+      "Compatible avec httpx sync + async",
+      "100% navigateur — aucun aller-retour serveur",
+      "Copie presse-papiers, coloration syntaxique"
+    ],
+    "useCases": [
+      "Traduire la documentation d'API en code httpx",
+      "Porter du code basé sur requests vers httpx async-capable",
+      "Construire des clients downstream pour FastAPI",
+      "Générer des snippets httpx pour des pipelines asyncio",
+      "Migrer des scripts legacy urllib vers httpx",
+      "Créer des tests d'intégration httpx depuis de vraies requêtes cURL",
+      "Échafauder des wrappers retry/backoff autour de httpx.Client",
+      "Convertir des cURL de Chrome DevTools en scripts de debug Python"
+    ],
+    "proTips": [
+      "Utilisez httpx.AsyncClient dans les frameworks async (FastAPI, asyncio)",
+      "Partagez un seul Client entre requêtes — réutilisation de connexion HTTP/2",
+      "Appelez toujours raise_for_status() pour attraper les 4xx/5xx",
+      "Définissez un timeout explicite via httpx.Timeout pour un contrôle fin",
+      "Configurez les retries avec un wrapper de transport si nécessaire",
+      "Désactivez la vérification SSL uniquement en dev — jamais en production"
+    ],
+    "troubleshooting": [
+      "ModuleNotFoundError : exécutez 'pip install httpx'",
+      "timeout : ajustez httpx.Timeout(connect=..., read=...)",
+      "SSL : vérifiez le CA bundle ou httpx.Client(verify=ca_path)",
+      "Réutilisation de connexion inefficace : utilisez un Client partagé",
+      "Erreurs async : assurez-vous d'être dans un event loop asyncio"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Coller l'entrée" },
+      { "keys": "Ctrl+Enter", "description": "Générer le code httpx" },
+      { "keys": "Ctrl+C", "description": "Copier le résultat" },
+      { "keys": "Ctrl+S", "description": "Télécharger le fichier" }
+    ]
+  }
+}
