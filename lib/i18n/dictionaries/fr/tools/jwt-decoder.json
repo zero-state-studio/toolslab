@@ -112,6 +112,6 @@
   },
   "meta": {
     "title": "Encodeur/Décodeur JWT — Signer et Vérifier en Ligne",
-    "description": "Décodez, vérifiez, encodez et signez des tokens JWT dans le navigateur — HS256, RS256, ES256. Gratuit, sans inscription. Compte à rebours live."
+    "description": "Décodez, vérifiez et signez des tokens JWT en ligne gratuit — inspectez claims, vérifiez signature et expiration dans le navigateur. HS256, RS256, ES256."
   }
 }

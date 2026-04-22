@@ -113,6 +113,6 @@
   },
   "meta": {
     "title": "Codificatore/Decodificatore JWT — Firma e Verifica Online",
-    "description": "Decodifica, verifica, codifica e firma token JWT nel browser — HS256, RS256, ES256. Gratis, senza registrazione. Countdown scadenza live."
+    "description": "Decodifica, verifica e firma token JWT online gratis — ispeziona claims, controlla firma e scadenza nel browser. HS256, RS256, ES256. Nessuna registrazione."
   }
 }

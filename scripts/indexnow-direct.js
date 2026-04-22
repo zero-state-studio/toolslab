@@ -7,6 +7,8 @@
  * Usage:
  *   node scripts/indexnow-direct.js <url> [<url> ...]
  *   node scripts/indexnow-direct.js --tool rot13-caesar-cipher
+ *   node scripts/indexnow-direct.js --tool a --tool b --tool c
+ *   node scripts/indexnow-direct.js --tools a,b,c
  */
 
 const path = require('path');
@@ -56,22 +58,55 @@ async function main() {
   if (args.length === 0) {
     console.log('Usage:');
     console.log('  node scripts/indexnow-direct.js <url> [<url> ...]');
-    console.log('  node scripts/indexnow-direct.js --tool <tool-id>');
+    console.log('  node scripts/indexnow-direct.js --tool <tool-id> [--tool <tool-id> ...]');
+    console.log('  node scripts/indexnow-direct.js --tools <id1,id2,id3>');
     process.exit(1);
   }
 
-  let urls;
-  const toolIdx = args.indexOf('--tool');
-  if (toolIdx !== -1) {
-    const toolId = args[toolIdx + 1];
-    if (!toolId) {
-      console.error('❌ --tool requires a tool-id');
-      process.exit(1);
+  const toolIds = [];
+  const rawUrls = [];
+  for (let i = 0; i < args.length; i++) {
+    const a = args[i];
+    if (a === '--tool') {
+      const id = args[++i];
+      if (!id) {
+        console.error('❌ --tool requires a tool-id');
+        process.exit(1);
+      }
+      toolIds.push(id);
+    } else if (a === '--tools') {
+      const list = args[++i];
+      if (!list) {
+        console.error('❌ --tools requires a comma-separated list');
+        process.exit(1);
+      }
+      list
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+        .forEach((id) => toolIds.push(id));
+    } else if (a.startsWith('--tool=')) {
+      toolIds.push(a.slice('--tool='.length));
+    } else if (a.startsWith('--tools=')) {
+      a.slice('--tools='.length)
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)
+        .forEach((id) => toolIds.push(id));
+    } else {
+      rawUrls.push(a);
     }
-    urls = toolUrls(toolId);
-  } else {
-    urls = args;
   }
+
+  if (toolIds.length > 0 && rawUrls.length > 0) {
+    console.error('❌ Mix of --tool and raw URLs is not supported');
+    process.exit(1);
+  }
+
+  const urls =
+    toolIds.length > 0
+      ? [...new Set(toolIds.flatMap(toolUrls))]
+      : rawUrls;
 
   for (const u of urls) {
     try {
