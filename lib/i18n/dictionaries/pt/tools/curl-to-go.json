@@ -1,0 +1,63 @@
+{
+  "title": "Conversor cURL para Go",
+  "description": "Converte comandos cURL em código Go usando net/http (stdlib) ou Resty",
+  "placeholder": "Cole aqui o seu comando cURL...",
+  "meta": {
+    "title": "Conversor cURL para Go - net/http & Resty | ToolsLab",
+    "description": "Converta comandos cURL em código Go online grátis. Gere snippets net/http stdlib ou Resty com context, timeout e tratamento adequado de erros. Sem cadastro, no navegador.",
+    "keywords": "cURL para Go, cURL para golang, cURL para net/http, cURL para Resty, conversor golang curl, gerador http client go"
+  },
+  "tagline": "Transforme comandos cURL em Go idiomático — stdlib net/http ou go-resty/resty/v2",
+  "pageDescription": "Conversor gratuito cURL para Go que transforma comandos cURL em código pronto para produção usando net/http da standard library ou github.com/go-resty/resty/v2. Emite context.Background com timeout, http.NewRequestWithContext, defer resp.Body.Close() e propagação correta de erros. Perfeito para desenvolvedores Go que traduzem documentação de APIs, requisições Postman ou exportações Chrome DevTools em código gofmt-clean. Conversão 100% no navegador.",
+  "instructions": {
+    "title": "Como usar o Conversor cURL para Go",
+    "steps": [
+      { "title": "Cole o comando cURL", "description": "Copie do terminal, DevTools, documentação de API ou Postman e cole." },
+      { "title": "Escolha net/http ou Resty", "description": "net/http para código stdlib sem dependências; Resty para API fluente popular em microsserviços." },
+      { "title": "Copie o Go gerado", "description": "O código inclui imports, context, timeout, defer Body.Close, verificação de erros. Cole em main.go." },
+      { "title": "Ajuste opções", "description": "Altere tratamento de erros, timeout, verificação SSL pelo painel de opções." }
+    ],
+    "features": [
+      "Stdlib net/http — sem dependências externas",
+      "Resty — API fluente popular em microsserviços Go",
+      "context.Background com timeout via context.WithTimeout",
+      "Tratamento idiomático de erros: padrão if err != nil em todo o código",
+      "defer resp.Body.Close() sempre emitido",
+      "Lida com corpos JSON, form-encoded e multipart",
+      "Suporte para basic auth, bearer tokens e cabeçalhos personalizados",
+      "Saída gofmt-clean pronta para colar",
+      "Processamento 100% no navegador"
+    ],
+    "useCases": [
+      "Traduza exemplos cURL de documentação de APIs em código de microsserviços Go",
+      "Migre coleções Postman para clientes HTTP Go",
+      "Construa SDK clients para APIs de terceiros",
+      "Debugue chamadas service-to-service convertendo cURL em Go legível",
+      "Gere código HTTP para controllers Kubernetes a partir de cURL",
+      "Migre scripts legados bash+cURL para CLIs Go",
+      "Prepare exemplos Go para documentação interna de API",
+      "Crie testes de integração Go a partir de requisições cURL reais"
+    ],
+    "proTips": [
+      "Prefira net/http em bibliotecas para não impor dependências",
+      "Use Resty em código de aplicação para chamadas fluidas legíveis",
+      "Sempre propague o context — permite cancelamento limpo",
+      "Execute gofmt no código gerado antes do commit",
+      "Desative InsecureSkipVerify apenas em dev — nunca em produção",
+      "Prefira http.NewRequestWithContext a http.NewRequest"
+    ],
+    "troubleshooting": [
+      "Import cycle: mantenha a inicialização do cliente HTTP em main ou em um package dedicado",
+      "context deadline exceeded: aumente o timeout ou profile o upstream lento",
+      "Erros TLS: verifique o CA bundle ou use um endpoint HTTPS válido",
+      "Body não enviado: passe o payload como io.Reader (bytes.NewBuffer ou strings.NewReader)",
+      "Import do Resty não encontrado: execute 'go get github.com/go-resty/resty/v2'"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Colar entrada" },
+      { "keys": "Ctrl+Enter", "description": "Gerar Go" },
+      { "keys": "Ctrl+C", "description": "Copiar resultado" },
+      { "keys": "Ctrl+S", "description": "Baixar arquivo .go" }
+    ]
+  }
+}

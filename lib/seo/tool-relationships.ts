@@ -241,8 +241,64 @@ export const toolRelationships: ToolRelationships = {
   'curl-to-code': {
     workflow: ['api-tester', 'jwt-decoder'],
     complementary: ['json-formatter', 'url-encode', 'crontab-builder'],
-    alternatives: ['hash-generator'],
+    alternatives: ['curl-to-php', 'hash-generator'],
     boostVisibility: true, // Orphan tool - only 1 link
+  },
+
+  'curl-to-php': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
+  'curl-to-go': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-php', 'curl-to-axios'],
+    boostVisibility: true,
+  },
+
+  'curl-to-axios': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'json-validator'],
+    alternatives: ['curl-to-code', 'curl-to-httpx', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
+  'curl-to-httpx': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'json-validator'],
+    alternatives: ['curl-to-code', 'curl-to-axios', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
+  'curl-to-java': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-csharp', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
+  'curl-to-csharp': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-java', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
+  'curl-to-ruby': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-php', 'curl-to-go'],
+    boostVisibility: true,
+  },
+
+  'curl-to-httpie': {
+    workflow: ['curl-to-code', 'jwt-decoder', 'json-formatter'],
+    complementary: ['url-encode', 'base64-encode', 'hash-generator'],
+    alternatives: ['curl-to-code', 'curl-to-axios', 'curl-to-php'],
+    boostVisibility: true,
   },
 
   'api-tester': {

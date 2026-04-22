@@ -81,5 +81,19 @@
         "description": "XML-Datei herunterladen"
       }
     ]
+  },
+  "v2": {
+    "xpath": "XPath",
+    "xpathPlaceholder": "//benutzer[@id='1']/email | count(//benutzer) | //ns:Body",
+    "xpathHelp": "Unterstützt XPath 1.0. Im XML deklarierte Namespace-Präfixe werden automatisch aufgelöst.",
+    "xpathEvaluate": "Auswerten",
+    "xpathNoResults": "Keine Treffer für diesen Ausdruck.",
+    "tree": "Baumansicht",
+    "treeExpandAll": "Alle erweitern",
+    "treeCollapseAll": "Alle einklappen",
+    "treeUnavailable": "Baum nicht verfügbar — zuerst gültiges XML formatieren.",
+    "namespaces": "Namensräume",
+    "namespacesEmpty": "Keine Namespaces in diesem Dokument deklariert.",
+    "namespaceDefault": "Standard"
   }
 }

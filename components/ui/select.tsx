@@ -101,18 +101,22 @@ export const SelectItem = React.forwardRef<
     value: string;
     children: React.ReactNode;
     className?: string;
+    disabled?: boolean;
   }
->(({ value, children, className, ...props }, ref) => {
+>(({ value, children, className, disabled, ...props }, ref) => {
   const { onValueChange, setOpen } = React.useContext(SelectContext);
 
   return (
     <div
       ref={ref}
+      aria-disabled={disabled || undefined}
       className={cn(
         'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground',
+        disabled && 'pointer-events-none opacity-50',
         className
       )}
       onClick={() => {
+        if (disabled) return;
         onValueChange?.(value);
         setOpen?.(false);
       }}

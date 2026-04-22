@@ -1,0 +1,62 @@
+{
+  "title": "Convertidor cURL a C#",
+  "description": "Convierte comandos cURL en código C# usando HttpClient (async/await) o RestSharp",
+  "placeholder": "Pega aquí tu comando cURL...",
+  "meta": {
+    "title": "Convertidor cURL a C# - HttpClient y RestSharp | ToolsLab",
+    "description": "Convierte cURL a C# online gratis. Genera HttpClient con async Task<string> o cliente fluido RestSharp. Listo para .NET 6+, ASP.NET Core y Blazor.",
+    "keywords": "cURL a C#, convertidor curl csharp, cURL a HttpClient, cURL a RestSharp, generador http client dotnet"
+  },
+  "tagline": "Transforma comandos cURL en C# idiomático — System.Net.Http.HttpClient o RestSharp",
+  "pageDescription": "Convertidor gratuito cURL a C# que transforma comandos cURL en código listo para producción usando System.Net.Http.HttpClient con async/await o el cliente fluido RestSharp. Emite HttpRequestMessage con StringContent, EnsureSuccessStatusCode y AuthenticationHeaderValue para Basic auth. Listo para .NET 6+, ASP.NET Core, Blazor o aplicaciones de consola. Conversión 100% en el navegador.",
+  "instructions": {
+    "title": "Cómo usar el Convertidor cURL a C#",
+    "steps": [
+      { "title": "Pega el comando cURL", "description": "Desde terminal, Chrome DevTools, docs de API o Postman." },
+      { "title": "Elige HttpClient o RestSharp", "description": "HttpClient es la elección stdlib .NET; RestSharp es la API fluida 3rd-party popular." },
+      { "title": "Copia el C# generado", "description": "Método async con using var client, EnsureSuccessStatusCode y ReadAsStringAsync." },
+      { "title": "Ajusta opciones", "description": "Modifica timeout, verificación SSL desde el panel." }
+    ],
+    "features": [
+      "System.Net.Http.HttpClient con async Task<string>",
+      "Cliente fluido RestSharp",
+      "using var para lifetime scoped del cliente",
+      "response.EnsureSuccessStatusCode() para 4xx/5xx",
+      "AuthenticationHeaderValue para Basic auth",
+      "StringContent con MediaType correcto",
+      "Configuración de timeout",
+      "Procesamiento en navegador sin dependencias"
+    ],
+    "useCases": [
+      "Traduce docs cURL a llamadas HTTP ASP.NET Core",
+      "Migra colecciones Postman a clientes de integración C#",
+      "Construye SDK clients para APIs de terceros",
+      "Depura llamadas de red Blazor/WPF desde cURL",
+      "Genera API clients tipados para Minimal APIs",
+      "Migra HttpWebRequest legacy a HttpClient",
+      "Prepara ejemplos C# para documentación interna",
+      "Crea tests de integración xUnit/NUnit desde cURL"
+    ],
+    "proTips": [
+      "Registra HttpClient vía IHttpClientFactory en contenedores DI",
+      "Usa RestSharp cuando necesites fluent builder + authenticator helpers",
+      "Await siempre SendAsync y verifica StatusCode o usa EnsureSuccessStatusCode",
+      "Define Timeout explícito — el default es 100 segundos",
+      "Dispose vía using o deja que el DI gestione el lifetime",
+      "Nunca desactives la validación SSL en producción"
+    ],
+    "troubleshooting": [
+      "HttpClient.Timeout ignorado: usa CancellationToken en SendAsync",
+      "SocketException: verifica DNS y firewall",
+      "Error handshake TLS: verifica certificado y versión TLS",
+      "RestSharp no encontrado: 'dotnet add package RestSharp'",
+      "Body ausente: verifica flags -d/--data en el cURL origen"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Pegar entrada" },
+      { "keys": "Ctrl+Enter", "description": "Generar C#" },
+      { "keys": "Ctrl+C", "description": "Copiar resultado" },
+      { "keys": "Ctrl+S", "description": "Descargar archivo" }
+    ]
+  }
+}

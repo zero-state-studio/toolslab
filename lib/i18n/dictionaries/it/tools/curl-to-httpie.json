@@ -1,0 +1,62 @@
+{
+  "title": "Convertitore cURL in HTTPie",
+  "description": "Converte comandi cURL nella sintassi CLI HTTPie http / https con modalità JSON e flag short-hand",
+  "placeholder": "Incolla qui il tuo comando cURL...",
+  "meta": {
+    "title": "Convertitore cURL in HTTPie - Sintassi CLI http/https | ToolsLab",
+    "description": "Converti cURL in HTTPie online gratis. Genera comando http con auth short-hand, header, query param e body JSON. One-liner shell-friendly per API testing.",
+    "keywords": "cURL a HTTPie, httpie da curl, http command da curl, httpie cli generator, convertitore shell curl"
+  },
+  "tagline": "Traduci i comandi cURL nella sintassi CLI HTTPie — più leggibile e shell-friendly",
+  "pageDescription": "Convertitore gratuito cURL in HTTPie che trasforma comandi cURL nella sintassi CLI http / https più leggibile di HTTPie. Emette header short-hand (chiave:valore), query (chiave==valore), body JSON (chiave=valore per stringhe, chiave:=valore per JSON raw), --auth per Basic auth, --timeout e --verify=no per skip SSL. Perfetti one-liner per API testing rapidi, snippet di documentazione o share su Slack. Conversione 100% nel browser.",
+  "instructions": {
+    "title": "Come usare il convertitore cURL in HTTPie",
+    "steps": [
+      { "title": "Incolla il comando cURL", "description": "Da terminale, DevTools o documentazione API." },
+      { "title": "Copia il one-liner HTTPie", "description": "Sintassi short-hand con header chiave:valore e campi body chiave=valore." },
+      { "title": "Esegui il comando HTTPie", "description": "Installa HTTPie (pip install httpie) e incolla il comando nella shell." },
+      { "title": "Personalizza opzioni", "description": "Regola timeout, verifica SSL dal pannello." }
+    ],
+    "features": [
+      "CLI http e https con sintassi short-hand",
+      "Sintassi header: 'Header:Value'",
+      "Sintassi query: 'chiave==valore'",
+      "Sintassi body JSON: 'chiave=valore' (stringa) e 'chiave:=valore' (JSON raw)",
+      "--auth='user:pass' per Basic auth",
+      "--verify=no per skip SSL in dev",
+      "--timeout per timeout richiesta",
+      "Output one-liner shell-friendly"
+    ],
+    "useCases": [
+      "Condividi esempi API su Slack/docs con comandi HTTPie puliti",
+      "Sostituisci cURL verboso nel README.md con HTTPie leggibile",
+      "Debug API rapido dal terminale",
+      "Insegna concetti REST con richieste leggibili",
+      "Converti cURL di Chrome DevTools in shortcut HTTPie",
+      "Prepara script smoke-test CI",
+      "Migra doc di team da cURL a idiomi HTTPie",
+      "Genera comandi HTTPie da esportazioni Postman"
+    ],
+    "proTips": [
+      "Usa 'chiave:=valore' quando il body è numero, booleano o JSON annidato",
+      "Concatena più query parameter ripetendo 'chiave==valore'",
+      "Pipa l'output HTTPie in jq per esplorare JSON",
+      "Usa --session=nome per condividere auth tra più chiamate",
+      "Installa HTTPie via 'pip install httpie' o 'brew install httpie'",
+      "Disabilita verifica SSL (--verify=no) solo in dev — mai in produzione"
+    ],
+    "troubleshooting": [
+      "Comando non trovato: installa HTTPie ('pip install httpie' o 'brew install httpie')",
+      "Errore body: usa 'chiave=valore' per stringhe, 'chiave:=valore' per JSON raw",
+      "Errore SSL: aggiungi --verify=no solo in dev locale o endpoint interni fidati",
+      "Problemi di quoting: avvolgi valori con caratteri speciali in apici singoli",
+      "Header mancanti: verifica che i flag -H siano convertiti in 'Header:Value'"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Incolla input" },
+      { "keys": "Ctrl+Enter", "description": "Genera HTTPie" },
+      { "keys": "Ctrl+C", "description": "Copia risultato" },
+      { "keys": "Ctrl+S", "description": "Scarica file .sh" }
+    ]
+  }
+}

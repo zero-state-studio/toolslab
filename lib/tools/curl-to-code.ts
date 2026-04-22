@@ -80,68 +80,138 @@ export interface ConversionResult {
 }
 
 // Language/Framework configurations
-export const SUPPORTED_LANGUAGES = {
+// Each framework has an `implemented` flag. UI shows unimplemented combos
+// with a "Coming soon" label but prevents selection. The dispatcher in
+// `convertCurlToCode` refuses unimplemented combos with an explicit message.
+// Tracking for future implementation: RIC-112 epic (children RIC-114..118).
+export interface FrameworkEntry {
+  id: string;
+  implemented: boolean;
+}
+
+export interface LanguageEntry {
+  name: string;
+  frameworks: FrameworkEntry[];
+  fileExtension: string;
+}
+
+export const SUPPORTED_LANGUAGES: Record<string, LanguageEntry> = {
   javascript: {
     name: 'JavaScript',
-    frameworks: ['fetch', 'axios', 'node-https', 'jquery', 'xhr'],
+    frameworks: [
+      { id: 'fetch', implemented: true },
+      { id: 'axios', implemented: true },
+      { id: 'node-https', implemented: true },
+      { id: 'jquery', implemented: true },
+      { id: 'xhr', implemented: true },
+    ],
     fileExtension: 'js',
   },
   typescript: {
     name: 'TypeScript',
-    frameworks: ['fetch', 'axios', 'node-https'],
+    frameworks: [
+      { id: 'fetch', implemented: true },
+      { id: 'axios', implemented: true },
+      { id: 'node-https', implemented: true },
+    ],
     fileExtension: 'ts',
   },
   python: {
     name: 'Python',
-    frameworks: ['requests', 'urllib', 'httpx', 'aiohttp'],
+    frameworks: [
+      { id: 'requests', implemented: true },
+      { id: 'urllib', implemented: true },
+      { id: 'httpx', implemented: true },
+      { id: 'aiohttp', implemented: true },
+    ],
     fileExtension: 'py',
   },
   php: {
     name: 'PHP',
-    frameworks: ['curl', 'guzzle', 'file_get_contents'],
+    frameworks: [
+      { id: 'curl', implemented: true },
+      { id: 'guzzle', implemented: true },
+      { id: 'file_get_contents', implemented: true },
+    ],
     fileExtension: 'php',
   },
   go: {
     name: 'Go',
-    frameworks: ['net-http', 'resty'],
+    frameworks: [
+      { id: 'net-http', implemented: true },
+      { id: 'resty', implemented: true },
+    ],
     fileExtension: 'go',
   },
   java: {
     name: 'Java',
-    frameworks: ['httpurlconnection', 'apache-httpclient', 'okhttp', 'spring'],
+    frameworks: [
+      { id: 'httpurlconnection', implemented: true },
+      { id: 'apache-httpclient', implemented: false },
+      { id: 'okhttp', implemented: true },
+      { id: 'spring', implemented: false },
+    ],
     fileExtension: 'java',
   },
   csharp: {
     name: 'C#',
-    frameworks: ['httpclient', 'restsharp', 'webrequest'],
+    frameworks: [
+      { id: 'httpclient', implemented: true },
+      { id: 'restsharp', implemented: true },
+      { id: 'webrequest', implemented: false },
+    ],
     fileExtension: 'cs',
   },
   ruby: {
     name: 'Ruby',
-    frameworks: ['net-http', 'restclient', 'httparty'],
+    frameworks: [
+      { id: 'net-http', implemented: true },
+      { id: 'restclient', implemented: false },
+      { id: 'httparty', implemented: true },
+    ],
     fileExtension: 'rb',
   },
   rust: {
     name: 'Rust',
-    frameworks: ['reqwest', 'hyper'],
+    frameworks: [
+      { id: 'reqwest', implemented: false },
+      { id: 'hyper', implemented: false },
+    ],
     fileExtension: 'rs',
   },
   swift: {
     name: 'Swift',
-    frameworks: ['urlsession', 'alamofire'],
+    frameworks: [
+      { id: 'urlsession', implemented: false },
+      { id: 'alamofire', implemented: false },
+    ],
     fileExtension: 'swift',
   },
   kotlin: {
     name: 'Kotlin',
-    frameworks: ['okhttp', 'ktor', 'retrofit'],
+    frameworks: [
+      { id: 'okhttp', implemented: false },
+      { id: 'ktor', implemented: false },
+      { id: 'retrofit', implemented: false },
+    ],
     fileExtension: 'kt',
   },
   shell: {
     name: 'Shell',
-    frameworks: ['wget', 'httpie', 'powershell'],
+    frameworks: [
+      { id: 'wget', implemented: true },
+      { id: 'httpie', implemented: true },
+      { id: 'powershell', implemented: true },
+    ],
     fileExtension: 'sh',
   },
 };
+
+export function isImplemented(language: string, framework: string): boolean {
+  const lang = SUPPORTED_LANGUAGES[language];
+  if (!lang) return false;
+  return lang.frameworks.some((f) => f.id === framework && f.implemented);
+}
 
 // cURL Parser
 export class CurlParser {
@@ -992,6 +1062,1333 @@ export class PythonRequestsGenerator extends CodeGenerator {
   }
 }
 
+// ============================================================================
+// PHP Generators (RIC-114)
+// ============================================================================
+
+/**
+ * Helpers shared across PHP generators.
+ */
+function phpEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+function phpAssocArray(obj: Record<string, unknown>, indent: string): string {
+  const lines = Object.entries(obj).map(
+    ([k, v]) =>
+      `${indent}${indent}'${phpEscape(k)}' => '${phpEscape(String(v))}',`
+  );
+  return `[\n${lines.join('\n')}\n${indent}]`;
+}
+
+/**
+ * PHP + Guzzle (GuzzleHttp\\Client).
+ * Modern PHP HTTP client; requires `composer require guzzlehttp/guzzle`.
+ */
+export class PhpGuzzleGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const imports = ['use GuzzleHttp\\Client;', 'use GuzzleHttp\\RequestOptions;'];
+    const envVars = this.extractEnvVars(curl);
+
+    let code = '<?php\n\n';
+    code += 'require_once __DIR__ . \'/vendor/autoload.php\';\n\n';
+    for (const imp of imports) code += imp + '\n';
+    code += '\n$client = new Client([\n';
+    code += `${this.indent}'base_uri' => '${phpEscape(curl.url)}',\n`;
+    if (curl.options.timeout) {
+      code += `${this.indent}'timeout'  => ${curl.options.timeout / 1000},\n`;
+    }
+    if (curl.options.insecure) {
+      code += `${this.indent}'verify'   => false,\n`;
+    }
+    code += ']);\n\n';
+
+    const requestOpts: string[] = [];
+    if (Object.keys(curl.headers).length > 0) {
+      requestOpts.push(
+        `${this.indent}'headers' => ${phpAssocArray(curl.headers, this.indent)}`
+      );
+    }
+    if (curl.queryParams) {
+      requestOpts.push(
+        `${this.indent}'query' => ${phpAssocArray(curl.queryParams, this.indent)}`
+      );
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        requestOpts.push(
+          `${this.indent}'json' => ${phpAssocArray(curl.body as Record<string, unknown>, this.indent)}`
+        );
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        requestOpts.push(
+          `${this.indent}'form_params' => ${phpAssocArray(curl.body as Record<string, unknown>, this.indent)}`
+        );
+      } else {
+        requestOpts.push(
+          `${this.indent}'body' => '${phpEscape(String(curl.body))}'`
+        );
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      requestOpts.push(
+        `${this.indent}'auth' => ['${phpEscape(curl.auth.credentials.username)}', '${phpEscape(curl.auth.credentials.password)}']`
+      );
+    }
+
+    code += 'try {\n';
+    if (requestOpts.length > 0) {
+      code += `${this.indent}$response = $client->request('${method}', '', [\n`;
+      code += requestOpts.join(',\n') + ',\n';
+      code += `${this.indent}]);\n`;
+    } else {
+      code += `${this.indent}$response = $client->request('${method}', '');\n`;
+    }
+    code += `${this.indent}$body = $response->getBody()->getContents();\n`;
+    code += `${this.indent}$data = json_decode($body, true);\n`;
+    code += `${this.indent}print_r($data);\n`;
+    code += '} catch (\\GuzzleHttp\\Exception\\RequestException $e) {\n';
+    code += `${this.indent}echo 'Request failed: ' . $e->getMessage();\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'php',
+      framework: 'guzzle',
+      fileName: 'api_request',
+      fileExtension: 'php',
+      imports,
+      envVars,
+      dependencies: ['guzzlehttp/guzzle'],
+    };
+  }
+}
+
+/**
+ * PHP + native cURL extension (ext-curl).
+ * Zero-dependency, works on any PHP install with curl extension enabled.
+ */
+export class PhpCurlGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      const qs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      url += (url.includes('?') ? '&' : '?') + qs;
+    }
+
+    let code = '<?php\n\n';
+    code += `$ch = curl_init('${phpEscape(url)}');\n\n`;
+    code += `curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);\n`;
+    code += `curl_setopt($ch, CURLOPT_CUSTOMREQUEST, '${method}');\n`;
+
+    if (curl.options.timeout) {
+      code += `curl_setopt($ch, CURLOPT_TIMEOUT, ${curl.options.timeout / 1000});\n`;
+    }
+    if (curl.options.insecure) {
+      code += `curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);\n`;
+      code += `curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);\n`;
+    }
+    if (curl.options.followRedirects) {
+      code += `curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);\n`;
+    }
+
+    if (Object.keys(curl.headers).length > 0) {
+      const hdrs = Object.entries(curl.headers)
+        .map(([k, v]) => `'${phpEscape(k)}: ${phpEscape(String(v))}'`)
+        .join(', ');
+      code += `curl_setopt($ch, CURLOPT_HTTPHEADER, [${hdrs}]);\n`;
+    }
+
+    if (curl.auth?.type === 'basic') {
+      code += `curl_setopt($ch, CURLOPT_USERPWD, '${phpEscape(curl.auth.credentials.username)}:${phpEscape(curl.auth.credentials.password)}');\n`;
+    }
+
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `$payload = json_encode(${phpAssocArray(curl.body as Record<string, unknown>, this.indent)});\n`;
+        code += `curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);\n`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        code += `curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(${phpAssocArray(curl.body as Record<string, unknown>, this.indent)}));\n`;
+      } else {
+        code += `curl_setopt($ch, CURLOPT_POSTFIELDS, '${phpEscape(String(curl.body))}');\n`;
+      }
+    }
+
+    code += '\n$response = curl_exec($ch);\n';
+    code += '$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);\n';
+    code += '$error = curl_error($ch);\n';
+    code += 'curl_close($ch);\n\n';
+    code += 'if ($error) {\n';
+    code += `${this.indent}echo 'Request failed: ' . $error;\n`;
+    code += '} else {\n';
+    code += `${this.indent}$data = json_decode($response, true);\n`;
+    code += `${this.indent}print_r($data);\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'php',
+      framework: 'curl',
+      fileName: 'api_request',
+      fileExtension: 'php',
+      imports: [],
+      envVars,
+      dependencies: ['ext-curl'],
+    };
+  }
+}
+
+/**
+ * PHP + file_get_contents via stream context.
+ * Zero-dependency, no ext-curl required. Limited to simple use cases.
+ */
+export class PhpFileGetContentsGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      const qs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      url += (url.includes('?') ? '&' : '?') + qs;
+    }
+
+    const headerLines = Object.entries(curl.headers).map(
+      ([k, v]) => `${k}: ${v}`
+    );
+    if (curl.auth?.type === 'basic') {
+      const token = `base64_encode('${phpEscape(curl.auth.credentials.username)}:${phpEscape(curl.auth.credentials.password)}')`;
+      headerLines.push(`Authorization: Basic ' . ${token} . '`);
+    }
+
+    let code = '<?php\n\n';
+    code += '$options = [\n';
+    code += `${this.indent}'http' => [\n`;
+    code += `${this.indent}${this.indent}'method'  => '${method}',\n`;
+    if (headerLines.length > 0) {
+      code += `${this.indent}${this.indent}'header'  => "${headerLines.map(phpEscape).join('\\r\\n')}",\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}'content' => json_encode(${phpAssocArray(curl.body as Record<string, unknown>, this.indent + this.indent)}),\n`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}'content' => http_build_query(${phpAssocArray(curl.body as Record<string, unknown>, this.indent + this.indent)}),\n`;
+      } else {
+        code += `${this.indent}${this.indent}'content' => '${phpEscape(String(curl.body))}',\n`;
+      }
+    }
+    if (curl.options.timeout) {
+      code += `${this.indent}${this.indent}'timeout' => ${curl.options.timeout / 1000},\n`;
+    }
+    if (curl.options.insecure) {
+      code += `${this.indent}'ssl' => [\n`;
+      code += `${this.indent}${this.indent}'verify_peer' => false,\n`;
+      code += `${this.indent}${this.indent}'verify_peer_name' => false,\n`;
+      code += `${this.indent}],\n`;
+    }
+    code += `${this.indent}],\n`;
+    code += '];\n\n';
+    code += `$context = stream_context_create($options);\n`;
+    code += `$response = @file_get_contents('${phpEscape(url)}', false, $context);\n\n`;
+    code += 'if ($response === false) {\n';
+    code += `${this.indent}echo 'Request failed';\n`;
+    code += '} else {\n';
+    code += `${this.indent}$data = json_decode($response, true);\n`;
+    code += `${this.indent}print_r($data);\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'php',
+      framework: 'file_get_contents',
+      fileName: 'api_request',
+      fileExtension: 'php',
+      imports: [],
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+// ============================================================================
+// Go Generators (RIC-115)
+// ============================================================================
+
+function goEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+/**
+ * Go stdlib `net/http` generator. Zero third-party dependencies,
+ * production-grade ergonomics: context.Background, defer Body.Close,
+ * proper error handling via `if err != nil`.
+ */
+export class GoNetHttpGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = new Set<string>([
+      'bytes',
+      'context',
+      'fmt',
+      'io',
+      'net/http',
+      'time',
+    ]);
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      const qs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      url += (url.includes('?') ? '&' : '?') + qs;
+    }
+
+    const hasBody = !!curl.body;
+    let bodyInit = '';
+    if (hasBody) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        bodyInit = `payload := []byte(\`${JSON.stringify(curl.body)}\`)\n${this.indent}body := bytes.NewBuffer(payload)`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        imports.add('net/url');
+        imports.add('strings');
+        const form = Object.entries(curl.body as Record<string, unknown>)
+          .map(([k, v]) => `${this.indent}${this.indent}"${goEscape(k)}": {"${goEscape(String(v))}"},`)
+          .join('\n');
+        bodyInit = `form := url.Values{\n${form}\n${this.indent}}\n${this.indent}body := strings.NewReader(form.Encode())`;
+      } else {
+        imports.add('strings');
+        bodyInit = `body := strings.NewReader("${goEscape(String(curl.body))}")`;
+      }
+    }
+
+    const timeoutSec = (curl.options.timeout || 30000) / 1000;
+
+    let code = 'package main\n\n';
+    code += 'import (\n';
+    for (const imp of Array.from(imports).sort())
+      code += `${this.indent}"${imp}"\n`;
+    code += ')\n\n';
+    code += 'func main() {\n';
+    code += `${this.indent}ctx, cancel := context.WithTimeout(context.Background(), ${timeoutSec}*time.Second)\n`;
+    code += `${this.indent}defer cancel()\n\n`;
+
+    if (hasBody) code += `${this.indent}${bodyInit}\n\n`;
+
+    code += `${this.indent}req, err := http.NewRequestWithContext(ctx, "${method}", "${goEscape(url)}", `;
+    code += hasBody ? 'body)\n' : 'nil)\n';
+    code += `${this.indent}if err != nil {\n`;
+    code += `${this.indent}${this.indent}fmt.Println("failed to build request:", err)\n`;
+    code += `${this.indent}${this.indent}return\n`;
+    code += `${this.indent}}\n\n`;
+
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}req.Header.Set("${goEscape(k)}", "${goEscape(String(v))}")\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}req.SetBasicAuth("${goEscape(curl.auth.credentials.username)}", "${goEscape(curl.auth.credentials.password)}")\n`;
+    }
+
+    code += `\n${this.indent}client := &http.Client{Timeout: ${timeoutSec} * time.Second}\n`;
+    if (curl.options.insecure) {
+      imports.add('crypto/tls');
+      code += `${this.indent}// NOTE: TLS verification disabled — do not use in production.\n`;
+      code += `${this.indent}client.Transport = &http.Transport{TLSClientConfig: &tls.Config{InsecureSkipVerify: true}}\n`;
+    }
+    code += `${this.indent}resp, err := client.Do(req)\n`;
+    code += `${this.indent}if err != nil {\n`;
+    code += `${this.indent}${this.indent}fmt.Println("request failed:", err)\n`;
+    code += `${this.indent}${this.indent}return\n`;
+    code += `${this.indent}}\n`;
+    code += `${this.indent}defer resp.Body.Close()\n\n`;
+    code += `${this.indent}respBody, err := io.ReadAll(resp.Body)\n`;
+    code += `${this.indent}if err != nil {\n`;
+    code += `${this.indent}${this.indent}fmt.Println("read body failed:", err)\n`;
+    code += `${this.indent}${this.indent}return\n`;
+    code += `${this.indent}}\n`;
+    code += `${this.indent}fmt.Printf("status: %s\\n", resp.Status)\n`;
+    code += `${this.indent}fmt.Println(string(respBody))\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'go',
+      framework: 'net-http',
+      fileName: 'main',
+      fileExtension: 'go',
+      imports: Array.from(imports),
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+/**
+ * Go + `github.com/go-resty/resty/v2`. Fluent HTTP client popular for
+ * production API clients and service-to-service calls.
+ */
+export class GoRestyGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['fmt', 'time', 'github.com/go-resty/resty/v2'];
+
+    let code = 'package main\n\n';
+    code += 'import (\n';
+    for (const imp of imports) code += `${this.indent}"${imp}"\n`;
+    code += ')\n\n';
+    code += 'func main() {\n';
+    code += `${this.indent}client := resty.New().SetTimeout(${(curl.options.timeout || 30000) / 1000} * time.Second)\n`;
+    if (curl.options.insecure) {
+      code += `${this.indent}client.SetTLSClientConfig(nil) // TODO: set InsecureSkipVerify if really needed\n`;
+    }
+
+    code += `${this.indent}req := client.R()\n`;
+
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}req.SetHeader("${goEscape(k)}", "${goEscape(String(v))}")\n`;
+    }
+    if (curl.queryParams) {
+      for (const [k, v] of Object.entries(curl.queryParams)) {
+        code += `${this.indent}req.SetQueryParam("${goEscape(k)}", "${goEscape(String(v))}")\n`;
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}req.SetBasicAuth("${goEscape(curl.auth.credentials.username)}", "${goEscape(curl.auth.credentials.password)}")\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}req.SetHeader("Content-Type", "application/json")\n`;
+        code += `${this.indent}req.SetBody(\`${JSON.stringify(curl.body)}\`)\n`;
+      } else {
+        code += `${this.indent}req.SetBody(\`${String(curl.body).replace(/`/g, '\\`')}\`)\n`;
+      }
+    }
+
+    const methodFn = method.charAt(0) + method.slice(1).toLowerCase();
+    code += `\n${this.indent}resp, err := req.${methodFn}("${goEscape(curl.url)}")\n`;
+    code += `${this.indent}if err != nil {\n`;
+    code += `${this.indent}${this.indent}fmt.Println("request failed:", err)\n`;
+    code += `${this.indent}${this.indent}return\n`;
+    code += `${this.indent}}\n`;
+    code += `${this.indent}fmt.Printf("status: %d\\n", resp.StatusCode())\n`;
+    code += `${this.indent}fmt.Println(string(resp.Body()))\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'go',
+      framework: 'resty',
+      fileName: 'main',
+      fileExtension: 'go',
+      imports,
+      envVars,
+      dependencies: ['github.com/go-resty/resty/v2'],
+    };
+  }
+}
+
+// ============================================================================
+// JavaScript / TypeScript additional generators (RIC-116)
+// ============================================================================
+
+function jsEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/`/g, '\\`');
+}
+
+/**
+ * axios generator — the most popular JS HTTP client for Node and browsers.
+ */
+export class AxiosGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toLowerCase();
+    const envVars = this.extractEnvVars(curl);
+    const isTs = this.options.language === 'typescript';
+    const imports = [
+      isTs
+        ? "import axios, { AxiosRequestConfig } from 'axios';"
+        : "import axios from 'axios';",
+    ];
+
+    const config: string[] = [];
+    config.push(`method: '${method}'`);
+    config.push(`url: '${jsEscape(curl.url)}'`);
+    if (Object.keys(curl.headers).length > 0) {
+      config.push(`headers: ${JSON.stringify(curl.headers, null, 2)}`);
+    }
+    if (curl.queryParams) {
+      config.push(`params: ${JSON.stringify(curl.queryParams, null, 2)}`);
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        config.push(`data: ${JSON.stringify(curl.body, null, 2)}`);
+      } else {
+        config.push(`data: \`${jsEscape(String(curl.body))}\``);
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      config.push(
+        `auth: { username: '${jsEscape(curl.auth.credentials.username)}', password: '${jsEscape(curl.auth.credentials.password)}' }`
+      );
+    }
+    if (curl.options.timeout) {
+      config.push(`timeout: ${curl.options.timeout}`);
+    }
+
+    const cfgType = isTs ? ': AxiosRequestConfig' : '';
+    let code = imports.join('\n') + '\n\n';
+    code += `const config${cfgType} = {\n${this.indent}${config.join(`,\n${this.indent}`)},\n};\n\n`;
+    code += 'async function request() {\n';
+    code += `${this.indent}try {\n`;
+    code += `${this.indent}${this.indent}const response = await axios.request(config);\n`;
+    code += `${this.indent}${this.indent}console.log(response.data);\n`;
+    code += `${this.indent}${this.indent}return response.data;\n`;
+    code += `${this.indent}} catch (error) {\n`;
+    code += `${this.indent}${this.indent}if (axios.isAxiosError(error)) {\n`;
+    code += `${this.indent}${this.indent}${this.indent}console.error('Axios error:', error.response?.status, error.response?.data);\n`;
+    code += `${this.indent}${this.indent}} else {\n`;
+    code += `${this.indent}${this.indent}${this.indent}console.error('Unexpected error:', error);\n`;
+    code += `${this.indent}${this.indent}}\n`;
+    code += `${this.indent}${this.indent}throw error;\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n\nrequest();\n';
+
+    return {
+      code,
+      language: this.options.language,
+      framework: 'axios',
+      fileName: 'api_request',
+      fileExtension: isTs ? 'ts' : 'js',
+      imports,
+      envVars,
+      dependencies: ['axios'],
+    };
+  }
+}
+
+/**
+ * Node.js stdlib https module.
+ */
+export class NodeHttpsGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ["const https = require('https');", "const { URL } = require('url');"];
+
+    let code = imports.join('\n') + '\n\n';
+    code += `const target = new URL('${jsEscape(curl.url)}');\n\n`;
+    code += 'const options = {\n';
+    code += `${this.indent}hostname: target.hostname,\n`;
+    code += `${this.indent}port: target.port || 443,\n`;
+    code += `${this.indent}path: target.pathname + target.search,\n`;
+    code += `${this.indent}method: '${method}',\n`;
+    if (Object.keys(curl.headers).length > 0) {
+      code += `${this.indent}headers: ${JSON.stringify(curl.headers, null, 2).replace(/\n/g, '\n' + this.indent)},\n`;
+    }
+    if (curl.options.timeout) code += `${this.indent}timeout: ${curl.options.timeout},\n`;
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}auth: '${jsEscape(curl.auth.credentials.username)}:${jsEscape(curl.auth.credentials.password)}',\n`;
+    }
+    code += '};\n\n';
+    code += 'const req = https.request(options, (res) => {\n';
+    code += `${this.indent}let data = '';\n`;
+    code += `${this.indent}res.on('data', (chunk) => { data += chunk; });\n`;
+    code += `${this.indent}res.on('end', () => {\n`;
+    code += `${this.indent}${this.indent}console.log('status:', res.statusCode);\n`;
+    code += `${this.indent}${this.indent}console.log(data);\n`;
+    code += `${this.indent}});\n`;
+    code += '});\n\n';
+    code += "req.on('error', (err) => console.error('request failed:', err));\n";
+    if (curl.body) {
+      const payload =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? JSON.stringify(curl.body)
+          : String(curl.body);
+      code += `req.write(\`${jsEscape(payload)}\`);\n`;
+    }
+    code += 'req.end();\n';
+
+    return {
+      code,
+      language: this.options.language,
+      framework: 'node-https',
+      fileName: 'api_request',
+      fileExtension: this.options.language === 'typescript' ? 'ts' : 'js',
+      imports,
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+/**
+ * jQuery $.ajax (legacy browser codebases).
+ */
+export class JQueryGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    let code = '$.ajax({\n';
+    code += `${this.indent}url: '${jsEscape(curl.url)}',\n`;
+    code += `${this.indent}method: '${method}',\n`;
+    if (Object.keys(curl.headers).length > 0) {
+      code += `${this.indent}headers: ${JSON.stringify(curl.headers, null, 2).replace(/\n/g, '\n' + this.indent)},\n`;
+    }
+    if (curl.queryParams) {
+      code += `${this.indent}data: ${JSON.stringify(curl.queryParams, null, 2).replace(/\n/g, '\n' + this.indent)},\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}contentType: 'application/json',\n`;
+        code += `${this.indent}data: JSON.stringify(${JSON.stringify(curl.body)}),\n`;
+      } else {
+        code += `${this.indent}data: \`${jsEscape(String(curl.body))}\`,\n`;
+      }
+    }
+    if (curl.options.timeout) code += `${this.indent}timeout: ${curl.options.timeout},\n`;
+    code += `${this.indent}success: (data, status, xhr) => {\n`;
+    code += `${this.indent}${this.indent}console.log('response:', data);\n`;
+    code += `${this.indent}},\n`;
+    code += `${this.indent}error: (xhr, status, err) => {\n`;
+    code += `${this.indent}${this.indent}console.error('request failed:', status, err);\n`;
+    code += `${this.indent}},\n`;
+    code += '});\n';
+
+    return {
+      code,
+      language: this.options.language,
+      framework: 'jquery',
+      fileName: 'api_request',
+      fileExtension: 'js',
+      imports: [],
+      envVars,
+      dependencies: ['jquery'],
+    };
+  }
+}
+
+/**
+ * XMLHttpRequest (educational / pre-fetch codebases).
+ */
+export class XhrGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      const qs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      url += (url.includes('?') ? '&' : '?') + qs;
+    }
+
+    let code = 'const xhr = new XMLHttpRequest();\n';
+    code += `xhr.open('${method}', '${jsEscape(url)}');\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `xhr.setRequestHeader('${jsEscape(k)}', '${jsEscape(String(v))}');\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      const token = `btoa('${jsEscape(curl.auth.credentials.username)}:${jsEscape(curl.auth.credentials.password)}')`;
+      code += `xhr.setRequestHeader('Authorization', 'Basic ' + ${token});\n`;
+    }
+    if (curl.options.timeout) code += `xhr.timeout = ${curl.options.timeout};\n`;
+    code += '\nxhr.onload = () => {\n';
+    code += `${this.indent}if (xhr.status >= 200 && xhr.status < 300) console.log(xhr.responseText);\n`;
+    code += `${this.indent}else console.error('HTTP', xhr.status, xhr.statusText);\n`;
+    code += '};\n';
+    code += "xhr.onerror = () => console.error('network error');\n";
+
+    if (curl.body) {
+      const payload =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? `JSON.stringify(${JSON.stringify(curl.body)})`
+          : `\`${jsEscape(String(curl.body))}\``;
+      code += `xhr.send(${payload});\n`;
+    } else {
+      code += 'xhr.send();\n';
+    }
+
+    return {
+      code,
+      language: this.options.language,
+      framework: 'xhr',
+      fileName: 'api_request',
+      fileExtension: 'js',
+      imports: [],
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+// ============================================================================
+// Python additional generators (RIC-116)
+// ============================================================================
+
+function pyDict(obj: Record<string, unknown>, indent: string): string {
+  const items = Object.entries(obj).map(
+    ([k, v]) =>
+      `${indent}${indent}"${k}": ${typeof v === 'string' ? `"${v}"` : JSON.stringify(v)},`
+  );
+  return `{\n${items.join('\n')}\n${indent}}`;
+}
+
+export class PythonHttpxGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toLowerCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['import httpx'];
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'def main():\n';
+    code += `${this.indent}with httpx.Client(timeout=${(curl.options.timeout || 30000) / 1000}`;
+    if (curl.options.insecure) code += ', verify=False';
+    code += ') as client:\n';
+    code += `${this.indent}${this.indent}response = client.${method}(\n`;
+    code += `${this.indent}${this.indent}${this.indent}"${curl.url}",\n`;
+    if (Object.keys(curl.headers).length > 0) {
+      code += `${this.indent}${this.indent}${this.indent}headers=${pyDict(curl.headers, this.indent + this.indent + this.indent)},\n`;
+    }
+    if (curl.queryParams) {
+      code += `${this.indent}${this.indent}${this.indent}params=${pyDict(curl.queryParams, this.indent + this.indent + this.indent)},\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}${this.indent}json=${pyDict(curl.body as Record<string, unknown>, this.indent + this.indent + this.indent)},\n`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}${this.indent}data=${pyDict(curl.body as Record<string, unknown>, this.indent + this.indent + this.indent)},\n`;
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}${this.indent}auth=("${curl.auth.credentials.username}", "${curl.auth.credentials.password}"),\n`;
+    }
+    code += `${this.indent}${this.indent})\n`;
+    code += `${this.indent}${this.indent}response.raise_for_status()\n`;
+    code += `${this.indent}${this.indent}print(response.json())\n\n`;
+    code += 'if __name__ == "__main__":\n';
+    code += `${this.indent}main()\n`;
+
+    return {
+      code,
+      language: 'python',
+      framework: 'httpx',
+      fileName: 'api_request',
+      fileExtension: 'py',
+      imports,
+      envVars,
+      dependencies: ['httpx'],
+    };
+  }
+}
+
+export class PythonAioHttpGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toLowerCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['import aiohttp', 'import asyncio'];
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'async def main():\n';
+    code += `${this.indent}timeout = aiohttp.ClientTimeout(total=${(curl.options.timeout || 30000) / 1000})\n`;
+    code += `${this.indent}async with aiohttp.ClientSession(timeout=timeout) as session:\n`;
+    code += `${this.indent}${this.indent}async with session.${method}(\n`;
+    code += `${this.indent}${this.indent}${this.indent}"${curl.url}",\n`;
+    if (Object.keys(curl.headers).length > 0) {
+      code += `${this.indent}${this.indent}${this.indent}headers=${pyDict(curl.headers, this.indent + this.indent + this.indent)},\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}${this.indent}json=${pyDict(curl.body as Record<string, unknown>, this.indent + this.indent + this.indent)},\n`;
+      } else if (curl.dataType === 'form' && typeof curl.body === 'object') {
+        code += `${this.indent}${this.indent}${this.indent}data=${pyDict(curl.body as Record<string, unknown>, this.indent + this.indent + this.indent)},\n`;
+      }
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}${this.indent}auth=aiohttp.BasicAuth("${curl.auth.credentials.username}", "${curl.auth.credentials.password}"),\n`;
+    }
+    code += `${this.indent}${this.indent}) as response:\n`;
+    code += `${this.indent}${this.indent}${this.indent}response.raise_for_status()\n`;
+    code += `${this.indent}${this.indent}${this.indent}data = await response.json()\n`;
+    code += `${this.indent}${this.indent}${this.indent}print(data)\n\n`;
+    code += 'asyncio.run(main())\n';
+
+    return {
+      code,
+      language: 'python',
+      framework: 'aiohttp',
+      fileName: 'api_request',
+      fileExtension: 'py',
+      imports,
+      envVars,
+      dependencies: ['aiohttp'],
+    };
+  }
+}
+
+export class PythonUrllibGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['import json', 'import urllib.request', 'import urllib.parse'];
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      imports.push('from urllib.parse import urlencode');
+      url += (url.includes('?') ? '&' : '?') + '<QUERY>';
+    }
+
+    let code = imports.join('\n') + '\n\n';
+    if (curl.queryParams) {
+      code += `query = urlencode(${pyDict(curl.queryParams, this.indent)})\n`;
+      code += `url = f"${curl.url}${curl.url.includes('?') ? '&' : '?'}{query}"\n\n`;
+    } else {
+      code += `url = "${curl.url}"\n\n`;
+    }
+
+    const bodyVar = curl.body
+      ? curl.dataType === 'json' && typeof curl.body === 'object'
+        ? `json.dumps(${pyDict(curl.body as Record<string, unknown>, this.indent)}).encode()`
+        : curl.dataType === 'form' && typeof curl.body === 'object'
+          ? `urllib.parse.urlencode(${pyDict(curl.body as Record<string, unknown>, this.indent)}).encode()`
+          : `b"${String(curl.body)}"`
+      : 'None';
+
+    code += `req = urllib.request.Request(url, method="${method}", data=${bodyVar})\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `req.add_header("${k}", "${v}")\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `import base64\n`;
+      code += `creds = base64.b64encode(b"${curl.auth.credentials.username}:${curl.auth.credentials.password}").decode()\n`;
+      code += `req.add_header("Authorization", f"Basic {creds}")\n`;
+    }
+    code += '\nwith urllib.request.urlopen(req) as response:\n';
+    code += `${this.indent}body = response.read().decode()\n`;
+    code += `${this.indent}print(f"status: {response.status}")\n`;
+    code += `${this.indent}print(body)\n`;
+
+    return {
+      code,
+      language: 'python',
+      framework: 'urllib',
+      fileName: 'api_request',
+      fileExtension: 'py',
+      imports,
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+// ============================================================================
+// Java + C# Generators (RIC-117)
+// ============================================================================
+
+function javaEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+export class JavaHttpClientGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = [
+      'import java.net.URI;',
+      'import java.net.http.HttpClient;',
+      'import java.net.http.HttpRequest;',
+      'import java.net.http.HttpResponse;',
+      'import java.time.Duration;',
+    ];
+
+    const bodyPublisher =
+      curl.body && curl.dataType === 'json' && typeof curl.body === 'object'
+        ? `HttpRequest.BodyPublishers.ofString("${javaEscape(JSON.stringify(curl.body))}")`
+        : curl.body
+          ? `HttpRequest.BodyPublishers.ofString("${javaEscape(String(curl.body))}")`
+          : 'HttpRequest.BodyPublishers.noBody()';
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'public class ApiRequest {\n';
+    code += `${this.indent}public static void main(String[] args) throws Exception {\n`;
+    code += `${this.indent}${this.indent}HttpClient client = HttpClient.newBuilder()\n`;
+    code += `${this.indent}${this.indent}${this.indent}.connectTimeout(Duration.ofSeconds(${(curl.options.timeout || 30000) / 1000}))\n`;
+    code += `${this.indent}${this.indent}${this.indent}.build();\n\n`;
+    code += `${this.indent}${this.indent}HttpRequest.Builder reqBuilder = HttpRequest.newBuilder()\n`;
+    code += `${this.indent}${this.indent}${this.indent}.uri(URI.create("${javaEscape(curl.url)}"))\n`;
+    code += `${this.indent}${this.indent}${this.indent}.timeout(Duration.ofSeconds(${(curl.options.timeout || 30000) / 1000}))\n`;
+    code += `${this.indent}${this.indent}${this.indent}.method("${method}", ${bodyPublisher});\n\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}${this.indent}reqBuilder.header("${javaEscape(k)}", "${javaEscape(String(v))}");\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}String creds = java.util.Base64.getEncoder().encodeToString("${javaEscape(curl.auth.credentials.username)}:${javaEscape(curl.auth.credentials.password)}".getBytes());\n`;
+      code += `${this.indent}${this.indent}reqBuilder.header("Authorization", "Basic " + creds);\n`;
+    }
+    code += `\n${this.indent}${this.indent}HttpResponse<String> response = client.send(reqBuilder.build(), HttpResponse.BodyHandlers.ofString());\n`;
+    code += `${this.indent}${this.indent}System.out.println("status: " + response.statusCode());\n`;
+    code += `${this.indent}${this.indent}System.out.println(response.body());\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'java',
+      framework: 'httpurlconnection',
+      fileName: 'ApiRequest',
+      fileExtension: 'java',
+      imports,
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+export class JavaOkHttpGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = [
+      'import okhttp3.*;',
+      'import java.util.concurrent.TimeUnit;',
+    ];
+
+    const hasJsonBody =
+      curl.body && curl.dataType === 'json' && typeof curl.body === 'object';
+    const mediaType = hasJsonBody ? 'application/json' : 'text/plain';
+    const bodyStr = hasJsonBody
+      ? JSON.stringify(curl.body)
+      : curl.body
+        ? String(curl.body)
+        : '';
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'public class ApiRequest {\n';
+    code += `${this.indent}public static void main(String[] args) throws Exception {\n`;
+    code += `${this.indent}${this.indent}OkHttpClient client = new OkHttpClient.Builder()\n`;
+    code += `${this.indent}${this.indent}${this.indent}.connectTimeout(${(curl.options.timeout || 30000) / 1000}, TimeUnit.SECONDS)\n`;
+    code += `${this.indent}${this.indent}${this.indent}.readTimeout(${(curl.options.timeout || 30000) / 1000}, TimeUnit.SECONDS)\n`;
+    code += `${this.indent}${this.indent}${this.indent}.build();\n\n`;
+    if (curl.body) {
+      code += `${this.indent}${this.indent}RequestBody body = RequestBody.create("${javaEscape(bodyStr)}", MediaType.parse("${mediaType}"));\n\n`;
+    }
+    code += `${this.indent}${this.indent}Request.Builder reqBuilder = new Request.Builder()\n`;
+    code += `${this.indent}${this.indent}${this.indent}.url("${javaEscape(curl.url)}")\n`;
+    code += `${this.indent}${this.indent}${this.indent}.method("${method}", ${curl.body ? 'body' : 'null'});\n\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}${this.indent}reqBuilder.header("${javaEscape(k)}", "${javaEscape(String(v))}");\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}reqBuilder.header("Authorization", Credentials.basic("${javaEscape(curl.auth.credentials.username)}", "${javaEscape(curl.auth.credentials.password)}"));\n`;
+    }
+    code += `\n${this.indent}${this.indent}try (Response response = client.newCall(reqBuilder.build()).execute()) {\n`;
+    code += `${this.indent}${this.indent}${this.indent}System.out.println("status: " + response.code());\n`;
+    code += `${this.indent}${this.indent}${this.indent}System.out.println(response.body() != null ? response.body().string() : "");\n`;
+    code += `${this.indent}${this.indent}}\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'java',
+      framework: 'okhttp',
+      fileName: 'ApiRequest',
+      fileExtension: 'java',
+      imports,
+      envVars,
+      dependencies: ['com.squareup.okhttp3:okhttp'],
+    };
+  }
+}
+
+function csEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+export class CsharpHttpClientGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = [
+      'using System;',
+      'using System.Net.Http;',
+      'using System.Net.Http.Headers;',
+      'using System.Text;',
+      'using System.Threading.Tasks;',
+    ];
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'public class ApiRequest {\n';
+    code += `${this.indent}public static async Task<string> SendAsync() {\n`;
+    code += `${this.indent}${this.indent}using var client = new HttpClient();\n`;
+    code += `${this.indent}${this.indent}client.Timeout = TimeSpan.FromSeconds(${(curl.options.timeout || 30000) / 1000});\n\n`;
+    code += `${this.indent}${this.indent}var request = new HttpRequestMessage(new HttpMethod("${method}"), "${csEscape(curl.url)}");\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      if (k.toLowerCase() === 'content-type') continue; // set on body below
+      code += `${this.indent}${this.indent}request.Headers.TryAddWithoutValidation("${csEscape(k)}", "${csEscape(String(v))}");\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}var creds = Convert.ToBase64String(Encoding.UTF8.GetBytes("${csEscape(curl.auth.credentials.username)}:${csEscape(curl.auth.credentials.password)}"));\n`;
+      code += `${this.indent}${this.indent}request.Headers.Authorization = new AuthenticationHeaderValue("Basic", creds);\n`;
+    }
+    if (curl.body) {
+      const payload =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? JSON.stringify(curl.body)
+          : String(curl.body);
+      const mediaType =
+        curl.dataType === 'json'
+          ? 'application/json'
+          : curl.dataType === 'form'
+            ? 'application/x-www-form-urlencoded'
+            : 'text/plain';
+      code += `${this.indent}${this.indent}request.Content = new StringContent("${csEscape(payload)}", Encoding.UTF8, "${mediaType}");\n`;
+    }
+    code += `\n${this.indent}${this.indent}var response = await client.SendAsync(request);\n`;
+    code += `${this.indent}${this.indent}response.EnsureSuccessStatusCode();\n`;
+    code += `${this.indent}${this.indent}return await response.Content.ReadAsStringAsync();\n`;
+    code += `${this.indent}}\n\n`;
+    code += `${this.indent}public static async Task Main() {\n`;
+    code += `${this.indent}${this.indent}var body = await SendAsync();\n`;
+    code += `${this.indent}${this.indent}Console.WriteLine(body);\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'csharp',
+      framework: 'httpclient',
+      fileName: 'ApiRequest',
+      fileExtension: 'cs',
+      imports,
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+export class CsharpRestSharpGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['using RestSharp;', 'using System.Threading.Tasks;'];
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'public class ApiRequest {\n';
+    code += `${this.indent}public static async Task<RestResponse> SendAsync() {\n`;
+    code += `${this.indent}${this.indent}var options = new RestClientOptions("${csEscape(curl.url)}") { MaxTimeout = ${curl.options.timeout || 30000} };\n`;
+    code += `${this.indent}${this.indent}var client = new RestClient(options);\n`;
+    code += `${this.indent}${this.indent}var request = new RestRequest("", Method.${method.charAt(0) + method.slice(1).toLowerCase()});\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `${this.indent}${this.indent}request.AddHeader("${csEscape(k)}", "${csEscape(String(v))}");\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}${this.indent}client.Authenticator = new RestSharp.Authenticators.HttpBasicAuthenticator("${csEscape(curl.auth.credentials.username)}", "${csEscape(curl.auth.credentials.password)}");\n`;
+    }
+    if (curl.body) {
+      const payload =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? JSON.stringify(curl.body)
+          : String(curl.body);
+      code += `${this.indent}${this.indent}request.AddStringBody("${csEscape(payload)}", DataFormat.${curl.dataType === 'json' ? 'Json' : 'None'});\n`;
+    }
+    code += `${this.indent}${this.indent}return await client.ExecuteAsync(request);\n`;
+    code += `${this.indent}}\n`;
+    code += '}\n';
+
+    return {
+      code,
+      language: 'csharp',
+      framework: 'restsharp',
+      fileName: 'ApiRequest',
+      fileExtension: 'cs',
+      imports,
+      envVars,
+      dependencies: ['RestSharp'],
+    };
+  }
+}
+
+// ============================================================================
+// Ruby + Shell Generators (RIC-118)
+// ============================================================================
+
+function rubyEscape(str: string): string {
+  return String(str).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
+export class RubyNetHttpGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['require "net/http"', 'require "uri"', 'require "json"'];
+
+    let code = imports.join('\n') + '\n\n';
+    code += `uri = URI("${rubyEscape(curl.url)}")\n`;
+    if (curl.queryParams) {
+      const pairs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `"${rubyEscape(k)}" => "${rubyEscape(String(v))}"`)
+        .join(', ');
+      code += `uri.query = URI.encode_www_form(${pairs ? `{${pairs}}` : '{}'})\n`;
+    }
+    code += '\n';
+
+    const reqClass = {
+      GET: 'Get',
+      POST: 'Post',
+      PUT: 'Put',
+      PATCH: 'Patch',
+      DELETE: 'Delete',
+      HEAD: 'Head',
+      OPTIONS: 'Options',
+    }[method] || 'Get';
+
+    code += `request = Net::HTTP::${reqClass}.new(uri)\n`;
+    for (const [k, v] of Object.entries(curl.headers)) {
+      code += `request["${rubyEscape(k)}"] = "${rubyEscape(String(v))}"\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `request.basic_auth("${rubyEscape(curl.auth.credentials.username)}", "${rubyEscape(curl.auth.credentials.password)}")\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `request.body = ${JSON.stringify(curl.body).replace(/"/g, '\\"')}\n`;
+        code = code.replace('request.body = ', 'request.body = JSON.generate(');
+        code = code.replace(/\n$/, ')\n');
+      } else {
+        code += `request.body = "${rubyEscape(String(curl.body))}"\n`;
+      }
+    }
+
+    code += '\nresponse = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https"';
+    if (curl.options.timeout) {
+      code += `, read_timeout: ${curl.options.timeout / 1000}`;
+    }
+    code += ') do |http|\n';
+    code += `${this.indent}http.request(request)\n`;
+    code += 'end\n\n';
+    code += 'puts "status: #{response.code}"\n';
+    code += 'puts response.body\n';
+
+    return {
+      code,
+      language: 'ruby',
+      framework: 'net-http',
+      fileName: 'api_request',
+      fileExtension: 'rb',
+      imports,
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
+export class RubyHttpartyGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toLowerCase();
+    const envVars = this.extractEnvVars(curl);
+    const imports = ['require "httparty"'];
+
+    let code = imports.join('\n') + '\n\n';
+    code += 'options = {\n';
+    if (Object.keys(curl.headers).length > 0) {
+      const hdrs = Object.entries(curl.headers)
+        .map(([k, v]) => `${this.indent}${this.indent}"${rubyEscape(k)}" => "${rubyEscape(String(v))}"`)
+        .join(',\n');
+      code += `${this.indent}headers: {\n${hdrs}\n${this.indent}},\n`;
+    }
+    if (curl.body) {
+      if (curl.dataType === 'json' && typeof curl.body === 'object') {
+        code += `${this.indent}body: ${JSON.stringify(curl.body).replace(/"/g, '\\"').replace(/^/, 'JSON.generate(').replace(/$/, ')')},\n`;
+      } else {
+        code += `${this.indent}body: "${rubyEscape(String(curl.body))}",\n`;
+      }
+    }
+    if (curl.queryParams) {
+      const qp = Object.entries(curl.queryParams)
+        .map(([k, v]) => `"${rubyEscape(k)}" => "${rubyEscape(String(v))}"`)
+        .join(', ');
+      code += `${this.indent}query: { ${qp} },\n`;
+    }
+    if (curl.auth?.type === 'basic') {
+      code += `${this.indent}basic_auth: { username: "${rubyEscape(curl.auth.credentials.username)}", password: "${rubyEscape(curl.auth.credentials.password)}" },\n`;
+    }
+    if (curl.options.timeout) {
+      code += `${this.indent}timeout: ${curl.options.timeout / 1000},\n`;
+    }
+    code += '}\n\n';
+    code += `response = HTTParty.${method}("${rubyEscape(curl.url)}", options)\n`;
+    code += 'puts "status: #{response.code}"\n';
+    code += 'puts response.body\n';
+
+    return {
+      code,
+      language: 'ruby',
+      framework: 'httparty',
+      fileName: 'api_request',
+      fileExtension: 'rb',
+      imports,
+      envVars,
+      dependencies: ['httparty'],
+    };
+  }
+}
+
+function shellEscape(str: string): string {
+  return String(str).replace(/'/g, "'\\''");
+}
+
+export class HttpieGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    const parts: string[] = ['http'];
+    if (curl.options.insecure) parts.push('--verify=no');
+    if (curl.options.timeout) parts.push(`--timeout=${curl.options.timeout / 1000}`);
+    if (curl.auth?.type === 'basic') {
+      parts.push(`--auth='${shellEscape(curl.auth.credentials.username)}:${shellEscape(curl.auth.credentials.password)}'`);
+    }
+    parts.push(method);
+    parts.push(`'${shellEscape(curl.url)}'`);
+
+    for (const [k, v] of Object.entries(curl.headers)) {
+      parts.push(`'${shellEscape(k)}:${shellEscape(String(v))}'`);
+    }
+    if (curl.queryParams) {
+      for (const [k, v] of Object.entries(curl.queryParams)) {
+        parts.push(`'${shellEscape(k)}==${shellEscape(String(v))}'`);
+      }
+    }
+    if (curl.body && curl.dataType === 'json' && typeof curl.body === 'object') {
+      for (const [k, v] of Object.entries(curl.body as Record<string, unknown>)) {
+        if (typeof v === 'string') {
+          parts.push(`'${shellEscape(k)}=${shellEscape(v)}'`);
+        } else {
+          parts.push(`'${shellEscape(k)}:=${JSON.stringify(v)}'`);
+        }
+      }
+    } else if (curl.body) {
+      parts.push(`--raw='${shellEscape(String(curl.body))}'`);
+    }
+
+    return {
+      code: parts.join(' ') + '\n',
+      language: 'shell',
+      framework: 'httpie',
+      fileName: 'request',
+      fileExtension: 'sh',
+      imports: [],
+      envVars,
+      dependencies: ['httpie'],
+    };
+  }
+}
+
+export class WgetGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    const parts: string[] = ['wget'];
+    parts.push(`--method=${method}`);
+    parts.push('-qO-');
+    for (const [k, v] of Object.entries(curl.headers)) {
+      parts.push(`--header='${shellEscape(k)}: ${shellEscape(String(v))}'`);
+    }
+    if (curl.auth?.type === 'basic') {
+      parts.push(`--user='${shellEscape(curl.auth.credentials.username)}'`);
+      parts.push(`--password='${shellEscape(curl.auth.credentials.password)}'`);
+    }
+    if (curl.options.timeout) parts.push(`--timeout=${curl.options.timeout / 1000}`);
+    if (curl.options.insecure) parts.push('--no-check-certificate');
+    if (curl.body) {
+      const body =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? JSON.stringify(curl.body)
+          : String(curl.body);
+      parts.push(`--body-data='${shellEscape(body)}'`);
+    }
+
+    let url = curl.url;
+    if (curl.queryParams) {
+      const qs = Object.entries(curl.queryParams)
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`)
+        .join('&');
+      url += (url.includes('?') ? '&' : '?') + qs;
+    }
+    parts.push(`'${shellEscape(url)}'`);
+
+    return {
+      code: parts.join(' \\\n  ') + '\n',
+      language: 'shell',
+      framework: 'wget',
+      fileName: 'request',
+      fileExtension: 'sh',
+      imports: [],
+      envVars,
+      dependencies: ['wget'],
+    };
+  }
+}
+
+export class PowerShellGenerator extends CodeGenerator {
+  generate(curl: CurlParseResult): GeneratedCode {
+    const method = curl.method.toUpperCase();
+    const envVars = this.extractEnvVars(curl);
+
+    let code = '# PowerShell — Invoke-RestMethod\n\n';
+    if (Object.keys(curl.headers).length > 0) {
+      code += '$headers = @{\n';
+      for (const [k, v] of Object.entries(curl.headers)) {
+        code += `${this.indent}"${k}" = "${v}"\n`;
+      }
+      code += '}\n\n';
+    }
+
+    const args: string[] = [`-Uri '${curl.url}'`, `-Method ${method}`];
+    if (Object.keys(curl.headers).length > 0) args.push('-Headers $headers');
+    if (curl.options.timeout) args.push(`-TimeoutSec ${curl.options.timeout / 1000}`);
+    if (curl.options.insecure) args.push('-SkipCertificateCheck');
+    if (curl.auth?.type === 'basic') {
+      code += `$credPair = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("${curl.auth.credentials.username}:${curl.auth.credentials.password}"))\n`;
+      code += '$basicAuth = @{ Authorization = "Basic $credPair" }\n\n';
+      args.push('-Headers $basicAuth');
+    }
+    if (curl.body) {
+      const payload =
+        curl.dataType === 'json' && typeof curl.body === 'object'
+          ? JSON.stringify(curl.body)
+          : String(curl.body);
+      code += `$body = '${payload.replace(/'/g, "''")}'\n\n`;
+      args.push('-Body $body');
+      if (curl.dataType === 'json') args.push(`-ContentType 'application/json'`);
+    }
+
+    code += '$response = Invoke-RestMethod ' + args.join(' `\n  ') + '\n';
+    code += '$response | ConvertTo-Json -Depth 10\n';
+
+    return {
+      code,
+      language: 'shell',
+      framework: 'powershell',
+      fileName: 'request',
+      fileExtension: 'ps1',
+      imports: [],
+      envVars,
+      dependencies: [],
+    };
+  }
+}
+
 // Main converter function
 export function convertCurlToCode(
   curlCommand: string,
@@ -1010,31 +2407,121 @@ export function convertCurlToCode(
       };
     }
 
-    // Generate code based on language and framework
+    // Generate code based on language and framework.
+    // Any combo not implemented returns an explicit error — never fall
+    // back silently to a different framework (previous bug).
+    const lang = SUPPORTED_LANGUAGES[options.language];
+    if (!lang) {
+      return {
+        success: false,
+        error: `Language "${options.language}" is not recognized`,
+      };
+    }
+
+    if (!isImplemented(options.language, options.framework)) {
+      return {
+        success: false,
+        error: `${lang.name} + "${options.framework}" generator is coming soon. Pick an available combination (e.g., JavaScript + fetch or Python + requests).`,
+      };
+    }
+
     let generator: CodeGenerator;
 
     if (
-      options.language === 'javascript' ||
-      options.language === 'typescript'
+      (options.language === 'javascript' ||
+        options.language === 'typescript') &&
+      options.framework === 'fetch'
     ) {
-      if (options.framework === 'fetch') {
-        generator = new FetchGenerator(options);
-      } else {
-        // Add other JavaScript frameworks here
-        generator = new FetchGenerator(options);
-      }
-    } else if (options.language === 'python') {
-      if (options.framework === 'requests') {
-        generator = new PythonRequestsGenerator(options);
-      } else {
-        // Add other Python frameworks here
-        generator = new PythonRequestsGenerator(options);
-      }
+      generator = new FetchGenerator(options);
+    } else if (
+      options.language === 'python' &&
+      options.framework === 'requests'
+    ) {
+      generator = new PythonRequestsGenerator(options);
+    } else if (options.language === 'php' && options.framework === 'guzzle') {
+      generator = new PhpGuzzleGenerator(options);
+    } else if (options.language === 'php' && options.framework === 'curl') {
+      generator = new PhpCurlGenerator(options);
+    } else if (
+      options.language === 'php' &&
+      options.framework === 'file_get_contents'
+    ) {
+      generator = new PhpFileGetContentsGenerator(options);
+    } else if (options.language === 'go' && options.framework === 'net-http') {
+      generator = new GoNetHttpGenerator(options);
+    } else if (options.language === 'go' && options.framework === 'resty') {
+      generator = new GoRestyGenerator(options);
+    } else if (
+      (options.language === 'javascript' ||
+        options.language === 'typescript') &&
+      options.framework === 'axios'
+    ) {
+      generator = new AxiosGenerator(options);
+    } else if (
+      (options.language === 'javascript' ||
+        options.language === 'typescript') &&
+      options.framework === 'node-https'
+    ) {
+      generator = new NodeHttpsGenerator(options);
+    } else if (
+      options.language === 'javascript' &&
+      options.framework === 'jquery'
+    ) {
+      generator = new JQueryGenerator(options);
+    } else if (options.language === 'javascript' && options.framework === 'xhr') {
+      generator = new XhrGenerator(options);
+    } else if (options.language === 'python' && options.framework === 'httpx') {
+      generator = new PythonHttpxGenerator(options);
+    } else if (
+      options.language === 'python' &&
+      options.framework === 'aiohttp'
+    ) {
+      generator = new PythonAioHttpGenerator(options);
+    } else if (
+      options.language === 'python' &&
+      options.framework === 'urllib'
+    ) {
+      generator = new PythonUrllibGenerator(options);
+    } else if (
+      options.language === 'java' &&
+      options.framework === 'httpurlconnection'
+    ) {
+      generator = new JavaHttpClientGenerator(options);
+    } else if (
+      options.language === 'java' &&
+      options.framework === 'okhttp'
+    ) {
+      generator = new JavaOkHttpGenerator(options);
+    } else if (
+      options.language === 'csharp' &&
+      options.framework === 'httpclient'
+    ) {
+      generator = new CsharpHttpClientGenerator(options);
+    } else if (
+      options.language === 'csharp' &&
+      options.framework === 'restsharp'
+    ) {
+      generator = new CsharpRestSharpGenerator(options);
+    } else if (options.language === 'ruby' && options.framework === 'net-http') {
+      generator = new RubyNetHttpGenerator(options);
+    } else if (options.language === 'ruby' && options.framework === 'httparty') {
+      generator = new RubyHttpartyGenerator(options);
+    } else if (options.language === 'shell' && options.framework === 'httpie') {
+      generator = new HttpieGenerator(options);
+    } else if (options.language === 'shell' && options.framework === 'wget') {
+      generator = new WgetGenerator(options);
+    } else if (
+      options.language === 'shell' &&
+      options.framework === 'powershell'
+    ) {
+      generator = new PowerShellGenerator(options);
     } else {
-      // Add other languages here
+      // Safety net: registry marked implemented but dispatcher missing case.
+      // This indicates a bug in the isImplemented flags or a missing generator
+      // class — surface explicitly instead of falling back.
       return {
         success: false,
-        error: `Language "${options.language}" with framework "${options.framework}" is not yet supported`,
+        error: `Internal: generator missing for ${options.language} + ${options.framework}. Please report this.`,
       };
     }
 

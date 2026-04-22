@@ -1,0 +1,62 @@
+{
+  "title": "Conversor cURL para Ruby",
+  "description": "Converte comandos cURL em código Ruby usando Net::HTTP (stdlib) ou HTTParty",
+  "placeholder": "Cole aqui o seu comando cURL...",
+  "meta": {
+    "title": "Conversor cURL para Ruby - Net::HTTP e HTTParty | ToolsLab",
+    "description": "Converta cURL em Ruby online grátis. Gera snippets Net::HTTP stdlib ou HTTParty com cabeçalhos, basic_auth e body. Pronto para Rails e scripts Ruby.",
+    "keywords": "cURL para Ruby, conversor curl ruby, cURL para Net::HTTP, cURL para HTTParty, gerador http client ruby"
+  },
+  "tagline": "Transforme comandos cURL em Ruby idiomático — Net::HTTP ou HTTParty",
+  "pageDescription": "Conversor gratuito cURL para Ruby que transforma comandos cURL em código pronto para produção usando Net::HTTP da standard library ou a gem HTTParty. Emite URI.parse, bloco Net::HTTP.start, helper basic_auth e JSON.generate para bodies. Perfeito para controllers Rails, workers Sidekiq ou scripts Ruby puros. Conversão 100% no navegador.",
+  "instructions": {
+    "title": "Como usar o Conversor cURL para Ruby",
+    "steps": [
+      { "title": "Cole o comando cURL", "description": "Do terminal, DevTools, docs de API ou Postman." },
+      { "title": "Escolha Net::HTTP ou HTTParty", "description": "Net::HTTP para stdlib sem gems; HTTParty para padrão fluente." },
+      { "title": "Copie o Ruby gerado", "description": "Inclui require, URI.parse, configuração da request e tratamento da response." },
+      { "title": "Ajuste opções", "description": "Altere timeout, verificação SSL pelo painel." }
+    ],
+    "features": [
+      "Net::HTTP — standard library Ruby, sem gems",
+      "Gem HTTParty — padrão fluente com hash de opções",
+      "URI.parse + bloco Net::HTTP.start no modo Net::HTTP",
+      "Helper request.basic_auth para Basic auth",
+      "JSON.generate para bodies JSON",
+      "read_timeout configurável",
+      "Lida com bodies JSON, form e texto puro",
+      "Processamento em navegador sem dependências"
+    ],
+    "useCases": [
+      "Traduza cURL de docs de API em clientes HTTP Rails",
+      "Migre coleções Postman para Ruby",
+      "Construa wrappers gem para APIs de terceiros",
+      "Crie chamadas HTTP em tarefas Rake",
+      "Debugue integrações de webhook Sidekiq",
+      "Gere testes de integração Ruby a partir de cURL",
+      "Migre código RestClient/Faraday legado para Net::HTTP",
+      "Prepare exemplos Ruby para documentação de API"
+    ],
+    "proTips": [
+      "Prefira Net::HTTP em gems para evitar dependências extras",
+      "Use HTTParty em apps para HTTP class-based mais legível",
+      "Sempre envolva requests em bloco Net::HTTP.start para reuso de conexão",
+      "Defina read_timeout explícito em chamadas de produção",
+      "Use URI.encode_www_form para query parameters",
+      "Nunca desative a verificação TLS em produção"
+    ],
+    "troubleshooting": [
+      "Gem não encontrada: adicione 'gem httparty' ao Gemfile e execute bundle install",
+      "Erro SSL: defina use_ssl: true e verify_mode corretamente",
+      "Body não enviado: atribua request.body APÓS instanciar a classe request",
+      "Net::ReadTimeout: aumente read_timeout em Net::HTTP.start",
+      "Problemas de encoding JSON: use JSON.generate (não to_json) para serialização explícita"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Colar entrada" },
+      { "keys": "Ctrl+Enter", "description": "Gerar Ruby" },
+      { "keys": "Ctrl+C", "description": "Copiar resultado" },
+      { "keys": "Ctrl+S", "description": "Baixar arquivo .rb" }
+    ]
+  }
+}

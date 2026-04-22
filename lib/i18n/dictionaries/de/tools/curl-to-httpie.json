@@ -1,0 +1,62 @@
+{
+  "title": "cURL zu HTTPie Konverter",
+  "description": "Konvertiert cURL-Befehle in die HTTPie http / https CLI-Syntax mit JSON-Modus und Kurzform-Flags",
+  "placeholder": "Fügen Sie Ihren cURL-Befehl hier ein...",
+  "meta": {
+    "title": "cURL zu HTTPie Konverter - http/https CLI-Syntax | ToolsLab",
+    "description": "Konvertieren Sie cURL kostenlos in HTTPie. Generiert http-Befehl mit Kurzform-Auth, Headern, Query-Parametern und JSON-Bodies. Shell-freundliche One-Liner für API-Tests.",
+    "keywords": "cURL zu HTTPie, HTTPie von curl, http command von curl, HTTPie CLI Generator, Shell curl Konverter"
+  },
+  "tagline": "Übersetzen Sie cURL-Befehle in die shell-freundliche HTTPie-CLI-Syntax",
+  "pageDescription": "Kostenloser cURL zu HTTPie Konverter, der cURL-Befehle in die gut lesbare HTTPie http / https CLI-Syntax umwandelt. Emittiert Kurzform-Header (schlüssel:wert), Query (schlüssel==wert), JSON-Body (schlüssel=wert für Strings, schlüssel:=wert für rohes JSON), --auth für Basic-Auth, --timeout und --verify=no für SSL-Skip. Perfekte One-Liner für schnelle API-Tests, Dokumentations-Snippets oder Slack-Shares. Konvertierung 100% im Browser.",
+  "instructions": {
+    "title": "So verwenden Sie den cURL zu HTTPie Konverter",
+    "steps": [
+      { "title": "cURL-Befehl einfügen", "description": "Aus Terminal, DevTools oder API-Dokumentation." },
+      { "title": "HTTPie-One-Liner kopieren", "description": "Kurzform-Syntax mit schlüssel:wert-Headern und schlüssel=wert-Body-Feldern." },
+      { "title": "HTTPie-Befehl ausführen", "description": "HTTPie installieren (pip install httpie) und den Befehl in die Shell einfügen." },
+      { "title": "Optionen anpassen", "description": "Timeout und SSL-Verifikation über das Panel anpassen." }
+    ],
+    "features": [
+      "http- und https-CLI mit Kurzform-Syntax",
+      "Header-Syntax: 'Header:Value'",
+      "Query-Syntax: 'schlüssel==wert'",
+      "JSON-Body-Syntax: 'schlüssel=wert' (String) und 'schlüssel:=wert' (rohes JSON)",
+      "--auth='user:pass' für Basic-Auth",
+      "--verify=no für SSL-Skip in Dev",
+      "--timeout für Request-Timeout",
+      "Shell-freundliche One-Liner-Ausgabe"
+    ],
+    "useCases": [
+      "API-Beispiele in Slack/Docs mit sauberen HTTPie-Befehlen teilen",
+      "Verbose cURL in README.md durch lesbares HTTPie ersetzen",
+      "Schnelles API-Debugging im Terminal",
+      "REST-Konzepte mit lesbaren Requests lehren",
+      "Chrome DevTools cURL in HTTPie-Shortcuts konvertieren",
+      "Smoke-Test-Skripte für CI vorbereiten",
+      "Team-Docs von cURL zu HTTPie-Idiomen migrieren",
+      "HTTPie-Befehle aus Postman-Exports generieren"
+    ],
+    "proTips": [
+      "'schlüssel:=wert' nutzen, wenn der Body-Wert Zahl, Boolean oder verschachteltes JSON ist",
+      "Mehrere Query-Parameter durch Wiederholen von 'schlüssel==wert' verketten",
+      "HTTPie-Output durch jq pipen, um JSON zu erkunden",
+      "--session=name nutzen, um Auth über mehrere Aufrufe zu teilen",
+      "HTTPie via 'pip install httpie' oder 'brew install httpie' installieren",
+      "SSL-Verifikation (--verify=no) nur in Dev deaktivieren — niemals in Produktion"
+    ],
+    "troubleshooting": [
+      "Befehl nicht gefunden: HTTPie installieren ('pip install httpie' oder 'brew install httpie')",
+      "Body-Fehler: 'schlüssel=wert' für Strings, 'schlüssel:=wert' für rohes JSON verwenden",
+      "SSL-Fehler: --verify=no nur in lokaler Entwicklung oder bei vertrauenswürdigen internen Endpoints",
+      "Quoting-Probleme: Werte mit Sonderzeichen in einfache Anführungszeichen setzen",
+      "Fehlende Header: prüfen, dass -H-Flags in 'Header:Value'-Syntax konvertiert wurden"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Eingabe einfügen" },
+      { "keys": "Ctrl+Enter", "description": "HTTPie generieren" },
+      { "keys": "Ctrl+C", "description": "Ergebnis kopieren" },
+      { "keys": "Ctrl+S", "description": ".sh-Datei herunterladen" }
+    ]
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "title": "Convertidor cURL a PHP",
+  "description": "Convierte comandos cURL en código PHP usando Guzzle, cURL nativo o file_get_contents",
+  "placeholder": "Pega aquí tu comando cURL...",
+  "meta": {
+    "title": "Convertidor cURL a PHP - Guzzle, cURL y file_get_contents | ToolsLab",
+    "description": "Convierte comandos cURL en código PHP online gratis. Genera snippets Guzzle, cURL nativo o file_get_contents con headers, auth y body JSON. Sin registro, en el navegador.",
+    "keywords": "cURL a PHP, convertidor cURL PHP, cURL Guzzle, cURL a Laravel, generador php curl, cURL a file_get_contents"
+  },
+  "tagline": "Convierte comandos cURL en PHP idiomático — Guzzle, ext-curl o streams sin dependencias",
+  "pageDescription": "Convertidor gratuito cURL a PHP que transforma comandos cURL en código listo para producción usando GuzzleHttp\\Client, la extensión nativa ext-curl o file_get_contents con stream contexts. Maneja método, headers, query parameters, body JSON y form, autenticación básica, timeouts y verificación SSL. Perfecto para desarrolladores PHP que traducen documentación de APIs, exportaciones desde Chrome DevTools o peticiones de Postman en código Laravel, Symfony o PHP puro. Conversión 100% en el navegador — tu comando cURL nunca sale de tu dispositivo.",
+  "instructions": {
+    "title": "Cómo usar el Convertidor cURL a PHP",
+    "steps": [
+      {
+        "title": "Pega tu comando cURL",
+        "description": "Copia un comando cURL desde tu terminal, Chrome DevTools, la documentación de la API o Postman y pégalo. El parser maneja todas las flags comunes: -X, -H, -d, -u, --data-raw, --compressed, --max-time."
+      },
+      {
+        "title": "Elige la variante de PHP",
+        "description": "Elige Guzzle para proyectos modernos Laravel/Symfony, cURL nativo para scripts sin dependencias en cualquier PHP con ext-curl, o file_get_contents para la petición más simple sin dependencias externas."
+      },
+      {
+        "title": "Copia el PHP generado",
+        "description": "El convertidor produce PHP listo para ejecutar con manejo de errores, parseo de respuesta y dependencias de Composer cuando aplica. Pégalo directamente en un controlador, un comando Artisan o un script independiente."
+      },
+      {
+        "title": "Ajusta opciones y manejo de errores",
+        "description": "Ajusta el modo de manejo de errores, timeout, verificación SSL y densidad de comentarios desde el panel de opciones. El generador respeta cada toggle y produce código mínimo e idiomático."
+      }
+    ],
+    "features": [
+      "Tres estilos de salida PHP: Guzzle, cURL nativo, file_get_contents",
+      "Maneja bodies JSON, form-encoded, multipart y query strings",
+      "Soporte para basic auth, bearer tokens y headers personalizados",
+      "Lista de dependencias de Composer en la salida Guzzle",
+      "Timeouts y flags de verificación SSL preservados desde el cURL origen",
+      "Totalmente seguro — parseo y generación 100% en el navegador",
+      "Sin registro, sin logging sobre el input",
+      "Copia al portapapeles con un clic",
+      "Syntax highlighting en el PHP generado"
+    ],
+    "useCases": [
+      "Traduce ejemplos cURL de documentación de APIs a PHP ejecutable",
+      "Convierte 'Copy as cURL' de Chrome DevTools en código Laravel HTTP Client",
+      "Construye wrappers Guzzle para APIs de terceros en minutos",
+      "Produce snippets ext-curl para hosting compartido sin Composer",
+      "Genera scripts rápidos con file_get_contents para checks puntuales",
+      "Depura payloads de webhooks convirtiendo cURL en PHP legible",
+      "Migra colecciones Postman a plugins de Symfony o WordPress",
+      "Prepara ejemplos PHP para documentación interna"
+    ],
+    "proTips": [
+      "Copia cURL desde Chrome DevTools: clic derecho en la request > Copy > Copy as cURL",
+      "Usa Guzzle en cualquier proyecto con Composer — mejor manejo de errores y soporte async",
+      "Usa cURL nativo cuando no puedas instalar Composer (hosting compartido, LAMP legacy)",
+      "file_get_contents sirve para pruebas rápidas pero no captura bien headers y status code",
+      "Define timeout explícito siempre en producción — el default de PHP es demasiado permisivo",
+      "Desactiva la verificación SSL solo en desarrollo local — nunca en producción"
+    ],
+    "troubleshooting": [
+      "Clase Guzzle no encontrada: ejecuta 'composer require guzzlehttp/guzzle' en tu proyecto",
+      "Función cURL indefinida: habilita la extensión 'curl' en php.ini (ext-curl)",
+      "file_get_contents devuelve false: habilita 'allow_url_fopen' en php.ini y verifica el certificado SSL",
+      "Body ausente en la salida: asegúrate de que los flags -d/--data están correctamente entrecomillados en el cURL origen",
+      "Caracteres especiales corruptos: el cURL origen debe ser UTF-8; escapa comillas simples en el payload"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Pegar entrada" },
+      { "keys": "Ctrl+Enter", "description": "Generar PHP" },
+      { "keys": "Ctrl+C", "description": "Copiar resultado" },
+      { "keys": "Ctrl+S", "description": "Descargar archivo .php" }
+    ]
+  }
+}

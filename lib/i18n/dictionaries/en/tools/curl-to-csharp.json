@@ -1,0 +1,61 @@
+{
+  "title": "cURL to C# Converter",
+  "description": "Convert cURL commands to C# code using HttpClient (async/await) or RestSharp",
+  "placeholder": "Paste your cURL command here...",
+  "meta": {
+    "title": "cURL to C# Converter - HttpClient & RestSharp | ToolsLab",
+    "description": "Convert cURL to C# online free. Generates HttpClient with async Task<string> or RestSharp fluent client. Ready for .NET 6+, ASP.NET Core, and Blazor."
+  },
+  "tagline": "Turn cURL commands into idiomatic C# — System.Net.Http.HttpClient or RestSharp",
+  "pageDescription": "Free cURL to C# converter transforms cURL commands into production-ready C# using System.Net.Http.HttpClient with async/await or the RestSharp fluent client. Emits HttpRequestMessage with StringContent, EnsureSuccessStatusCode, and AuthenticationHeaderValue for Basic auth. Ready for .NET 6+, ASP.NET Core controllers, Blazor components, or console apps. Browser-based conversion — your cURL stays on your device.",
+  "instructions": {
+    "title": "How to use cURL to C# Converter",
+    "steps": [
+      { "title": "Paste cURL command", "description": "From terminal, Chrome DevTools, API docs, or Postman." },
+      { "title": "Pick HttpClient or RestSharp", "description": "HttpClient is the .NET stdlib choice; RestSharp is the popular 3rd-party fluent API." },
+      { "title": "Copy generated C#", "description": "Async method with using var client, EnsureSuccessStatusCode, and ReadAsStringAsync." },
+      { "title": "Adjust options", "description": "Tweak timeout, SSL verify via Options panel." }
+    ],
+    "features": [
+      "System.Net.Http.HttpClient with async Task<string>",
+      "RestSharp fluent client",
+      "using var for scoped client lifetime",
+      "response.EnsureSuccessStatusCode() for 4xx/5xx",
+      "AuthenticationHeaderValue for Basic auth",
+      "StringContent with correct MediaType",
+      "Timeout configuration",
+      "Zero-dependency browser processing"
+    ],
+    "useCases": [
+      "Translate API docs cURL to ASP.NET Core HTTP calls",
+      "Port Postman collections to C# integration clients",
+      "Build SDK clients for third-party APIs",
+      "Debug Blazor/WPF network calls from cURL",
+      "Generate typed API clients for Minimal APIs",
+      "Migrate HttpWebRequest legacy code to HttpClient",
+      "Prepare C# examples for internal API documentation",
+      "Scaffold xUnit/NUnit integration tests from cURL"
+    ],
+    "proTips": [
+      "Register HttpClient via IHttpClientFactory in DI containers",
+      "Use RestSharp when you need fluent builder + authenticator helpers",
+      "Always await SendAsync and check StatusCode or use EnsureSuccessStatusCode",
+      "Set Timeout explicitly — default is 100 seconds",
+      "Dispose via using statements or let DI manage lifetime",
+      "Never disable SSL validation in production"
+    ],
+    "troubleshooting": [
+      "HttpClient.Timeout ignored: use CancellationToken in SendAsync",
+      "SocketException: check DNS resolution and firewall",
+      "TLS handshake error: verify certificate and TLS version",
+      "RestSharp not found: 'dotnet add package RestSharp'",
+      "Body missing: verify -d or --data flags in source cURL"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+V", "description": "Paste input" },
+      { "keys": "Ctrl+Enter", "description": "Generate C#" },
+      { "keys": "Ctrl+C", "description": "Copy result" },
+      { "keys": "Ctrl+S", "description": "Download file" }
+    ]
+  }
+}
