@@ -19,6 +19,7 @@ Il tool-id del tool da verificare (es. `json-diff`). Il Tool Name si ricava in P
 - Verifica presenza di: `id`, `name`, `description`, `icon`, `route`, `categories`, `keywords`, `isPopular`, `searchVolume`, `label`
 - `label` deve essere `''` (mai `'new'`)
 - `route` deve essere `/tools/TOOL_ID`
+- 🚨 **NIENTE `longTailKeywords` qui** (vivono in `/lib/tools-seo.ts` server-only). Se trovati, segnalare come errore CRITICO.
 
 ### 2. SEO Content — `/lib/tool-seo.ts`
 

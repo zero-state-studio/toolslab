@@ -12,6 +12,7 @@ import path from 'path';
 import fs from 'fs';
 import Database from 'better-sqlite3';
 import { tools } from '../lib/tools';
+import { toolLongTailKeywords } from '../lib/tools-seo';
 
 const DB_PATH = path.join(__dirname, '..', 'data', 'admin.db');
 const I18N_PATH = path.join(__dirname, '..', 'lib', 'i18n', 'dictionaries');
@@ -234,11 +235,12 @@ const updateAll = db.transaction(() => {
     }
 
     const hasDescription = !!(enData.tagline || enData.pageDescription || enData.meta?.description);
-    const hasLongTail = !!(tool.longTailKeywords && tool.longTailKeywords.length > 0);
+    const longTail = toolLongTailKeywords[tool.id];
+    const hasLongTail = !!(longTail && longTail.length > 0);
 
     if (hasLongTail) {
       result.seo_level = 2; // Full SEO
-      result.seo_notes = `Full SEO: tagline + pageDescription + ${tool.longTailKeywords?.length || 0} long-tail keywords`;
+      result.seo_notes = `Full SEO: tagline + pageDescription + ${longTail?.length || 0} long-tail keywords`;
     } else if (hasDescription) {
       result.seo_level = 1; // SEO
       result.seo_notes = 'Has description but no long-tail keywords';
