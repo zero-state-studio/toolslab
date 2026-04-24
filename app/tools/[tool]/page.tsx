@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import ToolPageClient from '@/components/tools/ToolPageClient';
 import { tools, getToolById, categories } from '@/lib/tools';
+import { getToolLongTailKeywords } from '@/lib/tools-seo';
 import { generateToolSchema } from '@/lib/tool-schema';
 import { loadToolTranslation } from '@/lib/i18n/load-tools';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
@@ -50,7 +51,7 @@ export async function generateMetadata({
   const keywords = [
     tool.name.toLowerCase(),
     ...tool.keywords,
-    ...(tool.longTailKeywords || []),
+    ...getToolLongTailKeywords(params.tool),
     'online tool',
     'free tool',
     'developer tool',

@@ -86,7 +86,7 @@
   },
   "meta": {
     "title": "JWT Encoder/Decoder — Sign & Verify Tokens Online",
-    "description": "Decode, verify, encode and sign JWT tokens in-browser — HS256, RS256, ES256. Free, no signup, nothing uploaded. Live expiry countdown."
+    "description": "Decode, verify and sign JWT tokens online free — inspect claims, check signatures and expiration in-browser. HS256, RS256, ES256. No signup, nothing uploaded."
   },
   "tagline": "Decode, verify, encode and sign JWT tokens entirely in your browser",
   "pageDescription": "Free JWT encoder and decoder that handles both directions entirely in your browser — no server, no signup, nothing uploaded. Decode and inspect any JWT with a live expiration countdown, security analysis, and claims breakdown. Encode and sign new tokens with HS256/384/512, RS256/384/512, ES256/384/512 or alg=none for local testing. Verify signatures via the Web Crypto API without ever exposing secrets or private keys. Perfect for debugging authentication issues, generating test tokens for APIs, and validating JWT workflows with full privacy."

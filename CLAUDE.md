@@ -314,11 +314,33 @@ export default function ToolPage() {
 },
 ```
 
+**🚨 NON aggiungere `longTailKeywords` qui.** Vedi sezione "Long-tail keywords" sotto.
+
 **⚠️ IMPORTANTE - Label Policy:**
 - **NON usare mai `label: 'new'`** per nuovi tool
 - Usa sempre `label: ''` (stringa vuota) di default
 - Usa `label: 'popular'` solo se esplicitamente richiesto
 - Usa `label: 'coming-soon'` solo per tool in sviluppo
+
+**🔑 Long-tail keywords → `/lib/tools-seo.ts` (server-only)**
+
+Le long-tail keyword **NON** vanno in `/lib/tools.ts`. Vanno in `/lib/tools-seo.ts` che ha `import 'server-only'` e viene usato solo da metadata (`generateMetadata`) e schema JSON-LD (`tool-schema.ts`).
+
+**Motivo (regressione INP aprile 2026):** `lib/tools.ts` è importato da 5+ client component (`SearchBar`, `Header`, `HeroSection`, `CategoryGrid`, `ToolLayout`). Webpack bundles l'intero modulo in ogni route chunk client. Ogni `longTailKeywords` array (~1.5KB raw per tool) finiva nel bundle browser, duplicato in 5 chunks. 68 tool × 5 chunks = ~390KB raw inutili nel client. Ha causato p75 INP mobile = 225ms (regressing) su CrUX.
+
+**Template per long-tail keywords in `/lib/tools-seo.ts`:**
+```typescript
+export const toolLongTailKeywords: Record<string, string[]> = {
+  // ... altri tool ...
+  'tool-slug': [
+    'long-tail keyword 1',
+    'long-tail keyword 2',
+    // ... 8-12 frasi
+  ],
+};
+```
+
+Lo skill `/long-tail-seo` aggiunge automaticamente nel file giusto.
 
 **📚 Categorie disponibili:**
 - `data`: Data & Conversion
@@ -707,10 +729,15 @@ components/tools/
 └── LazyToolLoader.tsx ← Gestisce lazy loading
 
 lib/
-├── tools.ts          ← Registry centrale di TUTTI i tool
-├── tool-seo.ts       ← SEO metadata centralizzato
-└── tool-schema.ts    ← Schema generation
+├── tools.ts          ← Registry centrale (CLIENT + SERVER) - solo campi UI/search
+├── tools-seo.ts      ← SERVER-ONLY: longTailKeywords (mai importare da client!)
+├── tool-seo.ts       ← SEO content centralizzato (tagline/seoDescription)
+└── tool-schema.ts    ← Schema generation (server)
 ```
+
+**🚨 Separazione tools.ts vs tools-seo.ts (CRITICO):**
+- `lib/tools.ts` → caricato in client bundle (SearchBar, Header, etc.). MAI mettere dati SEO pesanti qui.
+- `lib/tools-seo.ts` → ha `import 'server-only'`. Webpack errore se importato da client. Sicuro per longTailKeywords/keywords estesi.
 
 **❌ NON FARE MAI:**
 - Creare `app/tools/json-formatter/page.tsx` (pagina dedicata)

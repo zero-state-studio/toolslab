@@ -112,6 +112,6 @@
   },
   "meta": {
     "title": "JWT-Encoder/Decoder — Token signieren & prüfen",
-    "description": "JWT-Token im Browser dekodieren, verifizieren, encodieren und signieren — HS256, RS256, ES256. Kostenlos, ohne Anmeldung. Live-Ablauf-Countdown."
+    "description": "JWT-Token online kostenlos dekodieren, verifizieren und signieren — Claims inspizieren, Signatur und Ablauf im Browser prüfen. HS256, RS256, ES256. Ohne Upload."
   }
 }
