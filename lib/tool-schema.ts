@@ -1,5 +1,6 @@
 // lib/tool-schema.ts
 import { getToolById } from '@/lib/tools';
+import { getToolLongTailKeywords } from '@/lib/tools-seo';
 import { loadToolTranslation } from '@/lib/i18n/load-tools';
 import type { Locale } from '@/lib/i18n/config';
 
@@ -78,7 +79,7 @@ export async function generateToolSchema(toolId: string, locale: Locale = 'en') 
           '@id': toolUrl,
         },
         featureList: seo.tagline,
-        keywords: [...tool.keywords, ...(tool.longTailKeywords || [])].join(', '),
+        keywords: [...tool.keywords, ...getToolLongTailKeywords(toolId)].join(', '),
         datePublished: '2025-01-01',
         dateModified: '2025-01-15T00:00:00.000Z',
         inLanguage,

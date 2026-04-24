@@ -33,17 +33,23 @@ Automated workflow for researching, assigning, and verifying long-tail SEO keywo
 ### Where long-tail keywords live
 
 ```
-EN (existing):
-  lib/tools.ts                                        → longTailKeywords: string[]
+EN (server-only, post-Apr 2026):
+  lib/tools-seo.ts                                    → toolLongTailKeywords[tool-id]: string[]
   lib/i18n/dictionaries/en/tools/[tool-id].json       → pageDescription, instructions, meta.description
 
-Non-EN locales (new):
+Non-EN locales:
   lib/i18n/dictionaries/{it,es,fr,de,pt}/tools/[tool-id].json → longTailKeywords: string[]
                                                                → pageDescription, instructions, meta.description
 ```
 
+**🚨 CRITICAL: NEVER write `longTailKeywords` in `lib/tools.ts`.**
+
+`lib/tools.ts` is bundled client-side via SearchBar/Header/HeroSection imports. Adding longTailKeywords there ships ~78KB raw of keyword data into every browser route chunk × 5 chunks duplicated, causing INP regression (CrUX p75 mobile 225ms in April 2026).
+
+`lib/tools-seo.ts` has `import 'server-only'` at top. Webpack errors if accidentally imported by client code. Safe location for SEO keyword inventory used only by `generateMetadata` and `tool-schema.ts`.
+
 **Why different storage for EN vs non-EN?**
-EN keywords live in `tools.ts` for backwards compatibility (already injected into meta tags and JSON-LD automatically). Non-EN keywords live in the locale dictionary file — same file that holds all other locale content, consistent with the i18n architecture.
+EN keywords are static and shared between `generateMetadata` + JSON-LD schema → kept in TS module `tools-seo.ts` for type-safety and tree-shaking. Non-EN keywords are co-located with the locale dictionary file (consistent with i18n architecture, loaded per-locale).
 
 ### Locale configuration
 
@@ -64,7 +70,7 @@ EN keywords live in `tools.ts` for backwards compatibility (already injected int
 | `meta.description` | **HIGH** | Controls SERP snippet (Google bolds matching terms) |
 | `instructions` (steps, features, useCases) | **HIGH** | Visible, indexable content |
 | H1/H2 headings | **HIGH** | Strong ranking signal |
-| `longTailKeywords` in dict/tools.ts | **LOW** | Strategic inventory; value comes from visible content |
+| `longTailKeywords` in `tools-seo.ts` (EN) / dict (non-EN) | **LOW** | Strategic inventory; value comes from visible content |
 | `<meta name="keywords">` tag | **ZERO** | Google ignores since 2009 |
 
 ---
@@ -185,13 +191,17 @@ From web research, select **12 best long-tail keywords** using:
 
 **Store keywords:**
 
-For **EN** — add to `lib/tools.ts`:
+For **EN** — add to `lib/tools-seo.ts` (server-only, NEVER `lib/tools.ts`):
 ```typescript
-longTailKeywords: [
-  'json formatter online free',
-  'how to format json online',
-  // ... 10 more
-],
+// in lib/tools-seo.ts
+export const toolLongTailKeywords: Record<string, string[]> = {
+  // ... existing entries ...
+  'json-formatter': [
+    'json formatter online free',
+    'how to format json online',
+    // ... 10 more
+  ],
+};
 ```
 
 For **non-EN** — add to `lib/i18n/dictionaries/{locale}/tools/[tool-id].json`:
@@ -400,7 +410,7 @@ For every field flagged in Step 1 / Step 4C, apply the appropriate fix:
 - meta.description: OK / FIXED (N chars → M chars)
 
 ### Files Modified
-- `lib/tools.ts` → added longTailKeywords (EN only)
+- `lib/tools-seo.ts` → added entry in `toolLongTailKeywords` map (EN only) — server-only file
 - `lib/i18n/dictionaries/[locale]/tools/[tool-id].json` → added longTailKeywords, enriched pageDescription, fixed meta.description
 ```
 
@@ -422,7 +432,7 @@ For `--all` mode, output one report per locale, then a final summary table:
 
 ## Audit Mode (`--audit [--locale xx] [--all]`)
 
-**`--audit`** (EN): Check all tools that have `longTailKeywords` in `tools.ts`
+**`--audit`** (EN): Check all tools that have entries in `toolLongTailKeywords` map in `lib/tools-seo.ts`
 **`--audit --locale it`**: Check all tools that have `longTailKeywords` in `dictionaries/it/tools/*.json`
 **`--audit --all`**: Check all locales for all tools
 
@@ -441,7 +451,7 @@ Audit summary table:
 
 ## Find Missing Mode (`--find-missing [--locale xx] [--all]`)
 
-**`--find-missing`**: Tools in `tools.ts` without `longTailKeywords` (EN), sorted by searchVolume desc
+**`--find-missing`**: Tools in `lib/tools.ts` without an entry in `toolLongTailKeywords` map in `lib/tools-seo.ts` (EN), sorted by searchVolume desc
 **`--find-missing --locale it`**: Tools in `dictionaries/it/tools/` without `longTailKeywords` field
 **`--find-missing --all`**: Full matrix — which tools are missing keywords in which locales
 
@@ -461,12 +471,14 @@ Audit summary table:
 
 | File | When modified |
 |------|--------------|
-| `lib/tools.ts` | EN only — adds `longTailKeywords` array |
+| `lib/tools-seo.ts` | EN only — adds entry in `toolLongTailKeywords` map (server-only file) |
 | `lib/i18n/dictionaries/en/tools/[tool-id].json` | EN — enriches `pageDescription`, `instructions`, `meta.description` |
 | `lib/i18n/dictionaries/{it,es,fr,de,pt}/tools/[tool-id].json` | Non-EN — adds `longTailKeywords`, enriches `pageDescription`, `instructions`, `meta.description` |
 
+**🚨 NEVER modify `lib/tools.ts` for longTailKeywords** — that file is bundled client-side and pollutes browser chunks. Use `lib/tools-seo.ts` (server-only) instead.
+
 **Files NOT modified** (automatic pipeline handles them):
-- `app/tools/[tool]/page.tsx` — reads `longTailKeywords` from `tools.ts` automatically
+- `app/tools/[tool]/page.tsx` — reads via `getToolLongTailKeywords(toolId)` from `lib/tools-seo.ts`
 - `app/[locale]/tools/[tool]/page.tsx` — same
 - `lib/tool-schema.ts` — reads `longTailKeywords` from `tools.ts` for JSON-LD
 
