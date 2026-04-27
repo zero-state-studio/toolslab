@@ -244,29 +244,29 @@ export default function ToolPageClient({
         {/* Breadcrumb - Reduced spacing */}
         <nav className="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm">
           <Link
-            href="/"
+            href={createHref('/')}
             className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           >
-            Home
+            {t.home}
           </Link>
           <ChevronRight className="h-4 w-4 text-slate-400" />
           <Link
-            href="/tools"
+            href={createHref('/tools')}
             className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           >
-            Tools
+            {t.allTools}
           </Link>
           <ChevronRight className="h-4 w-4 text-slate-400" />
           <Link
-            href={`/category/${categoryId}`}
+            href={createHref(`/category/${categoryId}`)}
             className="capitalize transition-colors"
             style={{ color: categoryColor }}
           >
-            {primaryCategory?.name || categoryId}
+            {categoryName}
           </Link>
           <ChevronRight className="h-4 w-4 text-slate-400" />
           <span className="font-medium text-slate-900 dark:text-white">
-            {tool.name}
+            {t.toolName}
           </span>
         </nav>
 
