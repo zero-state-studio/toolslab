@@ -40,7 +40,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const { copied, copy } = useCopy();
   const { downloadText, downloadBase64AsBinary } = useDownload();
-  const { trackUse, trackError } = useToolTracking('base64');
+  const { trackUse, trackError } = useToolTracking('base64-encode');
   const { resultRef, scrollToResult } = useScrollToResult({
     onlyIfNotVisible: false,
   });

@@ -143,6 +143,9 @@ export default function RootLayout({
         {/* DNS prefetch for faster subsequent requests */}
         <link rel="dns-prefetch" href="https://toolslab.dev" />
         <link rel="preconnect" href="https://toolslab.dev" />
+        {/* Umami analytics endpoints */}
+        <link rel="dns-prefetch" href="https://cloud.umami.is" />
+        <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="" />
       </head>
       <body
         className={cn(

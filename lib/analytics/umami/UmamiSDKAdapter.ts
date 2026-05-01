@@ -22,6 +22,10 @@ export class UmamiSDKAdapter {
   private config: AnalyticsConfig;
   private queue: UmamiEventQueue;
   private isBot: boolean = false;
+  // Events queued while SDK was not yet loaded
+  private pendingEvents: AnalyticsEvent[] = [];
+  private waitingForSDK: boolean = false;
+  private sdkWaitTimer: NodeJS.Timeout | null = null;
 
   constructor(config: AnalyticsConfig) {
     this.config = config;
@@ -127,8 +131,25 @@ export class UmamiSDKAdapter {
    */
   private sendEventsSequentially(events: AnalyticsEvent[]): void {
     if (!this.isSDKReady()) {
-      this.log('❌ SDK not ready, dropping events', events.length);
+      // Hold events until SDK loads instead of silently dropping
+      this.pendingEvents.push(...events);
+      this.log(
+        `⏳ SDK not ready, holding ${events.length} events (pending=${this.pendingEvents.length})`
+      );
+      this.waitForSDK();
       return;
+    }
+
+    // SDK is ready: drain any pending backlog first (chronological)
+    if (this.pendingEvents.length > 0) {
+      const backlog = this.pendingEvents.sort((a, b) => {
+        const aT = a.timestamp ?? 0;
+        const bT = b.timestamp ?? 0;
+        return aT - bT;
+      });
+      this.pendingEvents = [];
+      events = [...backlog, ...events];
+      this.log(`🔁 Draining ${backlog.length} pending events`);
     }
 
     // Send each event with micro-delay to preserve order
@@ -281,6 +302,47 @@ export class UmamiSDKAdapter {
       typeof window !== 'undefined' &&
       typeof (window as any).umami?.track === 'function'
     );
+  }
+
+  /**
+   * Poll for SDK readiness, then re-flush queue so pending events go out.
+   * Idempotent: safe to call multiple times.
+   * Times out after 10 seconds.
+   */
+  private waitForSDK(): void {
+    if (this.waitingForSDK) return;
+    if (typeof window === 'undefined') return;
+    this.waitingForSDK = true;
+
+    let attempts = 0;
+    const MAX_ATTEMPTS = 100; // 100 * 100ms = 10s
+
+    const tick = () => {
+      attempts += 1;
+      if (this.isSDKReady()) {
+        this.waitingForSDK = false;
+        this.sdkWaitTimer = null;
+        this.log(`✅ SDK ready after ${attempts} polls — flushing pending`);
+        // Trigger flush so the holding-bucket gets drained
+        if (this.pendingEvents.length > 0) {
+          // Send pending events (sendEventsSequentially will drain them)
+          this.sendEventsSequentially([]);
+        }
+        return;
+      }
+      if (attempts >= MAX_ATTEMPTS) {
+        this.waitingForSDK = false;
+        this.sdkWaitTimer = null;
+        this.log(
+          `⚠️ SDK never became ready — dropping ${this.pendingEvents.length} pending`
+        );
+        this.pendingEvents = [];
+        return;
+      }
+      this.sdkWaitTimer = setTimeout(tick, 100);
+    };
+
+    this.sdkWaitTimer = setTimeout(tick, 100);
   }
 
   /**

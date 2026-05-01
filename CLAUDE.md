@@ -45,7 +45,7 @@ Verifica tool ha completato tutti 13 step. Invocato automaticamente da `/new-too
 
 ### 📦 Skills esterne installate — Trigger automatici
 
-Skills in `.agents/skills/` — **DEVI attivarle autonomamente** quando riconosci situazioni descritte, senza aspettare richiesta utente.
+Skills in `.claude/skills/` — **DEVI attivarle autonomamente** quando riconosci situazioni descritte, senza aspettare richiesta utente.
 
 #### `vercel-react-best-practices` → attiva quando:
 - Scrivi/modifichi componente React/Next.js (`.tsx`)
@@ -67,7 +67,7 @@ Skills in `.agents/skills/` — **DEVI attivarle autonomamente** quando riconosc
 - Pianificazione sprint sviluppo
 
 #### `programmatic-seo` → attiva quando:
-- Scrivi `tagline` o `seoDescription` per nuovo tool in `tool-seo.ts`
+- Scrivi `tagline` o `seoDescription` per nuovo tool nei file i18n (`lib/i18n/dictionaries/{locale}/tools/{tool}.json`)
 - Pianificazione nuova categoria tool o pagina aggregatrice
 - Utente chiede ottimizzare ranking pagina tool
 - Discussione keyword strategy o struttura URL
@@ -139,8 +139,8 @@ npm update
 
 **Workflow completo:**
 1. **Registra tool** in `/lib/tools.ts` con tutti metadati richiesti
-2. **Crea contenuti SEO** in `/lib/tool-seo.ts` con tagline e descrizione ottimizzate
-3. **Definisci istruzioni** in `/lib/tool-instructions.ts` con contenuti tool-specifici
+2. **Crea contenuti SEO + istruzioni** nei file i18n per-tool (`lib/i18n/dictionaries/{locale}/tools/{tool}.json`) — campi `tagline`, `pageDescription`, `meta`, `instructions` (vedi step 9)
+3. **Long-tail keywords (opzionale)** in `/lib/tools-seo.ts` (server-only)
 4. Crea prima test in `__tests__/unit/tools/[tool-name].test.ts`
 5. Implementa logica in `lib/tools/[tool-name].ts`
 6. Crea componente UI in `components/tools/implementations/[ToolName].tsx`
@@ -164,7 +164,7 @@ npm update
    ];
    ```
    **⚠️ Se dimentichi questo step, traduzioni non caricate e tool mostra testi generici!**
-9. **Crea traduzioni per tutte le lingue** in `/lib/i18n/dictionaries/{en,it,es,fr}/tools/`:
+9. **Crea traduzioni per tutte le lingue** in `/lib/i18n/dictionaries/{en,it,es,fr,de,pt}/tools/`:
    - Crea `tool-name.json` per ogni lingua con: title, description, placeholder, meta, tagline, pageDescription, instructions
    - Instructions devono includere: steps, features, useCases, proTips, troubleshooting, keyboardShortcuts (opzionale)
 10. **❌ NON creare route dedicata** - sistema dinamico `[tool]/page.tsx` gestisce routing automaticamente
@@ -357,33 +357,36 @@ Lo skill `/long-tail-seo` aggiunge automaticamente nel file giusto.
 
 ## 📝 CONTENUTI OBBLIGATORI PER OGNI NUOVO TOOL
 
-Per UX consistente e SEO, OGNI nuovo tool deve includere:
+Per UX consistente e SEO, OGNI nuovo tool deve includere i seguenti contenuti nei file i18n per-tool (`lib/i18n/dictionaries/{locale}/tools/{tool-id}.json`):
 
-### 🎯 SEO Content (in `/lib/tool-seo.ts`)
-```typescript
+### 🎯 SEO Content
+```json
 {
-  id: 'tool-slug',
-  tagline: 'Action verb + tool function + benefit (8-12 words)',
-  seoDescription: 'What it does + who it\'s for + why better + soft CTA (30-70 words)',
+  "tagline": "Action verb + tool function + benefit (8-12 words)",
+  "pageDescription": "What it does + who it's for + why better + soft CTA (30-70 words)",
+  "meta": {
+    "title": "Tool Name - Free Online Tool | ToolsLab",
+    "description": "SEO description (≤160 chars)"
+  }
 }
 ```
 
-### 📚 Instructions Content (in `/lib/tool-instructions.ts`)
-```typescript
+### 📚 Instructions Content
+```json
 {
-  id: 'tool-slug',
-  title: 'How to use [Tool Name]',
-  steps: [
-    { title: 'Step title', description: 'Detailed step description' },
-    // 3-5 steps specific to the tool
-  ],
-  features: ['Feature 1', 'Feature 2'], // 4-8 features
-  useCases: ['Use case 1', 'Use case 2'], // 5-8 use cases  
-  proTips: ['Tip 1', 'Tip 2'], // 4-6 pro tips
-  troubleshooting: ['Issue 1', 'Issue 2'], // 3-5 common issues
-  keyboardShortcuts: [
-    { keys: 'Ctrl+C', description: 'Copy result' }
-  ] // Optional, if applicable
+  "instructions": {
+    "title": "How to use [Tool Name]",
+    "steps": [
+      { "title": "Step title", "description": "Detailed step description" }
+    ],
+    "features": ["Feature 1", "Feature 2"],
+    "useCases": ["Use case 1", "Use case 2"],
+    "proTips": ["Tip 1", "Tip 2"],
+    "troubleshooting": ["Issue 1", "Issue 2"],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+C", "description": "Copy result" }
+    ]
+  }
 }
 ```
 
@@ -731,8 +734,8 @@ components/tools/
 lib/
 ├── tools.ts          ← Registry centrale (CLIENT + SERVER) - solo campi UI/search
 ├── tools-seo.ts      ← SERVER-ONLY: longTailKeywords (mai importare da client!)
-├── tool-seo.ts       ← SEO content centralizzato (tagline/seoDescription)
-└── tool-schema.ts    ← Schema generation (server)
+├── tool-schema.ts    ← Schema generation (server)
+└── i18n/dictionaries/{locale}/tools/{tool-id}.json  ← tagline, pageDescription, meta, instructions
 ```
 
 **🚨 Separazione tools.ts vs tools-seo.ts (CRITICO):**
@@ -746,7 +749,7 @@ lib/
 
 **✅ FARE SEMPRE:**
 - Registrare in `/lib/tools.ts`
-- Aggiungere SEO in `/lib/tool-seo.ts`
+- Aggiungere SEO/istruzioni nei file i18n per-tool (`lib/i18n/dictionaries/{locale}/tools/{tool-id}.json`)
 - Implementare in `components/tools/implementations/`
 - Registrare in `LazyToolLoader.tsx`
 
@@ -920,26 +923,10 @@ http://localhost:3000/tools/json-formatter?debug=analytics
 
 1. **Batching Intelligente**: Eventi raggruppati (max 5 o 1 secondo) → 80-90% riduzione network requests
 2. **sendBeacon Delivery**: Eventi critici (`session.end`) sopravvivono chiusura browser — 97% browser support
-3. **No Retry Logic**: sendBeacon fornisce best-effort guaranteed delivery — retry disabilitata per evitare duplicati
+3. **No Retry Logic**: sendBeacon fornisce best-effort guaranteed delivery — retry disabilitata per evitare duplicati. SDK adapter ha **pending queue** che mantiene eventi mentre Umami SDK carica (10s timeout).
 4. **PII Sanitization**: Auto-rimozione email, IP, carte credito, API keys da tutti eventi
 5. **Bot Detection**: Client-side — distingue search engines (OK) da malicious bots (bloccati)
 6. **URL Normalization**: Multilingua gestito automaticamente — nessun duplicato in Umami
-
-### 📚 Documentazione Completa
-
-**Tutta in `/documentation/analytics/`:**
-
-| File | Descrizione |
-|------|-------------|
-| **[README.md](./documentation/analytics/README.md)** | 📖 Overview generale, quick start, features |
-| **[DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md)** | 👨‍💻 **Inizia qui!** Guida pratica sviluppatori |
-| **[ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md)** | 🏗️ Design completo sistema, decisioni tecniche |
-| **[PAGEVIEW_TRACKING.md](./documentation/analytics/PAGEVIEW_TRACKING.md)** | 📊 PageViewTracker, metriche avanzate, UTM |
-
-**Learning Path consigliato:**
-1. Leggi [README.md](./documentation/analytics/README.md) per overview
-2. Segui [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md) per aggiungere tool
-3. Consulta [ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md) per dettagli tecnici
 
 ### ⚠️ Importante
 
@@ -979,14 +966,6 @@ NEXT_PUBLIC_ANALYTICS_BATCH_SIZE=5        # Eventi per batch (default: 5)
 NEXT_PUBLIC_ANALYTICS_FLUSH_INTERVAL=1000 # Flush interval ms (default: 1000)
 ```
 
-### 🎓 Per Saperne di Più
-
-Documentazione completa per:
-- **Come tracciare eventi custom** → [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md#-advanced-custom-events-optional)
-- **Come funziona batching** → [ARCHITECTURE.md](./documentation/analytics/ARCHITECTURE.md#performance-optimizations)
-- **Troubleshooting** → [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md#-troubleshooting)
-- **API completa** → [DEVELOPER_GUIDE.md](./documentation/analytics/DEVELOPER_GUIDE.md#-api-reference)
-
 ## 🌍 SISTEMA MULTILINGUA (AGGIORNAMENTO DICEMBRE 2024)
 
 ### Architettura Multilingua
@@ -1007,78 +986,70 @@ lib/i18n/
 ├── config.ts              # Configurazione locali e flags
 ├── get-dictionary.ts      # Caricamento dizionari
 ├── helpers.ts             # Funzioni utility i18n
+├── load-tools.ts          # Registry tool per loading i18n
 └── dictionaries/
-    ├── en.json           # Traduzioni inglesi
-    └── it.json           # Traduzioni italiane
+    ├── en/
+    │   ├── common.json    # Stringhe UI globali
+    │   └── tools/         # Un file per tool: <tool-id>.json
+    ├── it/
+    │   ├── common.json
+    │   └── tools/
+    ├── es/ ...
+    ├── fr/ ...
+    ├── de/ ...
+    └── pt/ ...
 
 app/
-├── [locale]/
-│   ├── layout.tsx        # Layout per pagine localizzate
-│   ├── page.tsx          # Homepage localizzata
-│   └── tools/
-│       └── [tool]/
-│           └── page.tsx  # Pagine tool localizzate
-└── components/
-    └── LanguageSwitcher.tsx  # Selettore lingua
+└── [locale]/
+    ├── layout.tsx        # Layout per pagine localizzate
+    ├── page.tsx          # Homepage localizzata
+    └── tools/
+        └── [tool]/
+            └── page.tsx  # Pagine tool localizzate
 ```
 
 ### Workflow per Aggiungere Traduzioni
 
 #### 1. Aggiungere traduzioni per nuovo tool
 
-1. **Aggiungi in `en.json`**:
+Crea un file `<tool-id>.json` per **ciascuna** lingua in `lib/i18n/dictionaries/{en,it,es,fr,de,pt}/tools/`:
+
+**`lib/i18n/dictionaries/en/tools/nuovo-tool.json`**:
 ```json
-"tools": {
-  "nuovo-tool": {
-    "title": "New Tool",
-    "description": "Tool description",
-    "placeholder": "Enter text...",
-    "meta": {
-      "title": "New Tool - Free Online Tool | ToolsLab",
-      "description": "SEO description for the tool"
-    }
+{
+  "title": "New Tool",
+  "description": "Tool description",
+  "placeholder": "Enter text...",
+  "meta": {
+    "title": "New Tool - Free Online Tool | ToolsLab",
+    "description": "SEO description for the tool"
+  },
+  "tagline": "Action verb + benefit",
+  "pageDescription": "Long-form description",
+  "instructions": { "...": "see CONTENUTI OBBLIGATORI section" }
+}
+```
+
+**`lib/i18n/dictionaries/it/tools/nuovo-tool.json`**:
+```json
+{
+  "title": "Nuovo Strumento",
+  "description": "Descrizione dello strumento",
+  "placeholder": "Inserisci testo...",
+  "meta": {
+    "title": "Nuovo Strumento - Strumento Online Gratuito | ToolsLab",
+    "description": "Descrizione SEO per lo strumento"
   }
 }
 ```
 
-2. **Aggiungi in `it.json`**:
-```json
-"tools": {
-  "nuovo-tool": {
-    "title": "Nuovo Strumento",
-    "description": "Descrizione dello strumento",
-    "placeholder": "Inserisci testo...",
-    "meta": {
-      "title": "Nuovo Strumento - Strumento Online Gratuito | ToolsLab",
-      "description": "Descrizione SEO per lo strumento"
-    }
-  }
-}
-```
+Poi registra `'nuovo-tool'` in `/lib/i18n/load-tools.ts` (vedi step 8 del workflow).
 
 #### 2. Aggiungere nuova lingua
 
-1. **Aggiorna `lib/i18n/config.ts`**:
-```typescript
-export type Locale = 'en' | 'it' | 'fr';  // Aggiungi nuovo locale
-export const locales: Locale[] = ['en', 'it', 'fr'];
-
-export const localeNames: Record<Locale, string> = {
-  en: 'English',
-  it: 'Italiano',
-  fr: 'Français',  // Aggiungi nome
-};
-
-export const localeFlags: Record<Locale, string> = {
-  en: '🇬🇧',
-  it: '🇮🇹',
-  fr: '🇫🇷',  // Aggiungi flag
-};
-```
-
-2. **Crea `lib/i18n/dictionaries/fr.json`** copiando struttura da `en.json`
-
-3. **Deploy** — sistema gestisce automaticamente routing e SEO
+1. **Aggiorna `lib/i18n/config.ts`** estendendo `Locale`, `locales`, `localeNames`, `localeFlags`.
+2. **Crea `lib/i18n/dictionaries/<locale>/`** replicando la struttura di `en/` (copiare `common.json` + tutta la cartella `tools/`).
+3. **Deploy** — sistema gestisce automaticamente routing e SEO.
 
 ### SEO e Hreflang
 
@@ -1140,21 +1111,8 @@ Se traduzioni non appaiono:
 
 ## 📚 Documentazione Completa
 
-Info dettagliate progetto in `/documentation`:
+Info dettagliate sviluppo in `/documentation`:
 
-### 🏗️ Documentazione Tecnica
-- **[Architecture Overview](./documentation/ARCHITECTURE.md)** — Architettura sistema e decisioni tecniche
 - **[Tool Development Guide](./documentation/TOOL_DEVELOPMENT.md)** — Guida completa sviluppo nuovi tool
-- **[API Documentation](./documentation/API_DOCUMENTATION.md)** — Documentazione completa API
-- **[Tools Catalog](./documentation/TOOLS_CATALOG.md)** — Catalogo completo tool disponibili
-- **[Multi Language Guide](./documentation/MULTI_LANGUAGE.md)** — Guida dettagliata sistema multilingua
-- **[Blog Structure Guide](./documentation/BLOG-STRUCTURE.md)** — Struttura e gestione blog
 
-### 🚀 Deployment e Contributing
-- **[Deployment Guide](./documentation/DEPLOYMENT.md)** — Guida deployment e configurazione produzione
-- **[Contributing Guidelines](./documentation/CONTRIBUTING.md)** — Linee guida per contribuire
-
-### 📖 Overview
-- **[Project README](./documentation/README.md)** — Overview completo progetto e tecnologie
-
-💡 **Nota**: Documentazione in `/documentation` fornisce info alto livello e specifiche tecniche, questo CLAUDE.md contiene standard operativi quotidiani per sviluppo.
+💡 **Nota**: questo `CLAUDE.md` contiene gli standard operativi quotidiani; il file linkato approfondisce le aree tecniche specifiche.
