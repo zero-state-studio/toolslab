@@ -1,48 +1,75 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { getUmamiAdapter } from '@/lib/analytics/umami/UmamiSDKAdapter';
 import { getUmamiSessionTracker } from '@/lib/analytics/umami/UmamiSessionTracker';
 import { EventNormalizer } from '@/lib/analytics/core/EventNormalizer';
 
 /**
- * Tracks pageview events using the centralized analytics system
+ * Manually fires Umami pageview events on every Next.js App Router navigation.
  *
- * IMPORTANT: Uses UmamiSDKAdapter for consistent tracking
- * - No polling (SDK ready check handled by adapter)
- * - Includes: page, locale, referrer, UTM parameters
- * - Automatic batching (1s max wait)
- * - Chronological order preserved
+ * Why manual: the Umami SDK is loaded with `data-auto-track="false"`
+ * (see UmamiProvider). Auto-track listens to history events but races with
+ * deferred SDK load and can miss the initial pageview, producing
+ * "Visits=N, Views=0, Events=M" sessions in the dashboard.
  *
- * UTM Parameters tracked:
- * - utm_source (e.g., 'google', 'facebook', 'newsletter')
- * - utm_medium (e.g., 'cpc', 'email', 'social')
- * - utm_campaign (e.g., 'summer-sale-2024')
- * - utm_content (e.g., 'banner-top')
- * - utm_term (e.g., 'json formatter')
+ * This component:
+ *  - waits for `window.umami.track` to be available
+ *  - fires `umami.track()` (no args) once per unique pathname+searchParams
+ *  - dedupes via a ref to avoid double-firing on remounts
+ *  - increments the local SessionTracker counter (used for session.end metadata)
  */
 export function PageViewTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const lastTrackedKey = useRef<string>('');
 
   useEffect(() => {
-    // TEMPORARILY DISABLED: Umami auto-tracking handles pageviews
-    // TODO: Re-enable with deduplication logic or use only for custom metadata
+    const key = `${pathname}?${searchParams?.toString() ?? ''}`;
+    if (lastTrackedKey.current === key) return;
+    lastTrackedKey.current = key;
 
-    // Update session tracker only (no duplicate pageview event)
-    try {
-      getUmamiSessionTracker()?.incrementPageView();
+    let cancelled = false;
+    let attempts = 0;
+    const MAX_ATTEMPTS = 50; // 50 * 100ms = 5s wait
+    const fire = () => {
+      if (cancelled) return;
+      const umami = (window as any).umami;
+      if (typeof umami?.track === 'function') {
+        try {
+          umami.track();
+          if (process.env.NODE_ENV === 'development') {
+            const pageInfo = EventNormalizer.getCurrentPageInfo();
+            console.log('📊 Manual pageview fired:', pageInfo);
+          }
+        } catch (err) {
+          if (process.env.NODE_ENV === 'development') {
+            console.error('❌ Manual pageview error:', err);
+          }
+        }
+        try {
+          getUmamiSessionTracker()?.incrementPageView();
+        } catch {
+          // ignore
+        }
+        return;
+      }
 
-      if (process.env.NODE_ENV === 'development') {
-        const pageInfo = EventNormalizer.getCurrentPageInfo();
-        console.log('📊 Pageview (auto-tracked by Umami):', pageInfo);
+      attempts += 1;
+      if (attempts >= MAX_ATTEMPTS) {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('⚠️ Umami SDK never became ready — pageview dropped');
+        }
+        return;
       }
-    } catch (error) {
-      if (process.env.NODE_ENV === 'development') {
-        console.error('❌ Session tracker error:', error);
-      }
-    }
+      setTimeout(fire, 100);
+    };
+
+    fire();
+
+    return () => {
+      cancelled = true;
+    };
   }, [pathname, searchParams]);
 
   return null;

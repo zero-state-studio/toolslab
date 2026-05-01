@@ -923,7 +923,7 @@ http://localhost:3000/tools/json-formatter?debug=analytics
 
 1. **Batching Intelligente**: Eventi raggruppati (max 5 o 1 secondo) → 80-90% riduzione network requests
 2. **sendBeacon Delivery**: Eventi critici (`session.end`) sopravvivono chiusura browser — 97% browser support
-3. **No Retry Logic**: sendBeacon fornisce best-effort guaranteed delivery — retry disabilitata per evitare duplicati
+3. **No Retry Logic**: sendBeacon fornisce best-effort guaranteed delivery — retry disabilitata per evitare duplicati. SDK adapter ha **pending queue** che mantiene eventi mentre Umami SDK carica (10s timeout).
 4. **PII Sanitization**: Auto-rimozione email, IP, carte credito, API keys da tutti eventi
 5. **Bot Detection**: Client-side — distingue search engines (OK) da malicious bots (bloccati)
 6. **URL Normalization**: Multilingua gestito automaticamente — nessun duplicato in Umami
