@@ -1,6 +1,14 @@
 'use client';
 
-import { createContext, useContext, useEffect, useRef, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  ReactNode,
+} from 'react';
+import Script from 'next/script';
 
 interface UmamiContextType {
   track: (event: string, data?: any) => void;
@@ -20,7 +28,7 @@ interface UmamiProviderProps {
 
 export function UmamiProvider({ children }: UmamiProviderProps) {
   const scriptLoaded = useRef(false);
-  const initAttempted = useRef(false);
+  const [shouldLoadScript, setShouldLoadScript] = useState(false);
 
   // Get config from environment
   const websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
@@ -30,79 +38,54 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
       ? `${process.env.NEXT_PUBLIC_UMAMI_HOST_URL}/script.js`
       : null);
 
-  // 🚨 CRITICAL: Check if running on localhost
-  const isLocalhost =
-    typeof window !== 'undefined' &&
-    (window.location.hostname === 'localhost' ||
-      window.location.hostname === '127.0.0.1' ||
-      window.location.hostname.startsWith('192.168.') ||
-      window.location.hostname.startsWith('10.') ||
-      window.location.hostname.endsWith('.local'));
+  // Tag for environment filtering in Umami dashboard (prod vs preview)
+  const envTag =
+    process.env.NEXT_PUBLIC_VERCEL_ENV ||
+    process.env.VERCEL_ENV ||
+    process.env.NODE_ENV ||
+    'unknown';
 
-  // Enable in production OR when debug is enabled (but NEVER on localhost)
-  const isEnabled =
-    !isLocalhost &&
-    (process.env.NODE_ENV === 'production' ||
-      process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true');
-
+  // Decide client-side whether to inject the script (avoid SSR mismatch)
   useEffect(() => {
+    const hostname = window.location.hostname;
+    const isLocalhost =
+      hostname === 'localhost' ||
+      hostname === '127.0.0.1' ||
+      hostname.startsWith('192.168.') ||
+      hostname.startsWith('10.') ||
+      hostname.endsWith('.local');
+
+    const isEnabled =
+      !isLocalhost &&
+      (process.env.NODE_ENV === 'production' ||
+        process.env.NEXT_PUBLIC_UMAMI_DEBUG === 'true');
+
     console.log('🔍 Umami Init:', {
       enabled: isEnabled,
       isLocalhost,
-      hostname:
-        typeof window !== 'undefined' ? window.location.hostname : 'SSR',
+      hostname,
       websiteId: websiteId ? 'SET' : 'MISSING',
       scriptUrl: scriptUrl || 'MISSING',
       nodeEnv: process.env.NODE_ENV,
       debug: process.env.NEXT_PUBLIC_UMAMI_DEBUG,
+      envTag,
     });
 
-    if (initAttempted.current) return;
-    initAttempted.current = true;
-
     if (isLocalhost) {
-      console.log(
-        '🚫 Umami blocked - localhost detected (no analytics in local dev)'
-      );
+      console.log('🚫 Umami blocked - localhost detected');
       return;
     }
-
     if (!isEnabled || !websiteId || !scriptUrl) {
       console.warn('⚠️ Umami not loaded - missing config');
       return;
     }
 
-    // Load script
-    const script = document.createElement('script');
-    script.src = scriptUrl;
-    script.defer = true;
-    script.setAttribute('data-website-id', websiteId);
-    script.setAttribute('data-performance', 'true');
-    // Note: data-auto-track defaults to 'true' - we let Umami handle infrastructure
-    // Our manual events (tool.use, session.*, etc.) will supplement automatic pageviews
-
-    script.onload = () => {
-      scriptLoaded.current = true;
-      console.log('✅ Umami loaded successfully');
-
-      // Test if umami is available
-      if (typeof (window as any).umami !== 'undefined') {
-        console.log('✅ Umami object available');
-      } else {
-        console.error('❌ Umami object not found after script load');
-      }
-    };
-
-    script.onerror = (error) => {
-      console.error('❌ Umami script failed to load:', error);
-    };
-
-    document.head.appendChild(script);
-  }, [isEnabled, websiteId, scriptUrl]);
+    setShouldLoadScript(true);
+  }, [websiteId, scriptUrl, envTag]);
 
   const shouldTrack = (): boolean => {
     return (
-      isEnabled &&
+      shouldLoadScript &&
       scriptLoaded.current &&
       typeof window !== 'undefined' &&
       typeof (window as any).umami !== 'undefined'
@@ -175,6 +158,26 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
 
   return (
     <UmamiContext.Provider value={contextValue}>
+      {shouldLoadScript && websiteId && scriptUrl && (
+        <Script
+          src={scriptUrl}
+          strategy="afterInteractive"
+          data-website-id={websiteId}
+          data-auto-track="false"
+          data-performance="true"
+          data-tag={envTag}
+          onLoad={() => {
+            scriptLoaded.current = true;
+            console.log('✅ Umami loaded (next/script)');
+            if (typeof (window as any).umami === 'undefined') {
+              console.error('❌ Umami object missing after onLoad');
+            }
+          }}
+          onError={(e) => {
+            console.error('❌ Umami script failed to load', e);
+          }}
+        />
+      )}
       {children}
     </UmamiContext.Provider>
   );
