@@ -90,10 +90,12 @@ export default function ToolPageClient({
 
     // Track tool page view
     if (toolId) {
+      const toolDef = getToolById(toolId);
       trackEngagement('tool-page-viewed', {
         tool: toolId,
+        tool_category: toolDef?.categories?.[0],
         has_initial_input: !!initialInput,
-        // Note: referrer and url are automatically added by trackEngagement()
+        // Note: referrer, url, userLevel, utm_* are auto-added by EventNormalizer
       });
     }
   }, [toolId, initialInput]);
