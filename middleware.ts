@@ -1,12 +1,22 @@
 /**
  * Next.js Middleware - OPTIMIZED FOR CPU EFFICIENCY
  *
- * OPTIMIZATIONS (Jan 2025):
- * - VPN detection cached via cookie (12 regex only on first visit, 1h TTL)
+ * OPTIMIZATIONS (May 2026, RIC-10):
+ * - Removed Set-Cookie writes (NEXT_LOCALE, preferred-locale, vpn-mode):
+ *   they forced `Cache-Control: private` on every response, disabling
+ *   the Vercel/CDN cache and making middleware+function fire on every
+ *   request. preferred-locale is still written client-side from
+ *   lib/i18n/helpers.ts when the user changes locale; NEXT_LOCALE was
+ *   never read; vpn-mode cache trades ~10µs regex for cache-private
+ *   (terrible tradeoff).
+ * - Removed www→apex redirect: next.config.js redirects() handles it at
+ *   the Vercel edge routing layer before middleware runs (verified via
+ *   curl: response is 308 from CDN, not 301 from middleware).
+ * - Removed unused X-Request-URL header (no consumer in repo).
+ *
+ * PREVIOUS OPTIMIZATIONS (Jan 2025):
  * - Locale detection via direct if/else (no loop/callbacks)
  * - Static security headers moved to next.config.js
- * - Locale cookie skipped if already correct
- * - Removed unused headers (X-Pathname, X-User-Country)
  * - Bot path: early return with minimal processing
  */
 
@@ -111,42 +121,26 @@ function applyVPNHeaders(response: NextResponse, isVPN: boolean) {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const hostname = request.nextUrl.hostname;
 
   // -------------------------------------------------------------------------
-  // 1. Domain canonicalization (immediate redirect)
-  // -------------------------------------------------------------------------
-  if (hostname === 'www.toolslab.dev') {
-    const redirectUrl = new URL(request.nextUrl);
-    redirectUrl.hostname = 'toolslab.dev';
-    return NextResponse.redirect(redirectUrl, 301);
-  }
-
-  // -------------------------------------------------------------------------
-  // 2. Detect locale from pathname (direct checks, no loop/callbacks)
+  // 1. Detect locale from pathname (direct checks, no loop/callbacks)
   // -------------------------------------------------------------------------
   let currentLocale: Locale = defaultLocale;
-  let pathnameHasLocale = false;
 
   if (pathname.startsWith('/it/') || pathname === '/it') {
     currentLocale = 'it';
-    pathnameHasLocale = true;
   } else if (pathname.startsWith('/es/') || pathname === '/es') {
     currentLocale = 'es';
-    pathnameHasLocale = true;
   } else if (pathname.startsWith('/fr/') || pathname === '/fr') {
     currentLocale = 'fr';
-    pathnameHasLocale = true;
   } else if (pathname.startsWith('/de/') || pathname === '/de') {
     currentLocale = 'de';
-    pathnameHasLocale = true;
   } else if (pathname.startsWith('/pt/') || pathname === '/pt') {
     currentLocale = 'pt';
-    pathnameHasLocale = true;
   }
 
   // -------------------------------------------------------------------------
-  // 3. Bot detection (lightweight)
+  // 2. Bot detection (lightweight)
   // -------------------------------------------------------------------------
   const userAgent = request.headers.get('user-agent') || '';
   const botDetection = detectBot(userAgent);
@@ -156,10 +150,11 @@ export async function middleware(request: NextRequest) {
     const response = NextResponse.next();
     response.headers.set('X-Locale', currentLocale);
     response.headers.set('X-Bot-Detected', 'true');
-    response.headers.set('Cache-Control', 'public, max-age=86400');
-    // CRITICAL: Set X-Request-URL for bots too - needed for correct HTML lang attribute
-    // Without this, SSR renders <html lang="en"> even on localized pages, causing hreflang mismatch
-    response.headers.set('X-Request-URL', request.url);
+    // Long public cache for bots — survives across crawls
+    response.headers.set(
+      'Cache-Control',
+      'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800'
+    );
 
     if (botDetection.isSearchEngine) {
       response.headers.set('X-Search-Engine', 'true');
@@ -169,59 +164,17 @@ export async function middleware(request: NextRequest) {
   }
 
   // -------------------------------------------------------------------------
-  // 4. VPN detection (cookie-cached to avoid regex on every request)
+  // 3. VPN detection (no cookie cache — keeping `cache-control: public`
+  //    is worth far more than the ~10µs of regex avoided per request)
   // -------------------------------------------------------------------------
-  const vpnCookie = request.cookies.get('vpn-mode');
-  let isVPN: boolean;
-
-  if (vpnCookie !== undefined) {
-    // Cached result: skip all regex checks
-    isVPN = vpnCookie.value === 'true';
-  } else {
-    // First visit: run full detection
-    const forwardedFor = request.headers.get('x-forwarded-for');
-    const realIP = request.headers.get('x-real-ip');
-    isVPN = detectCorporateVPN(forwardedFor, realIP, userAgent);
-  }
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  const realIP = request.headers.get('x-real-ip');
+  const isVPN = detectCorporateVPN(forwardedFor, realIP, userAgent);
 
   const response = NextResponse.next();
 
-  // Cache VPN detection result for 8 hours (typical work day)
-  if (vpnCookie === undefined) {
-    response.cookies.set('vpn-mode', String(isVPN), {
-      path: '/',
-      sameSite: 'lax',
-      httpOnly: true,
-      maxAge: 28800,
-    });
-  }
-
-  // Set essential headers (X-Request-URL used by app/layout.tsx for SSR locale)
+  // Set the locale header consumed by app/layout.tsx
   response.headers.set('X-Locale', currentLocale);
-  response.headers.set('X-Request-URL', request.url);
-
-  // Set locale cookie (skip if already correct to reduce response size)
-  const existingLocale = request.cookies.get('NEXT_LOCALE');
-  if (existingLocale?.value !== currentLocale) {
-    response.cookies.set('NEXT_LOCALE', currentLocale, {
-      path: '/',
-      sameSite: 'lax',
-      httpOnly: false,
-    });
-  }
-
-  // Persistent language preference (only for non-default locales)
-  if (pathnameHasLocale && currentLocale !== defaultLocale) {
-    const preferredLocaleCookie = request.cookies.get('preferred-locale');
-    if (preferredLocaleCookie?.value !== currentLocale) {
-      response.cookies.set('preferred-locale', currentLocale, {
-        maxAge: 365 * 24 * 60 * 60,
-        path: '/',
-        sameSite: 'lax',
-        httpOnly: false,
-      });
-    }
-  }
 
   // Apply VPN-conditional headers (static security headers are in next.config.js)
   applyVPNHeaders(response, isVPN);
