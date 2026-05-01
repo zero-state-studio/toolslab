@@ -210,15 +210,41 @@ export default function ToolPageClient({
   };
 
   return (
-    <div className="relative min-h-screen bg-[color:var(--pg-bg)]">
-      <div className="relative z-10 mx-auto max-w-[1280px] px-5 py-5 sm:px-10 sm:py-8">
-        {/* Compact breadcrumb */}
-        <nav className="mb-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[12px] text-pg-muted">
-          <Link href={createHref('/')} className="hover:text-pg-text">
+    <div className="relative min-h-screen bg-background">
+      {/* Grid pattern */}
+      <div
+        className="fixed inset-0 opacity-50"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(139,92,246,0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(139,92,246,0.035) 1px, transparent 1px)
+          `,
+          backgroundSize: '64px 64px',
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Ambient glows */}
+      <div
+        className="pointer-events-none fixed -left-32 -top-16 h-64 w-64 rounded-full blur-3xl"
+        style={{ backgroundColor: `${categoryColor}1a` }}
+      />
+      <div className="pointer-events-none fixed -right-32 top-0 h-56 w-56 rounded-full bg-amber-500/[0.07] blur-3xl" />
+
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-4 sm:py-8">
+        {/* Breadcrumb - Reduced spacing */}
+        <nav className="mb-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs sm:text-sm">
+          <Link
+            href={createHref('/')}
+            className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+          >
             {t.home}
           </Link>
-          <ChevronRight className="h-3.5 w-3.5" />
-          <Link href={createHref('/tools')} className="hover:text-pg-text">
+          <ChevronRight className="h-4 w-4 text-slate-400" />
+          <Link
+            href={createHref('/tools')}
+            className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+          >
             {t.allTools}
           </Link>
           <ChevronRight className="h-3.5 w-3.5" />
@@ -229,8 +255,10 @@ export default function ToolPageClient({
           >
             {categoryName || categoryId}
           </Link>
-          <ChevronRight className="h-3.5 w-3.5" />
-          <span className="font-medium text-pg-text">{tool.name}</span>
+          <ChevronRight className="h-4 w-4 text-slate-400" />
+          <span className="font-medium text-slate-900 dark:text-white">
+            {t.toolName}
+          </span>
         </nav>
 
         {/* Tool Hero Section - Optimized spacing */}

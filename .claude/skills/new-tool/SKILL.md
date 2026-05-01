@@ -39,7 +39,9 @@ Aggiungi il tool al registry centrale. Usa questo template:
 },
 ```
 
-**⚠️ REGOLA**: `label` deve essere sempre `''`. Mai usare `'new'`.
+**⚠️ REGOLE:**
+- `label` deve essere sempre `''`. Mai usare `'new'`.
+- **NON aggiungere `longTailKeywords` qui.** `lib/tools.ts` è bundlato client-side; long-tail vanno in `lib/tools-seo.ts` (server-only). Vedi STEP 13bis.
 
 ---
 
@@ -333,12 +335,39 @@ Se hai usato `useScrollToResult` con `onlyIfNotVisible: false` nel componente, �
 
 ---
 
+## STEP 13bis — (Opzionale) Long-tail keywords in `/lib/tools-seo.ts`
+
+Se vuoi aggiungere long-tail keyword EN per il tool, **NON** metterli in `lib/tools.ts`. Invece:
+
+1. Apri `lib/tools-seo.ts` (file con `import 'server-only'`)
+2. Aggiungi entry nel mapping `toolLongTailKeywords`:
+
+```typescript
+export const toolLongTailKeywords: Record<string, string[]> = {
+  // ... entry esistenti ...
+  'TOOL_ID': [
+    'how to convert X online free',
+    'best free X tool',
+    // ... 8-12 frasi
+  ],
+};
+```
+
+**Motivazione:** `lib/tools.ts` è importato da `SearchBar`, `Header`, `HeroSection`, `CategoryGrid`, `ToolLayout` (tutti `'use client'`). Webpack bundles il modulo intero in ogni route chunk client. Mettere longTailKeywords in `tools.ts` ha causato regressione INP mobile aprile 2026 (CrUX p75 225ms). Il file `tools-seo.ts` ha `import 'server-only'` → Webpack errore se importato accidentalmente da client.
+
+Lo skill `/long-tail-seo` (con multilingua) gestisce automaticamente il file giusto.
+
+Per long-tail in lingue non-EN, vanno in `lib/i18n/dictionaries/{locale}/tools/TOOL_ID.json` come prima.
+
+---
+
 ## Checklist finale
 
 Prima di considerare il tool completo, verifica:
 
-- [ ] `lib/tools.ts` — tool registrato con `label: ''`
+- [ ] `lib/tools.ts` — tool registrato con `label: ''` (NIENTE longTailKeywords qui!)
 - [ ] `lib/tool-seo.ts` — tagline e seoDescription presenti
+- [ ] (Opzionale) `lib/tools-seo.ts` — entry in `toolLongTailKeywords` se aggiungi long-tail EN
 - [ ] `lib/tool-instructions.ts` — steps, features, useCases, proTips, troubleshooting
 - [ ] `__tests__/unit/tools/TOOL_ID.test.ts` — test creati
 - [ ] `lib/tools/TOOL_ID.ts` — logica implementata
