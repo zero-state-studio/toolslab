@@ -1,0 +1,73 @@
+{
+  "title": "Generador de Tablas Markdown",
+  "description": "Crea tablas Markdown compatibles con GFM con editor visual o importando CSV, TSV o tablas existentes",
+  "placeholder": "Pega CSV, TSV o una tabla Markdown para importar...",
+  "instructions": {
+    "title": "Cómo usar el Generador de Tablas Markdown",
+    "steps": [
+      {
+        "title": "Elige el punto de partida",
+        "description": "Usa el editor visual para crear una tabla desde cero, o usa 'Pegar CSV / TSV / Markdown' para importar datos existentes. La detección automática del delimitador maneja coma, punto y coma y tabulador sin configuración adicional."
+      },
+      {
+        "title": "Edita celdas, filas y columnas",
+        "description": "Escribe directamente en las cabeceras y celdas. Usa los controles de fila para reordenar, duplicar o eliminar filas, y el botón + para añadir una columna. Las celdas vacías permanecen vacías en la salida Markdown."
+      },
+      {
+        "title": "Configura la alineación de columnas",
+        "description": "Haz clic en el icono de alineación en cualquier cabecera para alternar entre ninguna, izquierda, centro y derecha. La fila separadora del Markdown se actualiza automáticamente con los marcadores `:---`, `:---:` y `---:`."
+      },
+      {
+        "title": "Copia o previsualiza el resultado",
+        "description": "Activa 'Relleno visual' para alinear las celdas en el código Markdown. Usa la vista previa en vivo para verificar el renderizado y copia el Markdown con un clic."
+      }
+    ],
+    "features": [
+      "Editor visual con añadir/quitar/reordenar filas y columnas",
+      "Importa CSV, TSV o tablas Markdown existentes",
+      "Alineación por columna: ninguna, izquierda, centro, derecha",
+      "Detección automática del delimitador (coma, punto y coma, tab)",
+      "Reapertura de tablas GFM existentes para edición",
+      "Salida con relleno alineado visualmente",
+      "Modo de salida compacto para Markdown mínimo",
+      "Escape automático de pipes y saltos de línea en celdas",
+      "Vista previa HTML en vivo de la tabla renderizada",
+      "100% en el navegador, sin registro, sin subidas"
+    ],
+    "useCases": [
+      "Documentar respuestas de API o esquemas de configuración en READMEs",
+      "Convertir exportaciones de hojas de cálculo en tablas Markdown listas para GitHub",
+      "Preparar tablas comparativas para artículos de blog y páginas de producto",
+      "Editar una tabla que ya existe en un documento Markdown",
+      "Crear matrices de características para marketing o notas de versión",
+      "Convertir informes CSV en Markdown compartible en chats o PRs",
+      "Mantener tablas de documentación de sitios estáticos en control de versiones",
+      "Formatear datos para Notion, Obsidian o Bear con soporte GFM"
+    ],
+    "proTips": [
+      "Usa 'Relleno visual' al editar — el código alineado es mucho más fácil de revisar en pull requests",
+      "Los pipes dentro de los datos se escapan automáticamente a `\\|` para que enlaces y snippets sigan funcionando",
+      "Para reeditar una tabla Markdown existente, pégala en el cuadro de importación y el editor la cargará con la alineación original",
+      "Los saltos de línea dentro de una celda se convierten en `<br>` para que las notas multilínea sobrevivan al round-trip GFM",
+      "Establece nombres de cabecera sensatos antes de importar CSV — actúan también como identificadores de columna en tu tabla final"
+    ],
+    "troubleshooting": [
+      "Si las columnas CSV importadas aparecen unidas, configura el delimitador explícitamente en lugar de confiar en la auto-detección",
+      "Las tablas Markdown sin fila separadora `| --- |` no pueden reimportarse — añade el separador e inténtalo de nuevo",
+      "Si la vista previa difiere del Markdown, tu renderizador puede no soportar los marcadores de alineación GFM",
+      "Las tablas muy anchas se ajustan en pantallas pequeñas — desactiva 'Relleno visual' para mantener compacto el código",
+      "Eliminar la última columna restablece el diseño — usa 'Ejemplo' para restaurar rápidamente una tabla funcional"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Tab", "description": "Ir a la celda siguiente" },
+      { "keys": "Shift+Tab", "description": "Ir a la celda anterior" },
+      { "keys": "Ctrl+C", "description": "Copiar Markdown" }
+    ]
+  },
+  "meta": {
+    "title": "Generador de Tablas Markdown — Editor Visual & Import CSV",
+    "description": "Generador gratuito de tablas Markdown. Crea tablas GFM visualmente o pega CSV/TSV. Alineación por columna, vista previa en vivo y copia rápida."
+  },
+  "tagline": "Crea tablas Markdown GFM visualmente o desde CSV — alineación, vista previa y copia en segundos",
+  "pageDescription": "Crea tablas Markdown limpias sin contar pipes. Usa el editor visual para añadir filas, reordenar columnas y configurar la alineación de cada una, o pega CSV, TSV o una tabla Markdown existente para importar datos al instante. Los pipes y saltos de línea dentro de las celdas se escapan automáticamente para que la salida siga siendo GitHub Flavored Markdown válido. Activa el relleno visual para un código diff-friendly, mira el HTML renderizado en vivo y copia el resultado con un clic. Perfecto para READMEs, artículos de blog, páginas comparativas y documentación de API. Gratuito, en el navegador, sin registro."
+}

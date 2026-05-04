@@ -107,6 +107,7 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'js-object-to-json',
     'bcrypt-hash-generator',
     'html-to-markdown',
+    'markdown-table-generator',
     'rot13-caesar-cipher',
   ];
 

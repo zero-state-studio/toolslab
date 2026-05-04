@@ -1,0 +1,73 @@
+{
+  "title": "Markdown Table Generator",
+  "description": "Build GFM-ready Markdown tables visually or by pasting CSV, TSV or an existing table",
+  "placeholder": "Paste CSV, TSV or a Markdown table to import...",
+  "instructions": {
+    "title": "How to use Markdown Table Generator",
+    "steps": [
+      {
+        "title": "Pick how to start",
+        "description": "Switch to the visual editor to build a table from scratch, or use 'Paste CSV / TSV / Markdown' to import existing data. The auto-detect delimiter handles comma, semicolon and tab inputs without extra config."
+      },
+      {
+        "title": "Edit cells, rows and columns",
+        "description": "Type directly into header and body cells. Use the row controls to reorder, duplicate or delete rows, and the + button to append a new column. Empty cells stay empty in the Markdown output."
+      },
+      {
+        "title": "Set column alignment",
+        "description": "Click the alignment icon on any column header to cycle through none, left, center and right. The separator row in the Markdown output updates automatically with `:---`, `:---:` and `---:` markers."
+      },
+      {
+        "title": "Copy or preview the result",
+        "description": "Toggle 'Pretty padding' to align cells visually inside the Markdown source. Use the live preview to confirm rendering, then copy the Markdown to clipboard with one click."
+      }
+    ],
+    "features": [
+      "Visual table editor with add/remove/reorder rows and columns",
+      "Paste CSV, TSV or existing Markdown table to import",
+      "Per-column left, center, right or no alignment",
+      "Auto-detect delimiter (comma, semicolon, tab)",
+      "Round-trip parsing of existing GFM Markdown tables",
+      "Pretty-printed padded output that lines up visually",
+      "Compact output mode for minimal Markdown",
+      "Automatic escaping of pipes and newlines in cells",
+      "Live HTML preview of the rendered table",
+      "100% browser-based, no signup, no upload"
+    ],
+    "useCases": [
+      "Document API responses or config schemas in README files",
+      "Convert spreadsheet exports into GitHub-ready Markdown tables",
+      "Draft comparison tables for blog posts and product pages",
+      "Edit a table that already lives inside a Markdown document",
+      "Build feature matrices for marketing or release notes",
+      "Turn CSV reports into shareable Markdown for chat or PRs",
+      "Keep static-site documentation tables in version control",
+      "Format data for Notion, Obsidian or Bear that supports GFM"
+    ],
+    "proTips": [
+      "Use 'Pretty padding' while editing — the aligned source is much easier to diff in pull requests",
+      "Pipes inside data are auto-escaped to `\\|` so links and code samples stay intact",
+      "To re-edit an existing Markdown table, paste it into the import box and the editor will reload it with the original alignment",
+      "Newlines inside a cell become `<br>` so multi-line notes survive the GFM round-trip",
+      "Set sensible header names before importing CSV — they double as column identifiers in your final table"
+    ],
+    "troubleshooting": [
+      "If imported CSV columns look merged, set the delimiter explicitly instead of relying on auto-detect",
+      "Markdown tables without a `| --- |` separator row cannot be re-imported — add the separator and try again",
+      "If the live preview looks different from the Markdown, your renderer may not support GFM alignment markers",
+      "Very wide tables wrap horizontally on small screens — toggle 'Pretty padding' off to keep the source compact",
+      "Removing the last column resets the layout — use 'Example' to restore a working table quickly"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Tab", "description": "Move to the next cell" },
+      { "keys": "Shift+Tab", "description": "Move to the previous cell" },
+      { "keys": "Ctrl+C", "description": "Copy Markdown output" }
+    ]
+  },
+  "meta": {
+    "title": "Markdown Table Generator — Visual Editor & CSV/TSV Import",
+    "description": "Free Markdown table generator. Build GFM tables visually or paste CSV/TSV. Per-column alignment, live preview, one-click copy. Browser-based, no signup."
+  },
+  "tagline": "Build GFM Markdown tables visually or paste CSV — alignment, preview and copy in seconds",
+  "pageDescription": "Create clean Markdown tables without counting pipes. Use the visual editor to add rows, reorder columns and set per-column alignment, or paste CSV, TSV or an existing Markdown table to import data instantly. Pipes and newlines inside cells are escaped automatically so the output stays valid GitHub Flavored Markdown. Toggle pretty padding for a diff-friendly source, preview the rendered HTML live and copy the result with one click. Perfect for README files, blog posts, comparison pages and API documentation. Free, browser-based, no signup required."
+}

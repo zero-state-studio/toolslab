@@ -1748,6 +1748,30 @@ export const tools: Tool[] = [
     searchVolume: 10000,
     label: '',
   },
+  {
+    id: 'markdown-table-generator',
+    name: 'Markdown Table Generator',
+    description:
+      'Build Markdown tables visually or paste CSV/TSV. Configure column alignment, escape pipes, and export GFM-ready output',
+    icon: '📐',
+    route: '/tools/markdown-table-generator',
+    categories: ['formatters', 'text'],
+    keywords: [
+      'markdown table',
+      'markdown table generator',
+      'markdown table creator',
+      'csv to markdown',
+      'tsv to markdown',
+      'table to markdown',
+      'gfm table',
+      'github table',
+      'markdown',
+      'table',
+      'generator',
+    ],
+    searchVolume: 30000,
+    label: '',
+  },
 ];
 
 // Group tools by category
