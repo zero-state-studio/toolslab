@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { tools, getCategoryByTool } from '@/lib/tools';
-import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
+import { getCategoryTheme, catChipVars } from '@/lib/categoryTheme';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 
 interface PGPopularToolsProps {
@@ -40,11 +40,8 @@ export function PGPopularTools({
               className="group flex items-start gap-3 rounded-pg-card border border-pg-border bg-pg-surface p-4 transition-colors hover:border-pg-border-hi"
             >
               <span
-                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[10px]"
-                style={{
-                  background: catColor(theme.hue, 'bgChip', 'dark'),
-                  color: catColor(theme.hue, 'text', 'dark'),
-                }}
+                className="cat-chip flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-[10px]"
+                style={catChipVars(theme.hue)}
               >
                 <theme.icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
               </span>

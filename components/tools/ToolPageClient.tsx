@@ -37,9 +37,9 @@ import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
 import { ToolIcon } from '@/components/ui/ToolIcon';
 import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
 
-function getCategoryColor(category: string): string {
+function getCategoryColor(category: string, mode: 'dark' | 'light' = 'dark'): string {
   const theme = getCategoryTheme(category);
-  return catColor(theme.hue, 'text', 'dark');
+  return catColor(theme.hue, 'text', mode);
 }
 
 interface ToolPageClientProps {
@@ -169,7 +169,10 @@ export default function ToolPageClient({
   const categoryName = categoryDict?.name || primaryCategory?.name || 'Tools';
   const categoryId = tool.categories[0];
 
-  const categoryColor = getCategoryColor(categoryId);
+  const categoryColor = getCategoryColor(
+    categoryId,
+    theme === 'light' ? 'light' : 'dark'
+  );
 
   const handleShare = async () => {
     const hasNativeShare =

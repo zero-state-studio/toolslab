@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, CornerDownLeft, X } from 'lucide-react';
 import { tools as allTools, getCategoryByTool, type Tool } from '@/lib/tools';
-import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
+import { getCategoryTheme, catChipVars } from '@/lib/categoryTheme';
 import { cn } from '@/lib/utils';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 
@@ -154,11 +154,8 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                     )}
                   >
                     <span
-                      className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg"
-                      style={{
-                        background: catColor(theme.hue, 'bgChip', 'dark'),
-                        color: catColor(theme.hue, 'text', 'dark'),
-                      }}
+                      className="cat-chip flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg"
+                      style={catChipVars(theme.hue)}
                     >
                       <theme.icon className="h-4 w-4" strokeWidth={1.8} />
                     </span>
@@ -171,11 +168,8 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
                       </span>
                     </span>
                     <span
-                      className="hidden rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide md:inline-flex"
-                      style={{
-                        background: catColor(theme.hue, 'bgChip', 'dark'),
-                        color: catColor(theme.hue, 'text', 'dark'),
-                      }}
+                      className="cat-chip hidden rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide md:inline-flex"
+                      style={catChipVars(theme.hue)}
                     >
                       {cat?.name || theme.label}
                     </span>

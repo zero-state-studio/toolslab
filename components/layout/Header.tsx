@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { useState, useEffect, useCallback } from 'react';
 import { categories } from '@/lib/tools';
-import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
+import { getCategoryTheme, catChipVars } from '@/lib/categoryTheme';
 import { cn } from '@/lib/utils';
 import { LabLogo } from '@/components/icons/LabLogo';
 import { useToolStore, selectNewFavoritesCount } from '@/lib/store/toolStore';
@@ -292,11 +292,8 @@ export function Header() {
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-pg-muted transition-colors hover:bg-pg-surface-hi/60"
                 >
                   <span
-                    className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md"
-                    style={{
-                      background: catColor(t.hue, 'bgChip', 'dark'),
-                      color: catColor(t.hue, 'text', 'dark'),
-                    }}
+                    className="cat-chip flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md"
+                    style={catChipVars(t.hue)}
                   >
                     <t.icon className="h-3.5 w-3.5" strokeWidth={1.8} />
                   </span>

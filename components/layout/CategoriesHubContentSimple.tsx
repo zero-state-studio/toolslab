@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Search, LayoutGrid, Rows3 } from 'lucide-react';
 import { categories } from '@/lib/tools';
-import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
+import { getCategoryTheme, catChipVars, catHeroVars } from '@/lib/categoryTheme';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 import { cn } from '@/lib/utils';
 import type { Locale } from '@/lib/i18n/config';
@@ -105,17 +105,14 @@ export default function CategoriesHubContentSimple(
             >
               <span
                 aria-hidden
-                className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-25 blur-2xl"
-                style={{ background: catColor(theme.hue, 'text', 'dark') }}
+                className="cat-glow pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-25 blur-2xl"
+                style={catHeroVars(theme.hue)}
               />
 
               <div className="relative flex items-start gap-4">
                 <span
-                  className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-[12px]"
-                  style={{
-                    background: catColor(theme.hue, 'bgChip', 'dark'),
-                    color: catColor(theme.hue, 'text', 'dark'),
-                  }}
+                  className="cat-chip flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-[12px]"
+                  style={catChipVars(theme.hue)}
                 >
                   <theme.icon className="h-6 w-6" strokeWidth={1.8} />
                 </span>

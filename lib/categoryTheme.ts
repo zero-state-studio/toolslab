@@ -2,6 +2,7 @@
 // Each category maps to a hue (OKLCH) + a lucide icon name.
 // Colors are computed at runtime via `catColor(hue, role, theme)`.
 
+import type { CSSProperties } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import {
   FileText,
@@ -106,4 +107,29 @@ export function catStyleChipDark(hue: number) {
     background: `oklch(0.30 0.10 ${hue})`,
     color:      `oklch(0.85 0.20 ${hue})`,
   } as const;
+}
+
+// ── Theme-reactive CSS variables ──────────────────────────────────
+// Pair these helpers with `.cat-chip`, `.cat-hero`, `.cat-glow` global classes
+// (defined in app/globals.css). Inline styles set both light and dark values;
+// the CSS class picks the right one based on the `.dark` ancestor.
+
+export function catChipVars(hue: number) {
+  return {
+    '--cat-bg-light':   `oklch(0.92 0.10 ${hue})`,
+    '--cat-bg-dark':    `oklch(0.30 0.10 ${hue})`,
+    '--cat-text-light': `oklch(0.50 0.20 ${hue})`,
+    '--cat-text-dark':  `oklch(0.85 0.20 ${hue})`,
+  } as CSSProperties;
+}
+
+export function catHeroVars(hue: number) {
+  return {
+    '--cat-hero-bg-light':     `oklch(0.95 0.10 ${hue})`,
+    '--cat-hero-bg-dark':      `oklch(0.25 0.10 ${hue})`,
+    '--cat-hero-border-light': `oklch(0.85 0.10 ${hue})`,
+    '--cat-hero-border-dark':  `oklch(0.35 0.10 ${hue})`,
+    '--cat-glow-light':        `oklch(0.75 0.20 ${hue})`,
+    '--cat-glow-dark':         `oklch(0.85 0.20 ${hue})`,
+  } as CSSProperties;
 }

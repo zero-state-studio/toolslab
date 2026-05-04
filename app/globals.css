@@ -192,6 +192,33 @@
     @apply grid gap-8 md:grid-cols-2 lg:grid-cols-3;
   }
 
+  /* Theme-reactive category chip / hero / glow.
+     Pair with catChipVars(hue) / catHeroVars(hue) inline-style helpers. */
+  .cat-chip {
+    background: var(--cat-bg-light);
+    color: var(--cat-text-light);
+  }
+  .dark .cat-chip {
+    background: var(--cat-bg-dark);
+    color: var(--cat-text-dark);
+  }
+
+  .cat-hero {
+    background: linear-gradient(135deg, var(--cat-hero-bg-light) 0%, var(--pg-surface) 100%);
+    border-color: var(--cat-hero-border-light);
+  }
+  .dark .cat-hero {
+    background: linear-gradient(135deg, var(--cat-hero-bg-dark) 0%, var(--pg-surface) 100%);
+    border-color: var(--cat-hero-border-dark);
+  }
+
+  .cat-glow {
+    background: var(--cat-glow-light);
+  }
+  .dark .cat-glow {
+    background: var(--cat-glow-dark);
+  }
+
   /* Playground utilities */
   .pg-card {
     background: var(--pg-surface);

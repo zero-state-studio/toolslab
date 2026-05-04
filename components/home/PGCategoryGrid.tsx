@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { categories } from '@/lib/tools';
-import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
+import { getCategoryTheme, catChipVars, catHeroVars } from '@/lib/categoryTheme';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 
 interface PGCategoryGridProps {
@@ -40,15 +40,12 @@ export function PGCategoryGrid({
             >
               <span
                 aria-hidden
-                className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-[0.18] blur-lg transition-opacity group-hover:opacity-[0.28]"
-                style={{ background: catColor(theme.hue, 'text', 'dark') }}
+                className="cat-glow pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full opacity-[0.18] blur-lg transition-opacity group-hover:opacity-[0.28]"
+                style={catHeroVars(theme.hue)}
               />
               <span
-                className="relative mb-3 flex h-9 w-9 items-center justify-center rounded-[10px]"
-                style={{
-                  background: catColor(theme.hue, 'bgChip', 'dark'),
-                  color: catColor(theme.hue, 'text', 'dark'),
-                }}
+                className="cat-chip relative mb-3 flex h-9 w-9 items-center justify-center rounded-[10px]"
+                style={catChipVars(theme.hue)}
               >
                 <theme.icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
               </span>

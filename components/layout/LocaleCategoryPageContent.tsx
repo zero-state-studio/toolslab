@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { categories, getToolsByCategory } from '@/lib/tools';
-import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
+import { CategoryToolCard } from '@/components/tools/CategoryToolCard';
 import {
   type CategorySEO,
   generateCategoryStructuredData,
@@ -19,7 +19,7 @@ import { type Locale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { useLocale } from '@/hooks/useLocale';
 import { ToolIcon } from '@/components/ui/ToolIcon';
-import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
+import { getCategoryTheme, catChipVars, catHeroVars } from '@/lib/categoryTheme';
 
 // ── Design tokens (match CategoriesHubContentSimple) ─────────────
 const categoryGradients: Record<string, string> = {
@@ -282,24 +282,18 @@ export default function LocaleCategoryPageContent({
           </nav>
 
           <div
-            className="relative overflow-hidden rounded-pg-hero p-7"
-            style={{
-              background: `linear-gradient(135deg, ${catColor(_theme.hue, 'bgHero', 'dark')} 0%, var(--pg-surface) 100%)`,
-              border: `1px solid ${catColor(_theme.hue, 'borderHero', 'dark')}`,
-            }}
+            className="cat-hero relative overflow-hidden rounded-pg-hero border p-7"
+            style={catHeroVars(_theme.hue)}
           >
             <span
               aria-hidden
-              className="pointer-events-none absolute -right-10 -top-10 h-60 w-60 rounded-full opacity-25 blur-2xl"
-              style={{ background: catColor(_theme.hue, 'text', 'dark') }}
+              className="cat-glow pointer-events-none absolute -right-10 -top-10 h-60 w-60 rounded-full opacity-25 blur-2xl"
+              style={catHeroVars(_theme.hue)}
             />
             <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center">
               <span
-                className="flex h-[72px] w-[72px] flex-shrink-0 items-center justify-center rounded-[18px]"
-                style={{
-                  background: catColor(_theme.hue, 'bgChip', 'dark'),
-                  color: catColor(_theme.hue, 'text', 'dark'),
-                }}
+                className="cat-chip flex h-[72px] w-[72px] flex-shrink-0 items-center justify-center rounded-[18px]"
+                style={catChipVars(_theme.hue)}
               >
                 <_theme.icon className="h-9 w-9" strokeWidth={1.6} />
               </span>
@@ -361,9 +355,18 @@ export default function LocaleCategoryPageContent({
                 </span>
               </div>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {popularTools.map((tool) => (
-                  <ToolCardWrapper key={tool.id} tool={tool} />
-                ))}
+                {popularTools.map((tool) => {
+                  const tt = getCategoryTheme(category.id);
+                  return (
+                    <CategoryToolCard
+                      key={tool.id}
+                      tool={tool}
+                      hue={tt.hue}
+                      Icon={tt.icon}
+                      href={createHref(tool.route)}
+                    />
+                  );
+                })}
               </div>
             </div>
           )}
@@ -375,9 +378,18 @@ export default function LocaleCategoryPageContent({
                 {t.allTools}
               </h2>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {otherTools.map((tool) => (
-                  <ToolCardWrapper key={tool.id} tool={tool} />
-                ))}
+                {otherTools.map((tool) => {
+                  const tt = getCategoryTheme(category.id);
+                  return (
+                    <CategoryToolCard
+                      key={tool.id}
+                      tool={tool}
+                      hue={tt.hue}
+                      Icon={tt.icon}
+                      href={createHref(tool.route)}
+                    />
+                  );
+                })}
               </div>
             </div>
           )}
@@ -437,11 +449,8 @@ export default function LocaleCategoryPageContent({
                       className="inline-flex items-center gap-2 rounded-pg-card border border-pg-border bg-pg-surface px-3 py-2 text-[13px] text-pg-muted transition-colors hover:border-pg-border-hi hover:text-pg-text"
                     >
                       <span
-                        className="inline-flex h-6 w-6 items-center justify-center rounded-md"
-                        style={{
-                          background: catColor(relTheme.hue, 'bgChip', 'dark'),
-                          color: catColor(relTheme.hue, 'text', 'dark'),
-                        }}
+                        className="cat-chip inline-flex h-6 w-6 items-center justify-center rounded-md"
+                        style={catChipVars(relTheme.hue)}
                       >
                         <relTheme.icon className="h-3.5 w-3.5" strokeWidth={1.8} />
                       </span>
