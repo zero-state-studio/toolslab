@@ -327,6 +327,19 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/html-to-markdown"/>
   </url>
   <url>
+    <loc>https://toolslab.dev/tools/markdown-table-generator</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/markdown-table-generator"/>
+  </url>
+  <url>
     <loc>https://toolslab.dev/tools/base64-to-webp</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
