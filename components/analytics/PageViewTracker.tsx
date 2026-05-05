@@ -8,10 +8,12 @@ import { EventNormalizer } from '@/lib/analytics/core/EventNormalizer';
 /**
  * Manually fires Umami pageview events on every Next.js App Router navigation.
  *
- * Why manual: the Umami SDK is loaded with `data-auto-track="false"`
- * (see UmamiProvider). Auto-track listens to history events but races with
- * deferred SDK load and can miss the initial pageview, producing
- * "Visits=N, Views=0, Events=M" sessions in the dashboard.
+ * Why manual: the Umami SDK is loaded with `data-auto-track="true"` +
+ * `data-auto-pageview="false"` (see UmamiProvider). Auto-track stays ON so the
+ * SDK initialises its PerformanceObservers (LCP/INP/CLS/FCP/TTFB) and patches
+ * history.pushState to flush vitals on SPA navigation. Auto-pageview is OFF so
+ * the SDK never emits its own pageview events — avoiding the
+ * "Visits=N, Views=0" race we hit with deferred SDK load.
  *
  * This component:
  *  - waits for `window.umami.track` to be available
