@@ -54,20 +54,31 @@ const config: Config = {
         },
         // ToolsLab custom colors
         lab: {
-          primary: '#10b981', // Verde scientifico/emerald
-          secondary: '#8b5cf6', // Viola/purple
-          accent: '#f59e0b', // Ambra
-          dark: '#1f2937', // Grigio scuro professionale
-          light: '#f3f4f6', // Grigio chiaro pulito
-          success: '#22c55e', // Verde successo
-          danger: '#ef4444', // Rosso pericolo
-          glass: 'rgba(255,255,255,0.1)', // Effetto vetro
+          primary: '#10b981',
+          secondary: '#8b5cf6',
+          accent: '#f59e0b',
+          dark: '#1f2937',
+          light: '#f3f4f6',
+          success: '#22c55e',
+          danger: '#ef4444',
+          glass: 'rgba(255,255,255,0.1)',
         },
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+        // Playground tokens — bound to CSS variables so theme toggle is instant.
+        pg: {
+          bg:        'var(--pg-bg)',
+          'bg-2':    'var(--pg-bg-2)',
+          surface:   'var(--pg-surface)',
+          'surface-hi': 'var(--pg-surface-hi)',
+          border:    'var(--pg-border)',
+          'border-hi': 'var(--pg-border-hi)',
+          text:      'var(--pg-text)',
+          muted:     'var(--pg-muted)',
+          dim:       'var(--pg-dim)',
+          accent:    'var(--pg-accent)',
+          'accent-2':'var(--pg-accent-2)',
+          'accent-3':'var(--pg-accent-3)',
+          'accent-4':'var(--pg-accent-4)',
+        },
       },
       keyframes: {
         'accordion-down': {
@@ -141,7 +152,24 @@ const config: Config = {
         '105': '1.05',
       },
       fontFamily: {
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Geist', 'ui-sans-serif', 'system-ui', '-apple-system', 'Inter', 'sans-serif'],
+        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+      },
+      fontSize: {
+        '6xl': ['68px', { lineHeight: '1.02', letterSpacing: '-0.045em' }],
+        '5xl': ['52px', { lineHeight: '1.05', letterSpacing: '-0.035em' }],
+        '4xl': ['36px', { lineHeight: '1.08', letterSpacing: '-0.025em' }],
+      },
+      maxWidth: {
+        'pg': '1200px',
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+        'pg-card':  '12px',
+        'pg-panel': '16px',
+        'pg-hero':  '20px',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
