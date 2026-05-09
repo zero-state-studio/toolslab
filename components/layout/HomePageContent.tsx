@@ -7,48 +7,13 @@ import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
 import { trackEngagement } from '@/lib/analytics';
 
-// Eager load critical above-the-fold components
-import { HeroSection } from '@/components/home/HeroSection';
-import { CategoryGrid } from '@/components/home/CategoryGrid';
-import { PoweredBy } from '@/components/home/PoweredBy';
+// Above-the-fold Playground sections
+import { PGHero } from '@/components/home/PGHero';
+import { PGValueProps } from '@/components/home/PGValueProps';
+import { PGCategoryGrid } from '@/components/home/PGCategoryGrid';
+import { PGPopularTools } from '@/components/home/PGPopularTools';
 
-// Lazy load below-the-fold components using next/dynamic
-// (React.lazy doesn't handle SSR chunk resolution reliably in Next.js)
-const FeaturedTools = dynamic(
-  () =>
-    import('@/components/home/FeaturedTools').then((mod) => ({
-      default: mod.FeaturedTools,
-    })),
-  { ssr: false }
-);
-const TrustMetrics = dynamic(
-  () =>
-    import('@/components/home/TrustMetrics').then((mod) => ({
-      default: mod.TrustMetrics,
-    })),
-  { ssr: false }
-);
-const WhyToolsLab = dynamic(
-  () =>
-    import('@/components/home/WhyToolsLab').then((mod) => ({
-      default: mod.WhyToolsLab,
-    })),
-  { ssr: false }
-);
-const InteractiveDemo = dynamic(
-  () =>
-    import('@/components/home/InteractiveDemo').then((mod) => ({
-      default: mod.InteractiveDemo,
-    })),
-  { ssr: false }
-);
-const ToolDiscovery = dynamic(
-  () =>
-    import('@/components/home/ToolDiscovery').then((mod) => ({
-      default: mod.ToolDiscovery,
-    })),
-  { ssr: false }
-);
+// Below-the-fold (SEO content, kept lazy)
 const SEOContent = dynamic(
   () =>
     import('@/components/home/SEOContent').then((mod) => ({
@@ -56,23 +21,11 @@ const SEOContent = dynamic(
     })),
   { ssr: false }
 );
-const FooterCTA = dynamic(
-  () =>
-    import('@/components/home/FooterCTA').then((mod) => ({
-      default: mod.FooterCTA,
-    })),
-  { ssr: false }
-);
 
-// Loading placeholder for lazy components
-function LoadingPlaceholder({
-  minHeight = 'min-h-[200px]',
-}: {
-  minHeight?: string;
-}) {
+function LoadingPlaceholder({ minHeight = 'min-h-[200px]' }: { minHeight?: string }) {
   return (
     <div className={`flex ${minHeight} items-center justify-center`}>
-      <div className="h-8 w-8 animate-spin rounded-full border-4 border-white/10 border-t-violet-500" />
+      <div className="h-8 w-8 animate-spin rounded-full border-4 border-pg-border border-t-pg-accent" />
     </div>
   );
 }
@@ -86,15 +39,13 @@ export default function HomePageContent({
   locale = 'en',
   dictionary,
 }: HomePageContentProps) {
-  // Specify sections needed for homepage
   const homeSections = ['common', 'home', 'footer'];
 
-  // Track homepage engagement
   useEffect(() => {
-    trackEngagement('homepage-viewed', {
-      locale,
-    });
-  }, []); // Run only once on mount
+    trackEngagement('homepage-viewed', { locale });
+  }, []);
+
+  const home = dictionary?.home as any;
 
   return (
     <DictionaryProvider
@@ -102,42 +53,27 @@ export default function HomePageContent({
       sections={homeSections}
       initialDictionary={dictionary}
     >
-      <main className="min-h-screen bg-background">
-        {/* Above the fold - loaded immediately */}
-        <HeroSection locale={locale} dictionary={dictionary} />
+      <main className="min-h-screen">
+        <PGHero
+          title={home?.hero?.title || 'Every dev tool,'}
+          subtitle={
+            home?.hero?.subtitle ||
+            'Fast, free, no sign-up. Every file stays on your machine.'
+          }
+        />
+        <PGValueProps />
+        <PGCategoryGrid
+          title={home?.categories?.title || 'Browse by category'}
+          seeAllLabel={home?.categories?.viewAll || 'View all'}
+        />
+        <PGPopularTools
+          title={home?.popular?.title || 'Popular this week'}
+          updatedLabel={home?.popular?.updatedLabel || 'updated recently'}
+        />
 
-        {/* Most Used This Week - moved before CategoryGrid */}
-        <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[300px]" />}>
-          <FeaturedTools locale={locale} dictionary={dictionary} />
-        </Suspense>
-
-        <CategoryGrid locale={locale} dictionary={dictionary} />
-
-        {/* Powered By section - lightweight, loaded immediately */}
-        <PoweredBy />
-
-        <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[200px]" />}>
-          <TrustMetrics />
-        </Suspense>
-
-        <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[400px]" />}>
-          <WhyToolsLab locale={locale} dictionary={dictionary} />
-        </Suspense>
-
-        <Suspense fallback={<LoadingPlaceholder minHeight="min-h-[500px]" />}>
-          <InteractiveDemo />
-        </Suspense>
-
-        <Suspense fallback={<LoadingPlaceholder />}>
-          <ToolDiscovery />
-        </Suspense>
-
+        {/* SEO tail content — kept below fold for crawlers */}
         <Suspense fallback={<LoadingPlaceholder />}>
           <SEOContent />
-        </Suspense>
-
-        <Suspense fallback={<LoadingPlaceholder />}>
-          <FooterCTA />
         </Suspense>
       </main>
     </DictionaryProvider>

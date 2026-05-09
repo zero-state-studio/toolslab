@@ -1,0 +1,73 @@
+{
+  "title": "Générateur de Tables Markdown",
+  "description": "Créez des tables Markdown compatibles GFM avec un éditeur visuel ou en important CSV, TSV ou une table existante",
+  "placeholder": "Collez du CSV, TSV ou une table Markdown à importer...",
+  "instructions": {
+    "title": "Comment utiliser le Générateur de Tables Markdown",
+    "steps": [
+      {
+        "title": "Choisissez le point de départ",
+        "description": "Utilisez l'éditeur visuel pour construire une table de zéro, ou 'Coller CSV / TSV / Markdown' pour importer des données existantes. La détection automatique du délimiteur gère virgule, point-virgule et tabulation sans configuration."
+      },
+      {
+        "title": "Modifiez cellules, lignes et colonnes",
+        "description": "Tapez directement dans les en-têtes et les cellules. Utilisez les contrôles de ligne pour réordonner, dupliquer ou supprimer des lignes, et le bouton + pour ajouter une colonne. Les cellules vides restent vides dans la sortie Markdown."
+      },
+      {
+        "title": "Configurez l'alignement des colonnes",
+        "description": "Cliquez sur l'icône d'alignement dans une en-tête de colonne pour alterner entre aucun, gauche, centre et droite. La ligne séparatrice du Markdown se met à jour automatiquement avec les marqueurs `:---`, `:---:` et `---:`."
+      },
+      {
+        "title": "Copiez ou prévisualisez le résultat",
+        "description": "Activez 'Padding visuel' pour aligner les cellules dans le code Markdown. Utilisez la prévisualisation en direct pour vérifier le rendu, puis copiez le Markdown en un clic."
+      }
+    ],
+    "features": [
+      "Éditeur visuel avec ajout/suppression/réordonnancement de lignes et colonnes",
+      "Importez CSV, TSV ou une table Markdown existante",
+      "Alignement par colonne : aucun, gauche, centre, droite",
+      "Détection automatique du délimiteur (virgule, point-virgule, tab)",
+      "Réouverture de tables GFM existantes pour modification",
+      "Sortie avec padding aligné visuellement",
+      "Mode de sortie compact pour Markdown minimal",
+      "Échappement automatique des pipes et sauts de ligne",
+      "Aperçu HTML en direct de la table rendue",
+      "100% navigateur, sans inscription, sans upload"
+    ],
+    "useCases": [
+      "Documenter des réponses API ou des schémas de configuration dans les README",
+      "Convertir des exports de tableurs en tables Markdown prêtes pour GitHub",
+      "Préparer des tableaux comparatifs pour articles et pages produit",
+      "Modifier une table déjà présente dans un document Markdown",
+      "Créer des matrices de fonctionnalités pour marketing ou release notes",
+      "Transformer des rapports CSV en Markdown partageable en chat ou PR",
+      "Maintenir des tables de documentation de sites statiques en versionnage",
+      "Formater des données pour Notion, Obsidian ou Bear avec support GFM"
+    ],
+    "proTips": [
+      "Utilisez 'Padding visuel' pendant l'édition — le code aligné est beaucoup plus facile à diff dans les pull requests",
+      "Les pipes dans les données sont automatiquement échappés en `\\|` pour préserver liens et snippets",
+      "Pour rééditer une table Markdown existante, collez-la dans l'import et l'éditeur la rechargera avec ses alignements",
+      "Les sauts de ligne dans une cellule deviennent `<br>` pour que les notes multilignes survivent au round-trip GFM",
+      "Définissez des noms d'en-tête clairs avant d'importer du CSV — ils servent aussi d'identifiants de colonne"
+    ],
+    "troubleshooting": [
+      "Si les colonnes CSV importées semblent fusionnées, définissez le délimiteur explicitement au lieu de la détection auto",
+      "Les tables Markdown sans ligne séparatrice `| --- |` ne peuvent pas être réimportées — ajoutez-la et réessayez",
+      "Si l'aperçu diffère du Markdown, votre rendu ne supporte peut-être pas les marqueurs d'alignement GFM",
+      "Les tables très larges se replient sur les petits écrans — désactivez 'Padding visuel' pour garder le code compact",
+      "Supprimer la dernière colonne réinitialise la mise en page — utilisez 'Exemple' pour restaurer rapidement"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Tab", "description": "Aller à la cellule suivante" },
+      { "keys": "Shift+Tab", "description": "Aller à la cellule précédente" },
+      { "keys": "Ctrl+C", "description": "Copier le Markdown" }
+    ]
+  },
+  "meta": {
+    "title": "Générateur de Tables Markdown — Éditeur Visuel & Import CSV",
+    "description": "Générateur gratuit de tables Markdown. Créez des tables GFM visuellement ou collez CSV/TSV. Alignement par colonne, aperçu en direct, copie rapide."
+  },
+  "tagline": "Créez des tables Markdown GFM visuellement ou depuis CSV — alignement, aperçu et copie en quelques secondes",
+  "pageDescription": "Créez des tables Markdown propres sans compter les pipes. Utilisez l'éditeur visuel pour ajouter des lignes, réordonner les colonnes et définir l'alignement de chaque colonne, ou collez du CSV, TSV ou une table Markdown existante pour importer immédiatement. Les pipes et sauts de ligne dans les cellules sont échappés automatiquement, donc la sortie reste du GitHub Flavored Markdown valide. Activez le padding visuel pour un code diff-friendly, voyez le HTML rendu en direct et copiez le résultat en un clic. Parfait pour les README, articles de blog, pages comparatives et documentation API. Gratuit, navigateur, sans inscription."
+}

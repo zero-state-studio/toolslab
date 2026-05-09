@@ -35,20 +35,11 @@ import ToolHowToUse from './ToolHowToUse';
 import ToolHeroSection from './ToolHeroSection';
 import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
 import { ToolIcon } from '@/components/ui/ToolIcon';
+import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
 
-const CATEGORY_COLORS: Record<string, string> = {
-  data: '#0EA5E9',
-  encoding: '#10B981',
-  text: '#8B5CF6',
-  generators: '#F97316',
-  web: '#EC4899',
-  dev: '#F59E0B',
-  formatters: '#6366F1',
-  social: '#F43F5E',
-};
-
-function getCategoryColor(category: string): string {
-  return CATEGORY_COLORS[category] ?? '#3B82F6';
+function getCategoryColor(category: string, mode: 'dark' | 'light' = 'dark'): string {
+  const theme = getCategoryTheme(category);
+  return catColor(theme.hue, 'text', mode);
 }
 
 interface ToolPageClientProps {
@@ -180,7 +171,10 @@ export default function ToolPageClient({
   const categoryName = categoryDict?.name || primaryCategory?.name || 'Tools';
   const categoryId = tool.categories[0];
 
-  const categoryColor = getCategoryColor(categoryId);
+  const categoryColor = getCategoryColor(
+    categoryId,
+    theme === 'light' ? 'light' : 'dark'
+  );
 
   const handleShare = async () => {
     const hasNativeShare =
@@ -258,13 +252,13 @@ export default function ToolPageClient({
           >
             {t.allTools}
           </Link>
-          <ChevronRight className="h-4 w-4 text-slate-400" />
+          <ChevronRight className="h-3.5 w-3.5" />
           <Link
             href={createHref(`/category/${categoryId}`)}
             className="capitalize transition-colors"
             style={{ color: categoryColor }}
           >
-            {categoryName}
+            {categoryName || categoryId}
           </Link>
           <ChevronRight className="h-4 w-4 text-slate-400" />
           <span className="font-medium text-slate-900 dark:text-white">
@@ -312,10 +306,10 @@ export default function ToolPageClient({
           />
 
           {/* Share Button - Aligned with header */}
-          <div className="flex items-start pt-1">
+          <div className="flex items-start gap-2 pt-1">
             <button
               onClick={handleShare}
-              className="flex items-center gap-1.5 rounded-lg border border-gray-200 px-3 py-1.5 text-sm transition-colors hover:bg-gray-50 dark:border-white/[0.08] dark:hover:bg-white/[0.05]"
+              className="flex items-center gap-1.5 rounded-pg-btn border border-pg-border bg-pg-surface px-3 py-2 text-[13px] text-pg-muted transition-colors hover:border-pg-border-hi hover:text-pg-text"
             >
               <Share2 className="h-4 w-4" />
               <span className="hidden sm:inline">{t.share}</span>
@@ -354,105 +348,104 @@ export default function ToolPageClient({
           </div>
 
           {/* Sidebar (Desktop Only via CSS) */}
-          <div className="hidden space-y-4 lg:col-span-3 lg:block">
-              {/* Support / Donation Box */}
-              <a
-                href="https://buymeacoffee.com/toolslab"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackConversion('donation', 'tool-sidebar')}
-                className="group block rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 transition-all hover:border-amber-500/40 hover:bg-amber-500/10 dark:border-amber-500/20 dark:bg-amber-500/5"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl transition-transform duration-200 group-hover:scale-110">
-                    ☕
-                  </span>
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">
-                      Enjoying ToolsLab?
-                    </p>
-                    <p className="text-xs text-amber-600/80 dark:text-amber-500/80">
-                      Share it or buy me a coffee to keep it free ☕
-                    </p>
-                  </div>
-                  <ArrowRight className="h-4 w-4 text-amber-500/60 transition-colors group-hover:text-amber-500" />
-                </div>
-              </a>
-
-              {/* Related Tools */}
-              <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card">
-                <h3 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
-                  {t.relatedTools}
-                </h3>
-                <div className="space-y-3">
-                  {relatedTools.map((relatedTool: (typeof tools)[0]) => (
-                    <Link
-                      key={relatedTool.id}
-                      href={createHref(`/tools/${relatedTool.id}`)}
-                      className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-white/[0.05]"
+          <div className="hidden space-y-3 lg:col-span-3 lg:block">
+            {/* Related Tools */}
+            <div className="rounded-pg-card border border-pg-border bg-pg-surface p-3.5">
+              <h3 className="mb-2.5 text-[13px] font-semibold text-pg-text">
+                {t.relatedTools}
+              </h3>
+              <div className="space-y-0">
+                {relatedTools.map((relatedTool: (typeof tools)[0], idx: number) => (
+                  <Link
+                    key={relatedTool.id}
+                    href={createHref(`/tools/${relatedTool.id}`)}
+                    className={`group flex items-center gap-2.5 py-2 ${idx !== relatedTools.length - 1 ? 'border-b border-pg-border' : ''}`}
+                  >
+                    <div
+                      className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md"
+                      style={{
+                        background: `color-mix(in oklab, ${categoryColor} 20%, transparent)`,
+                        color: categoryColor,
+                      }}
                     >
-                      <div
-                        className="rounded-lg p-2"
-                        style={{ backgroundColor: `${categoryColor}20` }}
+                      <ToolIcon id={relatedTool.id} className="h-3.5 w-3.5" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[12px] font-medium text-pg-text">
+                        {relatedTool.name}
+                      </p>
+                      <p className="truncate text-[11px] text-pg-dim">
+                        {relatedTool.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Support / Donation Box */}
+            <a
+              href="https://buymeacoffee.com/toolslab"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackConversion('donation', 'tool-sidebar')}
+              className="group block rounded-pg-card border border-dashed p-3.5 transition-colors"
+              style={{
+                borderColor: 'var(--pg-accent-2)',
+                background:
+                  'linear-gradient(135deg, color-mix(in oklab, var(--pg-accent-2) 22%, transparent), color-mix(in oklab, var(--pg-accent-3) 22%, transparent))',
+              }}
+            >
+              <div className="flex items-center gap-2.5">
+                <span className="text-xl transition-transform duration-200 group-hover:scale-110">☕</span>
+                <div className="flex-1">
+                  <p className="text-[13px] font-semibold text-pg-text">Enjoying ToolsLab?</p>
+                  <p className="text-[11px] text-pg-muted">
+                    Buy me a coffee to keep it free.
+                  </p>
+                </div>
+                <ArrowRight className="h-3.5 w-3.5 text-pg-muted transition-colors group-hover:text-pg-text" />
+              </div>
+            </a>
+
+            {/* Same Category Tools */}
+            {sameCategoryTools.length > 0 && (
+              <div className="rounded-pg-card border border-pg-border bg-pg-surface p-3.5">
+                <h3 className="mb-2.5 text-[13px] font-semibold text-pg-text">
+                  {t.sameCategoryTools}
+                </h3>
+                <div className="space-y-0">
+                  {sameCategoryTools.map(
+                    (categoryTool: (typeof tools)[0], idx: number) => (
+                      <Link
+                        key={categoryTool.id}
+                        href={createHref(`/tools/${categoryTool.id}`)}
+                        className={`group flex items-center gap-2.5 py-2 ${idx !== sameCategoryTools.length - 1 ? 'border-b border-pg-border' : ''}`}
                       >
-                        <ToolIcon
-                          id={relatedTool.id}
-                          className="h-4 w-4"
-                          style={{ color: categoryColor }}
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium text-slate-900 dark:text-white">
-                          {relatedTool.name}
-                        </p>
-                        <p className="line-clamp-1 text-xs text-slate-500 dark:text-slate-400">
-                          {relatedTool.description}
-                        </p>
-                      </div>
-                      <ArrowRight className="h-4 w-4 text-slate-400 transition-colors group-hover:text-slate-600 dark:group-hover:text-slate-300" />
-                    </Link>
-                  ))}
+                        <div
+                          className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md"
+                          style={{
+                            background: `color-mix(in oklab, ${categoryColor} 20%, transparent)`,
+                            color: categoryColor,
+                          }}
+                        >
+                          <ToolIcon id={categoryTool.id} className="h-3.5 w-3.5" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="truncate text-[12px] font-medium text-pg-text">
+                            {categoryTool.name}
+                          </p>
+                          <p className="truncate text-[11px] text-pg-dim">
+                            {categoryTool.description}
+                          </p>
+                        </div>
+                      </Link>
+                    )
+                  )}
                 </div>
               </div>
-
-              {/* Same Category Tools */}
-              {sameCategoryTools.length > 0 && (
-                <div className="mt-6 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card">
-                  <h3 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white">
-                    {t.sameCategoryTools}
-                  </h3>
-                  <div className="space-y-3">
-                    {sameCategoryTools.map(
-                      (categoryTool: (typeof tools)[0]) => (
-                        <Link
-                          key={categoryTool.id}
-                          href={createHref(`/tools/${categoryTool.id}`)}
-                          className="group flex items-center gap-3 rounded-lg p-3 transition-all hover:bg-gray-50 dark:hover:bg-white/[0.05]"
-                        >
-                          <div
-                            className="rounded-lg p-2"
-                            style={{ backgroundColor: `${categoryColor}20` }}
-                          >
-                              <ToolIcon id={categoryTool.id} className="h-4 w-4" style={{ color: categoryColor }} />
-                          </div>
-                          <div className="flex-1">
-                            <p className="text-sm font-medium text-slate-900 dark:text-white">
-                              {categoryTool.name}
-                            </p>
-                            <p className="line-clamp-1 text-xs text-slate-500 dark:text-slate-400">
-                              {categoryTool.description}
-                            </p>
-                          </div>
-                          <ArrowRight className="h-4 w-4 text-slate-400 transition-colors group-hover:text-slate-600 dark:group-hover:text-slate-300" />
-                        </Link>
-                      )
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* Sidebar Ad - Hidden */}
-            </div>
+            )}
+          </div>
         </div>
 
         {/* Mobile Related Tools (visible only on mobile via CSS) */}

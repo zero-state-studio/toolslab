@@ -1,0 +1,73 @@
+{
+  "title": "Markdown-Tabellen-Generator",
+  "description": "Erstelle GFM-kompatible Markdown-Tabellen visuell oder importiere CSV, TSV oder bestehende Tabellen",
+  "placeholder": "CSV, TSV oder eine Markdown-Tabelle zum Importieren einfügen...",
+  "instructions": {
+    "title": "So nutzt du den Markdown-Tabellen-Generator",
+    "steps": [
+      {
+        "title": "Wähle den Startpunkt",
+        "description": "Nutze den visuellen Editor, um eine Tabelle von Grund auf zu erstellen, oder 'CSV / TSV / Markdown einfügen', um vorhandene Daten zu importieren. Die automatische Delimiter-Erkennung verarbeitet Komma, Semikolon und Tab ohne weitere Konfiguration."
+      },
+      {
+        "title": "Bearbeite Zellen, Zeilen und Spalten",
+        "description": "Tippe direkt in Kopfzeilen und Zellen. Mit den Zeilen-Steuerungen kannst du Zeilen umsortieren, duplizieren oder löschen; mit dem +-Button fügst du eine Spalte hinzu. Leere Zellen bleiben im Markdown-Output leer."
+      },
+      {
+        "title": "Spaltenausrichtung festlegen",
+        "description": "Klicke auf das Ausrichtungssymbol einer Spalte, um zwischen keine, links, zentriert und rechts zu wechseln. Die Trennzeile im Markdown wird automatisch mit den Markern `:---`, `:---:` und `---:` aktualisiert."
+      },
+      {
+        "title": "Ergebnis kopieren oder ansehen",
+        "description": "Aktiviere 'Schönes Padding', um Zellen im Markdown-Quelltext bündig auszurichten. Nutze die Live-Vorschau, um das Rendering zu prüfen, und kopiere das Markdown mit einem Klick."
+      }
+    ],
+    "features": [
+      "Visueller Editor mit Hinzufügen/Entfernen/Umsortieren von Zeilen und Spalten",
+      "Importiere CSV, TSV oder bestehende Markdown-Tabellen",
+      "Spaltenweise Ausrichtung: keine, links, zentriert, rechts",
+      "Automatische Delimiter-Erkennung (Komma, Semikolon, Tab)",
+      "Wiedereinöffnung bestehender GFM-Tabellen zur Bearbeitung",
+      "Output mit visuell ausgerichtetem Padding",
+      "Kompakter Output-Modus für minimales Markdown",
+      "Automatisches Escapen von Pipes und Zeilenumbrüchen",
+      "Live-HTML-Vorschau der gerenderten Tabelle",
+      "100% im Browser, keine Anmeldung, kein Upload"
+    ],
+    "useCases": [
+      "API-Antworten oder Konfigurations-Schemata in READMEs dokumentieren",
+      "Tabellenkalkulations-Exporte in GitHub-fertige Markdown-Tabellen umwandeln",
+      "Vergleichstabellen für Blog-Artikel und Produktseiten vorbereiten",
+      "Eine bestehende Markdown-Tabelle direkt im Dokument nachbearbeiten",
+      "Feature-Matrizen für Marketing oder Release Notes erstellen",
+      "CSV-Reports in teilbares Markdown für Chat oder PRs umwandeln",
+      "Dokumentationstabellen für Static-Sites in der Versionsverwaltung pflegen",
+      "Daten für Notion, Obsidian oder Bear mit GFM-Unterstützung formatieren"
+    ],
+    "proTips": [
+      "Aktiviere 'Schönes Padding' beim Bearbeiten — der ausgerichtete Quelltext ist in PR-Diffs deutlich lesbarer",
+      "Pipes in Daten werden automatisch zu `\\|` escaped, damit Links und Code-Snippets erhalten bleiben",
+      "Um eine bestehende Markdown-Tabelle erneut zu bearbeiten, füge sie ins Import-Feld ein — der Editor lädt sie mit Original-Ausrichtung",
+      "Zeilenumbrüche in einer Zelle werden zu `<br>`, damit mehrzeilige Notizen den GFM-Round-Trip überstehen",
+      "Vergib aussagekräftige Spaltennamen vor dem CSV-Import — sie dienen auch als Spaltenkennzeichner in der finalen Tabelle"
+    ],
+    "troubleshooting": [
+      "Wenn importierte CSV-Spalten verschmelzen, setze den Delimiter explizit statt auf Auto-Erkennung",
+      "Markdown-Tabellen ohne `| --- |`-Trennzeile lassen sich nicht reimportieren — füge die Trennzeile hinzu und versuche es erneut",
+      "Wenn die Live-Vorschau abweicht, unterstützt dein Renderer möglicherweise keine GFM-Ausrichtungsmarker",
+      "Sehr breite Tabellen brechen auf kleinen Bildschirmen um — deaktiviere 'Schönes Padding', um den Quelltext kompakt zu halten",
+      "Das Entfernen der letzten Spalte setzt das Layout zurück — nutze 'Beispiel', um schnell eine funktionierende Tabelle wiederherzustellen"
+    ],
+    "keyboardShortcuts": [
+      { "keys": "Tab", "description": "Zur nächsten Zelle" },
+      { "keys": "Shift+Tab", "description": "Zur vorherigen Zelle" },
+      { "keys": "Ctrl+C", "description": "Markdown kopieren" }
+    ]
+  },
+  "meta": {
+    "title": "Markdown-Tabellen-Generator — Visueller Editor & CSV-Import",
+    "description": "Kostenloser Markdown-Tabellen-Generator. Erstelle GFM-Tabellen visuell oder füge CSV/TSV ein. Spaltenausrichtungen, Live-Vorschau, schnelles Kopieren."
+  },
+  "tagline": "Erstelle GFM-Markdown-Tabellen visuell oder aus CSV — Ausrichtung, Vorschau und Copy in Sekunden",
+  "pageDescription": "Erstelle saubere Markdown-Tabellen, ohne Pipes zu zählen. Nutze den visuellen Editor, um Zeilen hinzuzufügen, Spalten umzusortieren und die Ausrichtung pro Spalte zu setzen, oder füge CSV, TSV oder eine bestehende Markdown-Tabelle ein, um Daten sofort zu importieren. Pipes und Zeilenumbrüche in Zellen werden automatisch escaped, sodass die Ausgabe gültiges GitHub Flavored Markdown bleibt. Aktiviere schönes Padding für einen diff-freundlichen Quelltext, schaue dir das gerenderte HTML in der Live-Vorschau an und kopiere das Ergebnis mit einem Klick. Perfekt für READMEs, Blog-Artikel, Vergleichsseiten und API-Dokumentation. Kostenlos, im Browser, ohne Anmeldung."
+}

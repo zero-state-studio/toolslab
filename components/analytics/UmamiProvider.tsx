@@ -163,7 +163,8 @@ export function UmamiProvider({ children }: UmamiProviderProps) {
           src={scriptUrl}
           strategy="afterInteractive"
           data-website-id={websiteId}
-          data-auto-track="false"
+          data-auto-track="true"
+          data-auto-pageview="false"
           data-performance="true"
           data-tag={envTag}
           onLoad={() => {

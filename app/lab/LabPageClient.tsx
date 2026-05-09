@@ -1,27 +1,22 @@
 'use client';
 
-import NewLabHubContent from '../../components/layout/NewLabHubContent';
+import { LocaleLabPageClient } from '../[locale]/lab/LocaleLabPageClient';
 import { type Locale } from '@/lib/i18n/config';
-import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
+import { type Dictionary } from '@/lib/i18n/get-dictionary';
 
 interface LabPageClientProps {
   locale?: Locale;
-  dictionary?: any;
+  dictionary?: Dictionary;
 }
 
 export function LabPageClient({
   locale = 'en',
   dictionary,
 }: LabPageClientProps) {
-  const labSections = ['common', 'lab'];
-
   return (
-    <DictionaryProvider
+    <LocaleLabPageClient
       locale={locale}
-      sections={labSections}
-      initialDictionary={dictionary}
-    >
-      <NewLabHubContent />
-    </DictionaryProvider>
+      dictionary={dictionary as Dictionary}
+    />
   );
 }
