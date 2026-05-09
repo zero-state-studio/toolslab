@@ -9,24 +9,11 @@ import {
   ChevronDown,
   ChevronRight,
   ArrowRight,
-  Star,
   Search,
   Filter,
   Grid3X3,
-  Heart,
-  Shield,
-  Zap,
   Bookmark,
-  Lock,
   Sparkles,
-  Database,
-  FileText,
-  Palette,
-  Settings,
-  Rocket,
-  Share2,
-  Image,
-  Code2,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useToolStore } from '@/lib/store/toolStore';
@@ -299,40 +286,6 @@ function PopularToolCard({ tool, index }: { tool: any; index: number }) {
   );
 }
 
-function HowItWorksStep({
-  step,
-  icon: Icon,
-  title,
-  description,
-}: {
-  step: number;
-  icon: any;
-  title: string;
-  description: string;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.1 * step }}
-      className="flex flex-col items-center text-center"
-    >
-      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200 bg-violet-500/10 dark:border-violet-500/30 dark:bg-violet-500/20">
-        <Icon className="h-6 w-6 text-violet-600 dark:text-violet-400" />
-      </div>
-      <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-violet-600 dark:text-violet-400">
-        Step {step}
-      </div>
-      <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
-        {title}
-      </h3>
-      <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-        {description}
-      </p>
-    </motion.div>
-  );
-}
-
 function EnhancedEmptyState() {
   const { data: t } = useDictionarySectionContext('lab');
   const popularTools = getPopularTools()
@@ -340,280 +293,42 @@ function EnhancedEmptyState() {
     .slice(0, 6);
 
   return (
-    <>
-      {/* Section 1: Popular Tools - Show what's available */}
-      <section className="relative py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 flex items-center justify-between">
-            <div>
-              <div className="mb-2 flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-amber-500" />
-                <span className="text-sm font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
-                  Most searched
-                </span>
-              </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                {t?.empty?.popularToolsTitle || 'Popular Developer Tools'}
-              </h2>
-              <p className="mt-1 text-slate-600 dark:text-slate-400">
-                {t?.empty?.popularToolsSubtitle ||
-                  'Try any tool instantly — star it to add to your Lab'}
-              </p>
+    <section className="relative py-12 lg:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <div className="mb-2 flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-amber-500" />
+              <span className="text-sm font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+                Most searched
+              </span>
             </div>
-            <Link
-              href="/tools"
-              className="hidden items-center gap-1 text-sm font-medium text-violet-600 transition-colors hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300 sm:flex"
-            >
-              View all tools
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {popularTools.map((tool, index) => (
-              <PopularToolCard key={tool.id} tool={tool} index={index} />
-            ))}
-          </div>
-
-          <div className="mt-6 text-center sm:hidden">
-            <Link
-              href="/tools"
-              className="inline-flex items-center gap-2 text-sm font-medium text-violet-600 dark:text-violet-400"
-            >
-              View all {TOOLS_CONFIG.filter((t) => t.label !== 'coming-soon').length} tools
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 2: How It Works - Micro-onboarding */}
-      <section className="border-y border-slate-200 bg-white/50 py-16 dark:border-white/[0.08] dark:bg-white/[0.03]">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-              {t?.empty?.howItWorksTitle || 'Build Your Toolkit in 3 Steps'}
+              {t?.empty?.popularToolsTitle || 'Popular Developer Tools'}
             </h2>
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-            <HowItWorksStep
-              step={1}
-              icon={Search}
-              title={t?.empty?.step1Title || 'Explore Tools'}
-              description={
-                t?.empty?.step1Description ||
-                'Browse 70+ free developer tools — JSON formatters, encoders, generators and more.'
-              }
-            />
-            <HowItWorksStep
-              step={2}
-              icon={Star}
-              title={t?.empty?.step2Title || 'Star Favorites'}
-              description={
-                t?.empty?.step2Description ||
-                'Click the star on any tool to save it to your personal Lab for instant access.'
-              }
-            />
-            <HowItWorksStep
-              step={3}
-              icon={Zap}
-              title={t?.empty?.step3Title || 'Work Faster'}
-              description={
-                t?.empty?.step3Description ||
-                'Open your Lab to find all your tools in one place — no searching, no scrolling.'
-              }
-            />
-          </div>
-
-          {/* Connecting line between steps (desktop) */}
-          <div className="relative mx-auto mt-[-140px] hidden max-w-2xl md:block" aria-hidden="true">
-            <div className="h-0.5 bg-gradient-to-r from-violet-200 via-violet-400 to-violet-200 dark:from-violet-700/50 dark:via-violet-500 dark:to-violet-700/50" />
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Categories Grid */}
-      <section className="py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 text-center">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-              {t?.empty?.categoriesTitle || 'Explore by Category'}
-            </h2>
-            <p className="mt-2 text-slate-600 dark:text-slate-400">
-              {t?.empty?.categoriesSubtitle ||
-                'Find the right tool for every task in your development workflow'}
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              {t?.empty?.popularToolsSubtitle ||
+                'Try any tool instantly — star it to add to your Lab'}
             </p>
           </div>
-
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {CATEGORIES.map((category, index) => {
-              const categoryIcons: Record<string, React.ElementType> = {
-                data: Database, encoding: Lock, base64: Image, text: FileText,
-                generators: Rocket, web: Palette, dev: Settings,
-                formatters: Code2, social: Share2, pdf: FileText,
-              };
-              const categoryGradients: Record<string, string> = {
-                data: 'from-blue-500 to-cyan-500', encoding: 'from-emerald-500 to-green-500',
-                base64: 'from-teal-500 to-cyan-500', text: 'from-purple-500 to-pink-500',
-                web: 'from-pink-500 to-rose-500', dev: 'from-amber-500 to-orange-500',
-                generators: 'from-orange-500 to-red-500', formatters: 'from-indigo-500 to-purple-500',
-                social: 'from-rose-500 to-pink-500', pdf: 'from-red-600 to-orange-600',
-              };
-              const categoryGlowColors: Record<string, string> = {
-                data: 'rgba(59,130,246,0.07)', encoding: 'rgba(16,185,129,0.07)',
-                base64: 'rgba(20,184,166,0.07)', text: 'rgba(168,85,247,0.07)',
-                web: 'rgba(236,72,153,0.07)', dev: 'rgba(245,158,11,0.07)',
-                generators: 'rgba(249,115,22,0.07)', formatters: 'rgba(99,102,241,0.07)',
-                social: 'rgba(244,63,94,0.07)', pdf: 'rgba(239,68,68,0.07)',
-              };
-              const Icon = categoryIcons[category.id] || FileText;
-              const gradient = categoryGradients[category.id] || 'from-slate-500 to-slate-600';
-              const glowColor = categoryGlowColors[category.id] || 'rgba(139,92,246,0.06)';
-
-              return (
-                <motion.div
-                  key={category.id}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.04 }}
-                >
-                  <Link
-                    href={`/category/${category.id}`}
-                    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-slate-300 hover:bg-slate-100/50 hover:shadow-lg dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
-                  >
-                    {/* Category glow background */}
-                    <div
-                      className="absolute inset-0 opacity-40 transition-opacity duration-300 group-hover:opacity-100"
-                      style={{ background: glowColor }}
-                    />
-
-                    {/* Colored top border */}
-                    <div className={`absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r ${gradient}`} />
-
-                    <div className="relative z-10">
-                      {/* Icon */}
-                      <div className={`mb-4 inline-flex rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg`}>
-                        <Icon className="h-5 w-5" />
-                      </div>
-
-                      {/* Name */}
-                      <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
-                        {category.name}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                        {category.description}
-                      </p>
-
-                      {/* Footer: count + arrow */}
-                      <div className="flex items-center justify-between">
-                        <span className="inline-flex items-center rounded-full border border-slate-200/80 bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:border-white/[0.08] dark:bg-white/[0.05] dark:text-slate-300">
-                          {category.tools.length} {category.tools.length === 1 ? 'tool' : 'tools'}
-                        </span>
-                        <ChevronRight className="h-4 w-4 text-slate-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-violet-400" />
-                      </div>
-
-                      {/* Tool preview chips */}
-                      <div className="mt-4 flex flex-wrap gap-1">
-                        {category.tools.slice(0, 3).map((tool) => (
-                          <span
-                            key={tool.id}
-                            className="rounded-md border border-slate-200 bg-slate-50/60 px-2 py-0.5 text-xs text-slate-500 dark:border-white/[0.06] dark:bg-white/[0.02] dark:text-slate-400"
-                          >
-                            {tool.name}
-                          </span>
-                        ))}
-                        {category.tools.length > 3 && (
-                          <span className="rounded-md border border-slate-200 bg-slate-50/60 px-2 py-0.5 text-xs font-medium text-slate-400 dark:border-white/[0.06] dark:bg-white/[0.02]">
-                            +{category.tools.length - 3} more
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
+          <Link
+            href="/tools"
+            className="inline-flex items-center gap-1 text-sm font-medium text-violet-600 transition-colors hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300"
+          >
+            View all{' '}
+            {TOOLS_CONFIG.filter((tool) => tool.label !== 'coming-soon').length}{' '}
+            tools
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
-      </section>
 
-      {/* Section 4: Trust Pillars */}
-      <section className="border-t border-slate-200 py-16 dark:border-white/[0.08]">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center dark:border-white/[0.08] dark:bg-white/[0.04]">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-green-200 bg-green-500/10 dark:border-green-500/30 dark:bg-green-500/15">
-                <Shield className="h-6 w-6 text-green-600 dark:text-green-400" />
-              </div>
-              <h3 className="mb-2 font-semibold text-slate-900 dark:text-white">
-                {t?.empty?.trustPrivacyTitle || '100% Private'}
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300">
-                {t?.empty?.trustPrivacyDescription ||
-                  'All data stays in your browser. No accounts, no server storage, no tracking.'}
-              </p>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center dark:border-white/[0.08] dark:bg-white/[0.04]">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-violet-200 bg-violet-500/10 dark:border-violet-500/30 dark:bg-violet-500/15">
-                <Heart className="h-6 w-6 text-violet-600 dark:text-violet-400" />
-              </div>
-              <h3 className="mb-2 font-semibold text-slate-900 dark:text-white">
-                {t?.empty?.trustFreeTitle || 'Free Forever'}
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300">
-                {t?.empty?.trustFreeDescription ||
-                  'Every tool is free with no usage limits. No premium tiers, no paywalls.'}
-              </p>
-            </div>
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 text-center dark:border-white/[0.08] dark:bg-white/[0.04]">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-amber-200 bg-amber-500/10 dark:border-amber-500/30 dark:bg-amber-500/15">
-                <Lock className="h-6 w-6 text-amber-600 dark:text-amber-400" />
-              </div>
-              <h3 className="mb-2 font-semibold text-slate-900 dark:text-white">
-                {t?.empty?.trustNoSignupTitle || 'No Sign-Up Required'}
-              </h3>
-              <p className="text-sm text-slate-600 dark:text-slate-300">
-                {t?.empty?.trustNoSignupDescription ||
-                  'Start using any tool instantly. Your Lab preferences save automatically in your browser.'}
-              </p>
-            </div>
-          </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {popularTools.map((tool, index) => (
+            <PopularToolCard key={tool.id} tool={tool} index={index} />
+          ))}
         </div>
-      </section>
-
-      {/* Section 5: Bottom CTA */}
-      <section className="border-t border-slate-200 py-16 dark:border-white/[0.08]">
-        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="mb-4 text-2xl font-bold text-slate-900 dark:text-white">
-            {t?.empty?.bottomCtaTitle || 'Ready to build your toolkit?'}
-          </h2>
-          <p className="mb-8 text-slate-600 dark:text-slate-400">
-            {t?.empty?.bottomCtaDescription ||
-              'Explore our collection of free developer tools and start starring your favorites.'}
-          </p>
-          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="/tools"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-violet-500 px-8 py-3.5 font-semibold text-white shadow-sm transition-all hover:shadow-md dark:shadow-violet-500/20 dark:hover:shadow-violet-500/30"
-            >
-              <Search className="h-5 w-5" />
-              {t?.empty?.exploreAllTools || 'Explore All Tools'}
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-            <Link
-              href="/categories"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-violet-600 px-8 py-3.5 font-semibold text-violet-600 transition-all hover:bg-violet-50 dark:border-violet-400 dark:text-violet-400 dark:hover:bg-violet-950/20"
-            >
-              <Grid3X3 className="h-5 w-5" />
-              {t?.empty?.browseCategories || 'Browse Categories'}
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 
