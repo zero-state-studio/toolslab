@@ -1,21 +1,32 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { useToolStore } from '@/lib/store/toolStore';
 import { WelcomePopup, HelpButton } from '@/components/lab/WelcomePopup';
 import { labToasts } from '@/lib/utils/toasts';
-import { LabSidebar } from '@/components/lab/LabSidebar';
-import { LabToolViewer } from '@/components/lab/LabToolViewer';
-import { LabOverview } from '@/components/lab/LabOverview';
 import { type Locale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { DictionaryProvider } from '@/components/providers/DictionaryProvider';
 import { useDictionarySectionContext } from '@/components/providers/DictionaryProvider';
 import { trackLabToolSelected } from '@/lib/analytics/helpers/eventHelpers';
 
-// Import della vista vuota esistente
+// Empty-state view (loaded eagerly: light component used by all visitors)
 import LabHubContent from '../../../components/layout/LabHubContent';
+
+// Heavy dashboard surface — only mounted when user has favorites.
+const LabSidebar = dynamic(
+  () => import('@/components/lab/LabSidebar').then((m) => ({ default: m.LabSidebar })),
+  { ssr: false, loading: () => null }
+);
+const LabToolViewer = dynamic(
+  () => import('@/components/lab/LabToolViewer').then((m) => ({ default: m.LabToolViewer })),
+  { ssr: false, loading: () => null }
+);
+const LabOverview = dynamic(
+  () => import('@/components/lab/LabOverview').then((m) => ({ default: m.LabOverview })),
+  { ssr: false, loading: () => null }
+);
 
 interface LocaleLabPageClientProps {
   locale: Locale;
@@ -106,11 +117,7 @@ function LabPageContent({ locale }: { locale: Locale }) {
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 via-violet-600 to-purple-800 py-8">
         <div className="mx-auto max-w-7xl px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="duration-500 animate-in fade-in slide-in-from-bottom-3">
             <h1 className="mb-2 text-2xl font-bold text-white md:text-3xl">
               {t?.header?.title || 'My Developer Lab'}
             </h1>
@@ -118,7 +125,7 @@ function LabPageContent({ locale }: { locale: Locale }) {
               {t?.header?.subtitle ||
                 'Your personalized toolkit for maximum productivity'}
             </p>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -133,17 +140,15 @@ function LabPageContent({ locale }: { locale: Locale }) {
 
         {/* Main Content Area */}
         <div className="flex-1 overflow-hidden">
-          <AnimatePresence mode="wait">
-            {selectedToolId ? (
-              <LabToolViewer
-                key={selectedToolId}
-                toolId={selectedToolId}
-                onBack={handleShowOverview}
-              />
-            ) : (
-              <LabOverview key="overview" onToolSelect={handleToolSelect} />
-            )}
-          </AnimatePresence>
+          {selectedToolId ? (
+            <LabToolViewer
+              key={selectedToolId}
+              toolId={selectedToolId}
+              onBack={handleShowOverview}
+            />
+          ) : (
+            <LabOverview key="overview" onToolSelect={handleToolSelect} />
+          )}
         </div>
       </div>
 

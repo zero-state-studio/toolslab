@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import {
   Clock,
   ExternalLink,
@@ -69,11 +68,7 @@ function CategorySection({ categoryId }: { categoryId: string }) {
   if (categoryTools.length === 0) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/[0.06] dark:bg-white/[0.02]"
-    >
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm duration-300 animate-in fade-in slide-in-from-bottom-3 dark:border-white/[0.06] dark:bg-white/[0.02]">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="flex w-full items-center gap-3 px-6 py-5 transition-colors hover:bg-slate-50 dark:hover:bg-white/[0.04]"
@@ -94,12 +89,7 @@ function CategorySection({ categoryId }: { categoryId: string }) {
       </button>
 
       {isExpanded && (
-        <motion.div
-          initial={{ height: 0 }}
-          animate={{ height: 'auto' }}
-          exit={{ height: 0 }}
-          className="border-t border-slate-200 dark:border-white/[0.06]"
-        >
+        <div className="border-t border-slate-200 duration-200 animate-in fade-in dark:border-white/[0.06]">
           <div className="grid grid-cols-1 gap-4 p-6 sm:grid-cols-2 lg:grid-cols-3">
             {categoryTools.map((toolSlug) => {
               const tool = TOOLS_CONFIG.find((t) => t.id === toolSlug);
@@ -110,9 +100,9 @@ function CategorySection({ categoryId }: { categoryId: string }) {
               );
             })}
           </div>
-        </motion.div>
+        </div>
       )}
-    </motion.div>
+    </div>
   );
 }
 
@@ -249,10 +239,9 @@ function LabToolCard({
 function PopularToolCard({ tool, index }: { tool: any; index: number }) {
   const color = categoryColors[tool.categories?.[0]] || '#6366F1';
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
+    <div
+      className="duration-300 animate-in fade-in slide-in-from-bottom-3"
+      style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'both' }}
     >
       <Link
         href={tool.route}
@@ -282,7 +271,7 @@ function PopularToolCard({ tool, index }: { tool: any; index: number }) {
           <FavoriteButton type="tool" id={tool.id} />
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }
 
@@ -603,10 +592,9 @@ export default function LabHubContent() {
         <div className="space-y-10">
           {/* Favorite Categories */}
           {validFavoriteCategories.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
+            <section
+              className="duration-500 animate-in fade-in slide-in-from-bottom-3"
+              style={{ animationDelay: '100ms', animationFillMode: 'both' }}
             >
               <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
                 <span>📁</span>
@@ -620,15 +608,14 @@ export default function LabHubContent() {
                   <CategorySection key={categoryId} categoryId={categoryId} />
                 ))}
               </div>
-            </motion.section>
+            </section>
           )}
 
           {/* Standalone Favorite Tools */}
           {standaloneFavoriteTools.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+            <section
+              className="duration-500 animate-in fade-in slide-in-from-bottom-3"
+              style={{ animationDelay: '200ms', animationFillMode: 'both' }}
             >
               <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
                 <span>⭐</span>
@@ -650,27 +637,23 @@ export default function LabHubContent() {
                   if (!tool) return null;
 
                   return (
-                    <motion.div
+                    <div
                       key={toolSlug}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="mx-auto w-full max-w-sm"
+                      className="mx-auto w-full max-w-sm duration-300 animate-in fade-in slide-in-from-bottom-3"
                     >
                       <LabToolCard tool={tool} showRemove={true} />
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
-            </motion.section>
+            </section>
           )}
 
           {/* Recent Activity */}
           {recentTools.length > 0 && (
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+            <section
+              className="duration-500 animate-in fade-in slide-in-from-bottom-3"
+              style={{ animationDelay: '300ms', animationFillMode: 'both' }}
             >
               <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-slate-900 dark:text-white">
                 <span>🕒</span>
@@ -694,26 +677,21 @@ export default function LabHubContent() {
                   if (!tool) return null;
 
                   return (
-                    <motion.div
+                    <div
                       key={operation.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                      className="mx-auto w-full max-w-sm"
+                      className="mx-auto w-full max-w-sm duration-300 animate-in fade-in slide-in-from-bottom-3"
                     >
                       <LabToolCard tool={tool} lastUsed={operation.timestamp} />
-                    </motion.div>
+                    </div>
                   );
                 })}
               </div>
-            </motion.section>
+            </section>
           )}
           {/* Discover More Tools Section */}
-          <motion.section
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-16 text-center"
+          <section
+            className="mt-16 text-center duration-500 animate-in fade-in slide-in-from-bottom-3"
+            style={{ animationDelay: '400ms', animationFillMode: 'both' }}
           >
             <div className="rounded-2xl border border-slate-200 bg-gradient-to-br from-violet-50 to-violet-50/50 p-8 dark:border-white/[0.06] dark:from-violet-950/20 dark:to-violet-950/10">
               <div className="mb-6 flex justify-center">
@@ -750,7 +728,7 @@ export default function LabHubContent() {
                 </Link>
               </div>
             </div>
-          </motion.section>
+          </section>
         </div>
       </div>
     </div>
