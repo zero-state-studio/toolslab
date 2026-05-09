@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>ToolsLab Redesign — Two Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'Geist', system-ui, sans-serif; background: #f0eee9; }
+  * { box-sizing: border-box; }
+  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  input::placeholder { color: inherit; opacity: .5; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" src="playground-core.jsx"></script>
+<script type="text/babel" src="playground-pages.jsx"></script>
+<script type="text/babel" src="terminal-pages.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+// ==========================================================
+// Tweaks panel + Canvas composition
+// ==========================================================
+
+const TWEAKS = /*EDITMODE-BEGIN*/{
+  "font": "default",
+  "density": "comfortable",
+  "cardStyle": "elevated"
+}/*EDITMODE-END*/;
+
+function useTweaks() {
+  const [t, setT] = React.useState(TWEAKS);
+  const [editMode, setEditMode] = React.useState(false);
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const d = e.data || {};
+      if (d.type === '__activate_edit_mode') setEditMode(true);
+      if (d.type === '__deactivate_edit_mode') setEditMode(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({type:'__edit_mode_available'}, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+  const set = (k, v) => {
+    setT((x) => ({...x, [k]: v}));
+    window.parent.postMessage({type:'__edit_mode_set_keys', edits:{[k]: v}}, '*');
+  };
+  return { t, set, editMode };
+}
+
+function TweakPanel({ t, set, visible }) {
+  if (!visible) return null;
+  const row = { display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 };
+  const label = { fontSize: 11, fontWeight: 600, letterSpacing: 0.5, color: '#8a8299', textTransform: 'uppercase' };
+  const btns = { display: 'flex', gap: 4, flexWrap: 'wrap' };
+  const btn = (active) => ({
+    padding: '6px 10px', fontSize: 12, borderRadius: 6, cursor: 'pointer',
+    background: active ? '#1f1b2e' : '#fff',
+    color: active ? '#fff' : '#1f1b2e',
+    border: `1px solid ${active ? '#1f1b2e' : '#e0dcd0'}`,
+    fontFamily: 'inherit',
+  });
+  return (
+    <div style={{
+      position: 'fixed', bottom: 20, right: 20, zIndex: 1000,
+      width: 260, background: '#fff', border: '1px solid #d0c8b0',
+      borderRadius: 12, padding: 16, boxShadow: '0 10px 40px rgba(0,0,0,.2)',
+      fontFamily: 'Geist, system-ui, sans-serif',
+    }}>
+      <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 14, color: '#1f1b2e', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <span style={{ fontSize: 16 }}>⚙</span> Tweaks
+      </div>
+
+      <div style={row}>
+        <div style={label}>Font</div>
+        <div style={btns}>
+          {['default','geist','mono','grotesk','serif'].map((f) => (
+            <div key={f} onClick={() => set('font', f)} style={btn(t.font === f)}>
+              {f === 'default' ? 'Auto' : f}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div style={row}>
+        <div style={label}>Density</div>
+        <div style={btns}>
+          {['compact','comfortable','spacious'].map((d) => (
+            <div key={d} onClick={() => set('density', d)} style={btn(t.density === d)}>{d}</div>
+          ))}
+        </div>
+      </div>
+
+      <div style={row}>
+        <div style={label}>Card style</div>
+        <div style={btns}>
+          {['flat','bordered','elevated'].map((s) => (
+            <div key={s} onClick={() => set('cardStyle', s)} style={btn(t.cardStyle === s)}>{s}</div>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ fontSize: 11, color: '#8a8299', marginTop: 6, lineHeight: 1.5 }}>
+        Tweaks re-render every artboard. Click an artboard's ⤢ icon to focus it fullscreen.
+      </div>
+    </div>
+  );
+}
+
+// Resolve per-direction defaults so "Auto" maps sensibly.
+function resolveFont(dir, pref) {
+  if (pref === 'default') return dir === 'pg' ? 'geist' : 'mono';
+  return pref;
+}
+
+// ==========================================================
+// MAIN — the canvas with every artboard
+// ==========================================================
+
+function App() {
+  const { t, set, editMode } = useTweaks();
+  const pgFontChoice = resolveFont('pg', t.font);
+  const tmFontChoice = resolveFont('tm', t.font);
+  const commonPG = { font: pgFontChoice, density: t.density, cardStyle: t.cardStyle };
+  const commonTM = { font: tmFontChoice, density: t.density, cardStyle: t.cardStyle };
+
+  // Artboard frame sizes — big enough for desktop views.
+  const W = 1280;
+  const H = 820;
+
+  return (
+    <>
+      <DesignCanvas>
+        <DCSection id="intro" title="ToolsLab — Redesign Proposals" subtitle="Two directions × 5 page types. Drag artboards to reorder. Click the ⤢ icon (or the label) to open an artboard fullscreen. Arrow keys to nav.">
+          <DCArtboard id="readme" label="README" width={720} height={H}>
+            <div style={{ padding: 48, height: '100%', fontFamily: 'Geist, system-ui, sans-serif', color: '#1f1b2e', background: '#fff', overflow: 'auto' }}>
+              <div style={{ fontSize: 11, letterSpacing: 1, color: '#8a8299', marginBottom: 14 }}>⌁ PROJECT BRIEF</div>
+              <h1 style={{ fontSize: 42, fontWeight: 700, letterSpacing: -1, margin: '0 0 16px', lineHeight: 1.05 }}>
+                Two directions for the new ToolsLab.
+              </h1>
+              <p style={{ fontSize: 16, color: '#5b5373', lineHeight: 1.5, marginBottom: 32 }}>
+                Same site, same tools, two completely different personalities. Pick one — or mix & match screens across them.
+              </p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 28 }}>
+                {/* A */}
+                <div style={{ padding: 20, borderRadius: 14, background: 'linear-gradient(135deg, #faf7ff 0%, #f1ecff 100%)', border: '1px solid #e2d9ff' }}>
+                  <div style={{ fontSize: 11, letterSpacing: 1, color: '#7c3aed', fontWeight: 700, marginBottom: 8 }}>DIRECTION A</div>
+                  <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 6 }}>Playground</div>
+                  <div style={{ fontSize: 13, color: '#5b5373', lineHeight: 1.5, marginBottom: 10 }}>
+                    Raycast × Arc. Warm dark + soft light. Multi-color per category. Rounded cards, gentle glow, mascot-led.
+                  </div>
+                  <div style={{ fontSize: 11, color: '#8a8299' }}>Geist · 12px radius · elevated cards</div>
+                </div>
+                {/* B */}
+                <div style={{ padding: 20, borderRadius: 14, background: 'linear-gradient(135deg, #0a0e0a 0%, #1a231a 100%)', border: '1px solid #2a3a2a', color: '#e6ffe6' }}>
+                  <div style={{ fontSize: 11, letterSpacing: 1, color: '#4ade80', fontWeight: 700, marginBottom: 8 }}>DIRECTION B</div>
+                  <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 6 }}>Terminal</div>
+                  <div style={{ fontSize: 13, color: '#7a9a7a', lineHeight: 1.5, marginBottom: 10, fontFamily: 'JetBrains Mono, monospace' }}>
+                    // brutalist cli. phosphor green + amber.<br/>
+                    // grid bg. sharp borders. keybinds everywhere.
+                  </div>
+                  <div style={{ fontSize: 11, color: '#506550', fontFamily: 'JetBrains Mono, monospace' }}>JetBrains Mono · 0px radius · bordered</div>
+                </div>
+              </div>
+
+              <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 10 }}>How to use this canvas</div>
+              <ul style={{ fontSize: 13, color: '#5b5373', lineHeight: 1.7, paddingLeft: 18, margin: 0 }}>
+                <li>Pan with two-finger scroll, zoom with pinch or ctrl+wheel.</li>
+                <li>Each row = one page type. Row 1 is Direction A, row 2 is B.</li>
+                <li>Click an artboard label or ⤢ to open it fullscreen and use ←/→ to flip.</li>
+                <li>Toggle <b>Tweaks</b> from the toolbar to change font / density / card style live.</li>
+              </ul>
+
+              <div style={{ marginTop: 28, padding: 14, borderRadius: 10, background: '#fef4a8', fontSize: 13, color: '#5a4a2a', fontFamily: 'Comic Sans MS, Marker Felt, cursive' }}>
+                💡 Both directions include a working ⌘K command palette — press ⌘K (or Ctrl+K) inside any fullscreen artboard.
+              </div>
+            </div>
+          </DCArtboard>
+        </DCSection>
+
+        {/* ============== DIRECTION A — Playground ============== */}
+        <DCSection id="pg-home" title="A · Playground — Home & Landing" subtitle="Dark (primary) + Light. Playful gradients, mascot, instant search.">
+          <DCArtboard id="pg-home-dark"  label="Dark"  width={W} height={H}><PGHome theme="dark"  {...commonPG}/></DCArtboard>
+          <DCArtboard id="pg-home-light" label="Light" width={W} height={H}><PGHome theme="light" {...commonPG}/></DCArtboard>
+        </DCSection>
+
+        <DCSection id="pg-cats" title="A · Playground — Categories">
+          <DCArtboard id="pg-cats-dark"  label="Dark"  width={W} height={H}><PGCategories theme="dark"  {...commonPG}/></DCArtboard>
+          <DCArtboard id="pg-cats-light" label="Light" width={W} height={H}><PGCategories theme="light" {...commonPG}/></DCArtboard>
+        </DCSection>
+
+        <DCSection id="pg-cat" title="A · Playground — Category Detail" subtitle="PDF Tools as example — each category gets its own hue.">
+          <DCArtboard id="pg-cat-dark"   label="Dark · PDF"   width={W} height={H}><PGCategoryDetail theme="dark"  catId="pdf" {...commonPG}/></DCArtboard>
+          <DCArtboard id="pg-cat-light"  label="Light · PDF"  width={W} height={H}><PGCategoryDetail theme="light" catId="pdf" {...commonPG}/></DCArtboard>
+          <DCArtboard id="pg-cat-encode" label="Dark · Encoders" width={W} height={H}><PGCategoryDetail theme="dark"  catId="encode" {...commonPG}/></DCArtboard>
+        </DCSection>
+
+        <DCSection id="pg-tool" title="A · Playground — Tool Page" subtitle="Tight header, big workspace, right rail for related tools & tips.">
+          <DCArtboard id="pg-tool-empty" label="Empty state"  width={W} height={H}><PGToolPage theme="dark"  state="empty"  {...commonPG}/></DCArtboard>
+          <DCArtboard id="pg-tool-loaded" label="Files loaded" width={W} height={H}><PGToolPage theme="dark"  state="loaded" {...commonPG}/></DCArtboard>
+          <DCArtboard id="pg-tool-light" label="Light · loaded" width={W} height={H}><PGToolPage theme="light" state="loaded" {...commonPG}/></DCArtboard>
+        </DCSection>
+
+        <DCSection id="pg-lab" title="A · Playground — The Lab" subtitle="Experimental corner. Glowing featured card + grid of weird ideas.">
+          <DCArtboard id="pg-lab-dark"  label="Dark"  width={W} height={H}><PGLab theme="dark"  {...commonPG}/></DCArtboard>
+          <DCArtboard id="pg-lab-light" label="Light" width={W} height={H}><PGLab theme="light" {...commonPG}/></DCArtboard>
+        </DCSection>
+
+        {/* ============== DIRECTION B — Terminal ============== */}
+        <DCSection id="tm-home" title="B · Terminal — Home & Landing" subtitle="ASCII hero, CLI-style search with live results, manpage value props.">
+          <DCArtboard id="tm-home-dark"  label="Dark"  width={W} height={H}><TMHome theme="dark"  {...commonTM}/></DCArtboard>
+          <DCArtboard id="tm-home-light" label="Light · paper" width={W} height={H}><TMHome theme="light" {...commonTM}/></DCArtboard>
+        </DCSection>
+
+        <DCSection id="tm-cats" title="B · Terminal — Categories">
+          <DCArtboard id="tm-cats-dark"  label="Dark"  width={W} height={H}><TMCategories theme="dark"  {...commonTM}/></DCArtboard>
+          <DCArtboard id="tm-cats-light" label="Light" width={W} height={H}><TMCategories theme="light" {...commonTM}/></DCArtboard>
+        </DCSection>
+
+        <DCSection id="tm-cat" title="B · Terminal — Category Detail" subtitle="Everything as ls output. Sort tabs. Filter as grep.">
+          <DCArtboard id="tm-cat-dark"   label="Dark · pdf"   width={W} height={H}><TMCategoryDetail theme="dark"  catId="pdf" {...commonTM}/></DCArtboard>
+          <DCArtboard id="tm-cat-encode" label="Dark · encode" width={W} height={H}><TMCategoryDetail theme="dark" catId="encode" {...commonTM}/></DCArtboard>
+        </DCSection>
+
+        <DCSection id="tm-tool" title="B · Terminal — Tool Page" subtitle="Options as CLI flags. Big workspace, sidebar with related + keybinds.">
+          <DCArtboard id="tm-tool-loaded" label="Files loaded" width={W} height={H}><TMToolPage theme="dark"  state="loaded" {...commonTM}/></DCArtboard>
+          <DCArtboard id="tm-tool-empty"  label="Empty"        width={W} height={H}><TMToolPage theme="dark"  state="empty"  {...commonTM}/></DCArtboard>
+          <DCArtboard id="tm-tool-light"  label="Light · loaded" width={W} height={H}><TMToolPage theme="light" state="loaded" {...commonTM}/></DCArtboard>
+        </DCSection>
+
+        <DCSection id="tm-lab" title="B · Terminal — The Lab" subtitle="Experimental manifesto. ASCII title. Featured as terminal session.">
+          <DCArtboard id="tm-lab-dark"  label="Dark"  width={W} height={H}><TMLab theme="dark"  {...commonTM}/></DCArtboard>
+          <DCArtboard id="tm-lab-light" label="Light" width={W} height={H}><TMLab theme="light" {...commonTM}/></DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+
+      <TweakPanel t={t} set={set} visible={editMode}/>
+      <CommandPaletteHint editMode={editMode}/>
+    </>
+  );
+}
+
+// Small reminder that the canvas has tweaks
+function CommandPaletteHint({ editMode }) {
+  const [dismissed, setDismissed] = React.useState(false);
+  if (dismissed || editMode) return null;
+  return (
+    <div style={{
+      position: 'fixed', bottom: 20, left: 20, zIndex: 999,
+      padding: '10px 14px', background: '#1f1b2e', color: '#fff',
+      borderRadius: 10, fontSize: 12, fontFamily: 'Geist, system-ui, sans-serif',
+      boxShadow: '0 8px 24px rgba(0,0,0,.2)', display: 'flex', alignItems: 'center', gap: 10,
+      maxWidth: 380,
+    }}>
+      <span style={{ fontSize: 16 }}>💡</span>
+      <span style={{ opacity: .9 }}>
+        Toggle <b>Tweaks</b> in the toolbar to change font, density & card style live across every artboard.
+      </span>
+      <span onClick={() => setDismissed(true)} style={{ cursor: 'pointer', opacity: .6, padding: '0 4px', marginLeft: 6 }}>×</span>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

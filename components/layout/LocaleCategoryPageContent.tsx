@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { categories, getToolsByCategory } from '@/lib/tools';
-import { ToolCardWrapper } from '@/components/tools/ToolCardWrapper';
+import { CategoryToolCard } from '@/components/tools/CategoryToolCard';
 import {
   type CategorySEO,
   generateCategoryStructuredData,
@@ -19,6 +19,7 @@ import { type Locale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 import { useLocale } from '@/hooks/useLocale';
 import { ToolIcon } from '@/components/ui/ToolIcon';
+import { getCategoryTheme, catChipVars, catHeroVars } from '@/lib/categoryTheme';
 
 // ── Design tokens (match CategoriesHubContentSimple) ─────────────
 const categoryGradients: Record<string, string> = {
@@ -266,180 +267,160 @@ export default function LocaleCategoryPageContent({
         }}
       />
 
-      <div className="min-h-screen bg-background">
-        {/* Grid pattern */}
-        <div
-          className="fixed inset-0 opacity-50"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(139,92,246,0.035) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(139,92,246,0.035) 1px, transparent 1px)
-            `,
-            backgroundSize: '64px 64px',
-            pointerEvents: 'none',
-          }}
-        />
-
+      <div className="min-h-screen bg-[color:var(--pg-bg)]">
         {/* ── HERO ──────────────────────────────────────────────────── */}
-        <section className="relative overflow-hidden pb-6 pt-4 sm:pb-8 sm:pt-5">
-          {/* Ambient glows */}
-          <div className="pointer-events-none absolute -left-32 -top-16 h-64 w-64 rounded-full bg-violet-600/10 blur-3xl" />
-          <div className="pointer-events-none absolute -right-32 top-0 h-56 w-56 rounded-full bg-amber-500/[0.07] blur-3xl" />
+        {(() => { const _theme = getCategoryTheme(category.id); return (
+        <section className="pg-container pb-6 pt-8">
+          <nav className="mb-4 flex text-[13px] text-pg-muted" aria-label="Breadcrumb">
+            <ol className="flex items-center gap-2">
+              <li><Link href={createHref('/')} className="hover:text-pg-text">{t.home}</Link></li>
+              <li><ChevronRight className="h-3.5 w-3.5" /></li>
+              <li><Link href={createHref('/categories')} className="hover:text-pg-text">{t.categories}</Link></li>
+              <li><ChevronRight className="h-3.5 w-3.5" /></li>
+              <li className="font-medium text-pg-text">{categoryName}</li>
+            </ol>
+          </nav>
 
-          <div className="relative z-10 mx-auto max-w-7xl px-4">
-            {/* Breadcrumb */}
-            <nav className="mb-3 flex" aria-label="Breadcrumb">
-              <ol className="flex items-center gap-2 text-sm">
-                <li>
-                  <Link href={createHref('/')} className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
-                    {t.home}
-                  </Link>
-                </li>
-                <li><ChevronRight className="h-3.5 w-3.5 text-slate-400" /></li>
-                <li>
-                  <Link href={createHref('/categories')} className="text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white">
-                    {t.categories}
-                  </Link>
-                </li>
-                <li><ChevronRight className="h-3.5 w-3.5 text-slate-400" /></li>
-                <li className="font-medium text-slate-900 dark:text-white">{categoryName}</li>
-              </ol>
-            </nav>
-
-            {/* Category badge + icon */}
-            <div className="mb-3 flex items-center gap-3">
-              <div className={`inline-flex rounded-xl bg-gradient-to-br ${gradient} p-3 text-white shadow-lg`}>
-                <ToolIcon id={category.id} type="category" className="h-6 w-6" />
+          <div
+            className="cat-hero relative overflow-hidden rounded-pg-hero border p-7"
+            style={catHeroVars(_theme.hue)}
+          >
+            <span
+              aria-hidden
+              className="cat-glow pointer-events-none absolute -right-10 -top-10 h-60 w-60 rounded-full opacity-25 blur-2xl"
+              style={catHeroVars(_theme.hue)}
+            />
+            <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center">
+              <span
+                className="cat-chip flex h-[72px] w-[72px] flex-shrink-0 items-center justify-center rounded-[18px]"
+                style={catChipVars(_theme.hue)}
+              >
+                <_theme.icon className="h-9 w-9" strokeWidth={1.6} />
+              </span>
+              <div className="flex-1">
+                <h1 className="text-[clamp(28px,4vw,36px)] font-bold leading-tight tracking-[-0.02em] text-pg-text">
+                  {categoryName}
+                </h1>
+                <p className="mt-1 text-[15px] text-pg-muted">
+                  {seoContent.tagline || category.description}
+                </p>
+                <p className="mt-1 text-[13px] text-pg-dim">
+                  {tools.length} tools · all free and client-side.
+                </p>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-violet-500/25 bg-violet-500/10 px-3 py-1">
-                <span className="font-mono text-xs font-medium uppercase tracking-widest text-violet-600 dark:text-violet-300">
-                  {tools.length} tools
-                </span>
-              </div>
+              <button
+                type="button"
+                className="inline-flex items-center gap-2 rounded-pg-card border border-pg-border bg-pg-surface px-3.5 py-2.5 text-[13px] text-pg-muted transition-colors hover:border-pg-border-hi hover:text-pg-text"
+              >
+                <Star className="h-3.5 w-3.5" /> Star category
+              </button>
             </div>
 
-            {/* H1 */}
-            <h1 className="mb-2 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-              {seoContent.h1Title.includes(category.name) ? (
-                <>
-                  {seoContent.h1Title.split(category.name)[0]}
-                  <span className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
-                    {categoryName}
-                  </span>
-                  {seoContent.h1Title.split(category.name)[1] || ''}
-                </>
-              ) : (
-                <span className={`bg-gradient-to-r ${gradient} bg-clip-text text-transparent`}>
-                  {categoryName}
-                </span>
-              )}
-            </h1>
-
-            {/* Tagline */}
-            <p className="mb-2 text-base font-medium text-slate-700 dark:text-slate-300 sm:text-lg">
-              {seoContent.tagline}
-            </p>
-
-            {/* Description */}
-            <p className="mb-4 max-w-3xl text-sm leading-relaxed text-slate-600 dark:text-slate-400 md:line-clamp-none line-clamp-3">
-              {seoContent.description}
-            </p>
-
-            {/* Benefits chips */}
             {seoContent.benefits && seoContent.benefits.length > 0 && (
-              <div className="mb-3 flex flex-wrap gap-2">
+              <div className="mt-5 flex flex-wrap gap-2">
                 {seoContent.benefits.slice(0, 4).map((benefit, index) => (
                   <span
                     key={index}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-100 px-3 py-1 text-xs text-slate-700 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-slate-300"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-pg-border bg-pg-surface px-3 py-1 text-[12px] text-pg-muted"
                   >
-                    <span className="h-1 w-1 rounded-full bg-violet-400" />
+                    <span className="h-1 w-1 rounded-full bg-pg-accent" />
                     {benefit}
-                  </span>
-                ))}
-              </div>
-            )}
-
-            {/* Use cases */}
-            {seoContent.useCases && seoContent.useCases.length > 0 && (
-              <div className="hidden flex-wrap items-center gap-x-2 gap-y-1 md:flex">
-                <span className="text-xs font-medium text-slate-500 dark:text-slate-500">
-                  {t.perfectFor}
-                </span>
-                {seoContent.useCases.map((useCase, index) => (
-                  <span key={index} className="text-xs text-slate-500 dark:text-slate-500">
-                    {useCase}{index < seoContent.useCases.length - 1 && <span className="ml-2 text-slate-300 dark:text-slate-700">·</span>}
                   </span>
                 ))}
               </div>
             )}
           </div>
         </section>
+        ); })()}
 
         {/* ── TOOLS ──────────────────────────────────────────────────── */}
-        <section className="relative z-10 mx-auto max-w-7xl px-4 pb-16">
+        <section className="pg-container pb-16">
 
           {/* Popular Tools */}
           {popularTools.length > 0 && (
-            <div className="mb-10">
+            <div className="mb-10 mt-8">
               <div className="mb-4 flex items-center gap-3">
-                <h2 className="text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
+                <h2 className="text-[18px] font-semibold text-pg-text sm:text-[20px]">
                   {t.popularTitle}
                 </h2>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/20 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide"
+                  style={{
+                    background: 'color-mix(in oklab, var(--pg-accent-3) 22%, transparent)',
+                    color: 'var(--pg-accent-3)',
+                  }}
+                >
                   <Star className="h-3 w-3 fill-current" />
                   {t.topPicks}
                 </span>
               </div>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {popularTools.map((tool) => (
-                  <ToolCardWrapper key={tool.id} tool={tool} />
-                ))}
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {popularTools.map((tool) => {
+                  const tt = getCategoryTheme(category.id);
+                  return (
+                    <CategoryToolCard
+                      key={tool.id}
+                      tool={tool}
+                      hue={tt.hue}
+                      Icon={tt.icon}
+                      href={createHref(tool.route)}
+                    />
+                  );
+                })}
               </div>
             </div>
           )}
 
           {/* Other Tools */}
           {otherTools.length > 0 && (
-            <div className="mb-10">
-              <h2 className="mb-4 text-lg font-semibold text-slate-900 dark:text-white sm:text-xl">
+            <div className="mb-10 mt-8">
+              <h2 className="mb-4 text-[18px] font-semibold text-pg-text sm:text-[20px]">
                 {t.allTools}
               </h2>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {otherTools.map((tool) => (
-                  <ToolCardWrapper key={tool.id} tool={tool} />
-                ))}
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {otherTools.map((tool) => {
+                  const tt = getCategoryTheme(category.id);
+                  return (
+                    <CategoryToolCard
+                      key={tool.id}
+                      tool={tool}
+                      hue={tt.hue}
+                      Icon={tt.icon}
+                      href={createHref(tool.route)}
+                    />
+                  );
+                })}
               </div>
             </div>
           )}
 
           {/* ── FAQ ──────────────────────────────────────────────────── */}
           {localizedFaqs && localizedFaqs.length > 0 && (
-            <section className="mt-4 rounded-2xl border border-slate-200 bg-white p-6 dark:border-white/[0.06] dark:bg-white/[0.02]">
-              <h2 className="mb-5 text-lg font-semibold text-slate-900 dark:text-white">
+            <section className="mt-4 rounded-pg-panel border border-pg-border bg-pg-surface p-6">
+              <h2 className="mb-5 text-[18px] font-semibold text-pg-text">
                 {t.faqTitle}
               </h2>
               <div className="space-y-0">
                 {localizedFaqs.map((faq, index) => (
                   <div
                     key={index}
-                    className="border-b border-slate-100 last:border-0 dark:border-white/[0.04]"
+                    className="border-b border-pg-border last:border-0"
                   >
                     <button
                       onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
                       className="flex w-full items-start justify-between gap-4 py-4 text-left"
                     >
-                      <h3 className="text-sm font-medium text-slate-900 dark:text-white">
+                      <h3 className="text-[14px] font-medium text-pg-text">
                         {faq.question}
                       </h3>
                       <ChevronRight
-                        className={`mt-0.5 h-4 w-4 flex-shrink-0 text-slate-400 transition-transform duration-200 ${
-                          expandedFaq === index ? 'rotate-90 text-violet-500' : ''
+                        className={`mt-0.5 h-4 w-4 flex-shrink-0 text-pg-muted transition-transform duration-200 ${
+                          expandedFaq === index ? 'rotate-90 text-pg-accent' : ''
                         }`}
                       />
                     </button>
                     {expandedFaq === index && (
-                      <p className="pb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                      <p className="pb-4 text-[14px] leading-relaxed text-pg-muted">
                         {faq.answer}
                       </p>
                     )}
@@ -452,26 +433,29 @@ export default function LocaleCategoryPageContent({
           {/* ── RELATED CATEGORIES ───────────────────────────────────── */}
           {seoContent.relatedCategories && seoContent.relatedCategories.length > 0 && (
             <section className="mt-8">
-              <h2 className="mb-3 text-base font-semibold text-slate-900 dark:text-white">
+              <h2 className="mb-3 text-[16px] font-semibold text-pg-text">
                 {t.relatedCategories}
               </h2>
               <div className="flex flex-wrap gap-2">
                 {seoContent.relatedCategories.map((relatedId) => {
                   const relatedCategory = categories.find((c) => c.id === relatedId);
                   if (!relatedCategory) return null;
-                  const relGradient = categoryGradients[relatedId] || 'from-violet-500 to-purple-500';
+                  const relTheme = getCategoryTheme(relatedId);
                   const relatedName = dictionary.categories[relatedId]?.name || relatedCategory.name;
                   return (
                     <Link
                       key={relatedId}
                       href={createHref(`/category/${relatedId}`)}
-                      className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700 transition-all hover:border-slate-300 hover:bg-slate-100 hover:shadow-sm dark:border-white/[0.06] dark:bg-white/[0.02] dark:text-slate-300 dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
+                      className="inline-flex items-center gap-2 rounded-pg-card border border-pg-border bg-pg-surface px-3 py-2 text-[13px] text-pg-muted transition-colors hover:border-pg-border-hi hover:text-pg-text"
                     >
-                      <span className={`inline-flex rounded-lg bg-gradient-to-br ${relGradient} p-1 text-white`}>
-                        <ToolIcon id={relatedCategory.id} type="category" className="h-3.5 w-3.5" />
+                      <span
+                        className="cat-chip inline-flex h-6 w-6 items-center justify-center rounded-md"
+                        style={catChipVars(relTheme.hue)}
+                      >
+                        <relTheme.icon className="h-3.5 w-3.5" strokeWidth={1.8} />
                       </span>
                       <span>{relatedName}</span>
-                      <ChevronRight className="h-3.5 w-3.5 text-slate-400" />
+                      <ChevronRight className="h-3.5 w-3.5" />
                     </Link>
                   );
                 })}
@@ -480,16 +464,15 @@ export default function LocaleCategoryPageContent({
           )}
 
           {/* ── CTA ──────────────────────────────────────────────────── */}
-          <section className="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-white/[0.06] dark:bg-white/[0.01]">
-            <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
-              {t.ctaTitle}
-            </h2>
-            <p className="mb-6 text-slate-600 dark:text-slate-400">
-              {t.ctaDesc}
-            </p>
+          <section className="mt-12 rounded-pg-panel border border-pg-border bg-pg-surface p-8 text-center">
+            <h2 className="mb-2 text-[24px] font-bold text-pg-text">{t.ctaTitle}</h2>
+            <p className="mb-6 text-pg-muted">{t.ctaDesc}</p>
             <Link
               href={createHref('/tools')}
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_rgba(139,92,246,0.35)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(139,92,246,0.45)]"
+              className="inline-flex items-center gap-2 rounded-pg-card px-6 py-3 text-[14px] font-semibold text-white shadow-[var(--pg-shadow-search-glow)] transition-transform hover:-translate-y-0.5"
+              style={{
+                backgroundImage: 'linear-gradient(135deg, var(--pg-accent) 0%, var(--pg-accent-2) 100%)',
+              }}
             >
               {t.ctaBtn}
               <ArrowRight className="h-4 w-4" />

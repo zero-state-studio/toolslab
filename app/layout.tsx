@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import { Suspense } from 'react';
 import Script from 'next/script';
 import { headers } from 'next/headers';
@@ -27,10 +27,20 @@ import { Analytics } from '@vercel/analytics/next';
 import { cn } from '@/lib/utils';
 import { HtmlLangUpdater } from '@/components/HtmlLangUpdater';
 
-const inter = Inter({
+// Geist isn't in `next/font/google` types yet; Inter is our close fallback.
+const geist = Inter({
   subsets: ['latin'],
   display: 'swap',
   preload: true,
+  variable: '--font-geist',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  preload: false,
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-jetbrains-mono',
 });
 
 export const metadata: Metadata = {
@@ -149,8 +159,9 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          inter.className,
-          'min-h-screen bg-background font-sans antialiased'
+          geist.variable,
+          jetbrainsMono.variable,
+          'min-h-screen font-sans antialiased'
         )}
       >
         <HtmlLangUpdater />
