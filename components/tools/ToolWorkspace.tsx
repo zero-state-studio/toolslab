@@ -20,10 +20,15 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { isLazyLoadingSupported } from './LazyToolLoader';
 import { useToolChaining } from '@/lib/hooks/useToolChaining';
 import LazyToolLoader from './LazyToolLoader';
-import ToolChainSuggestions from './ToolChainSuggestions';
+
+const ToolChainSuggestions = dynamic(() => import('./ToolChainSuggestions'), {
+  ssr: false,
+  loading: () => null,
+});
 
 interface ToolWorkspaceProps {
   tool: Tool;

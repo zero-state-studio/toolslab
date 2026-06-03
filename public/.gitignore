@@ -1,2 +1,4 @@
 # IndexNow key files
 *.txt
+!ads.txt
+!robots.txt

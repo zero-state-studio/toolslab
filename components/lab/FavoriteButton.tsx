@@ -4,7 +4,6 @@ import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToolStore } from '@/lib/store/toolStore';
 import { labToasts } from '@/lib/utils/toasts';
-import { motion, AnimatePresence } from 'framer-motion';
 import { track, trackFavorite } from '@/lib/analytics';
 import { useHydration } from '@/lib/hooks/useHydration';
 
@@ -123,25 +122,17 @@ export function FavoriteButton({
         isFav ? `Remove ${name || id} from Lab` : `Add ${name || id} to Lab`
       }
     >
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={isFav ? 'filled' : 'empty'}
-          initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.5, opacity: 0 }}
-          transition={{ duration: 0.2 }}
-        >
-          <Star
-            className={cn(
-              sizeClasses[size],
-              'transition-colors duration-200',
-              isFav
-                ? 'fill-amber-500 text-amber-500 drop-shadow-sm'
-                : 'text-gray-500 hover:text-amber-500 group-hover:text-amber-500 dark:text-gray-400'
-            )}
-          />
-        </motion.div>
-      </AnimatePresence>
+      <Star
+        key={isFav ? 'filled' : 'empty'}
+        className={cn(
+          sizeClasses[size],
+          'duration-200 animate-in fade-in zoom-in-90',
+          'transition-colors',
+          isFav
+            ? 'fill-amber-500 text-amber-500 drop-shadow-sm'
+            : 'text-gray-500 hover:text-amber-500 group-hover:text-amber-500 dark:text-gray-400'
+        )}
+      />
 
       {showLabel && (
         <span className="text-sm font-medium">

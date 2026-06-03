@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { tools, getCategoryByTool } from '@/lib/tools';
+import { getPopularTools, getCategoryByTool } from '@/lib/tools';
 import { getCategoryTheme, catChipVars } from '@/lib/categoryTheme';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
 
@@ -17,9 +17,8 @@ export function PGPopularTools({
   limit = 6,
 }: PGPopularToolsProps) {
   const { createHref } = useLocalizedRouter();
-  const featured = tools
+  const featured = getPopularTools()
     .filter((t) => t.label !== 'coming-soon')
-    .sort((a, b) => (b.searchVolume ?? 0) - (a.searchVolume ?? 0))
     .slice(0, limit);
 
   return (

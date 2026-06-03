@@ -182,7 +182,7 @@ export default function ToolHeroSection({
       </div>
 
       <p
-        className={`mb-2 text-base text-slate-700 transition-all delay-100 duration-300 dark:text-slate-300 sm:text-lg md:mb-4 ${
+        className={`text-sm text-slate-600 transition-all delay-100 duration-300 dark:text-slate-400 sm:text-base ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
         }`}
       >
@@ -190,13 +190,17 @@ export default function ToolHeroSection({
       </p>
 
       {pageDescription && (
-        <p
-          className={`hidden max-w-4xl text-sm leading-relaxed text-slate-600 transition-all delay-150 duration-300 dark:text-slate-400 sm:text-base md:block ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
-          }`}
-        >
-          {pageDescription}
-        </p>
+        <details className="group mt-2 max-w-4xl">
+          <summary className="cursor-pointer list-none text-xs font-medium text-pg-muted transition-colors hover:text-pg-text">
+            <span className="inline-flex items-center gap-1">
+              About this tool
+              <span className="transition-transform group-open:rotate-180">▾</span>
+            </span>
+          </summary>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            {pageDescription}
+          </p>
+        </details>
       )}
 
       <div
