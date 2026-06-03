@@ -33,6 +33,7 @@ import { useToolLabels } from '@/lib/hooks/useToolLabels';
 import { FAQModal } from '@/components/ui/faq-modal';
 import ToolHowToUse from './ToolHowToUse';
 import ToolHeroSection from './ToolHeroSection';
+import AdBanner from '@/components/ads/AdBanner';
 import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
 import { ToolIcon } from '@/components/ui/ToolIcon';
 import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
@@ -329,6 +330,9 @@ export default function ToolPageClient({
               dictionary={dictionary}
             />
 
+            {/* Ad: above How to Use (after Usage Tips where present) */}
+            <AdBanner className="my-6" minHeight={120} />
+
             {/* How to Use Section */}
             <ToolHowToUse
               toolId={tool.id}
@@ -349,6 +353,9 @@ export default function ToolPageClient({
 
           {/* Sidebar (Desktop Only via CSS) */}
           <div className="hidden space-y-3 lg:col-span-3 lg:block">
+            {/* Ad: above Related Tools */}
+            <AdBanner minHeight={250} />
+
             {/* Related Tools */}
             <div className="rounded-pg-card border border-pg-border bg-pg-surface p-3.5">
               <h3 className="mb-2.5 text-[13px] font-semibold text-pg-text">
@@ -408,6 +415,9 @@ export default function ToolPageClient({
               </div>
             </a>
 
+            {/* Ad: above More from this category */}
+            <AdBanner minHeight={250} />
+
             {/* Same Category Tools */}
             {sameCategoryTools.length > 0 && (
               <div className="rounded-pg-card border border-pg-border bg-pg-surface p-3.5">
@@ -445,6 +455,9 @@ export default function ToolPageClient({
                 </div>
               </div>
             )}
+
+            {/* Ad: below More from this category */}
+            <AdBanner minHeight={250} />
           </div>
         </div>
 

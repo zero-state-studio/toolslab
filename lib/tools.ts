@@ -271,7 +271,7 @@ export const tools: Tool[] = [
     description: 'Convert Base64 encoded data to PDF files and download them',
     icon: '📄',
     route: '/tools/base64-to-pdf',
-    categories: ['base64', 'data'],
+    categories: ['base64', 'data', 'pdf'],
     keywords: [
       'base64',
       'pdf',
