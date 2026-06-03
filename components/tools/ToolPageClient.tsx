@@ -330,17 +330,23 @@ export default function ToolPageClient({
               dictionary={dictionary}
             />
 
-            {/* Ad: above How to Use (after Usage Tips where present) */}
-            {/* TODO: content banner nascosto provvisoriamente — troppo alto con format auto.
-                Riattivare con ad unit fixed horizontal (es. 728x90) in AdSense.
+            {/* Ad: mobile only — below tool input/result, above How to Use */}
             <AdBanner
-              className="my-6"
+              className="my-6 lg:hidden"
+              minHeight={100}
+              maxHeight={280}
+              slot="5833147302"
+            />
+
+            {/* Ad: content area — desktop only, fixed 90px leaderboard, above How to Use */}
+            <AdBanner
+              className="my-6 hidden lg:block"
               format="horizontal"
               responsive={false}
               minHeight={90}
-              maxHeight={120}
+              maxHeight={90}
               slot="3320031589"
-            /> */}
+            />
 
             {/* How to Use Section */}
             <ToolHowToUse
