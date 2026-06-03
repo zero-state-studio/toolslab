@@ -26,6 +26,10 @@ interface AdBannerProps {
   minHeight?: number;
   /** Max height cap (px). Constrains tall responsive units (e.g. content banner). */
   maxHeight?: number;
+  /** Fixed-size unit (px). When set, renders a fixed `inline-block` ins with no
+   *  data-ad-format / data-full-width-responsive — matches AdSense fixed units (e.g. 728x90). */
+  fixedWidth?: number;
+  fixedHeight?: number;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -44,9 +48,12 @@ export default function AdBanner({
   responsive = true,
   minHeight = 90,
   maxHeight,
+  fixedWidth,
+  fixedHeight,
   className = '',
   style,
 }: AdBannerProps) {
+  const isFixed = fixedWidth != null && fixedHeight != null;
   const [mounted, setMounted] = useState(false);
   const pushedRef = useRef(false);
 
@@ -87,16 +94,28 @@ export default function AdBanner({
       aria-hidden="true"
     >
       {/* Reserve space before mount to prevent CLS */}
-      {mounted && (
-        <ins
-          className="adsbygoogle"
-          style={{ display: 'block', minHeight, maxHeight }}
-          data-ad-client={ADSENSE_CLIENT}
-          data-ad-slot={slot}
-          data-ad-format={format}
-          data-full-width-responsive={responsive ? 'true' : 'false'}
-        />
-      )}
+      {mounted &&
+        (isFixed ? (
+          <ins
+            className="adsbygoogle"
+            style={{
+              display: 'inline-block',
+              width: fixedWidth,
+              height: fixedHeight,
+            }}
+            data-ad-client={ADSENSE_CLIENT}
+            data-ad-slot={slot}
+          />
+        ) : (
+          <ins
+            className="adsbygoogle"
+            style={{ display: 'block', minHeight, maxHeight }}
+            data-ad-client={ADSENSE_CLIENT}
+            data-ad-slot={slot}
+            data-ad-format={format}
+            data-full-width-responsive={responsive ? 'true' : 'false'}
+          />
+        ))}
     </div>
   );
 }
