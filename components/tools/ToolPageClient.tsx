@@ -338,11 +338,11 @@ export default function ToolPageClient({
               slot="5833147302"
             />
 
-            {/* Ad: content area — desktop only, fixed 90px leaderboard, above How to Use */}
+            {/* Ad: content area — desktop only, fixed 728x90 leaderboard, above How to Use */}
             <AdBanner
-              className="my-6 hidden lg:block"
-              format="horizontal"
-              responsive={false}
+              className="my-6 hidden text-center lg:block"
+              fixedWidth={728}
+              fixedHeight={90}
               minHeight={90}
               maxHeight={90}
               slot="3320031589"
