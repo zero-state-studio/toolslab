@@ -24,6 +24,8 @@ interface AdBannerProps {
   responsive?: boolean;
   /** Min height reserved to avoid CLS (px). */
   minHeight?: number;
+  /** Max height cap (px). Constrains tall responsive units (e.g. content banner). */
+  maxHeight?: number;
   className?: string;
   style?: React.CSSProperties;
 }
@@ -41,6 +43,7 @@ export default function AdBanner({
   format = 'auto',
   responsive = true,
   minHeight = 90,
+  maxHeight,
   className = '',
   style,
 }: AdBannerProps) {
@@ -67,7 +70,7 @@ export default function AdBanner({
     return (
       <div
         className={`ad-banner flex items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-100 text-[11px] font-medium uppercase tracking-wide text-slate-400 dark:border-slate-700 dark:bg-slate-800/50 dark:text-slate-500 ${className}`}
-        style={{ minHeight, ...style }}
+        style={{ minHeight, maxHeight, ...style }}
       >
         Ad · {slot || 'no-slot'}
       </div>
@@ -80,14 +83,14 @@ export default function AdBanner({
   return (
     <div
       className={`ad-banner overflow-hidden ${className}`}
-      style={{ minHeight, ...style }}
+      style={{ minHeight, maxHeight, ...style }}
       aria-hidden="true"
     >
       {/* Reserve space before mount to prevent CLS */}
       {mounted && (
         <ins
           className="adsbygoogle"
-          style={{ display: 'block', minHeight }}
+          style={{ display: 'block', minHeight, maxHeight }}
           data-ad-client={ADSENSE_CLIENT}
           data-ad-slot={slot}
           data-ad-format={format}
