@@ -330,8 +330,23 @@ export default function ToolPageClient({
               dictionary={dictionary}
             />
 
-            {/* Ad: above How to Use (after Usage Tips where present) */}
-            <AdBanner className="my-6" minHeight={120} slot="3320031589" />
+            {/* Ad: mobile only — below tool input/result, above How to Use */}
+            <AdBanner
+              className="my-6 lg:hidden"
+              minHeight={100}
+              maxHeight={280}
+              slot="5833147302"
+            />
+
+            {/* Ad: content area — desktop only, fixed 90px leaderboard, above How to Use */}
+            <AdBanner
+              className="my-6 hidden lg:block"
+              format="horizontal"
+              responsive={false}
+              minHeight={90}
+              maxHeight={90}
+              slot="3320031589"
+            />
 
             {/* How to Use Section */}
             <ToolHowToUse
