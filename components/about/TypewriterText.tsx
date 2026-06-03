@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 interface TypewriterTextProps {
@@ -41,18 +40,27 @@ export function TypewriterText({
   }, [delay]);
 
   return (
-    <motion.span
+    <span
       className={className}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: delay / 1000 }}
+      style={{
+        animation: `typewriterFadeIn 0.4s ease-out ${delay}ms both`,
+      }}
     >
       {displayText}
-      <motion.span
-        className="ml-1 inline-block h-6 w-0.5 bg-current"
-        animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 1, repeat: Infinity }}
+      <span
+        className="ml-1 inline-block h-6 w-0.5 animate-pulse bg-current"
+        aria-hidden="true"
       />
-    </motion.span>
+      <style jsx>{`
+        @keyframes typewriterFadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
+    </span>
   );
 }
