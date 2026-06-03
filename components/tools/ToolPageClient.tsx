@@ -331,7 +331,16 @@ export default function ToolPageClient({
             />
 
             {/* Ad: above How to Use (after Usage Tips where present) */}
-            <AdBanner className="my-6" minHeight={120} slot="3320031589" />
+            {/* TODO: content banner nascosto provvisoriamente — troppo alto con format auto.
+                Riattivare con ad unit fixed horizontal (es. 728x90) in AdSense.
+            <AdBanner
+              className="my-6"
+              format="horizontal"
+              responsive={false}
+              minHeight={90}
+              maxHeight={120}
+              slot="3320031589"
+            /> */}
 
             {/* How to Use Section */}
             <ToolHowToUse
