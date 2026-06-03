@@ -331,7 +331,7 @@ export default function ToolPageClient({
             />
 
             {/* Ad: above How to Use (after Usage Tips where present) */}
-            <AdBanner className="my-6" minHeight={120} />
+            <AdBanner className="my-6" minHeight={120} slot="3320031589" />
 
             {/* How to Use Section */}
             <ToolHowToUse
@@ -354,7 +354,7 @@ export default function ToolPageClient({
           {/* Sidebar (Desktop Only via CSS) */}
           <div className="hidden space-y-3 lg:col-span-3 lg:block">
             {/* Ad: above Related Tools */}
-            <AdBanner minHeight={250} />
+            <AdBanner minHeight={250} slot="5204948571" />
 
             {/* Related Tools */}
             <div className="rounded-pg-card border border-pg-border bg-pg-surface p-3.5">
@@ -416,7 +416,7 @@ export default function ToolPageClient({
             </a>
 
             {/* Ad: above More from this category */}
-            <AdBanner minHeight={250} />
+            <AdBanner minHeight={250} slot="4183510940" />
 
             {/* Same Category Tools */}
             {sameCategoryTools.length > 0 && (
@@ -455,9 +455,6 @@ export default function ToolPageClient({
                 </div>
               </div>
             )}
-
-            {/* Ad: below More from this category */}
-            <AdBanner minHeight={250} />
           </div>
         </div>
 
