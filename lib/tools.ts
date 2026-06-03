@@ -271,7 +271,7 @@ export const tools: Tool[] = [
     description: 'Convert Base64 encoded data to PDF files and download them',
     icon: '📄',
     route: '/tools/base64-to-pdf',
-    categories: ['base64', 'data'],
+    categories: ['base64', 'data', 'pdf'],
     keywords: [
       'base64',
       'pdf',
@@ -290,7 +290,7 @@ export const tools: Tool[] = [
       'free',
     ],
     searchVolume: 7000,
-    label: '',
+    label: 'popular',
   },
   {
     id: 'base64-to-gif',
@@ -1860,12 +1860,15 @@ export const categories: Category[] = [
 
 // Helper functions
 export function getPopularTools(): Tool[] {
-  return tools
-    .sort((a, b) => b.searchVolume - a.searchVolume)
-    .map((tool) => ({
-      ...tool,
-      keywords: tool.keywords || [], // Ensure keywords is always an array
-    }));
+  const pinned = tools.filter((tool) => tool.label === 'popular');
+  const rest = tools
+    .filter((tool) => tool.label !== 'popular')
+    .sort((a, b) => b.searchVolume - a.searchVolume);
+
+  return [...pinned, ...rest].map((tool) => ({
+    ...tool,
+    keywords: tool.keywords || [],
+  }));
 }
 
 export function searchTools(query: string): Tool[] {

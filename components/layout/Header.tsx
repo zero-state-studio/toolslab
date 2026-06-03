@@ -118,8 +118,9 @@ export function Header() {
             aria-label="ToolsLab home"
           >
             <LabLogo size={28} />
-            <span className="text-[16px] font-bold tracking-[-0.3px] text-pg-text">
-              ToolsLab
+            <span className="text-[16px] tracking-[-0.3px]">
+              <span className="font-medium text-pg-muted">Tools</span>
+              <span className="font-bold text-pg-text">Lab</span>
             </span>
             <span
               className="hidden rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wider sm:inline-flex"

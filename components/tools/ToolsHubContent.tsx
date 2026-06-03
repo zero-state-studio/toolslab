@@ -173,15 +173,6 @@ export default function ToolsHubContent({
     return result;
   }, [search, categoryFilter, sort]);
 
-  const popularTools = useMemo(
-    () =>
-      [...tools]
-        .filter((t) => t.label === 'popular')
-        .sort((a, b) => (b.searchVolume || 0) - (a.searchVolume || 0))
-        .slice(0, 6),
-    []
-  );
-
   const updateFilters = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams?.toString());
     if (value) params.set(key, value);
@@ -507,50 +498,8 @@ export default function ToolsHubContent({
               </div>
             </div>
 
-            {/* Most Popular section — visible only when no filters active */}
-            {!search && !categoryFilter && popularTools.length > 0 && (
-              <section className="mb-10">
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="flex items-center gap-2 rounded-full border border-amber-500/25 bg-amber-500/10 px-3 py-1.5">
-                    <TrendingUp className="h-3.5 w-3.5 text-amber-500" />
-                    <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-amber-600 dark:text-amber-400">
-                      {t.sections.mostPopular}
-                    </span>
-                  </div>
-                  <span className="text-xs text-slate-500 dark:text-slate-500">
-                    {popularTools.length} {t.sections.trendingTools}
-                  </span>
-                </div>
-
-                {viewMode === 'grid' ? (
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                    {popularTools.map((tool) => (
-                      <ToolCardWrapper key={tool.id} tool={tool} />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="space-y-2">
-                    {popularTools.map((tool) => (
-                      <ToolListItem key={tool.id} tool={tool} dictionary={dictionary} />
-                    ))}
-                  </div>
-                )}
-              </section>
-            )}
-
-            {/* All / Filtered tools */}
+            {/* Tools list — popular tools surface via in-card label, no separate row */}
             <section>
-              {!search && !categoryFilter && (
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-3 py-1.5 dark:border-white/[0.06] dark:bg-white/[0.03]">
-                    <LayoutGrid className="h-3.5 w-3.5 text-slate-500" />
-                    <span className="font-mono text-[10px] font-medium uppercase tracking-widest text-slate-500">
-                      {t.sections.allTools}
-                    </span>
-                  </div>
-                </div>
-              )}
-
               {filteredTools.length === 0 ? (
                 <div className="rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 px-6 py-20 text-center dark:border-white/[0.06] dark:bg-white/[0.01]">
                   <AlertCircle className="mx-auto mb-4 h-10 w-10 text-slate-400" />

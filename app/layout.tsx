@@ -192,6 +192,16 @@ export default function RootLayout({
               strategy="lazyOnload"
             />
           )}
+        {/* Google AdSense - consent handled by Google CMP (Privacy & messaging) */}
+        {process.env.NEXT_PUBLIC_ENABLE_ADS === 'true' &&
+          process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
+            <Script
+              id="adsbygoogle-init"
+              src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT}`}
+              strategy="afterInteractive"
+              crossOrigin="anonymous"
+            />
+          )}
       </body>
     </html>
   );

@@ -249,11 +249,7 @@
   }
 
   .pg-headline-gradient {
-    background: linear-gradient(90deg, var(--pg-accent) 0%, var(--pg-accent-2) 50%, var(--pg-accent-3) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+    color: var(--pg-accent);
   }
 
   .pg-kbd {

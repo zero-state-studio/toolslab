@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import {
   Code2,
   Zap,
@@ -167,32 +166,25 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
         />
 
         <div className="pg-container relative pb-16 pt-20 text-center">
-          <motion.div
-            className="mb-6 flex justify-center"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-          >
+          <div className="mb-6 flex justify-center duration-500 animate-in fade-in zoom-in-95">
             <TLMascot size={120} />
-          </motion.div>
+          </div>
 
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-pg-border bg-pg-surface px-3 py-1.5 text-[13px] text-pg-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-pg-accent-4" />
             {hero.scrollIndicator || 'Independent · open source · 2025—now'}
           </div>
 
-          <motion.h1
-            className="mb-4 text-[clamp(40px,7vw,72px)] font-bold leading-[1.02] tracking-[-0.045em]"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+          <h1
+            className="mb-4 text-[clamp(40px,7vw,72px)] font-bold leading-[1.02] tracking-[-0.045em] duration-700 animate-in fade-in slide-in-from-bottom-4"
+            style={{ animationDelay: '100ms', animationFillMode: 'both' }}
           >
             {hero.title || 'About ToolsLab'}
             <br />
             <span className="pg-headline-gradient">
               built by a dev, for devs.
             </span>
-          </motion.h1>
+          </h1>
 
           <div className="mx-auto mb-8 h-8 max-w-[640px] text-[18px] leading-[1.5] text-pg-muted md:text-xl">
             <TypewriterText
@@ -223,12 +215,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
 
       {/* LIVE METRICS ---------------------------------------------------- */}
       <section className="pg-container py-16">
-        <motion.div
-          className="mb-10 text-center"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
+        <div className="mb-10 text-center duration-500 animate-in fade-in slide-in-from-bottom-3">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-pg-border bg-pg-surface-hi px-3 py-1 text-[12px] text-pg-muted">
             <TrendingUp className="h-3 w-3 text-pg-accent-4" />
             {stats.subtitle || 'Live numbers · this year'}
@@ -236,17 +223,14 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
           <h2 className="text-[clamp(28px,4vw,42px)] font-bold tracking-[-0.025em] text-pg-text">
             {stats.title || 'Real growth, no smoke and mirrors.'}
           </h2>
-        </motion.div>
+        </div>
 
         <div className="mb-8 grid grid-cols-2 gap-3 md:grid-cols-4">
           {liveStats.map((s, i) => (
-            <motion.div
+            <div
               key={s.label}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.07 }}
-              className="rounded-[14px] border border-pg-border bg-pg-surface p-5 transition-colors hover:border-pg-border-hi"
+              style={{ animationDelay: `${i * 70}ms`, animationFillMode: 'both' }}
+              className="rounded-[14px] border border-pg-border bg-pg-surface p-5 transition-colors duration-500 animate-in fade-in slide-in-from-bottom-3 hover:border-pg-border-hi"
             >
               <div className="mb-3 flex items-center justify-between">
                 <span
@@ -269,16 +253,11 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
                 {s.value}
               </div>
               <div className="mt-1 text-[13px] text-pg-muted">{s.label}</div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        <motion.figure
-          className="overflow-hidden rounded-[16px] border border-pg-border bg-pg-surface p-3 md:p-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
+        <figure className="overflow-hidden rounded-[16px] border border-pg-border bg-pg-surface p-3 duration-500 animate-in fade-in slide-in-from-bottom-3 md:p-4">
           <Image
             src="/about/metrics_2026.png"
             alt="ToolsLab analytics dashboard for 2026 — 11.5k visitors, 13.9k visits, 18.1k views"
@@ -290,18 +269,13 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
           <figcaption className="mt-3 px-1 text-center text-[12px] text-pg-dim">
             Public Umami dashboard · year-to-date
           </figcaption>
-        </motion.figure>
+        </figure>
       </section>
 
       {/* MILESTONES ------------------------------------------------------ */}
       <section className="bg-pg-bg-2/50 py-20">
         <div className="pg-container">
-          <motion.div
-            className="mb-10 text-center"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <div className="mb-10 text-center duration-500 animate-in fade-in slide-in-from-bottom-3">
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-pg-border bg-pg-surface px-3 py-1 text-[12px] text-pg-muted">
               <Trophy className="h-3 w-3 text-pg-accent-3" />
               Search Console milestones
@@ -313,15 +287,10 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
               Every badge below is an automatic Google Search Console
               celebration — concrete proof of organic growth, no paid traffic.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-5 lg:gap-6">
-            <motion.figure
-              className="lg:col-span-2 overflow-hidden rounded-[16px] border border-pg-border bg-pg-surface p-3"
-              initial={{ opacity: 0, x: -16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
+            <figure className="lg:col-span-2 overflow-hidden rounded-[16px] border border-pg-border bg-pg-surface p-3 duration-500 animate-in fade-in slide-in-from-left-4">
               <Image
                 src="/about/gsc_3k.png"
                 alt="Google Search Console badge celebrating 3,000 clicks in 28 days"
@@ -333,14 +302,9 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
               <figcaption className="mt-3 px-1 text-center text-[12px] text-pg-dim">
                 3K clicks · 28-day milestone (May 2026)
               </figcaption>
-            </motion.figure>
+            </figure>
 
-            <motion.figure
-              className="lg:col-span-3 overflow-hidden rounded-[16px] border border-pg-border bg-pg-surface p-3"
-              initial={{ opacity: 0, x: 16 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
+            <figure className="lg:col-span-3 overflow-hidden rounded-[16px] border border-pg-border bg-pg-surface p-3 duration-500 animate-in fade-in slide-in-from-right-4">
               <Image
                 src="/about/gsc_history.png"
                 alt="Search Console history showing milestones from 1.8K to 3K clicks"
@@ -352,19 +316,14 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
               <figcaption className="mt-3 px-1 text-center text-[12px] text-pg-dim">
                 Five consecutive milestones · April → May 2026
               </figcaption>
-            </motion.figure>
+            </figure>
           </div>
         </div>
       </section>
 
       {/* TIMELINE -------------------------------------------------------- */}
       <section className="pg-container py-20">
-        <motion.div
-          className="mb-12 text-center"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
+        <div className="mb-12 text-center duration-500 animate-in fade-in slide-in-from-bottom-3">
           <h2 className="mb-3 text-[clamp(28px,4vw,42px)] font-bold tracking-[-0.025em] text-pg-text">
             {timeline.title || 'The journey'}
           </h2>
@@ -372,7 +331,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
             {timeline.subtitle ||
               'From personal frustration to a community resource.'}
           </p>
-        </motion.div>
+        </div>
 
         <div className="relative mx-auto max-w-4xl">
           <div
@@ -383,15 +342,17 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
             {timelineSteps.map((step: any, index: number) => {
               const isLeft = index % 2 === 0;
               return (
-                <motion.div
+                <div
                   key={index}
-                  className={`relative flex flex-col items-stretch md:flex-row md:items-center ${
-                    isLeft ? '' : 'md:flex-row-reverse'
+                  className={`relative flex flex-col items-stretch duration-500 animate-in fade-in md:flex-row md:items-center ${
+                    isLeft
+                      ? 'slide-in-from-left-4'
+                      : 'slide-in-from-right-4 md:flex-row-reverse'
                   }`}
-                  initial={{ opacity: 0, x: isLeft ? -24 : 24 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  style={{
+                    animationDelay: `${index * 50}ms`,
+                    animationFillMode: 'both',
+                  }}
                 >
                   <div
                     className={`w-full md:w-5/12 ${
@@ -419,7 +380,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
                   </div>
 
                   <div className="hidden md:block md:w-5/12" />
-                </motion.div>
+                </div>
               );
             })}
           </div>
@@ -429,12 +390,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
       {/* FEATURES -------------------------------------------------------- */}
       <section className="bg-pg-bg-2/50 py-20">
         <div className="pg-container">
-          <motion.div
-            className="mb-12 text-center"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <div className="mb-12 text-center duration-500 animate-in fade-in slide-in-from-bottom-3">
             <h2 className="mb-3 text-[clamp(28px,4vw,42px)] font-bold tracking-[-0.025em] text-pg-text">
               {features.title || 'Why ToolsLab?'}
             </h2>
@@ -442,17 +398,14 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
               {features.subtitle ||
                 'Built with developers in mind, optimized for your workflow.'}
             </p>
-          </motion.div>
+          </div>
 
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
             {featuresData.map((feature: any, index: number) => (
-              <motion.div
+              <div
                 key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
-                className="rounded-[14px] border border-pg-border bg-pg-surface p-5 transition-colors hover:border-pg-border-hi"
+                style={{ animationDelay: `${index * 60}ms`, animationFillMode: 'both' }}
+                className="rounded-[14px] border border-pg-border bg-pg-surface p-5 transition-colors duration-500 animate-in fade-in slide-in-from-bottom-3 hover:border-pg-border-hi"
               >
                 <span
                   className="cat-chip mb-3 flex h-10 w-10 items-center justify-center rounded-[10px]"
@@ -466,7 +419,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
                 <p className="text-[13px] leading-relaxed text-pg-muted">
                   {feature.description}
                 </p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -474,12 +427,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
 
       {/* DEVELOPER STORY ------------------------------------------------- */}
       <section className="pg-container py-20">
-        <motion.div
-          className="relative mx-auto max-w-4xl overflow-hidden rounded-[20px] border border-pg-border bg-pg-surface p-8 md:p-12"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
+        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-[20px] border border-pg-border bg-pg-surface p-8 duration-500 animate-in fade-in slide-in-from-bottom-3 md:p-12">
           <div
             aria-hidden
             className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-30 blur-3xl"
@@ -536,18 +484,13 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
               </footer>
             </blockquote>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* SOCIAL ---------------------------------------------------------- */}
       <section className="bg-pg-bg-2/50 py-20">
         <div className="pg-container">
-          <motion.div
-            className="mb-10 text-center"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <div className="mb-10 text-center duration-500 animate-in fade-in slide-in-from-bottom-3">
             <h2 className="mb-3 text-[clamp(28px,4vw,42px)] font-bold tracking-[-0.025em] text-pg-text">
               {social.title || 'Connect & support'}
             </h2>
@@ -555,20 +498,17 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
               {social.subtitle ||
                 'Join the community, contribute, or show your appreciation.'}
             </p>
-          </motion.div>
+          </div>
 
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-3 md:grid-cols-3">
             {socialLinks.map((link: any, index: number) => (
-              <motion.a
+              <a
                 key={link.href}
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
-                className="group flex items-start gap-4 rounded-[14px] border border-pg-border bg-pg-surface p-5 transition-colors hover:border-pg-border-hi"
+                style={{ animationDelay: `${index * 60}ms`, animationFillMode: 'both' }}
+                className="group flex items-start gap-4 rounded-[14px] border border-pg-border bg-pg-surface p-5 transition-colors duration-500 animate-in fade-in slide-in-from-bottom-3 hover:border-pg-border-hi"
               >
                 <span
                   className="cat-chip flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-[10px]"
@@ -585,7 +525,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
                     {link.description}
                   </div>
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
         </div>
@@ -611,12 +551,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
         />
 
         <div className="pg-container relative py-20 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-2xl"
-          >
+          <div className="mx-auto max-w-2xl duration-500 animate-in fade-in slide-in-from-bottom-3">
             <Sparkles className="mx-auto mb-5 h-10 w-10 text-white" />
             <h2 className="mb-4 text-[clamp(30px,4vw,46px)] font-bold leading-[1.1] tracking-[-0.025em] text-white">
               {cta.title || 'Ready to boost your productivity?'}
@@ -643,7 +578,7 @@ export function NewAboutPage({ locale, dictionary }: NewAboutPageProps) {
                 {cta.buttons?.support || 'Support the project'}
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
