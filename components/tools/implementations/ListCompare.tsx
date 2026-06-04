@@ -472,13 +472,22 @@ export default function ListCompare({
 
       {/* Input Lists Section */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
-            <h3 className="text-lg font-semibold">Input Lists</h3>
-            <Badge variant="outline">{totalItems} total items</Badge>
+            <h3 className="whitespace-nowrap text-lg font-semibold">
+              Input Lists
+            </h3>
+            <Badge variant="outline" className="whitespace-nowrap">
+              {totalItems} total items
+            </Badge>
           </div>
           <div className="flex gap-2">
-            <Button onClick={loadSampleData} variant="outline" size="sm">
+            <Button
+              onClick={loadSampleData}
+              variant="outline"
+              size="sm"
+              className="flex-1 whitespace-nowrap sm:flex-none"
+            >
               <FileText className="mr-2 h-4 w-4" />
               Load Sample
             </Button>
@@ -487,6 +496,7 @@ export default function ListCompare({
               variant="outline"
               size="sm"
               disabled={lists.length >= 10}
+              className="flex-1 whitespace-nowrap sm:flex-none"
             >
               <Plus className="mr-2 h-4 w-4" />
               Add List

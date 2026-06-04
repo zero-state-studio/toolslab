@@ -757,15 +757,15 @@ export default function InstagramFont({ categoryColor, locale }: InstagramFontPr
             </p>
           </div>
         ) : (
-          <div className="rounded-lg border border-gray-200 bg-gray-50 p-8 text-center dark:border-gray-700 dark:bg-gray-900">
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 text-center dark:border-gray-700 dark:bg-gray-900 sm:p-8">
             <Sparkles
-              className="mx-auto mb-4 h-12 w-12"
+              className="mx-auto mb-2 h-7 w-7 sm:mb-4 sm:h-12 sm:w-12"
               style={{ color: categoryColor }}
             />
-            <p className="text-lg font-medium text-gray-700 dark:text-gray-300" suppressHydrationWarning>
+            <p className="text-sm font-medium text-gray-700 dark:text-gray-300 sm:text-lg" suppressHydrationWarning>
               {t.typeAbove}
             </p>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400" suppressHydrationWarning>
+            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400 sm:mt-2 sm:text-sm" suppressHydrationWarning>
               {t.unicodeStyles(fontStyles.length)}
             </p>
           </div>
