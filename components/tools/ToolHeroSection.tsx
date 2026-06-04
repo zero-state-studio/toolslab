@@ -147,15 +147,15 @@ export default function ToolHeroSection({
         />
       )}
 
-      <div className="mb-2 flex items-center gap-2 sm:gap-3">
+      <div className="mb-2 flex items-start gap-3 sm:items-center">
         {/* z-10 ensures stacking above sibling flex items */}
         <div className="relative z-10 flex-shrink-0">
           <div
-            className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-lg transition-all duration-300 sm:h-14 sm:w-14 ${
+            className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-lg transition-all duration-300 sm:h-14 sm:w-14 ${
               isVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
             }`}
           >
-            <Sparkles className="h-6 w-6 text-white sm:h-7 sm:w-7" />
+            <Sparkles className="h-5 w-5 text-white sm:h-7 sm:w-7" />
           </div>
           {holiday && (
             <HolidayBadge
@@ -167,17 +167,21 @@ export default function ToolHeroSection({
         </div>
 
         {/* Title and badges */}
-        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-2 sm:gap-3">
+        <div className="flex min-w-0 flex-1 flex-wrap items-center gap-x-2 gap-y-1 pt-1.5 sm:gap-x-3 sm:pt-0">
           <h1
-            className={`text-2xl font-bold text-slate-900 dark:text-white sm:text-3xl lg:text-4xl ${
+            className={`text-lg font-bold leading-snug text-slate-900 dark:text-white sm:text-3xl lg:text-4xl ${
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-0'
             } transition-all delay-75 duration-300`}
           >
             {toolName}
           </h1>
           {labelBadge && <div className="flex items-center">{labelBadge}</div>}
-          {favoriteButton && <div className="flex items-center">{favoriteButton}</div>}
-          {categoryBadge && <div className="flex items-center">{categoryBadge}</div>}
+          {favoriteButton && (
+            <div className="hidden items-center sm:flex">{favoriteButton}</div>
+          )}
+          {categoryBadge && (
+            <div className="hidden items-center sm:flex">{categoryBadge}</div>
+          )}
         </div>
       </div>
 
