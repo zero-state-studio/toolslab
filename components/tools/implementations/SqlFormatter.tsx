@@ -27,6 +27,7 @@ import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { BaseToolProps } from '@/lib/types/tools';
 import { useSmartDebounce } from '@/lib/hooks/useSmartDebounce';
+import AdBanner from '@/components/ads/AdBanner';
 
 interface SqlFormatterProps extends BaseToolProps {}
 
@@ -601,6 +602,14 @@ ORDER BY unknown_column;  -- Colonna non definita`;
           </div>
         </div>
       )}
+
+      {/* Ad: mobile only — above usage tips */}
+      <AdBanner
+        className="lg:hidden"
+        minHeight={100}
+        maxHeight={280}
+        slot="5833147302"
+      />
 
       {/* Usage Tips */}
       <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
