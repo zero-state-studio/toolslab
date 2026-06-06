@@ -109,7 +109,7 @@
     <loc>https://toolslab.dev/fr/tools/json-formatter</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/json-formatter"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/json-formatter"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/json-formatter"/>
@@ -122,7 +122,7 @@
     <loc>https://toolslab.dev/fr/tools/csv-to-json</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/csv-to-json"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/csv-to-json"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/csv-to-json"/>
@@ -148,7 +148,7 @@
     <loc>https://toolslab.dev/fr/tools/sql-formatter</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/sql-formatter"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/sql-formatter"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/sql-formatter"/>
@@ -161,7 +161,7 @@
     <loc>https://toolslab.dev/fr/tools/xml-formatter</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/xml-formatter"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/xml-formatter"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/xml-formatter"/>
@@ -187,7 +187,7 @@
     <loc>https://toolslab.dev/fr/tools/base64-encode</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/base64-encode"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/base64-encode"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/base64-encode"/>
@@ -200,7 +200,7 @@
     <loc>https://toolslab.dev/fr/tools/url-encode</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/url-encode"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/url-encode"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/url-encode"/>
@@ -213,7 +213,7 @@
     <loc>https://toolslab.dev/fr/tools/html-encode-decode</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/html-encode-decode"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/html-encode-decode"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/html-encode-decode"/>
@@ -226,7 +226,7 @@
     <loc>https://toolslab.dev/fr/tools/hash-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/hash-generator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/hash-generator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/hash-generator"/>
@@ -252,7 +252,7 @@
     <loc>https://toolslab.dev/fr/tools/bcrypt-hash-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/bcrypt-hash-generator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/bcrypt-hash-generator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/bcrypt-hash-generator"/>
@@ -260,6 +260,19 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/bcrypt-hash-generator"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/bcrypt-hash-generator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/bcrypt-hash-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/fr/tools/rot13-caesar-cipher</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/rot13-caesar-cipher"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/rot13-caesar-cipher"/>
   </url>
   <url>
     <loc>https://toolslab.dev/fr/tools/base64-to-pdf</loc>
@@ -314,32 +327,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/base64-to-jpg"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/fr/tools/html-to-markdown</loc>
-    <lastmod>2026-03-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/html-to-markdown"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/html-to-markdown"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/html-to-markdown"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/html-to-markdown"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/html-to-markdown"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/html-to-markdown"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/html-to-markdown"/>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/fr/tools/markdown-table-generator</loc>
-    <lastmod>2026-05-04</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/markdown-table-generator"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/markdown-table-generator"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/markdown-table-generator"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/markdown-table-generator"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/markdown-table-generator"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/markdown-table-generator"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/markdown-table-generator"/>
-  </url>
-  <url>
     <loc>https://toolslab.dev/fr/tools/base64-to-webp</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -382,7 +369,7 @@
     <loc>https://toolslab.dev/fr/tools/linkedin-post-formatter</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/linkedin-post-formatter"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/linkedin-post-formatter"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/linkedin-post-formatter"/>
@@ -395,7 +382,7 @@
     <loc>https://toolslab.dev/fr/tools/text-diff</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/text-diff"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/text-diff"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/text-diff"/>
@@ -408,7 +395,7 @@
     <loc>https://toolslab.dev/fr/tools/markdown-preview</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/markdown-preview"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/markdown-preview"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/markdown-preview"/>
@@ -421,7 +408,7 @@
     <loc>https://toolslab.dev/fr/tools/regex-tester</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/regex-tester"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/regex-tester"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/regex-tester"/>
@@ -434,7 +421,7 @@
     <loc>https://toolslab.dev/fr/tools/uuid-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/uuid-generator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/uuid-generator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/uuid-generator"/>
@@ -447,7 +434,7 @@
     <loc>https://toolslab.dev/fr/tools/password-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/password-generator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/password-generator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/password-generator"/>
@@ -460,7 +447,7 @@
     <loc>https://toolslab.dev/fr/tools/qr-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/qr-generator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/qr-generator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/qr-generator"/>
@@ -473,7 +460,7 @@
     <loc>https://toolslab.dev/fr/tools/barcode-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/barcode-generator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/barcode-generator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/barcode-generator"/>
@@ -486,7 +473,7 @@
     <loc>https://toolslab.dev/fr/tools/color-picker</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/color-picker"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/color-picker"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/color-picker"/>
@@ -512,7 +499,7 @@
     <loc>https://toolslab.dev/fr/tools/favicon-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/favicon-generator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/favicon-generator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/favicon-generator"/>
@@ -538,7 +525,7 @@
     <loc>https://toolslab.dev/fr/tools/json-validator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/json-validator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/json-validator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/json-validator"/>
@@ -551,7 +538,7 @@
     <loc>https://toolslab.dev/fr/tools/crontab-builder</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/crontab-builder"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/crontab-builder"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/crontab-builder"/>
@@ -587,56 +574,30 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-code"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/fr/tools/curl-to-php</loc>
+    <loc>https://toolslab.dev/fr/tools/curl-to-ruby</loc>
     <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-php"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-php"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-php"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-php"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-php"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-php"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-php"/>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-ruby"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/fr/tools/curl-to-go</loc>
+    <loc>https://toolslab.dev/fr/tools/curl-to-httpie</loc>
     <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-go"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-go"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-go"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-go"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-go"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-go"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-go"/>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/fr/tools/curl-to-axios</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-axios"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-axios"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-axios"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-axios"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-axios"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-axios"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-axios"/>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/fr/tools/curl-to-httpx</loc>
-    <lastmod>2026-04-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-httpx"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-httpx"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-httpx"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-httpx"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-httpx"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-httpx"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-httpx"/>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-httpie"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-httpie"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-httpie"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-httpie"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-httpie"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-httpie"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-httpie"/>
   </url>
   <url>
     <loc>https://toolslab.dev/fr/tools/curl-to-java</loc>
@@ -655,7 +616,7 @@
     <loc>https://toolslab.dev/fr/tools/curl-to-csharp</loc>
     <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-csharp"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-csharp"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-csharp"/>
@@ -665,30 +626,56 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-csharp"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/fr/tools/curl-to-ruby</loc>
+    <loc>https://toolslab.dev/fr/tools/curl-to-axios</loc>
     <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-ruby"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-ruby"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-ruby"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-ruby"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-ruby"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-ruby"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-ruby"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-axios"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-axios"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-axios"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-axios"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-axios"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-axios"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-axios"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/fr/tools/curl-to-httpie</loc>
+    <loc>https://toolslab.dev/fr/tools/curl-to-httpx</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-httpx"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-httpx"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-httpx"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-httpx"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-httpx"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-httpx"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-httpx"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/fr/tools/curl-to-go</loc>
     <lastmod>2026-04-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-httpie"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-httpie"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-httpie"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-httpie"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-httpie"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-httpie"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-httpie"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-go"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-go"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-go"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-go"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-go"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-go"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-go"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/fr/tools/curl-to-php</loc>
+    <lastmod>2026-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/curl-to-php"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/curl-to-php"/>
   </url>
   <url>
     <loc>https://toolslab.dev/fr/tools/json-to-typescript</loc>
@@ -772,7 +759,7 @@
     <loc>https://toolslab.dev/fr/tools/eml-to-html</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/eml-to-html"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/eml-to-html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/eml-to-html"/>
@@ -798,7 +785,7 @@
     <loc>https://toolslab.dev/fr/tools/pdf-to-word</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/pdf-to-word"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/pdf-to-word"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/pdf-to-word"/>
@@ -811,7 +798,7 @@
     <loc>https://toolslab.dev/fr/tools/image-to-pdf</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/image-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/image-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/image-to-pdf"/>
@@ -850,7 +837,7 @@
     <loc>https://toolslab.dev/fr/tools/gif-to-pdf</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/gif-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/gif-to-pdf"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/gif-to-pdf"/>
@@ -889,7 +876,7 @@
     <loc>https://toolslab.dev/fr/tools/youtube-timestamp-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/youtube-timestamp-generator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/youtube-timestamp-generator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/youtube-timestamp-generator"/>
@@ -915,7 +902,7 @@
     <loc>https://toolslab.dev/fr/tools/htaccess-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/htaccess-generator"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/htaccess-generator"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/htaccess-generator"/>
@@ -954,7 +941,7 @@
     <loc>https://toolslab.dev/fr/tools/binary-to-text</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/binary-to-text"/>
     <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/binary-to-text"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/binary-to-text"/>
@@ -975,6 +962,32 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/js-object-to-json"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/js-object-to-json"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/js-object-to-json"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/fr/tools/html-to-markdown</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/html-to-markdown"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/html-to-markdown"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/fr/tools/markdown-table-generator</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/markdown-table-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/markdown-table-generator"/>
   </url>
   <url>
     <loc>https://toolslab.dev/fr/category/data</loc>
@@ -1055,6 +1068,19 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/base64"/>
   </url>
   <url>
+    <loc>https://toolslab.dev/fr/category/pdf</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/pdf"/>
+  </url>
+  <url>
     <loc>https://toolslab.dev/fr/category/social</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -1092,31 +1118,5 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/web"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/web"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/web"/>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/fr/category/pdf</loc>
-    <lastmod>2026-03-02</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/category/pdf"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/category/pdf"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/category/pdf"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/category/pdf"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/category/pdf"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/category/pdf"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/category/pdf"/>
-  </url>
-  <url>
-    <loc>https://toolslab.dev/fr/tools/rot13-caesar-cipher</loc>
-    <lastmod>2026-04-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/rot13-caesar-cipher"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/rot13-caesar-cipher"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/rot13-caesar-cipher"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/rot13-caesar-cipher"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/rot13-caesar-cipher"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/rot13-caesar-cipher"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/rot13-caesar-cipher"/>
   </url>
 </urlset>
