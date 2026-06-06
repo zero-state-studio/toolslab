@@ -295,6 +295,7 @@ export default function ToolPageClient({
             categoryColor={categoryColor}
             categoryId={categoryId}
             categoryName={categoryName}
+            locale={locale}
             favoriteButton={
               <FavoriteButton
                 type="tool"
