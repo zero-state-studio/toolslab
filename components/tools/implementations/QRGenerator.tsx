@@ -28,6 +28,7 @@ import {
   ChevronUp,
 } from 'lucide-react';
 import { trackToolUse, trackEngagement } from '@/lib/analytics';
+import { useToolStore } from '@/lib/store/toolStore';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
@@ -59,6 +60,7 @@ const contentTypeIcons: Record<QRCodeType, React.ElementType> = {
 
 export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
   const { copy: copyToClipboard } = useCopy();
+  const { addToHistory } = useToolStore();
 
   // Main state
   const [contentType, setContentType] = useState<QRCodeType>('text');
@@ -178,6 +180,28 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
       const result = await generateQRCode(contentData, options);
       setQrResult(result);
 
+      // Auto-tracking via store history (skip empty/failed)
+      if (result.success) {
+        const inputText = (contentData.text ||
+          contentData.url ||
+          contentData.ssid ||
+          contentData.emailTo ||
+          contentData.cryptoAddress ||
+          contentType) as string;
+
+        if (inputText && inputText.trim()) {
+          const size = options.size || 256;
+          const fmt = (options.format || 'png').toUpperCase();
+          addToHistory({
+            id: crypto.randomUUID(),
+            tool: 'qr-generator',
+            input: inputText,
+            output: `QR ${fmt} ${size}x${size}`,
+            timestamp: startTime,
+          });
+        }
+      }
+
       // Track usage
       trackToolUse('qr-generator', 'generate', {
         contentType,
@@ -199,7 +223,14 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
     } finally {
       setIsGenerating(false);
     }
-  }, [contentData, options, trackToolUse, trackEngagement, contentType]);
+  }, [
+    contentData,
+    options,
+    trackToolUse,
+    trackEngagement,
+    contentType,
+    addToHistory,
+  ]);
 
   // Auto-generate on content/options change
   useEffect(() => {

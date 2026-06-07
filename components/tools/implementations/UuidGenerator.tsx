@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Copy, Check, Hash, Zap } from 'lucide-react';
 import { useMultiCopy } from '@/lib/hooks/useCopy';
-import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 import { BaseToolProps, UUIDVersion } from '@/lib/types/tools';
 import { ToolFrame } from '@/components/tools/ToolFrame';
 
@@ -17,9 +17,10 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
   const [hyphens, setHyphens] = useState(true);
 
   const { copy, isCopied } = useMultiCopy<number | string>();
-  const { trackUse } = useToolTracking('uuid-generator');
+  const { addToHistory } = useToolStore();
 
   const generateUUID = () => {
+    const startTime = Date.now();
     const newUuids: string[] = [];
     for (let i = 0; i < count; i++) {
       let uuid = crypto.randomUUID();
@@ -28,7 +29,15 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
       newUuids.push(uuid);
     }
     setUuids(newUuids);
-    trackUse('', newUuids.join('\n'), { success: true });
+    const generated = newUuids.join('\n');
+    const configSummary = `version=${version}, count=${count}, uppercase=${uppercase}, hyphens=${hyphens}`;
+    addToHistory({
+      id: crypto.randomUUID(),
+      tool: 'uuid-generator',
+      input: configSummary,
+      output: generated,
+      timestamp: startTime,
+    });
   };
 
   const joinedUuids = uuids.join('\n');

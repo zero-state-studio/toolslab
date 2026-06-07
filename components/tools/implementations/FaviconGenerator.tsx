@@ -46,6 +46,7 @@ import {
 } from '@/lib/tools/favicon';
 import { BaseToolProps } from '@/lib/types/tools';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 
 interface FaviconGeneratorProps extends BaseToolProps {}
 
@@ -74,8 +75,9 @@ export default function FaviconGenerator({
 
   const workerRef = useRef<Worker | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const { trackUse, trackError, trackCustom } =
-    useToolTracking('favicon-generator');
+  const startTimeRef = useRef<number | null>(null);
+  const { trackError, trackCustom } = useToolTracking('favicon-generator');
+  const { addToHistory } = useToolStore();
 
   // Initialize Web Worker
   useEffect(() => {
@@ -230,6 +232,7 @@ export default function FaviconGenerator({
 
     setIsGenerating(true);
     setProgress(0);
+    startTimeRef.current = Date.now();
 
     try {
       // Create canvas and get image data
@@ -281,6 +284,27 @@ export default function FaviconGenerator({
 
     // Track successful generation with custom metadata
     const totalSize = favicons.reduce((sum, f) => sum + f.size, 0);
+
+    // Analytics auto-tracking (no base64 stored)
+    const sourceSummary =
+      activeTab === 'upload'
+        ? 'image upload'
+        : activeTab === 'url'
+          ? 'image url'
+          : activeTab === 'text'
+            ? `text: ${textInput}`
+            : activeTab === 'emoji'
+              ? `emoji: ${selectedEmoji}`
+              : activeTab;
+    const sizesSummary = favicons.map((f) => f.dimensions).join(',');
+    addToHistory({
+      id: crypto.randomUUID(),
+      tool: 'favicon-generator',
+      input: sourceSummary,
+      output: `favicons generated: ${sizesSummary}`,
+      timestamp: startTimeRef.current ?? Date.now(),
+    });
+
     trackCustom({
       event: 'tool.use',
       tool: 'favicon-generator',

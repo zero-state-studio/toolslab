@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 import {
   convertJsonToTypeScript,
   validateJsonInput,
@@ -52,7 +53,8 @@ interface JsonToTypeScriptProps extends BaseToolProps {}
 export default function JsonToTypeScript({
   categoryColor,
 }: JsonToTypeScriptProps) {
-  const { trackUse, trackError } = useToolTracking('json-to-typescript');
+  const { trackError } = useToolTracking('json-to-typescript');
+  const { addToHistory } = useToolStore();
 
   // State management
   const [jsonInput, setJsonInput] = useState('');
@@ -91,6 +93,7 @@ export default function JsonToTypeScript({
     if (!jsonInput.trim() || !jsonValidation.valid) return;
 
     setIsProcessing(true);
+    const startTime = Date.now();
     try {
       // Simulate async processing for better UX
       await new Promise((resolve) => setTimeout(resolve, 100));
@@ -99,9 +102,15 @@ export default function JsonToTypeScript({
 
       // Track successful conversion
       if (conversionResult.success) {
-        trackUse(jsonInput, conversionResult.interfaces, {
-          success: true,
-        });
+        if (conversionResult.interfaces) {
+          addToHistory({
+            id: crypto.randomUUID(),
+            tool: 'json-to-typescript',
+            input: jsonInput,
+            output: conversionResult.interfaces,
+            timestamp: startTime,
+          });
+        }
       } else {
         trackError(
           new Error(conversionResult.error || 'Conversion failed'),
@@ -128,7 +137,7 @@ export default function JsonToTypeScript({
     } finally {
       setIsProcessing(false);
     }
-  }, [jsonInput, options, jsonValidation.valid]);
+  }, [jsonInput, options, jsonValidation.valid, addToHistory, trackError]);
 
   // Copy to clipboard
   const handleCopy = useCallback(async (content: string, type: string) => {

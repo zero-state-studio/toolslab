@@ -58,6 +58,7 @@ import {
 import { BaseToolProps } from '@/lib/types/tools';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 
 interface CrontabBuilderProps extends BaseToolProps {}
 
@@ -192,6 +193,7 @@ function CrontabBuilderContent({
   const isUpdatingFromBuilder = useRef(false);
   const isUpdatingFromExpression = useRef(false);
   const { trackCustom, trackError } = useToolTracking('crontab-builder');
+  const { addToHistory: addToToolHistory } = useToolStore();
 
   // Parse expression when input changes
   const parseExpression = useCallback(
@@ -241,6 +243,7 @@ function CrontabBuilderContent({
 
   // Handle manual parse button click
   const handleParseExpression = () => {
+    const startTime = Date.now();
     parseExpression(inputExpression);
 
     // Track only when user explicitly clicks Parse button
@@ -249,6 +252,17 @@ function CrontabBuilderContent({
         const result = parseCronExpression(inputExpression, selectedTimezone);
 
         if (result.validation.isValid) {
+          // Centralized analytics auto-tracking (skip until hydrated)
+          if (isHydrated) {
+            addToToolHistory({
+              id: crypto.randomUUID(),
+              tool: 'crontab-builder',
+              input: inputExpression,
+              output: `${result.expression} — ${result.description}`,
+              timestamp: startTime,
+            });
+          }
+
           trackCustom({
             inputSize: inputExpression.length,
             outputSize: result.description.length,
