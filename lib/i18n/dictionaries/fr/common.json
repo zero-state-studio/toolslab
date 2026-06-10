@@ -10,7 +10,8 @@
       "viewAllTools": "Voir tous les outils",
       "home": "Accueil",
       "relatedTools": "Outils Associés",
-      "sameCategoryTools": "Plus d'outils de cette catégorie"
+      "sameCategoryTools": "Plus d'outils de cette catégorie",
+      "searchPlaceholder": "Rechercher des outils…"
     },
     "actions": {
       "copy": "Copier",
@@ -130,6 +131,28 @@
       "helpDescription": "Votre soutien peut nous aider à couvrir les coûts du serveur et réactiver ce service. Chaque contribution, aussi petite soit-elle, fait la différence.",
       "donateButton": "Offrez-moi un café",
       "thanks": "Merci pour votre compréhension et votre soutien !"
-    }
+    },
+    "faqSchema": [
+      {
+        "question": "Le {toolName} est-il gratuit ?",
+        "answer": "Oui, notre {toolName} est entièrement gratuit. Aucune inscription, paiement ou abonnement requis. Toutes les fonctionnalités sont disponibles sans frais."
+      },
+      {
+        "question": "Mes données sont-elles en sécurité avec le {toolName} ?",
+        "answer": "Oui, tout le traitement s'effectue entièrement dans votre navigateur. Vos données ne quittent jamais votre appareil et ne sont jamais envoyées à nos serveurs, garantissant une confidentialité totale."
+      },
+      {
+        "question": "Puis-je utiliser le {toolName} hors ligne ?",
+        "answer": "Oui, une fois la page chargée, l'outil fonctionne entièrement hors ligne. Tout le traitement est effectué côté client dans votre navigateur."
+      },
+      {
+        "question": "Dois-je créer un compte pour utiliser {toolName} ?",
+        "answer": "Non, vous pouvez utiliser tous nos outils sans créer de compte. Visitez la page et commencez immédiatement."
+      },
+      {
+        "question": "Comment utiliser le {toolName} ?",
+        "answer": "Collez ou saisissez simplement votre contenu dans le {toolName} et obtenez des résultats instantanés. L'outil traite en temps réel avec validation immédiate."
+      }
+    ]
   }
 }

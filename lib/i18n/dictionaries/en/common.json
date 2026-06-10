@@ -10,7 +10,8 @@
       "viewAllTools": "View all tools",
       "home": "Home",
       "relatedTools": "Related Tools",
-      "sameCategoryTools": "More from this category"
+      "sameCategoryTools": "More from this category",
+      "searchPlaceholder": "Search tools…"
     },
     "actions": {
       "copy": "Copy",
@@ -130,6 +131,28 @@
       "helpDescription": "Your support can help us cover the server costs and reactivate this service. Every contribution, no matter how small, makes a difference.",
       "donateButton": "Buy me a coffee",
       "thanks": "Thank you for your understanding and support!"
-    }
+    },
+    "faqSchema": [
+      {
+        "question": "Is the {toolName} free to use?",
+        "answer": "Yes, our {toolName} is completely free to use. No registration, payment, or subscription required. All features are available at no cost."
+      },
+      {
+        "question": "Is my data secure when using the {toolName}?",
+        "answer": "Yes, all data processing happens entirely in your browser. Your data never leaves your device or gets sent to our servers, ensuring complete privacy and security."
+      },
+      {
+        "question": "Can I use the {toolName} offline?",
+        "answer": "Yes, once the page loads, the tool works completely offline. All processing is done client-side in your browser."
+      },
+      {
+        "question": "Do I need to create an account to use {toolName}?",
+        "answer": "No, you can use all our tools without creating an account. Simply visit the page and start using the tool immediately."
+      },
+      {
+        "question": "How do I use the {toolName}?",
+        "answer": "Simply paste or type your content into the {toolName} and get instant results. The tool provides real-time processing with immediate feedback and validation."
+      }
+    ]
   }
 }

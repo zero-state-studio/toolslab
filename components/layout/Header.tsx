@@ -150,7 +150,7 @@ export function Header() {
               )}
             >
               <Beaker className="h-3.5 w-3.5" />
-              The Lab
+              {common?.nav?.lab || 'The Lab'}
               {mounted && isHydrated && newFavoritesCount > 0 && (
                 <span className="rounded-full bg-pg-accent px-1.5 py-px font-mono text-[10px] font-medium text-white">
                   {newFavoritesCount}
@@ -170,7 +170,7 @@ export function Header() {
             aria-label="Open command palette"
           >
             <Search className="h-3.5 w-3.5" />
-            <span className="flex-1 text-left">Search tools…</span>
+            <span className="flex-1 text-left">{common?.nav?.searchPlaceholder || 'Search tools…'}</span>
             <span className="pg-kbd">⌘K</span>
           </button>
 
@@ -251,7 +251,7 @@ export function Header() {
             className="mb-4 flex w-full items-center gap-2 rounded-lg border border-pg-border bg-pg-surface px-3 py-2 text-[13px] text-pg-muted"
           >
             <Search className="h-3.5 w-3.5" />
-            <span className="flex-1 text-left">Search tools…</span>
+            <span className="flex-1 text-left">{common?.nav?.searchPlaceholder || 'Search tools…'}</span>
             <span className="pg-kbd">⌘K</span>
           </button>
 

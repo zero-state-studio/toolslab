@@ -33,6 +33,11 @@ export async function generateToolSchema(toolId: string, locale: Locale = 'en') 
   const categoryName = tool.categories[0] || 'dev';
   const inLanguage = localeToLanguageTag[locale] || 'en-US';
 
+  // FAQ must match the declared inLanguage: use localized templates and the
+  // localized tool title, falling back to English when missing.
+  const faqTemplates = await loadFaqSchemaTemplates(locale);
+  const localizedToolName = seo.title || tool.name;
+
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -121,7 +126,7 @@ export async function generateToolSchema(toolId: string, locale: Locale = 'en') 
       {
         '@type': 'FAQPage',
         '@id': `${toolUrl}#faq`,
-        mainEntity: generateToolFAQs(tool.name, toolId),
+        mainEntity: generateToolFAQs(localizedToolName, faqTemplates),
       },
 
       // SoftwareApplication schema (additional coverage)
@@ -183,7 +188,41 @@ function formatCategoryName(slug: string): string {
   );
 }
 
-function generateToolFAQs(toolName: string, toolId: string) {
+interface FaqTemplate {
+  question: string;
+  answer: string;
+}
+
+/**
+ * Load locale-specific FAQ schema templates from common.json
+ * (common.faqSchema, with {toolName} placeholders).
+ */
+async function loadFaqSchemaTemplates(
+  locale: Locale
+): Promise<FaqTemplate[] | null> {
+  try {
+    const mod = await import(`@/lib/i18n/dictionaries/${locale}/common.json`);
+    const templates = (mod.default as any)?.common?.faqSchema;
+    return Array.isArray(templates) && templates.length > 0 ? templates : null;
+  } catch {
+    return null;
+  }
+}
+
+function generateToolFAQs(toolName: string, templates: FaqTemplate[] | null) {
+  if (templates) {
+    const fill = (s: string) => s.replace(/\{toolName\}/g, toolName);
+    return templates.map((t) => ({
+      '@type': 'Question',
+      name: fill(t.question),
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: fill(t.answer),
+      },
+    }));
+  }
+
+  // Fallback: English hardcoded templates
   return [
     {
       '@type': 'Question',

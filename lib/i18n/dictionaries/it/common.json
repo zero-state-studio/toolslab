@@ -10,7 +10,8 @@
       "viewAllTools": "Vedi tutti gli strumenti",
       "home": "Home",
       "relatedTools": "Strumenti Correlati",
-      "sameCategoryTools": "Altri strumenti in questa categoria"
+      "sameCategoryTools": "Altri strumenti in questa categoria",
+      "searchPlaceholder": "Cerca strumenti…"
     },
     "actions": {
       "copy": "Copia",
@@ -130,6 +131,28 @@
       "helpDescription": "Il tuo supporto può aiutarci a coprire i costi del server e riattivare questo servizio. Ogni contributo, per quanto piccolo, fa la differenza.",
       "donateButton": "Offrimi un caffè",
       "thanks": "Grazie per la comprensione e il supporto!"
-    }
+    },
+    "faqSchema": [
+      {
+        "question": "Il {toolName} è gratuito?",
+        "answer": "Sì, il nostro {toolName} è completamente gratuito. Nessuna registrazione, pagamento o abbonamento richiesto. Tutte le funzionalità sono disponibili senza costi."
+      },
+      {
+        "question": "I miei dati sono al sicuro quando uso il {toolName}?",
+        "answer": "Sì, tutta l'elaborazione avviene interamente nel tuo browser. I tuoi dati non lasciano mai il tuo dispositivo e non vengono inviati ai nostri server, garantendo privacy e sicurezza totali."
+      },
+      {
+        "question": "Posso usare il {toolName} offline?",
+        "answer": "Sì, una volta caricata la pagina lo strumento funziona completamente offline. Tutta l'elaborazione avviene lato client nel tuo browser."
+      },
+      {
+        "question": "Devo creare un account per usare {toolName}?",
+        "answer": "No, puoi usare tutti i nostri strumenti senza creare un account. Visita la pagina e inizia subito a usare lo strumento."
+      },
+      {
+        "question": "Come si usa il {toolName}?",
+        "answer": "Incolla o digita il tuo contenuto nel {toolName} e ottieni risultati immediati. Lo strumento elabora in tempo reale con feedback e validazione istantanei."
+      }
+    ]
   }
 }

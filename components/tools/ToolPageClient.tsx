@@ -190,6 +190,11 @@ export default function ToolPageClient({
     theme === 'light' ? 'light' : 'dark'
   );
 
+  // Localized title/description for related-tool cards (loaded server-side
+  // into dictionary.tools as lightweight summaries; falls back to EN registry)
+  const toolT = (id: string) =>
+    (dictionary?.tools?.[id] ?? {}) as { title?: string; description?: string };
+
   const handleShare = async () => {
     const hasNativeShare =
       typeof navigator !== 'undefined' && 'share' in navigator;
@@ -313,7 +318,7 @@ export default function ToolPageClient({
                   color: categoryColor,
                 }}
               >
-                {primaryCategory?.name || categoryId}
+                {categoryName}
               </span>
             }
             labelBadge={
@@ -422,10 +427,11 @@ export default function ToolPageClient({
                       <ToolIcon id={relatedTool.id} className="h-5 w-5" style={{ color: categoryColor }} />
                     </div>
                     <p className="text-sm font-medium text-slate-900 dark:text-white">
-                      {relatedTool.name}
+                      {toolT(relatedTool.id).title || relatedTool.name}
                     </p>
                     <p className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
-                      {relatedTool.description}
+                      {toolT(relatedTool.id).description ||
+                        relatedTool.description}
                     </p>
                   </Link>
                 ))}
@@ -451,10 +457,11 @@ export default function ToolPageClient({
                           <ToolIcon id={categoryTool.id} className="h-5 w-5" style={{ color: categoryColor }} />
                         </div>
                         <p className="text-sm font-medium text-slate-900 dark:text-white">
-                          {categoryTool.name}
+                          {toolT(categoryTool.id).title || categoryTool.name}
                         </p>
                         <p className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
-                          {categoryTool.description}
+                          {toolT(categoryTool.id).description ||
+                            categoryTool.description}
                         </p>
                       </Link>
                     ))}
@@ -509,10 +516,11 @@ export default function ToolPageClient({
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-[12px] font-medium text-pg-text">
-                        {relatedTool.name}
+                        {toolT(relatedTool.id).title || relatedTool.name}
                       </p>
                       <p className="truncate text-[11px] text-pg-dim">
-                        {relatedTool.description}
+                        {toolT(relatedTool.id).description ||
+                          relatedTool.description}
                       </p>
                     </div>
                   </Link>

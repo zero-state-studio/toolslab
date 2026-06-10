@@ -33,6 +33,27 @@ export async function loadToolTranslation(locale: Locale, toolId: string) {
 }
 
 /**
+ * Load only title+description for a list of tools (e.g. related tools).
+ * Keeps the RSC payload small: full translations are loaded only for the
+ * current tool, related ones just need their card title/description.
+ */
+export async function loadToolSummaries(
+  locale: Locale,
+  toolIds: string[]
+): Promise<Record<string, { title?: string; description?: string }>> {
+  const entries = await Promise.all(
+    toolIds.map(async (id) => {
+      const data = await loadToolTranslation(locale, id);
+      return [
+        id,
+        { title: data?.title, description: data?.description },
+      ] as const;
+    })
+  );
+  return Object.fromEntries(entries);
+}
+
+/**
  * Load all tools' translations for a locale
  * @param locale - The locale to load
  * @returns Object with all tool translations
