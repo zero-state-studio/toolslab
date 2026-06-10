@@ -62,7 +62,22 @@ type PaletteExportFormat =
   | 'ios';
 type ViewMode = 'palette' | 'contrast' | 'export';
 
-export default function ColorPicker({ categoryColor }: ColorPickerProps) {
+export default function ColorPicker({
+  categoryColor,
+  dictionary,
+}: ColorPickerProps) {
+  const ui = dictionary?.tools?.['color-picker']?.ui ?? {};
+
+  // Localized labels for data-driven harmony options (EN falls back to slug)
+  const harmonyTypeLabels: Record<string, string | undefined> = {
+    complementary: ui.harmonyComplementary,
+    triadic: ui.harmonyTriadic,
+    analogous: ui.harmonyAnalogous,
+    'split-complementary': ui.harmonySplitComplementary,
+    tetradic: ui.harmonyTetradic,
+    monochromatic: ui.harmonyMonochromatic,
+  };
+
   const { copy: copyToClipboard } = useCopy();
   const { addToHistory } = useToolStore();
 
@@ -647,7 +662,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
 
         {/* Instructions */}
         <div className="mt-2 text-center text-xs text-gray-500 dark:text-gray-400">
-          Click or drag to select color
+          {ui.clickOrDragToSelect || 'Click or drag to select color'}
         </div>
       </div>
     );
@@ -810,7 +825,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
       <div className="space-y-4">
         {/* Harmony Type Selector */}
         <div className="space-y-2">
-          <label className="text-sm font-medium">Harmony Type</label>
+          <label className="text-sm font-medium">
+            {ui.harmonyType || 'Harmony Type'}
+          </label>
           <div className="grid grid-cols-3 gap-2">
             {(
               [
@@ -834,7 +851,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                     : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600'
                 }`}
               >
-                {type.replace('-', ' ')}
+                {harmonyTypeLabels[type] || type.replace('-', ' ')}
               </button>
             ))}
           </div>
@@ -842,7 +859,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
 
         {/* Palette Colors */}
         <div className="space-y-2">
-          <label className="text-sm font-medium">Generated Palette</label>
+          <label className="text-sm font-medium">
+            {ui.generatedPalette || 'Generated Palette'}
+          </label>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
             {colors.map((color, index) => (
               <div
@@ -885,7 +904,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
 
         {/* Tints and Shades */}
         <div className="space-y-2">
-          <label className="text-sm font-medium">Tints & Shades</label>
+          <label className="text-sm font-medium">
+            {ui.tintsAndShades || 'Tints & Shades'}
+          </label>
           <div className="space-y-2">
             <div className="flex gap-2">
               {generateTints(currentColor, 5).map((tint, index) => (
@@ -933,7 +954,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
         {/* Color Blindness Simulator */}
         <div className="space-y-2">
           <label className="text-sm font-medium">
-            Color Blindness Simulator
+            {ui.colorBlindnessSimulator || 'Color Blindness Simulator'}
           </label>
           <select
             value={colorBlindnessType}
@@ -952,15 +973,31 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
             }}
             className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-600 dark:bg-gray-700"
           >
-            <option value="normal">Normal Vision</option>
-            <option value="protanopia">Protanopia (Red-Blind)</option>
-            <option value="protanomaly">Protanomaly (Red-Weak)</option>
-            <option value="deuteranopia">Deuteranopia (Green-Blind)</option>
-            <option value="deuteranomaly">Deuteranomaly (Green-Weak)</option>
-            <option value="tritanopia">Tritanopia (Blue-Blind)</option>
-            <option value="tritanomaly">Tritanomaly (Blue-Weak)</option>
-            <option value="achromatopsia">Achromatopsia (Color-Blind)</option>
-            <option value="achromatomaly">Achromatomaly (Color-Weak)</option>
+            <option value="normal">{ui.visionNormal || 'Normal Vision'}</option>
+            <option value="protanopia">
+              {ui.visionProtanopia || 'Protanopia (Red-Blind)'}
+            </option>
+            <option value="protanomaly">
+              {ui.visionProtanomaly || 'Protanomaly (Red-Weak)'}
+            </option>
+            <option value="deuteranopia">
+              {ui.visionDeuteranopia || 'Deuteranopia (Green-Blind)'}
+            </option>
+            <option value="deuteranomaly">
+              {ui.visionDeuteranomaly || 'Deuteranomaly (Green-Weak)'}
+            </option>
+            <option value="tritanopia">
+              {ui.visionTritanopia || 'Tritanopia (Blue-Blind)'}
+            </option>
+            <option value="tritanomaly">
+              {ui.visionTritanomaly || 'Tritanomaly (Blue-Weak)'}
+            </option>
+            <option value="achromatopsia">
+              {ui.visionAchromatopsia || 'Achromatopsia (Color-Blind)'}
+            </option>
+            <option value="achromatomaly">
+              {ui.visionAchromatomaly || 'Achromatomaly (Color-Weak)'}
+            </option>
           </select>
         </div>
       </div>
@@ -975,7 +1012,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
       <div className="space-y-4">
         {/* Background Color Input */}
         <div className="space-y-2">
-          <label className="text-sm font-medium">Background Color</label>
+          <label className="text-sm font-medium">
+            {ui.backgroundColor || 'Background Color'}
+          </label>
           <div className="flex gap-2">
             <input
               type="text"
@@ -988,7 +1027,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
               onClick={checkContrast}
               className="rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
             >
-              Check Contrast
+              {ui.checkContrast || 'Check Contrast'}
             </button>
           </div>
         </div>
@@ -1003,7 +1042,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                   {contrastResult.ratio}:1
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
-                  Contrast Ratio
+                  {ui.contrastRatio || 'Contrast Ratio'}
                 </div>
               </div>
 
@@ -1013,7 +1052,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                   <h4 className="mb-2 font-medium">WCAG AA</h4>
                   <div className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
-                      <span>Normal Text</span>
+                      <span>{ui.normalText || 'Normal Text'}</span>
                       <span
                         className={
                           contrastResult.AA.normal
@@ -1021,11 +1060,11 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                             : 'text-red-500'
                         }
                       >
-                        {contrastResult.AA.normal ? '✓ Pass' : '✗ Fail'}
+                        {contrastResult.AA.normal ? ui.passLabel || '✓ Pass' : ui.failLabel || '✗ Fail'}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span>Large Text</span>
+                      <span>{ui.largeText || 'Large Text'}</span>
                       <span
                         className={
                           contrastResult.AA.large
@@ -1033,11 +1072,11 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                             : 'text-red-500'
                         }
                       >
-                        {contrastResult.AA.large ? '✓ Pass' : '✗ Fail'}
+                        {contrastResult.AA.large ? ui.passLabel || '✓ Pass' : ui.failLabel || '✗ Fail'}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span>Graphics</span>
+                      <span>{ui.graphics || 'Graphics'}</span>
                       <span
                         className={
                           contrastResult.AA.graphics
@@ -1045,7 +1084,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                             : 'text-red-500'
                         }
                       >
-                        {contrastResult.AA.graphics ? '✓ Pass' : '✗ Fail'}
+                        {contrastResult.AA.graphics ? ui.passLabel || '✓ Pass' : ui.failLabel || '✗ Fail'}
                       </span>
                     </div>
                   </div>
@@ -1055,7 +1094,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                   <h4 className="mb-2 font-medium">WCAG AAA</h4>
                   <div className="space-y-1">
                     <div className="flex items-center justify-between text-sm">
-                      <span>Normal Text</span>
+                      <span>{ui.normalText || 'Normal Text'}</span>
                       <span
                         className={
                           contrastResult.AAA.normal
@@ -1063,11 +1102,11 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                             : 'text-red-500'
                         }
                       >
-                        {contrastResult.AAA.normal ? '✓ Pass' : '✗ Fail'}
+                        {contrastResult.AAA.normal ? ui.passLabel || '✓ Pass' : ui.failLabel || '✗ Fail'}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm">
-                      <span>Large Text</span>
+                      <span>{ui.largeText || 'Large Text'}</span>
                       <span
                         className={
                           contrastResult.AAA.large
@@ -1075,7 +1114,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                             : 'text-red-500'
                         }
                       >
-                        {contrastResult.AAA.large ? '✓ Pass' : '✗ Fail'}
+                        {contrastResult.AAA.large ? ui.passLabel || '✓ Pass' : ui.failLabel || '✗ Fail'}
                       </span>
                     </div>
                   </div>
@@ -1085,7 +1124,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
 
             {/* Preview */}
             <div className="space-y-2">
-              <label className="text-sm font-medium">Preview</label>
+              <label className="text-sm font-medium">
+                {ui.preview || 'Preview'}
+              </label>
               <div
                 className="rounded-lg p-6"
                 style={{
@@ -1093,11 +1134,12 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                   color: currentColor.hex,
                 }}
               >
-                <h3 className="mb-2 text-2xl font-bold">Large Text (18pt+)</h3>
+                <h3 className="mb-2 text-2xl font-bold">
+                  {ui.largeTextSample || 'Large Text (18pt+)'}
+                </h3>
                 <p className="mb-4">
-                  This is normal text (14pt). The quick brown fox jumps over the
-                  lazy dog. Lorem ipsum dolor sit amet, consectetur adipiscing
-                  elit.
+                  {ui.normalTextSample ||
+                    'This is normal text (14pt). The quick brown fox jumps over the lazy dog. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}
                 </p>
                 <button
                   className="rounded px-4 py-2"
@@ -1106,7 +1148,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                     color: backgroundColor,
                   }}
                 >
-                  Button Example
+                  {ui.buttonExample || 'Button Example'}
                 </button>
               </div>
             </div>
@@ -1128,7 +1170,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
       <div className="space-y-4">
         {/* Single Color Export */}
         <div className="space-y-2">
-          <label className="text-sm font-medium">Export Color</label>
+          <label className="text-sm font-medium">
+            {ui.exportColor || 'Export Color'}
+          </label>
           <div className="flex gap-2">
             <select
               value={exportFormat}
@@ -1138,8 +1182,10 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
               <option value="hex">HEX</option>
               <option value="rgb">RGB</option>
               <option value="hsl">HSL</option>
-              <option value="css-variable">CSS Variable</option>
-              <option value="scss">SCSS Variable</option>
+              <option value="css-variable">
+                {ui.cssVariable || 'CSS Variable'}
+              </option>
+              <option value="scss">{ui.scssVariable || 'SCSS Variable'}</option>
             </select>
             <button
               onClick={handleExportColor}
@@ -1155,7 +1201,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
 
         {/* Palette Export */}
         <div className="space-y-2">
-          <label className="text-sm font-medium">Export Palette</label>
+          <label className="text-sm font-medium">
+            {ui.exportPalette || 'Export Palette'}
+          </label>
           <div className="flex gap-2">
             <select
               value={paletteExportFormat}
@@ -1165,8 +1213,10 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
               className="flex-1 rounded-md border border-gray-300 px-3 py-2 dark:border-gray-600 dark:bg-gray-700"
             >
               <option value="json">JSON</option>
-              <option value="css">CSS Variables</option>
-              <option value="scss">SCSS Variables</option>
+              <option value="css">{ui.cssVariables || 'CSS Variables'}</option>
+              <option value="scss">
+                {ui.scssVariables || 'SCSS Variables'}
+              </option>
               <option value="tailwind">Tailwind Config</option>
               <option value="js">JavaScript</option>
               <option value="android">Android XML</option>
@@ -1183,7 +1233,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
 
         {/* Framework Colors */}
         <div className="space-y-2">
-          <label className="text-sm font-medium">Framework Equivalents</label>
+          <label className="text-sm font-medium">
+            {ui.frameworkEquivalents || 'Framework Equivalents'}
+          </label>
           <div className="space-y-2">
             {tailwindColor && (
               <div className="flex items-center justify-between rounded-md border border-gray-200 p-3 dark:border-gray-700">
@@ -1202,7 +1254,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
               </div>
             )}
             <div className="flex items-center justify-between rounded-md border border-gray-200 p-3 dark:border-gray-700">
-              <span className="text-sm">Closest Named Color</span>
+              <span className="text-sm">
+                {ui.closestNamedColor || 'Closest Named Color'}
+              </span>
               <code className="rounded bg-gray-100 px-2 py-1 font-mono text-sm dark:bg-gray-700">
                 {closestNamed}
               </code>
@@ -1212,12 +1266,14 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
 
         {/* Color Information */}
         <div className="space-y-2">
-          <label className="text-sm font-medium">Color Information</label>
+          <label className="text-sm font-medium">
+            {ui.colorInformation || 'Color Information'}
+          </label>
           <div className="rounded-md border border-gray-200 p-4 dark:border-gray-700">
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="text-gray-600 dark:text-gray-400">
-                  Description:
+                  {ui.descriptionLabel || 'Description:'}
                 </span>
                 <div className="font-medium capitalize">
                   {getColorDescription(currentColor)}
@@ -1259,15 +1315,19 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
           {/* Color Preview and Wheel */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-medium">Color Picker</h3>
+              <h3 className="text-lg font-medium">
+                {ui.colorPickerHeading || 'Color Picker'}
+              </h3>
               <div className="flex gap-2">
                 {/* Eyedropper button */}
                 {typeof window !== 'undefined' && 'EyeDropper' in window && (
                   <button
                     onClick={useEyedropper}
                     className="rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    title="Pick color from screen"
-                    aria-label="Pick color from screen"
+                    title={ui.pickColorFromScreen || 'Pick color from screen'}
+                    aria-label={
+                      ui.pickColorFromScreen || 'Pick color from screen'
+                    }
                   >
                     <Pipette className="h-4 w-4" />
                   </button>
@@ -1286,8 +1346,10 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
                 <button
                   onClick={() => fileInputRef.current?.click()}
                   className="rounded-md p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                  title="Extract colors from image"
-                  aria-label="Extract colors from image"
+                  title={ui.extractColorsFromImage || 'Extract colors from image'}
+                  aria-label={
+                    ui.extractColorsFromImage || 'Extract colors from image'
+                  }
                 >
                   <Upload className="h-4 w-4" />
                 </button>
@@ -1308,20 +1370,27 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
               type="text"
               value={inputValue}
               onChange={(e) => handleColorChange(e.target.value)}
-              placeholder="Enter color (HEX, RGB, HSL, or name)"
+              placeholder={
+                ui.enterColorPlaceholder ||
+                'Enter color (HEX, RGB, HSL, or name)'
+              }
               className="w-full rounded-md border border-gray-300 px-3 py-2 dark:border-gray-600 dark:bg-gray-700"
             />
           </div>
 
           {/* Color Inputs */}
           <div className="space-y-4">
-            <h3 className="text-lg font-medium">Color Values</h3>
+            <h3 className="text-lg font-medium">
+              {ui.colorValues || 'Color Values'}
+            </h3>
             {renderColorInputs()}
 
             {/* Recent Colors */}
             {recentColors.length > 0 && (
               <div className="space-y-2">
-                <label className="text-sm font-medium">Recent Colors</label>
+                <label className="text-sm font-medium">
+                  {ui.recentColors || 'Recent Colors'}
+                </label>
                 <div className="flex flex-wrap gap-2">
                   {recentColors.map((color, index) => (
                     <button
@@ -1342,7 +1411,9 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
             {/* Favorite Colors */}
             {favoriteColors.length > 0 && (
               <div className="space-y-2">
-                <label className="text-sm font-medium">Favorite Colors</label>
+                <label className="text-sm font-medium">
+                  {ui.favoriteColors || 'Favorite Colors'}
+                </label>
                 <div className="flex flex-wrap gap-2">
                   {favoriteColors.map((color, index) => (
                     <button
@@ -1375,7 +1446,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
             }`}
           >
             <Grid3x3 className="h-4 w-4" />
-            Palette
+            {ui.tabPalette || 'Palette'}
           </button>
           <button
             onClick={() => setViewMode('contrast')}
@@ -1386,7 +1457,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
             }`}
           >
             <Contrast className="h-4 w-4" />
-            Contrast
+            {ui.tabContrast || 'Contrast'}
           </button>
           <button
             onClick={() => setViewMode('export')}
@@ -1397,7 +1468,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
             }`}
           >
             <Code className="h-4 w-4" />
-            Export
+            {ui.tabExport || 'Export'}
           </button>
         </div>
 
@@ -1416,7 +1487,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="rounded-lg bg-white p-6 dark:bg-gray-800">
             <RefreshCw className="h-8 w-8 animate-spin text-blue-500" />
-            <p className="mt-2">Processing...</p>
+            <p className="mt-2">{ui.processing || 'Processing...'}</p>
           </div>
         </div>
       )}
