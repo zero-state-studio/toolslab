@@ -11,14 +11,23 @@ interface CategoryToolCardProps {
   hue: number;
   Icon: LucideIcon;
   href?: string;
+  runsWord?: string;
 }
 
-export function CategoryToolCard({ tool, hue, Icon, href }: CategoryToolCardProps) {
+export function CategoryToolCard({
+  tool,
+  hue,
+  Icon,
+  href,
+  runsWord = 'runs',
+}: CategoryToolCardProps) {
   const isHot = tool.label === 'popular';
   const isComingSoon = tool.label === 'coming-soon';
   const runs = Math.max(1, Math.round((tool.searchVolume ?? 1500) / 30));
   const runsLabel =
-    runs >= 1000 ? `~${Math.round(runs / 1000)}k runs` : `~${runs} runs`;
+    runs >= 1000
+      ? `~${Math.round(runs / 1000)}k ${runsWord}`
+      : `~${runs} ${runsWord}`;
 
   const Wrapper: any = isComingSoon ? 'div' : Link;
   const wrapperProps = isComingSoon
