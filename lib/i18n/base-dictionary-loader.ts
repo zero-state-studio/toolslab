@@ -110,6 +110,7 @@ export function validateSections(sections?: string[]): boolean {
     'common',
     'home',
     'tools',
+    'tools-summaries',
     'categories',
     'footer',
     'seo',

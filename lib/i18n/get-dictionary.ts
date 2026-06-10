@@ -5,7 +5,10 @@ import {
   BaseDictionaryLoader,
   validateSections,
 } from './base-dictionary-loader';
-import { loadAllToolsTranslations } from './load-tools';
+import {
+  loadAllToolsTranslations,
+  loadAllToolsSummaries,
+} from './load-tools';
 
 // Re-export type for convenience in server components
 export type { Dictionary } from './types';
@@ -33,6 +36,19 @@ class ServerDictionaryLoader extends BaseDictionaryLoader {
 
     await Promise.all(
       sections.map(async (section) => {
+        // Lightweight tools section: title+description only (client chrome)
+        if (section === 'tools-summaries') {
+          try {
+            const summaries = await loadAllToolsSummaries(locale);
+            Object.assign(dictionary, summaries);
+          } catch {
+            console.warn(
+              `Tools summaries not loadable for locale "${locale}", skipping`
+            );
+          }
+          return;
+        }
+
         // Special handling for 'tools' section - load from granular files
         if (section === 'tools') {
           try {
