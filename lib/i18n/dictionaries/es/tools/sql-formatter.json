@@ -103,5 +103,14 @@
   "meta": {
     "title": "Formateador SQL - Herramienta Online Gratuita",
     "description": "Formatea y embellece consultas SQL en línea gratis. MySQL, PostgreSQL, SQLite. Indentación automática, resaltado de sintaxis. Sin registro ni instalación."
+  },
+  "usageTips": {
+    "title": "Consejos de Uso",
+    "tips": [
+      "Usa la detección automática de dialecto para el mejor reconocimiento de palabras clave",
+      "Elige palabras clave en mayúsculas para mejor legibilidad y estándares",
+      "Activa la conservación de comentarios para mantener documentación importante",
+      "Usa indentación de 4 espacios para un equilibrio óptimo de legibilidad"
+    ]
   }
 }

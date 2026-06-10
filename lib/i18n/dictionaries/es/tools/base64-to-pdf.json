@@ -80,5 +80,14 @@
         "description": "Descargar PDF"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Consejos de Uso",
+    "tips": [
+      "Los datos Base64 de un PDF válido comienzan con \"JVBERi0\" al decodificarse",
+      "Elimina los prefijos de data URL como \"data:application/pdf;base64,\" antes de pegar",
+      "Los archivos grandes pueden tardar más en procesarse — ten paciencia con PDFs pesados",
+      "La herramienta valida las cabeceras PDF para asegurar que los datos sean un PDF válido"
+    ]
   }
 }

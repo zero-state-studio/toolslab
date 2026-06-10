@@ -175,6 +175,12 @@ export default function ToolPageClient({
     allTools: commonDict?.nav?.allTools || 'All Tools',
     toolName: toolTranslations?.title || tool.name,
     toolDescription: toolTranslations?.description || tool.description,
+    donationEnjoying: commonDict?.donation?.enjoying || 'Enjoying ToolsLab?',
+    donationShare:
+      commonDict?.donation?.share ||
+      'Share it or buy me a coffee to keep it free ☕',
+    donationCoffee:
+      commonDict?.donation?.coffee || 'Buy me a coffee to keep it free.',
   };
 
   // Get primary category information
@@ -400,10 +406,10 @@ export default function ToolPageClient({
                   </span>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">
-                      Enjoying ToolsLab?
+                      {t.donationEnjoying}
                     </p>
                     <p className="text-xs text-amber-600/80 dark:text-amber-500/80">
-                      Share it or buy me a coffee to keep it free ☕
+                      {t.donationShare}
                     </p>
                   </div>
                   <ArrowRight className="h-4 w-4 text-amber-500/60 transition-colors group-hover:text-amber-500" />
@@ -544,9 +550,11 @@ export default function ToolPageClient({
               <div className="flex items-center gap-2.5">
                 <span className="text-xl transition-transform duration-200 group-hover:scale-110">☕</span>
                 <div className="flex-1">
-                  <p className="text-[13px] font-semibold text-pg-text">Enjoying ToolsLab?</p>
+                  <p className="text-[13px] font-semibold text-pg-text">
+                    {t.donationEnjoying}
+                  </p>
                   <p className="text-[11px] text-pg-muted">
-                    Buy me a coffee to keep it free.
+                    {t.donationCoffee}
                   </p>
                 </div>
                 <ArrowRight className="h-3.5 w-3.5 text-pg-muted transition-colors group-hover:text-pg-text" />

@@ -153,6 +153,11 @@
         "question": "¿Cómo se usa el {toolName}?",
         "answer": "Simplemente pega o escribe tu contenido en el {toolName} y obtén resultados al instante. La herramienta procesa en tiempo real con validación inmediata."
       }
-    ]
+    ],
+    "donation": {
+      "enjoying": "¿Te gusta ToolsLab?",
+      "share": "Compártelo o invítame a un café para mantenerlo gratis ☕",
+      "coffee": "Invítame a un café para mantenerlo gratis."
+    }
   }
 }

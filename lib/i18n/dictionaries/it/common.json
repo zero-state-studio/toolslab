@@ -153,6 +153,11 @@
         "question": "Come si usa il {toolName}?",
         "answer": "Incolla o digita il tuo contenuto nel {toolName} e ottieni risultati immediati. Lo strumento elabora in tempo reale con feedback e validazione istantanei."
       }
-    ]
+    ],
+    "donation": {
+      "enjoying": "Ti piace ToolsLab?",
+      "share": "Condividilo o offrimi un caffè per mantenerlo gratuito ☕",
+      "coffee": "Offrimi un caffè per mantenerlo gratuito."
+    }
   }
 }

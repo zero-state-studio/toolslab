@@ -153,6 +153,11 @@
         "question": "How do I use the {toolName}?",
         "answer": "Simply paste or type your content into the {toolName} and get instant results. The tool provides real-time processing with immediate feedback and validation."
       }
-    ]
+    ],
+    "donation": {
+      "enjoying": "Enjoying ToolsLab?",
+      "share": "Share it or buy me a coffee to keep it free ☕",
+      "coffee": "Buy me a coffee to keep it free."
+    }
   }
 }
