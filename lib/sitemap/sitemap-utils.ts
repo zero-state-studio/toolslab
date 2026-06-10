@@ -150,19 +150,31 @@ export function generateHreflangAlternates(path: string): Array<{
 }
 
 /**
- * Generate sitemap URLs for a specific locale
+ * Generate sitemap URLs for a specific locale.
+ *
+ * lastmod is resolved PER-URL to avoid churn: a previously published URL keeps
+ * the date it already had in the live sitemap (passed via `existingLastmod`),
+ * and only genuinely new URLs receive `fallbackLastmod` (today). Stamping
+ * `new Date()` on every URL — the old behaviour — told Google "all 516 URLs
+ * changed today" on every regen, a noisy signal that suppresses crawl.
  */
-export function generateSitemapURLs(locale: Locale): SitemapURL[] {
+export function generateSitemapURLs(
+  locale: Locale,
+  existingLastmod?: Map<string, string>,
+  fallbackLastmod: string = new Date().toISOString().split('T')[0]
+): SitemapURL[] {
   const pages = getAllPages();
-  const lastmod = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
 
-  return pages.map((page) => ({
-    url: getAbsoluteUrl(locale, page.path),
-    lastmod,
-    changefreq: page.changefreq,
-    priority: page.priority,
-    alternates: generateHreflangAlternates(page.path),
-  }));
+  return pages.map((page) => {
+    const url = getAbsoluteUrl(locale, page.path);
+    return {
+      url,
+      lastmod: existingLastmod?.get(url) ?? fallbackLastmod,
+      changefreq: page.changefreq,
+      priority: page.priority,
+      alternates: generateHreflangAlternates(page.path),
+    };
+  });
 }
 
 /**
@@ -190,8 +202,12 @@ ${alternatesXML}
 /**
  * Generate complete sitemap XML for a locale
  */
-export function generateSitemapXML(locale: Locale): string {
-  const urls = generateSitemapURLs(locale);
+export function generateSitemapXML(
+  locale: Locale,
+  existingLastmod?: Map<string, string>,
+  fallbackLastmod?: string
+): string {
+  const urls = generateSitemapURLs(locale, existingLastmod, fallbackLastmod);
   const urlsXML = urls.map(generateURLXML).join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -202,18 +218,24 @@ ${urlsXML}
 }
 
 /**
- * Generate sitemap index XML
+ * Generate sitemap index XML.
+ *
+ * Each locale entry's lastmod should reflect when that locale sitemap actually
+ * changed, not the regen date. Pass `perLocaleLastmod` (locale → newest URL
+ * lastmod in that sitemap); locales absent from the map fall back to today.
  */
-export function generateSitemapIndexXML(): string {
-  const lastmod = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-
+export function generateSitemapIndexXML(
+  perLocaleLastmod?: Partial<Record<Locale, string>>,
+  fallbackLastmod: string = new Date().toISOString().split('T')[0]
+): string {
   const sitemapsXML = locales
-    .map(
-      (locale) => `  <sitemap>
+    .map((locale) => {
+      const lastmod = perLocaleLastmod?.[locale as Locale] ?? fallbackLastmod;
+      return `  <sitemap>
     <loc>${SITE_URL}/sitemap-${locale}.xml</loc>
     <lastmod>${lastmod}</lastmod>
-  </sitemap>`
-    )
+  </sitemap>`;
+    })
     .join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>

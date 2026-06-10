@@ -15,6 +15,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
@@ -48,7 +49,8 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
 
   const { copied, copy } = useCopy();
   const { downloadJSON } = useDownload();
-  const { trackUse, trackCustom, trackError } = useToolTracking('csv-to-json');
+  const { trackCustom, trackError } = useToolTracking('csv-to-json');
+  const { addToHistory } = useToolStore();
   const { resultRef, scrollToResult } = useScrollToResult({
     delay: 300, // Aumentato delay per aspettare il render completo
   });
@@ -67,6 +69,8 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
       setStats(null);
       return;
     }
+
+    const startTime = Date.now();
 
     try {
       setError(null);
@@ -112,6 +116,15 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
       setConvertSuccess(true);
       setTimeout(() => setConvertSuccess(false), 3000);
 
+      // Auto-tracking via centralized analytics
+      addToHistory({
+        id: crypto.randomUUID(),
+        tool: 'csv-to-json',
+        input,
+        output: jsonString,
+        timestamp: startTime,
+      });
+
       // Track successful conversion
       trackCustom({
         inputSize: input.length,
@@ -140,9 +153,9 @@ export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
     nullValues,
     outputFormat,
     minifyOutput,
-    trackUse,
     trackError,
     trackCustom,
+    addToHistory,
   ]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {

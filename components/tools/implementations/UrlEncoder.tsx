@@ -34,6 +34,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 import { BaseToolProps } from '@/lib/types/tools';
 
 interface UrlEncoderProps extends BaseToolProps {}
@@ -45,7 +46,8 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
   const [isProcessing, setIsProcessing] = useState(false);
   const { copied, copy } = useCopy();
   const { downloadText } = useDownload();
-  const { trackUse, trackCustom, trackError } = useToolTracking('url-encode');
+  const { trackCustom, trackError } = useToolTracking('url-encode');
+  const { addToHistory } = useToolStore();
 
   // Processing options
   const [options, setOptions] = useState<UrlEncodeOptions>({
@@ -87,17 +89,28 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
     setIsProcessing(true);
     setError(null);
 
+    const startTime = Date.now();
+
     try {
       if (batchMode) {
         // Process multiple URLs
         const urls = input.split('\n').filter((url) => url.trim());
         const result = processUrls(urls, options);
         setBatchResults(result.results);
-        setOutput(
-          result.results
-            .map((r) => (r.success ? r.result : `ERROR: ${r.error}`))
-            .join('\n')
-        );
+        const batchOutput = result.results
+          .map((r) => (r.success ? r.result : `ERROR: ${r.error}`))
+          .join('\n');
+        setOutput(batchOutput);
+
+        if (batchOutput) {
+          addToHistory({
+            id: crypto.randomUUID(),
+            tool: 'url-encode',
+            input,
+            output: batchOutput,
+            timestamp: startTime,
+          });
+        }
       } else {
         // Process single URL
         const result = processUrl(input, options);
@@ -116,6 +129,16 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
             success: true,
             operation: result.detectedOperation,
           });
+
+          if (result.result) {
+            addToHistory({
+              id: crypto.randomUUID(),
+              tool: 'url-encode',
+              input,
+              output: result.result,
+              timestamp: startTime,
+            });
+          }
 
           // Parse query parameters if URL has them
           if (result.metadata?.hasQueryParams && input.includes('?')) {
@@ -145,7 +168,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
     } finally {
       setIsProcessing(false);
     }
-  }, [input, options, batchMode, trackUse, trackError]);
+  }, [input, options, batchMode, trackError, addToHistory]);
 
   // Auto-process when input changes
   useEffect(() => {

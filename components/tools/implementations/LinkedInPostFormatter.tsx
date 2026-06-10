@@ -22,6 +22,7 @@ import { BaseToolProps } from '@/lib/types/tools';
 import { useToolStore } from '@/lib/store/toolStore';
 import { useHydration } from '@/lib/hooks/useHydration';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
+import AdBanner from '@/components/ads/AdBanner';
 import {
   toBold,
   toItalic,
@@ -508,6 +509,14 @@ export default function LinkedInPostFormatter({
             )}
           </button>
         </div>
+
+        {/* Ad: mobile only — above tips */}
+        <AdBanner
+          className="lg:hidden"
+          minHeight={100}
+          maxHeight={280}
+          slot="5833147302"
+        />
 
         {/* Tips */}
         <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">

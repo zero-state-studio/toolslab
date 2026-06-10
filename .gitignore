@@ -273,3 +273,5 @@ local-config/
 !data/admin.db
 data/admin.db-wal
 data/admin.db-shm
+# graphify knowledge-graph output (local-only, regenerable)
+graphify-out/

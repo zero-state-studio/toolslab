@@ -18,7 +18,7 @@ const items = [
   {
     icon: Heart,
     title: 'Free forever',
-    desc: 'No ads, no paywalls',
+    desc: 'No paywalls, no signups',
     colorVar: 'var(--pg-accent-2)',
   },
   {

@@ -26,12 +26,129 @@ interface CategoryWithStats {
   totalSearchVolume: number;
 }
 
-export default function CategoriesHubContentSimple(
-  _props?: CategoriesHubContentSimpleProps
-) {
+// Hub-specific UI strings. These don't live in the JSON dictionaries (which
+// only hold category name/description), so they're localized inline here —
+// same pattern as LocaleCategoryPageContent. Category names/descriptions still
+// come from dictionary.categories[id].
+type HubUI = {
+  home: string;
+  categories: string;
+  subtitle: string;
+  tools: string;
+  monthlySearches: string;
+  trending: string;
+  filterPlaceholder: string;
+  grid: string;
+  list: string;
+  toolSingular: string;
+  toolPlural: string;
+  top: string;
+  more: string;
+};
+
+const hubUIByLocale: Record<Locale, HubUI> = {
+  en: {
+    home: 'Home',
+    categories: 'Categories',
+    subtitle: 'Every tool grouped by what it does. Pick a lane.',
+    tools: 'tools',
+    monthlySearches: 'monthly searches',
+    trending: 'trending',
+    filterPlaceholder: 'Filter categories…',
+    grid: 'Grid',
+    list: 'List',
+    toolSingular: 'tool',
+    toolPlural: 'tools',
+    top: 'Top:',
+    more: 'more',
+  },
+  it: {
+    home: 'Home',
+    categories: 'Categorie',
+    subtitle: 'Ogni strumento raggruppato per funzione. Scegli la tua corsia.',
+    tools: 'strumenti',
+    monthlySearches: 'ricerche mensili',
+    trending: 'di tendenza',
+    filterPlaceholder: 'Filtra categorie…',
+    grid: 'Griglia',
+    list: 'Elenco',
+    toolSingular: 'strumento',
+    toolPlural: 'strumenti',
+    top: 'Top:',
+    more: 'altri',
+  },
+  es: {
+    home: 'Inicio',
+    categories: 'Categorías',
+    subtitle: 'Cada herramienta agrupada por su función. Elige tu camino.',
+    tools: 'herramientas',
+    monthlySearches: 'búsquedas mensuales',
+    trending: 'en tendencia',
+    filterPlaceholder: 'Filtrar categorías…',
+    grid: 'Cuadrícula',
+    list: 'Lista',
+    toolSingular: 'herramienta',
+    toolPlural: 'herramientas',
+    top: 'Top:',
+    more: 'más',
+  },
+  fr: {
+    home: 'Accueil',
+    categories: 'Catégories',
+    subtitle: 'Chaque outil regroupé par fonction. Choisissez votre voie.',
+    tools: 'outils',
+    monthlySearches: 'recherches mensuelles',
+    trending: 'tendances',
+    filterPlaceholder: 'Filtrer les catégories…',
+    grid: 'Grille',
+    list: 'Liste',
+    toolSingular: 'outil',
+    toolPlural: 'outils',
+    top: 'Top :',
+    more: 'autres',
+  },
+  de: {
+    home: 'Startseite',
+    categories: 'Kategorien',
+    subtitle: 'Jedes Tool nach Funktion gruppiert. Wähle deine Richtung.',
+    tools: 'Tools',
+    monthlySearches: 'monatliche Suchen',
+    trending: 'im Trend',
+    filterPlaceholder: 'Kategorien filtern…',
+    grid: 'Raster',
+    list: 'Liste',
+    toolSingular: 'Tool',
+    toolPlural: 'Tools',
+    top: 'Top:',
+    more: 'weitere',
+  },
+  pt: {
+    home: 'Início',
+    categories: 'Categorias',
+    subtitle: 'Cada ferramenta agrupada pelo que faz. Escolha o seu caminho.',
+    tools: 'ferramentas',
+    monthlySearches: 'pesquisas mensais',
+    trending: 'em alta',
+    filterPlaceholder: 'Filtrar categorias…',
+    grid: 'Grade',
+    list: 'Lista',
+    toolSingular: 'ferramenta',
+    toolPlural: 'ferramentas',
+    top: 'Top:',
+    more: 'mais',
+  },
+};
+
+export default function CategoriesHubContentSimple({
+  locale = 'en',
+  dictionary,
+}: CategoriesHubContentSimpleProps = {}) {
   const { createHref } = useLocalizedRouter();
   const [q, setQ] = useState('');
   const [view, setView] = useState<'grid' | 'list'>('grid');
+
+  const ui = hubUIByLocale[locale] ?? hubUIByLocale.en;
+  const catDict = dictionary?.categories;
 
   const enriched: CategoryWithStats[] = useMemo(
     () =>
@@ -46,12 +163,14 @@ export default function CategoriesHubContentSimple(
         );
         return {
           ...cat,
+          name: catDict?.[cat.id]?.name || cat.name,
+          description: catDict?.[cat.id]?.description || cat.description,
           toolCount: tools.length,
           topTool: sorted[0] ?? null,
           totalSearchVolume,
         };
       }),
-    []
+    [catDict]
   );
 
   const totals = useMemo(
@@ -87,20 +206,20 @@ export default function CategoriesHubContentSimple(
     <div className="pg-container py-12">
       <div className="mb-8">
         <div className="mb-2 text-[13px] text-pg-muted">
-          <Link href={createHref('/')} className="hover:text-pg-text">Home</Link>{' '}
-          › <span className="text-pg-text">Categories</span>
+          <Link href={createHref('/')} className="hover:text-pg-text">{ui.home}</Link>{' '}
+          › <span className="text-pg-text">{ui.categories}</span>
         </div>
         <h1 className="text-[44px] font-bold leading-tight tracking-[-0.025em] text-pg-text">
-          Categories<span className="font-medium text-pg-muted"> · {categories.length}</span>
+          {ui.categories}<span className="font-medium text-pg-muted"> · {categories.length}</span>
         </h1>
         <p className="mt-1 text-[16px] text-pg-muted">
-          Every tool grouped by what it does. Pick a lane.
+          {ui.subtitle}
         </p>
 
         <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-pg-muted">
           <span className="inline-flex items-center gap-1.5">
             <span className="font-mono tabular-nums text-pg-text">{totals.tools}</span>
-            tools
+            {ui.tools}
           </span>
           <span aria-hidden className="text-pg-dim">·</span>
           <span className="inline-flex items-center gap-1.5">
@@ -108,12 +227,12 @@ export default function CategoriesHubContentSimple(
             <span className="font-mono tabular-nums text-pg-text">
               {formatSearches(totals.searches)}
             </span>
-            monthly searches
+            {ui.monthlySearches}
           </span>
           <span aria-hidden className="text-pg-dim">·</span>
           <span className="inline-flex items-center gap-1.5">
             <Flame className="h-3.5 w-3.5 text-pg-accent-3" />
-            trending
+            {ui.trending}
             {trending.map((c, i) => (
               <span key={c.id} className="text-pg-text">
                 {c.name}
@@ -131,7 +250,7 @@ export default function CategoriesHubContentSimple(
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
-            placeholder="Filter categories…"
+            placeholder={ui.filterPlaceholder}
             className="w-full rounded-[10px] border border-pg-border bg-pg-surface py-2.5 pl-9 pr-3 text-[14px] text-pg-text outline-none placeholder:text-pg-muted focus:border-pg-border-hi"
           />
         </div>
@@ -144,9 +263,9 @@ export default function CategoriesHubContentSimple(
                 ? 'bg-pg-surface-hi text-pg-text'
                 : 'text-pg-muted hover:text-pg-text'
             )}
-            aria-label="Grid view"
+            aria-label={ui.grid}
           >
-            <LayoutGrid className="h-3.5 w-3.5" /> Grid
+            <LayoutGrid className="h-3.5 w-3.5" /> {ui.grid}
           </button>
           <button
             onClick={() => setView('list')}
@@ -156,9 +275,9 @@ export default function CategoriesHubContentSimple(
                 ? 'bg-pg-surface-hi text-pg-text'
                 : 'text-pg-muted hover:text-pg-text'
             )}
-            aria-label="List view"
+            aria-label={ui.list}
           >
-            <Rows3 className="h-3.5 w-3.5" /> List
+            <Rows3 className="h-3.5 w-3.5" /> {ui.list}
           </button>
         </div>
       </div>
@@ -198,7 +317,8 @@ export default function CategoriesHubContentSimple(
                   <div className="flex items-center gap-2">
                     <h3 className="text-[18px] font-bold text-pg-text">{cat.name}</h3>
                     <span className="text-[12px] tabular-nums text-pg-dim">
-                      {cat.toolCount} {cat.toolCount === 1 ? 'tool' : 'tools'}
+                      {cat.toolCount}{' '}
+                      {cat.toolCount === 1 ? ui.toolSingular : ui.toolPlural}
                     </span>
                     {cat.totalSearchVolume > 0 && (
                       <span className="text-[12px] tabular-nums text-pg-dim">
@@ -211,7 +331,7 @@ export default function CategoriesHubContentSimple(
                   {cat.topTool && (
                     <div className="mt-2.5 inline-flex items-center gap-1.5 text-[12px] text-pg-muted">
                       <Flame className="h-3 w-3 text-pg-accent-3" />
-                      <span>Top:</span>
+                      <span>{ui.top}</span>
                       <span className="font-medium text-pg-text">
                         {cat.topTool.name}
                       </span>
@@ -230,7 +350,7 @@ export default function CategoriesHubContentSimple(
                       ))}
                       {rest > 0 && (
                         <span className="px-2 py-1 text-[12px] text-pg-accent">
-                          +{rest} more
+                          +{rest} {ui.more}
                         </span>
                       )}
                     </div>

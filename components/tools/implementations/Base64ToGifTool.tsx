@@ -28,6 +28,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
+import AdBanner from '@/components/ads/AdBanner';
 
 interface Base64ToGifToolProps {
   categoryColor: string;
@@ -551,6 +552,14 @@ export default function Base64ToGifTool({
           </div>
         </div>
       )}
+
+      {/* Ad: mobile only — above usage tips */}
+      <AdBanner
+        className="lg:hidden"
+        minHeight={100}
+        maxHeight={280}
+        slot="5833147302"
+      />
 
       {/* Usage Tips */}
       <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">

@@ -133,7 +133,7 @@
       "intro": "ToolsLab vereint über 50 wichtige Entwickler-Tools auf einer schnellen, datenschutzorientierten Plattform. Ob Sie JSON formatieren, Base64 dekodieren, UUIDs generieren oder JWTs validieren müssen - wir haben alles für Sie. Unsere Tools sind darauf ausgelegt, Ihnen Zeit zu sparen und Ihren Entwicklungs-Workflow zu optimieren.",
       "builtForDevs": {
         "title": "Von Entwicklern für Entwickler erstellt",
-        "description": "Jedes Tool ist auf Geschwindigkeit und Genauigkeit optimiert. Keine störende Werbung in Ihrem Arbeitsbereich, keine Tracking-Cookies, die Ihnen folgen, keine obligatorischen Anmeldungen, die Ihren Zugang blockieren. Nur reine Funktionalität, die Ihre Privatsphäre und Zeit respektiert. Wir verstehen die Frustration über überladene Tool-Seiten, deshalb haben wir etwas Besseres entwickelt."
+        "description": "Jedes Tool ist auf Geschwindigkeit und Genauigkeit optimiert. Keine Tracking-Cookies, die Ihnen folgen, keine obligatorischen Anmeldungen, die Ihren Zugang blockieren. Nur reine Funktionalität, die Ihre Privatsphäre und Zeit respektiert. Wir verstehen die Frustration über überladene Tool-Seiten, deshalb haben wir etwas Besseres entwickelt."
       },
       "ctaBox": {
         "title": "Bereit, Ihren Entwicklungs-Workflow zu beschleunigen?",
@@ -160,7 +160,7 @@
       "faqs": {
         "different": {
           "question": "Was unterscheidet ToolsLab von anderen Entwickler-Tool-Seiten?",
-          "answer": "Im Gegensatz zu anderen Tool-Seiten verarbeitet ToolsLab alles lokal in Ihrem Browser mit WebAssembly und Web Workers. Das bedeutet keine Datenspeicherung, sofortige Verarbeitung und vollständige Privatsphäre. Wir bieten auch einzigartige Funktionen wie Tool-Verkettung für komplexe Workflows und eine saubere, werbefreie Oberfläche."
+          "answer": "Im Gegensatz zu anderen Tool-Seiten verarbeitet ToolsLab alles lokal in Ihrem Browser mit WebAssembly und Web Workers. Das bedeutet keine Datenspeicherung, sofortige Verarbeitung und vollständige Privatsphäre. Wir bieten auch einzigartige Funktionen wie Tool-Verkettung für komplexe Workflows und eine saubere, ablenkungsfreie Oberfläche."
         },
         "free": {
           "question": "Ist ToolsLab wirklich kostenlos? Was ist der Haken?",

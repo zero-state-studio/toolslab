@@ -19,6 +19,7 @@ import { useToolStore } from '@/lib/store/toolStore';
 import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 import { BaseToolProps } from '@/lib/types/tools';
 import { ServiceSuspendedCard } from '../ServiceSuspendedCard';
+import AdBanner from '@/components/ads/AdBanner';
 
 interface PdfToWordProps extends BaseToolProps {}
 
@@ -492,6 +493,14 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
           </Card>
         )}
       </div>
+
+      {/* Ad: mobile only — above tips */}
+      <AdBanner
+        className="lg:hidden"
+        minHeight={100}
+        maxHeight={280}
+        slot="5833147302"
+      />
 
       {/* Tips */}
       {files.length === 0 && (

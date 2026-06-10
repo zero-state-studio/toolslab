@@ -193,12 +193,13 @@ export default function RootLayout({
             />
           )}
         {/* Google AdSense - consent handled by Google CMP (Privacy & messaging) */}
+        {/* lazyOnload: ads must not compete with hydration for mobile CPU/bandwidth (INP) */}
         {process.env.NEXT_PUBLIC_ENABLE_ADS === 'true' &&
           process.env.NEXT_PUBLIC_ADSENSE_CLIENT && (
             <Script
               id="adsbygoogle-init"
               src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT}`}
-              strategy="afterInteractive"
+              strategy="lazyOnload"
               crossOrigin="anonymous"
             />
           )}

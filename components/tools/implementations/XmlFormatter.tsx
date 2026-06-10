@@ -26,6 +26,7 @@ import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
   formatXml,
@@ -86,8 +87,8 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
     string
   >();
   const { downloadText } = useDownload();
-  const { trackUse, trackCustom, trackError } =
-    useToolTracking('xml-formatter');
+  const { trackCustom, trackError } = useToolTracking('xml-formatter');
+  const { addToHistory } = useToolStore();
 
   const formatXmlContent = () => {
     if (!input.trim()) {
@@ -97,6 +98,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
       return;
     }
 
+    const startTime = Date.now();
     try {
       const options: XmlFormatterOptions = {
         indentSize,
@@ -143,6 +145,16 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
         mode: 'format',
       });
 
+      if (result) {
+        addToHistory({
+          id: crypto.randomUUID(),
+          tool: 'xml-formatter',
+          input,
+          output: result,
+          timestamp: startTime,
+        });
+      }
+
       // Auto-scroll to output
       setTimeout(() => {
         outputRef.current?.scrollIntoView({
@@ -166,6 +178,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
       return;
     }
 
+    const startTime = Date.now();
     try {
       const result = processSync(input, (inputText) => {
         const minifyResult = minifyXml(inputText);
@@ -185,6 +198,16 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
         success: true,
         mode: 'minify',
       });
+
+      if (result) {
+        addToHistory({
+          id: crypto.randomUUID(),
+          tool: 'xml-formatter',
+          input,
+          output: result,
+          timestamp: startTime,
+        });
+      }
     } catch (err) {
       // Track error
       trackError(
