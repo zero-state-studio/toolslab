@@ -100,7 +100,7 @@ export async function generateMetadata({
       url: `https://toolslab.dev/tools/${params.tool}`,
       images: [
         {
-          url: `/tools/${params.tool}/opengraph-image.png`,
+          url: `/tools/${params.tool}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: `${tool.name} - ToolsLab`,
@@ -113,7 +113,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `${tool.name} - ToolsLab`,
       description: toolData?.meta?.description || tool.description,
-      images: [`/tools/${params.tool}/opengraph-image.png`],
+      images: [`/tools/${params.tool}/twitter-image`],
       creator: '@toolslab',
     },
 

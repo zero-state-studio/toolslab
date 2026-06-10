@@ -171,7 +171,7 @@ export async function generateMetadata({
       url: `https://toolslab.dev${getLocalizedPath(`/tools/${toolId}`, locale as Locale)}`,
       images: [
         {
-          url: `/tools/${toolId}/opengraph-image.png`,
+          url: `/tools/${toolId}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: `${toolDict?.title || tool.name} - ToolsLab`,
@@ -183,7 +183,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `${toolDict?.title || tool.name} - ToolsLab`,
       description: toolDict?.description || tool.description,
-      images: [`/tools/${toolId}/opengraph-image.png`],
+      images: [`/tools/${toolId}/twitter-image`],
       creator: '@toolslab',
     },
     alternates: {
