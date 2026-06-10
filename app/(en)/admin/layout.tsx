@@ -1,6 +1,10 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
+// Local-only admin: no SEO/CWV value, uses useSearchParams without Suspense.
+// Keep it request-rendered instead of prerendering it at build.
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   robots: 'noindex, nofollow',
   title: 'Admin - ToolsLab (Local Only)',

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { trackToolUse, trackEngagement } from '@/lib/analytics';
 import { useCopy } from '@/lib/hooks/useCopy';
+import { useToolStore } from '@/lib/store/toolStore';
 import { BaseToolProps } from '@/lib/types/tools';
 
 interface PasswordGeneratorProps extends BaseToolProps {}
@@ -19,6 +20,7 @@ interface PasswordGeneratorProps extends BaseToolProps {}
 export default function PasswordGenerator({
   categoryColor,
 }: PasswordGeneratorProps) {
+  const { addToHistory } = useToolStore();
   const [password, setPassword] = useState('');
   const [length, setLength] = useState(16);
   const [includeUppercase, setIncludeUppercase] = useState(true);
@@ -73,6 +75,15 @@ export default function PasswordGenerator({
         type: 'pronounceable',
         strength: strength,
         success: true,
+      });
+
+      // Analytics auto-tracking (NEVER log the real password)
+      addToHistory({
+        id: crypto.randomUUID(),
+        tool: 'password-generator',
+        input: `length=${length}, type=pronounceable, uppercase=${includeUppercase}, numbers=${includeNumbers}`,
+        output: `length=${finalPassword.length}, generated`,
+        timestamp: startTime,
       });
 
       // Add to history
@@ -159,6 +170,15 @@ export default function PasswordGenerator({
       success: true,
     });
 
+    // Analytics auto-tracking (NEVER log the real password)
+    addToHistory({
+      id: crypto.randomUUID(),
+      tool: 'password-generator',
+      input: `length=${length}, type=standard, uppercase=${includeUppercase}, lowercase=${includeLowercase}, numbers=${includeNumbers}, symbols=${includeSymbols}, excludeSimilar=${excludeSimilar}`,
+      output: `length=${finalPassword.length}, generated`,
+      timestamp: startTime,
+    });
+
     // Add to history
     setPasswordHistory((prev) => [finalPassword, ...prev.slice(0, 9)]);
   }, [
@@ -170,6 +190,7 @@ export default function PasswordGenerator({
     excludeSimilar,
     includePronounceable,
     trackToolUse,
+    addToHistory,
   ]);
 
   const calculateStrength = useCallback(() => {

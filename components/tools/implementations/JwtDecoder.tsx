@@ -22,6 +22,7 @@ import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
   decodeJwt,
@@ -137,6 +138,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
   >();
   const { downloadText, downloadJSON } = useDownload();
   const { trackCustom, trackError } = useToolTracking('jwt-decoder');
+  const { addToHistory } = useToolStore();
 
   const [countdown, setCountdown] = useState<{
     text: string;
@@ -191,6 +193,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     }
 
     try {
+      const startTime = Date.now();
       const decoded = processSync(input, (token) => {
         return decodeJwt(token.trim(), options);
       });
@@ -204,6 +207,17 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
           success: true,
           algorithm: decoded.header?.alg,
         });
+        addToHistory({
+          id: crypto.randomUUID(),
+          tool: 'jwt-decoder',
+          input,
+          output: JSON.stringify(
+            { header: decoded.header, payload: decoded.payload },
+            null,
+            2
+          ),
+          timestamp: startTime,
+        });
       }
     } catch (err) {
       // Track error
@@ -214,7 +228,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
       // Error handled by useToolProcessor
       setResult(null);
     }
-  }, [input, options, processSync, trackCustom, trackError]);
+  }, [input, options, processSync, trackCustom, trackError, addToHistory]);
 
   // Auto-decode when input changes
   useMemo(() => {
@@ -274,6 +288,13 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
         mode: 'encode',
         processingTime: Date.now() - startTime,
       });
+      addToHistory({
+        id: crypto.randomUUID(),
+        tool: 'jwt-decoder',
+        input: encodePayload,
+        output: res.token!,
+        timestamp: startTime,
+      });
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err);
       setEncodeError(msg);
@@ -289,6 +310,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
     encodeExtraHeader,
     trackCustom,
     trackError,
+    addToHistory,
   ]);
 
   const copyEncoded = useCallback(async () => {

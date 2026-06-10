@@ -52,6 +52,7 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 import { BaseToolProps } from '@/lib/types/tools';
 
 interface SavedGradient {
@@ -94,7 +95,8 @@ export default function GradientGenerator({
   const gradientBarRef = useRef<HTMLDivElement>(null);
   const { copied, copy } = useCopy();
   const { downloadText } = useDownload();
-  const { trackUse, trackError } = useToolTracking('gradient-generator');
+  const { trackError } = useToolTracking('gradient-generator');
+  const { addToHistory } = useToolStore();
 
   // Generate CSS result — pure computation, no side effects
   const gradientResult = useMemo(() => {
@@ -122,6 +124,33 @@ export default function GradientGenerator({
         return `background: ${gradientResult.css};`;
     }
   }, [gradientResult, outputFormat, showCompatibleCSS, gradientConfig]);
+
+  // Human-readable config summary used as analytics input
+  const configSummary = useMemo(() => {
+    const { type, angle, colorStops } = gradientConfig;
+    const colors = colorStops.map((s) => s.color).join(', ');
+    const anglePart =
+      type === 'linear' || type === 'conic' ? `, angle ${angle ?? 0}°` : '';
+    return `${type} gradient${anglePart}, ${colorStops.length} stops: ${colors}`;
+  }, [gradientConfig]);
+
+  // Track gradient generation when the CSS output settles (debounced to
+  // avoid firing on every drag/keystroke).
+  useEffect(() => {
+    if (!gradientResult.success || !gradientResult.css) return;
+    const cssString = `background: ${gradientResult.css};`;
+    const startTime = Date.now();
+    const timer = setTimeout(() => {
+      addToHistory({
+        id: crypto.randomUUID(),
+        tool: 'gradient-generator',
+        input: configSummary,
+        output: cssString,
+        timestamp: startTime,
+      });
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [gradientResult.success, gradientResult.css, configSummary, addToHistory]);
 
   // Load saved gradients from localStorage with format migration
   useEffect(() => {
@@ -322,8 +351,7 @@ export default function GradientGenerator({
   const handleCopyCSS = useCallback(async () => {
     if (!outputText) return;
     await copy(outputText);
-    trackUse(JSON.stringify(gradientConfig), outputText, { success: true });
-  }, [outputText, copy, gradientConfig, trackUse]);
+  }, [outputText, copy]);
 
   // Download as CSS file
   const handleDownloadCSS = useCallback(() => {
@@ -333,15 +361,7 @@ export default function GradientGenerator({
         ? `.gradient {\n  ${outputText}\n}`
         : outputText;
     downloadText(content, { filename: 'gradient.css' });
-    trackUse(JSON.stringify(gradientConfig), content, { success: true });
-  }, [
-    outputText,
-    outputFormat,
-    showCompatibleCSS,
-    gradientConfig,
-    downloadText,
-    trackUse,
-  ]);
+  }, [outputText, outputFormat, showCompatibleCSS, downloadText]);
 
   // Get filtered presets
   const filteredPresets = useMemo(() => {

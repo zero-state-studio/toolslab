@@ -133,7 +133,7 @@
       "intro": "ToolsLab reúne más de 50 herramientas esenciales para desarrolladores en una plataforma rápida y enfocada en la privacidad. Ya sea que necesites formatear JSON, decodificar Base64, generar UUIDs o validar JWTs, te tenemos cubierto. Nuestras herramientas están diseñadas para ahorrarte tiempo y optimizar tu flujo de trabajo de desarrollo.",
       "builtForDevs": {
         "title": "Construido para Desarrolladores, por Desarrolladores",
-        "description": "Cada herramienta está optimizada para velocidad y precisión. Sin anuncios que desordenan tu espacio de trabajo, sin cookies de seguimiento que te siguen, sin registros obligatorios que bloquean tu acceso. Solo funcionalidad pura que respeta tu privacidad y tiempo. Entendemos la frustración de los sitios de herramientas sobrecargados, así que construimos algo mejor."
+        "description": "Cada herramienta está optimizada para velocidad y precisión. Sin cookies de seguimiento que te siguen, sin registros obligatorios que bloquean tu acceso. Solo funcionalidad pura que respeta tu privacidad y tiempo. Entendemos la frustración de los sitios de herramientas sobrecargados, así que construimos algo mejor."
       },
       "ctaBox": {
         "title": "¿Listo para potenciar tu flujo de trabajo de desarrollo?",
@@ -160,7 +160,7 @@
       "faqs": {
         "different": {
           "question": "¿Qué hace diferente a ToolsLab de otros sitios de herramientas para desarrolladores?",
-          "answer": "A diferencia de otros sitios de herramientas, ToolsLab procesa todo localmente en tu navegador usando WebAssembly y Web Workers. Esto significa cero almacenamiento de datos, procesamiento instantáneo y privacidad completa. También ofrecemos características únicas como el encadenamiento de herramientas para flujos de trabajo complejos y una interfaz limpia sin anuncios."
+          "answer": "A diferencia de otros sitios de herramientas, ToolsLab procesa todo localmente en tu navegador usando WebAssembly y Web Workers. Esto significa cero almacenamiento de datos, procesamiento instantáneo y privacidad completa. También ofrecemos características únicas como el encadenamiento de herramientas para flujos de trabajo complejos y una interfaz limpia y sin distracciones."
         },
         "free": {
           "question": "¿ToolsLab es realmente gratuito? ¿Cuál es el truco?",

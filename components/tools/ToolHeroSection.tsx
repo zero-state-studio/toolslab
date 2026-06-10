@@ -56,7 +56,20 @@ interface ToolHeroSectionProps {
   categoryBadge?: React.ReactNode;
   labelBadge?: React.ReactNode;
   className?: string;
+  locale?: string;
 }
+
+// Localized label for the "About this tool" disclosure. The descriptive copy
+// itself comes from the per-tool i18n JSON; only this summary toggle label
+// lives here, so it's translated inline (same pattern as other hub UI strings).
+const aboutLabelByLocale: Record<string, string> = {
+  en: 'About this tool',
+  it: 'Informazioni sullo strumento',
+  es: 'Acerca de esta herramienta',
+  fr: 'À propos de cet outil',
+  de: 'Über dieses Tool',
+  pt: 'Sobre esta ferramenta',
+};
 
 export default function ToolHeroSection({
   toolId,
@@ -70,7 +83,9 @@ export default function ToolHeroSection({
   categoryBadge,
   labelBadge,
   className = '',
+  locale = 'en',
 }: ToolHeroSectionProps) {
+  const aboutLabel = aboutLabelByLocale[locale] ?? aboutLabelByLocale.en;
   const gradient = categoryGradients[categoryId || ''] || 'from-violet-500 to-purple-500';
   const [isVisible, setIsVisible] = useState(false);
   const [holidayHovered, setHolidayHovered] = useState(false);
@@ -197,7 +212,7 @@ export default function ToolHeroSection({
         <details className="group mt-2 max-w-4xl">
           <summary className="cursor-pointer list-none text-xs font-medium text-pg-muted transition-colors hover:text-pg-text">
             <span className="inline-flex items-center gap-1">
-              About this tool
+              {aboutLabel}
               <span className="transition-transform group-open:rotate-180">▾</span>
             </span>
           </summary>

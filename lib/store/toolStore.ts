@@ -15,6 +15,18 @@ import { trackToolUsage } from '@/lib/analytics/middleware/toolStoreMiddleware';
 const HISTORY_LIMIT = 50; // Reduced from 100 for better performance
 const PERSIST_DEBOUNCE_MS = 1000; // Debounce localStorage writes
 
+// Cap per-field size of persisted history entries. Unbounded input/output made
+// the persisted state grow to multi-MB: every persist flush JSON.stringify'd it
+// on the main thread (INP) and rehydration parsed it during hydration.
+// Analytics still receives the original untruncated operation.
+export const HISTORY_FIELD_MAX_CHARS = 5_000;
+
+function truncateForHistory(value: string): string {
+  return value.length > HISTORY_FIELD_MAX_CHARS
+    ? value.slice(0, HISTORY_FIELD_MAX_CHARS)
+    : value;
+}
+
 /**
  * Debounced localStorage storage wrapper
  * Batches multiple writes into a single operation to reduce sync I/O
@@ -137,8 +149,13 @@ const storeLogic: StateCreator<
 
   // Original actions
   addToHistory: (operation: ToolOperation) => {
+    const storedOperation: ToolOperation = {
+      ...operation,
+      input: truncateForHistory(operation.input),
+      output: truncateForHistory(operation.output),
+    };
     set((state: ToolStore) => ({
-      history: [operation, ...state.history].slice(0, HISTORY_LIMIT),
+      history: [storedOperation, ...state.history].slice(0, HISTORY_LIMIT),
     }));
 
     // 🔥 PHASE 1 OPTIMIZATION: Async analytics tracking (15-30ms saved)
@@ -263,7 +280,12 @@ export const useToolStore = create<ToolStore>()(
     partialize: (state) => ({
       // Persist only essential data (chainedData is excluded - it's temporary)
       // _hasHydrated is NOT persisted - it's runtime state only
-      history: state.history.slice(0, HISTORY_LIMIT), // Ensure limit is enforced
+      // Ensure limit is enforced; truncation also migrates oversized legacy entries
+      history: state.history.slice(0, HISTORY_LIMIT).map((op) => ({
+        ...op,
+        input: truncateForHistory(op.input),
+        output: truncateForHistory(op.output),
+      })),
       userLevel: state.userLevel,
       proUser: state.proUser,
       favoriteTools: state.favoriteTools,

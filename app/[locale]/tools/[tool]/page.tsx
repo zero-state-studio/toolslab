@@ -96,6 +96,20 @@ export async function generateMetadata({
           developerTool: 'outil développeur',
           webTool: 'outil web',
         };
+      case 'de':
+        return {
+          onlineTool: 'Online-Tool',
+          freeTool: 'kostenloses Tool',
+          developerTool: 'Entwickler-Tool',
+          webTool: 'Web-Tool',
+        };
+      case 'pt':
+        return {
+          onlineTool: 'ferramenta online',
+          freeTool: 'ferramenta gratuita',
+          developerTool: 'ferramenta para desenvolvedores',
+          webTool: 'ferramenta web',
+        };
       default:
         return {
           onlineTool: 'online tool',
@@ -157,7 +171,7 @@ export async function generateMetadata({
       url: `https://toolslab.dev${getLocalizedPath(`/tools/${toolId}`, locale as Locale)}`,
       images: [
         {
-          url: `/tools/${toolId}/opengraph-image.png`,
+          url: `/tools/${toolId}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: `${toolDict?.title || tool.name} - ToolsLab`,
@@ -169,7 +183,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `${toolDict?.title || tool.name} - ToolsLab`,
       description: toolDict?.description || tool.description,
-      images: [`/tools/${toolId}/opengraph-image.png`],
+      images: [`/tools/${toolId}/twitter-image`],
       creator: '@toolslab',
     },
     alternates: {
@@ -246,6 +260,7 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
     es: 'es-ES',
     fr: 'fr-FR',
     de: 'de-DE',
+    pt: 'pt-PT',
   };
 
   // Generate localized schema - properly update @graph items

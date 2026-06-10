@@ -133,7 +133,7 @@
       "intro": "ToolsLab rassemble plus de 50 outils essentiels pour développeurs dans une plateforme rapide et axée sur la confidentialité. Que vous ayez besoin de formater du JSON, décoder du Base64, générer des UUID ou valider des JWT, nous avons ce qu'il vous faut. Nos outils sont conçus pour vous faire gagner du temps et rationaliser votre flux de travail de développement.",
       "builtForDevs": {
         "title": "Conçu pour les Développeurs, par des Développeurs",
-        "description": "Chaque outil est optimisé pour la vitesse et la précision. Pas de publicités encombrant votre espace de travail, pas de cookies de suivi vous suivant, pas d'inscriptions obligatoires bloquant votre accès. Juste une fonctionnalité pure qui respecte votre vie privée et votre temps. Nous comprenons la frustration des sites d'outils surchargés, nous avons donc construit quelque chose de mieux."
+        "description": "Chaque outil est optimisé pour la vitesse et la précision. Pas de cookies de suivi vous suivant, pas d'inscriptions obligatoires bloquant votre accès. Juste une fonctionnalité pure qui respecte votre vie privée et votre temps. Nous comprenons la frustration des sites d'outils surchargés, nous avons donc construit quelque chose de mieux."
       },
       "ctaBox": {
         "title": "Prêt à booster votre flux de travail de développement ?",
@@ -160,7 +160,7 @@
       "faqs": {
         "different": {
           "question": "Qu'est-ce qui rend ToolsLab différent des autres sites d'outils pour développeurs ?",
-          "answer": "Contrairement à d'autres sites d'outils, ToolsLab traite tout localement dans votre navigateur en utilisant WebAssembly et Web Workers. Cela signifie zéro stockage de données, traitement instantané et confidentialité totale. Nous offrons également des fonctionnalités uniques comme l'enchaînement d'outils pour des flux de travail complexes et une interface propre sans publicités."
+          "answer": "Contrairement à d'autres sites d'outils, ToolsLab traite tout localement dans votre navigateur en utilisant WebAssembly et Web Workers. Cela signifie zéro stockage de données, traitement instantané et confidentialité totale. Nous offrons également des fonctionnalités uniques comme l'enchaînement d'outils pour des flux de travail complexes et une interface propre et sans distractions."
         },
         "free": {
           "question": "ToolsLab est-il vraiment gratuit ? Quelle est l'arnaque ?",

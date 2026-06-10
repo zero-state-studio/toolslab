@@ -25,8 +25,10 @@ import {
 import { useCopy } from '@/lib/hooks/useCopy';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 import { BaseToolProps } from '@/lib/types/tools';
 import { useSmartDebounce } from '@/lib/hooks/useSmartDebounce';
+import AdBanner from '@/components/ads/AdBanner';
 
 interface SqlFormatterProps extends BaseToolProps {}
 
@@ -63,8 +65,8 @@ export default function SqlFormatter({ categoryColor }: SqlFormatterProps) {
 
   const { copied, copy } = useCopy();
   const { downloadText } = useDownload();
-  const { trackUse, trackCustom, trackError } =
-    useToolTracking('sql-formatter');
+  const { trackCustom, trackError } = useToolTracking('sql-formatter');
+  const { addToHistory } = useToolStore();
 
   // PHASE 1 OPTIMIZATION: Debounce dialect detection (20-40ms saved per keystroke)
   const debouncedInput = useSmartDebounce(input, {
@@ -96,6 +98,8 @@ export default function SqlFormatter({ categoryColor }: SqlFormatterProps) {
     setWarning(null);
     setValidationErrors([]);
     setValidationWarnings([]);
+
+    const startTime = Date.now();
 
     try {
       // Auto-detect dialect if enabled
@@ -165,6 +169,17 @@ export default function SqlFormatter({ categoryColor }: SqlFormatterProps) {
         success: true,
         dialect: actualDialect,
       });
+
+      // Auto-tracking via centralized analytics + history persistence
+      if (result.formatted) {
+        addToHistory({
+          id: crypto.randomUUID(),
+          tool: 'sql-formatter',
+          input,
+          output: result.formatted,
+          timestamp: startTime,
+        });
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to format SQL');
       setOutput('');
@@ -187,8 +202,9 @@ export default function SqlFormatter({ categoryColor }: SqlFormatterProps) {
     linesBetweenQueries,
     maxLineLength,
     preserveComments,
-    trackUse,
     trackError,
+    trackCustom,
+    addToHistory,
   ]);
 
   const handleValidate = useCallback(() => {
@@ -601,6 +617,14 @@ ORDER BY unknown_column;  -- Colonna non definita`;
           </div>
         </div>
       )}
+
+      {/* Ad: mobile only — above usage tips */}
+      <AdBanner
+        className="lg:hidden"
+        minHeight={100}
+        maxHeight={280}
+        slot="5833147302"
+      />
 
       {/* Usage Tips */}
       <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">

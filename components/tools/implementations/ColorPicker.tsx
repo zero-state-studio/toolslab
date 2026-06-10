@@ -22,6 +22,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { trackToolUse, trackEngagement } from '@/lib/analytics';
+import { useToolStore } from '@/lib/store/toolStore';
 import { useCopy } from '@/lib/hooks/useCopy';
 import { BaseToolProps } from '@/lib/types/tools';
 import {
@@ -63,6 +64,7 @@ type ViewMode = 'palette' | 'contrast' | 'export';
 
 export default function ColorPicker({ categoryColor }: ColorPickerProps) {
   const { copy: copyToClipboard } = useCopy();
+  const { addToHistory } = useToolStore();
 
   // Main state
   const [currentColor, setCurrentColor] = useState<ColorValue | null>(null);
@@ -118,11 +120,25 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
       setInputValue(value);
 
       if (isValidColor(value)) {
+        const startTime = Date.now();
         const color = getColorValue(value);
         if (color) {
           setCurrentColor(color);
           generatePalette(color, harmonyType);
           addToRecent(color);
+
+          // Analytics auto-tracking: input color -> converted formats
+          addToHistory({
+            id: crypto.randomUUID(),
+            tool: 'color-picker',
+            input: value,
+            output: JSON.stringify({
+              hex: color.hex,
+              rgb: `rgb(${color.rgb.r}, ${color.rgb.g}, ${color.rgb.b})`,
+              hsl: `hsl(${color.hsl.h}, ${color.hsl.s}%, ${color.hsl.l}%)`,
+            }),
+            timestamp: startTime,
+          });
 
           // Track color change
           trackToolUse('color-picker', 'color-change', {
@@ -138,7 +154,7 @@ export default function ColorPicker({ categoryColor }: ColorPickerProps) {
         }
       }
     },
-    [harmonyType, trackToolUse]
+    [harmonyType, trackToolUse, addToHistory]
   );
 
   // Generate color palette

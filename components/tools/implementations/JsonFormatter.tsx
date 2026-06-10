@@ -30,6 +30,7 @@ import { useCopy } from '@/lib/hooks/useCopy';
 import { useToolProcessor } from '@/lib/hooks/useToolProcessor';
 import { useDownload } from '@/lib/hooks/useDownload';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
+import { useToolStore } from '@/lib/store/toolStore';
 import { BaseToolProps, JsonValue, JsonObject } from '@/lib/types/tools';
 import { formatJSON, minifyJSON } from '@/lib/tools/json';
 
@@ -281,7 +282,8 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     string
   >();
   const { downloadJSON, downloadText } = useDownload();
-  const { trackUse, trackError } = useToolTracking('json-formatter');
+  const { trackError } = useToolTracking('json-formatter');
+  const { addToHistory } = useToolStore();
 
   const formatJson = useCallback(() => {
     // Use uploaded file content if available, otherwise use manual input
@@ -312,6 +314,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     }
 
     try {
+      const startTime = Date.now();
       const result = processSync(contentToProcess, (inputText) => {
         // Use the robust formatJSON function that handles Python-style syntax
         const formatResult = formatJSON(inputText);
@@ -373,10 +376,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         3000
       );
 
-      // Track successful formatting
-      trackUse(contentToProcess, result, {
-        success: true,
-        processingTime: Date.now() - Date.now(), // processSync already measures this
+      addToHistory({
+        id: crypto.randomUUID(),
+        tool: 'json-formatter',
+        input: contentToProcess,
+        output: result,
+        timestamp: startTime,
       });
 
       // Auto-scroll to output
@@ -402,8 +407,8 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     sortKeys,
     indentSize,
     processSync,
-    trackUse,
     trackError,
+    addToHistory,
   ]);
 
   const minifyJson = useCallback(() => {
@@ -416,6 +421,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     }
 
     try {
+      const startTime = Date.now();
       const result = processSync(contentToProcess, (inputText) => {
         // Use the robust minifyJSON function that handles Python-style syntax
         const minifyResult = minifyJSON(inputText);
@@ -429,9 +435,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
 
       dispatch({ type: 'SET_OUTPUT', payload: result });
 
-      // Track successful minification
-      trackUse(contentToProcess, result, {
-        success: true,
+      addToHistory({
+        id: crypto.randomUUID(),
+        tool: 'json-formatter',
+        input: contentToProcess,
+        output: result,
+        timestamp: startTime,
       });
     } catch (err) {
       // Track error
@@ -441,7 +450,13 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
       );
       // Error is handled by useToolProcessor
     }
-  }, [input, uploadedFileContent, processSync, trackUse, trackError]);
+  }, [
+    input,
+    uploadedFileContent,
+    processSync,
+    trackError,
+    addToHistory,
+  ]);
 
   const handleFileUpload = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {

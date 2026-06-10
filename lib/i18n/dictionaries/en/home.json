@@ -133,7 +133,7 @@
       "intro": "ToolsLab brings together 50+ essential developer tools in one fast, privacy-focused platform. Whether you need to format JSON, decode Base64, generate UUIDs, or validate JWTs, we've got you covered. Our tools are designed to save you time and streamline your development workflow.",
       "builtForDevs": {
         "title": "Built for Developers, by Developers",
-        "description": "Every tool is optimized for speed and accuracy. No ads cluttering your workspace, no tracking cookies following you around, no mandatory signups blocking your access. Just pure functionality that respects your privacy and time. We understand the frustration of bloated tool sites, so we built something better."
+        "description": "Every tool is optimized for speed and accuracy. No tracking cookies following you around, no mandatory signups blocking your access. Just pure functionality that respects your privacy and time. We understand the frustration of bloated tool sites, so we built something better."
       },
       "ctaBox": {
         "title": "Ready to supercharge your development workflow?",
@@ -160,7 +160,7 @@
       "faqs": {
         "different": {
           "question": "What makes ToolsLab different from other developer tool sites?",
-          "answer": "Unlike other tool sites, ToolsLab processes everything locally in your browser using WebAssembly and Web Workers. This means zero data storage, instant processing, and complete privacy. We also offer unique features like tool chaining for complex workflows and a clean, ad-free interface."
+          "answer": "Unlike other tool sites, ToolsLab processes everything locally in your browser using WebAssembly and Web Workers. This means zero data storage, instant processing, and complete privacy. We also offer unique features like tool chaining for complex workflows and a clean, distraction-free interface."
         },
         "free": {
           "question": "Is ToolsLab really free? What's the catch?",

@@ -45,6 +45,17 @@ function getCategoryColor(category: string, mode: 'dark' | 'light' = 'dark'): st
   return catColor(theme.hue, 'text', mode);
 }
 
+// Tools whose implementation renders an inline Usage Tips block: they render the
+// mobile ad banner internally (above the tips), so the outer mobile banner is skipped.
+const TOOLS_WITH_INLINE_MOBILE_AD = [
+  'base64-to-pdf',
+  'base64-to-gif',
+  'sql-formatter',
+  'excel-filter',
+  'pdf-to-word',
+  'linkedin-post-formatter',
+];
+
 interface ToolPageClientProps {
   toolId: string;
   locale?: string;
@@ -284,6 +295,7 @@ export default function ToolPageClient({
             categoryColor={categoryColor}
             categoryId={categoryId}
             categoryName={categoryName}
+            locale={locale}
             favoriteButton={
               <FavoriteButton
                 type="tool"
@@ -346,13 +358,16 @@ export default function ToolPageClient({
               dictionary={dictionary}
             />
 
-            {/* Ad: mobile only — below tool input/result, above How to Use */}
-            <AdBanner
-              className="my-6 lg:hidden"
-              minHeight={100}
-              maxHeight={280}
-              slot="5833147302"
-            />
+            {/* Ad: mobile only — below tool input/result, above How to Use.
+                Skipped for tools that render the banner inline above their Usage Tips. */}
+            {!TOOLS_WITH_INLINE_MOBILE_AD.includes(tool.id) && (
+              <AdBanner
+                className="my-6 lg:hidden"
+                minHeight={100}
+                maxHeight={280}
+                slot="5833147302"
+              />
+            )}
 
             {/* Ad: content area — desktop only, fixed 728x90 leaderboard, above How to Use */}
             <AdBanner

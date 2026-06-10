@@ -1,6 +1,6 @@
 'use client';
 
-import { LocaleLabPageClient } from '../[locale]/lab/LocaleLabPageClient';
+import { LocaleLabPageClient } from '@/app/[locale]/lab/LocaleLabPageClient';
 import { type Locale } from '@/lib/i18n/config';
 import { type Dictionary } from '@/lib/i18n/get-dictionary';
 
