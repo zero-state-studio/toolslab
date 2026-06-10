@@ -1,4 +1,4 @@
-# CLAUDE.md - Standard Operativi per OctoTools
+# CLAUDE.md - Standard Operativi per ToolsLab
 
 ## 🤖 AUTOMAZIONI CLAUDE CODE ATTIVE
 
@@ -22,7 +22,7 @@ Esegue automaticamente `tool-completeness-reviewer` per verifica finale.
 **🔍 SEO OBBLIGATORIO dopo `/new-tool`** — Dopo scaffold, esegui SEMPRE in ordine:
 1. **`programmatic-seo`** — ottimizza `meta.title`, `meta.description`, `tagline`, `pageDescription` e keywords in `tools.ts` usando playbook (Conversions, Templates, ecc.). Aggiorna anche file i18n EN.
 2. **`seo-audit`** — verifica tool in sitemap (`public/sitemap-*.xml`), schema JSON-LD corretto, canonical/hreflang presenti, OG/Twitter con meta description ottimizzata.
-3. **Aggiungi tool a sitemap** — file statico: aggiungere manualmente entry in tutti 5 file `public/sitemap-{en,it,es,fr,de,pt}.xml` con priority `0.8` e tutti hreflang.
+3. **Rigenera sitemap** — `npm run sitemap:generate`: legge `lib/tools.ts`, rigenera i 6 file `public/sitemap-{en,it,es,fr,de,pt}.xml` + `sitemap.xml` (index), assegna priority in base a searchVolume e preserva i lastmod esistenti. Verifica con `npm run sitemap:validate`. Commit dei file rigenerati.
 
 ### 🎯 Skill: `/i18n-check`
 Verifica tutti tool abbiano traduzioni complete per tutte 6 lingue (en, it, es, fr, de, pt).
@@ -33,9 +33,10 @@ Esempio: /i18n-check
 
 **Esenzione campo `placeholder`** (decisione RIC-6): i tool pure-generator senza input testo libero NON richiedono `placeholder`. Lista esentati: `lorem-ipsum-generator`, `password-generator`, `uuid-generator`, `qr-generator`, `barcode-generator`, `hash-generator`, `bcrypt-hash-generator`. Se aggiungi un nuovo pure-generator, estendi la lista in `.claude/skills/i18n-check/SKILL.md`.
 
-### ⚡ Hooks attivi (automatici)
-- **PostToolUse** — Dopo modifica a file `.ts/.tsx`, esegue `tsc --noEmit` automaticamente. Errori TypeScript → correggili prima di continuare.
-- **PreToolUse** — Blocca modifica `.env.local` via Claude. Credenziali → usa terminale direttamente.
+### ⚡ Hooks Claude Code
+**Nessun hook configurato** in `.claude/settings.json` (verificato giugno 2026). Conseguenze operative:
+- **Type-check manuale** — dopo modifiche a file `.ts/.tsx`, esegui `npm run type-check` prima di proseguire (non gira automaticamente).
+- **`.env.local`** — non modificarlo via Claude; credenziali solo da terminale (convenzione, non enforcement automatico).
 
 ### 🤖 Subagent: `tool-completeness-reviewer`
 Verifica tool ha completato tutti 13 step. Invocato automaticamente da `/new-tool`, usabile manualmente:
@@ -98,14 +99,14 @@ Skills in `.claude/skills/` — **DEVI attivarle autonomamente** quando riconosc
 **Roadmap completa implementazione nuovi tool:**
 📍 **`/documentation/todo/IMPLEMENTATION_ROADMAP.md`**
 
-Contiene:
-- 87 tool da implementare per priorità (Maximum, High, Medium, Low)
-- Stime difficoltà e tempo sviluppo per tool
-- Fasi implementazione con timeline dettagliate
-- Proiezioni revenue e metriche successo
-- Tool già implementati (37) esclusi da roadmap
+**Source of truth operativo: Linear** (project `Toolslab`, team `Ricca`). Il file roadmap è un mirror leggibile, rigenerato periodicamente da Linear — il conteggio "implemented" nel suo header può essere stale rispetto a `lib/tools.ts` (giugno 2026: ~69 tool registrati).
 
-**Per pianificazione sviluppo, consultare sempre questo file.**
+Contiene:
+- Backlog per priorità in 4 fasi (Maximum, High, Medium, Low) con link alle issue Linear
+- Stime in punti e search volume per tool
+- Rationale SEO per ogni candidato
+
+**Per pianificazione sviluppo: Linear prima, roadmap file come overview.**
 
 ---
 
@@ -168,7 +169,7 @@ npm update
    - Crea `tool-name.json` per ogni lingua con: title, description, placeholder, meta, tagline, pageDescription, instructions
    - Instructions devono includere: steps, features, useCases, proTips, troubleshooting, keyboardShortcuts (opzionale)
 10. **❌ NON creare route dedicata** - sistema dinamico `[tool]/page.tsx` gestisce routing automaticamente
-11. **Sitemap aggiornata automaticamente** - sistema legge da `/lib/tools.ts`
+11. **Rigenera sitemap** - `npm run sitemap:generate` (legge da `/lib/tools.ts`, riscrive i file statici in `public/`) + commit
 12. **✅ ANALYTICS AUTO-TRACKING** - Quando tool processa dati, usa `addToHistory()`:
    ```typescript
    import { useToolStore } from '@/lib/store/toolStore';
@@ -351,6 +352,7 @@ Lo skill `/long-tail-seo` aggiunge automaticamente nel file giusto.
 - `web`: Web & Design
 - `dev`: Dev Utilities
 - `formatters`: Formatters
+- `social`: Social Media
 - `pdf`: PDF Tools
 
 **⛔ NON creare file in `/data/tools.ts` o `/data/categories.ts` - eliminati!**
@@ -505,8 +507,9 @@ npm run start
 # 3. Verifica le API routes
 curl http://localhost:3000/api/health
 
-# 4. Controlla i meta tags SEO
-npm run seo:check
+# 4. Valida sitemap e hreflang
+npm run sitemap:validate
+npm run validate:hreflang
 ```
 
 #### Deploy to production
@@ -536,8 +539,8 @@ Problemi critici:
 # 1. Immediate rollback
 vercel rollback
 
-# 2. Identify issue
-npm run logs:production
+# 2. Identify issue (logs:production è uno stub — usa dashboard/CLI Vercel)
+vercel logs
 
 # 3. Fix locally
 git checkout -b hotfix/issue-name
@@ -559,41 +562,27 @@ Ogni venerdì:
 - [ ] Review analytics per ottimizzazione
 - [ ] Backup production data
 
-### 10. SITEMAP E SEO AUTOMATICI
+### 10. SITEMAP (STATICA, RIGENERATA VIA SCRIPT)
 
-Sistema gestisce automaticamente generazione sitemap per tutti tool:
+Sitemap = file statici in `public/` (`sitemap.xml` index + `sitemap-{en,it,es,fr,de,pt}.xml`), rigenerati con `npm run sitemap:generate` (`scripts/generate-sitemap.ts`). **NON viene aggiornata automaticamente al build** — va rigenerata e committata.
 
-#### 🔄 Processo Automatico
-- **Scansiona** `app/tools/` per nuovi tool directory
-- **Estrae metadata** dai file `page.tsx` (title, description)
-- **Prioritizza** tool featured > popular > new > altri
-- **Aggiorna** sitemap ad ogni build automaticamente
+#### 🔄 Come funziona `sitemap:generate`
+- **Fonte unica**: `lib/tools.ts` (tool + categorie) via `lib/sitemap/sitemap-utils.ts`
+- **Hreflang completi** per tutte 6 lingue su ogni URL
+- **Anti-churn lastmod**: URL già pubblicati mantengono la data esistente; solo URL nuovi ricevono la data odierna (evita segnale "tutto cambiato oggi" che sopprime il crawl Google)
 
-#### 📊 Sorgenti Sitemap (ordine priorità)
-1. **Static Data** (`lib/tools.ts`) - **FONTE UFFICIALE** per tutti tool e categorie
-2. **Filesystem** (`app/tools/*/page.tsx`) - verifica esistenza tool
-3. **Edge Config** (`lib/edge-config/`) - configurazione dinamica
-4. **Dynamic Routes** (se presenti route `[tool]`)
-
-#### 🎯 Priorità SEO Automatiche
-- Homepage: 1.0 (massima)
-- Tool Featured: 0.9
-- Tool New: 0.85
-- Tool Popular: 0.8
-- Tool Standard: 0.7 (degradante con ordine)
-- Categorie: 0.7
-- Pagine statiche: 0.6-0.8
+#### 🎯 Priorità assegnate dallo script
+- Homepage: 1.0 — `/tools`: 0.9 — `/categories`: 0.8
+- Tool con searchVolume ≥ 50K: 0.9 — ≥ 10K: 0.8 — altri: 0.7
+- Pagine categoria: 0.7 — statiche (about, privacy, terms, lab): 0.3–0.6
 
 #### ⚡ Per aggiungere tool a sitemap
 ```bash
-# 1. Crea la directory del tool
-mkdir app/tools/nuovo-tool
-
-# 2. Aggiungi page.tsx con metadati SEO
-# Il sistema scannerizzerà automaticamente e aggiungerà alla sitemap
-
-# 3. OBBLIGATORIO: Aggiungi il tool al registro ufficiale in lib/tools.ts
-# con tutti i metadati: priorità, categoria, featured status, searchVolume, keywords
+# 1. Registra il tool in lib/tools.ts (NESSUNA directory in app/tools/ — routing dinamico)
+# 2. Rigenera e valida
+npm run sitemap:generate
+npm run sitemap:validate
+# 3. Committa i file public/sitemap-*.xml modificati
 ```
 
 #### 🔍 Verifica Sitemap
@@ -601,8 +590,11 @@ mkdir app/tools/nuovo-tool
 # Durante development
 curl http://localhost:3000/sitemap.xml
 
-# In production  
+# In production
 curl https://toolslab.dev/sitemap.xml
+
+# Validazione hreflang
+npm run validate:hreflang
 ```
 
 ### 11. EMERGENCY CONTACTS
@@ -626,7 +618,7 @@ Metriche per ogni nuovo tool:
 ```bash
 # Development
 npm run dev                 # Start dev server
-npm run dev:ads            # With ads enabled
+npm run local:ads          # Toggle ads in local config
 
 # Testing
 npm run test               # Watch mode
@@ -673,7 +665,7 @@ chore: update dependencies and fix vulnerabilities
 
 ## 🎯 Project Information
 
-**URL**: octotools.org
+**URL**: toolslab.dev
 **Tech Stack**: Next.js 14 (App Router) + Tailwind CSS + shadcn/ui + Zustand
 **Business Model**: Free forever + EthicalAds + Donations
 **Core Principle**: Dual Mode - Serve single-task users (90%) e workflow power users (10%)

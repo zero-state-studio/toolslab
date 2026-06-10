@@ -24,12 +24,12 @@ This guide provides comprehensive instructions for adding new tools to ToolsLab,
 
 ### Phase 2: Implementation
 - [ ] Register tool in `/lib/tools.ts`
-- [ ] Create SEO content in `/lib/tool-seo.ts`
-- [ ] Add instructions in `/lib/tool-instructions.ts`
+- [ ] Create SEO content + instructions in per-tool i18n files (`lib/i18n/dictionaries/{locale}/tools/{tool-id}.json`, all 6 locales)
+- [ ] Add long-tail keywords (optional) in `/lib/tools-seo.ts` (server-only)
 - [ ] Write unit tests in `__tests__/unit/tools/`
 - [ ] Implement logic in `lib/tools/`
 - [ ] Create UI component in `components/tools/implementations/`
-- [ ] Add page route in `app/tools/`
+- [ ] Register in `components/tools/LazyToolLoader.tsx` and `lib/i18n/load-tools.ts` (NO dedicated page route — dynamic `app/tools/[tool]` handles routing)
 - [ ] Update documentation
 
 ### Phase 3: Testing & Deployment
@@ -64,92 +64,64 @@ export const tools: Tool[] = [
     isPopular: false,                // Popular flag
     isNew: true,                     // New tool flag
     searchVolume: 5000,              // Estimated monthly searches
-    label: 'new',                    // Badge label
+    label: '',                       // Always '' for new tools ('popular'/'coming-soon' only if explicitly required — never 'new')
   },
 ];
 ```
 
-### Step 2: Add SEO Content
+### Step 2: Add SEO Content (per-tool i18n files)
 
-Create SEO-optimized content in `/lib/tool-seo.ts`:
+SEO content lives in the per-tool i18n dictionaries — one JSON file per locale in `lib/i18n/dictionaries/{en,it,es,fr,de,pt}/tools/your-tool-slug.json` (NOT in a central TypeScript file):
+
+```json
+{
+  "title": "Your Tool Name",
+  "description": "Clear, concise description of what the tool does",
+  "placeholder": "Enter your input...",
+  "tagline": "Action verb describing tool benefit in 8-12 words",
+  "pageDescription": "What the tool does and its primary purpose. Who benefits and why it's better than alternatives. Free, secure, browser-based processing. Call-to-action. (30-70 words)",
+  "meta": {
+    "title": "Your Tool Name - Free Online Tool | ToolsLab",
+    "description": "SEO description, ≤160 chars, primary keyword in first 15 words"
+  }
+}
+```
+
+Optional long-tail keywords go in `/lib/tools-seo.ts` (`import 'server-only'` — never import from client components; see CLAUDE.md for the INP regression rationale):
 
 ```typescript
-// lib/tool-seo.ts
-export const toolSeoContent: ToolSeoContent[] = [
-  // ... existing content
-  {
-    id: 'your-tool-slug',
-    tagline: 'Action verb describing tool benefit in 8-12 words',
-    seoDescription: `
-      What the tool does and its primary purpose. Who benefits from
-      using this tool and why it's better than alternatives. Free,
-      secure, browser-based processing. Call-to-action. (30-70 words)
-    `.trim(),
-  },
-];
+// lib/tools-seo.ts
+export const toolLongTailKeywords: Record<string, string[]> = {
+  'your-tool-slug': ['long-tail phrase 1', 'long-tail phrase 2' /* 8-12 phrases */],
+};
 ```
 
-### Step 3: Create Tool Instructions
+### Step 3: Create Tool Instructions (same i18n files)
 
-Add comprehensive instructions in `/lib/tool-instructions.ts`:
+Instructions live in the same per-tool JSON files, under the `instructions` key (translate for all 6 locales):
 
-```typescript
-// lib/tool-instructions.ts
-export const toolInstructions: ToolInstructionContent[] = [
-  // ... existing instructions
-  {
-    id: 'your-tool-slug',
-    title: 'How to use Your Tool Name',
-    steps: [
-      {
-        title: 'Step 1: Input your data',
-        description: 'Detailed description of the first step...'
-      },
-      {
-        title: 'Step 2: Configure options',
-        description: 'How to adjust settings for optimal results...'
-      },
-      {
-        title: 'Step 3: Process and review',
-        description: 'How to execute and interpret results...'
-      },
-      // Add 3-5 steps total
+```json
+{
+  "instructions": {
+    "title": "How to use Your Tool Name",
+    "steps": [
+      { "title": "Step 1: Input your data", "description": "Detailed description of the first step..." },
+      { "title": "Step 2: Configure options", "description": "How to adjust settings for optimal results..." },
+      { "title": "Step 3: Process and review", "description": "How to execute and interpret results..." }
     ],
-    features: [
-      'Feature 1: Specific capability',
-      'Feature 2: Another capability',
-      'Feature 3: Technical feature',
-      'Feature 4: User benefit',
-      // Add 4-8 features
-    ],
-    useCases: [
-      'Use case 1: Real-world scenario',
-      'Use case 2: Professional application',
-      'Use case 3: Developer workflow',
-      'Use case 4: Data processing task',
-      // Add 5-8 use cases
-    ],
-    proTips: [
-      'Pro tip 1: Advanced usage technique',
-      'Pro tip 2: Performance optimization',
-      'Pro tip 3: Best practice',
-      'Pro tip 4: Hidden feature',
-      // Add 4-6 pro tips
-    ],
-    troubleshooting: [
-      'Issue 1: Common problem and solution',
-      'Issue 2: Error handling',
-      'Issue 3: Performance issue',
-      // Add 3-5 common issues
-    ],
-    keyboardShortcuts: [
-      { keys: 'Ctrl+Enter', description: 'Process data' },
-      { keys: 'Ctrl+C', description: 'Copy result' },
-      // Add if applicable
-    ],
-  },
-];
+    "features": ["Specific capability", "Technical feature", "User benefit"],
+    "useCases": ["Real-world scenario", "Professional application", "Developer workflow"],
+    "proTips": ["Advanced usage technique", "Performance optimization", "Best practice"],
+    "troubleshooting": ["Common problem and solution", "Error handling"],
+    "keyboardShortcuts": [
+      { "keys": "Ctrl+Enter", "description": "Process data" },
+      { "keys": "Ctrl+C", "description": "Copy result" }
+    ]
+  }
+}
 ```
+
+Requirements: ≥4 tool-specific steps (no generic "Enter your data"), 4-8 features, 5-8 use cases, troubleshooting for complex tools. Remember to register the tool id in `lib/i18n/load-tools.ts`, otherwise translations are not loaded.
 
 ### Step 4: Write Unit Tests
 
