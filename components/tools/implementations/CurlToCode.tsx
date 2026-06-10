@@ -96,15 +96,29 @@ interface CurlToCodeConverterProps {
   defaultLanguage?: string;
   /** Pre-select a framework within the chosen language (e.g. 'guzzle'). */
   defaultFramework?: string;
+  /** Per-tool i18n dictionary (flows via ToolWorkspace -> LazyToolLoader). */
+  dictionary?: any;
 }
 
 export default function CurlToCodeConverter({
   toolId = 'curl-to-code',
   defaultLanguage = 'javascript',
   defaultFramework = 'fetch',
+  dictionary,
 }: CurlToCodeConverterProps = {}) {
   const { theme } = useTheme();
   const { trackUse, trackError } = useToolTracking(toolId);
+  const ui = dictionary?.tools?.['curl-to-code']?.ui ?? {};
+
+  // Localized labels for the example buttons (keys of EXAMPLE_CURLS stay EN)
+  const exampleLabels: Record<string, string> = {
+    'Simple GET': ui.exampleSimpleGet || 'Simple GET',
+    'POST with JSON': ui.examplePostJson || 'POST with JSON',
+    'Bearer Auth': ui.exampleBearerAuth || 'Bearer Auth',
+    'Form Upload': ui.exampleFormUpload || 'Form Upload',
+    'GraphQL Query': ui.exampleGraphql || 'GraphQL Query',
+    'Complex Request': ui.exampleComplexRequest || 'Complex Request',
+  };
 
   // State
   const [curlCommand, setCurlCommand] = useState('');
@@ -285,7 +299,9 @@ export default function CurlToCodeConverter({
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-base">cURL Command</CardTitle>
+                <CardTitle className="text-base">
+                  {ui.curlCommand || 'cURL Command'}
+                </CardTitle>
                 <div className="flex items-center gap-2">
                   <Button
                     variant="outline"
@@ -293,7 +309,7 @@ export default function CurlToCodeConverter({
                     onClick={() => setCurlCommand('')}
                   >
                     <RefreshCw className="mr-2 h-4 w-4" />
-                    Clear
+                    {ui.clear || 'Clear'}
                   </Button>
                   <input
                     id="file-import"
@@ -310,7 +326,7 @@ export default function CurlToCodeConverter({
                     }
                   >
                     <Upload className="mr-2 h-4 w-4" />
-                    Import
+                    {ui.import || 'Import'}
                   </Button>
                 </div>
               </div>
@@ -319,14 +335,16 @@ export default function CurlToCodeConverter({
               <Textarea
                 value={curlCommand}
                 onChange={(e) => setCurlCommand(e.target.value)}
-                placeholder="Paste your cURL command here..."
+                placeholder={
+                  ui.inputPlaceholder || 'Paste your cURL command here...'
+                }
                 className="min-h-[200px] font-mono text-sm"
                 spellCheck={false}
               />
 
               {/* Examples */}
               <div className="space-y-2">
-                <Label>Quick Examples</Label>
+                <Label>{ui.quickExamples || 'Quick Examples'}</Label>
                 <div className="flex flex-wrap gap-2">
                   {Object.keys(EXAMPLE_CURLS).map((example) => (
                     <Button
@@ -335,7 +353,7 @@ export default function CurlToCodeConverter({
                       size="sm"
                       onClick={() => loadExample(example)}
                     >
-                      {example}
+                      {exampleLabels[example] || example}
                     </Button>
                   ))}
                 </div>
@@ -344,7 +362,9 @@ export default function CurlToCodeConverter({
               {/* Language & Framework Selection */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="language">Language</Label>
+                  <Label htmlFor="language">
+                    {ui.language || 'Language'}
+                  </Label>
                   <Select
                     value={selectedLanguage}
                     onValueChange={setSelectedLanguage}
@@ -367,7 +387,7 @@ export default function CurlToCodeConverter({
                                     variant="secondary"
                                     className="text-[10px]"
                                   >
-                                    Coming soon
+                                    {ui.comingSoon || 'Coming soon'}
                                   </Badge>
                                 )}
                               </span>
@@ -380,7 +400,9 @@ export default function CurlToCodeConverter({
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="framework">Framework</Label>
+                  <Label htmlFor="framework">
+                    {ui.framework || 'Framework'}
+                  </Label>
                   <Select
                     value={selectedFramework}
                     onValueChange={setSelectedFramework}
@@ -406,7 +428,7 @@ export default function CurlToCodeConverter({
                                   variant="secondary"
                                   className="text-[10px]"
                                 >
-                                  Coming soon
+                                  {ui.comingSoon || 'Coming soon'}
                                 </Badge>
                               )}
                             </span>
@@ -421,10 +443,12 @@ export default function CurlToCodeConverter({
               {!languageHasImplementation && (
                 <Alert>
                   <AlertDescription>
-                    Generator for <strong>{SUPPORTED_LANGUAGES[selectedLanguage]?.name}</strong>{' '}
-                    is coming soon. Pick a language with an available framework
-                    (e.g., JavaScript + fetch, Python + requests) to generate
-                    code now.
+                    {ui.generatorComingSoonPrefix || 'Generator for'}{' '}
+                    <strong>
+                      {SUPPORTED_LANGUAGES[selectedLanguage]?.name}
+                    </strong>{' '}
+                    {ui.generatorComingSoonSuffix ||
+                      'is coming soon. Pick a language with an available framework (e.g., JavaScript + fetch, Python + requests) to generate code now.'}
                   </AlertDescription>
                 </Alert>
               )}
@@ -437,7 +461,7 @@ export default function CurlToCodeConverter({
                   onClick={() => setShowOptions(!showOptions)}
                 >
                   <Settings className="mr-2 h-4 w-4" />
-                  Advanced Options
+                  {ui.advancedOptions || 'Advanced Options'}
                   {showOptions ? (
                     <ChevronDown className="ml-auto h-4 w-4" />
                   ) : (
@@ -449,7 +473,9 @@ export default function CurlToCodeConverter({
                   <div className="space-y-4 rounded-lg border p-4">
                     {/* Error Handling */}
                     <div className="space-y-2">
-                      <Label htmlFor="error-handling">Error Handling</Label>
+                      <Label htmlFor="error-handling">
+                        {ui.errorHandling || 'Error Handling'}
+                      </Label>
                       <Select
                         value={options.errorHandling}
                         onValueChange={(value) =>
@@ -463,10 +489,14 @@ export default function CurlToCodeConverter({
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="none">None</SelectItem>
-                          <SelectItem value="basic">Basic Try-Catch</SelectItem>
+                          <SelectItem value="none">
+                            {ui.none || 'None'}
+                          </SelectItem>
+                          <SelectItem value="basic">
+                            {ui.basicTryCatch || 'Basic Try-Catch'}
+                          </SelectItem>
                           <SelectItem value="comprehensive">
-                            Comprehensive
+                            {ui.comprehensive || 'Comprehensive'}
                           </SelectItem>
                         </SelectContent>
                       </Select>
@@ -475,7 +505,9 @@ export default function CurlToCodeConverter({
                     {/* Switches */}
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <Label htmlFor="async">Async/Await</Label>
+                        <Label htmlFor="async">
+                          {ui.asyncAwait || 'Async/Await'}
+                        </Label>
                         <Switch
                           id="async"
                           checked={options.async}
@@ -487,7 +519,7 @@ export default function CurlToCodeConverter({
 
                       <div className="flex items-center justify-between">
                         <Label htmlFor="env-vars">
-                          Extract Environment Variables
+                          {ui.extractEnvVars || 'Extract Environment Variables'}
                         </Label>
                         <Switch
                           id="env-vars"
@@ -502,7 +534,9 @@ export default function CurlToCodeConverter({
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <Label htmlFor="types">Include Types</Label>
+                        <Label htmlFor="types">
+                          {ui.includeTypes || 'Include Types'}
+                        </Label>
                         <Switch
                           id="types"
                           checked={options.includeTypes}
@@ -516,7 +550,9 @@ export default function CurlToCodeConverter({
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <Label htmlFor="retry">Retry Logic</Label>
+                        <Label htmlFor="retry">
+                          {ui.retryLogic || 'Retry Logic'}
+                        </Label>
                         <Switch
                           id="retry"
                           checked={options.retryLogic}
@@ -530,7 +566,9 @@ export default function CurlToCodeConverter({
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <Label htmlFor="logging">Include Logging</Label>
+                        <Label htmlFor="logging">
+                          {ui.includeLogging || 'Include Logging'}
+                        </Label>
                         <Switch
                           id="logging"
                           checked={options.includeLogging}
@@ -544,7 +582,9 @@ export default function CurlToCodeConverter({
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <Label htmlFor="comments">Include Comments</Label>
+                        <Label htmlFor="comments">
+                          {ui.includeComments || 'Include Comments'}
+                        </Label>
                         <Switch
                           id="comments"
                           checked={options.includeComments}
@@ -561,7 +601,9 @@ export default function CurlToCodeConverter({
                     {/* Indentation */}
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="indent-type">Indentation</Label>
+                        <Label htmlFor="indent-type">
+                          {ui.indentation || 'Indentation'}
+                        </Label>
                         <Select
                           value={options.indentType}
                           onValueChange={(value) =>
@@ -575,14 +617,20 @@ export default function CurlToCodeConverter({
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="spaces">Spaces</SelectItem>
-                            <SelectItem value="tabs">Tabs</SelectItem>
+                            <SelectItem value="spaces">
+                              {ui.spaces || 'Spaces'}
+                            </SelectItem>
+                            <SelectItem value="tabs">
+                              {ui.tabs || 'Tabs'}
+                            </SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="indent-size">Indent Size</Label>
+                        <Label htmlFor="indent-size">
+                          {ui.indentSize || 'Indent Size'}
+                        </Label>
                         <Select
                           value={String(options.indentSize)}
                           onValueChange={(value) =>
@@ -617,12 +665,12 @@ export default function CurlToCodeConverter({
                 {isConverting ? (
                   <>
                     <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                    Converting...
+                    {ui.converting || 'Converting...'}
                   </>
                 ) : (
                   <>
                     <Zap className="mr-2 h-4 w-4" />
-                    Convert to Code
+                    {ui.convertToCode || 'Convert to Code'}
                   </>
                 )}
               </Button>
@@ -635,7 +683,9 @@ export default function CurlToCodeConverter({
           <Card className="h-full">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-base">Generated Code</CardTitle>
+                <CardTitle className="text-base">
+                  {ui.generatedCode || 'Generated Code'}
+                </CardTitle>
                 {generatedCode?.generatedCode && (
                   <div className="flex items-center gap-2">
                     <Button
@@ -648,7 +698,7 @@ export default function CurlToCodeConverter({
                       ) : (
                         <Copy className="mr-2 h-4 w-4" />
                       )}
-                      {copiedCode ? 'Copied' : 'Copy'}
+                      {copiedCode ? ui.copied || 'Copied' : ui.copy || 'Copy'}
                     </Button>
                     <Button
                       variant="outline"
@@ -656,7 +706,7 @@ export default function CurlToCodeConverter({
                       onClick={handleDownload}
                     >
                       <Download className="mr-2 h-4 w-4" />
-                      Download
+                      {ui.download || 'Download'}
                     </Button>
                   </div>
                 )}
@@ -668,15 +718,15 @@ export default function CurlToCodeConverter({
                   <TabsList className="grid w-full grid-cols-3">
                     <TabsTrigger value="code">
                       <Code className="mr-2 h-4 w-4" />
-                      Code
+                      {ui.codeTab || 'Code'}
                     </TabsTrigger>
                     <TabsTrigger value="env">
                       <Globe className="mr-2 h-4 w-4" />
-                      Env Vars
+                      {ui.envVarsTab || 'Env Vars'}
                     </TabsTrigger>
                     <TabsTrigger value="info">
                       <FileText className="mr-2 h-4 w-4" />
-                      Info
+                      {ui.infoTab || 'Info'}
                     </TabsTrigger>
                   </TabsList>
 
@@ -698,7 +748,8 @@ export default function CurlToCodeConverter({
                         <Alert>
                           <AlertCircle className="h-4 w-4" />
                           <AlertDescription>
-                            Add these environment variables to your .env file
+                            {ui.addEnvVarsHint ||
+                              'Add these environment variables to your .env file'}
                           </AlertDescription>
                         </Alert>
                         <ScrollArea className="h-[320px] w-full rounded-md border">
@@ -723,7 +774,7 @@ export default function CurlToCodeConverter({
                       <Alert>
                         <AlertCircle className="h-4 w-4" />
                         <AlertDescription>
-                          No environment variables extracted.
+                          {ui.noEnvVars || 'No environment variables extracted.'}
                         </AlertDescription>
                       </Alert>
                     )}
@@ -736,24 +787,30 @@ export default function CurlToCodeConverter({
                       {generatedCode.parsedCurl && (
                         <div className="space-y-4">
                           <h3 className="text-sm font-medium">
-                            Parsed cURL Details
+                            {ui.parsedCurlDetails || 'Parsed cURL Details'}
                           </h3>
                           <div className="space-y-2 text-sm">
                             <div className="grid grid-cols-2 gap-2">
-                              <span className="font-medium">Method:</span>
+                              <span className="font-medium">
+                                {ui.methodLabel || 'Method:'}
+                              </span>
                               <Badge variant="outline">
                                 {generatedCode.parsedCurl.method}
                               </Badge>
                             </div>
                             <div className="grid grid-cols-2 gap-2">
-                              <span className="font-medium">URL:</span>
+                              <span className="font-medium">
+                                {ui.urlLabel || 'URL:'}
+                              </span>
                               <span className="truncate font-mono">
                                 {generatedCode.parsedCurl.url}
                               </span>
                             </div>
                             {generatedCode.parsedCurl.auth && (
                               <div className="grid grid-cols-2 gap-2">
-                                <span className="font-medium">Auth Type:</span>
+                                <span className="font-medium">
+                                  {ui.authTypeLabel || 'Auth Type:'}
+                                </span>
                                 <Badge variant="secondary">
                                   {generatedCode.parsedCurl.auth.type}
                                 </Badge>
@@ -761,7 +818,9 @@ export default function CurlToCodeConverter({
                             )}
                             {generatedCode.parsedCurl.dataType && (
                               <div className="grid grid-cols-2 gap-2">
-                                <span className="font-medium">Data Type:</span>
+                                <span className="font-medium">
+                                  {ui.dataTypeLabel || 'Data Type:'}
+                                </span>
                                 <Badge variant="secondary">
                                   {generatedCode.parsedCurl.dataType}
                                 </Badge>
@@ -774,7 +833,7 @@ export default function CurlToCodeConverter({
                             .length > 0 && (
                             <div className="mt-4">
                               <h4 className="mb-2 text-sm font-medium">
-                                Headers
+                                {ui.headers || 'Headers'}
                               </h4>
                               <div className="space-y-1 rounded-md border p-2">
                                 {Object.entries(
@@ -798,11 +857,11 @@ export default function CurlToCodeConverter({
                           {generatedCode.generatedCode.dependencies?.length && (
                             <div className="mt-4">
                               <h4 className="mb-2 text-sm font-medium">
-                                Dependencies
+                                {ui.dependencies || 'Dependencies'}
                               </h4>
                               <p className="mb-2 text-sm text-muted-foreground">
-                                Install these packages to use the generated
-                                code:
+                                {ui.installPackagesHint ||
+                                  'Install these packages to use the generated code:'}
                               </p>
                               <div className="flex flex-wrap gap-2">
                                 {generatedCode.generatedCode.dependencies.map(
@@ -826,7 +885,7 @@ export default function CurlToCodeConverter({
                   <div className="text-center">
                     <Code className="mx-auto h-12 w-12 text-muted-foreground/50" />
                     <p className="mt-4 text-sm text-muted-foreground">
-                      Generated code will appear here
+                      {ui.emptyState || 'Generated code will appear here'}
                     </p>
                   </div>
                 </div>
@@ -839,7 +898,9 @@ export default function CurlToCodeConverter({
       {/* Features */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Supported Features</CardTitle>
+          <CardTitle className="text-base">
+            {ui.supportedFeatures || 'Supported Features'}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -848,9 +909,11 @@ export default function CurlToCodeConverter({
                 <Globe className="h-4 w-4 text-blue-600 dark:text-blue-400" />
               </div>
               <div>
-                <div className="font-medium">All HTTP Methods</div>
+                <div className="font-medium">
+                  {ui.allHttpMethods || 'All HTTP Methods'}
+                </div>
                 <div className="text-sm text-muted-foreground">
-                  GET, POST, PUT, DELETE, PATCH, etc.
+                  {ui.allHttpMethodsDesc || 'GET, POST, PUT, DELETE, PATCH, etc.'}
                 </div>
               </div>
             </div>
@@ -860,9 +923,11 @@ export default function CurlToCodeConverter({
                 <FileCode className="h-4 w-4 text-green-600 dark:text-green-400" />
               </div>
               <div>
-                <div className="font-medium">Type Inference</div>
+                <div className="font-medium">
+                  {ui.typeInference || 'Type Inference'}
+                </div>
                 <div className="text-sm text-muted-foreground">
-                  Auto-generate types from JSON
+                  {ui.typeInferenceDesc || 'Auto-generate types from JSON'}
                 </div>
               </div>
             </div>
@@ -872,9 +937,11 @@ export default function CurlToCodeConverter({
                 <Zap className="h-4 w-4 text-purple-600 dark:text-purple-400" />
               </div>
               <div>
-                <div className="font-medium">Error Handling</div>
+                <div className="font-medium">
+                  {ui.errorHandling || 'Error Handling'}
+                </div>
                 <div className="text-sm text-muted-foreground">
-                  Try-catch, retry logic, timeouts
+                  {ui.errorHandlingDesc || 'Try-catch, retry logic, timeouts'}
                 </div>
               </div>
             </div>
@@ -884,7 +951,9 @@ export default function CurlToCodeConverter({
                 <Package className="h-4 w-4 text-orange-600 dark:text-orange-400" />
               </div>
               <div>
-                <div className="font-medium">15+ Languages</div>
+                <div className="font-medium">
+                  {ui.languagesCount || '15+ Languages'}
+                </div>
                 <div className="text-sm text-muted-foreground">
                   JS, Python, Go, Java, PHP, Ruby...
                 </div>
