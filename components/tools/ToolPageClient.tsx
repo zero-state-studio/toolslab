@@ -589,10 +589,11 @@ export default function ToolPageClient({
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="truncate text-[12px] font-medium text-pg-text">
-                            {categoryTool.name}
+                            {toolT(categoryTool.id).title || categoryTool.name}
                           </p>
                           <p className="truncate text-[11px] text-pg-dim">
-                            {categoryTool.description}
+                            {toolT(categoryTool.id).description ||
+                              categoryTool.description}
                           </p>
                         </div>
                       </Link>
