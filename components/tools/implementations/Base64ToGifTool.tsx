@@ -32,7 +32,16 @@ import AdBanner from '@/components/ads/AdBanner';
 
 interface Base64ToGifToolProps {
   categoryColor: string;
+  dictionary?: any;
 }
+
+const FALLBACK_USAGE_TIPS = [
+  'Valid GIF Base64 data starts with "R0lGOD" when encoded',
+  'Data URL prefixes like "data:image/gif;base64," are removed automatically',
+  'Both GIF87a and GIF89a formats are supported, including animated GIFs',
+  'GIF headers are validated to confirm you have genuine GIF data',
+  'Use the preview to verify your GIF plays correctly before downloading',
+];
 
 const RELATED_TOOLS = [
   { label: 'WebP', href: '/tools/base64-to-webp' },
@@ -42,6 +51,7 @@ const RELATED_TOOLS = [
 
 export default function Base64ToGifTool({
   categoryColor,
+  dictionary,
 }: Base64ToGifToolProps) {
   const [input, setInput] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -565,24 +575,16 @@ export default function Base64ToGifTool({
       <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
         <h3 className="mb-2 flex items-center gap-2 text-sm font-medium text-blue-900 dark:text-blue-100">
           <Info className="h-4 w-4" />
-          Usage Tips
+          {dictionary?.tools?.['base64-to-gif']?.usageTips?.title ||
+            'Usage Tips'}
         </h3>
         <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-200">
-          <li>
-            • Valid GIF Base64 data starts with &quot;R0lGOD&quot; when encoded
-          </li>
-          <li>
-            • Data URL prefixes like &quot;data:image/gif;base64,&quot; are
-            removed automatically
-          </li>
-          <li>
-            • Both GIF87a and GIF89a formats are supported, including animated
-            GIFs
-          </li>
-          <li>
-            • GIF headers are validated to confirm you have genuine GIF data
-          </li>
-          <li>• Use the preview to verify your GIF plays correctly before downloading</li>
+          {(
+            dictionary?.tools?.['base64-to-gif']?.usageTips?.tips ||
+            FALLBACK_USAGE_TIPS
+          ).map((tip: string, index: number) => (
+            <li key={index}>• {tip}</li>
+          ))}
         </ul>
       </div>
     </div>

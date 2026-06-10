@@ -58,12 +58,15 @@ import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 interface TextDiffProps {
   initialText1?: string;
   initialText2?: string;
+  dictionary?: any;
 }
 
 export default function TextDiff({
   initialText1 = '',
   initialText2 = '',
+  dictionary,
 }: TextDiffProps) {
+  const ui = dictionary?.tools?.['text-diff']?.ui ?? {};
   // State management
   const [text1, setText1] = useState(initialText1);
   const [text2, setText2] = useState(initialText2);
@@ -344,9 +347,11 @@ export default function TextDiff({
           <Card className="overflow-hidden">
             <CardHeader className="bg-red-50 px-4 py-2 dark:bg-red-950/20">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Original</span>
+                <span className="text-sm font-medium">
+                  {ui.original || 'Original'}
+                </span>
                 <Badge variant="destructive">
-                  {statistics.deletions} deletions
+                  {statistics.deletions} {ui.deletions || 'deletions'}
                 </Badge>
               </div>
             </CardHeader>
@@ -407,9 +412,11 @@ export default function TextDiff({
           <Card className="overflow-hidden">
             <CardHeader className="bg-green-50 px-4 py-2 dark:bg-green-950/20">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium">Modified</span>
+                <span className="text-sm font-medium">
+                  {ui.modified || 'Modified'}
+                </span>
                 <Badge variant="default" className="bg-green-600">
-                  {statistics.additions} additions
+                  {statistics.additions} {ui.additions || 'additions'}
                 </Badge>
               </div>
             </CardHeader>
@@ -472,16 +479,18 @@ export default function TextDiff({
         <Card className="overflow-hidden">
           <CardHeader className="px-4 py-2">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Unified Diff</span>
+              <span className="text-sm font-medium">
+                {ui.unifiedDiff || 'Unified Diff'}
+              </span>
               <div className="flex gap-2">
                 <Badge variant="destructive">
-                  {statistics.deletions} deletions
+                  {statistics.deletions} {ui.deletions || 'deletions'}
                 </Badge>
                 <Badge variant="default" className="bg-green-600">
-                  {statistics.additions} additions
+                  {statistics.additions} {ui.additions || 'additions'}
                 </Badge>
                 <Badge variant="secondary">
-                  {statistics.modifications} modifications
+                  {statistics.modifications} {ui.modifications || 'modifications'}
                 </Badge>
               </div>
             </div>
@@ -502,13 +511,15 @@ export default function TextDiff({
         <Card className="overflow-hidden">
           <CardHeader className="px-4 py-2">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Inline Diff</span>
+              <span className="text-sm font-medium">
+                {ui.inlineDiff || 'Inline Diff'}
+              </span>
               <div className="flex gap-2">
                 <Badge variant="destructive">
-                  {statistics.deletions} deletions
+                  {statistics.deletions} {ui.deletions || 'deletions'}
                 </Badge>
                 <Badge variant="default" className="bg-green-600">
-                  {statistics.additions} additions
+                  {statistics.additions} {ui.additions || 'additions'}
                 </Badge>
               </div>
             </div>
@@ -589,15 +600,17 @@ export default function TextDiff({
       {/* Header with controls */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <h2 className="text-2xl font-bold">Text Diff Checker</h2>
+          <h2 className="text-2xl font-bold">
+            {ui.heading || 'Text Diff Checker'}
+          </h2>
           {diffResult && (
             <div className="flex gap-2">
               <Badge variant="outline">
-                {diffResult.statistics.similarity}% similar
+                {diffResult.statistics.similarity}% {ui.similar || 'similar'}
               </Badge>
               <Badge variant="outline">
                 {diffResult.changes.filter((c) => c.type !== 'equal').length}{' '}
-                changes
+                {ui.changes || 'changes'}
               </Badge>
             </div>
           )}
@@ -615,8 +628,8 @@ export default function TextDiff({
                 diffResult.changes.filter((c) => c.type !== 'equal').length ===
                   0
               }
-              title="Previous change (Shift+F3)"
-              aria-label="Previous change"
+              title={ui.previousChangeTitle || 'Previous change (Shift+F3)'}
+              aria-label={ui.previousChange || 'Previous change'}
             >
               <ChevronLeft className="h-4 w-4" />
             </Button>
@@ -630,8 +643,8 @@ export default function TextDiff({
                 diffResult.changes.filter((c) => c.type !== 'equal').length ===
                   0
               }
-              title="Next change (F3)"
-              aria-label="Next change"
+              title={ui.nextChangeTitle || 'Next change (F3)'}
+              aria-label={ui.nextChange || 'Next change'}
             >
               <ChevronRight className="h-4 w-4" />
             </Button>
@@ -642,7 +655,7 @@ export default function TextDiff({
               className="px-2"
               onClick={copyToClipboard}
               disabled={!diffResult}
-              aria-label="Copy diff to clipboard"
+              aria-label={ui.copyDiffToClipboard || 'Copy diff to clipboard'}
             >
               {copied ? (
                 <Check className="h-4 w-4" />
@@ -656,8 +669,8 @@ export default function TextDiff({
               className="px-2"
               onClick={exportAsPatch}
               disabled={!diffResult}
-              title="Download as patch file"
-              aria-label="Download as patch file"
+              title={ui.downloadAsPatchFile || 'Download as patch file'}
+              aria-label={ui.downloadAsPatchFile || 'Download as patch file'}
             >
               <Download className="h-4 w-4" />
             </Button>
@@ -667,8 +680,8 @@ export default function TextDiff({
               className="px-2"
               onClick={exportAsHTML}
               disabled={!diffResult}
-              title="Export as HTML"
-              aria-label="Export as HTML"
+              title={ui.exportAsHtml || 'Export as HTML'}
+              aria-label={ui.exportAsHtml || 'Export as HTML'}
             >
               <FileCode className="h-4 w-4" />
             </Button>
@@ -677,7 +690,11 @@ export default function TextDiff({
               size="sm"
               className="px-2"
               onClick={() => setIsFullscreen(!isFullscreen)}
-              aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+              aria-label={
+                isFullscreen
+                  ? ui.exitFullscreen || 'Exit fullscreen'
+                  : ui.enterFullscreen || 'Enter fullscreen'
+              }
             >
               {isFullscreen ? (
                 <Minimize2 className="h-4 w-4" />
@@ -694,13 +711,13 @@ export default function TextDiff({
         <CardHeader className="py-3">
           <CardTitle className="flex items-center gap-2 text-lg">
             <Settings className="h-4 w-4" />
-            Diff Options
+            {ui.diffOptions || 'Diff Options'}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             <div className="space-y-2">
-              <Label>View Mode</Label>
+              <Label>{ui.viewMode || 'View Mode'}</Label>
               <Select
                 value={options.mode}
                 onValueChange={(value) =>
@@ -711,15 +728,19 @@ export default function TextDiff({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="side-by-side">Side by Side</SelectItem>
-                  <SelectItem value="inline">Inline</SelectItem>
-                  <SelectItem value="unified">Unified</SelectItem>
+                  <SelectItem value="side-by-side">
+                    {ui.sideBySide || 'Side by Side'}
+                  </SelectItem>
+                  <SelectItem value="inline">{ui.inline || 'Inline'}</SelectItem>
+                  <SelectItem value="unified">
+                    {ui.unified || 'Unified'}
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label>Granularity</Label>
+              <Label>{ui.granularity || 'Granularity'}</Label>
               <Select
                 value={options.granularity}
                 onValueChange={(value) =>
@@ -730,15 +751,17 @@ export default function TextDiff({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="line">Line</SelectItem>
-                  <SelectItem value="word">Word</SelectItem>
-                  <SelectItem value="character">Character</SelectItem>
+                  <SelectItem value="line">{ui.line || 'Line'}</SelectItem>
+                  <SelectItem value="word">{ui.word || 'Word'}</SelectItem>
+                  <SelectItem value="character">
+                    {ui.character || 'Character'}
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label>File Type</Label>
+              <Label>{ui.fileType || 'File Type'}</Label>
               <Select
                 value={options.fileType}
                 onValueChange={(value) =>
@@ -749,8 +772,12 @@ export default function TextDiff({
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="auto">Auto Detect</SelectItem>
-                  <SelectItem value="text">Plain Text</SelectItem>
+                  <SelectItem value="auto">
+                    {ui.autoDetect || 'Auto Detect'}
+                  </SelectItem>
+                  <SelectItem value="text">
+                    {ui.plainText || 'Plain Text'}
+                  </SelectItem>
                   <SelectItem value="json">JSON</SelectItem>
                   <SelectItem value="xml">XML</SelectItem>
                   <SelectItem value="yaml">YAML</SelectItem>
@@ -765,7 +792,7 @@ export default function TextDiff({
 
             {options.mode === 'unified' && (
               <div className="space-y-2">
-                <Label>Context Lines</Label>
+                <Label>{ui.contextLines || 'Context Lines'}</Label>
                 <div className="flex items-center gap-2">
                   <Slider
                     value={[options.contextLines || 3]}
@@ -794,7 +821,9 @@ export default function TextDiff({
                   setOptions((prev) => ({ ...prev, ignoreCase: checked }))
                 }
               />
-              <Label htmlFor="ignore-case">Ignore Case</Label>
+              <Label htmlFor="ignore-case">
+                {ui.ignoreCase || 'Ignore Case'}
+              </Label>
             </div>
 
             <div className="flex items-center space-x-2">
@@ -805,7 +834,9 @@ export default function TextDiff({
                   setOptions((prev) => ({ ...prev, ignoreWhitespace: checked }))
                 }
               />
-              <Label htmlFor="ignore-whitespace">Ignore All Whitespace</Label>
+              <Label htmlFor="ignore-whitespace">
+                {ui.ignoreAllWhitespace || 'Ignore All Whitespace'}
+              </Label>
             </div>
 
             <div className="flex items-center space-x-2">
@@ -816,7 +847,9 @@ export default function TextDiff({
                   setOptions((prev) => ({ ...prev, ignoreBlankLines: checked }))
                 }
               />
-              <Label htmlFor="ignore-blank">Ignore Blank Lines</Label>
+              <Label htmlFor="ignore-blank">
+                {ui.ignoreBlankLines || 'Ignore Blank Lines'}
+              </Label>
             </div>
 
             <div className="flex items-center space-x-2">
@@ -825,7 +858,9 @@ export default function TextDiff({
                 checked={showLineNumbers}
                 onCheckedChange={setShowLineNumbers}
               />
-              <Label htmlFor="show-line-numbers">Show Line Numbers</Label>
+              <Label htmlFor="show-line-numbers">
+                {ui.showLineNumbers || 'Show Line Numbers'}
+              </Label>
             </div>
           </div>
         </CardContent>
@@ -836,7 +871,9 @@ export default function TextDiff({
         <Card>
           <CardHeader className="py-3">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-lg">Original Text</CardTitle>
+              <CardTitle className="text-lg">
+                {ui.originalText || 'Original Text'}
+              </CardTitle>
               <div className="flex gap-2">
                 <input
                   ref={fileInput1Ref}
@@ -854,7 +891,7 @@ export default function TextDiff({
                   onClick={() => fileInput1Ref.current?.click()}
                 >
                   <Upload className="mr-2 h-4 w-4" />
-                  Upload
+                  {ui.upload || 'Upload'}
                 </Button>
                 <Button
                   variant="outline"
@@ -862,7 +899,7 @@ export default function TextDiff({
                   onClick={() => setText1('')}
                   disabled={!text1}
                 >
-                  Clear
+                  {ui.clear || 'Clear'}
                 </Button>
               </div>
             </div>
@@ -876,20 +913,26 @@ export default function TextDiff({
               <Textarea
                 value={text1}
                 onChange={(e) => setText1(e.target.value)}
-                placeholder="Paste or type your original text here, or drag and drop a file..."
+                placeholder={
+                  ui.originalPlaceholder ||
+                  'Paste or type your original text here, or drag and drop a file...'
+                }
                 className="min-h-[200px] font-mono text-sm"
               />
               {text1.length === 0 && (
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-muted-foreground">
                     <FileText className="mx-auto mb-2 h-12 w-12 opacity-50" />
-                    <p className="text-sm">Drop a file here</p>
+                    <p className="text-sm">
+                      {ui.dropFileHere || 'Drop a file here'}
+                    </p>
                   </div>
                 </div>
               )}
             </div>
             <div className="mt-2 text-sm text-muted-foreground">
-              {text1.length} characters • {text1.split('\n').length} lines
+              {text1.length} {ui.characters || 'characters'} •{' '}
+              {text1.split('\n').length} {ui.lines || 'lines'}
             </div>
           </CardContent>
         </Card>
@@ -897,7 +940,9 @@ export default function TextDiff({
         <Card>
           <CardHeader className="py-3">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-lg">Modified Text</CardTitle>
+              <CardTitle className="text-lg">
+                {ui.modifiedText || 'Modified Text'}
+              </CardTitle>
               <div className="flex gap-2">
                 <input
                   ref={fileInput2Ref}
@@ -915,7 +960,7 @@ export default function TextDiff({
                   onClick={() => fileInput2Ref.current?.click()}
                 >
                   <Upload className="mr-2 h-4 w-4" />
-                  Upload
+                  {ui.upload || 'Upload'}
                 </Button>
                 <Button
                   variant="outline"
@@ -923,7 +968,7 @@ export default function TextDiff({
                   onClick={() => setText2('')}
                   disabled={!text2}
                 >
-                  Clear
+                  {ui.clear || 'Clear'}
                 </Button>
               </div>
             </div>
@@ -937,20 +982,26 @@ export default function TextDiff({
               <Textarea
                 value={text2}
                 onChange={(e) => setText2(e.target.value)}
-                placeholder="Paste or type your modified text here, or drag and drop a file..."
+                placeholder={
+                  ui.modifiedPlaceholder ||
+                  'Paste or type your modified text here, or drag and drop a file...'
+                }
                 className="min-h-[200px] font-mono text-sm"
               />
               {text2.length === 0 && (
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-muted-foreground">
                     <FileText className="mx-auto mb-2 h-12 w-12 opacity-50" />
-                    <p className="text-sm">Drop a file here</p>
+                    <p className="text-sm">
+                      {ui.dropFileHere || 'Drop a file here'}
+                    </p>
                   </div>
                 </div>
               )}
             </div>
             <div className="mt-2 text-sm text-muted-foreground">
-              {text2.length} characters • {text2.split('\n').length} lines
+              {text2.length} {ui.characters || 'characters'} •{' '}
+              {text2.split('\n').length} {ui.lines || 'lines'}
             </div>
           </CardContent>
         </Card>
@@ -961,10 +1012,12 @@ export default function TextDiff({
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
             <GitBranch className="mb-4 h-16 w-16 text-muted-foreground/50" />
-            <h3 className="mb-2 text-lg font-semibold">Ready to Compare</h3>
+            <h3 className="mb-2 text-lg font-semibold">
+              {ui.readyToCompare || 'Ready to Compare'}
+            </h3>
             <p className="max-w-md text-center text-muted-foreground">
-              Enter or upload text in both areas above to see the differences
-              highlighted with real-time comparison
+              {ui.emptyStateDescription ||
+                'Enter or upload text in both areas above to see the differences highlighted with real-time comparison'}
             </p>
           </CardContent>
         </Card>
@@ -975,7 +1028,9 @@ export default function TextDiff({
         <Card>
           <CardContent className="flex items-center justify-center py-12">
             <Loader2 className="mr-3 h-8 w-8 animate-spin text-primary" />
-            <span className="text-lg">Computing differences...</span>
+            <span className="text-lg">
+              {ui.computingDifferences || 'Computing differences...'}
+            </span>
           </CardContent>
         </Card>
       )}
@@ -997,7 +1052,7 @@ export default function TextDiff({
           <div className="space-y-4">
             <h3 className="flex items-center gap-2 text-xl font-semibold">
               <GitBranch className="h-5 w-5" />
-              Diff Results
+              {ui.diffResults || 'Diff Results'}
             </h3>
             {renderDiffView}
           </div>
@@ -1010,7 +1065,7 @@ export default function TextDiff({
           <CardHeader className="py-3">
             <CardTitle className="flex items-center gap-2 text-lg">
               <Info className="h-4 w-4" />
-              Diff Statistics
+              {ui.diffStatistics || 'Diff Statistics'}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -1019,33 +1074,41 @@ export default function TextDiff({
                 <div className="text-2xl font-bold text-green-600">
                   +{diffResult.statistics.additions}
                 </div>
-                <div className="text-sm text-muted-foreground">Additions</div>
+                <div className="text-sm text-muted-foreground">
+                  {ui.statAdditions || 'Additions'}
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-red-600">
                   -{diffResult.statistics.deletions}
                 </div>
-                <div className="text-sm text-muted-foreground">Deletions</div>
+                <div className="text-sm text-muted-foreground">
+                  {ui.statDeletions || 'Deletions'}
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-yellow-600">
                   ~{diffResult.statistics.modifications}
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  Modifications
+                  {ui.statModifications || 'Modifications'}
                 </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-gray-600">
                   ={diffResult.statistics.unchanged}
                 </div>
-                <div className="text-sm text-muted-foreground">Unchanged</div>
+                <div className="text-sm text-muted-foreground">
+                  {ui.statUnchanged || 'Unchanged'}
+                </div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-primary">
                   {diffResult.statistics.similarity}%
                 </div>
-                <div className="text-sm text-muted-foreground">Similarity</div>
+                <div className="text-sm text-muted-foreground">
+                  {ui.statSimilarity || 'Similarity'}
+                </div>
               </div>
             </div>
           </CardContent>
@@ -1055,23 +1118,27 @@ export default function TextDiff({
       {/* Keyboard shortcuts help */}
       <Card>
         <CardHeader className="py-3">
-          <CardTitle className="text-lg">Keyboard Shortcuts</CardTitle>
+          <CardTitle className="text-lg">
+            {ui.keyboardShortcuts || 'Keyboard Shortcuts'}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 gap-2 text-sm md:grid-cols-4">
             <div>
-              <kbd className="rounded bg-muted px-2 py-1">F3</kbd> Next change
+              <kbd className="rounded bg-muted px-2 py-1">F3</kbd>{' '}
+              {ui.nextChange || 'Next change'}
             </div>
             <div>
               <kbd className="rounded bg-muted px-2 py-1">Shift+F3</kbd>{' '}
-              Previous change
+              {ui.previousChange || 'Previous change'}
             </div>
             <div>
-              <kbd className="rounded bg-muted px-2 py-1">Ctrl+S</kbd> Download
-              diff
+              <kbd className="rounded bg-muted px-2 py-1">Ctrl+S</kbd>{' '}
+              {ui.downloadDiff || 'Download diff'}
             </div>
             <div>
-              <kbd className="rounded bg-muted px-2 py-1">Ctrl+C</kbd> Copy diff
+              <kbd className="rounded bg-muted px-2 py-1">Ctrl+C</kbd>{' '}
+              {ui.copyDiff || 'Copy diff'}
             </div>
           </div>
         </CardContent>

@@ -109,7 +109,7 @@ const getUserTimezone = () => {
 };
 
 // Create timezone options with user's timezone at the top if not already present
-const createTimezoneOptions = () => {
+const createTimezoneOptions = (yourTimezoneLabel: string) => {
   const userTz = getUserTimezone();
   const existingOptions = [...TIMEZONE_OPTIONS];
 
@@ -120,7 +120,7 @@ const createTimezoneOptions = () => {
     // Add user's timezone at the top with a special label
     existingOptions.unshift({
       value: userTz,
-      label: `${userTz.replace('_', ' ')} (Your timezone)`,
+      label: `${userTz.replace('_', ' ')} (${yourTimezoneLabel})`,
     });
   }
 
@@ -141,8 +141,10 @@ function CrontabBuilderContent({
   initialInput,
   onInputChange,
   onOutputChange,
+  dictionary,
 }: CrontabBuilderProps) {
   const isHydrated = useHydration();
+  const ui = dictionary?.tools?.['crontab-builder']?.ui ?? {};
   const [inputExpression, setInputExpression] = useState(
     initialInput || '*/15 0 1,15 * 1-5'
   );
@@ -490,7 +492,7 @@ function CrontabBuilderContent({
           <div className="flex items-center gap-2">
             <CheckCircle className="h-4 w-4 text-green-500" />
             <span className="text-sm font-medium text-green-600">
-              Valid Expression
+              {ui.validExpression || 'Valid Expression'}
             </span>
           </div>
         )}
@@ -505,25 +507,25 @@ function CrontabBuilderContent({
               onClick={() => setInputExpression('*/15 * * * *')}
               className="rounded-lg border px-3 py-2 text-sm font-medium transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
             >
-              Every 15 mins
+              {ui.every15Mins || 'Every 15 mins'}
             </button>
             <button
               onClick={() => setInputExpression('0 9-17 * * 1-5')}
               className="rounded-lg border px-3 py-2 text-sm font-medium transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
             >
-              Business Hours
+              {ui.businessHours || 'Business Hours'}
             </button>
             <button
               onClick={() => setInputExpression('0 0 1 * *')}
               className="rounded-lg border px-3 py-2 text-sm font-medium transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
             >
-              Monthly
+              {ui.monthly || 'Monthly'}
             </button>
             <button
               onClick={() => setInputExpression('@daily')}
               className="rounded-lg border px-3 py-2 text-sm font-medium transition-all hover:bg-gray-50 dark:hover:bg-gray-700"
             >
-              Daily
+              {ui.daily || 'Daily'}
             </button>
           </div>
 
@@ -531,7 +533,7 @@ function CrontabBuilderContent({
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Cron Expression
+                {ui.cronExpression || 'Cron Expression'}
               </label>
               <div className="flex items-center gap-2">
                 <Select
@@ -542,7 +544,8 @@ function CrontabBuilderContent({
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="max-h-[400px]">
-                    {createTimezoneOptions().map((tz) => (
+                    {createTimezoneOptions(ui.yourTimezone || 'Your timezone').map(
+                      (tz) => (
                       <SelectItem key={tz.value} value={tz.value}>
                         {tz.label}
                       </SelectItem>
@@ -555,7 +558,9 @@ function CrontabBuilderContent({
               <Input
                 value={inputExpression}
                 onChange={(e) => handleInputChange(e.target.value)}
-                placeholder="*/15 0 1,15 * 1-5 or @daily"
+                placeholder={
+                  ui.expressionPlaceholder || '*/15 0 1,15 * 1-5 or @daily'
+                }
                 className="border-2 bg-gradient-to-r from-gray-50 to-gray-100 px-4 py-3 text-center font-mono text-base dark:from-gray-900 dark:to-gray-800"
                 style={{
                   borderColor:
@@ -573,16 +578,26 @@ function CrontabBuilderContent({
               />
               {/* Field Labels */}
               <div className="mt-2 flex justify-between text-xs text-gray-500 dark:text-gray-400">
-                <div className="flex-1 text-center underline">minute</div>
-                <div className="flex-1 text-center underline">hour</div>
-                <div className="flex-1 text-center">
-                  <div className="underline">day</div>
-                  <div className="mt-0.5 text-[10px]">(month)</div>
+                <div className="flex-1 text-center underline">
+                  {ui.fieldMinute || 'minute'}
                 </div>
-                <div className="flex-1 text-center underline">month</div>
+                <div className="flex-1 text-center underline">
+                  {ui.fieldHour || 'hour'}
+                </div>
                 <div className="flex-1 text-center">
-                  <div className="underline">day</div>
-                  <div className="mt-0.5 text-[10px]">(week)</div>
+                  <div className="underline">{ui.fieldDay || 'day'}</div>
+                  <div className="mt-0.5 text-[10px]">
+                    {ui.fieldOfMonth || '(month)'}
+                  </div>
+                </div>
+                <div className="flex-1 text-center underline">
+                  {ui.fieldMonth || 'month'}
+                </div>
+                <div className="flex-1 text-center">
+                  <div className="underline">{ui.fieldDay || 'day'}</div>
+                  <div className="mt-0.5 text-[10px]">
+                    {ui.fieldOfWeek || '(week)'}
+                  </div>
                 </div>
               </div>
             </div>
@@ -600,14 +615,14 @@ function CrontabBuilderContent({
               }}
             >
               <PlayCircle className="h-4 w-4" />
-              Parse Expression
+              {ui.parseExpression || 'Parse Expression'}
             </button>
             <button
               onClick={clearAll}
               className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-3 font-medium transition-colors hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-700"
             >
               <Trash2 className="h-4 w-4" />
-              Clear
+              {ui.clear || 'Clear'}
             </button>
             {parseResult && parseResult.validation.isValid && (
               <button
@@ -615,7 +630,7 @@ function CrontabBuilderContent({
                 className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-3 font-medium transition-colors hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-700"
               >
                 <Heart className="h-4 w-4" />
-                Save to Favorites
+                {ui.saveToFavorites || 'Save to Favorites'}
               </button>
             )}
           </div>
@@ -630,7 +645,7 @@ function CrontabBuilderContent({
                 <div className="mb-2 flex items-center gap-2">
                   <AlertTriangle className="h-4 w-4 text-red-600 dark:text-red-400" />
                   <span className="font-medium text-red-600 dark:text-red-400">
-                    Invalid Expression
+                    {ui.invalidExpression || 'Invalid Expression'}
                   </span>
                 </div>
                 <ul className="list-inside list-disc text-red-600 dark:text-red-400">
@@ -648,7 +663,7 @@ function CrontabBuilderContent({
                   <div className="mb-2 flex items-center gap-2">
                     <AlertTriangle className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
                     <span className="font-medium text-yellow-600 dark:text-yellow-400">
-                      Warnings
+                      {ui.warnings || 'Warnings'}
                     </span>
                   </div>
                   <ul className="list-inside list-disc text-yellow-600 dark:text-yellow-400">
@@ -665,7 +680,7 @@ function CrontabBuilderContent({
                 <div className="mb-2 flex items-center gap-2">
                   <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
                   <span className="font-medium text-green-600 dark:text-green-400">
-                    Valid Expression
+                    {ui.validExpression || 'Valid Expression'}
                   </span>
                 </div>
                 <p className="text-green-600 dark:text-green-400">
@@ -681,27 +696,27 @@ function CrontabBuilderContent({
           <TabsList className="grid w-full grid-cols-6">
             <TabsTrigger value="parser" className="flex items-center gap-2">
               <BookOpen className="h-4 w-4" />
-              Parser
+              {ui.tabParser || 'Parser'}
             </TabsTrigger>
             <TabsTrigger value="builder" className="flex items-center gap-2">
               <Settings className="h-4 w-4" />
-              Builder
+              {ui.tabBuilder || 'Builder'}
             </TabsTrigger>
             <TabsTrigger value="presets" className="flex items-center gap-2">
               <Zap className="h-4 w-4" />
-              Presets
+              {ui.tabPresets || 'Presets'}
             </TabsTrigger>
             <TabsTrigger value="favorites" className="flex items-center gap-2">
               <Heart className="h-4 w-4" />
-              Favorites ({safeFavorites.length})
+              {ui.tabFavorites || 'Favorites'} ({safeFavorites.length})
             </TabsTrigger>
             <TabsTrigger value="history" className="flex items-center gap-2">
               <History className="h-4 w-4" />
-              History ({safeHistory.length})
+              {ui.tabHistory || 'History'} ({safeHistory.length})
             </TabsTrigger>
             <TabsTrigger value="export" className="flex items-center gap-2">
               <Download className="h-4 w-4" />
-              Export
+              {ui.tabExport || 'Export'}
             </TabsTrigger>
           </TabsList>
 
@@ -715,14 +730,15 @@ function CrontabBuilderContent({
                     <div className="flex items-center justify-between">
                       <CardTitle className="flex items-center gap-2">
                         <Calendar className="h-5 w-5" />
-                        Next Executions ({selectedTimezone})
+                        {ui.nextExecutions || 'Next Executions'} (
+                        {selectedTimezone})
                       </CardTitle>
                       <div className="flex items-center gap-2">
                         <Label
                           htmlFor="executions-limit"
                           className="text-sm font-normal"
                         >
-                          Show:
+                          {ui.show || 'Show:'}
                         </Label>
                         <Select
                           value={executionsLimit.toString()}
@@ -774,9 +790,9 @@ function CrontabBuilderContent({
                         ))}
                       {parseResult.nextExecutions.length > executionsLimit && (
                         <div className="py-2 text-center text-sm text-gray-500 dark:text-gray-400">
-                          ... and{' '}
+                          {ui.moreExecutionsPrefix || '... and'}{' '}
                           {parseResult.nextExecutions.length - executionsLimit}{' '}
-                          more executions
+                          {ui.moreExecutionsSuffix || 'more executions'}
                         </div>
                       )}
                     </div>
@@ -818,14 +834,14 @@ function CrontabBuilderContent({
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                      placeholder="Enter value"
+                      placeholder={ui.enterValue || 'Enter value'}
                       className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
                     />
                   </div>
 
                   <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                      Preset
+                      {ui.preset || 'Preset'}
                     </p>
                     <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
@@ -962,14 +978,14 @@ function CrontabBuilderContent({
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                      placeholder="Enter value"
+                      placeholder={ui.enterValue || 'Enter value'}
                       className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
                     />
                   </div>
 
                   <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                      Preset
+                      {ui.preset || 'Preset'}
                     </p>
                     <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
@@ -1082,14 +1098,14 @@ function CrontabBuilderContent({
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                      placeholder="Enter value"
+                      placeholder={ui.enterValue || 'Enter value'}
                       className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
                     />
                   </div>
 
                   <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                      Preset
+                      {ui.preset || 'Preset'}
                     </p>
                     <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
@@ -1109,7 +1125,7 @@ function CrontabBuilderContent({
                         }}
                       >
                         <span className="mr-2 font-mono">*</span>
-                        <span>Every day</span>
+                        <span>{ui.everyDay || 'Every day'}</span>
                       </Button>
                       <Button
                         variant={
@@ -1202,14 +1218,14 @@ function CrontabBuilderContent({
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                      placeholder="Enter value"
+                      placeholder={ui.enterValue || 'Enter value'}
                       className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
                     />
                   </div>
 
                   <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                      Preset
+                      {ui.preset || 'Preset'}
                     </p>
                     <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
@@ -1327,14 +1343,14 @@ function CrontabBuilderContent({
                         parseExpression(expression);
                         isUpdatingFromBuilder.current = false;
                       }}
-                      placeholder="Enter value"
+                      placeholder={ui.enterValue || 'Enter value'}
                       className="h-12 border-2 bg-white text-center font-mono text-lg focus:border-blue-500 dark:bg-gray-900 dark:focus:border-blue-400"
                     />
                   </div>
 
                   <div className="flex flex-1 flex-col space-y-1.5">
                     <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                      Preset
+                      {ui.preset || 'Preset'}
                     </p>
                     <div className="grid flex-1 grid-cols-1 gap-1.5">
                       <Button
@@ -1354,7 +1370,7 @@ function CrontabBuilderContent({
                         }}
                       >
                         <span className="mr-2 font-mono">*</span>
-                        <span>Every day</span>
+                        <span>{ui.everyDay || 'Every day'}</span>
                       </Button>
                       <Button
                         variant={

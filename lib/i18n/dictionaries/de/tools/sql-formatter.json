@@ -103,5 +103,14 @@
     "description": "SQL-Abfragen online kostenlos formatieren. MySQL, PostgreSQL, SQLite und weitere Dialekte. Syntax-Highlighting, automatische Einrückung. Ohne Registrierung."
   },
   "tagline": "SQL-Abfragen online formatieren und verschönern mit Syntax-Highlighting",
-  "pageDescription": "Formatieren und verschönern Sie SQL-Abfragen mit korrekter Einrückung, Schlüsselwort-Hervorhebung und Syntaxvalidierung. Ideal für Datenbankentwickler, Datenanalysten und SQL-Optimierung. Unterstützt mehrere SQL-Dialekte (MySQL, PostgreSQL, SQLite, SQL Server) mit anpassbaren Formatierungsoptionen. SQL direkt im Browser einrücken — kostenloser SQL-Formatierer ohne Registrierung und ohne Software-Installation."
+  "pageDescription": "Formatieren und verschönern Sie SQL-Abfragen mit korrekter Einrückung, Schlüsselwort-Hervorhebung und Syntaxvalidierung. Ideal für Datenbankentwickler, Datenanalysten und SQL-Optimierung. Unterstützt mehrere SQL-Dialekte (MySQL, PostgreSQL, SQLite, SQL Server) mit anpassbaren Formatierungsoptionen. SQL direkt im Browser einrücken — kostenloser SQL-Formatierer ohne Registrierung und ohne Software-Installation.",
+  "usageTips": {
+    "title": "Nutzungstipps",
+    "tips": [
+      "Nutzen Sie die automatische Dialekt-Erkennung für die beste Keyword-Erkennung",
+      "Wählen Sie Großbuchstaben-Keywords für bessere Lesbarkeit und Standards",
+      "Aktivieren Sie die Kommentar-Erhaltung, um wichtige Dokumentation zu behalten",
+      "Nutzen Sie 4-Leerzeichen-Einrückung für optimale Lesbarkeit"
+    ]
+  }
 }

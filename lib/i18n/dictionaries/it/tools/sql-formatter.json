@@ -103,5 +103,14 @@
     "description": "Formatta e abbellisci query SQL online gratis. MySQL, PostgreSQL, SQLite e altri dialetti. Indentazione automatica, evidenziazione sintassi. Senza registrazione richiesta."
   },
   "tagline": "Formatta e abbellisci query SQL con evidenziazione sintassi",
-  "pageDescription": "Formatta e abbellisci query SQL con indentazione corretta, evidenziazione keyword e validazione sintassi. Perfetto per sviluppatori database, data analyst e ottimizzazione SQL. Supporta dialetti SQL multipli (MySQL, PostgreSQL, SQLite) con opzioni formattazione personalizzabili. Indenta SQL direttamente dal browser senza installare nulla e senza registrazione — formattatore SQL gratuito e sicuro senza caricamento dati."
+  "pageDescription": "Formatta e abbellisci query SQL con indentazione corretta, evidenziazione keyword e validazione sintassi. Perfetto per sviluppatori database, data analyst e ottimizzazione SQL. Supporta dialetti SQL multipli (MySQL, PostgreSQL, SQLite) con opzioni formattazione personalizzabili. Indenta SQL direttamente dal browser senza installare nulla e senza registrazione — formattatore SQL gratuito e sicuro senza caricamento dati.",
+  "usageTips": {
+    "title": "Suggerimenti per l'Uso",
+    "tips": [
+      "Usa il rilevamento automatico del dialetto per il miglior riconoscimento delle keyword",
+      "Scegli keyword maiuscole per migliore leggibilità e aderenza agli standard",
+      "Abilita la conservazione dei commenti per mantenere la documentazione importante",
+      "Usa indentazione a 4 spazi per il miglior equilibrio di leggibilità"
+    ]
+  }
 }

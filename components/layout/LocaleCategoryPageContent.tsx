@@ -251,6 +251,21 @@ export default function LocaleCategoryPageContent({
     ctaDesc: locale === 'it' ? `Sfoglia tutti i ${totalTools}+ strumenti disponibili.` : locale === 'es' ? `Explora todas las ${totalTools}+ herramientas disponibles.` : locale === 'fr' ? `Parcourez tous les ${totalTools}+ outils disponibles.` : locale === 'de' ? `Durchsuchen Sie alle ${totalTools}+ verfügbaren Tools.` : locale === 'pt' ? `Navegue por todas as ${totalTools}+ ferramentas disponíveis.` : `Browse all ${totalTools}+ tools across every category.`,
     ctaBtn: locale === 'it' ? 'Tutti gli Strumenti' : locale === 'es' ? 'Ver todos los herramientas' : locale === 'fr' ? 'Voir tous les outils' : locale === 'de' ? 'Alle Tools durchsuchen' : locale === 'pt' ? 'Ver todas as ferramentas' : 'Browse all tools',
     perfectFor: locale === 'it' ? 'Perfetto per:' : locale === 'es' ? 'Perfecto para:' : locale === 'fr' ? 'Parfait pour:' : locale === 'de' ? 'Perfekt für:' : locale === 'pt' ? 'Perfeito para:' : 'Perfect for:',
+    toolsMeta: locale === 'it' ? 'strumenti · tutti gratuiti e lato client.' : locale === 'es' ? 'herramientas · todas gratuitas y del lado del cliente.' : locale === 'fr' ? 'outils · tous gratuits et côté client.' : locale === 'de' ? 'Tools · alle kostenlos und clientseitig.' : locale === 'pt' ? 'ferramentas · todas gratuitas e do lado do cliente.' : 'tools · all free and client-side.',
+    starCategory: locale === 'it' ? 'Salva categoria' : locale === 'es' ? 'Destacar categoría' : locale === 'fr' ? 'Suivre la catégorie' : locale === 'de' ? 'Kategorie merken' : locale === 'pt' ? 'Guardar categoria' : 'Star category',
+    runsWord: locale === 'it' ? 'esecuzioni' : locale === 'es' ? 'ejecuciones' : locale === 'fr' ? 'exécutions' : locale === 'de' ? 'Ausführungen' : locale === 'pt' ? 'execuções' : 'runs',
+  };
+
+  // Localized name/description for tool cards (full dictionary includes
+  // dict.tools[id] for every tool); falls back to the EN registry values.
+  const localizeTool = (tool: (typeof popularTools)[0]) => {
+    const lt = (dictionary as any)?.tools?.[tool.id];
+    if (!lt?.title && !lt?.description) return tool;
+    return {
+      ...tool,
+      name: lt.title || tool.name,
+      description: lt.description || tool.description,
+    };
   };
 
   return (
@@ -305,14 +320,14 @@ export default function LocaleCategoryPageContent({
                   {seoContent.tagline || category.description}
                 </p>
                 <p className="mt-1 text-[13px] text-pg-dim">
-                  {tools.length} tools · all free and client-side.
+                  {tools.length} {t.toolsMeta}
                 </p>
               </div>
               <button
                 type="button"
                 className="inline-flex items-center gap-2 rounded-pg-card border border-pg-border bg-pg-surface px-3.5 py-2.5 text-[13px] text-pg-muted transition-colors hover:border-pg-border-hi hover:text-pg-text"
               >
-                <Star className="h-3.5 w-3.5" /> Star category
+                <Star className="h-3.5 w-3.5" /> {t.starCategory}
               </button>
             </div>
 
@@ -360,10 +375,11 @@ export default function LocaleCategoryPageContent({
                   return (
                     <CategoryToolCard
                       key={tool.id}
-                      tool={tool}
+                      tool={localizeTool(tool)}
                       hue={tt.hue}
                       Icon={tt.icon}
                       href={createHref(tool.route)}
+                      runsWord={t.runsWord}
                     />
                   );
                 })}
@@ -383,10 +399,11 @@ export default function LocaleCategoryPageContent({
                   return (
                     <CategoryToolCard
                       key={tool.id}
-                      tool={tool}
+                      tool={localizeTool(tool)}
                       hue={tt.hue}
                       Icon={tt.icon}
                       href={createHref(tool.route)}
+                      runsWord={t.runsWord}
                     />
                   );
                 })}

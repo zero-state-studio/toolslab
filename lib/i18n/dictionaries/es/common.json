@@ -10,7 +10,8 @@
       "viewAllTools": "Ver todas las herramientas",
       "home": "Inicio",
       "relatedTools": "Herramientas Relacionadas",
-      "sameCategoryTools": "Más herramientas de esta categoría"
+      "sameCategoryTools": "Más herramientas de esta categoría",
+      "searchPlaceholder": "Buscar herramientas…"
     },
     "actions": {
       "copy": "Copiar",
@@ -130,6 +131,33 @@
       "helpDescription": "Tu apoyo puede ayudarnos a cubrir los costos del servidor y reactivar este servicio. Cada contribución, por pequeña que sea, marca la diferencia.",
       "donateButton": "Invítame un café",
       "thanks": "¡Gracias por tu comprensión y apoyo!"
+    },
+    "faqSchema": [
+      {
+        "question": "¿El {toolName} es gratuito?",
+        "answer": "Sí, nuestro {toolName} es completamente gratuito. No se requiere registro, pago ni suscripción. Todas las funciones están disponibles sin coste."
+      },
+      {
+        "question": "¿Mis datos están seguros al usar el {toolName}?",
+        "answer": "Sí, todo el procesamiento ocurre íntegramente en tu navegador. Tus datos nunca salen de tu dispositivo ni se envían a nuestros servidores, garantizando privacidad y seguridad totales."
+      },
+      {
+        "question": "¿Puedo usar el {toolName} sin conexión?",
+        "answer": "Sí, una vez cargada la página, la herramienta funciona completamente sin conexión. Todo el procesamiento se realiza en tu navegador."
+      },
+      {
+        "question": "¿Necesito crear una cuenta para usar {toolName}?",
+        "answer": "No, puedes usar todas nuestras herramientas sin crear una cuenta. Visita la página y empieza a usarla de inmediato."
+      },
+      {
+        "question": "¿Cómo se usa el {toolName}?",
+        "answer": "Simplemente pega o escribe tu contenido en el {toolName} y obtén resultados al instante. La herramienta procesa en tiempo real con validación inmediata."
+      }
+    ],
+    "donation": {
+      "enjoying": "¿Te gusta ToolsLab?",
+      "share": "Compártelo o invítame a un café para mantenerlo gratis ☕",
+      "coffee": "Invítame a un café para mantenerlo gratis."
     }
   }
 }

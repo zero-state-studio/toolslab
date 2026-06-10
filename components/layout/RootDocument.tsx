@@ -8,6 +8,8 @@ import { UmamiProvider } from '@/components/analytics/UmamiProvider';
 import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import { Header } from '@/components/layout/Header';
+import { getDictionary } from '@/lib/i18n/get-dictionary';
+import type { Locale } from '@/lib/i18n/config';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { UpdateNotification } from '@/components/UpdateNotification';
@@ -47,13 +49,20 @@ const jetbrainsMono = JetBrains_Mono({
  * is involved, so every page can be statically prerendered — reading the
  * X-Locale header here previously forced the whole app to dynamic rendering.
  */
-export function RootDocument({
+export async function RootDocument({
   lang,
   children,
 }: {
   lang: string;
   children: React.ReactNode;
 }) {
+  // Server-side common dictionary so the Header SSR-renders localized nav
+  // (its client hook only resolves after hydration — without this the static
+  // HTML always contained the English fallbacks).
+  const commonDict = await getDictionary(lang as Locale, ['common'])
+    .then((d) => d.common)
+    .catch(() => undefined);
+
   return (
     <html lang={lang} suppressHydrationWarning>
       <head>
@@ -79,7 +88,7 @@ export function RootDocument({
             </Suspense>
             <ScrollToTop />
             <div className="relative flex min-h-screen flex-col">
-              <Header />
+              <Header initialCommon={commonDict} />
               <main className="flex-1">{children}</main>
               <Footer />
             </div>

@@ -82,5 +82,15 @@
         "description": "Copy filename"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Usage Tips",
+    "tips": [
+      "Valid GIF Base64 data starts with \"R0lGOD\" when encoded",
+      "Data URL prefixes like \"data:image/gif;base64,\" are removed automatically",
+      "Both GIF87a and GIF89a formats are supported, including animated GIFs",
+      "GIF headers are validated to confirm you have genuine GIF data",
+      "Use the preview to verify your GIF plays correctly before downloading"
+    ]
   }
 }

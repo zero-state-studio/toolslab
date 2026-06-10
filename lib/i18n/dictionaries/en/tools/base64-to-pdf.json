@@ -80,5 +80,14 @@
         "description": "Download PDF"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Usage Tips",
+    "tips": [
+      "Valid PDF Base64 data should start with \"JVBERi0\" when decoded",
+      "Remove any data URL prefixes like \"data:application/pdf;base64,\" before pasting",
+      "Large files may take longer to process - be patient with big PDFs",
+      "The tool validates PDF headers to ensure you have valid PDF data"
+    ]
   }
 }

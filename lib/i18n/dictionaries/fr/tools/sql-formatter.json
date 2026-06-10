@@ -103,5 +103,14 @@
   "meta": {
     "title": "Formateur SQL - Outil en Ligne Gratuit",
     "description": "Formatez et embellissez les requêtes SQL en ligne avec coloration syntaxique. Support MySQL, PostgreSQL, SQLite et autres dialectes. Outil SQL gratuit en ligne."
+  },
+  "usageTips": {
+    "title": "Conseils d'Utilisation",
+    "tips": [
+      "Utilisez la détection automatique du dialecte pour une meilleure reconnaissance des mots-clés",
+      "Choisissez des mots-clés en majuscules pour une meilleure lisibilité",
+      "Activez la préservation des commentaires pour conserver la documentation importante",
+      "Utilisez une indentation de 4 espaces pour un équilibre optimal de lisibilité"
+    ]
   }
 }
