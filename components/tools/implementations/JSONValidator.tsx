@@ -49,11 +49,14 @@ import {
 
 interface JSONValidatorProps {
   defaultValue?: string;
+  dictionary?: any;
 }
 
 export default function JSONValidator({
   defaultValue = '',
+  dictionary,
 }: JSONValidatorProps) {
+  const ui = dictionary?.tools?.['json-validator']?.ui ?? {};
   const [jsonInput, setJsonInput] = useState(defaultValue);
   const [schemaInput, setSchemaInput] = useState('');
   const [validationLevel, setValidationLevel] =
@@ -272,24 +275,34 @@ export default function JSONValidator({
     <div className="mx-auto w-full max-w-6xl space-y-6">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="validator">Validator</TabsTrigger>
-          <TabsTrigger value="schema">Schema</TabsTrigger>
-          <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="validator">
+            {ui.tabValidator || 'Validator'}
+          </TabsTrigger>
+          <TabsTrigger value="schema">{ui.tabSchema || 'Schema'}</TabsTrigger>
+          <TabsTrigger value="settings">
+            {ui.tabSettings || 'Settings'}
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="validator" className="space-y-4">
           <Card className="p-6">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold">JSON Input</h3>
+                <h3 className="text-lg font-semibold">
+                  {ui.jsonInput || 'JSON Input'}
+                </h3>
                 <div className="flex gap-1 md:gap-2">
                   <Button variant="outline" size="sm" onClick={handleFormat}>
                     <FileText className="h-4 w-4 md:mr-2" />
-                    <span className="hidden md:inline">Format</span>
+                    <span className="hidden md:inline">
+                      {ui.format || 'Format'}
+                    </span>
                   </Button>
                   <Button variant="outline" size="sm" onClick={handleMinify}>
                     <Zap className="h-4 w-4 md:mr-2" />
-                    <span className="hidden md:inline">Minify</span>
+                    <span className="hidden md:inline">
+                      {ui.minify || 'Minify'}
+                    </span>
                   </Button>
                   <input
                     type="file"
@@ -304,7 +317,9 @@ export default function JSONValidator({
                     onClick={() => fileInputRef.current?.click()}
                   >
                     <Upload className="h-4 w-4 md:mr-2" />
-                    <span className="hidden md:inline">Upload File</span>
+                    <span className="hidden md:inline">
+                      {ui.uploadFile || 'Upload File'}
+                    </span>
                   </Button>
                 </div>
               </div>
@@ -312,13 +327,17 @@ export default function JSONValidator({
               <Textarea
                 value={jsonInput}
                 onChange={(e) => setJsonInput(e.target.value)}
-                placeholder="Enter your JSON data here..."
+                placeholder={
+                  ui.jsonInputPlaceholder || 'Enter your JSON data here...'
+                }
                 className="min-h-[300px] font-mono text-sm"
               />
 
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2">
-                  <Label htmlFor="validation-level">Validation Level:</Label>
+                  <Label htmlFor="validation-level">
+                    {ui.validationLevel || 'Validation Level:'}
+                  </Label>
                   <Select
                     value={validationLevel}
                     onValueChange={(value) =>
@@ -329,10 +348,18 @@ export default function JSONValidator({
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="basic">Basic</SelectItem>
-                      <SelectItem value="structural">Structural</SelectItem>
-                      <SelectItem value="schema">Schema</SelectItem>
-                      <SelectItem value="security">Security</SelectItem>
+                      <SelectItem value="basic">
+                        {ui.levelBasic || 'Basic'}
+                      </SelectItem>
+                      <SelectItem value="structural">
+                        {ui.levelStructural || 'Structural'}
+                      </SelectItem>
+                      <SelectItem value="schema">
+                        {ui.levelSchema || 'Schema'}
+                      </SelectItem>
+                      <SelectItem value="security">
+                        {ui.levelSecurity || 'Security'}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -343,7 +370,9 @@ export default function JSONValidator({
                     checked={enableSecurity}
                     onChange={(e) => setEnableSecurity(e.target.checked)}
                   />
-                  <Label htmlFor="enable-security">Security Scan</Label>
+                  <Label htmlFor="enable-security">
+                    {ui.securityScan || 'Security Scan'}
+                  </Label>
                 </div>
 
                 <div className="flex items-center space-x-2">
@@ -352,7 +381,9 @@ export default function JSONValidator({
                     checked={allowComments}
                     onChange={(e) => setAllowComments(e.target.checked)}
                   />
-                  <Label htmlFor="allow-comments">Allow Comments</Label>
+                  <Label htmlFor="allow-comments">
+                    {ui.allowComments || 'Allow Comments'}
+                  </Label>
                 </div>
               </div>
 
@@ -363,7 +394,7 @@ export default function JSONValidator({
                   <div className="flex items-center gap-2">
                     <div className="h-2 w-2 animate-pulse rounded-full bg-blue-500"></div>
                     <span className="text-sm font-medium text-blue-700 dark:text-blue-300">
-                      Validating JSON...
+                      {ui.validatingJson || 'Validating JSON...'}
                     </span>
                   </div>
                 </div>
@@ -392,8 +423,8 @@ export default function JSONValidator({
                       }`}
                     >
                       {result.isValid
-                        ? `✓ JSON is valid${result.summary.warningCount > 0 ? ` (${result.summary.warningCount} warnings)` : ''}`
-                        : `✗ JSON is invalid (${result.summary.errorCount} errors${result.summary.warningCount > 0 ? `, ${result.summary.warningCount} warnings` : ''})`}
+                        ? `${ui.statusValid || '✓ JSON is valid'}${result.summary.warningCount > 0 ? ` (${result.summary.warningCount} ${ui.warningsLower || 'warnings'})` : ''}`
+                        : `${ui.statusInvalid || '✗ JSON is invalid'} (${result.summary.errorCount} ${ui.errorsLower || 'errors'}${result.summary.warningCount > 0 ? `, ${result.summary.warningCount} ${ui.warningsLower || 'warnings'}` : ''})`}
                     </span>
                   </div>
 
@@ -421,7 +452,7 @@ export default function JSONValidator({
               <div className="flex items-center gap-4 py-2">
                 <div className="flex-1 border-t border-gray-200 dark:border-gray-700"></div>
                 <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                  Validation Results
+                  {ui.validationResults || 'Validation Results'}
                 </span>
                 <div className="flex-1 border-t border-gray-200 dark:border-gray-700"></div>
               </div>
@@ -445,12 +476,13 @@ export default function JSONValidator({
                         </div>
                         <div>
                           <h3 className="text-lg font-semibold text-green-800 dark:text-green-200">
-                            JSON Valid ✓
+                            {ui.jsonValid || 'JSON Valid ✓'}
                           </h3>
                           {result.summary.warningCount > 0 && (
                             <p className="text-sm text-orange-600 dark:text-orange-400">
-                              {result.summary.warningCount} quality warnings
-                              detected
+                              {result.summary.warningCount}{' '}
+                              {ui.qualityWarningsDetected ||
+                                'quality warnings detected'}
                             </p>
                           )}
                         </div>
@@ -462,10 +494,11 @@ export default function JSONValidator({
                         </div>
                         <div>
                           <h3 className="text-lg font-semibold text-red-800 dark:text-red-200">
-                            JSON Invalid ✗
+                            {ui.jsonInvalid || 'JSON Invalid ✗'}
                           </h3>
                           <p className="text-sm text-red-600 dark:text-red-400">
-                            {result.summary.errorCount} errors found
+                            {result.summary.errorCount}{' '}
+                            {ui.errorsFound || 'errors found'}
                           </p>
                         </div>
                       </div>
@@ -480,7 +513,8 @@ export default function JSONValidator({
                       }
                     >
                       <span className="font-medium">
-                        Level: {result.summary.validationLevel}
+                        {ui.levelLabel || 'Level:'}{' '}
+                        {result.summary.validationLevel}
                       </span>
                     </Badge>
                   </div>
@@ -491,25 +525,33 @@ export default function JSONValidator({
                     <div className="text-2xl font-bold text-red-600">
                       {result.summary.errorCount}
                     </div>
-                    <div className="text-sm text-gray-600">Errors</div>
+                    <div className="text-sm text-gray-600">
+                      {ui.errors || 'Errors'}
+                    </div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-yellow-600">
                       {result.summary.warningCount}
                     </div>
-                    <div className="text-sm text-gray-600">Warnings</div>
+                    <div className="text-sm text-gray-600">
+                      {ui.warnings || 'Warnings'}
+                    </div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-purple-600">
                       {result.summary.securityIssueCount}
                     </div>
-                    <div className="text-sm text-gray-600">Security</div>
+                    <div className="text-sm text-gray-600">
+                      {ui.security || 'Security'}
+                    </div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-blue-600">
                       {result.metrics.validationTime.toFixed(1)}ms
                     </div>
-                    <div className="text-sm text-gray-600">Time</div>
+                    <div className="text-sm text-gray-600">
+                      {ui.time || 'Time'}
+                    </div>
                   </div>
                 </div>
 
@@ -520,7 +562,7 @@ export default function JSONValidator({
                     onClick={() => handleExport('json')}
                   >
                     <Download className="mr-2 h-4 w-4" />
-                    Export JSON
+                    {ui.export || 'Export'} JSON
                   </Button>
                   <Button
                     variant="outline"
@@ -528,7 +570,7 @@ export default function JSONValidator({
                     onClick={() => handleExport('html')}
                   >
                     <Download className="mr-2 h-4 w-4" />
-                    Export HTML
+                    {ui.export || 'Export'} HTML
                   </Button>
                   <Button
                     variant="outline"
@@ -536,7 +578,7 @@ export default function JSONValidator({
                     onClick={() => handleExport('csv')}
                   >
                     <Download className="mr-2 h-4 w-4" />
-                    Export CSV
+                    {ui.export || 'Export'} CSV
                   </Button>
                 </div>
               </Card>
@@ -545,7 +587,7 @@ export default function JSONValidator({
               {result.errors.length > 0 && (
                 <Card className="p-6">
                   <h3 className="mb-4 text-lg font-semibold text-red-600">
-                    Errors ({result.errors.length})
+                    {ui.errors || 'Errors'} ({result.errors.length})
                   </h3>
                   <div className="space-y-3">
                     {result.errors.map((error, index) => (
@@ -553,7 +595,8 @@ export default function JSONValidator({
                         <AlertCircle className="h-4 w-4" />
                         <AlertDescription>
                           <div className="font-medium">
-                            Line {error.line}, Column {error.column} (
+                            {ui.line || 'Line'} {error.line},{' '}
+                            {ui.column || 'Column'} {error.column} (
                             {error.type})
                           </div>
                           <div>{error.message}</div>
@@ -573,7 +616,7 @@ export default function JSONValidator({
               {result.warnings.length > 0 && (
                 <Card className="p-6">
                   <h3 className="mb-4 text-lg font-semibold text-yellow-600">
-                    Warnings ({result.warnings.length})
+                    {ui.warnings || 'Warnings'} ({result.warnings.length})
                   </h3>
                   <div className="space-y-3">
                     {result.warnings.map((warning, index) => (
@@ -581,7 +624,8 @@ export default function JSONValidator({
                         <AlertCircle className="h-4 w-4" />
                         <AlertDescription>
                           <div className="font-medium">
-                            Line {warning.line}, Column {warning.column} (
+                            {ui.line || 'Line'} {warning.line},{' '}
+                            {ui.column || 'Column'} {warning.column} (
                             {warning.type})
                           </div>
                           <div>{warning.message}</div>
@@ -602,7 +646,8 @@ export default function JSONValidator({
                 <Card className="p-6">
                   <h3 className="mb-4 flex items-center text-lg font-semibold text-purple-600">
                     <Shield className="mr-2 h-5 w-5" />
-                    Security Issues ({result.securityIssues.length})
+                    {ui.securityIssues || 'Security Issues'} (
+                    {result.securityIssues.length})
                   </h3>
                   <div className="space-y-3">
                     {result.securityIssues.map((issue, index) => (
@@ -636,35 +681,45 @@ export default function JSONValidator({
               <Card className="p-6">
                 <h3 className="mb-4 flex items-center text-lg font-semibold">
                   <Clock className="mr-2 h-5 w-5" />
-                  Performance Metrics
+                  {ui.performanceMetrics || 'Performance Metrics'}
                 </h3>
                 <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
                   <div>
-                    <div className="text-sm text-gray-600">File Size</div>
+                    <div className="text-sm text-gray-600">
+                      {ui.fileSize || 'File Size'}
+                    </div>
                     <div className="font-semibold">
                       {formatBytes(result.metrics.fileSize)}
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-600">Object Depth</div>
+                    <div className="text-sm text-gray-600">
+                      {ui.objectDepth || 'Object Depth'}
+                    </div>
                     <div className="font-semibold">
                       {result.metrics.objectDepth}
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-600">Key Count</div>
+                    <div className="text-sm text-gray-600">
+                      {ui.keyCount || 'Key Count'}
+                    </div>
                     <div className="font-semibold">
                       {result.metrics.keyCount}
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-600">Array Length</div>
+                    <div className="text-sm text-gray-600">
+                      {ui.arrayLength || 'Array Length'}
+                    </div>
                     <div className="font-semibold">
                       {result.metrics.arrayLength}
                     </div>
                   </div>
                   <div>
-                    <div className="text-sm text-gray-600">Validation Time</div>
+                    <div className="text-sm text-gray-600">
+                      {ui.validationTime || 'Validation Time'}
+                    </div>
                     <div className="font-semibold">
                       {result.metrics.validationTime.toFixed(2)}ms
                     </div>
@@ -677,7 +732,8 @@ export default function JSONValidator({
           {!result && (
             <Card className="p-6">
               <div className="text-center text-gray-500">
-                Enter JSON data above to see validation results here.
+                {ui.emptyState ||
+                  'Enter JSON data above to see validation results here.'}
               </div>
             </Card>
           )}
@@ -688,7 +744,7 @@ export default function JSONValidator({
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">
-                  JSON Schema (Optional)
+                  {ui.jsonSchemaOptional || 'JSON Schema (Optional)'}
                 </h3>
                 <Badge variant="outline">Draft 7 / 2019-09 / 2020-12</Badge>
               </div>
@@ -696,14 +752,15 @@ export default function JSONValidator({
               <Textarea
                 value={schemaInput}
                 onChange={(e) => setSchemaInput(e.target.value)}
-                placeholder="Enter your JSON Schema here..."
+                placeholder={
+                  ui.schemaPlaceholder || 'Enter your JSON Schema here...'
+                }
                 className="min-h-[200px] font-mono text-sm"
               />
 
               <div className="text-sm text-gray-600">
-                Provide a JSON Schema to validate your data structure, required
-                fields, and data types. Supports $ref, allOf, oneOf, and
-                conditional schemas.
+                {ui.schemaDescription ||
+                  'Provide a JSON Schema to validate your data structure, required fields, and data types. Supports $ref, allOf, oneOf, and conditional schemas.'}
               </div>
             </div>
           </Card>
@@ -711,12 +768,16 @@ export default function JSONValidator({
 
         <TabsContent value="settings" className="space-y-4">
           <Card className="p-6">
-            <h3 className="mb-4 text-lg font-semibold">Advanced Settings</h3>
+            <h3 className="mb-4 text-lg font-semibold">
+              {ui.advancedSettings || 'Advanced Settings'}
+            </h3>
 
             <div className="space-y-6">
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="max-depth">Maximum Object Depth</Label>
+                  <Label htmlFor="max-depth">
+                    {ui.maxObjectDepth || 'Maximum Object Depth'}
+                  </Label>
                   <Select
                     value={maxDepth.toString()}
                     onValueChange={(value) => setMaxDepth(parseInt(value))}
@@ -725,16 +786,26 @@ export default function JSONValidator({
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="10">10 levels</SelectItem>
-                      <SelectItem value="25">25 levels</SelectItem>
-                      <SelectItem value="50">50 levels</SelectItem>
-                      <SelectItem value="100">100 levels</SelectItem>
+                      <SelectItem value="10">
+                        10 {ui.levelsSuffix || 'levels'}
+                      </SelectItem>
+                      <SelectItem value="25">
+                        25 {ui.levelsSuffix || 'levels'}
+                      </SelectItem>
+                      <SelectItem value="50">
+                        50 {ui.levelsSuffix || 'levels'}
+                      </SelectItem>
+                      <SelectItem value="100">
+                        100 {ui.levelsSuffix || 'levels'}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="max-keys">Maximum Key Count</Label>
+                  <Label htmlFor="max-keys">
+                    {ui.maxKeyCount || 'Maximum Key Count'}
+                  </Label>
                   <Select
                     value={maxKeys.toString()}
                     onValueChange={(value) => setMaxKeys(parseInt(value))}
@@ -743,10 +814,18 @@ export default function JSONValidator({
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="1000">1,000 keys</SelectItem>
-                      <SelectItem value="5000">5,000 keys</SelectItem>
-                      <SelectItem value="10000">10,000 keys</SelectItem>
-                      <SelectItem value="50000">50,000 keys</SelectItem>
+                      <SelectItem value="1000">
+                        1,000 {ui.keysSuffix || 'keys'}
+                      </SelectItem>
+                      <SelectItem value="5000">
+                        5,000 {ui.keysSuffix || 'keys'}
+                      </SelectItem>
+                      <SelectItem value="10000">
+                        10,000 {ui.keysSuffix || 'keys'}
+                      </SelectItem>
+                      <SelectItem value="50000">
+                        50,000 {ui.keysSuffix || 'keys'}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -759,9 +838,11 @@ export default function JSONValidator({
                     checked={strictMode}
                     onChange={(e) => setStrictMode(e.target.checked)}
                   />
-                  <Label htmlFor="strict-mode">Strict Mode</Label>
+                  <Label htmlFor="strict-mode">
+                    {ui.strictMode || 'Strict Mode'}
+                  </Label>
                   <span className="text-sm text-gray-600">
-                    - More rigorous validation rules
+                    {ui.strictModeHint || '- More rigorous validation rules'}
                   </span>
                 </div>
 
@@ -772,10 +853,11 @@ export default function JSONValidator({
                     onChange={(e) => setEnableSecurity(e.target.checked)}
                   />
                   <Label htmlFor="enable-security-settings">
-                    Security Validation
+                    {ui.securityValidation || 'Security Validation'}
                   </Label>
                   <span className="text-sm text-gray-600">
-                    - Detect potential vulnerabilities
+                    {ui.securityValidationHint ||
+                      '- Detect potential vulnerabilities'}
                   </span>
                 </div>
 
@@ -785,9 +867,12 @@ export default function JSONValidator({
                     checked={allowComments}
                     onChange={(e) => setAllowComments(e.target.checked)}
                   />
-                  <Label htmlFor="allow-comments-settings">JSON5 Support</Label>
+                  <Label htmlFor="allow-comments-settings">
+                    {ui.json5Support || 'JSON5 Support'}
+                  </Label>
                   <span className="text-sm text-gray-600">
-                    - Allow comments and trailing commas
+                    {ui.json5SupportHint ||
+                      '- Allow comments and trailing commas'}
                   </span>
                 </div>
               </div>
@@ -800,15 +885,21 @@ export default function JSONValidator({
       <Card className="p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-sm font-medium">Quick Actions:</span>
+            <span className="text-sm font-medium">
+              {ui.quickActions || 'Quick Actions:'}
+            </span>
             <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
               Ctrl+Enter
             </kbd>
-            <span className="text-xs text-gray-600">Validate</span>
+            <span className="text-xs text-gray-600">
+              {ui.validate || 'Validate'}
+            </span>
             <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
               Ctrl+Shift+F
             </kbd>
-            <span className="text-xs text-gray-600">Format</span>
+            <span className="text-xs text-gray-600">
+              {ui.format || 'Format'}
+            </span>
           </div>
 
           {result && (
@@ -818,7 +909,7 @@ export default function JSONValidator({
               onClick={() => handleCopyResult(JSON.stringify(result, null, 2))}
             >
               <Copy className="mr-2 h-4 w-4" />
-              Copy Result
+              {ui.copyResult || 'Copy Result'}
             </Button>
           )}
         </div>

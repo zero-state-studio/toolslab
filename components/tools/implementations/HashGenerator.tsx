@@ -44,8 +44,12 @@ export default function HashGenerator({
   categoryColor,
   dictionary,
 }: HashGeneratorProps) {
-  // UI strings from i18n, with English fallbacks
-  const t = dictionary?.ui || {};
+  // UI strings from i18n, with English fallbacks.
+  // LazyToolLoader passes the FULL dictionary: the per-tool data lives
+  // under dictionary.tools[id] (reading dictionary?.ui directly was a bug —
+  // the ui keys in the JSON were never picked up).
+  const toolDict = dictionary?.tools?.['hash-generator'] ?? {};
+  const t = toolDict.ui || {};
   const txt = (key: string, fallback: string) => t[key] || fallback;
 
   // ─── State ──────────────────────────────────────────────────────────
@@ -310,7 +314,7 @@ export default function HashGenerator({
         <div className="flex items-center gap-3">
           <Shield className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            {dictionary?.title || 'Hash Generator'}
+            {toolDict.title || 'Hash Generator'}
           </h3>
         </div>
         <div className="flex items-center gap-2">
@@ -389,7 +393,7 @@ export default function HashGenerator({
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder={dictionary?.placeholder || 'Enter text to hash...'}
+              placeholder={toolDict.placeholder || 'Enter text to hash...'}
               className="h-32 w-full resize-none rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 transition-all focus:outline-none dark:bg-gray-900 dark:text-white"
               style={{ borderColor: `${categoryColor}30` }}
               onFocus={(e) => (e.target.style.borderColor = categoryColor)}

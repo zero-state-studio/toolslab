@@ -175,6 +175,12 @@ export default function ToolPageClient({
     allTools: commonDict?.nav?.allTools || 'All Tools',
     toolName: toolTranslations?.title || tool.name,
     toolDescription: toolTranslations?.description || tool.description,
+    donationEnjoying: commonDict?.donation?.enjoying || 'Enjoying ToolsLab?',
+    donationShare:
+      commonDict?.donation?.share ||
+      'Share it or buy me a coffee to keep it free ☕',
+    donationCoffee:
+      commonDict?.donation?.coffee || 'Buy me a coffee to keep it free.',
   };
 
   // Get primary category information
@@ -189,6 +195,11 @@ export default function ToolPageClient({
     categoryId,
     theme === 'light' ? 'light' : 'dark'
   );
+
+  // Localized title/description for related-tool cards (loaded server-side
+  // into dictionary.tools as lightweight summaries; falls back to EN registry)
+  const toolT = (id: string) =>
+    (dictionary?.tools?.[id] ?? {}) as { title?: string; description?: string };
 
   const handleShare = async () => {
     const hasNativeShare =
@@ -313,7 +324,7 @@ export default function ToolPageClient({
                   color: categoryColor,
                 }}
               >
-                {primaryCategory?.name || categoryId}
+                {categoryName}
               </span>
             }
             labelBadge={
@@ -395,10 +406,10 @@ export default function ToolPageClient({
                   </span>
                   <div className="flex-1">
                     <p className="text-sm font-semibold text-amber-700 dark:text-amber-400">
-                      Enjoying ToolsLab?
+                      {t.donationEnjoying}
                     </p>
                     <p className="text-xs text-amber-600/80 dark:text-amber-500/80">
-                      Share it or buy me a coffee to keep it free ☕
+                      {t.donationShare}
                     </p>
                   </div>
                   <ArrowRight className="h-4 w-4 text-amber-500/60 transition-colors group-hover:text-amber-500" />
@@ -422,10 +433,11 @@ export default function ToolPageClient({
                       <ToolIcon id={relatedTool.id} className="h-5 w-5" style={{ color: categoryColor }} />
                     </div>
                     <p className="text-sm font-medium text-slate-900 dark:text-white">
-                      {relatedTool.name}
+                      {toolT(relatedTool.id).title || relatedTool.name}
                     </p>
                     <p className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
-                      {relatedTool.description}
+                      {toolT(relatedTool.id).description ||
+                        relatedTool.description}
                     </p>
                   </Link>
                 ))}
@@ -451,10 +463,11 @@ export default function ToolPageClient({
                           <ToolIcon id={categoryTool.id} className="h-5 w-5" style={{ color: categoryColor }} />
                         </div>
                         <p className="text-sm font-medium text-slate-900 dark:text-white">
-                          {categoryTool.name}
+                          {toolT(categoryTool.id).title || categoryTool.name}
                         </p>
                         <p className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">
-                          {categoryTool.description}
+                          {toolT(categoryTool.id).description ||
+                            categoryTool.description}
                         </p>
                       </Link>
                     ))}
@@ -509,10 +522,11 @@ export default function ToolPageClient({
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-[12px] font-medium text-pg-text">
-                        {relatedTool.name}
+                        {toolT(relatedTool.id).title || relatedTool.name}
                       </p>
                       <p className="truncate text-[11px] text-pg-dim">
-                        {relatedTool.description}
+                        {toolT(relatedTool.id).description ||
+                          relatedTool.description}
                       </p>
                     </div>
                   </Link>
@@ -536,9 +550,11 @@ export default function ToolPageClient({
               <div className="flex items-center gap-2.5">
                 <span className="text-xl transition-transform duration-200 group-hover:scale-110">☕</span>
                 <div className="flex-1">
-                  <p className="text-[13px] font-semibold text-pg-text">Enjoying ToolsLab?</p>
+                  <p className="text-[13px] font-semibold text-pg-text">
+                    {t.donationEnjoying}
+                  </p>
                   <p className="text-[11px] text-pg-muted">
-                    Buy me a coffee to keep it free.
+                    {t.donationCoffee}
                   </p>
                 </div>
                 <ArrowRight className="h-3.5 w-3.5 text-pg-muted transition-colors group-hover:text-pg-text" />
@@ -573,10 +589,11 @@ export default function ToolPageClient({
                         </div>
                         <div className="min-w-0 flex-1">
                           <p className="truncate text-[12px] font-medium text-pg-text">
-                            {categoryTool.name}
+                            {toolT(categoryTool.id).title || categoryTool.name}
                           </p>
                           <p className="truncate text-[11px] text-pg-dim">
-                            {categoryTool.description}
+                            {toolT(categoryTool.id).description ||
+                              categoryTool.description}
                           </p>
                         </div>
                       </Link>

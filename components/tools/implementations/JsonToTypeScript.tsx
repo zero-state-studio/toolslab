@@ -48,13 +48,17 @@ import {
 } from '@/lib/tools/json-to-typescript';
 import { BaseToolProps } from '@/lib/types/tools';
 
-interface JsonToTypeScriptProps extends BaseToolProps {}
+interface JsonToTypeScriptProps extends BaseToolProps {
+  dictionary?: any;
+}
 
 export default function JsonToTypeScript({
   categoryColor,
+  dictionary,
 }: JsonToTypeScriptProps) {
   const { trackError } = useToolTracking('json-to-typescript');
   const { addToHistory } = useToolStore();
+  const ui = dictionary?.tools?.['json-to-typescript']?.ui ?? {};
 
   // State management
   const [jsonInput, setJsonInput] = useState('');
@@ -219,7 +223,7 @@ export default function JsonToTypeScript({
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2">
                 <FileCode className="h-5 w-5" />
-                JSON Input
+                {ui.jsonInput || 'JSON Input'}
               </CardTitle>
               <div className="flex items-center gap-1 md:gap-2">
                 <Badge
@@ -231,7 +235,9 @@ export default function JsonToTypeScript({
                   ) : (
                     <AlertCircle className="mr-1 h-3 w-3" />
                   )}
-                  {jsonValidation.valid ? 'Valid' : 'Invalid'}
+                  {jsonValidation.valid
+                    ? ui.valid || 'Valid'
+                    : ui.invalid || 'Invalid'}
                 </Badge>
                 <Button
                   variant="outline"
@@ -240,7 +246,9 @@ export default function JsonToTypeScript({
                   disabled={!jsonValidation.valid}
                 >
                   <Sparkles className="h-4 w-4 md:mr-2" />
-                  <span className="hidden md:inline">Format</span>
+                  <span className="hidden md:inline">
+                    {ui.format || 'Format'}
+                  </span>
                 </Button>
                 <input
                   type="file"
@@ -257,7 +265,9 @@ export default function JsonToTypeScript({
                   }
                 >
                   <Upload className="h-4 w-4 md:mr-2" />
-                  <span className="hidden md:inline">Upload</span>
+                  <span className="hidden md:inline">
+                    {ui.upload || 'Upload'}
+                  </span>
                 </Button>
               </div>
             </div>
@@ -267,7 +277,10 @@ export default function JsonToTypeScript({
               <Textarea
                 value={jsonInput}
                 onChange={(e) => setJsonInput(e.target.value)}
-                placeholder="Paste your JSON here or upload a file..."
+                placeholder={
+                  ui.inputPlaceholder ||
+                  'Paste your JSON here or upload a file...'
+                }
                 className="min-h-[300px] font-mono text-sm"
                 spellCheck={false}
               />
@@ -283,7 +296,9 @@ export default function JsonToTypeScript({
 
             {/* Examples */}
             <div>
-              <Label className="text-sm font-medium">Quick Examples</Label>
+              <Label className="text-sm font-medium">
+                {ui.quickExamples || 'Quick Examples'}
+              </Label>
               <div className="mt-2 flex flex-wrap gap-2">
                 {Object.keys(EXAMPLE_JSON_SAMPLES).map((key) => (
                   <Button
@@ -302,7 +317,7 @@ export default function JsonToTypeScript({
             {isProcessing && (
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Processing JSON...
+                {ui.processingJson || 'Processing JSON...'}
               </div>
             )}
           </CardContent>
@@ -314,12 +329,13 @@ export default function JsonToTypeScript({
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2">
                 <Code className="h-5 w-5" />
-                TypeScript Output
+                {ui.typescriptOutput || 'TypeScript Output'}
               </CardTitle>
               <div className="flex items-center gap-2">
                 {result?.success && (
                   <Badge variant="secondary" className="text-xs">
-                    {result.stats.interfaceCount} interfaces
+                    {result.stats.interfaceCount}{' '}
+                    {ui.interfacesBadge || 'interfaces'}
                   </Badge>
                 )}
                 <Button
@@ -329,7 +345,7 @@ export default function JsonToTypeScript({
                   disabled={!jsonValidation.valid || !jsonInput.trim()}
                 >
                   <Play className="mr-2 h-4 w-4" />
-                  Generate
+                  {ui.generate || 'Generate'}
                 </Button>
               </div>
             </div>
@@ -337,17 +353,21 @@ export default function JsonToTypeScript({
           <CardContent>
             <Tabs value={activeTab} onValueChange={setActiveTab}>
               <TabsList className="grid w-full grid-cols-4">
-                <TabsTrigger value="typescript">TypeScript</TabsTrigger>
+                <TabsTrigger value="typescript">
+                  {ui.tabTypescript || 'TypeScript'}
+                </TabsTrigger>
                 <TabsTrigger value="zod" disabled={!options.generateZodSchema}>
-                  Zod
+                  {ui.tabZod || 'Zod'}
                 </TabsTrigger>
                 <TabsTrigger
                   value="json-schema"
                   disabled={!options.generateJsonSchema}
                 >
-                  JSON Schema
+                  {ui.tabJsonSchema || 'JSON Schema'}
                 </TabsTrigger>
-                <TabsTrigger value="analysis">Analysis</TabsTrigger>
+                <TabsTrigger value="analysis">
+                  {ui.tabAnalysis || 'Analysis'}
+                </TabsTrigger>
               </TabsList>
 
               <TabsContent value="typescript" className="mt-4">
@@ -355,7 +375,7 @@ export default function JsonToTypeScript({
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <Label className="text-sm font-medium">
-                        Generated Interfaces
+                        {ui.generatedInterfaces || 'Generated Interfaces'}
                       </Label>
                       <div className="flex gap-2">
                         <Button
@@ -366,7 +386,9 @@ export default function JsonToTypeScript({
                           }
                         >
                           <Copy className="mr-2 h-4 w-4" />
-                          {copied === 'typescript' ? 'Copied!' : 'Copy'}
+                          {copied === 'typescript'
+                            ? ui.copied || 'Copied!'
+                            : ui.copy || 'Copy'}
                         </Button>
                         <Button
                           variant="outline"
@@ -376,7 +398,7 @@ export default function JsonToTypeScript({
                           }
                         >
                           <Download className="mr-2 h-4 w-4" />
-                          Download
+                          {ui.download || 'Download'}
                         </Button>
                       </div>
                     </div>
@@ -397,7 +419,10 @@ export default function JsonToTypeScript({
                   <div className="flex h-[400px] items-center justify-center text-muted-foreground">
                     <div className="text-center">
                       <FileCode className="mx-auto mb-4 h-12 w-12 opacity-50" />
-                      <p>Enter valid JSON to generate TypeScript interfaces</p>
+                      <p>
+                        {ui.emptyTypescript ||
+                          'Enter valid JSON to generate TypeScript interfaces'}
+                      </p>
                     </div>
                   </div>
                 )}
@@ -407,7 +432,9 @@ export default function JsonToTypeScript({
                 {result?.success && result.zodSchema ? (
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <Label className="text-sm font-medium">Zod Schemas</Label>
+                      <Label className="text-sm font-medium">
+                        {ui.zodSchemas || 'Zod Schemas'}
+                      </Label>
                       <div className="flex gap-2">
                         <Button
                           variant="outline"
@@ -415,7 +442,9 @@ export default function JsonToTypeScript({
                           onClick={() => handleCopy(result.zodSchema!, 'zod')}
                         >
                           <Copy className="mr-2 h-4 w-4" />
-                          {copied === 'zod' ? 'Copied!' : 'Copy'}
+                          {copied === 'zod'
+                            ? ui.copied || 'Copied!'
+                            : ui.copy || 'Copy'}
                         </Button>
                         <Button
                           variant="outline"
@@ -425,7 +454,7 @@ export default function JsonToTypeScript({
                           }
                         >
                           <Download className="mr-2 h-4 w-4" />
-                          Download
+                          {ui.download || 'Download'}
                         </Button>
                       </div>
                     </div>
@@ -440,7 +469,10 @@ export default function JsonToTypeScript({
                 ) : (
                   <div className="flex h-[400px] items-center justify-center text-muted-foreground">
                     <div className="text-center">
-                      <p>Enable Zod schema generation in settings</p>
+                      <p>
+                        {ui.enableZod ||
+                          'Enable Zod schema generation in settings'}
+                      </p>
                     </div>
                   </div>
                 )}
@@ -450,7 +482,9 @@ export default function JsonToTypeScript({
                 {result?.success && result.jsonSchema ? (
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <Label className="text-sm font-medium">JSON Schema</Label>
+                      <Label className="text-sm font-medium">
+                        {ui.jsonSchemaLabel || 'JSON Schema'}
+                      </Label>
                       <div className="flex gap-2">
                         <Button
                           variant="outline"
@@ -460,7 +494,9 @@ export default function JsonToTypeScript({
                           }
                         >
                           <Copy className="mr-2 h-4 w-4" />
-                          {copied === 'json-schema' ? 'Copied!' : 'Copy'}
+                          {copied === 'json-schema'
+                            ? ui.copied || 'Copied!'
+                            : ui.copy || 'Copy'}
                         </Button>
                         <Button
                           variant="outline"
@@ -470,7 +506,7 @@ export default function JsonToTypeScript({
                           }
                         >
                           <Download className="mr-2 h-4 w-4" />
-                          Download
+                          {ui.download || 'Download'}
                         </Button>
                       </div>
                     </div>
@@ -489,7 +525,10 @@ export default function JsonToTypeScript({
                 ) : (
                   <div className="flex h-[400px] items-center justify-center text-muted-foreground">
                     <div className="text-center">
-                      <p>Enable JSON schema generation in settings</p>
+                      <p>
+                        {ui.enableJsonSchema ||
+                          'Enable JSON schema generation in settings'}
+                      </p>
                     </div>
                   </div>
                 )}
@@ -503,26 +542,32 @@ export default function JsonToTypeScript({
                       <div className="grid grid-cols-2 gap-4">
                         <div className="rounded-lg border p-3">
                           <div className="text-sm font-medium">
-                            Processing Time
+                            {ui.processingTime || 'Processing Time'}
                           </div>
                           <div className="text-2xl font-bold">
                             {result.stats.processingTime.toFixed(1)}ms
                           </div>
                         </div>
                         <div className="rounded-lg border p-3">
-                          <div className="text-sm font-medium">Interfaces</div>
+                          <div className="text-sm font-medium">
+                            {ui.interfaces || 'Interfaces'}
+                          </div>
                           <div className="text-2xl font-bold">
                             {result.stats.interfaceCount}
                           </div>
                         </div>
                         <div className="rounded-lg border p-3">
-                          <div className="text-sm font-medium">Properties</div>
+                          <div className="text-sm font-medium">
+                            {ui.properties || 'Properties'}
+                          </div>
                           <div className="text-2xl font-bold">
                             {result.stats.propertyCount}
                           </div>
                         </div>
                         <div className="rounded-lg border p-3">
-                          <div className="text-sm font-medium">Max Depth</div>
+                          <div className="text-sm font-medium">
+                            {ui.maxDepth || 'Max Depth'}
+                          </div>
                           <div className="text-2xl font-bold">
                             {result.stats.depth}
                           </div>
@@ -532,7 +577,9 @@ export default function JsonToTypeScript({
                       {/* Detected Types */}
                       {result.detectedTypes.length > 0 && (
                         <div>
-                          <h4 className="mb-3 font-medium">Detected Types</h4>
+                          <h4 className="mb-3 font-medium">
+                            {ui.detectedTypes || 'Detected Types'}
+                          </h4>
                           <div className="space-y-2">
                             {result.detectedTypes
                               .slice(0, 10)
@@ -553,7 +600,7 @@ export default function JsonToTypeScript({
                       {result.circularReferences.length > 0 && (
                         <div>
                           <h4 className="mb-3 font-medium text-amber-700">
-                            Circular References
+                            {ui.circularReferences || 'Circular References'}
                           </h4>
                           <div className="space-y-1">
                             {result.circularReferences.map((ref, index) => (
@@ -573,7 +620,10 @@ export default function JsonToTypeScript({
                   <div className="flex h-[400px] items-center justify-center text-muted-foreground">
                     <div className="text-center">
                       <Eye className="mx-auto mb-4 h-12 w-12 opacity-50" />
-                      <p>Generate TypeScript to view analysis</p>
+                      <p>
+                        {ui.emptyAnalysis ||
+                          'Generate TypeScript to view analysis'}
+                      </p>
                     </div>
                   </div>
                 )}
@@ -589,7 +639,7 @@ export default function JsonToTypeScript({
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2">
               <Settings className="h-5 w-5" />
-              Configuration Options
+              {ui.configurationOptions || 'Configuration Options'}
             </CardTitle>
             <div className="flex items-center gap-1 md:gap-2">
               <Button
@@ -600,19 +650,25 @@ export default function JsonToTypeScript({
               >
                 {showAdvanced ? (
                   <>
-                    <span className="md:hidden">Hide</span>
-                    <span className="hidden md:inline">Hide Advanced</span>
+                    <span className="md:hidden">{ui.hide || 'Hide'}</span>
+                    <span className="hidden md:inline">
+                      {ui.hideAdvanced || 'Hide Advanced'}
+                    </span>
                   </>
                 ) : (
                   <>
-                    <span className="md:hidden">Advanced</span>
-                    <span className="hidden md:inline">Show Advanced</span>
+                    <span className="md:hidden">
+                      {ui.advanced || 'Advanced'}
+                    </span>
+                    <span className="hidden md:inline">
+                      {ui.showAdvanced || 'Show Advanced'}
+                    </span>
                   </>
                 )}
               </Button>
               <Button variant="outline" size="sm" onClick={resetOptions}>
                 <RefreshCw className="h-4 w-4 md:mr-2" />
-                <span className="hidden md:inline">Reset</span>
+                <span className="hidden md:inline">{ui.reset || 'Reset'}</span>
               </Button>
             </div>
           </div>
@@ -621,7 +677,9 @@ export default function JsonToTypeScript({
           {/* Basic Options */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-2">
-              <Label htmlFor="naming-strategy">Naming Strategy</Label>
+              <Label htmlFor="naming-strategy">
+                {ui.namingStrategy || 'Naming Strategy'}
+              </Label>
               <Select
                 value={options.namingStrategy}
                 onValueChange={(value: any) =>
@@ -635,13 +693,17 @@ export default function JsonToTypeScript({
                   <SelectItem value="PascalCase">PascalCase</SelectItem>
                   <SelectItem value="camelCase">camelCase</SelectItem>
                   <SelectItem value="snake_case">snake_case</SelectItem>
-                  <SelectItem value="preserve">Preserve Original</SelectItem>
+                  <SelectItem value="preserve">
+                    {ui.preserveOriginal || 'Preserve Original'}
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="root-interface">Root Interface Name</Label>
+              <Label htmlFor="root-interface">
+                {ui.rootInterfaceName || 'Root Interface Name'}
+              </Label>
               <Input
                 id="root-interface"
                 value={options.rootInterfaceName}
@@ -653,7 +715,9 @@ export default function JsonToTypeScript({
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="array-notation">Array Notation</Label>
+              <Label htmlFor="array-notation">
+                {ui.arrayNotation || 'Array Notation'}
+              </Label>
               <Select
                 value={options.arrayNotation}
                 onValueChange={(value: any) =>
@@ -675,7 +739,7 @@ export default function JsonToTypeScript({
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <div className="flex items-center justify-between">
               <Label htmlFor="use-interfaces" className="text-sm">
-                Use Interfaces
+                {ui.useInterfaces || 'Use Interfaces'}
               </Label>
               <Switch
                 id="use-interfaces"
@@ -688,7 +752,7 @@ export default function JsonToTypeScript({
 
             <div className="flex items-center justify-between">
               <Label htmlFor="extract-nested" className="text-sm">
-                Extract Nested Types
+                {ui.extractNestedTypes || 'Extract Nested Types'}
               </Label>
               <Switch
                 id="extract-nested"
@@ -701,7 +765,7 @@ export default function JsonToTypeScript({
 
             <div className="flex items-center justify-between">
               <Label htmlFor="infer-dates" className="text-sm">
-                Infer Dates
+                {ui.inferDates || 'Infer Dates'}
               </Label>
               <Switch
                 id="infer-dates"
@@ -714,7 +778,7 @@ export default function JsonToTypeScript({
 
             <div className="flex items-center justify-between">
               <Label htmlFor="include-exports" className="text-sm">
-                Include Exports
+                {ui.includeExports || 'Include Exports'}
               </Label>
               <Switch
                 id="include-exports"
@@ -727,7 +791,7 @@ export default function JsonToTypeScript({
 
             <div className="flex items-center justify-between">
               <Label htmlFor="include-comments" className="text-sm">
-                Include Comments
+                {ui.includeComments || 'Include Comments'}
               </Label>
               <Switch
                 id="include-comments"
@@ -740,7 +804,7 @@ export default function JsonToTypeScript({
 
             <div className="flex items-center justify-between">
               <Label htmlFor="sort-properties" className="text-sm">
-                Sort Properties
+                {ui.sortProperties || 'Sort Properties'}
               </Label>
               <Switch
                 id="sort-properties"
@@ -755,12 +819,14 @@ export default function JsonToTypeScript({
           {/* Advanced Options */}
           {showAdvanced && (
             <div className="space-y-4 rounded-lg border p-4">
-              <h4 className="font-medium">Advanced Options</h4>
+              <h4 className="font-medium">
+                {ui.advancedOptions || 'Advanced Options'}
+              </h4>
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="readonly" className="text-sm">
-                    Readonly Properties
+                    {ui.readonlyProperties || 'Readonly Properties'}
                   </Label>
                   <Switch
                     id="readonly"
@@ -773,7 +839,7 @@ export default function JsonToTypeScript({
 
                 <div className="flex items-center justify-between">
                   <Label htmlFor="detect-enums" className="text-sm">
-                    Detect Enums
+                    {ui.detectEnums || 'Detect Enums'}
                   </Label>
                   <Switch
                     id="detect-enums"
@@ -786,7 +852,7 @@ export default function JsonToTypeScript({
 
                 <div className="flex items-center justify-between">
                   <Label htmlFor="string-literals" className="text-sm">
-                    String Literals
+                    {ui.stringLiterals || 'String Literals'}
                   </Label>
                   <Switch
                     id="string-literals"
@@ -799,7 +865,7 @@ export default function JsonToTypeScript({
 
                 <div className="flex items-center justify-between">
                   <Label htmlFor="generate-zod" className="text-sm">
-                    Generate Zod Schema
+                    {ui.generateZodSchema || 'Generate Zod Schema'}
                   </Label>
                   <Switch
                     id="generate-zod"
@@ -812,7 +878,7 @@ export default function JsonToTypeScript({
 
                 <div className="flex items-center justify-between">
                   <Label htmlFor="generate-json-schema" className="text-sm">
-                    Generate JSON Schema
+                    {ui.generateJsonSchema || 'Generate JSON Schema'}
                   </Label>
                   <Switch
                     id="generate-json-schema"
@@ -825,7 +891,7 @@ export default function JsonToTypeScript({
 
                 <div className="flex items-center justify-between">
                   <Label htmlFor="generate-validation" className="text-sm">
-                    Generate Validation
+                    {ui.generateValidation || 'Generate Validation'}
                   </Label>
                   <Switch
                     id="generate-validation"
@@ -839,7 +905,9 @@ export default function JsonToTypeScript({
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="optional-handling">Optional Handling</Label>
+                  <Label htmlFor="optional-handling">
+                    {ui.optionalHandling || 'Optional Handling'}
+                  </Label>
                   <Select
                     value={options.optionalHandling}
                     onValueChange={(value: any) =>
@@ -851,16 +919,18 @@ export default function JsonToTypeScript({
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="loose">
-                        Loose (null | undefined)
+                        {ui.optionalLoose || 'Loose (null | undefined)'}
                       </SelectItem>
-                      <SelectItem value="strict">Strict (null only)</SelectItem>
+                      <SelectItem value="strict">
+                        {ui.optionalStrict || 'Strict (null only)'}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="max-depth">
-                    Max Depth: {options.maxDepth}
+                    {ui.maxDepth || 'Max Depth'}: {options.maxDepth}
                   </Label>
                   <input
                     type="range"
@@ -884,18 +954,22 @@ export default function JsonToTypeScript({
       <Card className="p-4">
         <div className="flex items-center justify-between text-sm text-muted-foreground">
           <div className="flex items-center gap-4">
-            <span>Keyboard shortcuts:</span>
+            <span>{ui.keyboardShortcuts || 'Keyboard shortcuts:'}</span>
             <div className="flex gap-4">
               <kbd className="rounded bg-muted px-2 py-1 text-xs">
                 Ctrl+Enter
               </kbd>
-              <span className="text-xs">Generate</span>
+              <span className="text-xs">{ui.generate || 'Generate'}</span>
               <kbd className="rounded bg-muted px-2 py-1 text-xs">Ctrl+C</kbd>
-              <span className="text-xs">Copy TypeScript</span>
+              <span className="text-xs">
+                {ui.copyTypescript || 'Copy TypeScript'}
+              </span>
               <kbd className="rounded bg-muted px-2 py-1 text-xs">
                 Ctrl+Shift+F
               </kbd>
-              <span className="text-xs">Format JSON</span>
+              <span className="text-xs">
+                {ui.formatJsonShortcut || 'Format JSON'}
+              </span>
             </div>
           </div>
         </div>

@@ -82,5 +82,15 @@
         "description": "Dateinamen kopieren"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Nutzungstipps",
+    "tips": [
+      "Gültige GIF-Base64-Daten beginnen mit \"R0lGOD\"",
+      "Data-URL-Präfixe wie \"data:image/gif;base64,\" werden automatisch entfernt",
+      "GIF87a und GIF89a werden unterstützt, einschließlich animierter GIFs",
+      "GIF-Header werden validiert, um echte GIF-Daten zu bestätigen",
+      "Prüfen Sie in der Vorschau, ob Ihr GIF korrekt abgespielt wird, bevor Sie es herunterladen"
+    ]
   }
 }

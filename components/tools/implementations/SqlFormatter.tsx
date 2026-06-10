@@ -30,9 +30,21 @@ import { BaseToolProps } from '@/lib/types/tools';
 import { useSmartDebounce } from '@/lib/hooks/useSmartDebounce';
 import AdBanner from '@/components/ads/AdBanner';
 
-interface SqlFormatterProps extends BaseToolProps {}
+interface SqlFormatterProps extends BaseToolProps {
+  dictionary?: any;
+}
 
-export default function SqlFormatter({ categoryColor }: SqlFormatterProps) {
+const FALLBACK_USAGE_TIPS = [
+  'Use auto-detect dialect for best keyword recognition',
+  'Choose uppercase keywords for better readability and standards',
+  'Enable comment preservation to keep important documentation',
+  'Use 4-space indentation for optimal balance of readability',
+];
+
+export default function SqlFormatter({
+  categoryColor,
+  dictionary,
+}: SqlFormatterProps) {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [dialect, setDialect] = useState<SqlDialect>('mysql');
@@ -630,15 +642,16 @@ ORDER BY unknown_column;  -- Colonna non definita`;
       <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
         <h3 className="mb-2 flex items-center gap-2 text-sm font-medium text-blue-900 dark:text-blue-100">
           <Info className="h-4 w-4" />
-          Usage Tips
+          {dictionary?.tools?.['sql-formatter']?.usageTips?.title ||
+            'Usage Tips'}
         </h3>
         <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-200">
-          <li>• Use auto-detect dialect for best keyword recognition</li>
-          <li>
-            • Choose uppercase keywords for better readability and standards
-          </li>
-          <li>• Enable comment preservation to keep important documentation</li>
-          <li>• Use 4-space indentation for optimal balance of readability</li>
+          {(
+            dictionary?.tools?.['sql-formatter']?.usageTips?.tips ||
+            FALLBACK_USAGE_TIPS
+          ).map((tip: string, index: number) => (
+            <li key={index}>• {tip}</li>
+          ))}
         </ul>
       </div>
     </div>

@@ -24,10 +24,12 @@ export function useDictionary() {
         setLoading(true);
         setError(null);
         // Load all necessary sections for global components (Header, Footer, etc.)
+        // 'tools-summaries' = title+description only; the full 'tools' section
+        // is ~325KB raw per locale and client chrome never reads the rest.
         const dict = await getClientDictionary(locale, [
           'common',
           'footer',
-          'tools',
+          'tools-summaries',
           'categories',
         ]);
 

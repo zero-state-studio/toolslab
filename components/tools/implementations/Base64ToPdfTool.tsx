@@ -29,10 +29,19 @@ import AdBanner from '@/components/ads/AdBanner';
 
 interface Base64ToPdfToolProps {
   categoryColor: string;
+  dictionary?: any;
 }
+
+const FALLBACK_USAGE_TIPS = [
+  'Valid PDF Base64 data should start with "JVBERi0" when decoded',
+  'Remove any data URL prefixes like "data:application/pdf;base64," before pasting',
+  'Large files may take longer to process - be patient with big PDFs',
+  'The tool validates PDF headers to ensure you have valid PDF data',
+];
 
 export default function Base64ToPdfTool({
   categoryColor,
+  dictionary,
 }: Base64ToPdfToolProps) {
   const [input, setInput] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -439,23 +448,16 @@ export default function Base64ToPdfTool({
       <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
         <h3 className="mb-2 flex items-center gap-2 text-sm font-medium text-blue-900 dark:text-blue-100">
           <Info className="h-4 w-4" />
-          Usage Tips
+          {dictionary?.tools?.['base64-to-pdf']?.usageTips?.title ||
+            'Usage Tips'}
         </h3>
         <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-200">
-          <li>
-            • Valid PDF Base64 data should start with &quot;JVBERi0&quot; when
-            decoded
-          </li>
-          <li>
-            • Remove any data URL prefixes like
-            &quot;data:application/pdf;base64,&quot; before pasting
-          </li>
-          <li>
-            • Large files may take longer to process - be patient with big PDFs
-          </li>
-          <li>
-            • The tool validates PDF headers to ensure you have valid PDF data
-          </li>
+          {(
+            dictionary?.tools?.['base64-to-pdf']?.usageTips?.tips ||
+            FALLBACK_USAGE_TIPS
+          ).map((tip: string, index: number) => (
+            <li key={index}>• {tip}</li>
+          ))}
         </ul>
       </div>
     </div>

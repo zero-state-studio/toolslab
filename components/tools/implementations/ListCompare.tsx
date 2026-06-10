@@ -83,7 +83,9 @@ export default function ListCompare({
   initialInput,
   onInputChange,
   onOutputChange,
+  dictionary,
 }: BaseToolProps) {
+  const ui = dictionary?.tools?.['list-compare']?.ui ?? {};
   const { trackUse, trackError } = useToolTracking('list-compare');
   const [lists, setLists] = useState<ListConfig[]>([
     { id: '1', name: 'List 1', content: initialInput || '', visible: true },
@@ -475,10 +477,10 @@ export default function ListCompare({
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
             <h3 className="whitespace-nowrap text-lg font-semibold">
-              Input Lists
+              {ui.inputLists || 'Input Lists'}
             </h3>
             <Badge variant="outline" className="whitespace-nowrap">
-              {totalItems} total items
+              {totalItems} {ui.totalItems || 'total items'}
             </Badge>
           </div>
           <div className="flex gap-2">
@@ -489,7 +491,7 @@ export default function ListCompare({
               className="flex-1 whitespace-nowrap sm:flex-none"
             >
               <FileText className="mr-2 h-4 w-4" />
-              Load Sample
+              {ui.loadSample || 'Load Sample'}
             </Button>
             <Button
               onClick={addList}
@@ -499,7 +501,7 @@ export default function ListCompare({
               className="flex-1 whitespace-nowrap sm:flex-none"
             >
               <Plus className="mr-2 h-4 w-4" />
-              Add List
+              {ui.addList || 'Add List'}
             </Button>
           </div>
         </div>
@@ -533,7 +535,7 @@ export default function ListCompare({
                     </div>
                     {getProcessedItemsCount(list.id) > 0 && (
                       <Badge variant="secondary">
-                        {getProcessedItemsCount(list.id)} items
+                        {getProcessedItemsCount(list.id)} {ui.items || 'items'}
                       </Badge>
                     )}
                   </div>
@@ -555,13 +557,17 @@ export default function ListCompare({
                 <Textarea
                   value={list.content}
                   onChange={(e) => updateListContent(list.id, e.target.value)}
-                  placeholder={`Enter items for ${list.name}, one per line or separated by commas...`}
+                  placeholder={(
+                    ui.listPlaceholder ||
+                    'Enter items for {name}, one per line or separated by commas...'
+                  ).replace('{name}', list.name)}
                   className="min-h-32 font-mono text-sm md:min-h-56"
                   disabled={!list.visible}
                 />
                 {getProcessedItemsCount(list.id) > 0 && (
                   <div className="mt-2 text-xs text-muted-foreground">
-                    Preview: {getProcessedItemsPreview(list.id)}
+                    {ui.preview || 'Preview:'}{' '}
+                    {getProcessedItemsPreview(list.id)}
                   </div>
                 )}
               </CardContent>
@@ -579,7 +585,7 @@ export default function ListCompare({
           <CardTitle className="flex items-center justify-between">
             <span className="flex items-center gap-2">
               <Settings className="h-5 w-5" />
-              Comparison Options
+              {ui.comparisonOptions || 'Comparison Options'}
             </span>
             <ChevronDown
               className={cn(
@@ -594,7 +600,9 @@ export default function ListCompare({
             <div className="grid gap-6 md:grid-cols-3">
               {/* Main Comparison Mode */}
               <div className="space-y-3">
-                <Label className="text-sm font-medium">Comparison Mode</Label>
+                <Label className="text-sm font-medium">
+                  {ui.comparisonMode || 'Comparison Mode'}
+                </Label>
                 <Select
                   value={comparisonMode}
                   onValueChange={(value) =>
@@ -605,17 +613,27 @@ export default function ListCompare({
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="set">Set Operations</SelectItem>
-                    <SelectItem value="sequential">Sequential Compare</SelectItem>
-                    <SelectItem value="smart">Smart Compare</SelectItem>
-                    <SelectItem value="fuzzy">Fuzzy Matching</SelectItem>
-                    <SelectItem value="developer">Developer Mode</SelectItem>
+                    <SelectItem value="set">
+                      {ui.setOperations || 'Set Operations'}
+                    </SelectItem>
+                    <SelectItem value="sequential">
+                      {ui.sequentialCompare || 'Sequential Compare'}
+                    </SelectItem>
+                    <SelectItem value="smart">
+                      {ui.smartCompare || 'Smart Compare'}
+                    </SelectItem>
+                    <SelectItem value="fuzzy">
+                      {ui.fuzzyMatching || 'Fuzzy Matching'}
+                    </SelectItem>
+                    <SelectItem value="developer">
+                      {ui.developerMode || 'Developer Mode'}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 {comparisonMode === 'fuzzy' && (
                   <div className="space-y-2">
                     <Label className="text-xs">
-                      Similarity: {fuzzyThreshold[0]}%
+                      {ui.similarity || 'Similarity:'} {fuzzyThreshold[0]}%
                     </Label>
                     <Slider
                       value={fuzzyThreshold}
@@ -631,31 +649,41 @@ export default function ListCompare({
 
               {/* Processing Options */}
               <div className="space-y-3">
-                <Label className="text-sm font-medium">Processing</Label>
+                <Label className="text-sm font-medium">
+                  {ui.processing || 'Processing'}
+                </Label>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <Label className="text-sm">Case Sensitive</Label>
+                    <Label className="text-sm">
+                      {ui.caseSensitive || 'Case Sensitive'}
+                    </Label>
                     <Switch
                       checked={caseSensitive}
                       onCheckedChange={setCaseSensitive}
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <Label className="text-sm">Remove Duplicates</Label>
+                    <Label className="text-sm">
+                      {ui.removeDuplicates || 'Remove Duplicates'}
+                    </Label>
                     <Switch
                       checked={removeDuplicates}
                       onCheckedChange={setRemoveDuplicates}
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <Label className="text-sm">Sort Before Compare</Label>
+                    <Label className="text-sm">
+                      {ui.sortBeforeCompare || 'Sort Before Compare'}
+                    </Label>
                     <Switch
                       checked={sortBeforeCompare}
                       onCheckedChange={setSortBeforeCompare}
                     />
                   </div>
                   <div className="flex items-center justify-between">
-                    <Label className="text-sm">Trim Whitespace</Label>
+                    <Label className="text-sm">
+                      {ui.trimWhitespace || 'Trim Whitespace'}
+                    </Label>
                     <Switch
                       checked={trimWhitespace}
                       onCheckedChange={setTrimWhitespace}
@@ -666,10 +694,14 @@ export default function ListCompare({
 
               {/* Advanced Options */}
               <div className="space-y-3">
-                <Label className="text-sm font-medium">Advanced</Label>
+                <Label className="text-sm font-medium">
+                  {ui.advanced || 'Advanced'}
+                </Label>
                 <div className="space-y-2">
                   <div className="space-y-1">
-                    <Label className="text-xs">Separator</Label>
+                    <Label className="text-xs">
+                      {ui.separator || 'Separator'}
+                    </Label>
                     <Select
                       value={separator}
                       onValueChange={(value) =>
@@ -680,21 +712,33 @@ export default function ListCompare({
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="auto">Auto-detect</SelectItem>
-                        <SelectItem value="newline">Newline</SelectItem>
-                        <SelectItem value="comma">Comma</SelectItem>
-                        <SelectItem value="semicolon">Semicolon</SelectItem>
-                        <SelectItem value="tab">Tab</SelectItem>
-                        <SelectItem value="pipe">Pipe (|)</SelectItem>
+                        <SelectItem value="auto">
+                          {ui.autoDetect || 'Auto-detect'}
+                        </SelectItem>
+                        <SelectItem value="newline">
+                          {ui.newline || 'Newline'}
+                        </SelectItem>
+                        <SelectItem value="comma">
+                          {ui.comma || 'Comma'}
+                        </SelectItem>
+                        <SelectItem value="semicolon">
+                          {ui.semicolon || 'Semicolon'}
+                        </SelectItem>
+                        <SelectItem value="tab">{ui.tab || 'Tab'}</SelectItem>
+                        <SelectItem value="pipe">
+                          {ui.pipe || 'Pipe (|)'}
+                        </SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-1">
-                    <Label className="text-xs">Filter Pattern (Regex)</Label>
+                    <Label className="text-xs">
+                      {ui.filterPattern || 'Filter Pattern (Regex)'}
+                    </Label>
                     <Input
                       value={filterPattern}
                       onChange={(e) => setFilterPattern(e.target.value)}
-                      placeholder="e.g., ^[a-z]"
+                      placeholder={ui.filterPatternPlaceholder || 'e.g., ^[a-z]'}
                       className="h-8 text-xs"
                     />
                   </div>
@@ -711,7 +755,7 @@ export default function ListCompare({
           <CardContent className="flex items-center justify-center py-8">
             <div className="flex items-center gap-2">
               <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-primary"></div>
-              <span>Processing comparison...</span>
+              <span>{ui.processingComparison || 'Processing comparison...'}</span>
             </div>
           </CardContent>
         </Card>
@@ -724,7 +768,8 @@ export default function ListCompare({
                 <div className="flex items-center gap-2">
                   <ArrowUpDown className="h-4 w-4 text-muted-foreground" />
                   <Label className="text-sm font-medium">
-                    Sort Results Alphabetically
+                    {ui.sortResultsAlphabetically ||
+                      'Sort Results Alphabetically'}
                   </Label>
                 </div>
                 <Switch
@@ -771,23 +816,24 @@ export default function ListCompare({
             >
               {comparisonResult.union && comparisonResult.union.length > 0 && (
                 <TabsTrigger value="union" className="text-xs">
-                  Union ({comparisonResult.union.length})
+                  {ui.union || 'Union'} ({comparisonResult.union.length})
                 </TabsTrigger>
               )}
               {comparisonResult.intersection &&
                 comparisonResult.intersection.length > 0 && (
                   <TabsTrigger value="intersection" className="text-xs">
-                    Intersection ({comparisonResult.intersection.length})
+                    {ui.intersection || 'Intersection'} (
+                    {comparisonResult.intersection.length})
                   </TabsTrigger>
                 )}
               {comparisonResult.unique &&
                 Object.keys(comparisonResult.unique).length > 0 && (
                   <TabsTrigger value="unique" className="text-xs">
-                    Unique per List
+                    {ui.uniquePerList || 'Unique per List'}
                   </TabsTrigger>
                 )}
               <TabsTrigger value="export" className="text-xs">
-                Export
+                {ui.export || 'Export'}
               </TabsTrigger>
             </TabsList>
 
@@ -799,10 +845,11 @@ export default function ListCompare({
                     <div className="flex items-center justify-between">
                       <div>
                         <CardTitle className="text-blue-600">
-                          Union ({comparisonResult.union.length} items)
+                          {ui.union || 'Union'} (
+                          {comparisonResult.union.length} {ui.items || 'items'})
                         </CardTitle>
                         <p className="text-sm text-muted-foreground">
-                          Items that appear in any list
+                          {ui.itemsInAnyList || 'Items that appear in any list'}
                         </p>
                       </div>
                       <Button
@@ -816,7 +863,7 @@ export default function ListCompare({
                         size="sm"
                       >
                         <Copy className="mr-2 h-4 w-4" />
-                        Copy
+                        {ui.copy || 'Copy'}
                       </Button>
                     </div>
                   </CardHeader>
@@ -851,11 +898,13 @@ export default function ListCompare({
                       <div className="flex items-center justify-between">
                         <div>
                           <CardTitle className="text-green-600">
-                            Intersection ({comparisonResult.intersection.length}{' '}
-                            items)
+                            {ui.intersection || 'Intersection'} (
+                            {comparisonResult.intersection.length}{' '}
+                            {ui.items || 'items'})
                           </CardTitle>
                           <p className="text-sm text-muted-foreground">
-                            Items that appear in ALL lists
+                            {ui.itemsInAllLists ||
+                              'Items that appear in ALL lists'}
                           </p>
                         </div>
                         <Button
@@ -869,7 +918,7 @@ export default function ListCompare({
                           size="sm"
                         >
                           <Copy className="mr-2 h-4 w-4" />
-                          Copy
+                          {ui.copy || 'Copy'}
                         </Button>
                       </div>
                     </CardHeader>
@@ -911,10 +960,12 @@ export default function ListCompare({
                               <div className="flex items-center justify-between">
                                 <div>
                                   <CardTitle className="text-purple-600">
-                                    {listName} ({items.length} unique items)
+                                    {listName} ({items.length}{' '}
+                                    {ui.uniqueItems || 'unique items'})
                                   </CardTitle>
                                   <p className="text-sm text-muted-foreground">
-                                    Items only in this list
+                                    {ui.itemsOnlyInThisList ||
+                                      'Items only in this list'}
                                   </p>
                                 </div>
                                 <Button
@@ -928,7 +979,7 @@ export default function ListCompare({
                                   size="sm"
                                 >
                                   <Copy className="mr-2 h-4 w-4" />
-                                  Copy
+                                  {ui.copy || 'Copy'}
                                 </Button>
                               </div>
                             </CardHeader>
@@ -964,13 +1015,13 @@ export default function ListCompare({
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <Download className="h-5 w-5" />
-                    Export Results
+                    {ui.exportResults || 'Export Results'}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
-                      <Label>Export Format</Label>
+                      <Label>{ui.exportFormat || 'Export Format'}</Label>
                       <Select
                         value={exportFormat}
                         onValueChange={(value) =>
@@ -983,23 +1034,27 @@ export default function ListCompare({
                         <SelectContent>
                           <SelectItem value="json">JSON</SelectItem>
                           <SelectItem value="javascript">
-                            JavaScript Array
+                            {ui.javascriptArray || 'JavaScript Array'}
                           </SelectItem>
                           <SelectItem value="typescript">
-                            TypeScript Array
+                            {ui.typescriptArray || 'TypeScript Array'}
                           </SelectItem>
-                          <SelectItem value="python">Python List</SelectItem>
-                          <SelectItem value="sql">SQL IN Clause</SelectItem>
+                          <SelectItem value="python">
+                            {ui.pythonList || 'Python List'}
+                          </SelectItem>
+                          <SelectItem value="sql">
+                            {ui.sqlInClause || 'SQL IN Clause'}
+                          </SelectItem>
                           <SelectItem value="csv">CSV</SelectItem>
                           <SelectItem value="markdown">
-                            Markdown Table
+                            {ui.markdownTable || 'Markdown Table'}
                           </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     <div className="flex flex-col gap-2">
-                      <Label>Actions</Label>
+                      <Label>{ui.actions || 'Actions'}</Label>
                       <div className="flex gap-2">
                         <Button
                           onClick={handleExport}
@@ -1008,7 +1063,7 @@ export default function ListCompare({
                           className="flex-1"
                         >
                           <Copy className="mr-2 h-4 w-4" />
-                          Copy
+                          {ui.copy || 'Copy'}
                         </Button>
                         <Button
                           onClick={handleDownload}
@@ -1018,7 +1073,7 @@ export default function ListCompare({
                           className="flex-1"
                         >
                           <Download className="mr-2 h-4 w-4" />
-                          Download
+                          {ui.download || 'Download'}
                         </Button>
                       </div>
                     </div>
@@ -1027,7 +1082,7 @@ export default function ListCompare({
                   {comparisonResult?.success && (
                     <div className="mt-4 rounded-md bg-muted p-3">
                       <div className="mb-2 text-xs text-muted-foreground">
-                        Preview:
+                        {ui.preview || 'Preview:'}
                       </div>
                       <ScrollArea className="h-32">
                         <pre className="whitespace-pre-wrap font-mono text-xs">
@@ -1051,7 +1106,10 @@ export default function ListCompare({
           <CardContent className="flex items-center justify-center py-8 text-muted-foreground">
             <div className="text-center">
               <GitCompare className="mx-auto mb-2 h-8 w-8 opacity-50" />
-              <p>Add lists and configure options to see comparison results</p>
+              <p>
+                {ui.emptyState ||
+                  'Add lists and configure options to see comparison results'}
+              </p>
             </div>
           </CardContent>
         </Card>

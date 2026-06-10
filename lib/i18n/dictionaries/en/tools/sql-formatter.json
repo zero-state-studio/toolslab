@@ -89,5 +89,14 @@
     "description": "Format and beautify SQL queries online free. MySQL, PostgreSQL, SQLite supported. Syntax highlighting, auto-indentation. No signup or installation needed."
   },
   "tagline": "Format and beautify SQL queries with syntax highlighting",
-  "pageDescription": "Format and beautify SQL queries with proper indentation, keyword highlighting, and syntax validation. Perfect for database developers, data analysts, and SQL optimization. Supports multiple SQL dialects (MySQL, PostgreSQL, SQLite) with customizable formatting options. Free online with no signup required — secure browser-based SQL formatter with no data uploads."
+  "pageDescription": "Format and beautify SQL queries with proper indentation, keyword highlighting, and syntax validation. Perfect for database developers, data analysts, and SQL optimization. Supports multiple SQL dialects (MySQL, PostgreSQL, SQLite) with customizable formatting options. Free online with no signup required — secure browser-based SQL formatter with no data uploads.",
+  "usageTips": {
+    "title": "Usage Tips",
+    "tips": [
+      "Use auto-detect dialect for best keyword recognition",
+      "Choose uppercase keywords for better readability and standards",
+      "Enable comment preservation to keep important documentation",
+      "Use 4-space indentation for optimal balance of readability"
+    ]
+  }
 }

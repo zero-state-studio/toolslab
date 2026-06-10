@@ -10,7 +10,8 @@
       "viewAllTools": "Alle Tools anzeigen",
       "home": "Startseite",
       "relatedTools": "Verwandte Tools",
-      "sameCategoryTools": "Weitere Tools dieser Kategorie"
+      "sameCategoryTools": "Weitere Tools dieser Kategorie",
+      "searchPlaceholder": "Tools durchsuchen…"
     },
     "actions": {
       "copy": "Kopieren",
@@ -130,6 +131,33 @@
       "helpDescription": "Ihre Unterstützung kann uns helfen, die Serverkosten zu decken und diesen Service wieder zu aktivieren. Jeder Beitrag, egal wie klein, macht einen Unterschied.",
       "donateButton": "Spendieren Sie mir einen Kaffee",
       "thanks": "Vielen Dank für Ihr Verständnis und Ihre Unterstützung!"
+    },
+    "faqSchema": [
+      {
+        "question": "Ist der {toolName} kostenlos?",
+        "answer": "Ja, unser {toolName} ist völlig kostenlos. Keine Registrierung, Zahlung oder Abonnement erforderlich. Alle Funktionen stehen kostenfrei zur Verfügung."
+      },
+      {
+        "question": "Sind meine Daten bei der Nutzung des {toolName} sicher?",
+        "answer": "Ja, die gesamte Verarbeitung erfolgt vollständig in Ihrem Browser. Ihre Daten verlassen niemals Ihr Gerät und werden nicht an unsere Server gesendet – volle Privatsphäre und Sicherheit."
+      },
+      {
+        "question": "Kann ich den {toolName} offline nutzen?",
+        "answer": "Ja, sobald die Seite geladen ist, funktioniert das Tool vollständig offline. Die gesamte Verarbeitung erfolgt clientseitig im Browser."
+      },
+      {
+        "question": "Brauche ich ein Konto, um {toolName} zu nutzen?",
+        "answer": "Nein, Sie können alle unsere Tools ohne Konto nutzen. Einfach die Seite aufrufen und sofort loslegen."
+      },
+      {
+        "question": "Wie benutze ich den {toolName}?",
+        "answer": "Fügen Sie Ihren Inhalt einfach in den {toolName} ein und erhalten Sie sofort Ergebnisse. Das Tool verarbeitet in Echtzeit mit direktem Feedback und Validierung."
+      }
+    ],
+    "donation": {
+      "enjoying": "Gefällt dir ToolsLab?",
+      "share": "Teile es oder spendiere mir einen Kaffee, damit es kostenlos bleibt ☕",
+      "coffee": "Spendier mir einen Kaffee, damit es kostenlos bleibt."
     }
   }
 }
