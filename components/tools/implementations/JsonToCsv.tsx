@@ -67,7 +67,9 @@ export default function JsonToCsv({
   initialInput,
   onInputChange,
   onOutputChange,
+  dictionary,
 }: BaseToolProps) {
+  const ui = dictionary?.tools?.['json-to-csv']?.ui ?? {};
   const { trackUse, trackError, trackCustom } = useToolTracking('json-to-csv');
   const { resultRef, scrollToResult } = useScrollToResult();
   const [input, setInput] = useState(initialInput || '');
@@ -360,25 +362,25 @@ export default function JsonToCsv({
         <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="input" className="flex items-center gap-2">
             <FileJson className="h-4 w-4" />
-            Input
+            {ui.tabInput || 'Input'}
           </TabsTrigger>
           <TabsTrigger value="options" className="flex items-center gap-2">
             <Settings className="h-4 w-4" />
-            Options
+            {ui.tabOptions || 'Options'}
           </TabsTrigger>
           <TabsTrigger value="columns" className="flex items-center gap-2">
             <Table className="h-4 w-4" />
-            Columns
+            {ui.tabColumns || 'Columns'}
           </TabsTrigger>
           <TabsTrigger value="output" className="flex items-center gap-2">
             <ChevronRight className="h-4 w-4" />
-            Output
+            {ui.tabOutput || 'Output'}
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="input" className="space-y-4">
           <div className="flex items-center justify-between">
-            <Label htmlFor="json-input">JSON Input</Label>
+            <Label htmlFor="json-input">{ui.jsonInputLabel || 'JSON Input'}</Label>
             <div className="flex gap-1 md:gap-2">
               <Button
                 onClick={loadSample}
@@ -387,7 +389,7 @@ export default function JsonToCsv({
                 className="gap-1 md:gap-2"
               >
                 <Wand2 className="h-4 w-4" />
-                <span className="hidden md:inline">Load Sample</span>
+                <span className="hidden md:inline">{ui.loadSample || 'Load Sample'}</span>
               </Button>
               <div>
                 <Input
@@ -404,7 +406,7 @@ export default function JsonToCsv({
                     className="cursor-pointer gap-1 md:gap-2"
                   >
                     <Upload className="h-4 w-4" />
-                    <span className="hidden md:inline">Upload File</span>
+                    <span className="hidden md:inline">{ui.uploadFile || 'Upload File'}</span>
                   </Button>
                 </Label>
               </div>
@@ -418,7 +420,7 @@ export default function JsonToCsv({
               setInput(e.target.value);
               onInputChange?.(e.target.value);
             }}
-            placeholder='Enter JSON data...\n\nExample:\n[\n  {"name": "John", "age": 30},\n  {"name": "Jane", "age": 25}\n]'
+            placeholder={ui.jsonInputPlaceholder || 'Enter JSON data...\n\nExample:\n[\n  {"name": "John", "age": 30},\n  {"name": "Jane", "age": 25}\n]'}
             className="min-h-[400px] font-mono text-sm"
           />
 
@@ -428,7 +430,7 @@ export default function JsonToCsv({
                 <div className="mb-4 flex items-center justify-between">
                   <Label className="flex items-center gap-2">
                     <Eye className="h-4 w-4" />
-                    Preview (First 5 rows)
+                    {ui.previewLabel || 'Preview (First 5 rows)'}
                   </Label>
                   <Badge variant="secondary">
                     {previewData.length} rows × {visibleColumnCount} columns
@@ -445,52 +447,52 @@ export default function JsonToCsv({
             <Card>
               <CardContent className="space-y-4 pt-6">
                 <div className="space-y-2">
-                  <Label htmlFor="delimiter">Delimiter</Label>
+                  <Label htmlFor="delimiter">{ui.delimiterLabel || 'Delimiter'}</Label>
                   <Select value={delimiter} onValueChange={setDelimiter}>
                     <SelectTrigger id="delimiter">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value=",">Comma (,)</SelectItem>
-                      <SelectItem value=";">Semicolon (;)</SelectItem>
-                      <SelectItem value="\t">Tab (\t)</SelectItem>
-                      <SelectItem value="|">Pipe (|)</SelectItem>
-                      <SelectItem value="custom">Custom</SelectItem>
+                      <SelectItem value=",">{ui.delimiterComma || 'Comma (,)'}</SelectItem>
+                      <SelectItem value=";">{ui.delimiterSemicolon || 'Semicolon (;)'}</SelectItem>
+                      <SelectItem value="\t">{ui.delimiterTab || 'Tab (\\t)'}</SelectItem>
+                      <SelectItem value="|">{ui.delimiterPipe || 'Pipe (|)'}</SelectItem>
+                      <SelectItem value="custom">{ui.delimiterCustom || 'Custom'}</SelectItem>
                     </SelectContent>
                   </Select>
                   {delimiter === 'custom' && (
                     <Input
                       value={customDelimiter}
                       onChange={(e) => setCustomDelimiter(e.target.value)}
-                      placeholder="Enter custom delimiter"
+                      placeholder={ui.customDelimiterPlaceholder || 'Enter custom delimiter'}
                       maxLength={5}
                     />
                   )}
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="qualifier">Text Qualifier</Label>
+                  <Label htmlFor="qualifier">{ui.qualifierLabel || 'Text Qualifier'}</Label>
                   <Select value={qualifier} onValueChange={setQualifier}>
                     <SelectTrigger id="qualifier">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value='"'>Double Quote (&quot;)</SelectItem>
-                      <SelectItem value="'">Single Quote (&apos;)</SelectItem>
-                      <SelectItem value="">None</SelectItem>
+                      <SelectItem value='"'>{ui.qualifierDoubleQuote || 'Double Quote (")'}</SelectItem>
+                      <SelectItem value="'">{ui.qualifierSingleQuote || "Single Quote (')"}</SelectItem>
+                      <SelectItem value="">{ui.qualifierNone || 'None'}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="line-ending">Line Ending</Label>
+                  <Label htmlFor="line-ending">{ui.lineEndingLabel || 'Line Ending'}</Label>
                   <Select value={lineEnding} onValueChange={setLineEnding}>
                     <SelectTrigger id="line-ending">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="\n">LF (Unix/Mac)</SelectItem>
-                      <SelectItem value="\\r\\n">CRLF (Windows)</SelectItem>
+                      <SelectItem value="\n">{ui.lineEndingLf || 'LF (Unix/Mac)'}</SelectItem>
+                      <SelectItem value="\\r\\n">{ui.lineEndingCrlf || 'CRLF (Windows)'}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -500,7 +502,7 @@ export default function JsonToCsv({
             <Card>
               <CardContent className="space-y-4 pt-6">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="include-headers">Include Headers</Label>
+                  <Label htmlFor="include-headers">{ui.includeHeadersLabel || 'Include Headers'}</Label>
                   <Switch
                     id="include-headers"
                     checked={includeHeaders}
@@ -509,7 +511,7 @@ export default function JsonToCsv({
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="flatten-nested">Flatten Nested Objects</Label>
+                  <Label htmlFor="flatten-nested">{ui.flattenNestedLabel || 'Flatten Nested Objects'}</Label>
                   <Switch
                     id="flatten-nested"
                     checked={flattenNested}
@@ -519,19 +521,19 @@ export default function JsonToCsv({
 
                 {flattenNested && (
                   <div className="space-y-2">
-                    <Label htmlFor="flatten-separator">Flatten Separator</Label>
+                    <Label htmlFor="flatten-separator">{ui.flattenSeparatorLabel || 'Flatten Separator'}</Label>
                     <Input
                       id="flatten-separator"
                       value={flattenSeparator}
                       onChange={(e) => setFlattenSeparator(e.target.value)}
-                      placeholder="."
+                      placeholder={ui.flattenSeparatorPlaceholder || '.'}
                       maxLength={5}
                     />
                   </div>
                 )}
 
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="include-bom">Include BOM (Excel UTF-8)</Label>
+                  <Label htmlFor="include-bom">{ui.includeBomLabel || 'Include BOM (Excel UTF-8)'}</Label>
                   <Switch
                     id="include-bom"
                     checked={includeBOM}
@@ -544,17 +546,17 @@ export default function JsonToCsv({
             <Card>
               <CardContent className="space-y-4 pt-6">
                 <div className="space-y-2">
-                  <Label htmlFor="null-value">Null/Undefined Value</Label>
+                  <Label htmlFor="null-value">{ui.nullValueLabel || 'Null/Undefined Value'}</Label>
                   <Input
                     id="null-value"
                     value={nullValue}
                     onChange={(e) => setNullValue(e.target.value)}
-                    placeholder="Leave empty for blank"
+                    placeholder={ui.nullValuePlaceholder || 'Leave empty for blank'}
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="array-delimiter">Array Delimiter</Label>
+                  <Label htmlFor="array-delimiter">{ui.arrayDelimiterLabel || 'Array Delimiter'}</Label>
                   <Input
                     id="array-delimiter"
                     value={arrayDelimiter}
@@ -572,9 +574,9 @@ export default function JsonToCsv({
           {columns.length > 0 ? (
             <>
               <div className="flex items-center justify-between">
-                <Label>Column Management</Label>
+                <Label>{ui.columnManagementLabel || 'Column Management'}</Label>
                 <Badge variant="secondary">
-                  {visibleColumnCount} / {totalColumnCount} columns selected
+                  {visibleColumnCount} / {totalColumnCount} {ui.columnsSelectedSuffix || 'columns selected'}
                 </Badge>
               </div>
 
@@ -666,7 +668,7 @@ export default function JsonToCsv({
             <Alert>
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>
-                Enter valid JSON data to manage columns
+                {ui.noJsonForColumns || 'Enter valid JSON data to manage columns'}
               </AlertDescription>
             </Alert>
           )}
@@ -677,7 +679,7 @@ export default function JsonToCsv({
             {output && (
               <>
                 <div className="flex items-center justify-between">
-                  <Label>CSV Output</Label>
+                  <Label>{ui.csvOutputLabel || 'CSV Output'}</Label>
                   <div className="flex gap-1 md:gap-2">
                     <Button
                       onClick={handleCopy}
@@ -686,7 +688,7 @@ export default function JsonToCsv({
                       className="gap-1 md:gap-2"
                     >
                       <Copy className="h-4 w-4" />
-                      <span className="hidden md:inline">Copy</span>
+                      <span className="hidden md:inline">{ui.copyButton || 'Copy'}</span>
                     </Button>
                     <Button
                       onClick={handleDownload}
@@ -695,7 +697,7 @@ export default function JsonToCsv({
                       className="gap-1 md:gap-2"
                     >
                       <Download className="h-4 w-4" />
-                      <span className="hidden md:inline">Download</span>
+                      <span className="hidden md:inline">{ui.downloadButton || 'Download'}</span>
                     </Button>
                   </div>
                 </div>
@@ -704,15 +706,15 @@ export default function JsonToCsv({
                   <div className="flex flex-wrap gap-3">
                     <Badge variant="secondary" className="gap-1">
                       <BarChart className="h-3 w-3" />
-                      {stats.rows} rows
+                      {stats.rows} {ui.statRows || 'rows'}
                     </Badge>
                     <Badge variant="secondary" className="gap-1">
                       <Table className="h-3 w-3" />
-                      {stats.columns} columns
+                      {stats.columns} {ui.statColumns || 'columns'}
                     </Badge>
                     <Badge variant="secondary" className="gap-1">
                       <Filter className="h-3 w-3" />
-                      {stats.empty} empty fields
+                      {stats.empty} {ui.statEmptyFields || 'empty fields'}
                     </Badge>
                   </div>
                 )}
@@ -729,8 +731,7 @@ export default function JsonToCsv({
               <Alert>
                 <AlertCircle className="h-4 w-4" />
                 <AlertDescription>
-                  No CSV output yet. Configure options and click Convert to
-                  generate CSV.
+                  {ui.noOutputAlert || 'No CSV output yet. Configure options and click Convert to generate CSV.'}
                 </AlertDescription>
               </Alert>
             )}
@@ -761,7 +762,7 @@ export default function JsonToCsv({
           className="ml-4 gap-2"
         >
           <ChevronRight className="h-5 w-5" />
-          {isProcessing ? 'Converting...' : 'Convert to CSV'}
+          {isProcessing ? (ui.convertingButton || 'Converting...') : (ui.convertButton || 'Convert to CSV')}
         </Button>
       </div>
     </div>

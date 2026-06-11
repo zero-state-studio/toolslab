@@ -87,5 +87,36 @@
         "description": "Copia valore HEX corrente"
       }
     ]
+  },
+  "ui": {
+    "colorInputLabel": "Colore Input",
+    "inputPlaceholder": "Inserisci colore (HEX, RGB, HSL, HSV, CMYK o nome)",
+    "customColorName": "Colore Personalizzato",
+    "colorFormatsHeading": "Formati Colore",
+    "paletteGeneratorHeading": "Generatore Palette",
+    "hideButton": "Nascondi",
+    "generateButton": "Genera",
+    "harmonyOption": "Armonia",
+    "tintsOption": "Tinte (Più Chiare)",
+    "shadesOption": "Sfumature (Più Scure)",
+    "complementaryOption": "Complementare",
+    "analogousOption": "Analogo",
+    "triadicOption": "Triadico",
+    "tetradicOption": "Tetradico",
+    "monochromaticOption": "Monocromatico",
+    "clickToUseColor": "Clicca per usare questo colore",
+    "contrastCheckerHeading": "Controllo Contrasto",
+    "checkButton": "Controlla",
+    "whiteBackground": "Bianco",
+    "blackBackground": "Nero",
+    "contrastRatioLabel": "Rapporto Contrasto:",
+    "aaComplianceHeading": "Conformità AA",
+    "aaaComplianceHeading": "Conformità AAA",
+    "normalTextLabel": "Testo Normale:",
+    "largeTextLabel": "Testo Grande:",
+    "recentColorsHeading": "Colori Recenti",
+    "clearButton": "Cancella",
+    "exportJsonButton": "Esporta JSON",
+    "copyToClipboard": "Copia negli appunti"
   }
 }

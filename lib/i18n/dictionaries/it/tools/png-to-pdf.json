@@ -66,8 +66,14 @@
       "Immagine distorta: evita 'Riempire' se non vuoi stretching"
     ],
     "keyboardShortcuts": [
-      { "keys": "Trascina e Rilascia", "description": "Rilascia file PNG per caricarli" },
-      { "keys": "Click", "description": "Seleziona file PNG dal computer" }
+      {
+        "keys": "Trascina e Rilascia",
+        "description": "Rilascia file PNG per caricarli"
+      },
+      {
+        "keys": "Click",
+        "description": "Seleziona file PNG dal computer"
+      }
     ]
   },
   "meta": {
@@ -89,5 +95,39 @@
     "migliore convertitore PNG PDF gratuito online",
     "convertire screenshot PNG in PDF online",
     "convertire PNG in PDF dimensioni A4"
-  ]
+  ],
+  "ui": {
+    "uploadHeading": "Carica immagini PNG",
+    "clearAll": "Cancella tutto",
+    "dropZoneMain": "Clicca per caricare o trascina qui",
+    "dropZoneSub": "Solo file PNG (fino a 10 MB per file) - Trasparenza supportata",
+    "selectedImagesLabel": "Immagini PNG selezionate",
+    "moveUp": "Sposta su",
+    "moveDown": "Sposta giù",
+    "remove": "Rimuovi",
+    "pdfSettingsHeading": "Impostazioni PDF",
+    "pageSizeLabel": "Dimensione pagina",
+    "widthLabel": "Larghezza (pt)",
+    "heightLabel": "Altezza (pt)",
+    "imageFitLabel": "Adattamento immagine",
+    "fitContain": "Contieni (adatta all'interno, mantieni proporzioni)",
+    "fitCover": "Copri (riempi pagina, possibile ritaglio)",
+    "fitFill": "Riempi (estendi per coprire)",
+    "fitNone": "Nessuno (dimensione originale)",
+    "marginsLabel": "Margini",
+    "filenameLabel": "Nome file",
+    "filenamePlaceholder": "mio-documento.pdf",
+    "generatingPdf": "Generazione PDF in corso...",
+    "generatePdf": "Genera PDF",
+    "imageSingular": "immagine",
+    "imagePlural": "immagini",
+    "pdfGeneratedSuccess": "PDF generato con successo!",
+    "pagesLabel": "Pagine:",
+    "fileSizeLabel": "Dimensione file:",
+    "filenameResultLabel": "Nome file:",
+    "downloadPdf": "Scarica PDF",
+    "previewHeading": "Anteprima PDF",
+    "hidePreview": "Nascondi anteprima",
+    "showPreview": "Mostra anteprima"
+  }
 }

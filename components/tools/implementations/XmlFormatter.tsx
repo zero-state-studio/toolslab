@@ -45,7 +45,8 @@ import {
 
 interface XmlFormatterProps extends BaseToolProps {}
 
-export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
+export default function XmlFormatter({ categoryColor, dictionary }: XmlFormatterProps) {
+  const ui = dictionary?.tools?.['xml-formatter']?.ui ?? {};
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [viewMode, setViewMode] = useState<'formatted' | 'minified'>(
@@ -350,8 +351,8 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
               copyPath(node.path);
             }}
             className="opacity-0 transition-opacity group-hover:opacity-100"
-            aria-label="Copy path"
-            title={`Copy path: ${node.path}`}
+            aria-label={ui.copyPath || 'Copy path'}
+            title={`${ui.copyPath || 'Copy path'}: ${node.path}`}
           >
             <Copy className="h-3 w-3 text-gray-500 hover:text-gray-900 dark:hover:text-white" />
           </button>
@@ -395,7 +396,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
         <div className="flex items-center gap-3">
           <FileCode className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            XML Formatter & Validator
+            {ui.headerTitle || 'XML Formatter & Validator'}
           </h3>
         </div>
         <button
@@ -403,7 +404,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
           className="flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
         >
           <Settings className="h-4 w-4" />
-          <span className="text-sm">Settings</span>
+          <span className="text-sm">{ui.settingsButton || 'Settings'}</span>
         </button>
       </div>
 
@@ -411,7 +412,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
         {/* Input Section */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            Input XML
+            {ui.inputLabel || 'Input XML'}
           </label>
           <textarea
             value={input}
@@ -439,23 +440,23 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
             <div className="flex items-center gap-3">
               <Settings className="h-5 w-5 text-gray-500" />
               <h4 className="font-medium text-gray-900 dark:text-white">
-                Formatting Options
+                {ui.formattingOptionsTitle || 'Formatting Options'}
               </h4>
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <div className="flex items-center gap-2">
                 <label className="text-sm text-gray-600 dark:text-gray-400">
-                  Indent:
+                  {ui.indentLabel || 'Indent:'}
                 </label>
                 <select
                   value={indentSize}
                   onChange={(e) => setIndentSize(Number(e.target.value))}
                   className="rounded border border-gray-300 bg-white px-3 py-1 text-sm dark:border-gray-600 dark:bg-gray-800"
                 >
-                  <option value={2}>2 spaces</option>
-                  <option value={4}>4 spaces</option>
-                  <option value={0}>Tab</option>
+                  <option value={2}>{ui.indent2Spaces || '2 spaces'}</option>
+                  <option value={4}>{ui.indent4Spaces || '4 spaces'}</option>
+                  <option value={0}>{ui.indentTab || 'Tab'}</option>
                 </select>
               </div>
 
@@ -468,7 +469,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                   style={{ accentColor: categoryColor }}
                 />
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Sort attributes
+                  {ui.sortAttributes || 'Sort attributes'}
                 </span>
               </label>
 
@@ -481,7 +482,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                   style={{ accentColor: categoryColor }}
                 />
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Preserve comments
+                  {ui.preserveComments || 'Preserve comments'}
                 </span>
               </label>
             </div>
@@ -502,12 +503,12 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
             {isProcessing ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Processing...
+                {ui.processing || 'Processing...'}
               </>
             ) : (
               <>
                 <Maximize2 className="h-4 w-4" />
-                Format & Validate
+                {ui.formatButton || 'Format & Validate'}
               </>
             )}
           </button>
@@ -521,7 +522,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
             }}
           >
             <Minimize2 className="h-4 w-4" />
-            Minify
+            {ui.minifyButton || 'Minify'}
           </button>
         </div>
 
@@ -540,7 +541,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                 <>
                   <CheckCircle className="h-5 w-5 text-green-500" />
                   <span className="font-medium text-green-700 dark:text-green-400">
-                    XML is valid
+                    {ui.xmlIsValid || 'XML is valid'}
                   </span>
                 </>
               ) : (
@@ -576,30 +577,30 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
             <div className="flex items-center gap-2">
               <Info className="h-5 w-5 text-blue-500" />
               <span className="font-medium text-gray-900 dark:text-white">
-                XML Metadata
+                {ui.xmlMetadataTitle || 'XML Metadata'}
               </span>
             </div>
 
             <div className="grid grid-cols-2 gap-4 text-sm sm:grid-cols-4">
               <div>
-                <div className="text-gray-600 dark:text-gray-400">Elements</div>
+                <div className="text-gray-600 dark:text-gray-400">{ui.metaElements || 'Elements'}</div>
                 <div className="font-medium">{metadata.elementCount}</div>
               </div>
               <div>
                 <div className="text-gray-600 dark:text-gray-400">
-                  Attributes
+                  {ui.metaAttributes || 'Attributes'}
                 </div>
                 <div className="font-medium">{metadata.attributeCount}</div>
               </div>
               <div>
                 <div className="text-gray-600 dark:text-gray-400">
-                  Max Depth
+                  {ui.metaMaxDepth || 'Max Depth'}
                 </div>
                 <div className="font-medium">{metadata.maxDepth}</div>
               </div>
               <div>
                 <div className="text-gray-600 dark:text-gray-400">
-                  Namespaces
+                  {ui.metaNamespaces || 'Namespaces'}
                 </div>
                 <div className="font-medium">{metadata.namespaces.length}</div>
               </div>
@@ -608,7 +609,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
             {metadata.version && (
               <div className="text-sm">
                 <span className="text-gray-600 dark:text-gray-400">
-                  Version:
+                  {ui.metaVersion || 'Version:'}
                 </span>{' '}
                 <span className="font-medium">{metadata.version}</span>
                 {metadata.encoding && (
@@ -616,7 +617,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                     {' '}
                     |{' '}
                     <span className="text-gray-600 dark:text-gray-400">
-                      Encoding:
+                      {ui.metaEncoding || 'Encoding:'}
                     </span>{' '}
                     <span className="font-medium">{metadata.encoding}</span>
                   </>
@@ -630,7 +631,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
         {formatSuccess && (
           <div className="animate-slideIn flex items-center gap-2 rounded-lg bg-green-50 p-3 text-green-700 dark:bg-green-950/30 dark:text-green-400">
             <CheckCircle className="h-5 w-5" />
-            <span className="font-medium">XML processed successfully!</span>
+            <span className="font-medium">{ui.successMessage || 'XML processed successfully!'}</span>
           </div>
         )}
 
@@ -639,7 +640,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
           <div className="animate-slideIn space-y-2" ref={outputRef}>
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Output ({viewMode})
+                {ui.outputLabel || 'Output'} ({viewMode})
               </label>
               <div className="flex items-center gap-2">
                 <button
@@ -649,12 +650,12 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                   {copied ? (
                     <>
                       <Check className="h-4 w-4 text-green-500" />
-                      <span className="text-sm text-green-500">Copied!</span>
+                      <span className="text-sm text-green-500">{ui.copied || 'Copied!'}</span>
                     </>
                   ) : (
                     <>
                       <Copy className="h-4 w-4" />
-                      <span className="text-sm">Copy</span>
+                      <span className="text-sm">{ui.copy || 'Copy'}</span>
                     </>
                   )}
                 </button>
@@ -663,7 +664,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                   className="flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <Download className="h-4 w-4" />
-                  <span className="text-sm">Download</span>
+                  <span className="text-sm">{ui.download || 'Download'}</span>
                 </button>
               </div>
             </div>
@@ -688,7 +689,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                 <input
                   id="xml-element-search"
                   type="text"
-                  placeholder="Search elements (e.g., 'user', '@id', '//user/@name')"
+                  placeholder={ui.searchPlaceholder || "Search elements (e.g., 'user', '@id', '//user/@name')"}
                   value={searchQuery}
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
@@ -706,14 +707,12 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                   className="rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105"
                   style={{ backgroundColor: categoryColor }}
                 >
-                  Search
+                  {ui.searchButton || 'Search'}
                 </button>
               </div>
 
               <div className="text-xs text-gray-500 dark:text-gray-400">
-                Search tips: Use element names (e.g., &lsquo;title&rsquo;),
-                attributes with @ (e.g., &lsquo;@id&rsquo;), or XPath-style
-                queries (e.g., &lsquo;//user/@name&rsquo;)
+                {ui.searchTips || "Search tips: Use element names (e.g., 'title'), attributes with @ (e.g., '@id'), or XPath-style queries (e.g., '//user/@name')"}
               </div>
 
               {searchResults.length > 0 && (
@@ -730,7 +729,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                       <div className="space-y-1">
                         <div className="flex items-center justify-between">
                           <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Value:
+                            {ui.searchResultValue || 'Value:'}
                           </span>
                           <button
                             onClick={() =>
@@ -741,12 +740,12 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                             {copiedResults[index] ? (
                               <>
                                 <Check className="h-3 w-3 text-green-500" />
-                                <span className="text-green-500">Copied!</span>
+                                <span className="text-green-500">{ui.copied || 'Copied!'}</span>
                               </>
                             ) : (
                               <>
                                 <Copy className="h-3 w-3" />
-                                <span>Copy</span>
+                                <span>{ui.copy || 'Copy'}</span>
                               </>
                             )}
                           </button>
@@ -759,7 +758,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                       </div>
                       <div className="space-y-1">
                         <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                          Path:
+                          {ui.searchResultPath || 'Path:'}
                         </span>
                         <code className="block overflow-x-auto whitespace-pre-wrap break-all rounded bg-gray-100 p-2 text-sm text-purple-600 dark:bg-gray-900 dark:text-purple-400">
                           {result.path}
@@ -772,7 +771,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
 
               {hasSearched && searchQuery && searchResults.length === 0 && (
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  No matches found for &ldquo;{searchQuery}&rdquo;.
+                  {ui.searchNoMatches || 'No matches found for'} &ldquo;{searchQuery}&rdquo;.
                 </div>
               )}
             </div>
@@ -857,7 +856,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                       className="rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105"
                       style={{ backgroundColor: categoryColor }}
                     >
-                      Evaluate
+                      {ui.xpathEvaluate || 'Evaluate'}
                     </button>
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">
@@ -900,7 +899,7 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                                 className="flex items-center gap-1 rounded px-2 py-0.5 text-xs hover:bg-gray-100 dark:hover:bg-gray-700"
                               >
                                 <Copy className="h-3 w-3" />
-                                Copy
+                                {ui.copy || 'Copy'}
                               </button>
                             </div>
                             <code className="block overflow-x-auto whitespace-pre-wrap break-all rounded bg-gray-100 p-2 text-sm text-purple-600 dark:bg-gray-900 dark:text-purple-400">
@@ -926,13 +925,13 @@ export default function XmlFormatter({ categoryColor }: XmlFormatterProps) {
                           onClick={expandAll}
                           className="rounded border border-gray-300 px-2 py-1 text-xs hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800"
                         >
-                          Expand all
+                          {ui.treeExpandAll || 'Expand all'}
                         </button>
                         <button
                           onClick={collapseAll}
                           className="rounded border border-gray-300 px-2 py-1 text-xs hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800"
                         >
-                          Collapse all
+                          {ui.treeCollapseAll || 'Collapse all'}
                         </button>
                       </div>
                       <div className="max-h-[500px] overflow-auto rounded-lg bg-white p-3 dark:bg-gray-800">

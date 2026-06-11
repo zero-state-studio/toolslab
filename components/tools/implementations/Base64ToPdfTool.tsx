@@ -61,6 +61,7 @@ export default function Base64ToPdfTool({
   const { resultRef, scrollToResult } = useScrollToResult({
     onlyIfNotVisible: false,
   });
+  const ui = dictionary?.tools?.['base64-to-pdf']?.ui ?? {};
 
   // Effect per scroll automatico quando c'è un risultato di successo
   useEffect(() => {
@@ -201,12 +202,12 @@ export default function Base64ToPdfTool({
       <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-            Base64 Input
+            {ui.inputHeading || 'Base64 Input'}
           </h2>
           <button
             onClick={handleClear}
             className="rounded-md bg-gray-100 p-2 text-gray-600 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-            title="Clear input"
+            title={ui.clearInputTitle || 'Clear input'}
           >
             <RefreshCw className="h-4 w-4" />
           </button>
@@ -215,7 +216,7 @@ export default function Base64ToPdfTool({
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Paste your Base64 encoded PDF data here..."
+          placeholder={ui.textareaPlaceholder || 'Paste your Base64 encoded PDF data here...'}
           className="min-h-[200px] w-full rounded-md border border-gray-300 p-3 font-mono text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
           spellCheck={false}
         />
@@ -227,7 +228,7 @@ export default function Base64ToPdfTool({
               <div className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400">
                 <Info className="h-4 w-4" />
                 <span>
-                  Data URL prefix detected - will be automatically removed
+                  {ui.dataUrlPrefixDetected || 'Data URL prefix detected - will be automatically removed'}
                 </span>
               </div>
             )}
@@ -236,7 +237,7 @@ export default function Base64ToPdfTool({
               <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
                 <FileCheck className="h-4 w-4" />
                 <span>
-                  Valid Base64 format • Estimated size:{' '}
+                  {ui.validBase64Format || 'Valid Base64 format • Estimated size:'}{' '}
                   {formatFileSize(validationInfo.estimatedSize)}
                 </span>
               </div>
@@ -244,7 +245,7 @@ export default function Base64ToPdfTool({
               input.trim() && (
                 <div className="flex items-center gap-2 text-sm text-red-600 dark:text-red-400">
                   <AlertCircle className="h-4 w-4" />
-                  <span>Invalid Base64 format</span>
+                  <span>{ui.invalidBase64Format || 'Invalid Base64 format'}</span>
                 </div>
               )
             )}
@@ -254,7 +255,7 @@ export default function Base64ToPdfTool({
         {/* Filename Input */}
         <div className="mt-4">
           <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Output filename:
+            {ui.outputFilenameLabel || 'Output filename:'}
           </label>
           <input
             type="text"
@@ -281,7 +282,7 @@ export default function Base64ToPdfTool({
             ) : (
               <FileText className="h-4 w-4" />
             )}
-            {isProcessing ? 'Converting...' : 'Convert to PDF'}
+            {isProcessing ? (ui.convertingButton || 'Converting...') : (ui.convertToPdfButton || 'Convert to PDF')}
           </button>
         </div>
       </div>
@@ -319,11 +320,11 @@ export default function Base64ToPdfTool({
         >
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-              PDF Ready for Download
+              {ui.resultHeading || 'PDF Ready for Download'}
             </h2>
             <div className="flex items-center gap-2 text-sm text-green-600 dark:text-green-400">
               <Check className="h-4 w-4" />
-              <span>Conversion successful</span>
+              <span>{ui.conversionSuccessful || 'Conversion successful'}</span>
             </div>
           </div>
 
@@ -332,17 +333,17 @@ export default function Base64ToPdfTool({
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="font-medium text-gray-700 dark:text-gray-300">
-                  File size:
+                  {ui.fileSizeLabel || 'File size:'}
                 </span>
                 <span className="ml-2 text-gray-600 dark:text-gray-400">
                   {result.fileSize
                     ? formatFileSize(result.fileSize)
-                    : 'Unknown'}
+                    : (ui.unknownFileSize || 'Unknown')}
                 </span>
               </div>
               <div>
                 <span className="font-medium text-gray-700 dark:text-gray-300">
-                  File name:
+                  {ui.fileNameLabel || 'File name:'}
                 </span>
                 <span className="ml-2 text-gray-600 dark:text-gray-400">
                   {result.fileName}
@@ -354,17 +355,17 @@ export default function Base64ToPdfTool({
               <div className="mt-3 space-y-1 text-sm">
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-gray-700 dark:text-gray-300">
-                    PDF validation:
+                    {ui.pdfValidationLabel || 'PDF validation:'}
                   </span>
                   {result.metadata.isPdf ? (
                     <span className="flex items-center gap-1 text-green-600 dark:text-green-400">
                       <Check className="h-3 w-3" />
-                      Valid PDF header
+                      {ui.validPdfHeader || 'Valid PDF header'}
                     </span>
                   ) : (
                     <span className="flex items-center gap-1 text-yellow-600 dark:text-yellow-400">
                       <AlertCircle className="h-3 w-3" />
-                      No PDF header found
+                      {ui.noPdfHeaderFound || 'No PDF header found'}
                     </span>
                   )}
                 </div>
@@ -379,7 +380,7 @@ export default function Base64ToPdfTool({
               className="inline-flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
             >
               <Download className="h-4 w-4" />
-              Download PDF
+              {ui.downloadPdfButton || 'Download PDF'}
             </button>
 
             {/* Copy filename button for convenience */}
@@ -392,7 +393,7 @@ export default function Base64ToPdfTool({
               ) : (
                 <FileText className="h-4 w-4" />
               )}
-              {copied ? 'Copied!' : 'Copy filename'}
+              {copied ? (ui.copiedButton || 'Copied!') : (ui.copyFilenameButton || 'Copy filename')}
             </button>
           </div>
 
@@ -401,7 +402,7 @@ export default function Base64ToPdfTool({
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  PDF Preview
+                  {ui.pdfPreviewHeading || 'PDF Preview'}
                 </h3>
                 <button
                   onClick={() => setShowPreview(!showPreview)}
@@ -410,12 +411,12 @@ export default function Base64ToPdfTool({
                   {showPreview ? (
                     <>
                       <EyeOff className="h-3 w-3" />
-                      Hide Preview
+                      {ui.hidePreviewButton || 'Hide Preview'}
                     </>
                   ) : (
                     <>
                       <Eye className="h-3 w-3" />
-                      Show Preview
+                      {ui.showPreviewButton || 'Show Preview'}
                     </>
                   )}
                 </button>
@@ -427,7 +428,7 @@ export default function Base64ToPdfTool({
                     src={previewUrl}
                     type="application/pdf"
                     className="h-[600px] w-full"
-                    title="PDF Preview"
+                    title={ui.pdfPreviewHeading || 'PDF Preview'}
                   />
                 </div>
               )}

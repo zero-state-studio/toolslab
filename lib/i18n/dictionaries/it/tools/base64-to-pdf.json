@@ -89,5 +89,30 @@
       "I file grandi possono richiedere più tempo — sii paziente con i PDF pesanti",
       "Lo strumento valida le intestazioni PDF per assicurarsi che i dati siano un PDF valido"
     ]
+  },
+  "ui": {
+    "inputHeading": "Input Base64",
+    "clearInputTitle": "Cancella input",
+    "textareaPlaceholder": "Incolla qui i dati PDF codificati in Base64...",
+    "dataUrlPrefixDetected": "Prefisso data URL rilevato - verrà rimosso automaticamente",
+    "validBase64Format": "Formato Base64 valido • Dimensione stimata:",
+    "invalidBase64Format": "Formato Base64 non valido",
+    "outputFilenameLabel": "Nome file di output:",
+    "convertingButton": "Conversione in corso...",
+    "convertToPdfButton": "Converti in PDF",
+    "resultHeading": "PDF pronto per il download",
+    "conversionSuccessful": "Conversione riuscita",
+    "fileSizeLabel": "Dimensione file:",
+    "fileNameLabel": "Nome file:",
+    "pdfValidationLabel": "Validazione PDF:",
+    "validPdfHeader": "Intestazione PDF valida",
+    "noPdfHeaderFound": "Nessuna intestazione PDF trovata",
+    "downloadPdfButton": "Scarica PDF",
+    "copyFilenameButton": "Copia nome file",
+    "copiedButton": "Copiato!",
+    "pdfPreviewHeading": "Anteprima PDF",
+    "hidePreviewButton": "Nascondi anteprima",
+    "showPreviewButton": "Mostra anteprima",
+    "unknownFileSize": "Sconosciuto"
   }
 }

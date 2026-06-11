@@ -56,7 +56,9 @@ const COLOR_PRESETS = {
   transparent: { barColor: '#000000', backgroundColor: 'transparent', textColor: '#000000' },
 } as const;
 
-export default function BarcodeGenerator() {
+export default function BarcodeGenerator({ dictionary }: { dictionary?: any }) {
+  const ui = dictionary?.tools?.['barcode-generator']?.ui ?? {};
+
   const isHydrated = useHydration();
   const { addToHistory } = useToolStore();
   const { resultRef, scrollToResult } = useScrollToResult({
@@ -299,10 +301,10 @@ export default function BarcodeGenerator() {
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
                   <Label htmlFor="format" className="text-base font-semibold">
-                    Barcode Format
+                    {ui.barcodeFormat || 'Barcode Format'}
                   </Label>
                   <p className="mb-3 text-sm text-muted-foreground">
-                    Select the type of barcode you want to generate
+                    {ui.selectBarcodeType || 'Select the type of barcode you want to generate'}
                   </p>
                 </div>
                 {currentMetadata && (
@@ -365,25 +367,25 @@ export default function BarcodeGenerator() {
                     </p>
                     <div className="space-y-1 border-t border-blue-200 pt-2 text-xs text-blue-700 dark:border-blue-700 dark:text-blue-300">
                       <p>
-                        <strong>Character Set:</strong> {currentMetadata.charSet}
+                        <strong>{ui.characterSet || 'Character Set:'}</strong> {currentMetadata.charSet}
                       </p>
                       {currentMetadata.fixedLength && (
                         <p>
                           <strong>Length:</strong> {currentMetadata.fixedLength}{' '}
-                          characters (fixed)
+                          {ui.lengthFixed || 'characters (fixed)'}
                         </p>
                       )}
                       {currentMetadata.minLength && currentMetadata.maxLength && (
                         <p>
                           <strong>Length:</strong> {currentMetadata.minLength}-
-                          {currentMetadata.maxLength} characters
+                          {currentMetadata.maxLength} {ui.characters || 'characters'}
                         </p>
                       )}
                       <p>
-                        <strong>Checksum:</strong>{' '}
+                        <strong>{ui.checksumLabel || 'Checksum:'}</strong>{' '}
                         {currentMetadata.hasChecksum
-                          ? 'Auto-calculated'
-                          : 'Not required'}
+                          ? (ui.checksumAutoCalculated || 'Auto-calculated')
+                          : (ui.checksumNotRequired || 'Not required')}
                       </p>
                     </div>
                   </div>
@@ -397,10 +399,10 @@ export default function BarcodeGenerator() {
             <div className="space-y-4">
               <div>
                 <Label htmlFor="value" className="text-base font-semibold">
-                  Data to Encode
+                  {ui.dataToEncode || 'Data to Encode'}
                 </Label>
                 <p className="mb-3 text-sm text-muted-foreground">
-                  Enter the data you want to encode in the barcode
+                  {ui.enterDataToEncode || 'Enter the data you want to encode in the barcode'}
                 </p>
                 <Input
                   id="value"
@@ -446,7 +448,7 @@ export default function BarcodeGenerator() {
               {/* Checksum Display */}
               {checksum && validation.valid && checksum !== 'Auto-calculated' && (
                 <div className="text-sm">
-                  <span className="font-medium">Calculated Checksum:</span>{' '}
+                  <span className="font-medium">{ui.calculatedChecksum || 'Calculated Checksum:'}</span>{' '}
                   <code className="rounded bg-muted px-2 py-1">
                     {checksum}
                   </code>
@@ -459,7 +461,7 @@ export default function BarcodeGenerator() {
           {/* Customization Options — always visible */}
           <Card className="p-4 sm:p-6">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-base font-semibold">Customize Barcode</h3>
+              <h3 className="text-base font-semibold">{ui.customizeBarcode || 'Customize Barcode'}</h3>
             </div>
             <Tabs
               value={activeTab}
@@ -469,20 +471,20 @@ export default function BarcodeGenerator() {
               <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3">
                 <TabsTrigger value="size">
                   <Ruler className="mr-1 h-4 w-4 sm:mr-2" />
-                  <span className="hidden sm:inline">Size</span>
-                  <span className="sm:hidden">Size</span>
+                  <span className="hidden sm:inline">{ui.tabSize || 'Size'}</span>
+                  <span className="sm:hidden">{ui.tabSize || 'Size'}</span>
                 </TabsTrigger>
                 <TabsTrigger value="appearance">
                   <Palette className="mr-1 h-4 w-4 sm:mr-2" />
-                  <span className="hidden sm:inline">Colors</span>
-                  <span className="sm:hidden">Color</span>
+                  <span className="hidden sm:inline">{ui.tabColors || 'Colors'}</span>
+                  <span className="sm:hidden">{ui.tabColors || 'Colors'}</span>
                 </TabsTrigger>
                 <TabsTrigger
                   value="advanced"
                   className="col-span-2 sm:col-span-1"
                 >
                   <Zap className="mr-1 h-4 w-4 sm:mr-2" />
-                  Advanced
+                  {ui.tabAdvanced || 'Advanced'}
                 </TabsTrigger>
               </TabsList>
 
@@ -490,7 +492,7 @@ export default function BarcodeGenerator() {
               <TabsContent value="size" className="mt-4 space-y-4">
                 <div>
                   <Label>
-                    Height: {barHeight}mm (~{barHeight * scale}px)
+                    {ui.heightLabel || 'Height:'} {barHeight}mm (~{barHeight * scale}px)
                   </Label>
                   <Slider
                     value={[barHeight]}
@@ -503,7 +505,7 @@ export default function BarcodeGenerator() {
                 </div>
 
                 <div>
-                  <Label>Scale: {scale}x</Label>
+                  <Label>{ui.scaleLabel || 'Scale:'} {scale}x</Label>
                   <Slider
                     value={[scale]}
                     onValueChange={(v) => setScale(v[0])}
@@ -516,7 +518,7 @@ export default function BarcodeGenerator() {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label>Padding Width: {paddingWidth}px</Label>
+                    <Label>{ui.paddingWidthLabel || 'Padding Width:'} {paddingWidth}px</Label>
                     <Slider
                       value={[paddingWidth]}
                       onValueChange={(v) => setPaddingWidth(v[0])}
@@ -527,7 +529,7 @@ export default function BarcodeGenerator() {
                     />
                   </div>
                   <div>
-                    <Label>Padding Height: {paddingHeight}px</Label>
+                    <Label>{ui.paddingHeightLabel || 'Padding Height:'} {paddingHeight}px</Label>
                     <Slider
                       value={[paddingHeight]}
                       onValueChange={(v) => setPaddingHeight(v[0])}
@@ -544,12 +546,12 @@ export default function BarcodeGenerator() {
               <TabsContent value="appearance" className="mt-4 space-y-4">
                 {/* Color presets */}
                 <div>
-                  <Label className="mb-2 block text-sm font-medium">Quick Presets</Label>
+                  <Label className="mb-2 block text-sm font-medium">{ui.quickPresets || 'Quick Presets'}</Label>
                   <div className="flex gap-2">
                     {([
-                      { key: 'bw', label: '■ B/W', title: 'Black on White' },
-                      { key: 'wb', label: '□ W/B', title: 'White on Black' },
-                      { key: 'transparent', label: '⬜ Transparent', title: 'Transparent background' },
+                      { key: 'bw', label: ui.presetBW || '■ B/W', title: ui.presetBWTitle || 'Black on White' },
+                      { key: 'wb', label: ui.presetWB || '□ W/B', title: ui.presetWBTitle || 'White on Black' },
+                      { key: 'transparent', label: ui.presetTransparent || '⬜ Transparent', title: ui.presetTransparentTitle || 'Transparent background' },
                     ] as const).map(({ key, label, title }) => (
                       <button
                         key={key}
@@ -577,14 +579,14 @@ export default function BarcodeGenerator() {
                       if (!v) setActivePreset(null);
                     }}
                   />
-                  <Label htmlFor="use-colors">Enable custom colors</Label>
+                  <Label htmlFor="use-colors">{ui.enableCustomColors || 'Enable custom colors'}</Label>
                 </div>
 
                 {useColors && (
                   <div className="grid grid-cols-3 gap-4">
                     <div>
                       <Label htmlFor="bar-color" className="text-xs sm:text-sm">
-                        Bar Color
+                        {ui.barColor || 'Bar Color'}
                       </Label>
                       <Input
                         id="bar-color"
@@ -596,7 +598,7 @@ export default function BarcodeGenerator() {
                     </div>
                     <div>
                       <Label htmlFor="bg-color" className="text-xs sm:text-sm">
-                        Background
+                        {ui.backgroundColor || 'Background'}
                       </Label>
                       <Input
                         id="bg-color"
@@ -611,7 +613,7 @@ export default function BarcodeGenerator() {
                         htmlFor="text-color"
                         className="text-xs sm:text-sm"
                       >
-                        Text Color
+                        {ui.textColor || 'Text Color'}
                       </Label>
                       <Input
                         id="text-color"
@@ -630,12 +632,12 @@ export default function BarcodeGenerator() {
                     checked={includeText}
                     onCheckedChange={setIncludeText}
                   />
-                  <Label htmlFor="include-text">Show text below barcode</Label>
+                  <Label htmlFor="include-text">{ui.showTextBelow || 'Show text below barcode'}</Label>
                 </div>
 
                 {includeText && (
                   <div>
-                    <Label>Text Size: {textSize}pt</Label>
+                    <Label>{ui.textSizeLabel || 'Text Size:'} {textSize}pt</Label>
                     <Slider
                       value={[textSize]}
                       onValueChange={(v) => setTextSize(v[0])}
@@ -651,7 +653,7 @@ export default function BarcodeGenerator() {
               {/* Advanced Options */}
               <TabsContent value="advanced" className="mt-4 space-y-4">
                 <div>
-                  <Label htmlFor="rotation">Rotation</Label>
+                  <Label htmlFor="rotation">{ui.rotation || 'Rotation'}</Label>
                   <Select
                     value={rotation}
                     onValueChange={(v) =>
@@ -662,17 +664,17 @@ export default function BarcodeGenerator() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="N">Normal (0°)</SelectItem>
-                      <SelectItem value="R">Right (90°)</SelectItem>
-                      <SelectItem value="L">Left (270°)</SelectItem>
-                      <SelectItem value="I">Inverted (180°)</SelectItem>
+                      <SelectItem value="N">{ui.rotationNormal || 'Normal (0°)'}</SelectItem>
+                      <SelectItem value="R">{ui.rotationRight || 'Right (90°)'}</SelectItem>
+                      <SelectItem value="L">{ui.rotationLeft || 'Left (270°)'}</SelectItem>
+                      <SelectItem value="I">{ui.rotationInverted || 'Inverted (180°)'}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 {format === 'qrcode' && (
                   <div>
-                    <Label htmlFor="eclevel">Error Correction Level</Label>
+                    <Label htmlFor="eclevel">{ui.errorCorrectionLevel || 'Error Correction Level'}</Label>
                     <Select
                       value={eclevel}
                       onValueChange={(v) =>
@@ -683,15 +685,14 @@ export default function BarcodeGenerator() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="L">Low (7%)</SelectItem>
-                        <SelectItem value="M">Medium (15%)</SelectItem>
-                        <SelectItem value="Q">Quartile (25%)</SelectItem>
-                        <SelectItem value="H">High (30%)</SelectItem>
+                        <SelectItem value="L">{ui.errorLevelLow || 'Low (7%)'}</SelectItem>
+                        <SelectItem value="M">{ui.errorLevelMedium || 'Medium (15%)'}</SelectItem>
+                        <SelectItem value="Q">{ui.errorLevelQuartile || 'Quartile (25%)'}</SelectItem>
+                        <SelectItem value="H">{ui.errorLevelHigh || 'High (30%)'}</SelectItem>
                       </SelectContent>
                     </Select>
                     <p className="mt-2 text-xs text-muted-foreground">
-                      Higher levels allow the code to be read even if partially
-                      damaged
+                      {ui.errorLevelHint || 'Higher levels allow the code to be read even if partially damaged'}
                     </p>
                   </div>
                 )}
@@ -706,7 +707,7 @@ export default function BarcodeGenerator() {
             <div className="space-y-4">
               {/* Header */}
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-semibold">Preview</h3>
+                <h3 className="text-lg font-semibold">{ui.preview || 'Preview'}</h3>
                 {generating && (
                   <RotateCw className="h-4 w-4 animate-spin text-muted-foreground" />
                 )}
@@ -731,7 +732,7 @@ export default function BarcodeGenerator() {
                   />
                 ) : (
                   <p className="text-sm text-muted-foreground">
-                    {value ? 'Generating...' : 'Enter data to generate barcode'}
+                    {value ? (ui.generating || 'Generating...') : (ui.enterDataToGenerate || 'Enter data to generate barcode')}
                   </p>
                 )}
               </div>
@@ -754,7 +755,7 @@ export default function BarcodeGenerator() {
                   className="flex-1 sm:flex-none"
                 >
                   {copied ? <Check className="mr-2 h-4 w-4" /> : <Copy className="mr-2 h-4 w-4" />}
-                  {copied ? 'Copied!' : 'Copy'}
+                  {copied ? (ui.copied || 'Copied!') : (ui.copy || 'Copy')}
                 </Button>
                 <Button
                   variant="outline"
@@ -784,21 +785,21 @@ export default function BarcodeGenerator() {
                   className="flex-1 sm:flex-none"
                 >
                   <Printer className="mr-2 h-4 w-4" />
-                  Print
+                  {ui.print || 'Print'}
                 </Button>
               </div>
 
               {/* Barcode info */}
               {barcodeDataUrl && (
                 <div className="space-y-1 text-sm text-muted-foreground">
-                  <p><strong>Format:</strong> {currentMetadata?.name}</p>
+                  <p><strong>{ui.formatLabel || 'Format:'}</strong> {currentMetadata?.name}</p>
                   <p className="break-all">
-                    <strong>Value:</strong>{' '}
+                    <strong>{ui.valueLabel || 'Value:'}</strong>{' '}
                     <code className="rounded bg-muted px-1">{value}</code>
                   </p>
                   {checksum && checksum !== 'Auto-calculated' && (
                     <p>
-                      <strong>Checksum:</strong>{' '}
+                      <strong>{ui.checksumLabel || 'Checksum:'}</strong>{' '}
                       <code className="rounded bg-muted px-1">{checksum}</code>
                     </p>
                   )}
@@ -814,7 +815,7 @@ export default function BarcodeGenerator() {
         <Card className="border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20 sm:p-6">
           <div className="space-y-3">
             <h3 className="font-semibold text-blue-900 dark:text-blue-100">
-              Common Use Cases for {currentMetadata.name}
+              {ui.commonUseCases || 'Common Use Cases for'} {currentMetadata.name}
             </h3>
             <ul className="list-inside list-disc space-y-1 text-sm text-blue-800 dark:text-blue-200">
               {currentMetadata.useCases.map((useCase, index) => (

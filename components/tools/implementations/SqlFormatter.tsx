@@ -262,20 +262,22 @@ export default function SqlFormatter({
     setValidationWarnings([]);
   };
 
+  const ui = dictionary?.tools?.['sql-formatter']?.ui ?? {};
+
   return (
     <div className="space-y-6">
       {/* Input Section */}
       <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-            SQL Input
+            {ui.sqlInput || 'SQL Input'}
           </h2>
           <div className="flex gap-2">
             <button
               onClick={handleExampleSql}
               className="text-sm text-muted-foreground hover:text-foreground"
             >
-              Load Complex
+              {ui.loadComplex || 'Load Complex'}
             </button>
             <button
               onClick={() => {
@@ -299,21 +301,21 @@ ORDER BY unknown_column;  -- Colonna non definita`;
               }}
               className="text-sm text-muted-foreground hover:text-foreground"
             >
-              Load Errors
+              {ui.loadErrors || 'Load Errors'}
             </button>
             <button
               onClick={() => setShowOptions(!showOptions)}
               className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1 text-sm hover:bg-secondary/80"
             >
               <Settings className="h-3.5 w-3.5" />
-              Options
+              {ui.optionsButton || 'Options'}
             </button>
           </div>
         </div>
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Paste your SQL query or script here..."
+          placeholder={ui.inputPlaceholder || 'Paste your SQL query or script here...'}
           className="min-h-[200px] w-full rounded-md border border-gray-300 p-3 font-mono text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
           spellCheck={false}
         />
@@ -324,14 +326,14 @@ ORDER BY unknown_column;  -- Colonna non definita`;
         <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
           <div className="mb-3 flex items-center gap-2">
             <Settings className="h-4 w-4" />
-            <span className="font-medium">Formatting Options</span>
+            <span className="font-medium">{ui.formattingOptions || 'Formatting Options'}</span>
           </div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {/* SQL Dialect */}
             <div>
               <label className="mb-1 block text-sm font-medium">
-                SQL Dialect
+                {ui.sqlDialect || 'SQL Dialect'}
               </label>
               <div className="flex gap-2">
                 <select
@@ -352,7 +354,7 @@ ORDER BY unknown_column;  -- Colonna non definita`;
                     onChange={(e) => setAutoDetectDialect(e.target.checked)}
                     className="rounded"
                   />
-                  Auto
+                  {ui.autoDetect || 'Auto'}
                 </label>
               </div>
             </div>
@@ -360,7 +362,7 @@ ORDER BY unknown_column;  -- Colonna non definita`;
             {/* Keyword Case */}
             <div>
               <label className="mb-1 block text-sm font-medium">
-                Keyword Case
+                {ui.keywordCase || 'Keyword Case'}
               </label>
               <select
                 value={keywordCase}
@@ -369,30 +371,30 @@ ORDER BY unknown_column;  -- Colonna non definita`;
               >
                 <option value="uppercase">UPPERCASE</option>
                 <option value="lowercase">lowercase</option>
-                <option value="unchanged">Unchanged</option>
+                <option value="unchanged">{ui.keywordCaseUnchanged || 'Unchanged'}</option>
               </select>
             </div>
 
             {/* Indentation */}
             <div>
               <label className="mb-1 block text-sm font-medium">
-                Indentation
+                {ui.indentation || 'Indentation'}
               </label>
               <select
                 value={indentSize}
                 onChange={(e) => setIndentSize(Number(e.target.value))}
                 className="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white"
               >
-                <option value={2}>2 spaces</option>
-                <option value={4}>4 spaces</option>
-                <option value={8}>Tab (8 spaces)</option>
+                <option value={2}>{ui.twoSpaces || '2 spaces'}</option>
+                <option value={4}>{ui.fourSpaces || '4 spaces'}</option>
+                <option value={8}>{ui.tabEightSpaces || 'Tab (8 spaces)'}</option>
               </select>
             </div>
 
             {/* Max Line Length */}
             <div>
               <label className="mb-1 block text-sm font-medium">
-                Max Line Length
+                {ui.maxLineLength || 'Max Line Length'}
               </label>
               <input
                 type="number"
@@ -407,7 +409,7 @@ ORDER BY unknown_column;  -- Colonna non definita`;
             {/* Lines Between Queries */}
             <div>
               <label className="mb-1 block text-sm font-medium">
-                Lines Between Queries
+                {ui.linesBetweenQueries || 'Lines Between Queries'}
               </label>
               <input
                 type="number"
@@ -428,7 +430,7 @@ ORDER BY unknown_column;  -- Colonna non definita`;
                   onChange={(e) => setPreserveComments(e.target.checked)}
                   className="rounded"
                 />
-                Preserve comments
+                {ui.preserveComments || 'Preserve comments'}
               </label>
             </div>
           </div>
@@ -451,17 +453,17 @@ ORDER BY unknown_column;  -- Colonna non definita`;
           {isProcessing ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" />
-              Formatting...
+              {ui.formatting || 'Formatting...'}
             </>
           ) : formatSuccess ? (
             <>
               <Check className="h-4 w-4" />
-              Formatted!
+              {ui.formatted || 'Formatted!'}
             </>
           ) : (
             <>
               <Zap className="h-4 w-4" />
-              Format SQL
+              {ui.formatSql || 'Format SQL'}
             </>
           )}
         </button>
@@ -472,7 +474,7 @@ ORDER BY unknown_column;  -- Colonna non definita`;
           className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
         >
           <FileText className="h-4 w-4" />
-          Validate SQL
+          {ui.validateSql || 'Validate SQL'}
         </button>
 
         <button
@@ -488,7 +490,7 @@ ORDER BY unknown_column;  -- Colonna non definita`;
           className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
         >
           <RefreshCw className="h-4 w-4" />
-          Clear
+          {ui.clear || 'Clear'}
         </button>
       </div>
 
@@ -508,7 +510,7 @@ ORDER BY unknown_column;  -- Colonna non definita`;
           <div className="mb-3 flex items-center gap-2">
             <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400" />
             <h3 className="font-medium text-red-900 dark:text-red-100">
-              Validation Errors
+              {ui.validationErrors || 'Validation Errors'}
             </h3>
           </div>
           <div className="space-y-2">
@@ -532,7 +534,7 @@ ORDER BY unknown_column;  -- Colonna non definita`;
           <div className="mb-3 flex items-center gap-2">
             <AlertCircle className="h-5 w-5 text-orange-600 dark:text-orange-400" />
             <h3 className="font-medium text-orange-900 dark:text-orange-100">
-              Validation Warnings
+              {ui.validationWarnings || 'Validation Warnings'}
             </h3>
           </div>
           <div className="space-y-2">
@@ -554,20 +556,20 @@ ORDER BY unknown_column;  -- Colonna non definita`;
       {stats && (
         <div className="flex items-center gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm dark:border-gray-700 dark:bg-gray-800">
           <span className="text-gray-700 dark:text-gray-300">
-            <strong>Lines:</strong> {stats.lines}
+            <strong>{ui.statsLines || 'Lines:'}</strong> {stats.lines}
           </span>
           <span className="text-gray-700 dark:text-gray-300">
-            <strong>Characters:</strong> {stats.characters}
+            <strong>{ui.statsCharacters || 'Characters:'}</strong> {stats.characters}
           </span>
           <span className="text-gray-700 dark:text-gray-300">
-            <strong>Keywords:</strong> {stats.keywords}
+            <strong>{ui.statsKeywords || 'Keywords:'}</strong> {stats.keywords}
           </span>
           <span className="text-gray-700 dark:text-gray-300">
-            <strong>Statements:</strong> {stats.statements}
+            <strong>{ui.statsStatements || 'Statements:'}</strong> {stats.statements}
           </span>
           {autoDetectDialect && detectedDialect && (
             <span className="text-gray-700 dark:text-gray-300">
-              <strong>Detected Dialect:</strong>{' '}
+              <strong>{ui.statsDetectedDialect || 'Detected Dialect:'}</strong>{' '}
               {detectedDialect === 'mysql'
                 ? 'MySQL'
                 : detectedDialect === 'postgresql'
@@ -589,36 +591,36 @@ ORDER BY unknown_column;  -- Colonna non definita`;
             <div className="flex items-center gap-2">
               <FileText className="h-5 w-5 text-green-500" />
               <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-                Formatted SQL
+                {ui.formattedSql || 'Formatted SQL'}
               </h2>
             </div>
             <div className="flex gap-2">
               <button
                 onClick={handleCopy}
                 className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80"
-                title="Copy formatted SQL"
+                title={ui.copyTitle || 'Copy formatted SQL'}
               >
                 {copied ? (
                   <>
                     <Check className="h-3.5 w-3.5 text-green-500" />
                     <span className="text-green-600 dark:text-green-400">
-                      Copied!
+                      {ui.copied || 'Copied!'}
                     </span>
                   </>
                 ) : (
                   <>
                     <Copy className="h-3.5 w-3.5" />
-                    Copy
+                    {ui.copy || 'Copy'}
                   </>
                 )}
               </button>
               <button
                 onClick={handleDownload}
                 className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80"
-                title="Download formatted SQL"
+                title={ui.downloadTitle || 'Download formatted SQL'}
               >
                 <Download className="h-3.5 w-3.5" />
-                Download
+                {ui.download || 'Download'}
               </button>
             </div>
           </div>

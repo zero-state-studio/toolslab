@@ -36,7 +36,8 @@ import {
 
 interface CSSMinifierProps extends BaseToolProps {}
 
-export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
+export default function CSSMinifier({ categoryColor, dictionary }: CSSMinifierProps) {
+  const ui = dictionary?.tools?.['css-minifier']?.ui ?? {};
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [mode, setMode] = useState<'minify' | 'beautify'>('minify');
@@ -248,7 +249,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
             }`}
           >
             <Minimize2 className="h-4 w-4" />
-            Minify
+            {ui.modeMinify || 'Minify'}
           </button>
           <button
             onClick={() => {
@@ -262,7 +263,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
             }`}
           >
             <Maximize2 className="h-4 w-4" />
-            Beautify
+            {ui.modeBeautify || 'Beautify'}
           </button>
         </div>
 
@@ -272,7 +273,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
             className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
           >
             <Settings className="h-4 w-4" />
-            Options
+            {ui.btnOptions || 'Options'}
             <ChevronDown
               className={`h-4 w-4 transition-transform ${showOptions ? 'rotate-180' : ''}`}
             />
@@ -283,7 +284,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
               className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
             >
               <BarChart3 className="h-4 w-4" />
-              Stats
+              {ui.btnStats || 'Stats'}
               {compressionRatio > 0 && (
                 <span className="rounded-full bg-green-500 px-2 py-0.5 text-xs text-white">
                   -{compressionRatio.toFixed(0)}%
@@ -297,7 +298,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
       {/* Preset buttons */}
       <div className="flex flex-wrap gap-2">
         <span className="mr-2 self-center text-sm text-gray-600 dark:text-gray-400">
-          Presets:
+          {ui.presetsLabel || 'Presets:'}
         </span>
         <button
           onClick={() => applyPreset('maximum')}
@@ -308,7 +309,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
           }`}
         >
           <Zap className="h-3 w-3" />
-          Maximum Compression
+          {ui.presetMaximum || 'Maximum Compression'}
           {activePreset === 'maximum' && <Check className="ml-1 h-3 w-3" />}
         </button>
         <button
@@ -320,7 +321,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
           }`}
         >
           <Check className="h-3 w-3" />
-          Safe Optimization
+          {ui.presetSafe || 'Safe Optimization'}
           {activePreset === 'safe' && <Check className="ml-1 h-3 w-3" />}
         </button>
         <button
@@ -332,7 +333,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
           }`}
         >
           <Palette className="h-3 w-3" />
-          Pretty Print
+          {ui.presetPretty || 'Pretty Print'}
           {activePreset === 'pretty' && <Check className="ml-1 h-3 w-3" />}
         </button>
       </div>
@@ -351,7 +352,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }
                   className="rounded border-gray-300"
                 />
-                Remove comments
+                {ui.optRemoveComments || 'Remove comments'}
               </label>
               <label className="flex items-center gap-2 text-sm">
                 <input
@@ -362,7 +363,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }
                   className="rounded border-gray-300"
                 />
-                Optimize colors
+                {ui.optOptimizeColors || 'Optimize colors'}
               </label>
               <label className="flex items-center gap-2 text-sm">
                 <input
@@ -373,7 +374,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }
                   className="rounded border-gray-300"
                 />
-                Optimize units
+                {ui.optOptimizeUnits || 'Optimize units'}
               </label>
               <label className="flex items-center gap-2 text-sm">
                 <input
@@ -384,7 +385,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }
                   className="rounded border-gray-300"
                 />
-                Merge shorthand
+                {ui.optMergeShorthand || 'Merge shorthand'}
               </label>
               <label className="flex items-center gap-2 text-sm">
                 <input
@@ -395,7 +396,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }
                   className="rounded border-gray-300"
                 />
-                Remove duplicates
+                {ui.optRemoveDuplicates || 'Remove duplicates'}
               </label>
               <label className="flex items-center gap-2 text-sm">
                 <input
@@ -406,7 +407,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }
                   className="rounded border-gray-300"
                 />
-                Merge adjacent rules
+                {ui.optMergeAdjacentRules || 'Merge adjacent rules'}
               </label>
               <label className="flex items-center gap-2 text-sm">
                 <input
@@ -417,7 +418,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }
                   className="rounded border-gray-300"
                 />
-                Remove empty rules
+                {ui.optRemoveEmptyRules || 'Remove empty rules'}
               </label>
               <label className="flex items-center gap-2 text-sm">
                 <input
@@ -428,7 +429,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }
                   className="rounded border-gray-300"
                 />
-                Preserve license comments
+                {ui.optPreserveLicense || 'Preserve license comments'}
               </label>
               <label className="flex items-center gap-2 text-sm">
                 <input
@@ -442,7 +443,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }
                   className="rounded border-gray-300"
                 />
-                Preserve CSS variables
+                {ui.optPreserveCssVariables || 'Preserve CSS variables'}
               </label>
             </div>
           ) : (
@@ -450,7 +451,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
               <div className="space-y-3">
                 <div>
                   <label className="mb-1 block text-sm font-medium">
-                    Indentation
+                    {ui.labelIndentation || 'Indentation'}
                   </label>
                   <div className="flex gap-2">
                     <select
@@ -463,8 +464,8 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                       }
                       className="flex-1 rounded-md border border-gray-300 bg-white px-3 py-1 dark:border-gray-600 dark:bg-gray-800"
                     >
-                      <option value="spaces">Spaces</option>
-                      <option value="tabs">Tabs</option>
+                      <option value="spaces">{ui.indentSpaces || 'Spaces'}</option>
+                      <option value="tabs">{ui.indentTabs || 'Tabs'}</option>
                     </select>
                     <select
                       value={beautifyOptions.indentSize}
@@ -483,7 +484,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                 </div>
                 <div>
                   <label className="mb-1 block text-sm font-medium">
-                    Bracket style
+                    {ui.labelBracketStyle || 'Bracket style'}
                   </label>
                   <select
                     value={beautifyOptions.bracketStyle}
@@ -495,15 +496,15 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                     }
                     className="w-full rounded-md border border-gray-300 bg-white px-3 py-1 dark:border-gray-600 dark:bg-gray-800"
                   >
-                    <option value="same-line">Same line</option>
-                    <option value="new-line">New line</option>
+                    <option value="same-line">{ui.bracketSameLine || 'Same line'}</option>
+                    <option value="new-line">{ui.bracketNewLine || 'New line'}</option>
                   </select>
                 </div>
               </div>
               <div className="space-y-3">
                 <div>
                   <label className="mb-1 block text-sm font-medium">
-                    Selector separator
+                    {ui.labelSelectorSeparator || 'Selector separator'}
                   </label>
                   <select
                     value={beautifyOptions.selectorSeparator}
@@ -515,8 +516,8 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                     }
                     className="w-full rounded-md border border-gray-300 bg-white px-3 py-1 dark:border-gray-600 dark:bg-gray-800"
                   >
-                    <option value="space">Space</option>
-                    <option value="newline">New line</option>
+                    <option value="space">{ui.separatorSpace || 'Space'}</option>
+                    <option value="newline">{ui.separatorNewLine || 'New line'}</option>
                   </select>
                 </div>
                 <label className="flex items-center gap-2 text-sm">
@@ -531,7 +532,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  New line between rules
+                  {ui.optNewLineBetweenRules || 'New line between rules'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -545,7 +546,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Align vendor prefixes
+                  {ui.optAlignVendorPrefixes || 'Align vendor prefixes'}
                 </label>
               </div>
             </div>
@@ -558,12 +559,12 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
         <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
           <h3 className="mb-3 flex items-center gap-2 font-medium">
             <BarChart3 className="h-4 w-4" />
-            CSS Statistics
+            {ui.statsHeading || 'CSS Statistics'}
           </h3>
           <div className="grid grid-cols-2 gap-3 text-sm sm:grid-cols-3 md:grid-cols-4">
             <div>
               <span className="text-gray-600 dark:text-gray-400">
-                Original:
+                {ui.statOriginal || 'Original:'}
               </span>
               <span className="ml-2 font-medium">
                 {(stats.originalSize / 1024).toFixed(2)} KB
@@ -571,31 +572,31 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
             </div>
             <div>
               <span className="text-gray-600 dark:text-gray-400">
-                Minified:
+                {ui.statMinified || 'Minified:'}
               </span>
               <span className="ml-2 font-medium">
                 {(stats.minifiedSize / 1024).toFixed(2)} KB
               </span>
             </div>
             <div>
-              <span className="text-gray-600 dark:text-gray-400">Saved:</span>
+              <span className="text-gray-600 dark:text-gray-400">{ui.statSaved || 'Saved:'}</span>
               <span className="ml-2 font-medium text-green-600 dark:text-green-400">
                 {compressionRatio.toFixed(1)}%
               </span>
             </div>
             <div>
-              <span className="text-gray-600 dark:text-gray-400">Rules:</span>
+              <span className="text-gray-600 dark:text-gray-400">{ui.statRules || 'Rules:'}</span>
               <span className="ml-2 font-medium">{stats.totalRules}</span>
             </div>
             <div>
               <span className="text-gray-600 dark:text-gray-400">
-                Selectors:
+                {ui.statSelectors || 'Selectors:'}
               </span>
               <span className="ml-2 font-medium">{stats.totalSelectors}</span>
             </div>
             <div>
               <span className="text-gray-600 dark:text-gray-400">
-                Declarations:
+                {ui.statDeclarations || 'Declarations:'}
               </span>
               <span className="ml-2 font-medium">
                 {stats.totalDeclarations}
@@ -603,7 +604,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
             </div>
             <div>
               <span className="text-gray-600 dark:text-gray-400">
-                Media queries:
+                {ui.statMediaQueries || 'Media queries:'}
               </span>
               <span className="ml-2 font-medium">
                 {stats.totalMediaQueries}
@@ -611,7 +612,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
             </div>
             <div>
               <span className="text-gray-600 dark:text-gray-400">
-                Keyframes:
+                {ui.statKeyframes || 'Keyframes:'}
               </span>
               <span className="ml-2 font-medium">{stats.totalKeyframes}</span>
             </div>
@@ -625,7 +626,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
         <div>
           <div className="mb-2 flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Input CSS
+              {ui.labelInputCss || 'Input CSS'}
             </label>
             <div className="flex gap-2">
               <input
@@ -640,7 +641,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                 className="flex items-center gap-1 rounded bg-gray-100 px-2 py-1 text-xs transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
                 <Upload className="h-3 w-3" />
-                Upload
+                {ui.btnUpload || 'Upload'}
               </button>
               {input && (
                 <button
@@ -653,7 +654,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                   }}
                   className="rounded bg-red-100 px-2 py-1 text-xs text-red-600 transition-colors hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50"
                 >
-                  Clear
+                  {ui.btnClear || 'Clear'}
                 </button>
               )}
             </div>
@@ -668,7 +669,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Paste your CSS here or upload a file..."
+            placeholder={ui.placeholderInput || 'Paste your CSS here or upload a file...'}
             className="h-96 w-full rounded-lg border border-gray-300 bg-white p-3 font-mono text-sm focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
             spellCheck={false}
           />
@@ -678,7 +679,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
         <div>
           <div className="mb-2 flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Output CSS
+              {ui.labelOutputCss || 'Output CSS'}
             </label>
             <div className="flex gap-2">
               {output && (
@@ -692,7 +693,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                     ) : (
                       <Copy className="h-3 w-3" />
                     )}
-                    {copied ? 'Copied' : 'Copy'}
+                    {copied ? (ui.btnCopied || 'Copied') : (ui.btnCopy || 'Copy')}
                   </button>
                   <button
                     onClick={() =>
@@ -705,7 +706,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
                     className="flex items-center gap-1 rounded bg-gray-100 px-2 py-1 text-xs transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
                   >
                     <Download className="h-3 w-3" />
-                    Download
+                    {ui.btnDownload || 'Download'}
                   </button>
                 </>
               )}
@@ -715,7 +716,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
             value={output}
             readOnly
             placeholder={
-              validationError ? '' : 'Processed CSS will appear here...'
+              validationError ? '' : (ui.placeholderOutput || 'Processed CSS will appear here...')
             }
             className={`h-96 w-full rounded-lg border p-3 font-mono text-sm ${
               validationError
@@ -738,7 +739,7 @@ export default function CSSMinifier({ categoryColor }: CSSMinifierProps) {
         <div className="flex items-center justify-center py-4">
           <Loader2 className="h-6 w-6 animate-spin text-blue-500" />
           <span className="ml-2 text-sm text-gray-600 dark:text-gray-400">
-            Processing CSS...
+            {ui.processingLabel || 'Processing CSS...'}
           </span>
         </div>
       )}

@@ -111,5 +111,39 @@
         "description": "Fechar seletor de país"
       }
     ]
+  },
+  "ui": {
+    "phoneNumberTitle": "Número de Telefone",
+    "phoneNumberDescription": "Digite o número do WhatsApp com o qual deseja conversar",
+    "searchCountryPlaceholder": "Buscar país...",
+    "noCountriesFound": "Nenhum país encontrado",
+    "invalidPhoneNumber": "Digite um número de telefone válido (6-15 dígitos)",
+    "phoneNumberHint": "Digite o número sem zeros iniciais. O código do país será adicionado automaticamente.",
+    "prefilledMessageTitle": "Mensagem Pré-preenchida",
+    "prefilledMessageDescription": "Mensagem opcional que será pré-preenchida no chat",
+    "templatesButton": "Modelos",
+    "messageTemplatesHeading": "Modelos de Mensagem",
+    "businessLabel": "Negócios",
+    "personalLabel": "Pessoal",
+    "marketingLabel": "Marketing",
+    "messagePlaceholder": "Olá! Gostaria de saber mais sobre...",
+    "characters": "caracteres",
+    "clearMessage": "Limpar mensagem",
+    "generateButton": "Gerar Link do WhatsApp",
+    "clearButton": "Limpar",
+    "yourLinkTitle": "Seu Link do WhatsApp",
+    "yourLinkDescription": "Compartilhe este link para iniciar uma conversa",
+    "copyLink": "Copiar Link",
+    "download": "Baixar",
+    "openWhatsApp": "Abrir WhatsApp",
+    "qrCode": "Código QR",
+    "downloadQR": "Baixar QR",
+    "preview": "Pré-visualização",
+    "fullNumber": "Número Completo:",
+    "messageIncluded": "Mensagem Incluída:",
+    "yes": "Sim",
+    "no": "Não",
+    "messageLength": "Comprimento da Mensagem:",
+    "chars": "car."
   }
 }

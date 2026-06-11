@@ -89,5 +89,30 @@
       "Los archivos grandes pueden tardar más en procesarse — ten paciencia con PDFs pesados",
       "La herramienta valida las cabeceras PDF para asegurar que los datos sean un PDF válido"
     ]
+  },
+  "ui": {
+    "inputHeading": "Entrada Base64",
+    "clearInputTitle": "Limpiar entrada",
+    "textareaPlaceholder": "Pega aquí los datos PDF codificados en Base64...",
+    "dataUrlPrefixDetected": "Prefijo data URL detectado - se eliminará automáticamente",
+    "validBase64Format": "Formato Base64 válido • Tamaño estimado:",
+    "invalidBase64Format": "Formato Base64 no válido",
+    "outputFilenameLabel": "Nombre del archivo de salida:",
+    "convertingButton": "Convirtiendo...",
+    "convertToPdfButton": "Convertir a PDF",
+    "resultHeading": "PDF listo para descargar",
+    "conversionSuccessful": "Conversión exitosa",
+    "fileSizeLabel": "Tamaño del archivo:",
+    "fileNameLabel": "Nombre del archivo:",
+    "pdfValidationLabel": "Validación PDF:",
+    "validPdfHeader": "Cabecera PDF válida",
+    "noPdfHeaderFound": "No se encontró cabecera PDF",
+    "downloadPdfButton": "Descargar PDF",
+    "copyFilenameButton": "Copiar nombre de archivo",
+    "copiedButton": "¡Copiado!",
+    "pdfPreviewHeading": "Vista previa del PDF",
+    "hidePreviewButton": "Ocultar vista previa",
+    "showPreviewButton": "Mostrar vista previa",
+    "unknownFileSize": "Desconocido"
   }
 }

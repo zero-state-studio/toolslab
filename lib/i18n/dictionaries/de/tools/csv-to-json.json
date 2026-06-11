@@ -81,5 +81,36 @@
     "description": "CSV-Dateien in JSON-Format online konvertieren. Benutzerdefinierte Trennzeichen, Kopfzeilen und verschachtelte Strukturen. Kostenloses Konverter-Tool."
   },
   "tagline": "Konvertieren Sie CSV-Daten mit intelligentem Parsing in JSON-Format",
-  "pageDescription": "Transformieren Sie CSV-Dateien und -Daten mit automatischer Überschriftenerkennung und Unterstützung für benutzerdefinierte Trennzeichen in das JSON-Format. Perfekt für Datenmigration, API-Integration und Tabellenverarbeitung. Verarbeitet große Dateien mit Streaming, bewahrt Datentypen und bietet mehrere Ausgabeformate. Kostenlose, sichere browserbasierte Konvertierung ohne Datei-Uploads."
+  "pageDescription": "Transformieren Sie CSV-Dateien und -Daten mit automatischer Überschriftenerkennung und Unterstützung für benutzerdefinierte Trennzeichen in das JSON-Format. Perfekt für Datenmigration, API-Integration und Tabellenverarbeitung. Verarbeitet große Dateien mit Streaming, bewahrt Datentypen und bietet mehrere Ausgabeformate. Kostenlose, sichere browserbasierte Konvertierung ohne Datei-Uploads.",
+  "ui": {
+    "inputSectionHeading": "CSV-Eingabe",
+    "loadExample": "Beispiel laden",
+    "uploadCsv": "CSV hochladen",
+    "inputPlaceholder": "CSV-Daten hier einfügen oder Datei hochladen...",
+    "optionsSectionHeading": "Konvertierungsoptionen",
+    "delimiterLabel": "Trennzeichen",
+    "delimiterComma": "Komma (,)",
+    "delimiterSemicolon": "Semikolon (;)",
+    "delimiterTab": "Tabulator",
+    "delimiterPipe": "Pipe (|)",
+    "outputFormatLabel": "Ausgabeformat",
+    "outputFormatArray": "Array von Objekten",
+    "outputFormatNested": "Verschachteltes Objekt",
+    "outputFormatCompact": "Kompaktes Array",
+    "customHeadersLabel": "Benutzerdefinierte Überschriften",
+    "nullValuesLabel": "Null-Werte",
+    "checkboxFirstRowHeaders": "Erste Zeile enthält Überschriften",
+    "checkboxTrimWhitespace": "Leerzeichen entfernen",
+    "checkboxMinifyOutput": "JSON-Ausgabe minimieren",
+    "btnConvert": "In JSON konvertieren",
+    "btnConverted": "Konvertiert!",
+    "btnValidate": "CSV validieren",
+    "btnClear": "Leeren",
+    "statsRows": "Zeilen",
+    "statsColumns": "Spalten",
+    "outputSectionHeading": "JSON-Ausgabe",
+    "btnCopy": "Kopieren",
+    "btnCopied": "Kopiert!",
+    "btnDownload": "Herunterladen"
+  }
 }

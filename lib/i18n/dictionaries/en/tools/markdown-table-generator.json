@@ -59,9 +59,18 @@
       "Removing the last column resets the layout — use 'Example' to restore a working table quickly"
     ],
     "keyboardShortcuts": [
-      { "keys": "Tab", "description": "Move to the next cell" },
-      { "keys": "Shift+Tab", "description": "Move to the previous cell" },
-      { "keys": "Ctrl+C", "description": "Copy Markdown output" }
+      {
+        "keys": "Tab",
+        "description": "Move to the next cell"
+      },
+      {
+        "keys": "Shift+Tab",
+        "description": "Move to the previous cell"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy Markdown output"
+      }
     ]
   },
   "meta": {
@@ -69,5 +78,32 @@
     "description": "Free Markdown table generator. Build GFM tables visually or paste CSV/TSV. Per-column alignment, live preview, one-click copy. Browser-based, no signup."
   },
   "tagline": "Build GFM Markdown tables visually or paste CSV — alignment, preview and copy in seconds",
-  "pageDescription": "Create clean Markdown tables without counting pipes. Use the visual editor to add rows, reorder columns and set per-column alignment, or paste CSV, TSV or an existing Markdown table to import data instantly. Pipes and newlines inside cells are escaped automatically so the output stays valid GitHub Flavored Markdown. Toggle pretty padding for a diff-friendly source, preview the rendered HTML live and copy the result with one click. Perfect for README files, blog posts, comparison pages and API documentation. Free, browser-based, no signup required."
+  "pageDescription": "Create clean Markdown tables without counting pipes. Use the visual editor to add rows, reorder columns and set per-column alignment, or paste CSV, TSV or an existing Markdown table to import data instantly. Pipes and newlines inside cells are escaped automatically so the output stays valid GitHub Flavored Markdown. Toggle pretty padding for a diff-friendly source, preview the rendered HTML live and copy the result with one click. Perfect for README files, blog posts, comparison pages and API documentation. Free, browser-based, no signup required.",
+  "ui": {
+    "visualEditor": "Visual editor",
+    "pasteCsvTsvMarkdown": "Paste CSV / TSV / Markdown",
+    "example": "Example",
+    "clear": "Clear",
+    "delimiterLabel": "Delimiter",
+    "autoDetect": "Auto detect",
+    "commaOption": "Comma (,)",
+    "semicolonOption": "Semicolon (;)",
+    "tabOption": "Tab",
+    "firstRowIsHeader": "First row is header",
+    "import": "Import",
+    "removeColumn": "Remove column",
+    "addColumn": "Add column",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "removeRow": "Remove row",
+    "addRow": "Add row",
+    "markdownOutput": "Markdown output",
+    "prettyPadding": "Pretty padding",
+    "hidePreview": "Hide preview",
+    "showPreview": "Show preview",
+    "copied": "Copied",
+    "copyMarkdown": "Copy Markdown",
+    "outputPlaceholder": "Markdown table will appear here...",
+    "livePreview": "Live preview"
+  }
 }

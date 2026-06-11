@@ -42,7 +42,8 @@ interface ColorConverterProps extends BaseToolProps {}
 
 type PaletteType = 'harmony' | 'tints' | 'shades';
 
-export default function ColorConverter({ categoryColor }: ColorConverterProps) {
+export default function ColorConverter({ categoryColor, dictionary }: ColorConverterProps) {
+  const ui = dictionary?.tools?.['color-format-converter']?.ui ?? {};
   const { copy: copyToClipboard } = useCopy();
   const isHydrated = useHydration();
   const { addToHistory } = useToolStore();
@@ -243,7 +244,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
       {/* Input Section */}
       <div className="space-y-3">
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          Color Input
+          {ui.colorInputLabel || 'Color Input'}
         </label>
         <div className="flex gap-3">
           <div className="relative flex-1">
@@ -251,7 +252,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder="Enter color (HEX, RGB, HSL, HSV, CMYK, or name)"
+              placeholder={ui.inputPlaceholder || 'Enter color (HEX, RGB, HSL, HSV, CMYK, or name)'}
               className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500"
             />
             {error && (
@@ -280,7 +281,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
             />
             <div className="flex-1">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                {currentColor.name || 'Custom Color'}
+                {currentColor.name || ui.customColorName || 'Custom Color'}
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
                 {currentColor.hex}
@@ -294,7 +295,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
       {currentColor && (
         <div className="space-y-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Color Formats
+            {ui.colorFormatsHeading || 'Color Formats'}
           </h3>
           <div className="grid gap-3 sm:grid-cols-2">
             {/* HEX */}
@@ -303,6 +304,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
               value={currentColor.hex}
               onCopy={() => handleCopy(currentColor.hex, 'hex')}
               isCopied={copiedFormat === 'hex'}
+              copyTitle={ui.copyToClipboard}
             />
 
             {/* RGB */}
@@ -311,6 +313,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
               value={formatRgb(currentColor.rgb)}
               onCopy={() => handleCopy(formatRgb(currentColor.rgb), 'rgb')}
               isCopied={copiedFormat === 'rgb'}
+              copyTitle={ui.copyToClipboard}
             />
 
             {/* HSL */}
@@ -319,6 +322,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
               value={formatHsl(currentColor)}
               onCopy={() => handleCopy(formatHsl(currentColor), 'hsl')}
               isCopied={copiedFormat === 'hsl'}
+              copyTitle={ui.copyToClipboard}
             />
 
             {/* HSV */}
@@ -332,6 +336,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                 )
               }
               isCopied={copiedFormat === 'hsv'}
+              copyTitle={ui.copyToClipboard}
             />
 
             {/* CMYK */}
@@ -345,6 +350,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                 )
               }
               isCopied={copiedFormat === 'cmyk'}
+              copyTitle={ui.copyToClipboard}
             />
 
             {/* CSS Variable */}
@@ -355,6 +361,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                 handleCopy(`--color: ${currentColor.hex}`, 'css-var')
               }
               isCopied={copiedFormat === 'css-var'}
+              copyTitle={ui.copyToClipboard}
             />
 
             {/* SCSS Variable */}
@@ -365,6 +372,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                 handleCopy(`$color: ${currentColor.hex}`, 'scss-var')
               }
               isCopied={copiedFormat === 'scss-var'}
+              copyTitle={ui.copyToClipboard}
             />
 
             {/* Named Color */}
@@ -374,6 +382,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                 value={currentColor.name}
                 onCopy={() => handleCopy(currentColor.name!, 'name')}
                 isCopied={copiedFormat === 'name'}
+                copyTitle={ui.copyToClipboard}
               />
             )}
           </div>
@@ -385,14 +394,14 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Palette Generator
+              {ui.paletteGeneratorHeading || 'Palette Generator'}
             </h3>
             <button
               onClick={() => setShowPalette(!showPalette)}
               className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
             >
               <Palette className="h-4 w-4" />
-              {showPalette ? 'Hide' : 'Generate'}
+              {showPalette ? (ui.hideButton || 'Hide') : (ui.generateButton || 'Generate')}
             </button>
           </div>
 
@@ -406,9 +415,9 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                   }
                   className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-white"
                 >
-                  <option value="harmony">Harmony</option>
-                  <option value="tints">Tints (Lighter)</option>
-                  <option value="shades">Shades (Darker)</option>
+                  <option value="harmony">{ui.harmonyOption || 'Harmony'}</option>
+                  <option value="tints">{ui.tintsOption || 'Tints (Lighter)'}</option>
+                  <option value="shades">{ui.shadesOption || 'Shades (Darker)'}</option>
                 </select>
 
                 {paletteType === 'harmony' && (
@@ -419,11 +428,11 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                     }
                     className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-white"
                   >
-                    <option value="complementary">Complementary</option>
-                    <option value="analogous">Analogous</option>
-                    <option value="triadic">Triadic</option>
-                    <option value="tetradic">Tetradic</option>
-                    <option value="monochromatic">Monochromatic</option>
+                    <option value="complementary">{ui.complementaryOption || 'Complementary'}</option>
+                    <option value="analogous">{ui.analogousOption || 'Analogous'}</option>
+                    <option value="triadic">{ui.triadicOption || 'Triadic'}</option>
+                    <option value="tetradic">{ui.tetradicOption || 'Tetradic'}</option>
+                    <option value="monochromatic">{ui.monochromaticOption || 'Monochromatic'}</option>
                   </select>
                 )}
               </div>
@@ -435,7 +444,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                       className="h-16 w-full cursor-pointer rounded-lg shadow-md ring-2 ring-gray-200 transition-transform hover:scale-105 dark:ring-gray-700"
                       style={{ backgroundColor: color.hex }}
                       onClick={() => setInputValue(color.hex)}
-                      title="Click to use this color"
+                      title={ui.clickToUseColor || 'Click to use this color'}
                     />
                     <div className="flex items-center justify-between">
                       <p className="font-mono text-xs text-gray-600 dark:text-gray-400">
@@ -466,14 +475,14 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Contrast Checker
+              {ui.contrastCheckerHeading || 'Contrast Checker'}
             </h3>
             <button
               onClick={() => setShowContrast(!showContrast)}
               className="flex items-center gap-2 rounded-lg bg-gray-600 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
             >
               <Eye className="h-4 w-4" />
-              {showContrast ? 'Hide' : 'Check'}
+              {showContrast ? (ui.hideButton || 'Hide') : (ui.checkButton || 'Check')}
             </button>
           </div>
 
@@ -489,7 +498,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                   }`}
                 >
                   <Sun className="mx-auto h-5 w-5" />
-                  <p className="mt-1 text-xs">White</p>
+                  <p className="mt-1 text-xs">{ui.whiteBackground || 'White'}</p>
                 </button>
                 <button
                   onClick={() => setContrastBackground('#000000')}
@@ -500,17 +509,17 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                   }`}
                 >
                   <Moon className="mx-auto h-5 w-5" />
-                  <p className="mt-1 text-xs">Black</p>
+                  <p className="mt-1 text-xs">{ui.blackBackground || 'Black'}</p>
                 </button>
               </div>
 
               <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900">
                 <p className="mb-2 text-sm font-medium">
-                  Contrast Ratio: {contrastResult.ratio.toFixed(2)}:1
+                  {ui.contrastRatioLabel || 'Contrast Ratio:'} {contrastResult.ratio.toFixed(2)}:1
                 </p>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <p className="font-medium">AA Compliance</p>
+                    <p className="font-medium">{ui.aaComplianceHeading || 'AA Compliance'}</p>
                     <p
                       className={
                         contrastResult.AA.normal
@@ -518,7 +527,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                           : 'text-red-600'
                       }
                     >
-                      Normal Text:{' '}
+                      {ui.normalTextLabel || 'Normal Text:'}{' '}
                       {contrastResult.AA.normal ? '✓ Pass' : '✗ Fail'}
                     </p>
                     <p
@@ -528,12 +537,12 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                           : 'text-red-600'
                       }
                     >
-                      Large Text:{' '}
+                      {ui.largeTextLabel || 'Large Text:'}{' '}
                       {contrastResult.AA.large ? '✓ Pass' : '✗ Fail'}
                     </p>
                   </div>
                   <div>
-                    <p className="font-medium">AAA Compliance</p>
+                    <p className="font-medium">{ui.aaaComplianceHeading || 'AAA Compliance'}</p>
                     <p
                       className={
                         contrastResult.AAA.normal
@@ -541,7 +550,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                           : 'text-red-600'
                       }
                     >
-                      Normal Text:{' '}
+                      {ui.normalTextLabel || 'Normal Text:'}{' '}
                       {contrastResult.AAA.normal ? '✓ Pass' : '✗ Fail'}
                     </p>
                     <p
@@ -551,7 +560,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
                           : 'text-red-600'
                       }
                     >
-                      Large Text:{' '}
+                      {ui.largeTextLabel || 'Large Text:'}{' '}
                       {contrastResult.AAA.large ? '✓ Pass' : '✗ Fail'}
                     </p>
                   </div>
@@ -567,14 +576,14 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-              Recent Colors
+              {ui.recentColorsHeading || 'Recent Colors'}
             </h3>
             <button
               onClick={handleClearHistory}
               className="flex items-center gap-2 text-sm text-red-600 hover:text-red-700 dark:text-red-400"
             >
               <Trash2 className="h-4 w-4" />
-              Clear
+              {ui.clearButton || 'Clear'}
             </button>
           </div>
           <div className="grid grid-cols-5 gap-2 sm:grid-cols-10">
@@ -599,7 +608,7 @@ export default function ColorConverter({ categoryColor }: ColorConverterProps) {
             className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700"
           >
             <Download className="h-4 w-4" />
-            Export JSON
+            {ui.exportJsonButton || 'Export JSON'}
           </button>
         </div>
       )}
@@ -612,9 +621,10 @@ interface FormatCardProps {
   value: string;
   onCopy: () => void;
   isCopied: boolean;
+  copyTitle?: string;
 }
 
-function FormatCard({ label, value, onCopy, isCopied }: FormatCardProps) {
+function FormatCard({ label, value, onCopy, isCopied, copyTitle }: FormatCardProps) {
   return (
     <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
       <div className="min-w-0 flex-1">
@@ -628,7 +638,7 @@ function FormatCard({ label, value, onCopy, isCopied }: FormatCardProps) {
       <button
         onClick={onCopy}
         className="ml-2 flex-shrink-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-        title="Copy to clipboard"
+        title={copyTitle || 'Copy to clipboard'}
         aria-label={`Copy ${label} value to clipboard`}
       >
         {isCopied ? (

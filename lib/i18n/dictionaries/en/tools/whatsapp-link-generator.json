@@ -97,5 +97,39 @@
         "description": "Close country selector"
       }
     ]
+  },
+  "ui": {
+    "phoneNumberTitle": "Phone Number",
+    "phoneNumberDescription": "Enter the WhatsApp number you want to chat with",
+    "searchCountryPlaceholder": "Search country...",
+    "noCountriesFound": "No countries found",
+    "invalidPhoneNumber": "Please enter a valid phone number (6-15 digits)",
+    "phoneNumberHint": "Enter the phone number without leading zeros. The country code will be added automatically.",
+    "prefilledMessageTitle": "Pre-filled Message",
+    "prefilledMessageDescription": "Optional message that will be pre-filled in the chat",
+    "templatesButton": "Templates",
+    "messageTemplatesHeading": "Message Templates",
+    "businessLabel": "Business",
+    "personalLabel": "Personal",
+    "marketingLabel": "Marketing",
+    "messagePlaceholder": "Hi! I would like to inquire about...",
+    "characters": "characters",
+    "clearMessage": "Clear message",
+    "generateButton": "Generate WhatsApp Link",
+    "clearButton": "Clear",
+    "yourLinkTitle": "Your WhatsApp Link",
+    "yourLinkDescription": "Share this link to start a conversation",
+    "copyLink": "Copy Link",
+    "download": "Download",
+    "openWhatsApp": "Open WhatsApp",
+    "qrCode": "QR Code",
+    "downloadQR": "Download QR",
+    "preview": "Preview",
+    "fullNumber": "Full Number:",
+    "messageIncluded": "Message Included:",
+    "yes": "Yes",
+    "no": "No",
+    "messageLength": "Message Length:",
+    "chars": "chars"
   }
 }

@@ -69,7 +69,8 @@ function cycleAlignment(current: ColumnAlignment): ColumnAlignment {
   return ALIGNMENT_ORDER[(idx + 1) % ALIGNMENT_ORDER.length];
 }
 
-export default function MarkdownTableGenerator({}: BaseToolProps) {
+export default function MarkdownTableGenerator({ dictionary }: BaseToolProps) {
+  const ui = dictionary?.tools?.['markdown-table-generator']?.ui ?? {};
   const isHydrated = useHydration();
   const { addToHistory } = useToolStore();
   const { trackUse, trackError } = useToolTracking('markdown-table-generator');
@@ -249,21 +250,21 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
           size="sm"
           onClick={() => setMode('visual')}
         >
-          Visual editor
+          {ui.visualEditor || 'Visual editor'}
         </Button>
         <Button
           variant={mode === 'paste' ? 'default' : 'outline'}
           size="sm"
           onClick={() => setMode('paste')}
         >
-          Paste CSV / TSV / Markdown
+          {ui.pasteCsvTsvMarkdown || 'Paste CSV / TSV / Markdown'}
         </Button>
         <div className="ml-auto flex flex-wrap gap-2">
           <Button variant="ghost" size="sm" onClick={handleResetExample}>
-            <RefreshCw className="mr-1 h-4 w-4" /> Example
+            <RefreshCw className="mr-1 h-4 w-4" /> {ui.example || 'Example'}
           </Button>
           <Button variant="ghost" size="sm" onClick={handleClear}>
-            <Trash2 className="mr-1 h-4 w-4" /> Clear
+            <Trash2 className="mr-1 h-4 w-4" /> {ui.clear || 'Clear'}
           </Button>
         </div>
       </div>
@@ -273,7 +274,7 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
         <div className="space-y-3 rounded-lg border border-gray-200 p-4 dark:border-gray-700">
           <div className="flex flex-wrap items-end gap-3">
             <div className="space-y-1">
-              <Label htmlFor="delimiter">Delimiter</Label>
+              <Label htmlFor="delimiter">{ui.delimiterLabel || 'Delimiter'}</Label>
               <Select
                 value={delimiter}
                 onValueChange={(v) => setDelimiter(v as Delimiter)}
@@ -282,10 +283,10 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="auto">Auto detect</SelectItem>
-                  <SelectItem value=",">Comma (,)</SelectItem>
-                  <SelectItem value=";">Semicolon (;)</SelectItem>
-                  <SelectItem value="\t">Tab</SelectItem>
+                  <SelectItem value="auto">{ui.autoDetect || 'Auto detect'}</SelectItem>
+                  <SelectItem value=",">{ui.commaOption || 'Comma (,)'}</SelectItem>
+                  <SelectItem value=";">{ui.semicolonOption || 'Semicolon (;)'}</SelectItem>
+                  <SelectItem value="\t">{ui.tabOption || 'Tab'}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -297,10 +298,10 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
                 onChange={(e) => setHasHeader(e.target.checked)}
                 className="h-4 w-4"
               />
-              <Label htmlFor="hasHeader">First row is header</Label>
+              <Label htmlFor="hasHeader">{ui.firstRowIsHeader || 'First row is header'}</Label>
             </div>
             <Button onClick={handleParsePaste} className="ml-auto">
-              Import
+              {ui.import || 'Import'}
             </Button>
           </div>
           <Textarea
@@ -347,7 +348,7 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
                         size="sm"
                         onClick={() => removeColumn(colIdx)}
                         disabled={table.headers.length <= 1}
-                        title="Remove column"
+                        title={ui.removeColumn || 'Remove column'}
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
@@ -359,7 +360,7 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
                     variant="ghost"
                     size="sm"
                     onClick={addColumn}
-                    title="Add column"
+                    title={ui.addColumn || 'Add column'}
                   >
                     <Plus className="h-4 w-4" />
                   </Button>
@@ -389,7 +390,7 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
                         size="sm"
                         onClick={() => moveRow(rowIdx, 'up')}
                         disabled={rowIdx === 0}
-                        title="Move up"
+                        title={ui.moveUp || 'Move up'}
                       >
                         <ArrowUp className="h-4 w-4" />
                       </Button>
@@ -398,7 +399,7 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
                         size="sm"
                         onClick={() => moveRow(rowIdx, 'down')}
                         disabled={rowIdx === table.rows.length - 1}
-                        title="Move down"
+                        title={ui.moveDown || 'Move down'}
                       >
                         <ArrowDown className="h-4 w-4" />
                       </Button>
@@ -406,7 +407,7 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
                         variant="ghost"
                         size="sm"
                         onClick={() => removeRow(rowIdx)}
-                        title="Remove row"
+                        title={ui.removeRow || 'Remove row'}
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
@@ -418,7 +419,7 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
           </table>
           <div className="border-t p-2">
             <Button variant="outline" size="sm" onClick={addRow}>
-              <Plus className="mr-1 h-4 w-4" /> Add row
+              <Plus className="mr-1 h-4 w-4" /> {ui.addRow || 'Add row'}
             </Button>
           </div>
         </div>
@@ -427,7 +428,7 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
       {/* Output */}
       <div ref={resultRef} className="space-y-3">
         <div className="flex flex-wrap items-center gap-3">
-          <Label className="font-semibold">Markdown output</Label>
+          <Label className="font-semibold">{ui.markdownOutput || 'Markdown output'}</Label>
           <div className="ml-auto flex flex-wrap gap-2">
             <div className="flex items-center gap-2">
               <input
@@ -437,7 +438,7 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
                 onChange={(e) => setPrettyPrint(e.target.checked)}
                 className="h-4 w-4"
               />
-              <Label htmlFor="prettyPrint">Pretty padding</Label>
+              <Label htmlFor="prettyPrint">{ui.prettyPadding || 'Pretty padding'}</Label>
             </div>
             <Button
               variant="outline"
@@ -446,22 +447,22 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
             >
               {showPreview ? (
                 <>
-                  <EyeOff className="mr-1 h-4 w-4" /> Hide preview
+                  <EyeOff className="mr-1 h-4 w-4" /> {ui.hidePreview || 'Hide preview'}
                 </>
               ) : (
                 <>
-                  <Eye className="mr-1 h-4 w-4" /> Show preview
+                  <Eye className="mr-1 h-4 w-4" /> {ui.showPreview || 'Show preview'}
                 </>
               )}
             </Button>
             <Button onClick={handleCopy} disabled={!output}>
               {copied ? (
                 <>
-                  <Check className="mr-1 h-4 w-4" /> Copied
+                  <Check className="mr-1 h-4 w-4" /> {ui.copied || 'Copied'}
                 </>
               ) : (
                 <>
-                  <Copy className="mr-1 h-4 w-4" /> Copy Markdown
+                  <Copy className="mr-1 h-4 w-4" /> {ui.copyMarkdown || 'Copy Markdown'}
                 </>
               )}
             </Button>
@@ -473,13 +474,13 @@ export default function MarkdownTableGenerator({}: BaseToolProps) {
           readOnly
           rows={Math.min(Math.max(table.rows.length + 4, 6), 16)}
           className="font-mono text-sm"
-          placeholder="Markdown table will appear here..."
+          placeholder={ui.outputPlaceholder || 'Markdown table will appear here...'}
         />
 
         {showPreview && output && (
           <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
             <div className="mb-2 text-sm font-semibold text-gray-600 dark:text-gray-400">
-              Live preview
+              {ui.livePreview || 'Live preview'}
             </div>
             <div
               className="markdown-table-preview overflow-x-auto"

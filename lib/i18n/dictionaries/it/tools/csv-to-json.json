@@ -81,5 +81,36 @@
     "description": "Converti file CSV in formato JSON online. Supporto per delimitatori personalizzati, intestazioni e strutture nidificate. Convertitore CSV a JSON gratuito."
   },
   "tagline": "Converti dati CSV in formato JSON con parsing intelligente",
-  "pageDescription": "Trasforma file CSV in formato JSON con rilevamento automatico intestazioni e supporto delimitatori personalizzati. Perfetto per migrazione dati, integrazione API ed elaborazione fogli di calcolo. Gestisce file grandi con streaming, preserva tipi dati e offre formati output multipli. Conversione gratuita e sicura basata su browser senza caricamento file."
+  "pageDescription": "Trasforma file CSV in formato JSON con rilevamento automatico intestazioni e supporto delimitatori personalizzati. Perfetto per migrazione dati, integrazione API ed elaborazione fogli di calcolo. Gestisce file grandi con streaming, preserva tipi dati e offre formati output multipli. Conversione gratuita e sicura basata su browser senza caricamento file.",
+  "ui": {
+    "inputSectionHeading": "Input CSV",
+    "loadExample": "Carica Esempio",
+    "uploadCsv": "Carica CSV",
+    "inputPlaceholder": "Incolla i tuoi dati CSV qui o carica un file...",
+    "optionsSectionHeading": "Opzioni di Conversione",
+    "delimiterLabel": "Delimitatore",
+    "delimiterComma": "Virgola (,)",
+    "delimiterSemicolon": "Punto e virgola (;)",
+    "delimiterTab": "Tab",
+    "delimiterPipe": "Pipe (|)",
+    "outputFormatLabel": "Formato Output",
+    "outputFormatArray": "Array di Oggetti",
+    "outputFormatNested": "Oggetto Nidificato",
+    "outputFormatCompact": "Array Compatto",
+    "customHeadersLabel": "Intestazioni Personalizzate",
+    "nullValuesLabel": "Valori Null",
+    "checkboxFirstRowHeaders": "La prima riga contiene intestazioni",
+    "checkboxTrimWhitespace": "Rimuovi spazi bianchi",
+    "checkboxMinifyOutput": "Comprimi output JSON",
+    "btnConvert": "Converti in JSON",
+    "btnConverted": "Convertito!",
+    "btnValidate": "Valida CSV",
+    "btnClear": "Cancella",
+    "statsRows": "Righe",
+    "statsColumns": "Colonne",
+    "outputSectionHeading": "Output JSON",
+    "btnCopy": "Copia",
+    "btnCopied": "Copiato!",
+    "btnDownload": "Scarica"
+  }
 }

@@ -63,8 +63,14 @@
       "Immagine distorta: Evita 'Riempire'"
     ],
     "keyboardShortcuts": [
-      { "keys": "Trascina e Rilascia", "description": "Rilascia file GIF" },
-      { "keys": "Click", "description": "Seleziona file GIF" }
+      {
+        "keys": "Trascina e Rilascia",
+        "description": "Rilascia file GIF"
+      },
+      {
+        "keys": "Click",
+        "description": "Seleziona file GIF"
+      }
     ]
   },
   "meta": {
@@ -72,5 +78,39 @@
     "description": "Converti GIF in PDF online gratis. Combina più GIF in un PDF. Supporta GIF animate (primo frame). Dimensioni pagina personalizzate. Convertitore sicuro browser."
   },
   "tagline": "Converti immagini GIF in PDF preservando qualità con dimensioni pagina e layout personalizzati",
-  "pageDescription": "Trasforma immagini GIF in documenti PDF professionali con controllo completo su dimensioni pagina, modalità adattamento e margini. Funziona con GIF statiche e animate (primo frame usato). Perfetto per presentazioni, documentazione, archivi meme e manuali da file GIF. Supporta GIF illimitate, batch processing, riordino e dimensioni personalizzate. Conversione gratuita sicura nel browser. Mantiene qualità GIF nell'output PDF."
+  "pageDescription": "Trasforma immagini GIF in documenti PDF professionali con controllo completo su dimensioni pagina, modalità adattamento e margini. Funziona con GIF statiche e animate (primo frame usato). Perfetto per presentazioni, documentazione, archivi meme e manuali da file GIF. Supporta GIF illimitate, batch processing, riordino e dimensioni personalizzate. Conversione gratuita sicura nel browser. Mantiene qualità GIF nell'output PDF.",
+  "ui": {
+    "uploadHeading": "Carica immagini GIF",
+    "clearAll": "Cancella tutto",
+    "dropZoneMain": "Clicca per caricare o trascina e rilascia",
+    "dropZoneSub": "Solo file GIF (fino a 10MB per file) - Verrà usato il primo frame",
+    "selectedImagesLabel": "Immagini GIF selezionate",
+    "moveUp": "Sposta su",
+    "moveDown": "Sposta giù",
+    "remove": "Rimuovi",
+    "pdfSettingsHeading": "Impostazioni PDF",
+    "pageSizeLabel": "Dimensione pagina",
+    "widthLabel": "Larghezza (pt)",
+    "heightLabel": "Altezza (pt)",
+    "imageFitLabel": "Adattamento immagine",
+    "fitContain": "Contenere (rientra, mantiene proporzioni)",
+    "fitCover": "Coprire (riempie pagina, può ritagliare)",
+    "fitFill": "Riempire (estende per riempire)",
+    "fitNone": "Nessuno (dimensione originale)",
+    "marginsLabel": "Margini",
+    "filenameLabel": "Nome file",
+    "filenamePlaceholder": "mio-documento.pdf",
+    "generatingPdf": "Generazione PDF...",
+    "generatePdf": "Genera PDF",
+    "imageSingular": "immagine",
+    "imagePlural": "immagini",
+    "pdfGeneratedSuccess": "PDF generato con successo!",
+    "pagesLabel": "Pagine:",
+    "fileSizeLabel": "Dimensione file:",
+    "filenameResultLabel": "Nome file:",
+    "downloadPdf": "Scarica PDF",
+    "previewHeading": "Anteprima PDF",
+    "hidePreview": "Nascondi anteprima",
+    "showPreview": "Mostra anteprima"
+  }
 }
