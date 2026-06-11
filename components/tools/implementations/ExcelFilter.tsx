@@ -67,6 +67,7 @@ export default function ExcelFilter({
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { addToHistory } = useToolStore();
+  const ui = dictionary?.tools?.['excel-filter']?.ui ?? {};
 
   // Filtered and sorted data
   const processedData = useMemo(() => {
@@ -306,7 +307,7 @@ export default function ExcelFilter({
           <div>
             <div className="flex items-center gap-2">
               <h3 className="font-semibold text-gray-900 dark:text-white">
-                Need more powerful Excel features?
+                {ui.zellBannerHeading || 'Need more powerful Excel features?'}
               </h3>
               <span className="flex items-center gap-1 rounded-full bg-cyan-100 px-2 py-0.5 text-xs font-medium text-cyan-700 dark:bg-cyan-900/50 dark:text-cyan-300">
                 <Sparkles className="h-3 w-3" />
@@ -318,13 +319,12 @@ export default function ExcelFilter({
               <span className="font-semibold text-cyan-600 dark:text-cyan-400">
                 Zell
               </span>{' '}
-              — Advanced spreadsheet analysis, pivot tables, charts & AI-powered
-              insights
+              — {ui.zellBannerDescription || 'Advanced spreadsheet analysis, pivot tables, charts & AI-powered insights'}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 px-4 py-2 text-sm font-medium text-white transition-all group-hover:from-blue-600 group-hover:to-cyan-600">
-          <span>Try Zell</span>
+          <span>{ui.zellBannerButton || 'Try Zell'}</span>
           <ExternalLink className="h-4 w-4" />
         </div>
       </a>
@@ -334,10 +334,10 @@ export default function ExcelFilter({
         <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
           <div className="mb-4">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-              Upload Excel File
+              {ui.uploadSectionHeading || 'Upload Excel File'}
             </h2>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-              Drag and drop your Excel file or click to browse (max 50MB)
+              {ui.uploadSubtitle || 'Drag and drop your Excel file or click to browse (max 50MB)'}
             </p>
           </div>
 
@@ -356,19 +356,19 @@ export default function ExcelFilter({
             <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
               {isDragging ? (
                 <span className="font-medium text-blue-600">
-                  Drop file here
+                  {ui.dropFileHere || 'Drop file here'}
                 </span>
               ) : (
                 <>
                   <span className="font-medium text-blue-600">
-                    Click to upload
+                    {ui.clickToUpload || 'Click to upload'}
                   </span>{' '}
-                  or drag and drop
+                  {ui.orDragAndDrop || 'or drag and drop'}
                 </>
               )}
             </p>
             <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-              XLSX or XLS up to 50MB
+              {ui.fileTypeHint || 'XLSX or XLS up to 50MB'}
             </p>
           </div>
 
@@ -386,7 +386,7 @@ export default function ExcelFilter({
           {isLoading && (
             <div className="mt-4 flex items-center justify-center gap-2 text-sm text-blue-600">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-600 border-t-transparent" />
-              <span>Loading Excel file...</span>
+              <span>{ui.loadingFile || 'Loading Excel file...'}</span>
             </div>
           )}
 
@@ -414,9 +414,9 @@ export default function ExcelFilter({
                   {excelData.fileName}
                 </h2>
                 <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                  {processedData.length.toLocaleString()} of{' '}
-                  {excelData.totalRows.toLocaleString()} rows •{' '}
-                  {visibleHeaders.length} of {excelData.totalColumns} columns
+                  {processedData.length.toLocaleString()} {ui.rowsOf || 'of'}{' '}
+                  {excelData.totalRows.toLocaleString()} {ui.rowsSuffix || 'rows'} •{' '}
+                  {visibleHeaders.length} {ui.rowsOf || 'of'} {excelData.totalColumns} {ui.columnsSuffix || 'columns'}
                 </p>
               </div>
 
@@ -426,7 +426,7 @@ export default function ExcelFilter({
                   className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                 >
                   <Filter className="h-4 w-4" />
-                  Filters
+                  {ui.filtersButton || 'Filters'}
                   {filters.length > 0 && (
                     <span className="rounded-full bg-blue-100 px-2 py-0.5 text-xs text-blue-700 dark:bg-blue-900 dark:text-blue-300">
                       {filters.length}
@@ -439,10 +439,10 @@ export default function ExcelFilter({
                   className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                 >
                   <Eye className="h-4 w-4" />
-                  Columns
+                  {ui.columnsButton || 'Columns'}
                   {hiddenColumns.size > 0 && (
                     <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700 dark:bg-gray-600 dark:text-gray-300">
-                      {hiddenColumns.size} hidden
+                      {hiddenColumns.size} {ui.hiddenSuffix || 'hidden'}
                     </span>
                   )}
                 </button>
@@ -452,7 +452,7 @@ export default function ExcelFilter({
                   className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                 >
                   <Download className="h-4 w-4" />
-                  Export CSV
+                  {ui.exportCsvButton || 'Export CSV'}
                 </button>
 
                 <button
@@ -460,7 +460,7 @@ export default function ExcelFilter({
                   className="flex items-center gap-2 rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white hover:bg-green-700"
                 >
                   <Download className="h-4 w-4" />
-                  Export Excel
+                  {ui.exportExcelButton || 'Export Excel'}
                 </button>
 
                 <button
@@ -468,7 +468,7 @@ export default function ExcelFilter({
                   className="flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
                 >
                   <RefreshCw className="h-4 w-4" />
-                  New File
+                  {ui.newFileButton || 'New File'}
                 </button>
               </div>
             </div>
@@ -484,7 +484,7 @@ export default function ExcelFilter({
                     setGlobalSearch(e.target.value);
                     setCurrentPage(1);
                   }}
-                  placeholder="Search across all columns..."
+                  placeholder={ui.globalSearchPlaceholder || 'Search across all columns...'}
                   className="w-full rounded-md border border-gray-300 py-2 pl-10 pr-4 text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                 />
               </div>
@@ -496,7 +496,7 @@ export default function ExcelFilter({
             <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <div className="mb-3 flex items-center justify-between">
                 <h3 className="font-medium text-gray-900 dark:text-white">
-                  Column Filters
+                  {ui.columnFiltersHeading || 'Column Filters'}
                 </h3>
                 <div className="flex items-center gap-2">
                   {(filters.length > 0 || globalSearch || sortConfig) && (
@@ -504,22 +504,21 @@ export default function ExcelFilter({
                       onClick={clearAllFilters}
                       className="text-sm text-red-600 hover:text-red-700 dark:text-red-400"
                     >
-                      Clear all
+                      {ui.clearAll || 'Clear all'}
                     </button>
                   )}
                   <button
                     onClick={addFilter}
                     className="rounded-md bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700"
                   >
-                    + Add Filter
+                    {ui.addFilter || '+ Add Filter'}
                   </button>
                 </div>
               </div>
 
               {filters.length === 0 ? (
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  No filters applied. Click &quot;Add Filter&quot; to start
-                  filtering data.
+                  {ui.noFiltersApplied || 'No filters applied. Click "Add Filter" to start filtering data.'}
                 </p>
               ) : (
                 <div className="space-y-3">
@@ -582,7 +581,7 @@ export default function ExcelFilter({
                                       : e.target.value,
                                 })
                               }
-                              placeholder="Value"
+                              placeholder={ui.filterValuePlaceholder || 'Value'}
                               className="min-w-[120px] flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                             />
 
@@ -600,7 +599,7 @@ export default function ExcelFilter({
                                         : e.target.value,
                                   })
                                 }
-                                placeholder="Value 2"
+                                placeholder={ui.filterValue2Placeholder || 'Value 2'}
                                 className="min-w-[120px] flex-1 rounded-md border border-gray-300 px-3 py-1.5 text-sm focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                               />
                             )}
@@ -625,7 +624,7 @@ export default function ExcelFilter({
           {showColumnPanel && (
             <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
               <h3 className="mb-3 font-medium text-gray-900 dark:text-white">
-                Manage Columns
+                {ui.manageColumnsHeading || 'Manage Columns'}
               </h3>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                 {excelData.headers.map((header) => (
@@ -698,7 +697,7 @@ export default function ExcelFilter({
               {processedData.length === 0 && (
                 <div className="py-12 text-center text-gray-500 dark:text-gray-400">
                   <Info className="mx-auto mb-2 h-8 w-8" />
-                  <p>No data matches your filters</p>
+                  <p>{ui.noDataMatchesFilters || 'No data matches your filters'}</p>
                 </div>
               )}
             </div>
@@ -707,7 +706,7 @@ export default function ExcelFilter({
             {processedData.length > 0 && (
               <div className="flex flex-wrap items-center justify-between border-t border-gray-200 p-4 dark:border-gray-700">
                 <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
-                  <span>Rows per page:</span>
+                  <span>{ui.rowsPerPage || 'Rows per page:'}</span>
                   <select
                     value={rowsPerPage}
                     onChange={(e) => {
@@ -725,7 +724,7 @@ export default function ExcelFilter({
 
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400">
-                    Page {currentPage} of {totalPages}
+                    {ui.pageLabel || 'Page'} {currentPage} {ui.pageOf || 'of'} {totalPages}
                   </span>
                   <div className="flex gap-1">
                     <button
@@ -733,7 +732,7 @@ export default function ExcelFilter({
                       disabled={currentPage === 1}
                       className="rounded-md border border-gray-300 px-3 py-1 text-sm font-medium hover:bg-gray-50 disabled:opacity-50 dark:border-gray-600 dark:hover:bg-gray-700"
                     >
-                      Previous
+                      {ui.previousButton || 'Previous'}
                     </button>
                     <button
                       onClick={() =>
@@ -742,7 +741,7 @@ export default function ExcelFilter({
                       disabled={currentPage === totalPages}
                       className="rounded-md border border-gray-300 px-3 py-1 text-sm font-medium hover:bg-gray-50 disabled:opacity-50 dark:border-gray-600 dark:hover:bg-gray-700"
                     >
-                      Next
+                      {ui.nextButton || 'Next'}
                     </button>
                   </div>
                 </div>
