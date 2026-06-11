@@ -112,7 +112,8 @@ address:
   zip: 10001`,
 };
 
-export default function YamlJsonConverter() {
+export default function YamlJsonConverter({ dictionary }: { dictionary?: any }) {
+  const ui = dictionary?.tools?.['yaml-json-converter']?.ui ?? {};
   const { trackUse, trackError, trackCustom } = useToolTracking(
     'yaml-json-converter'
   );
@@ -327,17 +328,16 @@ export default function YamlJsonConverter() {
       {/* Header Controls */}
       <Card>
         <CardHeader>
-          <CardTitle>YAML ↔ JSON Converter</CardTitle>
+          <CardTitle>{ui.cardTitle || 'YAML ↔ JSON Converter'}</CardTitle>
           <CardDescription>
-            Convert between YAML and JSON formats with advanced options and
-            validation
+            {ui.cardDescription || 'Convert between YAML and JSON formats with advanced options and validation'}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-wrap items-center gap-4">
             {/* Direction Toggle */}
             <div className="flex items-center space-x-2">
-              <Label>Direction:</Label>
+              <Label>{ui.labelDirection || 'Direction:'}</Label>
               <div
                 className={autoDetect ? 'pointer-events-none opacity-50' : ''}
               >
@@ -349,8 +349,8 @@ export default function YamlJsonConverter() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="yaml-to-json">YAML → JSON</SelectItem>
-                    <SelectItem value="json-to-yaml">JSON → YAML</SelectItem>
+                    <SelectItem value="yaml-to-json">{ui.directionYamlToJson || 'YAML → JSON'}</SelectItem>
+                    <SelectItem value="json-to-yaml">{ui.directionJsonToYaml || 'JSON → YAML'}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -363,7 +363,7 @@ export default function YamlJsonConverter() {
                 checked={autoDetect}
                 onCheckedChange={setAutoDetect}
               />
-              <Label htmlFor="auto-detect">Auto-detect format</Label>
+              <Label htmlFor="auto-detect">{ui.labelAutoDetect || 'Auto-detect format'}</Label>
             </div>
 
             {/* Action Buttons */}
@@ -375,7 +375,7 @@ export default function YamlJsonConverter() {
                 disabled={!input || !output}
               >
                 <ArrowRightLeft className="mr-1 h-4 w-4" />
-                Swap
+                {ui.btnSwap || 'Swap'}
               </Button>
 
               <Select
@@ -384,13 +384,13 @@ export default function YamlJsonConverter() {
                 }
               >
                 <SelectTrigger className="w-[150px]">
-                  <SelectValue placeholder="Sample Data" />
+                  <SelectValue placeholder={ui.sampleDataPlaceholder || 'Sample Data'} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="simple">Simple YAML</SelectItem>
-                  <SelectItem value="kubernetes">Kubernetes Config</SelectItem>
-                  <SelectItem value="docker">Docker Compose</SelectItem>
-                  <SelectItem value="githubActions">GitHub Actions</SelectItem>
+                  <SelectItem value="simple">{ui.sampleSimple || 'Simple YAML'}</SelectItem>
+                  <SelectItem value="kubernetes">{ui.sampleKubernetes || 'Kubernetes Config'}</SelectItem>
+                  <SelectItem value="docker">{ui.sampleDocker || 'Docker Compose'}</SelectItem>
+                  <SelectItem value="githubActions">{ui.sampleGithubActions || 'GitHub Actions'}</SelectItem>
                 </SelectContent>
               </Select>
 
@@ -401,7 +401,7 @@ export default function YamlJsonConverter() {
                 disabled={!input && !output}
               >
                 <Trash2 className="mr-1 h-4 w-4" />
-                Clear
+                {ui.btnClear || 'Clear'}
               </Button>
             </div>
           </div>
@@ -414,7 +414,7 @@ export default function YamlJsonConverter() {
             >
               <div className="flex items-center space-x-2">
                 <Settings className="h-4 w-4" />
-                <span className="font-medium">Conversion Options</span>
+                <span className="font-medium">{ui.conversionOptions || 'Conversion Options'}</span>
               </div>
               <div
                 className={`transform transition-transform ${showOptions ? 'rotate-180' : ''}`}
@@ -441,7 +441,7 @@ export default function YamlJsonConverter() {
                   {conversionDirection === 'yaml-to-json' ? (
                     <>
                       <div className="space-y-2">
-                        <Label>Date Format</Label>
+                        <Label>{ui.labelDateFormat || 'Date Format'}</Label>
                         <Select
                           value={options.dateFormat}
                           onValueChange={(value: any) =>
@@ -463,7 +463,7 @@ export default function YamlJsonConverter() {
                       </div>
 
                       <div className="space-y-2">
-                        <Label>Special Numbers</Label>
+                        <Label>{ui.labelSpecialNumbers || 'Special Numbers'}</Label>
                         <Select
                           value={options.handleNaN}
                           onValueChange={(value: any) =>
@@ -479,12 +479,12 @@ export default function YamlJsonConverter() {
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="null">
-                              Convert to null
+                              {ui.convertToNull || 'Convert to null'}
                             </SelectItem>
                             <SelectItem value="string">
-                              Convert to string
+                              {ui.convertToString || 'Convert to string'}
                             </SelectItem>
-                            <SelectItem value="keep">Keep as-is</SelectItem>
+                            <SelectItem value="keep">{ui.keepAsIs || 'Keep as-is'}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -500,13 +500,13 @@ export default function YamlJsonConverter() {
                             }))
                           }
                         />
-                        <Label htmlFor="expand-refs">Expand references</Label>
+                        <Label htmlFor="expand-refs">{ui.labelExpandRefs || 'Expand references'}</Label>
                       </div>
                     </>
                   ) : (
                     <>
                       <div className="space-y-2">
-                        <Label>Indentation</Label>
+                        <Label>{ui.labelIndentation || 'Indentation'}</Label>
                         <Select
                           value={options.indent?.toString()}
                           onValueChange={(value) =>
@@ -520,14 +520,14 @@ export default function YamlJsonConverter() {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="2">2 spaces</SelectItem>
-                            <SelectItem value="4">4 spaces</SelectItem>
+                            <SelectItem value="2">{ui.spacesTwo || '2 spaces'}</SelectItem>
+                            <SelectItem value="4">{ui.spacesFour || '4 spaces'}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
 
                       <div className="space-y-2">
-                        <Label>Null Representation</Label>
+                        <Label>{ui.labelNullRepresentation || 'Null Representation'}</Label>
                         <Select
                           value={options.nullStr}
                           onValueChange={(value: any) =>
@@ -540,13 +540,13 @@ export default function YamlJsonConverter() {
                           <SelectContent>
                             <SelectItem value="null">null</SelectItem>
                             <SelectItem value="~">~</SelectItem>
-                            <SelectItem value="">Empty</SelectItem>
+                            <SelectItem value="">{ui.nullEmpty || 'Empty'}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
 
                       <div className="space-y-2">
-                        <Label>Quote Style</Label>
+                        <Label>{ui.labelQuoteStyle || 'Quote Style'}</Label>
                         <Select
                           value={options.quoteStyle}
                           onValueChange={(value: any) =>
@@ -560,10 +560,10 @@ export default function YamlJsonConverter() {
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="single">Single</SelectItem>
-                            <SelectItem value="double">Double</SelectItem>
+                            <SelectItem value="single">{ui.quoteStyleSingle || 'Single'}</SelectItem>
+                            <SelectItem value="double">{ui.quoteStyleDouble || 'Double'}</SelectItem>
                             <SelectItem value="none">
-                              None (when safe)
+                              {ui.quoteStyleNone || 'None (when safe)'}
                             </SelectItem>
                           </SelectContent>
                         </Select>
@@ -572,7 +572,7 @@ export default function YamlJsonConverter() {
                   )}
 
                   <div className="space-y-2">
-                    <Label>Sort Keys</Label>
+                    <Label>{ui.labelSortKeys || 'Sort Keys'}</Label>
                     <Select
                       value={options.sortKeys}
                       onValueChange={(value: any) =>
@@ -583,11 +583,11 @@ export default function YamlJsonConverter() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="original">Original Order</SelectItem>
+                        <SelectItem value="original">{ui.sortOriginalOrder || 'Original Order'}</SelectItem>
                         <SelectItem value="alphabetical">
-                          Alphabetical
+                          {ui.sortAlphabetical || 'Alphabetical'}
                         </SelectItem>
-                        <SelectItem value="none">None</SelectItem>
+                        <SelectItem value="none">{ui.sortNone || 'None'}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -604,7 +604,7 @@ export default function YamlJsonConverter() {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">
-              Input ({conversionDirection === 'yaml-to-json' ? 'YAML' : 'JSON'})
+              {ui.cardInputTitle || 'Input'} ({conversionDirection === 'yaml-to-json' ? 'YAML' : 'JSON'})
             </CardTitle>
             <div className="flex gap-1 md:gap-2">
               <Button
@@ -613,7 +613,7 @@ export default function YamlJsonConverter() {
                 onClick={() => document.getElementById('file-upload')?.click()}
               >
                 <Upload className="h-4 w-4 md:mr-1" />
-                <span className="hidden md:inline">Upload File</span>
+                <span className="hidden md:inline">{ui.btnUploadFile || 'Upload File'}</span>
               </Button>
               <input
                 id="file-upload"
@@ -639,12 +639,12 @@ export default function YamlJsonConverter() {
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">
-              Output (
+              {ui.cardOutputTitle || 'Output'} (
               {conversionDirection === 'yaml-to-json'
                 ? outputMode === 'typescript'
-                  ? 'TypeScript Interface'
+                  ? (ui.outputTypeScriptInterface || 'TypeScript Interface')
                   : outputMode === 'schema'
-                    ? 'JSON Schema'
+                    ? (ui.outputJsonSchema || 'JSON Schema')
                     : 'JSON'
                 : 'YAML'}
               )
@@ -657,7 +657,7 @@ export default function YamlJsonConverter() {
                 disabled={!output}
               >
                 <Copy className="h-4 w-4 md:mr-1" />
-                <span className="hidden md:inline">Copy</span>
+                <span className="hidden md:inline">{ui.btnCopy || 'Copy'}</span>
               </Button>
               <Button
                 variant="outline"
@@ -666,7 +666,7 @@ export default function YamlJsonConverter() {
                 disabled={!output}
               >
                 <Download className="h-4 w-4 md:mr-1" />
-                <span className="hidden md:inline">Download</span>
+                <span className="hidden md:inline">{ui.btnDownload || 'Download'}</span>
               </Button>
               {conversionDirection === 'yaml-to-json' &&
                 output &&
@@ -679,7 +679,7 @@ export default function YamlJsonConverter() {
                       disabled={!output}
                     >
                       <FileCode className="h-4 w-4 md:mr-1" />
-                      <span className="hidden md:inline">TypeScript</span>
+                      <span className="hidden md:inline">{ui.btnTypeScript || 'TypeScript'}</span>
                     </Button>
                     <Button
                       variant="outline"
@@ -688,7 +688,7 @@ export default function YamlJsonConverter() {
                       disabled={!output}
                     >
                       <FileJson className="h-4 w-4 md:mr-1" />
-                      <span className="hidden md:inline">Schema</span>
+                      <span className="hidden md:inline">{ui.btnSchema || 'Schema'}</span>
                     </Button>
                   </div>
                 )}
@@ -701,7 +701,7 @@ export default function YamlJsonConverter() {
                     onClick={handleReturnToJson}
                   >
                     <ArrowRightLeft className="h-4 w-4 md:mr-1" />
-                    <span className="hidden md:inline">Back to JSON</span>
+                    <span className="hidden md:inline">{ui.btnBackToJson || 'Back to JSON'}</span>
                   </Button>
                 )}
             </div>
@@ -726,7 +726,7 @@ export default function YamlJsonConverter() {
           disabled={!input || isProcessing}
           className="min-w-[200px]"
         >
-          {isProcessing ? 'Converting...' : 'Convert'}
+          {isProcessing ? (ui.btnConverting || 'Converting...') : (ui.btnConvert || 'Convert')}
         </Button>
       </div>
 
@@ -775,15 +775,15 @@ export default function YamlJsonConverter() {
         <Alert className="border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-900/10 dark:text-green-400">
           <CheckCircle2 className="h-4 w-4 text-green-600 dark:text-green-400" />
           <AlertDescription>
-            Conversion successful! Your{' '}
+            {ui.conversionSuccessful || 'Conversion successful! Your'}{' '}
             {conversionDirection === 'yaml-to-json'
               ? outputMode === 'typescript'
-                ? 'TypeScript interface'
+                ? (ui.outputTypeScriptInterface || 'TypeScript Interface')
                 : outputMode === 'schema'
-                  ? 'JSON Schema'
+                  ? (ui.outputJsonSchema || 'JSON Schema')
                   : 'JSON'
               : 'YAML'}{' '}
-            is ready.
+            {ui.conversionReady || 'is ready.'}
           </AlertDescription>
         </Alert>
       )}
