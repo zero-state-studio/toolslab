@@ -65,8 +65,14 @@
       "Bild verzerrt: Vermeiden Sie 'Füllen', wenn Sie kein Strecken wünschen"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ziehen & Ablegen", "description": "JPG-Dateien zum Hochladen ablegen" },
-      { "keys": "Klicken", "description": "JPG-Dateien vom Computer auswählen" }
+      {
+        "keys": "Ziehen & Ablegen",
+        "description": "JPG-Dateien zum Hochladen ablegen"
+      },
+      {
+        "keys": "Klicken",
+        "description": "JPG-Dateien vom Computer auswählen"
+      }
     ]
   },
   "meta": {
@@ -88,5 +94,39 @@
     "Fotoalbum als PDF aus JPG erstellen",
     "bester kostenloser JPG zu PDF Konverter online",
     "JPEG in PDF ohne Qualitätsverlust konvertieren"
-  ]
+  ],
+  "ui": {
+    "uploadHeading": "JPG-Bilder hochladen",
+    "clearAll": "Alle löschen",
+    "dropZoneMain": "Klicken zum Hochladen oder per Drag & Drop",
+    "dropZoneSub": "Nur JPG, JPEG-Dateien (bis zu 10 MB pro Datei)",
+    "selectedImagesLabel": "Ausgewählte JPG-Bilder",
+    "moveUp": "Nach oben",
+    "moveDown": "Nach unten",
+    "remove": "Entfernen",
+    "pdfSettingsHeading": "PDF-Einstellungen",
+    "pageSizeLabel": "Seitengröße",
+    "widthLabel": "Breite (pt)",
+    "heightLabel": "Höhe (pt)",
+    "imageFitLabel": "Bildanpassung",
+    "fitContain": "Contain (einpassen, Seitenverhältnis beibehalten)",
+    "fitCover": "Cover (Seite füllen, kann zuschneiden)",
+    "fitFill": "Fill (strecken zum Füllen)",
+    "fitNone": "None (Originalgröße)",
+    "marginsLabel": "Ränder",
+    "filenameLabel": "Dateiname",
+    "filenamePlaceholder": "mein-dokument.pdf",
+    "generatingPdf": "PDF wird erstellt...",
+    "generatePdf": "PDF erstellen",
+    "imageSingular": "Bild",
+    "imagePlural": "Bilder",
+    "pdfGeneratedSuccess": "PDF erfolgreich erstellt!",
+    "pagesLabel": "Seiten:",
+    "fileSizeLabel": "Dateigröße:",
+    "filenameResultLabel": "Dateiname:",
+    "downloadPdf": "PDF herunterladen",
+    "previewHeading": "PDF-Vorschau",
+    "hidePreview": "Vorschau ausblenden",
+    "showPreview": "Vorschau anzeigen"
+  }
 }

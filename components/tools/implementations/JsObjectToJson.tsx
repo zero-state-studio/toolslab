@@ -83,7 +83,8 @@ const sampleData = {
   devTools: `{name: "API Response", status: 200, data: {users: [{id: 1, name: "John"}, {id: 2, name: "Jane"}], total: 2}}`,
 };
 
-export default function JsObjectToJson() {
+export default function JsObjectToJson({ dictionary }: { dictionary?: any }) {
+  const ui = dictionary?.tools?.['js-object-to-json']?.ui ?? {};
   const { addToHistory } = useToolStore();
   const { resultRef, scrollToResult } = useScrollToResult({
     onlyIfNotVisible: false,
@@ -284,33 +285,32 @@ export default function JsObjectToJson() {
       {/* Header Controls */}
       <Card>
         <CardHeader>
-          <CardTitle>JavaScript Object to JSON</CardTitle>
+          <CardTitle>{ui.cardTitle || 'JavaScript Object to JSON'}</CardTitle>
           <CardDescription>
-            Convert JavaScript object literals to valid JSON with smart handling
-            of special values
+            {ui.cardDescription || 'Convert JavaScript object literals to valid JSON with smart handling of special values'}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-wrap items-center gap-4">
             {/* Sample Data Selector */}
             <div className="flex items-center space-x-2">
-              <Label>Load Sample:</Label>
+              <Label>{ui.loadSampleLabel || 'Load Sample:'}</Label>
               <Select
                 onValueChange={(v) =>
                   handleLoadSample(v as keyof typeof sampleData)
                 }
               >
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Choose example..." />
+                  <SelectValue placeholder={ui.chooseSamplePlaceholder || 'Choose example...'} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="simple">Simple Object</SelectItem>
-                  <SelectItem value="nested">Nested Object</SelectItem>
-                  <SelectItem value="withFunctions">With Functions</SelectItem>
+                  <SelectItem value="simple">{ui.sampleSimple || 'Simple Object'}</SelectItem>
+                  <SelectItem value="nested">{ui.sampleNested || 'Nested Object'}</SelectItem>
+                  <SelectItem value="withFunctions">{ui.sampleWithFunctions || 'With Functions'}</SelectItem>
                   <SelectItem value="withSpecialValues">
-                    Special Values
+                    {ui.sampleSpecialValues || 'Special Values'}
                   </SelectItem>
-                  <SelectItem value="devTools">DevTools Copy</SelectItem>
+                  <SelectItem value="devTools">{ui.sampleDevTools || 'DevTools Copy'}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -324,7 +324,7 @@ export default function JsObjectToJson() {
                 disabled={!input && !output}
               >
                 <Trash2 className="mr-1 h-4 w-4" />
-                Clear
+                {ui.clearButton || 'Clear'}
               </Button>
             </div>
           </div>
@@ -337,7 +337,7 @@ export default function JsObjectToJson() {
             >
               <div className="flex items-center space-x-2">
                 <Settings className="h-4 w-4" />
-                <span className="font-medium">Conversion Options</span>
+                <span className="font-medium">{ui.conversionOptions || 'Conversion Options'}</span>
               </div>
               <div
                 className={`transform transition-transform ${showOptions ? 'rotate-180' : ''}`}
@@ -363,7 +363,7 @@ export default function JsObjectToJson() {
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                   {/* Indentation */}
                   <div className="space-y-2">
-                    <Label>Indentation</Label>
+                    <Label>{ui.indentationLabel || 'Indentation'}</Label>
                     <div
                       className={
                         options.compact ? 'pointer-events-none opacity-50' : ''
@@ -382,8 +382,8 @@ export default function JsObjectToJson() {
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="2">2 spaces</SelectItem>
-                          <SelectItem value="4">4 spaces</SelectItem>
+                          <SelectItem value="2">{ui.twoSpaces || '2 spaces'}</SelectItem>
+                          <SelectItem value="4">{ui.fourSpaces || '4 spaces'}</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -391,7 +391,7 @@ export default function JsObjectToJson() {
 
                   {/* Handle Undefined */}
                   <div className="space-y-2">
-                    <Label>Handle Undefined</Label>
+                    <Label>{ui.handleUndefinedLabel || 'Handle Undefined'}</Label>
                     <Select
                       value={options.handleUndefined}
                       onValueChange={(v) =>
@@ -405,15 +405,15 @@ export default function JsObjectToJson() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="remove">Remove property</SelectItem>
-                        <SelectItem value="null">Convert to null</SelectItem>
+                        <SelectItem value="remove">{ui.removeProperty || 'Remove property'}</SelectItem>
+                        <SelectItem value="null">{ui.convertToNull || 'Convert to null'}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   {/* Handle Functions */}
                   <div className="space-y-2">
-                    <Label>Handle Functions</Label>
+                    <Label>{ui.handleFunctionsLabel || 'Handle Functions'}</Label>
                     <Select
                       value={options.handleFunctions}
                       onValueChange={(v) =>
@@ -427,9 +427,9 @@ export default function JsObjectToJson() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="remove">Remove property</SelectItem>
+                        <SelectItem value="remove">{ui.removeProperty || 'Remove property'}</SelectItem>
                         <SelectItem value="string">
-                          Convert to &quot;[Function]&quot;
+                          {ui.convertToFunctionString || 'Convert to "[Function]"'}
                         </SelectItem>
                       </SelectContent>
                     </Select>
@@ -437,7 +437,7 @@ export default function JsObjectToJson() {
 
                   {/* Handle BigInt */}
                   <div className="space-y-2">
-                    <Label>Handle BigInt</Label>
+                    <Label>{ui.handleBigIntLabel || 'Handle BigInt'}</Label>
                     <Select
                       value={options.handleBigInt}
                       onValueChange={(v) =>
@@ -452,12 +452,12 @@ export default function JsObjectToJson() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="string">
-                          Convert to string
+                          {ui.convertToString || 'Convert to string'}
                         </SelectItem>
                         <SelectItem value="number">
-                          Convert to number
+                          {ui.convertToNumber || 'Convert to number'}
                         </SelectItem>
-                        <SelectItem value="error">Throw error</SelectItem>
+                        <SelectItem value="error">{ui.throwError || 'Throw error'}</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -471,7 +471,7 @@ export default function JsObjectToJson() {
                         setOptions((prev) => ({ ...prev, compact: checked }))
                       }
                     />
-                    <Label htmlFor="compact">Compact output</Label>
+                    <Label htmlFor="compact">{ui.compactOutputLabel || 'Compact output'}</Label>
                   </div>
 
                   {/* Sort Keys */}
@@ -483,7 +483,7 @@ export default function JsObjectToJson() {
                         setOptions((prev) => ({ ...prev, sortKeys: checked }))
                       }
                     />
-                    <Label htmlFor="sortKeys">Sort keys alphabetically</Label>
+                    <Label htmlFor="sortKeys">{ui.sortKeysLabel || 'Sort keys alphabetically'}</Label>
                   </div>
                 </div>
               </div>
@@ -499,10 +499,9 @@ export default function JsObjectToJson() {
           <CardHeader className="pb-3">
             <div className="flex items-start justify-between gap-2">
               <div>
-                <CardTitle className="text-lg">JavaScript Object</CardTitle>
+                <CardTitle className="text-lg">{ui.inputPanelTitle || 'JavaScript Object'}</CardTitle>
                 <CardDescription>
-                  Paste your JS object with unquoted keys, single quotes,
-                  trailing commas, etc.
+                  {ui.inputPanelDescription || 'Paste your JS object with unquoted keys, single quotes, trailing commas, etc.'}
                 </CardDescription>
               </div>
               {inputType.label && (
@@ -529,15 +528,7 @@ export default function JsObjectToJson() {
             <Textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder={`Paste your JavaScript object here...
-
-Example:
-{
-  name: 'John',
-  age: 30,
-  isActive: true,
-  tags: ['developer', 'javascript'],
-}`}
+              placeholder={ui.inputPlaceholder || `Paste your JavaScript object here...\n\nExample:\n{\n  name: 'John',\n  age: 30,\n  isActive: true,\n  tags: ['developer', 'javascript'],\n}`}
               className="min-h-[400px] font-mono text-sm"
               rows={20}
             />
@@ -550,13 +541,13 @@ Example:
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-lg">Output</CardTitle>
+                  <CardTitle className="text-lg">{ui.outputPanelTitle || 'Output'}</CardTitle>
                   <CardDescription>
                     {isProcessing
-                      ? 'Converting...'
+                      ? (ui.outputConverting || 'Converting...')
                       : output
-                        ? 'Valid JSON ready to use'
-                        : 'Auto-converts as you type'}
+                        ? (ui.outputReady || 'Valid JSON ready to use')
+                        : (ui.outputIdle || 'Auto-converts as you type')}
                   </CardDescription>
                 </div>
                 <div className="flex gap-2">
@@ -572,7 +563,7 @@ Example:
                       <Copy className="h-4 w-4" />
                     )}
                     <span className="ml-1 hidden md:inline">
-                      {copied ? 'Copied!' : 'Copy'}
+                      {copied ? (ui.copyButtonCopied || 'Copied!') : (ui.copyButton || 'Copy')}
                     </span>
                   </Button>
                   <Button
@@ -582,7 +573,7 @@ Example:
                     disabled={!output || outputMode !== 'json'}
                   >
                     <Download className="h-4 w-4" />
-                    <span className="ml-1 hidden md:inline">Download</span>
+                    <span className="ml-1 hidden md:inline">{ui.downloadButton || 'Download'}</span>
                   </Button>
                 </div>
               </div>
@@ -637,7 +628,7 @@ Example:
                     <button
                       onClick={() => setWarningsExpanded((p) => !p)}
                       className="ml-1 flex shrink-0 items-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium text-amber-600 transition-colors hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-900/20"
-                      title="Show conversion warnings"
+                      title={ui.showWarningsTitle || 'Show conversion warnings'}
                     >
                       <AlertTriangle className="h-3.5 w-3.5" />
                       {warnings.length}
@@ -673,7 +664,7 @@ Example:
                 <Textarea
                   value={output}
                   readOnly
-                  placeholder="JSON output will appear here..."
+                  placeholder={ui.jsonOutputPlaceholder || 'JSON output will appear here...'}
                   className="min-h-[400px] font-mono text-sm"
                   rows={20}
                 />
@@ -684,7 +675,7 @@ Example:
                 <Textarea
                   value={tsInterface}
                   readOnly
-                  placeholder="TypeScript interface will appear here..."
+                  placeholder={ui.typescriptPlaceholder || 'TypeScript interface will appear here...'}
                   className="min-h-[400px] font-mono text-sm"
                   rows={20}
                 />
@@ -694,7 +685,7 @@ Example:
               {outputMode === 'paths' && (
                 <div className="min-h-[400px] overflow-auto rounded-md border font-mono text-sm">
                   <div className="sticky top-0 border-b bg-muted/60 px-3 py-2 text-xs text-muted-foreground backdrop-blur">
-                    Click any path to copy it to clipboard
+                    {ui.pathsClickToCopy || 'Click any path to copy it to clipboard'}
                   </div>
                   <div className="divide-y">
                     {jsonPaths.map((item) => (
@@ -732,7 +723,7 @@ Example:
                             : item.value}
                         </span>
                         <span className="shrink-0 text-xs text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                          {copiedPath === item.path ? '✓ copied' : 'copy'}
+                          {copiedPath === item.path ? (ui.pathCopiedIndicator || '✓ copied') : (ui.pathCopyIndicator || 'copy')}
                         </span>
                       </button>
                     ))}

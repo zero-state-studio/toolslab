@@ -65,8 +65,14 @@
       "Imagem distorcida: Evite 'Preencher' se não quiser esticamento"
     ],
     "keyboardShortcuts": [
-      { "keys": "Arrastar e Soltar", "description": "Solte arquivos JPG para carregá-los" },
-      { "keys": "Clique", "description": "Selecione arquivos JPG do computador" }
+      {
+        "keys": "Arrastar e Soltar",
+        "description": "Solte arquivos JPG para carregá-los"
+      },
+      {
+        "keys": "Clique",
+        "description": "Selecione arquivos JPG do computador"
+      }
     ]
   },
   "meta": {
@@ -88,5 +94,39 @@
     "criar álbum de fotos PDF de imagens JPG",
     "melhor conversor JPG para PDF grátis online",
     "converter JPEG para PDF sem perder qualidade"
-  ]
+  ],
+  "ui": {
+    "uploadHeading": "Carregar imagens JPG",
+    "clearAll": "Limpar tudo",
+    "dropZoneMain": "Clique para carregar ou arraste e solte",
+    "dropZoneSub": "Apenas arquivos JPG, JPEG (até 10MB por arquivo)",
+    "selectedImagesLabel": "Imagens JPG selecionadas",
+    "moveUp": "Mover para cima",
+    "moveDown": "Mover para baixo",
+    "remove": "Remover",
+    "pdfSettingsHeading": "Configurações de PDF",
+    "pageSizeLabel": "Tamanho da página",
+    "widthLabel": "Largura (pt)",
+    "heightLabel": "Altura (pt)",
+    "imageFitLabel": "Ajuste de imagem",
+    "fitContain": "Contain (ajustar dentro, manter proporção)",
+    "fitCover": "Cover (preencher página, pode cortar)",
+    "fitFill": "Fill (esticar para preencher)",
+    "fitNone": "None (tamanho original)",
+    "marginsLabel": "Margens",
+    "filenameLabel": "Nome do arquivo",
+    "filenamePlaceholder": "meu-documento.pdf",
+    "generatingPdf": "Gerando PDF...",
+    "generatePdf": "Gerar PDF",
+    "imageSingular": "imagem",
+    "imagePlural": "imagens",
+    "pdfGeneratedSuccess": "PDF gerado com sucesso!",
+    "pagesLabel": "Páginas:",
+    "fileSizeLabel": "Tamanho do arquivo:",
+    "filenameResultLabel": "Nome do arquivo:",
+    "downloadPdf": "Baixar PDF",
+    "previewHeading": "Pré-visualização do PDF",
+    "hidePreview": "Ocultar pré-visualização",
+    "showPreview": "Mostrar pré-visualização"
+  }
 }
