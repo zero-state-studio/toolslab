@@ -9,9 +9,18 @@
         "title": "Carregar GIF",
         "description": "Arraste GIF. Animadas: primeiro quadro."
       },
-      { "title": "Reordenar GIF", "description": "Setas para reorganizar." },
-      { "title": "Configurar PDF", "description": "Tamanho, ajuste, margens." },
-      { "title": "Gerar PDF", "description": "Cada GIF = página." }
+      {
+        "title": "Reordenar GIF",
+        "description": "Setas para reorganizar."
+      },
+      {
+        "title": "Configurar PDF",
+        "description": "Tamanho, ajuste, margens."
+      },
+      {
+        "title": "Gerar PDF",
+        "description": "Cada GIF = página."
+      }
     ],
     "features": [
       "Múltiplas GIF em um PDF",
@@ -53,8 +62,14 @@
       "Distorcida: Evite Preencher"
     ],
     "keyboardShortcuts": [
-      { "keys": "Arrastar e Soltar", "description": "Solte GIF" },
-      { "keys": "Clique", "description": "Selecione GIF" }
+      {
+        "keys": "Arrastar e Soltar",
+        "description": "Solte GIF"
+      },
+      {
+        "keys": "Clique",
+        "description": "Selecione GIF"
+      }
     ]
   },
   "meta": {
@@ -62,5 +77,39 @@
     "description": "Converta GIF para PDF gratuitamente. Combine GIF em PDF. Suporta animadas (primeiro quadro). Seguro."
   },
   "tagline": "Converta GIF para PDF preservando qualidade com tamanhos página personalizados",
-  "pageDescription": "Transforme GIF em PDF profissionais com controle total. Funciona com GIF estáticas e animadas (primeiro quadro). Perfeito apresentações, documentação, arquivos memes. Conversão gratuita segura. Mantém qualidade GIF."
+  "pageDescription": "Transforme GIF em PDF profissionais com controle total. Funciona com GIF estáticas e animadas (primeiro quadro). Perfeito apresentações, documentação, arquivos memes. Conversão gratuita segura. Mantém qualidade GIF.",
+  "ui": {
+    "uploadHeading": "Carregar imagens GIF",
+    "clearAll": "Limpar tudo",
+    "dropZoneMain": "Clique para carregar ou arraste e solte",
+    "dropZoneSub": "Apenas arquivos GIF (até 10MB por arquivo) - O primeiro quadro será usado",
+    "selectedImagesLabel": "Imagens GIF selecionadas",
+    "moveUp": "Mover para cima",
+    "moveDown": "Mover para baixo",
+    "remove": "Remover",
+    "pdfSettingsHeading": "Configurações PDF",
+    "pageSizeLabel": "Tamanho de página",
+    "widthLabel": "Largura (pt)",
+    "heightLabel": "Altura (pt)",
+    "imageFitLabel": "Ajuste de imagem",
+    "fitContain": "Conter (ajustar dentro, manter proporção)",
+    "fitCover": "Cobrir (preencher página, pode cortar)",
+    "fitFill": "Preencher (esticar para preencher)",
+    "fitNone": "Nenhum (tamanho original)",
+    "marginsLabel": "Margens",
+    "filenameLabel": "Nome do arquivo",
+    "filenamePlaceholder": "meu-documento.pdf",
+    "generatingPdf": "Gerando PDF...",
+    "generatePdf": "Gerar PDF",
+    "imageSingular": "imagem",
+    "imagePlural": "imagens",
+    "pdfGeneratedSuccess": "PDF gerado com sucesso!",
+    "pagesLabel": "Páginas:",
+    "fileSizeLabel": "Tamanho do arquivo:",
+    "filenameResultLabel": "Nome do arquivo:",
+    "downloadPdf": "Baixar PDF",
+    "previewHeading": "Pré-visualização PDF",
+    "hidePreview": "Ocultar pré-visualização",
+    "showPreview": "Mostrar pré-visualização"
+  }
 }
