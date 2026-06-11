@@ -62,11 +62,13 @@ interface SavedGradient {
 
 type OutputFormat = 'css' | 'react' | 'cssvar';
 
-type GradientGeneratorProps = BaseToolProps;
+type GradientGeneratorProps = BaseToolProps & { dictionary?: any };
 
 export default function GradientGenerator({
   categoryColor: _categoryColor,
+  dictionary,
 }: GradientGeneratorProps) {
+  const ui = dictionary?.tools?.['gradient-generator']?.ui ?? {};
   // Main gradient configuration
   const [gradientConfig, setGradientConfig] = useState<GradientConfig>({
     type: 'linear',
@@ -414,9 +416,9 @@ export default function GradientGenerator({
     <div className="mx-auto w-full max-w-7xl space-y-6">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="editor">Editor</TabsTrigger>
-          <TabsTrigger value="presets">Presets</TabsTrigger>
-          <TabsTrigger value="favorites">Favorites</TabsTrigger>
+          <TabsTrigger value="editor">{ui.tabEditor || 'Editor'}</TabsTrigger>
+          <TabsTrigger value="presets">{ui.tabPresets || 'Presets'}</TabsTrigger>
+          <TabsTrigger value="favorites">{ui.tabFavorites || 'Favorites'}</TabsTrigger>
         </TabsList>
 
         <TabsContent value="editor" className="space-y-6">
@@ -425,7 +427,7 @@ export default function GradientGenerator({
             {/* Preview Panel */}
             <Card className="p-6">
               <div className="mb-4 flex items-center justify-between gap-2">
-                <h3 className="text-lg font-semibold">Preview</h3>
+                <h3 className="text-lg font-semibold">{ui.previewHeading || 'Preview'}</h3>
                 <div className="flex items-center gap-2">
                   {showSaveInput ? (
                     <>
@@ -437,7 +439,7 @@ export default function GradientGenerator({
                           if (e.key === 'Enter') handleSaveConfirm();
                           if (e.key === 'Escape') handleSaveCancel();
                         }}
-                        placeholder="Name your gradient"
+                        placeholder={ui.gradientNamePlaceholder || 'Name your gradient'}
                         className="h-8 w-36 text-sm"
                       />
                       <Button
@@ -463,7 +465,7 @@ export default function GradientGenerator({
                         onClick={generateRandom}
                       >
                         <Shuffle className="mr-2 h-4 w-4" />
-                        Random
+                        {ui.btnRandom || 'Random'}
                       </Button>
                       <Button
                         variant="outline"
@@ -471,7 +473,7 @@ export default function GradientGenerator({
                         onClick={reverseGradient}
                       >
                         <ArrowLeftRight className="mr-2 h-4 w-4" />
-                        Reverse
+                        {ui.btnReverse || 'Reverse'}
                       </Button>
                       <Button
                         variant="outline"
@@ -479,7 +481,7 @@ export default function GradientGenerator({
                         onClick={handleSaveStart}
                       >
                         <Heart className="mr-2 h-4 w-4" />
-                        Save
+                        {ui.btnSave || 'Save'}
                       </Button>
                     </>
                   )}
@@ -500,7 +502,7 @@ export default function GradientGenerator({
               {/* Interactive Gradient Bar */}
               <div className="mt-4">
                 <Label className="mb-2 block text-xs font-medium text-gray-500">
-                  Drag handles to reposition stops
+                  {ui.dragHandlesLabel || 'Drag handles to reposition stops'}
                 </Label>
                 <div className="relative h-8">
                   <div
@@ -546,7 +548,7 @@ export default function GradientGenerator({
                   }}
                 >
                   <Upload className="mr-1.5 h-3.5 w-3.5" />
-                  {showImportPanel ? 'Hide import' : 'Import CSS gradient'}
+                  {showImportPanel ? (ui.btnHideImport || 'Hide import') : (ui.btnImportCSS || 'Import CSS gradient')}
                 </Button>
 
                 {showImportPanel && (
@@ -568,7 +570,7 @@ export default function GradientGenerator({
                       onClick={handleImportCSS}
                       disabled={!importCssText.trim()}
                     >
-                      Parse &amp; Import
+                      {ui.btnParseImport || 'Parse & Import'}
                     </Button>
                   </div>
                 )}
@@ -577,13 +579,13 @@ export default function GradientGenerator({
 
             {/* Controls Panel */}
             <Card className="p-6">
-              <h3 className="mb-4 text-lg font-semibold">Settings</h3>
+              <h3 className="mb-4 text-lg font-semibold">{ui.settingsHeading || 'Settings'}</h3>
 
               <div className="space-y-6">
                 {/* Gradient Type */}
                 <div>
                   <Label className="mb-2 block text-sm font-medium">
-                    Gradient Type
+                    {ui.labelGradientType || 'Gradient Type'}
                   </Label>
                   <Select
                     value={gradientConfig.type}
@@ -595,9 +597,9 @@ export default function GradientGenerator({
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="linear">Linear</SelectItem>
-                      <SelectItem value="radial">Radial</SelectItem>
-                      <SelectItem value="conic">Conic</SelectItem>
+                      <SelectItem value="linear">{ui.optionLinear || 'Linear'}</SelectItem>
+                      <SelectItem value="radial">{ui.optionRadial || 'Radial'}</SelectItem>
+                      <SelectItem value="conic">{ui.optionConic || 'Conic'}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -606,7 +608,7 @@ export default function GradientGenerator({
                 {gradientConfig.type === 'linear' && (
                   <div>
                     <Label className="mb-2 block text-sm font-medium">
-                      Angle
+                      {ui.labelAngle || 'Angle'}
                     </Label>
                     <div className="flex items-center gap-3">
                       <Slider
@@ -647,7 +649,7 @@ export default function GradientGenerator({
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <Label className="mb-2 block text-sm font-medium">
-                          Shape
+                          {ui.labelShape || 'Shape'}
                         </Label>
                         <Select
                           value={gradientConfig.shape || 'ellipse'}
@@ -661,14 +663,14 @@ export default function GradientGenerator({
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="circle">Circle</SelectItem>
-                            <SelectItem value="ellipse">Ellipse</SelectItem>
+                            <SelectItem value="circle">{ui.optionCircle || 'Circle'}</SelectItem>
+                            <SelectItem value="ellipse">{ui.optionEllipse || 'Ellipse'}</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
                       <div>
                         <Label className="mb-2 block text-sm font-medium">
-                          Size
+                          {ui.labelSize || 'Size'}
                         </Label>
                         <Select
                           value={gradientConfig.size || 'farthest-corner'}
@@ -681,16 +683,16 @@ export default function GradientGenerator({
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="closest-side">
-                              Closest Side
+                              {ui.optionClosestSide || 'Closest Side'}
                             </SelectItem>
                             <SelectItem value="closest-corner">
-                              Closest Corner
+                              {ui.optionClosestCorner || 'Closest Corner'}
                             </SelectItem>
                             <SelectItem value="farthest-side">
-                              Farthest Side
+                              {ui.optionFarthestSide || 'Farthest Side'}
                             </SelectItem>
                             <SelectItem value="farthest-corner">
-                              Farthest Corner
+                              {ui.optionFarthestCorner || 'Farthest Corner'}
                             </SelectItem>
                           </SelectContent>
                         </Select>
@@ -700,7 +702,7 @@ export default function GradientGenerator({
                     <div className="space-y-4">
                       <div>
                         <Label className="mb-1 block text-sm font-medium">
-                          Center X
+                          {ui.labelCenterX || 'Center X'}
                         </Label>
                         <div className="flex items-center gap-3">
                           <Slider
@@ -743,7 +745,7 @@ export default function GradientGenerator({
                       </div>
                       <div>
                         <Label className="mb-1 block text-sm font-medium">
-                          Center Y
+                          {ui.labelCenterY || 'Center Y'}
                         </Label>
                         <div className="flex items-center gap-3">
                           <Slider
@@ -793,7 +795,7 @@ export default function GradientGenerator({
                   <>
                     <div>
                       <Label className="mb-2 block text-sm font-medium">
-                        Start Angle
+                        {ui.labelStartAngle || 'Start Angle'}
                       </Label>
                       <div className="flex items-center gap-3">
                         <Slider
@@ -830,7 +832,7 @@ export default function GradientGenerator({
                     <div className="space-y-4">
                       <div>
                         <Label className="mb-1 block text-sm font-medium">
-                          Center X
+                          {ui.labelCenterX || 'Center X'}
                         </Label>
                         <div className="flex items-center gap-3">
                           <Slider
@@ -873,7 +875,7 @@ export default function GradientGenerator({
                       </div>
                       <div>
                         <Label className="mb-1 block text-sm font-medium">
-                          Center Y
+                          {ui.labelCenterY || 'Center Y'}
                         </Label>
                         <div className="flex items-center gap-3">
                           <Slider
@@ -921,7 +923,7 @@ export default function GradientGenerator({
                 {/* Color Stops */}
                 <div>
                   <div className="mb-3 flex items-center justify-between">
-                    <Label className="text-sm font-medium">Color Stops</Label>
+                    <Label className="text-sm font-medium">{ui.labelColorStops || 'Color Stops'}</Label>
                     <Button
                       variant="outline"
                       size="sm"
@@ -1035,7 +1037,7 @@ export default function GradientGenerator({
                           {/* Position Slider + numeric input */}
                           <div>
                             <Label className="mb-1 block text-xs font-medium">
-                              Position
+                              {ui.labelPosition || 'Position'}
                             </Label>
                             <div className="flex items-center gap-2">
                               <Slider
@@ -1077,7 +1079,7 @@ export default function GradientGenerator({
                           <div>
                             <div className="mb-1 flex items-center gap-1.5">
                               <span className="text-xs font-medium">
-                                Opacity:
+                                {ui.labelOpacity || 'Opacity:'}
                               </span>
                               {editingOpacityStopId === stop.id ? (
                                 <Input
@@ -1120,7 +1122,7 @@ export default function GradientGenerator({
                               ) : (
                                 <span
                                   className="cursor-text rounded px-1 text-xs text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
-                                  title="Double-click to type exact value"
+                                  title={ui.titleDoubleClickOpacity || 'Double-click to type exact value'}
                                   onDoubleClick={() =>
                                     setEditingOpacityStopId(stop.id)
                                   }
@@ -1151,7 +1153,7 @@ export default function GradientGenerator({
           {/* Generated Code Section */}
           <Card className="p-6">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-              <h3 className="text-lg font-semibold">Generated Code</h3>
+              <h3 className="text-lg font-semibold">{ui.generatedCodeHeading || 'Generated Code'}</h3>
               <div className="flex flex-wrap items-center gap-2">
                 <Select
                   value={showCompatibleCSS ? 'compatible' : outputFormat}
@@ -1168,19 +1170,19 @@ export default function GradientGenerator({
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="css">CSS property</SelectItem>
-                    <SelectItem value="react">React style</SelectItem>
-                    <SelectItem value="cssvar">CSS variable</SelectItem>
-                    <SelectItem value="compatible">With fallback</SelectItem>
+                    <SelectItem value="css">{ui.optionCSSProperty || 'CSS property'}</SelectItem>
+                    <SelectItem value="react">{ui.optionReactStyle || 'React style'}</SelectItem>
+                    <SelectItem value="cssvar">{ui.optionCSSVariable || 'CSS variable'}</SelectItem>
+                    <SelectItem value="compatible">{ui.optionWithFallback || 'With fallback'}</SelectItem>
                   </SelectContent>
                 </Select>
                 <Button variant="outline" size="sm" onClick={handleCopyCSS}>
                   <Copy className="mr-2 h-4 w-4" />
-                  {copied ? 'Copied!' : 'Copy'}
+                  {copied ? (ui.btnCopied || 'Copied!') : (ui.btnCopy || 'Copy')}
                 </Button>
                 <Button variant="outline" size="sm" onClick={handleDownloadCSS}>
                   <Download className="mr-2 h-4 w-4" />
-                  Download
+                  {ui.btnDownload || 'Download'}
                 </Button>
               </div>
             </div>
@@ -1197,7 +1199,7 @@ export default function GradientGenerator({
                   !gradientResult.svg.includes('not supported') && (
                     <div>
                       <Label className="mb-2 block text-sm font-medium">
-                        SVG
+                        {ui.labelSVG || 'SVG'}
                       </Label>
                       <Textarea
                         value={`<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
@@ -1222,7 +1224,7 @@ ${gradientResult.svg}
         <TabsContent value="presets" className="space-y-6">
           <Card className="p-6">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-semibold">Gradient Presets</h3>
+              <h3 className="text-lg font-semibold">{ui.presetsHeading || 'Gradient Presets'}</h3>
               <Select
                 value={selectedPresetCategory}
                 onValueChange={setSelectedPresetCategory}
@@ -1270,7 +1272,7 @@ ${gradientResult.svg}
         <TabsContent value="favorites" className="space-y-6">
           <Card className="p-6">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-semibold">Saved Gradients</h3>
+              <h3 className="text-lg font-semibold">{ui.savedGradientsHeading || 'Saved Gradients'}</h3>
               <Badge variant="secondary">{savedGradients.length} saved</Badge>
             </div>
 
@@ -1316,15 +1318,14 @@ ${gradientResult.svg}
                         toast.success('Gradient removed');
                       }}
                     >
-                      Remove
+                      {ui.btnRemove || 'Remove'}
                     </Button>
                   </div>
                 ))}
               </div>
             ) : (
               <div className="py-12 text-center text-gray-500">
-                No saved gradients yet. Create a gradient and save it to your
-                favorites!
+                {ui.emptyFavorites || 'No saved gradients yet. Create a gradient and save it to your favorites!'}
               </div>
             )}
           </Card>
@@ -1334,25 +1335,25 @@ ${gradientResult.svg}
       {/* Keyboard Shortcuts */}
       <Card className="p-4">
         <div className="flex items-center gap-4 text-sm text-gray-600">
-          <span className="shrink-0">Shortcuts:</span>
+          <span className="shrink-0">{ui.shortcutsLabel || 'Shortcuts:'}</span>
           <div className="flex flex-wrap gap-4">
             <div className="flex items-center gap-1.5">
               <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
                 Ctrl+C
               </kbd>
-              <span className="text-xs">Copy</span>
+              <span className="text-xs">{ui.shortcutCopy || 'Copy'}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
                 Ctrl+R
               </kbd>
-              <span className="text-xs">Random</span>
+              <span className="text-xs">{ui.shortcutRandom || 'Random'}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
                 Ctrl+S
               </kbd>
-              <span className="text-xs">Save</span>
+              <span className="text-xs">{ui.shortcutSave || 'Save'}</span>
             </div>
           </div>
         </div>

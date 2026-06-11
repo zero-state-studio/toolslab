@@ -111,5 +111,39 @@
         "description": "Chiudi selettore paese"
       }
     ]
+  },
+  "ui": {
+    "phoneNumberTitle": "Numero di Telefono",
+    "phoneNumberDescription": "Inserisci il numero WhatsApp con cui vuoi chattare",
+    "searchCountryPlaceholder": "Cerca paese...",
+    "noCountriesFound": "Nessun paese trovato",
+    "invalidPhoneNumber": "Inserisci un numero di telefono valido (6-15 cifre)",
+    "phoneNumberHint": "Inserisci il numero senza zeri iniziali. Il prefisso internazionale verrà aggiunto automaticamente.",
+    "prefilledMessageTitle": "Messaggio Precompilato",
+    "prefilledMessageDescription": "Messaggio opzionale che sarà precompilato nella chat",
+    "templatesButton": "Template",
+    "messageTemplatesHeading": "Template Messaggi",
+    "businessLabel": "Aziendale",
+    "personalLabel": "Personale",
+    "marketingLabel": "Marketing",
+    "messagePlaceholder": "Ciao! Vorrei informazioni su...",
+    "characters": "caratteri",
+    "clearMessage": "Cancella messaggio",
+    "generateButton": "Genera Link WhatsApp",
+    "clearButton": "Cancella",
+    "yourLinkTitle": "Il Tuo Link WhatsApp",
+    "yourLinkDescription": "Condividi questo link per avviare una conversazione",
+    "copyLink": "Copia Link",
+    "download": "Scarica",
+    "openWhatsApp": "Apri WhatsApp",
+    "qrCode": "Codice QR",
+    "downloadQR": "Scarica QR",
+    "preview": "Anteprima",
+    "fullNumber": "Numero Completo:",
+    "messageIncluded": "Messaggio Incluso:",
+    "yes": "Sì",
+    "no": "No",
+    "messageLength": "Lunghezza Messaggio:",
+    "chars": "car."
   }
 }

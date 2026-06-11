@@ -81,5 +81,36 @@
     "description": "Convertissez des fichiers CSV en format JSON en ligne. Support des délimiteurs personnalisés, en-têtes et structures imbriquées. Convertisseur CSV gratuit."
   },
   "tagline": "Convertissez les données CSV au format JSON avec analyse intelligente",
-  "pageDescription": "Transformez les fichiers CSV au format JSON avec détection automatique des en-têtes et support des délimiteurs personnalisés. Parfait pour la migration de données, l'intégration d'API et le traitement de feuilles de calcul. Gère les fichiers volumineux avec streaming, préserve les types de données et offre plusieurs formats de sortie. Conversion gratuite et sécurisée basée sur navigateur sans téléchargement de fichiers."
+  "pageDescription": "Transformez les fichiers CSV au format JSON avec détection automatique des en-têtes et support des délimiteurs personnalisés. Parfait pour la migration de données, l'intégration d'API et le traitement de feuilles de calcul. Gère les fichiers volumineux avec streaming, préserve les types de données et offre plusieurs formats de sortie. Conversion gratuite et sécurisée basée sur navigateur sans téléchargement de fichiers.",
+  "ui": {
+    "inputSectionHeading": "Entrée CSV",
+    "loadExample": "Charger l'Exemple",
+    "uploadCsv": "Téléverser CSV",
+    "inputPlaceholder": "Collez vos données CSV ici ou téléversez un fichier...",
+    "optionsSectionHeading": "Options de Conversion",
+    "delimiterLabel": "Délimiteur",
+    "delimiterComma": "Virgule (,)",
+    "delimiterSemicolon": "Point-virgule (;)",
+    "delimiterTab": "Tabulation",
+    "delimiterPipe": "Barre verticale (|)",
+    "outputFormatLabel": "Format de Sortie",
+    "outputFormatArray": "Tableau d'Objets",
+    "outputFormatNested": "Objet Imbriqué",
+    "outputFormatCompact": "Tableau Compact",
+    "customHeadersLabel": "En-têtes Personnalisés",
+    "nullValuesLabel": "Valeurs Nulles",
+    "checkboxFirstRowHeaders": "La première ligne contient des en-têtes",
+    "checkboxTrimWhitespace": "Supprimer les espaces",
+    "checkboxMinifyOutput": "Minifier la sortie JSON",
+    "btnConvert": "Convertir en JSON",
+    "btnConverted": "Converti !",
+    "btnValidate": "Valider CSV",
+    "btnClear": "Effacer",
+    "statsRows": "Lignes",
+    "statsColumns": "Colonnes",
+    "outputSectionHeading": "Sortie JSON",
+    "btnCopy": "Copier",
+    "btnCopied": "Copié !",
+    "btnDownload": "Télécharger"
+  }
 }
