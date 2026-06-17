@@ -116,5 +116,16 @@
       "Einige Shared-Hosts können bestimmte .htaccess-Direktiven einschränken",
       "Leeren Sie den Browser-Cache nach Änderungen an Weiterleitungen, um die Auswirkungen zu sehen"
     ]
-  }
+  },
+  "noRedirects": "Keine Weiterleitungen konfiguriert. Klicken Sie auf \"Weiterleitung Hinzufügen\", um eine zu erstellen.",
+  "htmlCache": "HTML-Cache",
+  "cssJsCache": "CSS/JS-Cache",
+  "imageCache": "Bild-Cache",
+  "fontCache": "Schrift-Cache",
+  "noCache": "Kein Cache",
+  "oneHour": "1 Stunde",
+  "oneDay": "1 Tag",
+  "oneWeek": "1 Woche",
+  "oneMonth": "1 Monat",
+  "oneYear": "1 Jahr"
 }

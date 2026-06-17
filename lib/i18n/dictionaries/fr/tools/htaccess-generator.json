@@ -116,5 +116,16 @@
       "Certains hébergements mutualisés peuvent restreindre certaines directives .htaccess",
       "Videz le cache du navigateur après les modifications de redirections pour voir les effets"
     ]
-  }
+  },
+  "noRedirects": "Aucune redirection configurée. Cliquez sur \"Ajouter une Redirection\" pour en créer une.",
+  "htmlCache": "Cache HTML",
+  "cssJsCache": "Cache CSS/JS",
+  "imageCache": "Cache Images",
+  "fontCache": "Cache Polices",
+  "noCache": "Pas de cache",
+  "oneHour": "1 heure",
+  "oneDay": "1 jour",
+  "oneWeek": "1 semaine",
+  "oneMonth": "1 mois",
+  "oneYear": "1 an"
 }

@@ -8,20 +8,6 @@
   },
   "tagline": "Genera capitoli e timestamp YouTube con creazione automatica di link e conversione tempo",
   "pageDescription": "Generatore professionale di timestamp YouTube per content creator e video editor — gratuito, senza registrazione. Crea timestamp formattati per le descrizioni video, genera Capitoli YouTube per una navigazione migliorata e SEO ottimizzato, converti tra formati di tempo istantaneamente. Aggiungi timestamp con etichette, importa capitoli esistenti ed esporta in più formati. Genera link timestamp cliccabili quando fornisci un URL video. Il convertitore di tempo integrato gestisce i formati HH:MM:SS, MM:SS e secondi. Tutto il processo avviene nel browser per la massima privacy — nessun dato video viene salvato o caricato.",
-  "longTailKeywords": [
-    "generatore timestamp YouTube online gratis",
-    "come aggiungere capitoli YouTube alla descrizione",
-    "generatore capitoli YouTube senza registrazione",
-    "creare timestamp YouTube cliccabili con link",
-    "formato timestamp YouTube capitoli copia incolla",
-    "strumento capitoli YouTube per content creator",
-    "convertitore tempo secondi MM:SS YouTube",
-    "come creare capitoli YouTube per SEO video",
-    "miglior generatore capitoli YouTube gratuito",
-    "importare capitoli YouTube da file di testo",
-    "generatore link timestamp YouTube condivisibili",
-    "timestamp YouTube per podcast episodi YouTube"
-  ],
   "videoUrlPlaceholder": "https://www.youtube.com/watch?v=...",
   "addTimestamp": "Aggiungi Timestamp",
   "time": "Tempo",
@@ -139,5 +125,8 @@
         "description": "Annulla modifica"
       }
     ]
-  }
+  },
+  "actions": "Azioni",
+  "converterPlaceholder": "00:00 o 90",
+  "converterHint": "MM:SS, HH:MM:SS, o secondi"
 }
