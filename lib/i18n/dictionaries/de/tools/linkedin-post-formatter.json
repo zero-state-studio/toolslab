@@ -96,5 +96,31 @@
         "description": "Gesamten Text auswählen"
       }
     ]
+  },
+  "ui": {
+    "toolTitle": "LinkedIn-Post-Formatierer",
+    "templatesBtn": "Vorlagen",
+    "quickStartTemplates": "Schnellstart-Vorlagen",
+    "selectTextHint": "Text auswählen, dann Format klicken",
+    "yourPostLabel": "Ihr LinkedIn-Post",
+    "optimalLabel": "(optimal)",
+    "textareaPlaceholder": "Schreiben Sie hier Ihren LinkedIn-Post... Wählen Sie Text aus und verwenden Sie die Formatierungsschaltflächen oben, um Fett, Kursiv und mehr anzuwenden.",
+    "previewLabel": "Vorschau",
+    "previewYourName": "Ihr Name",
+    "previewYourHeadline": "Ihre Überschrift • 1. Grad",
+    "previewJustNow": "Gerade eben • 🌐",
+    "copiedBtn": "Kopiert!",
+    "copyBtn": "In die Zwischenablage kopieren",
+    "proTipsTitle": "💡 Profi-Tipps",
+    "tip1": "Wählen Sie zuerst den Text aus, dann klicken Sie auf eine Formatierungsschaltfläche",
+    "tip2": "Verwenden Sie Tastaturkürzel: Strg+B (Fett), Strg+I (Kursiv), Strg+U (Unterstrichen)",
+    "tip4": "Verwenden Sie Aufzählungspunkte, um Inhalte übersichtlicher zu gestalten",
+    "titleBold": "Fett (Strg+B)",
+    "titleItalic": "Kursiv (Strg+I)",
+    "titleUnderline": "Unterstrichen (Strg+U)",
+    "titleStrikethrough": "Durchgestrichen",
+    "titleMonospace": "Monospace",
+    "titleBulletList": "Aufzählungsliste",
+    "titleNumberedList": "Nummerierte Liste"
   }
 }

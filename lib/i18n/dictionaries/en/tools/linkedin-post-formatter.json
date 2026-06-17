@@ -96,5 +96,31 @@
         "description": "Select all text"
       }
     ]
+  },
+  "ui": {
+    "toolTitle": "LinkedIn Post Formatter",
+    "templatesBtn": "Templates",
+    "quickStartTemplates": "Quick Start Templates",
+    "selectTextHint": "Select text, then click format",
+    "yourPostLabel": "Your LinkedIn Post",
+    "optimalLabel": "(optimal)",
+    "textareaPlaceholder": "Write your LinkedIn post here... Select text and use the formatting buttons above to apply bold, italic, and more.",
+    "previewLabel": "Preview",
+    "previewYourName": "Your Name",
+    "previewYourHeadline": "Your Headline • 1st",
+    "previewJustNow": "Just now • 🌐",
+    "copiedBtn": "Copied!",
+    "copyBtn": "Copy to Clipboard",
+    "proTipsTitle": "💡 Pro Tips",
+    "tip1": "Select text first, then click a formatting button",
+    "tip2": "Use keyboard shortcuts: Ctrl+B (bold), Ctrl+I (italic), Ctrl+U (underline)",
+    "tip4": "Use bullet points to make content scannable",
+    "titleBold": "Bold (Ctrl+B)",
+    "titleItalic": "Italic (Ctrl+I)",
+    "titleUnderline": "Underline (Ctrl+U)",
+    "titleStrikethrough": "Strikethrough",
+    "titleMonospace": "Monospace",
+    "titleBulletList": "Bullet List",
+    "titleNumberedList": "Numbered List"
   }
 }

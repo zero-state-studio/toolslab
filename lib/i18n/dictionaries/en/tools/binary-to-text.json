@@ -82,5 +82,35 @@
     "description": "Convert binary to text online free — binary to ASCII, text to binary, hex to text, UTF-8 support. No signup required. Instant browser-based binary converter tool."
   },
   "tagline": "Convert binary to text and decode binary data instantly",
-  "pageDescription": "Convert binary numbers to readable text and encode text to binary representation. Supports ASCII, UTF-8, and hexadecimal formats. Features bidirectional conversion between binary, hex, and text with auto-detection and byte statistics. Free online with no signup required — 100% browser-based with no server uploads."
+  "pageDescription": "Convert binary numbers to readable text and encode text to binary representation. Supports ASCII, UTF-8, and hexadecimal formats. Features bidirectional conversion between binary, hex, and text with auto-detection and byte statistics. Free online with no signup required — 100% browser-based with no server uploads.",
+  "ui": {
+    "conversionType": "Conversion Type",
+    "binaryToText": "Binary to Text",
+    "textToBinary": "Text to Binary",
+    "hexToText": "Hex to Text",
+    "textToHex": "Text to Hex",
+    "binaryToHex": "Binary to Hex",
+    "hexToBinary": "Hex to Binary",
+    "spaceSeparatedOutput": "Space-separated output",
+    "inputLabel": "Input",
+    "placeholderBinary": "Enter binary (e.g., 01001000 01100101 01101100 01101100 01101111)",
+    "placeholderHex": "Enter hexadecimal (e.g., 48 65 6C 6C 6F or 0x48656C6C6F)",
+    "placeholderText": "Enter text to convert...",
+    "convertButton": "Convert",
+    "clearButton": "Clear",
+    "outputLabel": "Output",
+    "swapTitle": "Swap input/output",
+    "copyTitle": "Copy to clipboard",
+    "outputPlaceholder": "Converted output will appear here...",
+    "quickExamples": "Quick Examples",
+    "infoTitle": "About Binary, Hex & Text",
+    "infoBinary": "Base-2 number system using only 0 and 1. Each character is represented by 8 bits (1 byte).",
+    "infoHex": "Base-16 number system using 0-9 and A-F. Each pair represents 1 byte (e.g., 48 = \"H\").",
+    "infoAscii": "Standard encoding where each character maps to a number 0-127.",
+    "infoUtf8": "Variable-width encoding supporting all Unicode characters (1-4 bytes per character).",
+    "exampleHelloWorldBinary": "Hello World (Binary)",
+    "exampleHelloText": "Hello (Text)",
+    "exampleHelloHex": "Hello (Hex)",
+    "exampleAsciiArt": "ASCII Art"
+  }
 }

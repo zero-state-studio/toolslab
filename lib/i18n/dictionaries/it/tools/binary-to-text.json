@@ -82,5 +82,35 @@
     "description": "Converti binario in testo ASCII, testo in binario, hex in testo e altri formati. Supporto UTF-8 con conversione istantanea. Strumento gratuito nel browser."
   },
   "tagline": "Converti binario in testo e decodifica dati binari istantaneamente",
-  "pageDescription": "Converti numeri binari in testo leggibile e codifica testo in rappresentazione binaria. Supporta formati ASCII, UTF-8 ed esadecimale. Include conversione bidirezionale tra binario, hex e testo con rilevamento automatico, statistiche byte e risultati istantanei. 100% basato su browser senza upload al server."
+  "pageDescription": "Converti numeri binari in testo leggibile e codifica testo in rappresentazione binaria. Supporta formati ASCII, UTF-8 ed esadecimale. Include conversione bidirezionale tra binario, hex e testo con rilevamento automatico, statistiche byte e risultati istantanei. 100% basato su browser senza upload al server.",
+  "ui": {
+    "conversionType": "Tipo di conversione",
+    "binaryToText": "Binario a Testo",
+    "textToBinary": "Testo a Binario",
+    "hexToText": "Hex a Testo",
+    "textToHex": "Testo a Hex",
+    "binaryToHex": "Binario a Hex",
+    "hexToBinary": "Hex a Binario",
+    "spaceSeparatedOutput": "Output separato da spazi",
+    "inputLabel": "Input",
+    "placeholderBinary": "Inserisci binario (es. 01001000 01100101 01101100 01101100 01101111)",
+    "placeholderHex": "Inserisci esadecimale (es. 48 65 6C 6C 6F o 0x48656C6C6F)",
+    "placeholderText": "Inserisci testo da convertire...",
+    "convertButton": "Converti",
+    "clearButton": "Cancella",
+    "outputLabel": "Output",
+    "swapTitle": "Scambia input/output",
+    "copyTitle": "Copia negli appunti",
+    "outputPlaceholder": "L'output convertito apparirà qui...",
+    "quickExamples": "Esempi rapidi",
+    "infoTitle": "Informazioni su Binary, Hex e Testo",
+    "infoBinary": "Sistema numerico in base 2 che usa solo 0 e 1. Ogni carattere è rappresentato da 8 bit (1 byte).",
+    "infoHex": "Sistema numerico in base 16 che usa 0-9 e A-F. Ogni coppia rappresenta 1 byte (es. 48 = \"H\").",
+    "infoAscii": "Codifica standard in cui ogni carattere corrisponde a un numero da 0 a 127.",
+    "infoUtf8": "Codifica a larghezza variabile che supporta tutti i caratteri Unicode (1-4 byte per carattere).",
+    "exampleHelloWorldBinary": "Hello World (Binario)",
+    "exampleHelloText": "Hello (Testo)",
+    "exampleHelloHex": "Hello (Hex)",
+    "exampleAsciiArt": "ASCII Art"
+  }
 }

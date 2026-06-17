@@ -85,5 +85,31 @@
         "description": "Copy filename"
       }
     ]
+  },
+  "ui": {
+    "alsoConvertTo": "Also convert to:",
+    "base64StringLabel": "Base64 String",
+    "textareaPlaceholder": "Paste Base64 string here, or drag & drop an image / .txt file...",
+    "dropFileHere": "Drop file here",
+    "validBase64": "Valid Base64",
+    "invalidBase64Format": "Invalid Base64 format",
+    "formatMismatchPrefix": "Input appears to be",
+    "formatMismatchSuffix": "— you are on the JPEG converter",
+    "clearButton": "Clear",
+    "errorHeading": "Error",
+    "jpegReady": "JPEG Ready",
+    "hidePreview": "Hide Preview",
+    "showPreview": "Show Preview",
+    "sizeLabel": "Size:",
+    "dimensionsLabel": "Dimensions:",
+    "qualityLabel": "Quality:",
+    "previewHeading": "Preview",
+    "openInNewTab": "Open in new tab",
+    "loadingPreview": "Loading preview...",
+    "failedToLoadPreview": "Failed to load preview",
+    "filenameLabel": "Filename:",
+    "downloadButton": "Download JPEG",
+    "copiedButton": "Copied!",
+    "copyDataUrlButton": "Copy Data URL"
   }
 }

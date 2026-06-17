@@ -30,6 +30,7 @@ import { Switch } from '@/components/ui/switch';
 
 interface BinaryToTextProps {
   categoryColor: string;
+  dictionary?: any;
 }
 
 type ConversionType =
@@ -42,28 +43,33 @@ type ConversionType =
 
 const EXAMPLES = [
   {
+    labelKey: 'exampleHelloWorldBinary',
     label: 'Hello World (Binary)',
     input: '01001000 01100101 01101100 01101100 01101111',
     conversionType: 'binary-to-text' as ConversionType,
   },
   {
+    labelKey: 'exampleHelloText',
     label: 'Hello (Text)',
     input: 'Hello',
     conversionType: 'text-to-binary' as ConversionType,
   },
   {
+    labelKey: 'exampleHelloHex',
     label: 'Hello (Hex)',
     input: '48 65 6C 6C 6F',
     conversionType: 'hex-to-text' as ConversionType,
   },
   {
+    labelKey: 'exampleAsciiArt',
     label: 'ASCII Art',
     input: '42 49 4E 41 52 59',
     conversionType: 'hex-to-binary' as ConversionType,
   },
 ];
 
-export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
+export default function BinaryToText({ categoryColor, dictionary }: BinaryToTextProps) {
+  const ui = dictionary?.tools?.['binary-to-text']?.ui ?? {};
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [conversionType, setConversionType] =
@@ -229,7 +235,7 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
       <div className="flex flex-wrap items-center gap-4">
         <div className="min-w-[200px] flex-1">
           <Label htmlFor="conversion-type" className="mb-2 block">
-            Conversion Type
+            {ui.conversionType || 'Conversion Type'}
           </Label>
           <Select
             value={conversionType}
@@ -239,12 +245,12 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="binary-to-text">Binary to Text</SelectItem>
-              <SelectItem value="text-to-binary">Text to Binary</SelectItem>
-              <SelectItem value="hex-to-text">Hex to Text</SelectItem>
-              <SelectItem value="text-to-hex">Text to Hex</SelectItem>
-              <SelectItem value="binary-to-hex">Binary to Hex</SelectItem>
-              <SelectItem value="hex-to-binary">Hex to Binary</SelectItem>
+              <SelectItem value="binary-to-text">{ui.binaryToText || 'Binary to Text'}</SelectItem>
+              <SelectItem value="text-to-binary">{ui.textToBinary || 'Text to Binary'}</SelectItem>
+              <SelectItem value="hex-to-text">{ui.hexToText || 'Hex to Text'}</SelectItem>
+              <SelectItem value="text-to-hex">{ui.textToHex || 'Text to Hex'}</SelectItem>
+              <SelectItem value="binary-to-hex">{ui.binaryToHex || 'Binary to Hex'}</SelectItem>
+              <SelectItem value="hex-to-binary">{ui.hexToBinary || 'Hex to Binary'}</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -260,7 +266,7 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
               onCheckedChange={setSpaceSeparated}
             />
             <Label htmlFor="space-separated" className="cursor-pointer">
-              Space-separated output
+              {ui.spaceSeparatedOutput || 'Space-separated output'}
             </Label>
           </div>
         ) : null}
@@ -312,7 +318,7 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
       {/* Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <Label htmlFor="input">Input</Label>
+          <Label htmlFor="input">{ui.inputLabel || 'Input'}</Label>
           <span className="text-sm text-muted-foreground">
             {inputLength} characters
           </span>
@@ -323,10 +329,10 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
           onChange={(e) => setInput(e.target.value)}
           placeholder={
             conversionType.startsWith('binary')
-              ? 'Enter binary (e.g., 01001000 01100101 01101100 01101100 01101111)'
+              ? (ui.placeholderBinary || 'Enter binary (e.g., 01001000 01100101 01101100 01101100 01101111)')
               : conversionType.startsWith('hex')
-                ? 'Enter hexadecimal (e.g., 48 65 6C 6C 6F or 0x48656C6C6F)'
-                : 'Enter text to convert...'
+                ? (ui.placeholderHex || 'Enter hexadecimal (e.g., 48 65 6C 6C 6F or 0x48656C6C6F)')
+                : (ui.placeholderText || 'Enter text to convert...')
           }
           className="min-h-[150px] font-mono text-sm"
         />
@@ -340,7 +346,7 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
           className="flex-1 sm:flex-none"
         >
           <Play className="mr-2 h-4 w-4" />
-          Convert
+          {ui.convertButton || 'Convert'}
         </Button>
         <Button
           variant="outline"
@@ -348,14 +354,14 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
           disabled={!input && !output}
         >
           <X className="mr-2 h-4 w-4" />
-          Clear
+          {ui.clearButton || 'Clear'}
         </Button>
       </div>
 
       {/* Output */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <Label htmlFor="output">Output</Label>
+          <Label htmlFor="output">{ui.outputLabel || 'Output'}</Label>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">
               {outputLength} characters
@@ -367,7 +373,7 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
                 variant="ghost"
                 onClick={handleSwap}
                 disabled={!output}
-                title="Swap input/output"
+                title={ui.swapTitle || 'Swap input/output'}
               >
                 <ArrowRightLeft className="h-4 w-4" />
               </Button>
@@ -376,7 +382,7 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
                 variant="ghost"
                 onClick={handleCopy}
                 disabled={!output}
-                title="Copy to clipboard"
+                title={ui.copyTitle || 'Copy to clipboard'}
               >
                 {copied ? (
                   <Check className="h-4 w-4 text-green-500" />
@@ -391,14 +397,14 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
           id="output"
           value={output}
           readOnly
-          placeholder="Converted output will appear here..."
+          placeholder={ui.outputPlaceholder || 'Converted output will appear here...'}
           className="min-h-[150px] bg-muted/50 font-mono text-sm"
         />
       </div>
 
       {/* Quick Examples */}
       <div className="space-y-3">
-        <Label>Quick Examples</Label>
+        <Label>{ui.quickExamples || 'Quick Examples'}</Label>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {EXAMPLES.map((example, index) => (
             <Button
@@ -409,7 +415,7 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
               className="h-auto justify-start py-3 text-left"
             >
               <div className="space-y-1">
-                <div className="text-xs font-semibold">{example.label}</div>
+                <div className="text-xs font-semibold">{ui[example.labelKey] || example.label}</div>
                 <div className="truncate font-mono text-xs text-muted-foreground">
                   {example.input.length > 30
                     ? example.input.substring(0, 30) + '...'
@@ -423,23 +429,19 @@ export default function BinaryToText({ categoryColor }: BinaryToTextProps) {
 
       {/* Info Section */}
       <div className="rounded-lg border bg-muted/30 p-4">
-        <h3 className="mb-2 font-semibold">About Binary, Hex & Text</h3>
+        <h3 className="mb-2 font-semibold">{ui.infoTitle || 'About Binary, Hex & Text'}</h3>
         <ul className="space-y-1 text-sm text-muted-foreground">
           <li>
-            <strong>Binary:</strong> Base-2 number system using only 0 and 1.
-            Each character is represented by 8 bits (1 byte).
+            <strong>Binary:</strong> {ui.infoBinary || 'Base-2 number system using only 0 and 1. Each character is represented by 8 bits (1 byte).'}
           </li>
           <li>
-            <strong>Hexadecimal:</strong> Base-16 number system using 0-9 and
-            A-F. Each pair represents 1 byte (e.g., 48 = &quot;H&quot;).
+            <strong>Hexadecimal:</strong> {ui.infoHex || 'Base-16 number system using 0-9 and A-F. Each pair represents 1 byte (e.g., 48 = "H").'}
           </li>
           <li>
-            <strong>ASCII:</strong> Standard encoding where each character maps
-            to a number 0-127.
+            <strong>ASCII:</strong> {ui.infoAscii || 'Standard encoding where each character maps to a number 0-127.'}
           </li>
           <li>
-            <strong>UTF-8:</strong> Variable-width encoding supporting all
-            Unicode characters (1-4 bytes per character).
+            <strong>UTF-8:</strong> {ui.infoUtf8 || 'Variable-width encoding supporting all Unicode characters (1-4 bytes per character).'}
           </li>
         </ul>
       </div>

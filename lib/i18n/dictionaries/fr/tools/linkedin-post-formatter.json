@@ -96,5 +96,31 @@
         "description": "Sélectionner tout le texte"
       }
     ]
+  },
+  "ui": {
+    "toolTitle": "Formateur de Posts LinkedIn",
+    "templatesBtn": "Modèles",
+    "quickStartTemplates": "Modèles de Démarrage Rapide",
+    "selectTextHint": "Sélectionnez le texte, puis cliquez sur le format",
+    "yourPostLabel": "Votre Post LinkedIn",
+    "optimalLabel": "(optimal)",
+    "textareaPlaceholder": "Rédigez votre post LinkedIn ici... Sélectionnez du texte et utilisez les boutons de mise en forme ci-dessus pour appliquer le gras, l'italique et plus.",
+    "previewLabel": "Aperçu",
+    "previewYourName": "Votre Nom",
+    "previewYourHeadline": "Votre Titre • 1er degré",
+    "previewJustNow": "À l'instant • 🌐",
+    "copiedBtn": "Copié !",
+    "copyBtn": "Copier dans le Presse-papiers",
+    "proTipsTitle": "💡 Conseils Pro",
+    "tip1": "Sélectionnez d'abord le texte, puis cliquez sur un bouton de mise en forme",
+    "tip2": "Utilisez les raccourcis clavier : Ctrl+B (gras), Ctrl+I (italique), Ctrl+U (souligné)",
+    "tip4": "Utilisez des listes à puces pour rendre le contenu plus lisible",
+    "titleBold": "Gras (Ctrl+B)",
+    "titleItalic": "Italique (Ctrl+I)",
+    "titleUnderline": "Souligné (Ctrl+U)",
+    "titleStrikethrough": "Barré",
+    "titleMonospace": "Monospace",
+    "titleBulletList": "Liste à Puces",
+    "titleNumberedList": "Liste Numérotée"
   }
 }

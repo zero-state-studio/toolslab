@@ -96,5 +96,31 @@
         "description": "Seleccionar todo el texto"
       }
     ]
+  },
+  "ui": {
+    "toolTitle": "Formateador de Posts de LinkedIn",
+    "templatesBtn": "Plantillas",
+    "quickStartTemplates": "Plantillas de Inicio Rápido",
+    "selectTextHint": "Selecciona texto, luego haz clic en formato",
+    "yourPostLabel": "Tu Post de LinkedIn",
+    "optimalLabel": "(óptimo)",
+    "textareaPlaceholder": "Escribe aquí tu post de LinkedIn... Selecciona texto y usa los botones de formato de arriba para aplicar negrita, cursiva y más.",
+    "previewLabel": "Vista Previa",
+    "previewYourName": "Tu Nombre",
+    "previewYourHeadline": "Tu Titular • 1er grado",
+    "previewJustNow": "Ahora • 🌐",
+    "copiedBtn": "¡Copiado!",
+    "copyBtn": "Copiar al Portapapeles",
+    "proTipsTitle": "💡 Consejos Pro",
+    "tip1": "Selecciona el texto primero, luego haz clic en un botón de formato",
+    "tip2": "Usa atajos de teclado: Ctrl+B (negrita), Ctrl+I (cursiva), Ctrl+U (subrayado)",
+    "tip4": "Usa puntos de lista para que el contenido sea más legible",
+    "titleBold": "Negrita (Ctrl+B)",
+    "titleItalic": "Cursiva (Ctrl+I)",
+    "titleUnderline": "Subrayado (Ctrl+U)",
+    "titleStrikethrough": "Tachado",
+    "titleMonospace": "Monospace",
+    "titleBulletList": "Lista con Viñetas",
+    "titleNumberedList": "Lista Numerada"
   }
 }
