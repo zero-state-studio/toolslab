@@ -80,5 +80,23 @@
     "description": "Generate UUID v1, v4, v5 online free — bulk generation up to 1000, validation, formatting options. No signup required. Instant, secure, browser-based UUID generator."
   },
   "tagline": "Generate unique UUIDs and GUIDs instantly online",
-  "pageDescription": "Generate UUID v1 and v4 identifiers for databases, APIs, and applications. Create single UUIDs or bulk generate up to 1000 with customizable formatting. Perfect for developers building distributed systems, database schemas, and unique identification systems. Free online with no signup required — secure, browser-based UUID generation instantly."
+  "pageDescription": "Generate UUID v1 and v4 identifiers for databases, APIs, and applications. Create single UUIDs or bulk generate up to 1000 with customizable formatting. Perfect for developers building distributed systems, database schemas, and unique identification systems. Free online with no signup required — secure, browser-based UUID generation instantly.",
+  "ui": {
+    "frameTitle": "UUID Generator",
+    "frameSubtitle": "Universally Unique Identifier",
+    "generateBtn": "Generate UUID",
+    "generateBtnPlural": "Generate UUIDs",
+    "countLabel": "Count",
+    "versionLabel": "Version",
+    "versionV4": "Version 4 (Random)",
+    "versionV1": "Version 1 (Timestamp)",
+    "uppercaseLabel": "Uppercase",
+    "hyphensLabel": "Include hyphens",
+    "outputTitle": "Generated UUIDs",
+    "emptyStateText": "Click",
+    "emptyStateHighlight": "Generate",
+    "emptyStateSuffix": "to create UUIDs.",
+    "copyAriaLabel": "Copy UUID",
+    "infoText": "UUIDs are 128-bit unique identifiers that are practically guaranteed to be unique across all systems and time."
+  }
 }

@@ -81,5 +81,23 @@
         "description": "Baixar arquivo"
       }
     ]
+  },
+  "ui": {
+    "importBtn": "Importar",
+    "quickTemplates": "Modelos Rápidos",
+    "statsWords": "Palavras",
+    "statsCharacters": "Caracteres",
+    "statsLines": "Linhas",
+    "statsReadingTime": "Tempo Leitura",
+    "statsHeadings": "Cabeçalhos",
+    "statsLinks": "Links",
+    "editorPlaceholder": "# Comece a escrever seu markdown aqui...\n\n## Funcionalidades\n- GitHub Flavored Markdown\n- Prévia ao vivo\n- Exportar para HTML/PDF\n- Salvar automaticamente\n\nExperimente escrever texto **negrito** ou *itálico*!",
+    "previewPlaceholder": "A prévia aparecerá aqui...",
+    "keyboardShortcutsHeading": "Atalhos de teclado:",
+    "shortcutBold": "Negrito",
+    "shortcutItalic": "Itálico",
+    "shortcutLink": "Link",
+    "supportsHeading": "Suporta:",
+    "supportsText": "GitHub Flavored Markdown (GFM), tabelas, listas de tarefas, blocos de código e mais."
   }
 }

@@ -9,7 +9,9 @@ import { ToolFrame } from '@/components/tools/ToolFrame';
 
 interface UuidGeneratorProps extends BaseToolProps {}
 
-export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
+export default function UuidGenerator({ categoryColor, dictionary }: UuidGeneratorProps) {
+  const ui = dictionary?.tools?.['uuid-generator']?.ui ?? {};
+
   const [uuids, setUuids] = useState<string[]>([]);
   const [count, setCount] = useState(1);
   const [version, setVersion] = useState<UUIDVersion>('v4');
@@ -45,12 +47,12 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
 
   return (
     <ToolFrame
-      title="UUID Generator"
-      subtitle="Universally Unique Identifier"
+      title={ui.frameTitle || 'UUID Generator'}
+      subtitle={ui.frameSubtitle || 'Universally Unique Identifier'}
       icon={<Hash className="h-5 w-5" />}
       categoryColor={categoryColor}
       primaryAction={{
-        label: `Generate UUID${count > 1 ? 's' : ''}`,
+        label: count > 1 ? (ui.generateBtnPlural || 'Generate UUIDs') : (ui.generateBtn || 'Generate UUID'),
         icon: <Zap className="h-4 w-4" />,
         onClick: generateUUID,
       }}
@@ -62,7 +64,7 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
               htmlFor="uuid-count"
               className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              Count
+              {ui.countLabel || 'Count'}
             </label>
             <input
               id="uuid-count"
@@ -83,7 +85,7 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
               htmlFor="uuid-version"
               className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              Version
+              {ui.versionLabel || 'Version'}
             </label>
             <select
               id="uuid-version"
@@ -91,8 +93,8 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
               onChange={(e) => setVersion(e.target.value as UUIDVersion)}
               className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
             >
-              <option value="v4">Version 4 (Random)</option>
-              <option value="v1">Version 1 (Timestamp)</option>
+              <option value="v4">{ui.versionV4 || 'Version 4 (Random)'}</option>
+              <option value="v1">{ui.versionV1 || 'Version 1 (Timestamp)'}</option>
             </select>
           </div>
         </div>
@@ -106,7 +108,7 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
               style={{ accentColor: categoryColor }}
             />
             <span className="text-sm text-gray-700 dark:text-gray-300">
-              Uppercase
+              {ui.uppercaseLabel || 'Uppercase'}
             </span>
           </label>
           <label className="flex cursor-pointer items-center gap-2">
@@ -118,14 +120,14 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
               style={{ accentColor: categoryColor }}
             />
             <span className="text-sm text-gray-700 dark:text-gray-300">
-              Include hyphens
+              {ui.hyphensLabel || 'Include hyphens'}
             </span>
           </label>
         </div>
       </div>
 
       <ToolFrame.Output
-        title={`Generated UUIDs${hasResults ? ` (${uuids.length})` : ''}`}
+        title={`${ui.outputTitle || 'Generated UUIDs'}${hasResults ? ` (${uuids.length})` : ''}`}
         copyText={joinedUuids}
         downloadText={joinedUuids}
         downloadFilename="uuids.txt"
@@ -133,7 +135,9 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
         show={hasResults}
         emptyState={
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Click <span className="font-medium">Generate</span> to create UUIDs.
+            {ui.emptyStateText || 'Click'}{' '}
+            <span className="font-medium">{ui.emptyStateHighlight || 'Generate'}</span>{' '}
+            {ui.emptyStateSuffix || 'to create UUIDs.'}
           </p>
         }
       >
@@ -154,7 +158,7 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
               </code>
               <button
                 onClick={() => copy(uuid, index)}
-                aria-label={`Copy UUID ${index + 1}`}
+                aria-label={`${ui.copyAriaLabel || 'Copy UUID'} ${index + 1}`}
                 className="rounded p-1 opacity-0 transition-opacity hover:bg-gray-200 group-hover:opacity-100 dark:hover:bg-gray-700"
               >
                 {isCopied(index) ? (
@@ -170,8 +174,7 @@ export default function UuidGenerator({ categoryColor }: UuidGeneratorProps) {
 
       <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
         <p className="text-sm text-blue-800 dark:text-blue-200">
-          UUIDs are 128-bit unique identifiers that are practically guaranteed
-          to be unique across all systems and time.
+          {ui.infoText || 'UUIDs are 128-bit unique identifiers that are practically guaranteed to be unique across all systems and time.'}
         </p>
       </div>
     </ToolFrame>
