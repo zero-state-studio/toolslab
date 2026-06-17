@@ -94,5 +94,10 @@
     "description": "Générez du texte Lorem Ipsum pour designs, maquettes et mises en page. Créez des mots, phrases ou paragraphes en plusieurs styles. Outil en ligne gratuit."
   },
   "tagline": "Générez du texte de remplissage instantanément pour vos designs et maquettes",
-  "pageDescription": "Créez du texte de remplissage Lorem Ipsum pour vos designs, maquettes et mises en page. Générez des mots, phrases ou paragraphes avec du texte latin classique ou des variantes thématiques comme Tech, Hipster ou styles d'Entreprise. Exportez en texte brut, HTML ou Markdown. Parfait pour les designers, développeurs et créateurs de contenu qui ont besoin de texte fictif réaliste. Gratuit, sécurisé et basé sur navigateur."
+  "pageDescription": "Créez du texte de remplissage Lorem Ipsum pour vos designs, maquettes et mises en page. Générez des mots, phrases ou paragraphes avec du texte latin classique ou des variantes thématiques comme Tech, Hipster ou styles d'Entreprise. Exportez en texte brut, HTML ou Markdown. Parfait pour les designers, développeurs et créateurs de contenu qui ont besoin de texte fictif réaliste. Gratuit, sécurisé et basé sur navigateur.",
+  "ui": {
+    "toolTitle": "Générateur Lorem Ipsum",
+    "toolSubtitle": "Générateur de texte de remplissage",
+    "quickPresets": "Préréglages rapides"
+  }
 }

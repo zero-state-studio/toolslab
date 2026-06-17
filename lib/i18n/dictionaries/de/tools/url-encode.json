@@ -81,5 +81,27 @@
     "description": "URL-Zeichenketten kostenlos online kodieren und dekodieren - Sonderzeichen in Prozent-Kodierung umwandeln oder URL-Parameter entschlüsseln. Keine Registrierung erforderlich. Schnelles, sicheres URL-Encoder-/Decoder-Tool."
   },
   "tagline": "URLs und Abfrageparameter sicher kodieren und dekodieren",
-  "pageDescription": "URL-Komponenten und Abfrageparameter für die Webentwicklung kodieren und dekodieren. Sonderzeichen, Leerzeichen und internationale Texte in URLs sicher verarbeiten. Ideal für API-Entwickler, Webformulare und HTTP-Anfragenverarbeitung. Unterstützt Prozent-Kodierungsstandards mit Echtzeit-Konvertierung. Kostenlos online nutzbar ohne Registrierung - browserbasiert und sofort einsatzbereit."
+  "pageDescription": "URL-Komponenten und Abfrageparameter für die Webentwicklung kodieren und dekodieren. Sonderzeichen, Leerzeichen und internationale Texte in URLs sicher verarbeiten. Ideal für API-Entwickler, Webformulare und HTTP-Anfragenverarbeitung. Unterstützt Prozent-Kodierungsstandards mit Echtzeit-Konvertierung. Kostenlos online nutzbar ohne Registrierung - browserbasiert und sofort einsatzbereit.",
+  "ui": {
+    "headerTitle": "URL-Encoder/Decoder",
+    "headerDescription": "URL-Komponenten und Query-Parameter sicher kodieren und dekodieren",
+    "modeAuto": "Auto",
+    "modeEncode": "Kodieren",
+    "modeDecode": "Dekodieren",
+    "typeComponent": "Komponente",
+    "typeFullUrl": "Vollständige URL",
+    "optionsButton": "Optionen",
+    "examplesButton": "Beispiele",
+    "optionHandlePlus": "+ als Leerzeichen behandeln (in Query-Parametern)",
+    "optionBatchMode": "Batch-Modus (eine URL pro Zeile)",
+    "loadSampleButton": "Laden",
+    "inputLabelBatch": "URLs (eine pro Zeile)",
+    "inputLabelSingle": "URL oder Text",
+    "outputLabel": "Ergebnis",
+    "copyButton": "Kopieren",
+    "downloadButton": "Herunterladen",
+    "processingText": "Verarbeitung...",
+    "outputPlaceholder": "Die verarbeitete URL erscheint hier...",
+    "batchResultsLabel": "Batch-Ergebnisse"
+  }
 }

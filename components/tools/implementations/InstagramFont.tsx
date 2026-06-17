@@ -182,12 +182,14 @@ const uiStrings: Record<string, Record<string, string>> = {
   },
 };
 
-function getTranslations(locale?: string) {
-  const ui = uiStrings[locale || 'en'] || uiStrings.en;
+function getTranslations(locale?: string, dictionaryUi?: Record<string, string>, dictionaryPlaceholder?: string) {
+  const fallback = uiStrings[locale || 'en'] || uiStrings.en;
+  const ui = dictionaryUi ? { ...fallback, ...dictionaryUi } : fallback;
+  const placeholder = dictionaryPlaceholder || fallback.placeholder;
   return {
     toolTitle: ui.toolTitle,
     yourText: ui.yourText,
-    placeholder: ui.placeholder,
+    placeholder,
     bioWarning: ui.bioWarning,
     postWarning: ui.postWarning,
     searchStyles: ui.searchStyles,
@@ -209,8 +211,13 @@ function getTranslations(locale?: string) {
   };
 }
 
-export default function InstagramFont({ categoryColor, locale }: InstagramFontProps) {
-  const t = useMemo(() => getTranslations(locale), [locale]);
+export default function InstagramFont({ categoryColor, locale, dictionary }: InstagramFontProps) {
+  const toolDict = dictionary?.tools?.['instagram-font-generator'];
+  const t = useMemo(
+    () => getTranslations(locale, toolDict?.ui, toolDict?.placeholder),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [locale, toolDict]
+  );
   const [input, setInput] = useState('');
   const [generatedStyles, setGeneratedStyles] = useState<
     Array<{
