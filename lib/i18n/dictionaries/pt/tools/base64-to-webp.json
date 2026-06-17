@@ -80,5 +80,35 @@
         "description": "Copiar nome do arquivo"
       }
     ]
+  },
+  "ui": {
+    "alsoConvertTo": "Converter também para:",
+    "inputHeading": "String Base64",
+    "textareaPlaceholder": "Cole a string Base64 aqui, ou arraste uma imagem / arquivo .txt...",
+    "dropFileHere": "Solte o arquivo aqui",
+    "validBase64": "Base64 válido",
+    "invalidBase64Format": "Formato Base64 inválido",
+    "formatMismatchPrefix": "A entrada parece ser",
+    "formatMismatchSuffix": "— você está no conversor WebP",
+    "clearButton": "Limpar",
+    "errorHeading": "Erro",
+    "resultHeading": "WebP Pronto",
+    "hidePreviewButton": "Ocultar Prévia",
+    "showPreviewButton": "Mostrar Prévia",
+    "sizeLabel": "Tamanho:",
+    "dimensionsLabel": "Dimensões:",
+    "compressionLabel": "Compressão:",
+    "alphaLabel": "Alpha:",
+    "yes": "Sim",
+    "no": "Não",
+    "previewHeading": "Prévia",
+    "openInNewTab": "Abrir em nova aba",
+    "loadingPreview": "Carregando prévia...",
+    "failedToLoadPreview": "Falha ao carregar prévia",
+    "imageAlt": "Prévia WebP",
+    "filenameLabel": "Nome do arquivo:",
+    "downloadButton": "Baixar WebP",
+    "copiedButton": "Copiado!",
+    "copyDataUrlButton": "Copiar Data URL"
   }
 }
