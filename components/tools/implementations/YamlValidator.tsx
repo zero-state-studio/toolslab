@@ -29,10 +29,12 @@ import {
 
 interface YamlValidatorProps {
   defaultValue?: string;
+  dictionary?: any;
 }
 
 export default function YamlValidator({
   defaultValue = '',
+  dictionary,
 }: YamlValidatorProps) {
   const [yamlInput, setYamlInput] = useState(defaultValue);
   const [allowDuplicateKeys, setAllowDuplicateKeys] = useState(false);
@@ -47,6 +49,8 @@ export default function YamlValidator({
   const { resultRef, scrollToResult } = useScrollToResult({
     onlyIfNotVisible: false,
   });
+
+  const ui = dictionary?.tools?.['yaml-validator']?.ui ?? {};
 
   const samples = getYamlSamples();
 
@@ -157,11 +161,11 @@ export default function YamlValidator({
       <Card className="p-6">
         <div className="space-y-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <h3 className="text-lg font-semibold">YAML Input</h3>
+            <h3 className="text-lg font-semibold">{ui.yamlInputHeading || 'YAML Input'}</h3>
             <div className="flex flex-wrap gap-2">
               <Button variant="outline" size="sm" onClick={handleFormat}>
                 <FileText className="h-4 w-4 sm:mr-2" />
-                <span className="hidden sm:inline">Format</span>
+                <span className="hidden sm:inline">{ui.formatBtn || 'Format'}</span>
               </Button>
               <input
                 type="file"
@@ -176,7 +180,7 @@ export default function YamlValidator({
                 onClick={() => fileInputRef.current?.click()}
               >
                 <Upload className="h-4 w-4 sm:mr-2" />
-                <span className="hidden sm:inline">Upload</span>
+                <span className="hidden sm:inline">{ui.uploadBtn || 'Upload'}</span>
               </Button>
               <div className="relative">
                 <Button
@@ -185,7 +189,7 @@ export default function YamlValidator({
                   onClick={() => setShowSamples(!showSamples)}
                 >
                   <ChevronDown className="h-4 w-4 sm:mr-2" />
-                  <span className="hidden sm:inline">Samples</span>
+                  <span className="hidden sm:inline">{ui.samplesBtn || 'Samples'}</span>
                 </Button>
                 {showSamples && (
                   <div className="absolute right-0 z-10 mt-2 w-64 rounded-md border bg-white shadow-lg dark:bg-gray-800">
@@ -208,7 +212,7 @@ export default function YamlValidator({
               </div>
               <Button variant="outline" size="sm" onClick={handleClear}>
                 <Trash2 className="h-4 w-4 sm:mr-2" />
-                <span className="hidden sm:inline">Clear</span>
+                <span className="hidden sm:inline">{ui.clearBtn || 'Clear'}</span>
               </Button>
             </div>
           </div>
@@ -216,7 +220,7 @@ export default function YamlValidator({
           <Textarea
             value={yamlInput}
             onChange={(e) => setYamlInput(e.target.value)}
-            placeholder="Paste your YAML here to validate..."
+            placeholder={dictionary?.tools?.['yaml-validator']?.placeholder || 'Paste your YAML here to validate...'}
             className="min-h-[300px] font-mono text-sm"
           />
 
@@ -229,7 +233,7 @@ export default function YamlValidator({
                   onChange={(e) => setAllowDuplicateKeys(e.target.checked)}
                 />
                 <Label htmlFor="allow-duplicates" className="text-sm">
-                  Allow duplicate keys
+                  {ui.allowDuplicateKeys || 'Allow duplicate keys'}
                 </Label>
               </div>
 
@@ -240,7 +244,7 @@ export default function YamlValidator({
                   onChange={(e) => setStrictMode(e.target.checked)}
                 />
                 <Label htmlFor="strict-mode" className="text-sm">
-                  Strict mode
+                  {ui.strictMode || 'Strict mode'}
                 </Label>
               </div>
             </div>
@@ -249,7 +253,7 @@ export default function YamlValidator({
               onClick={validateInput}
               disabled={isValidating || !yamlInput.trim()}
             >
-              {isValidating ? 'Validating...' : 'Validate YAML'}
+              {isValidating ? (ui.validatingBtn || 'Validating...') : (ui.validateBtn || 'Validate YAML')}
             </Button>
           </div>
         </div>
@@ -262,7 +266,7 @@ export default function YamlValidator({
             <div className="flex items-center gap-3">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
               <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-                Validating YAML...
+                {ui.validatingSpinner || 'Validating YAML...'}
               </span>
             </div>
           </Card>
@@ -289,7 +293,7 @@ export default function YamlValidator({
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-green-800 dark:text-green-200">
-                          YAML is Valid ✓
+                          {ui.yamlValidTitle || 'YAML is Valid ✓'}
                         </h3>
                         {result.metadata && (
                           <p className="text-sm text-green-600 dark:text-green-400">
@@ -308,7 +312,7 @@ export default function YamlValidator({
                       </div>
                       <div>
                         <h3 className="text-lg font-semibold text-red-800 dark:text-red-200">
-                          YAML is Invalid ✗
+                          {ui.yamlInvalidTitle || 'YAML is Invalid ✗'}
                         </h3>
                         {result.error && (
                           <p className="text-sm text-red-600 dark:text-red-400">
@@ -324,7 +328,7 @@ export default function YamlValidator({
 
                 {result.isValid && (
                   <Badge className="bg-green-500 hover:bg-green-600">
-                    Valid
+                    {ui.validBadge || 'Valid'}
                   </Badge>
                 )}
               </div>
@@ -334,7 +338,7 @@ export default function YamlValidator({
             {!result.isValid && result.error && (
               <Card className="mb-6 p-6">
                 <h3 className="mb-4 text-lg font-semibold text-red-600 dark:text-red-400">
-                  Error Details
+                  {ui.errorDetailsHeading || 'Error Details'}
                 </h3>
                 <Alert variant="destructive">
                   <AlertCircle className="h-4 w-4" />
@@ -353,7 +357,7 @@ export default function YamlValidator({
                 {result.error.snippet && (
                   <div className="mt-4">
                     <Label className="mb-2 block text-sm font-medium">
-                      Code Context:
+                      {ui.codeContextLabel || 'Code Context:'}
                     </Label>
                     <pre className="overflow-x-auto rounded-md bg-gray-100 p-4 font-mono text-sm dark:bg-gray-800">
                       {result.error.snippet}
@@ -368,21 +372,21 @@ export default function YamlValidator({
               <Card className="p-6">
                 <Tabs value={activeTab} onValueChange={setActiveTab}>
                   <TabsList className="mb-4">
-                    <TabsTrigger value="output">Formatted YAML</TabsTrigger>
-                    <TabsTrigger value="structure">Structure</TabsTrigger>
+                    <TabsTrigger value="output">{ui.formattedYamlTab || 'Formatted YAML'}</TabsTrigger>
+                    <TabsTrigger value="structure">{ui.structureTab || 'Structure'}</TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="output">
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <Label>Pretty Printed YAML</Label>
+                        <Label>{ui.prettyPrintedLabel || 'Pretty Printed YAML'}</Label>
                         <Button
                           variant="outline"
                           size="sm"
                           onClick={() => handleCopy(result.prettyYaml || '')}
                         >
                           <Copy className="mr-2 h-4 w-4" />
-                          {copied ? 'Copied!' : 'Copy'}
+                          {copied ? (ui.copiedBtn || 'Copied!') : (ui.copyBtn || 'Copy')}
                         </Button>
                       </div>
                       <pre className="max-h-[400px] overflow-auto rounded-md bg-gray-100 p-4 font-mono text-sm dark:bg-gray-800">
@@ -394,7 +398,7 @@ export default function YamlValidator({
                   <TabsContent value="structure">
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
-                        <Label>Parsed Structure (JSON)</Label>
+                        <Label>{ui.parsedStructureLabel || 'Parsed Structure (JSON)'}</Label>
                         <Button
                           variant="outline"
                           size="sm"
@@ -405,7 +409,7 @@ export default function YamlValidator({
                           }
                         >
                           <Copy className="mr-2 h-4 w-4" />
-                          {copied ? 'Copied!' : 'Copy JSON'}
+                          {copied ? (ui.copiedBtn || 'Copied!') : (ui.copyJsonBtn || 'Copy JSON')}
                         </Button>
                       </div>
                       <pre className="max-h-[400px] overflow-auto rounded-md bg-gray-100 p-4 font-mono text-sm dark:bg-gray-800">
@@ -422,8 +426,7 @@ export default function YamlValidator({
         {!result && !isValidating && (
           <Card className="p-6">
             <div className="text-center text-gray-500">
-              Enter YAML content above and click &quot;Validate YAML&quot; to
-              see results.
+              {ui.emptyState || 'Enter YAML content above and click "Validate YAML" to see results.'}
             </div>
           </Card>
         )}
@@ -432,18 +435,18 @@ export default function YamlValidator({
       {/* Keyboard Shortcuts */}
       <Card className="p-4">
         <div className="flex items-center gap-4">
-          <span className="text-sm font-medium">Keyboard Shortcuts:</span>
+          <span className="text-sm font-medium">{ui.keyboardShortcutsLabel || 'Keyboard Shortcuts:'}</span>
           <div className="flex items-center gap-2">
             <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
               Ctrl+Enter
             </kbd>
-            <span className="text-xs text-gray-600">Validate</span>
+            <span className="text-xs text-gray-600">{ui.shortcutValidate || 'Validate'}</span>
           </div>
           <div className="flex items-center gap-2">
             <kbd className="rounded bg-gray-100 px-2 py-1 text-xs dark:bg-gray-800">
               Ctrl+V
             </kbd>
-            <span className="text-xs text-gray-600">Paste</span>
+            <span className="text-xs text-gray-600">{ui.shortcutPaste || 'Paste'}</span>
           </div>
         </div>
       </Card>

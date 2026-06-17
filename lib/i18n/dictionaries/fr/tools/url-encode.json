@@ -81,5 +81,27 @@
     "description": "Encodez et décodez des URL en ligne. Convertissez les caractères spéciaux en encodage pourcentage ou décodez les paramètres URL. Outil encoder/decoder gratuit."
   },
   "tagline": "Encodez et décodez les URLs et paramètres de requête en toute sécurité",
-  "pageDescription": "Encodez et décodez les composants URL et paramètres de requête pour le développement web. Gérez les caractères spéciaux, espaces et texte international dans les URLs en toute sécurité. Parfait pour les développeurs d'APIs, formulaires web et gestion de requêtes HTTP. Supporte les standards de percent-encoding avec conversion et validation en temps réel."
+  "pageDescription": "Encodez et décodez les composants URL et paramètres de requête pour le développement web. Gérez les caractères spéciaux, espaces et texte international dans les URLs en toute sécurité. Parfait pour les développeurs d'APIs, formulaires web et gestion de requêtes HTTP. Supporte les standards de percent-encoding avec conversion et validation en temps réel.",
+  "ui": {
+    "headerTitle": "Encodeur/Décodeur URL",
+    "headerDescription": "Encodez et décodez les composants URL et les paramètres de requête en toute sécurité",
+    "modeAuto": "Auto",
+    "modeEncode": "Encoder",
+    "modeDecode": "Décoder",
+    "typeComponent": "Composant",
+    "typeFullUrl": "URL Complète",
+    "optionsButton": "Options",
+    "examplesButton": "Exemples",
+    "optionHandlePlus": "Traiter + comme espace (dans les paramètres de requête)",
+    "optionBatchMode": "Mode lot (une URL par ligne)",
+    "loadSampleButton": "Charger",
+    "inputLabelBatch": "URLs (une par ligne)",
+    "inputLabelSingle": "URL ou Texte",
+    "outputLabel": "Résultat",
+    "copyButton": "Copier",
+    "downloadButton": "Télécharger",
+    "processingText": "Traitement...",
+    "outputPlaceholder": "L'URL traitée apparaîtra ici...",
+    "batchResultsLabel": "Résultats par Lot"
+  }
 }

@@ -75,10 +75,22 @@
       "Browser-Kompatibilität: Verwenden Sie die neueste Version von Chrome, Firefox oder Edge"
     ],
     "keyboardShortcuts": [
-      { "keys": "Strg+V", "description": "Eingabe einfügen" },
-      { "keys": "Strg+Eingeben", "description": "Verarbeiten/Formatieren" },
-      { "keys": "Strg+C", "description": "Ergebnis kopieren" },
-      { "keys": "Strg+S", "description": "Datei herunterladen" }
+      {
+        "keys": "Strg+V",
+        "description": "Eingabe einfügen"
+      },
+      {
+        "keys": "Strg+Eingeben",
+        "description": "Verarbeiten/Formatieren"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Ergebnis kopieren"
+      },
+      {
+        "keys": "Strg+S",
+        "description": "Datei herunterladen"
+      }
     ]
   },
   "features": [
@@ -104,5 +116,49 @@
   "options": {
     "compact": "Kompakt",
     "expanded": "Erweitert"
+  },
+  "ui": {
+    "headerTitle": "JSON-Formatierer & Validator",
+    "processingOverlayTitle": "JSON wird verarbeitet...",
+    "processingOverlaySubtext": "Große JSON-Datei erkannt. Dies kann einen Moment dauern.",
+    "inputLabel": "JSON-Eingabe",
+    "uploadButton": "JSON-Datei hochladen",
+    "uploadedPrefix": "Hochgeladen:",
+    "inputPlaceholder": "{\"Schlüssel\": \"Wert\", \"array\": [1, 2, 3]} oder lade oben eine JSON-Datei hoch",
+    "processingPrefix": "Verarbeitung:",
+    "pleaseWait": "Bitte warten...",
+    "removeFileTitle": "Datei entfernen und Eingabe löschen",
+    "removeFileAriaLabel": "Hochgeladene Datei entfernen",
+    "indentLabel": "Einrückung:",
+    "indent2Spaces": "2 Leerzeichen",
+    "indent4Spaces": "4 Leerzeichen",
+    "indentTab": "Tab",
+    "sortKeysLabel": "Schlüssel sortieren",
+    "processingButton": "Verarbeitung...",
+    "formatButton": "Formatieren",
+    "minifyButton": "Minimieren",
+    "successMessage": "JSON erfolgreich formatiert!",
+    "outputLabel": "Ausgabe",
+    "previewNote": "(Vorschau - Erste 200 Zeilen)",
+    "viewCode": "Code",
+    "viewTree": "Baum",
+    "copyButton": "Kopieren",
+    "copiedButton": "Kopiert!",
+    "downloadButton": "Herunterladen",
+    "largeFileTitle": "Große Datei erkannt",
+    "largeFileDescription": "Oben werden nur die ersten 200 Zeilen angezeigt. Lade die vollständige formatierte Datei über den obigen Button herunter, um den gesamten Inhalt anzuzeigen.",
+    "searchPlaceholder": "Schlüssel im JSON suchen...",
+    "searchButton": "Suchen",
+    "foundOccurrence": "Treffer",
+    "foundOccurrences": "Treffer",
+    "foundPrefix": "Gefunden",
+    "occurrencePrefix": "Treffer",
+    "valueLabel": "Wert:",
+    "copyValueButton": "Wert kopieren",
+    "pathLabel": "Pfad:",
+    "copyPathButton": "Pfad kopieren",
+    "noKeyFound": "im JSON gefunden.",
+    "noKeyPrefix": "Kein Schlüssel",
+    "treeViewError": "Fehler beim Rendern der Baumansicht. Bitte verwende die formatierte Ansicht."
   }
 }

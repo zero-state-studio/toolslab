@@ -85,5 +85,23 @@
         "description": "Copia HTML"
       }
     ]
+  },
+  "ui": {
+    "importBtn": "Importa",
+    "quickTemplates": "Template Rapidi",
+    "statsWords": "Parole",
+    "statsCharacters": "Caratteri",
+    "statsLines": "Righe",
+    "statsReadingTime": "Tempo Lettura",
+    "statsHeadings": "Titoli",
+    "statsLinks": "Link",
+    "editorPlaceholder": "# Inizia a scrivere il tuo markdown qui...\n\n## Funzionalità\n- GitHub Flavored Markdown\n- Anteprima live\n- Esporta in HTML/PDF\n- Salvataggio automatico\n\nProva a scrivere del testo **grassetto** o *corsivo*!",
+    "previewPlaceholder": "L'anteprima apparirà qui...",
+    "keyboardShortcutsHeading": "Scorciatoie da tastiera:",
+    "shortcutBold": "Grassetto",
+    "shortcutItalic": "Corsivo",
+    "shortcutLink": "Link",
+    "supportsHeading": "Supporta:",
+    "supportsText": "GitHub Flavored Markdown (GFM), tabelle, task list, blocchi codice e altro."
   }
 }

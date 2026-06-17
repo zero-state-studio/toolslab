@@ -102,5 +102,21 @@
     "helpDescription": "Votre soutien peut nous aider à couvrir les coûts du serveur et réactiver ce service. Chaque contribution, aussi petite soit-elle, fait la différence.",
     "donateButton": "Offrez-moi un café",
     "thanks": "Merci pour votre compréhension et votre soutien !"
+  },
+  "ui": {
+    "dropActive": "Déposez les fichiers PDF ici...",
+    "dropMainText": "Glissez-déposez des fichiers PDF ici, ou cliquez pour sélectionner",
+    "dropHint": "Prise en charge de 10 fichiers maximum, 50 Mo chacun",
+    "buttonConverting": "Conversion en cours...",
+    "buttonDownloadAll": "Tout télécharger",
+    "progressWait": "Veuillez patienter, cela peut prendre quelques secondes",
+    "conversionSuccessful": "Conversion réussie",
+    "buttonDownloadWord": "Télécharger le document Word",
+    "tipsHeading": "Conseils pour de meilleurs résultats",
+    "tip1": "Conversion de haute qualité grâce à des algorithmes professionnels",
+    "tip2": "La mise en page, les tableaux et la mise en forme sont préservés automatiquement",
+    "tip3": "Toute la conversion se fait sur notre serveur — rapide et sécurisée",
+    "tip4": "Vos fichiers ne sont jamais stockés et sont supprimés immédiatement après la conversion",
+    "tip5": "Pour les PDF protégés par mot de passe, supprimez d'abord le mot de passe"
   }
 }

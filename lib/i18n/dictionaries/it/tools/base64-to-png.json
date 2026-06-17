@@ -84,5 +84,31 @@
         "description": "Copia nome file"
       }
     ]
+  },
+  "ui": {
+    "alsoConvertTo": "Converti anche in:",
+    "textareaPlaceholder": "Incolla la stringa Base64 qui, oppure trascina un'immagine / file .txt...",
+    "dropFileHere": "Rilascia il file qui",
+    "validBase64": "Base64 valido",
+    "invalidBase64Format": "Formato Base64 non valido",
+    "formatMismatchPrefix": "L'input sembra essere",
+    "formatMismatchSuffix": "— sei sul convertitore PNG",
+    "clearButton": "Cancella",
+    "errorHeading": "Errore",
+    "pngReady": "PNG pronto",
+    "hidePreview": "Nascondi anteprima",
+    "showPreview": "Mostra anteprima",
+    "sizeLabel": "Dimensione:",
+    "dimensionsLabel": "Dimensioni:",
+    "colorTypeLabel": "Tipo colore:",
+    "bitDepthLabel": "Profondità bit:",
+    "previewHeading": "Anteprima",
+    "openInNewTab": "Apri in una nuova scheda",
+    "loadingPreview": "Caricamento anteprima...",
+    "failedToLoadPreview": "Impossibile caricare l'anteprima",
+    "filenameLabel": "Nome file:",
+    "downloadButton": "Scarica PNG",
+    "copiedButton": "Copiato!",
+    "copyDataUrlButton": "Copia Data URL"
   }
 }

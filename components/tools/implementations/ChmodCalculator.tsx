@@ -101,7 +101,7 @@ export default function ChmodCalculator({ dictionary }: ChmodCalculatorProps) {
   const [isRecursive, setIsRecursive] = useState(false);
 
   // Get translations with fallbacks
-  const t = dictionary || {};
+  const t = dictionary?.tools?.['chmod-calculator'] || {};
   const labels = {
     owner: t.owner || 'Owner',
     group: t.group || 'Group',

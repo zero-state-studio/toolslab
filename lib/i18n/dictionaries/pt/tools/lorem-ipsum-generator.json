@@ -94,5 +94,10 @@
     "description": "Gere texto Lorem Ipsum para designs, mockups e layouts. Crie palavras, frases ou parágrafos com múltiplos estilos de texto. Ferramenta online gratuita e rápida."
   },
   "tagline": "Gere texto de preenchimento instantaneamente para designs e mockups",
-  "pageDescription": "Crie texto de preenchimento Lorem Ipsum para seus designs, mockups e layouts. Gere palavras, frases ou parágrafos com texto latino clássico ou variantes temáticas como Tech, Hipster ou estilos Corporativos. Exporte como texto simples, HTML ou Markdown. Perfeito para designers, desenvolvedores e criadores de conteúdo que precisam de texto fictício realista. Gratuito, seguro e baseado em navegador."
+  "pageDescription": "Crie texto de preenchimento Lorem Ipsum para seus designs, mockups e layouts. Gere palavras, frases ou parágrafos com texto latino clássico ou variantes temáticas como Tech, Hipster ou estilos Corporativos. Exporte como texto simples, HTML ou Markdown. Perfeito para designers, desenvolvedores e criadores de conteúdo que precisam de texto fictício realista. Gratuito, seguro e baseado em navegador.",
+  "ui": {
+    "toolTitle": "Gerador Lorem Ipsum",
+    "toolSubtitle": "Gerador de texto de preenchimento",
+    "quickPresets": "Presets rápidos"
+  }
 }

@@ -85,5 +85,31 @@
         "description": "Copiar nombre de archivo"
       }
     ]
+  },
+  "ui": {
+    "alsoConvertTo": "Convertir también a:",
+    "base64StringLabel": "Cadena Base64",
+    "textareaPlaceholder": "Pega la cadena Base64 aquí, o arrastra una imagen / archivo .txt...",
+    "dropFileHere": "Suelta el archivo aquí",
+    "validBase64": "Base64 válido",
+    "invalidBase64Format": "Formato Base64 no válido",
+    "formatMismatchPrefix": "La entrada parece ser",
+    "formatMismatchSuffix": "— estás en el convertidor JPEG",
+    "clearButton": "Limpiar",
+    "errorHeading": "Error",
+    "jpegReady": "JPEG listo",
+    "hidePreview": "Ocultar vista previa",
+    "showPreview": "Mostrar vista previa",
+    "sizeLabel": "Tamaño:",
+    "dimensionsLabel": "Dimensiones:",
+    "qualityLabel": "Calidad:",
+    "previewHeading": "Vista previa",
+    "openInNewTab": "Abrir en nueva pestaña",
+    "loadingPreview": "Cargando vista previa...",
+    "failedToLoadPreview": "Error al cargar la vista previa",
+    "filenameLabel": "Nombre de archivo:",
+    "downloadButton": "Descargar JPEG",
+    "copiedButton": "¡Copiado!",
+    "copyDataUrlButton": "Copiar Data URL"
   }
 }

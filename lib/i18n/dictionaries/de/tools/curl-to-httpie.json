@@ -12,10 +12,22 @@
   "instructions": {
     "title": "So verwenden Sie den cURL zu HTTPie Konverter",
     "steps": [
-      { "title": "cURL-Befehl einfügen", "description": "Aus Terminal, DevTools oder API-Dokumentation." },
-      { "title": "HTTPie-One-Liner kopieren", "description": "Kurzform-Syntax mit schlüssel:wert-Headern und schlüssel=wert-Body-Feldern." },
-      { "title": "HTTPie-Befehl ausführen", "description": "HTTPie installieren (pip install httpie) und den Befehl in die Shell einfügen." },
-      { "title": "Optionen anpassen", "description": "Timeout und SSL-Verifikation über das Panel anpassen." }
+      {
+        "title": "cURL-Befehl einfügen",
+        "description": "Aus Terminal, DevTools oder API-Dokumentation."
+      },
+      {
+        "title": "HTTPie-One-Liner kopieren",
+        "description": "Kurzform-Syntax mit schlüssel:wert-Headern und schlüssel=wert-Body-Feldern."
+      },
+      {
+        "title": "HTTPie-Befehl ausführen",
+        "description": "HTTPie installieren (pip install httpie) und den Befehl in die Shell einfügen."
+      },
+      {
+        "title": "Optionen anpassen",
+        "description": "Timeout und SSL-Verifikation über das Panel anpassen."
+      }
     ],
     "features": [
       "http- und https-CLI mit Kurzform-Syntax",
@@ -53,10 +65,82 @@
       "Fehlende Header: prüfen, dass -H-Flags in 'Header:Value'-Syntax konvertiert wurden"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Eingabe einfügen" },
-      { "keys": "Ctrl+Enter", "description": "HTTPie generieren" },
-      { "keys": "Ctrl+C", "description": "Ergebnis kopieren" },
-      { "keys": "Ctrl+S", "description": ".sh-Datei herunterladen" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Eingabe einfügen"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "HTTPie generieren"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Ergebnis kopieren"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": ".sh-Datei herunterladen"
+      }
     ]
+  },
+  "ui": {
+    "curlCommand": "cURL-Befehl",
+    "clear": "Leeren",
+    "import": "Importieren",
+    "inputPlaceholder": "cURL-Befehl hier einfügen...",
+    "quickExamples": "Schnelle Beispiele",
+    "exampleSimpleGet": "Einfaches GET",
+    "examplePostJson": "POST mit JSON",
+    "exampleBearerAuth": "Bearer-Auth",
+    "exampleFormUpload": "Formular-Upload",
+    "exampleGraphql": "GraphQL-Query",
+    "exampleComplexRequest": "Komplexe Anfrage",
+    "language": "Sprache",
+    "framework": "Framework",
+    "comingSoon": "Demnächst",
+    "generatorComingSoonPrefix": "Der Generator für",
+    "generatorComingSoonSuffix": "ist demnächst verfügbar. Wähle eine Sprache mit verfügbarem Framework (z. B. JavaScript + fetch, Python + requests), um sofort Code zu generieren.",
+    "advancedOptions": "Erweiterte Optionen",
+    "errorHandling": "Fehlerbehandlung",
+    "none": "Keine",
+    "basicTryCatch": "Einfaches Try-Catch",
+    "comprehensive": "Umfassend",
+    "asyncAwait": "Async/Await",
+    "extractEnvVars": "Umgebungsvariablen extrahieren",
+    "includeTypes": "Typen einschließen",
+    "retryLogic": "Retry-Logik",
+    "includeLogging": "Logging einschließen",
+    "includeComments": "Kommentare einschließen",
+    "indentation": "Einrückung",
+    "indentSize": "Einrückungsgröße",
+    "spaces": "Leerzeichen",
+    "tabs": "Tabs",
+    "converting": "Wird konvertiert...",
+    "convertToCode": "In Code umwandeln",
+    "generatedCode": "Generierter Code",
+    "copied": "Kopiert",
+    "copy": "Kopieren",
+    "download": "Herunterladen",
+    "codeTab": "Code",
+    "envVarsTab": "Env-Variablen",
+    "infoTab": "Info",
+    "addEnvVarsHint": "Füge diese Umgebungsvariablen deiner .env-Datei hinzu",
+    "noEnvVars": "Keine Umgebungsvariablen extrahiert.",
+    "parsedCurlDetails": "Analysierte cURL-Details",
+    "methodLabel": "Methode:",
+    "urlLabel": "URL:",
+    "authTypeLabel": "Auth-Typ:",
+    "dataTypeLabel": "Datentyp:",
+    "headers": "Header",
+    "dependencies": "Abhängigkeiten",
+    "installPackagesHint": "Installiere diese Pakete, um den generierten Code zu verwenden:",
+    "emptyState": "Der generierte Code erscheint hier",
+    "supportedFeatures": "Unterstützte Funktionen",
+    "allHttpMethods": "Alle HTTP-Methoden",
+    "allHttpMethodsDesc": "GET, POST, PUT, DELETE, PATCH usw.",
+    "typeInference": "Typinferenz",
+    "typeInferenceDesc": "Typen automatisch aus JSON generieren",
+    "errorHandlingDesc": "Try-Catch, Retry-Logik, Timeouts",
+    "languagesCount": "15+ Sprachen"
   }
 }

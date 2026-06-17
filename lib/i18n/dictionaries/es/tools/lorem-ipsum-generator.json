@@ -94,5 +94,10 @@
     "description": "Genere texto de relleno Lorem Ipsum para diseños, maquetas y layouts. Cree palabras, oraciones o párrafos con múltiples estilos de texto. Herramienta gratuita."
   },
   "tagline": "Genera texto de relleno instantáneamente para diseños y maquetas",
-  "pageDescription": "Crea texto de relleno Lorem Ipsum para tus diseños, maquetas y layouts. Genera palabras, oraciones o párrafos con texto latino clásico o variantes temáticas como Tech, Hipster o estilos Corporativos. Exporta como texto plano, HTML o Markdown. Perfecto para diseñadores, desarrolladores y creadores de contenido que necesitan texto ficticio realista. Gratuito, seguro y basado en navegador."
+  "pageDescription": "Crea texto de relleno Lorem Ipsum para tus diseños, maquetas y layouts. Genera palabras, oraciones o párrafos con texto latino clásico o variantes temáticas como Tech, Hipster o estilos Corporativos. Exporta como texto plano, HTML o Markdown. Perfecto para diseñadores, desarrolladores y creadores de contenido que necesitan texto ficticio realista. Gratuito, seguro y basado en navegador.",
+  "ui": {
+    "toolTitle": "Generador Lorem Ipsum",
+    "toolSubtitle": "Generador de texto de relleno",
+    "quickPresets": "Presets rápidos"
+  }
 }

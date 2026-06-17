@@ -12,10 +12,22 @@
   "instructions": {
     "title": "Come usare il convertitore cURL in Go",
     "steps": [
-      { "title": "Incolla comando cURL", "description": "Copia da terminale, DevTools, documentazione API o Postman e incolla." },
-      { "title": "Scegli net/http o Resty", "description": "net/http per codice stdlib senza dipendenze; Resty per API fluente diffusa nei microservizi." },
-      { "title": "Copia il Go generato", "description": "Il codice include import, context, timeout, defer Body.Close, controlli errore. Incolla in main.go." },
-      { "title": "Personalizza opzioni", "description": "Regola error handling, timeout, verifica SSL dal pannello opzioni." }
+      {
+        "title": "Incolla comando cURL",
+        "description": "Copia da terminale, DevTools, documentazione API o Postman e incolla."
+      },
+      {
+        "title": "Scegli net/http o Resty",
+        "description": "net/http per codice stdlib senza dipendenze; Resty per API fluente diffusa nei microservizi."
+      },
+      {
+        "title": "Copia il Go generato",
+        "description": "Il codice include import, context, timeout, defer Body.Close, controlli errore. Incolla in main.go."
+      },
+      {
+        "title": "Personalizza opzioni",
+        "description": "Regola error handling, timeout, verifica SSL dal pannello opzioni."
+      }
     ],
     "features": [
       "Stdlib net/http — nessuna dipendenza esterna",
@@ -54,10 +66,82 @@
       "Import Resty non trovato: esegui 'go get github.com/go-resty/resty/v2'"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Incolla input" },
-      { "keys": "Ctrl+Enter", "description": "Genera Go" },
-      { "keys": "Ctrl+C", "description": "Copia risultato" },
-      { "keys": "Ctrl+S", "description": "Scarica file .go" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla input"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Genera Go"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia risultato"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Scarica file .go"
+      }
     ]
+  },
+  "ui": {
+    "curlCommand": "Comando cURL",
+    "clear": "Pulisci",
+    "import": "Importa",
+    "inputPlaceholder": "Incolla qui il tuo comando cURL...",
+    "quickExamples": "Esempi rapidi",
+    "exampleSimpleGet": "GET semplice",
+    "examplePostJson": "POST con JSON",
+    "exampleBearerAuth": "Auth Bearer",
+    "exampleFormUpload": "Upload form",
+    "exampleGraphql": "Query GraphQL",
+    "exampleComplexRequest": "Richiesta complessa",
+    "language": "Linguaggio",
+    "framework": "Framework",
+    "comingSoon": "In arrivo",
+    "generatorComingSoonPrefix": "Il generatore per",
+    "generatorComingSoonSuffix": "è in arrivo. Scegli un linguaggio con un framework disponibile (es. JavaScript + fetch, Python + requests) per generare il codice subito.",
+    "advancedOptions": "Opzioni avanzate",
+    "errorHandling": "Gestione errori",
+    "none": "Nessuna",
+    "basicTryCatch": "Try-Catch di base",
+    "comprehensive": "Completa",
+    "asyncAwait": "Async/Await",
+    "extractEnvVars": "Estrai variabili d'ambiente",
+    "includeTypes": "Includi tipi",
+    "retryLogic": "Logica di retry",
+    "includeLogging": "Includi logging",
+    "includeComments": "Includi commenti",
+    "indentation": "Indentazione",
+    "indentSize": "Dimensione indentazione",
+    "spaces": "Spazi",
+    "tabs": "Tab",
+    "converting": "Conversione in corso...",
+    "convertToCode": "Converti in codice",
+    "generatedCode": "Codice generato",
+    "copied": "Copiato",
+    "copy": "Copia",
+    "download": "Scarica",
+    "codeTab": "Codice",
+    "envVarsTab": "Variabili Env",
+    "infoTab": "Info",
+    "addEnvVarsHint": "Aggiungi queste variabili d'ambiente al tuo file .env",
+    "noEnvVars": "Nessuna variabile d'ambiente estratta.",
+    "parsedCurlDetails": "Dettagli cURL analizzati",
+    "methodLabel": "Metodo:",
+    "urlLabel": "URL:",
+    "authTypeLabel": "Tipo di auth:",
+    "dataTypeLabel": "Tipo di dati:",
+    "headers": "Header",
+    "dependencies": "Dipendenze",
+    "installPackagesHint": "Installa questi pacchetti per usare il codice generato:",
+    "emptyState": "Il codice generato apparirà qui",
+    "supportedFeatures": "Funzionalità supportate",
+    "allHttpMethods": "Tutti i metodi HTTP",
+    "allHttpMethodsDesc": "GET, POST, PUT, DELETE, PATCH, ecc.",
+    "typeInference": "Inferenza dei tipi",
+    "typeInferenceDesc": "Genera automaticamente i tipi dal JSON",
+    "errorHandlingDesc": "Try-catch, logica di retry, timeout",
+    "languagesCount": "15+ linguaggi"
   }
 }

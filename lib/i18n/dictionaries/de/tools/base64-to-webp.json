@@ -88,5 +88,35 @@
         "description": "Dateinamen kopieren"
       }
     ]
+  },
+  "ui": {
+    "alsoConvertTo": "Auch konvertieren zu:",
+    "inputHeading": "Base64-Zeichenkette",
+    "textareaPlaceholder": "Base64-Zeichenkette hier einfügen oder Bild / .txt-Datei hierher ziehen...",
+    "dropFileHere": "Datei hier ablegen",
+    "validBase64": "Gültiges Base64",
+    "invalidBase64Format": "Ungültiges Base64-Format",
+    "formatMismatchPrefix": "Die Eingabe scheint",
+    "formatMismatchSuffix": "zu sein — Sie befinden sich im WebP-Konverter",
+    "clearButton": "Leeren",
+    "errorHeading": "Fehler",
+    "resultHeading": "WebP bereit",
+    "hidePreviewButton": "Vorschau ausblenden",
+    "showPreviewButton": "Vorschau anzeigen",
+    "sizeLabel": "Größe:",
+    "dimensionsLabel": "Abmessungen:",
+    "compressionLabel": "Komprimierung:",
+    "alphaLabel": "Alpha:",
+    "yes": "Ja",
+    "no": "Nein",
+    "previewHeading": "Vorschau",
+    "openInNewTab": "In neuem Tab öffnen",
+    "loadingPreview": "Vorschau wird geladen...",
+    "failedToLoadPreview": "Vorschau konnte nicht geladen werden",
+    "imageAlt": "WebP-Vorschau",
+    "filenameLabel": "Dateiname:",
+    "downloadButton": "WebP herunterladen",
+    "copiedButton": "Kopiert!",
+    "copyDataUrlButton": "Daten-URL kopieren"
   }
 }

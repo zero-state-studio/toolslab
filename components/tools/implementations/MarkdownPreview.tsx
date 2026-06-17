@@ -36,7 +36,8 @@ const THEME_KEY = 'markdown-preview-theme';
 type ViewMode = 'split' | 'editor' | 'preview';
 type Theme = 'github-light' | 'github-dark';
 
-export default function MarkdownPreview() {
+export default function MarkdownPreview({ dictionary }: { dictionary?: any }) {
+  const ui = dictionary?.tools?.['markdown-preview']?.ui ?? {};
   const isHydrated = useHydration();
   const { addToHistory } = useToolStore();
   const { resultRef, scrollToResult } = useScrollToResult({
@@ -259,7 +260,7 @@ export default function MarkdownPreview() {
                     }
                   >
                     <Upload className="mr-2 h-4 w-4" />
-                    Import
+                    {ui.importBtn || 'Import'}
                   </Button>
                 </label>
               </div>
@@ -315,7 +316,7 @@ export default function MarkdownPreview() {
               onClick={() => setShowTemplates(!showTemplates)}
               className="flex w-full items-center justify-between text-left text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              <span>Quick Templates</span>
+              <span>{ui.quickTemplates || 'Quick Templates'}</span>
               <span className="text-xs">{showTemplates ? '▼' : '▶'}</span>
             </button>
             {showTemplates && (
@@ -343,31 +344,31 @@ export default function MarkdownPreview() {
           <CardContent className="p-4">
             <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4 lg:grid-cols-6">
               <div>
-                <p className="text-muted-foreground">Words</p>
+                <p className="text-muted-foreground">{ui.statsWords || 'Words'}</p>
                 <p className="font-semibold">{stats.words.toLocaleString()}</p>
               </div>
               <div>
-                <p className="text-muted-foreground">Characters</p>
+                <p className="text-muted-foreground">{ui.statsCharacters || 'Characters'}</p>
                 <p className="font-semibold">
                   {stats.characters.toLocaleString()}
                 </p>
               </div>
               <div>
-                <p className="text-muted-foreground">Lines</p>
+                <p className="text-muted-foreground">{ui.statsLines || 'Lines'}</p>
                 <p className="font-semibold">{stats.lines.toLocaleString()}</p>
               </div>
               <div>
-                <p className="text-muted-foreground">Reading Time</p>
+                <p className="text-muted-foreground">{ui.statsReadingTime || 'Reading Time'}</p>
                 <p className="font-semibold">{stats.readingTime} min</p>
               </div>
               <div>
-                <p className="text-muted-foreground">Headings</p>
+                <p className="text-muted-foreground">{ui.statsHeadings || 'Headings'}</p>
                 <p className="font-semibold">
                   {Object.values(stats.headings).reduce((a, b) => a + b, 0)}
                 </p>
               </div>
               <div>
-                <p className="text-muted-foreground">Links</p>
+                <p className="text-muted-foreground">{ui.statsLinks || 'Links'}</p>
                 <p className="font-semibold">{stats.links}</p>
               </div>
             </div>
@@ -391,15 +392,7 @@ export default function MarkdownPreview() {
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 onBlur={trackUsage}
-                placeholder="# Start writing your markdown here...
-
-## Features
-- GitHub Flavored Markdown
-- Live preview
-- Export to HTML/PDF
-- Auto-save
-
-Try typing some **bold** or *italic* text!"
+                placeholder={ui.editorPlaceholder || '# Start writing your markdown here...\n\n## Features\n- GitHub Flavored Markdown\n- Live preview\n- Export to HTML/PDF\n- Auto-save\n\nTry typing some **bold** or *italic* text!'}
                 className="h-[600px] resize-none border-0 font-mono text-sm focus-visible:ring-0 focus-visible:ring-offset-0"
                 style={{
                   backgroundColor:
@@ -524,7 +517,7 @@ Try typing some **bold** or *italic* text!"
                 dangerouslySetInnerHTML={{
                   __html:
                     html ||
-                    '<p style="color: #6b7280;">Preview will appear here...</p>',
+                    `<p style="color: #6b7280;">${ui.previewPlaceholder || 'Preview will appear here...'}</p>`,
                 }}
               />
             </CardContent>
@@ -537,31 +530,30 @@ Try typing some **bold** or *italic* text!"
         <CardContent className="p-4">
           <div className="space-y-2 text-sm text-muted-foreground">
             <p>
-              <strong>Keyboard shortcuts:</strong>
+              <strong>{ui.keyboardShortcutsHeading || 'Keyboard shortcuts:'}</strong>
             </p>
             <ul className="ml-2 list-inside list-disc space-y-1">
               <li>
                 <kbd className="rounded bg-muted px-1.5 py-0.5">
                   Ctrl/Cmd + B
                 </kbd>{' '}
-                - Bold
+                - {ui.shortcutBold || 'Bold'}
               </li>
               <li>
                 <kbd className="rounded bg-muted px-1.5 py-0.5">
                   Ctrl/Cmd + I
                 </kbd>{' '}
-                - Italic
+                - {ui.shortcutItalic || 'Italic'}
               </li>
               <li>
                 <kbd className="rounded bg-muted px-1.5 py-0.5">
                   Ctrl/Cmd + K
                 </kbd>{' '}
-                - Link
+                - {ui.shortcutLink || 'Link'}
               </li>
             </ul>
             <p className="pt-2">
-              <strong>Supports:</strong> GitHub Flavored Markdown (GFM), tables,
-              task lists, code blocks, and more.
+              <strong>{ui.supportsHeading || 'Supports:'}</strong> {ui.supportsText || 'GitHub Flavored Markdown (GFM), tables, task lists, code blocks, and more.'}
             </p>
           </div>
         </CardContent>

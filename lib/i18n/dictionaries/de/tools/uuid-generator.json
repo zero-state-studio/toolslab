@@ -80,5 +80,23 @@
     "description": "UUID v1, v4 und v5 kostenlos online generieren - Massenerzeugung bis zu 1000 Stück, Validierung und Formatierungsoptionen. Keine Registrierung erforderlich. Sofortiger, sicherer, browserbasierter UUID-Generator."
   },
   "tagline": "Einzigartige UUIDs und GUIDs sofort online generieren",
-  "pageDescription": "UUID-v1- und v4-Bezeichner für Datenbanken, APIs und Anwendungen generieren. Erstellen Sie einzelne UUIDs oder erzeugen Sie bis zu 1000 auf einmal mit anpassbarer Formatierung. Ideal für Entwickler, die verteilte Systeme, Datenbankschemata und eindeutige Identifikationssysteme aufbauen. Kostenlos online nutzbar ohne Registrierung - sichere, browserbasierte UUID-Generierung in Sekundenschnelle."
+  "pageDescription": "UUID-v1- und v4-Bezeichner für Datenbanken, APIs und Anwendungen generieren. Erstellen Sie einzelne UUIDs oder erzeugen Sie bis zu 1000 auf einmal mit anpassbarer Formatierung. Ideal für Entwickler, die verteilte Systeme, Datenbankschemata und eindeutige Identifikationssysteme aufbauen. Kostenlos online nutzbar ohne Registrierung - sichere, browserbasierte UUID-Generierung in Sekundenschnelle.",
+  "ui": {
+    "frameTitle": "UUID-Generator",
+    "frameSubtitle": "Universell Eindeutiger Bezeichner",
+    "generateBtn": "UUID generieren",
+    "generateBtnPlural": "UUIDs generieren",
+    "countLabel": "Anzahl",
+    "versionLabel": "Version",
+    "versionV4": "Version 4 (Zufällig)",
+    "versionV1": "Version 1 (Zeitstempel)",
+    "uppercaseLabel": "Großbuchstaben",
+    "hyphensLabel": "Bindestriche einbeziehen",
+    "outputTitle": "Generierte UUIDs",
+    "emptyStateText": "Klicken Sie auf",
+    "emptyStateHighlight": "Generieren",
+    "emptyStateSuffix": "um UUIDs zu erstellen.",
+    "copyAriaLabel": "UUID kopieren",
+    "infoText": "UUIDs sind 128-Bit-Unique-Identifikatoren, die praktisch garantiert auf allen Systemen und über alle Zeit hinweg einzigartig sind."
+  }
 }

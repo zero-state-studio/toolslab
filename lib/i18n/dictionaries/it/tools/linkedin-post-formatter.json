@@ -96,5 +96,31 @@
         "description": "Seleziona tutto il testo"
       }
     ]
+  },
+  "ui": {
+    "toolTitle": "Formattatore Post LinkedIn",
+    "templatesBtn": "Template",
+    "quickStartTemplates": "Template di Avvio Rapido",
+    "selectTextHint": "Seleziona il testo, poi clicca su un formato",
+    "yourPostLabel": "Il Tuo Post LinkedIn",
+    "optimalLabel": "(ottimale)",
+    "textareaPlaceholder": "Scrivi qui il tuo post LinkedIn... Seleziona il testo e usa i pulsanti di formattazione sopra per applicare grassetto, corsivo e altro.",
+    "previewLabel": "Anteprima",
+    "previewYourName": "Il Tuo Nome",
+    "previewYourHeadline": "Il Tuo Titolo • 1° grado",
+    "previewJustNow": "Adesso • 🌐",
+    "copiedBtn": "Copiato!",
+    "copyBtn": "Copia negli Appunti",
+    "proTipsTitle": "💡 Consigli Pro",
+    "tip1": "Seleziona prima il testo, poi clicca su un pulsante di formattazione",
+    "tip2": "Usa le scorciatoie da tastiera: Ctrl+B (grassetto), Ctrl+I (corsivo), Ctrl+U (sottolineato)",
+    "tip4": "Usa i punti elenco per rendere il contenuto più leggibile",
+    "titleBold": "Grassetto (Ctrl+B)",
+    "titleItalic": "Corsivo (Ctrl+I)",
+    "titleUnderline": "Sottolineato (Ctrl+U)",
+    "titleStrikethrough": "Barrato",
+    "titleMonospace": "Monospace",
+    "titleBulletList": "Elenco Puntato",
+    "titleNumberedList": "Elenco Numerato"
   }
 }

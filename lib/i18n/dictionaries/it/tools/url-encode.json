@@ -81,5 +81,27 @@
         "description": "Scarica file"
       }
     ]
+  },
+  "ui": {
+    "headerTitle": "Codificatore/Decodificatore URL",
+    "headerDescription": "Codifica e decodifica componenti URL e parametri di query in modo sicuro",
+    "modeAuto": "Auto",
+    "modeEncode": "Codifica",
+    "modeDecode": "Decodifica",
+    "typeComponent": "Componente",
+    "typeFullUrl": "URL Completo",
+    "optionsButton": "Opzioni",
+    "examplesButton": "Esempi",
+    "optionHandlePlus": "Tratta + come spazio (nei parametri di query)",
+    "optionBatchMode": "Modalità batch (un URL per riga)",
+    "loadSampleButton": "Carica",
+    "inputLabelBatch": "URL (uno per riga)",
+    "inputLabelSingle": "URL o Testo",
+    "outputLabel": "Risultato",
+    "copyButton": "Copia",
+    "downloadButton": "Scarica",
+    "processingText": "Elaborazione...",
+    "outputPlaceholder": "Il risultato apparirà qui...",
+    "batchResultsLabel": "Risultati Batch"
   }
 }

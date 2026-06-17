@@ -77,9 +77,39 @@
       "Brute-force output is hard to scan: paste a few words first, spot the readable row, then apply that shift to the full text"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Paste input" },
-      { "keys": "Ctrl+C", "description": "Copy output" },
-      { "keys": "Ctrl+Enter", "description": "Process" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copy output"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Process"
+      }
     ]
+  },
+  "ui": {
+    "modeLabel": "Mode",
+    "modeRot13": "ROT13 (one-click encode/decode)",
+    "modeCaesarEncode": "Caesar — encode with shift",
+    "modeCaesarDecode": "Caesar — decode with shift",
+    "modeBruteForce": "Brute force — show all 25 rotations",
+    "shiftLabel": "Shift (1–25)",
+    "inputLabel": "Input Text",
+    "inputPlaceholder": "Enter text to encode or decode...",
+    "btnProcess": "Process",
+    "btnShowRotations": "Show all 25 rotations",
+    "btnUseAsInput": "Use output as input",
+    "outputLabel": "Output",
+    "btnCopy": "Copy",
+    "btnCopied": "Copied",
+    "allRotationsLabel": "All 25 rotations",
+    "tableShift": "Shift",
+    "tableOutput": "Output",
+    "tableCopy": "Copy",
+    "errorNoInput": "Please enter some text to process"
   }
 }

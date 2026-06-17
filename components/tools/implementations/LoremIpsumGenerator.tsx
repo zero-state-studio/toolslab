@@ -48,6 +48,7 @@ export default function LoremIpsumGenerator({
   const shouldScrollRef = useRef(false);
 
   const t = dictionary || {};
+  const ui = dictionary?.tools?.['lorem-ipsum-generator']?.ui ?? {};
   const labels = {
     generateType: t.generateType || 'Generate',
     count: t.count || 'Count',
@@ -138,8 +139,8 @@ export default function LoremIpsumGenerator({
   return (
     <div ref={resultRef}>
       <ToolFrame
-        title="Lorem Ipsum Generator"
-        subtitle="Placeholder text generator"
+        title={ui.toolTitle || 'Lorem Ipsum Generator'}
+        subtitle={ui.toolSubtitle || 'Placeholder text generator'}
         icon={<FileText className="h-5 w-5" />}
         categoryColor={categoryColor}
         primaryAction={{
@@ -263,7 +264,7 @@ export default function LoremIpsumGenerator({
           </div>
         </ToolFrame.Section>
 
-        <ToolFrame.Section title="Quick presets">
+        <ToolFrame.Section title={ui.quickPresets || 'Quick presets'}>
           <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
             {presets.map((preset) => (
               <Button

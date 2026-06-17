@@ -19,7 +19,9 @@ interface PasswordGeneratorProps extends BaseToolProps {}
 
 export default function PasswordGenerator({
   categoryColor,
+  dictionary,
 }: PasswordGeneratorProps) {
+  const ui = dictionary?.tools?.['password-generator']?.ui ?? {};
   const { addToHistory } = useToolStore();
   const [password, setPassword] = useState('');
   const [length, setLength] = useState(16);
@@ -228,10 +230,10 @@ export default function PasswordGenerator({
   };
 
   const getStrengthText = () => {
-    if (strength < 30) return 'Weak';
-    if (strength < 60) return 'Fair';
-    if (strength < 80) return 'Good';
-    return 'Strong';
+    if (strength < 30) return ui.strengthWeak || 'Weak';
+    if (strength < 60) return ui.strengthFair || 'Fair';
+    if (strength < 80) return ui.strengthGood || 'Good';
+    return ui.strengthStrong || 'Strong';
   };
 
   const handleCopy = async () => {
@@ -283,7 +285,7 @@ export default function PasswordGenerator({
         <div className="flex items-center gap-3">
           <Key className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            Password Generator
+            {ui.heading || 'Password Generator'}
           </h3>
         </div>
         <div className="flex items-center gap-2">
@@ -306,7 +308,7 @@ export default function PasswordGenerator({
           >
             <div className="flex items-center justify-between gap-4">
               <code className="flex-1 break-all font-mono text-sm text-gray-900 dark:text-white sm:text-lg md:text-xl">
-                {password || 'Click generate to create password'}
+                {password || ui.clickToGenerate || 'Click generate to create password'}
               </code>
               <div className="flex flex-shrink-0 items-center gap-1 sm:gap-2">
                 <button
@@ -350,7 +352,7 @@ export default function PasswordGenerator({
           <div>
             <div className="mb-2 flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Password Length
+                {ui.passwordLength || 'Password Length'}
               </label>
               <span className="rounded bg-gray-100 px-2 py-1 text-sm font-medium dark:bg-gray-700">
                 {length}
@@ -405,7 +407,7 @@ export default function PasswordGenerator({
                 style={{ accentColor: categoryColor }}
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">
-                Uppercase (A-Z)
+                {ui.uppercase || 'Uppercase (A-Z)'}
               </span>
             </label>
 
@@ -428,7 +430,7 @@ export default function PasswordGenerator({
                 style={{ accentColor: categoryColor }}
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">
-                Lowercase (a-z)
+                {ui.lowercase || 'Lowercase (a-z)'}
               </span>
             </label>
 
@@ -451,7 +453,7 @@ export default function PasswordGenerator({
                 style={{ accentColor: categoryColor }}
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">
-                Numbers (0-9)
+                {ui.numbers || 'Numbers (0-9)'}
               </span>
             </label>
 
@@ -474,7 +476,7 @@ export default function PasswordGenerator({
                 style={{ accentColor: categoryColor }}
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">
-                Symbols (!@#$%)
+                {ui.symbols || 'Symbols (!@#$%)'}
               </span>
             </label>
 
@@ -497,7 +499,7 @@ export default function PasswordGenerator({
                 style={{ accentColor: categoryColor }}
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">
-                Exclude Similar
+                {ui.excludeSimilar || 'Exclude Similar'}
               </span>
             </label>
 
@@ -520,7 +522,7 @@ export default function PasswordGenerator({
                 style={{ accentColor: categoryColor }}
               />
               <span className="text-sm text-gray-700 dark:text-gray-300">
-                Pronounceable
+                {ui.pronounceable || 'Pronounceable'}
               </span>
             </label>
           </div>
@@ -537,7 +539,7 @@ export default function PasswordGenerator({
             }}
           >
             <Zap className="h-4 w-4" />
-            Generate New Password
+            {ui.generateButton || 'Generate New Password'}
           </button>
         </div>
 
@@ -577,8 +579,7 @@ export default function PasswordGenerator({
             <div className="flex items-start gap-2">
               <AlertTriangle className="mt-0.5 h-4 w-4 text-yellow-600 dark:text-yellow-400" />
               <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                Consider using a longer password with mixed character types for
-                better security.
+                {ui.securityWarning || 'Consider using a longer password with mixed character types for better security.'}
               </p>
             </div>
           </div>

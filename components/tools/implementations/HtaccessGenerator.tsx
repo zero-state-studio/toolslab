@@ -121,7 +121,7 @@ export default function HtaccessGenerator({
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
   // Get translations with fallbacks
-  const t = dictionary || {};
+  const t = dictionary?.tools?.['htaccess-generator'] || {};
   const labels = {
     title: t.title || 'Htaccess Generator',
     generate: t.generate || 'Generate .htaccess',
@@ -183,6 +183,20 @@ export default function HtaccessGenerator({
     customRules: t.customRules || 'Custom Rules',
     customRulesPlaceholder:
       t.customRulesPlaceholder || 'Add your custom .htaccess rules here...',
+    // Redirects empty state
+    noRedirects: t.noRedirects || 'No redirects configured. Click "Add Redirect" to create one.',
+    // Cache section labels
+    htmlCache: t.htmlCache || 'HTML Cache',
+    cssJsCache: t.cssJsCache || 'CSS/JS Cache',
+    imageCache: t.imageCache || 'Image Cache',
+    fontCache: t.fontCache || 'Font Cache',
+    // Cache duration options
+    noCache: t.noCache || 'No cache',
+    oneHour: t.oneHour || '1 hour',
+    oneDay: t.oneDay || '1 day',
+    oneWeek: t.oneWeek || '1 week',
+    oneMonth: t.oneMonth || '1 month',
+    oneYear: t.oneYear || '1 year',
   };
 
   // Generate output whenever config changes
@@ -494,8 +508,7 @@ export default function HtaccessGenerator({
 
           {config.redirects.length === 0 ? (
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              No redirects configured. Click &quot;Add Redirect&quot; to create
-              one.
+              {labels.noRedirects}
             </p>
           ) : (
             <div className="space-y-3">
@@ -582,7 +595,7 @@ export default function HtaccessGenerator({
             <div className="mt-4 grid gap-4 border-t pt-4 dark:border-gray-700 sm:grid-cols-2">
               <div>
                 <Label className="mb-2 block text-sm">
-                  HTML Cache ({secondsToReadable(config.caching.htmlExpiry)})
+                  {labels.htmlCache} ({secondsToReadable(config.caching.htmlExpiry)})
                 </Label>
                 <select
                   value={config.caching.htmlExpiry}
@@ -591,15 +604,15 @@ export default function HtaccessGenerator({
                   }
                   className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-800"
                 >
-                  <option value={CACHE_PRESETS.none}>No cache</option>
-                  <option value={CACHE_PRESETS.hour}>1 hour</option>
-                  <option value={CACHE_PRESETS.day}>1 day</option>
-                  <option value={CACHE_PRESETS.week}>1 week</option>
+                  <option value={CACHE_PRESETS.none}>{labels.noCache}</option>
+                  <option value={CACHE_PRESETS.hour}>{labels.oneHour}</option>
+                  <option value={CACHE_PRESETS.day}>{labels.oneDay}</option>
+                  <option value={CACHE_PRESETS.week}>{labels.oneWeek}</option>
                 </select>
               </div>
               <div>
                 <Label className="mb-2 block text-sm">
-                  CSS/JS Cache ({secondsToReadable(config.caching.cssJsExpiry)})
+                  {labels.cssJsCache} ({secondsToReadable(config.caching.cssJsExpiry)})
                 </Label>
                 <select
                   value={config.caching.cssJsExpiry}
@@ -608,14 +621,14 @@ export default function HtaccessGenerator({
                   }
                   className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-800"
                 >
-                  <option value={CACHE_PRESETS.week}>1 week</option>
-                  <option value={CACHE_PRESETS.month}>1 month</option>
-                  <option value={CACHE_PRESETS.year}>1 year</option>
+                  <option value={CACHE_PRESETS.week}>{labels.oneWeek}</option>
+                  <option value={CACHE_PRESETS.month}>{labels.oneMonth}</option>
+                  <option value={CACHE_PRESETS.year}>{labels.oneYear}</option>
                 </select>
               </div>
               <div>
                 <Label className="mb-2 block text-sm">
-                  Image Cache ({secondsToReadable(config.caching.imageExpiry)})
+                  {labels.imageCache} ({secondsToReadable(config.caching.imageExpiry)})
                 </Label>
                 <select
                   value={config.caching.imageExpiry}
@@ -624,14 +637,14 @@ export default function HtaccessGenerator({
                   }
                   className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-800"
                 >
-                  <option value={CACHE_PRESETS.week}>1 week</option>
-                  <option value={CACHE_PRESETS.month}>1 month</option>
-                  <option value={CACHE_PRESETS.year}>1 year</option>
+                  <option value={CACHE_PRESETS.week}>{labels.oneWeek}</option>
+                  <option value={CACHE_PRESETS.month}>{labels.oneMonth}</option>
+                  <option value={CACHE_PRESETS.year}>{labels.oneYear}</option>
                 </select>
               </div>
               <div>
                 <Label className="mb-2 block text-sm">
-                  Font Cache ({secondsToReadable(config.caching.fontExpiry)})
+                  {labels.fontCache} ({secondsToReadable(config.caching.fontExpiry)})
                 </Label>
                 <select
                   value={config.caching.fontExpiry}
@@ -640,8 +653,8 @@ export default function HtaccessGenerator({
                   }
                   className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-800"
                 >
-                  <option value={CACHE_PRESETS.month}>1 month</option>
-                  <option value={CACHE_PRESETS.year}>1 year</option>
+                  <option value={CACHE_PRESETS.month}>{labels.oneMonth}</option>
+                  <option value={CACHE_PRESETS.year}>{labels.oneYear}</option>
                 </select>
               </div>
             </div>

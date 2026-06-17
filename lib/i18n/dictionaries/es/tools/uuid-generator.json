@@ -80,5 +80,23 @@
     "description": "Genera UUIDs aleatorios en línea. Soporte para versiones UUID v1, v4 y v5. Generador UUID gratuito con generación masiva."
   },
   "tagline": "Genera UUIDs y GUIDs únicos instantáneamente en línea",
-  "pageDescription": "Genera identificadores UUID v1 y v4 para bases de datos, APIs y aplicaciones. Crea UUIDs individuales o genera en masa hasta 1000 con formato personalizable. Perfecto para desarrolladores que construyen sistemas distribuidos, esquemas de bases de datos y sistemas de identificación únicos. Generación gratuita, segura y basada en el navegador."
+  "pageDescription": "Genera identificadores UUID v1 y v4 para bases de datos, APIs y aplicaciones. Crea UUIDs individuales o genera en masa hasta 1000 con formato personalizable. Perfecto para desarrolladores que construyen sistemas distribuidos, esquemas de bases de datos y sistemas de identificación únicos. Generación gratuita, segura y basada en el navegador.",
+  "ui": {
+    "frameTitle": "Generador UUID",
+    "frameSubtitle": "Identificador Único Universal",
+    "generateBtn": "Generar UUID",
+    "generateBtnPlural": "Generar UUIDs",
+    "countLabel": "Cantidad",
+    "versionLabel": "Versión",
+    "versionV4": "Versión 4 (Aleatoria)",
+    "versionV1": "Versión 1 (Marca de tiempo)",
+    "uppercaseLabel": "Mayúsculas",
+    "hyphensLabel": "Incluir guiones",
+    "outputTitle": "UUIDs Generados",
+    "emptyStateText": "Haz clic en",
+    "emptyStateHighlight": "Generar",
+    "emptyStateSuffix": "para crear UUIDs.",
+    "copyAriaLabel": "Copiar UUID",
+    "infoText": "Los UUIDs son identificadores únicos de 128 bits prácticamente garantizados como únicos en todos los sistemas y tiempos."
+  }
 }
