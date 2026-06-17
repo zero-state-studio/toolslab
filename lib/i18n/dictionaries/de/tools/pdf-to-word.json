@@ -102,5 +102,21 @@
     "helpDescription": "Ihre Unterstützung kann uns helfen, die Serverkosten zu decken und diesen Dienst wieder zu aktivieren. Jeder Beitrag, egal wie klein, macht einen Unterschied.",
     "donateButton": "Spendieren Sie mir einen Kaffee",
     "thanks": "Vielen Dank für Ihr Verständnis und Ihre Unterstützung!"
+  },
+  "ui": {
+    "dropActive": "PDF-Dateien hier ablegen...",
+    "dropMainText": "PDF-Dateien hier ablegen oder zum Auswählen klicken",
+    "dropHint": "Unterstützt bis zu 10 Dateien, max. 50 MB pro Datei",
+    "buttonConverting": "Konvertierung läuft...",
+    "buttonDownloadAll": "Alle herunterladen",
+    "progressWait": "Bitte warten, das kann einige Sekunden dauern",
+    "conversionSuccessful": "Konvertierung erfolgreich",
+    "buttonDownloadWord": "Word-Dokument herunterladen",
+    "tipsHeading": "Tipps für beste Ergebnisse",
+    "tip1": "Hochwertige Konvertierung mit professionellen Algorithmen",
+    "tip2": "Layout, Tabellen und Formatierung werden automatisch beibehalten",
+    "tip3": "Die gesamte Konvertierung erfolgt auf unserem Server – schnell und sicher",
+    "tip4": "Ihre Dateien werden nie gespeichert und unmittelbar nach der Konvertierung gelöscht",
+    "tip5": "Bei passwortgeschützten PDFs bitte zuerst das Passwort entfernen"
   }
 }

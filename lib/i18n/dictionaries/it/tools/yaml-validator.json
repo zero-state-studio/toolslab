@@ -86,5 +86,33 @@
         "description": "Seleziona tutto"
       }
     ]
+  },
+  "ui": {
+    "yamlInputHeading": "Input YAML",
+    "formatBtn": "Formatta",
+    "uploadBtn": "Carica",
+    "samplesBtn": "Esempi",
+    "clearBtn": "Cancella",
+    "allowDuplicateKeys": "Consenti chiavi duplicate",
+    "strictMode": "Modalità strict",
+    "validatingBtn": "Validazione...",
+    "validateBtn": "Valida YAML",
+    "validatingSpinner": "Validazione YAML in corso...",
+    "yamlValidTitle": "YAML valido ✓",
+    "yamlInvalidTitle": "YAML non valido ✗",
+    "validBadge": "Valido",
+    "errorDetailsHeading": "Dettagli errore",
+    "codeContextLabel": "Contesto del codice:",
+    "formattedYamlTab": "YAML formattato",
+    "structureTab": "Struttura",
+    "prettyPrintedLabel": "YAML formattato",
+    "copyBtn": "Copia",
+    "copiedBtn": "Copiato!",
+    "parsedStructureLabel": "Struttura analizzata (JSON)",
+    "copyJsonBtn": "Copia JSON",
+    "emptyState": "Inserisci il contenuto YAML sopra e clicca su \"Valida YAML\" per vedere i risultati.",
+    "keyboardShortcutsLabel": "Scorciatoie da tastiera:",
+    "shortcutValidate": "Valida",
+    "shortcutPaste": "Incolla"
   }
 }

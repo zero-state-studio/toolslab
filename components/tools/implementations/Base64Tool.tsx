@@ -31,9 +31,11 @@ import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 
 interface Base64ToolProps {
   categoryColor: string;
+  dictionary?: any;
 }
 
-export default function Base64Tool({ categoryColor }: Base64ToolProps) {
+export default function Base64Tool({ categoryColor, dictionary }: Base64ToolProps) {
+  const ui = dictionary?.tools?.['base64-encode']?.ui ?? {};
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -258,7 +260,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                   operation === 'auto' ? categoryColor : 'transparent',
               }}
             >
-              Auto
+              {ui.modeAuto || 'Auto'}
             </button>
             <button
               onClick={() => setOperation('encode')}
@@ -268,7 +270,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                   operation === 'encode' ? categoryColor : 'transparent',
               }}
             >
-              Encode
+              {ui.modeEncode || 'Encode'}
             </button>
             <button
               onClick={() => setOperation('decode')}
@@ -278,14 +280,14 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                   operation === 'decode' ? categoryColor : 'transparent',
               }}
             >
-              Decode
+              {ui.modeDecode || 'Decode'}
             </button>
           </div>
 
           <div className="text-xs text-gray-500">
             {getEffectiveOperation() === 'encode'
-              ? '📤 Encoding'
-              : '📥 Decoding'}
+              ? `📤 ${ui.statusEncoding || 'Encoding'}`
+              : `📥 ${ui.statusDecoding || 'Decoding'}`}
           </div>
 
           {mimeType && (
@@ -299,7 +301,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
           <button
             onClick={() => setShowOptions(!showOptions)}
             className="rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-            aria-label="Toggle options"
+            aria-label={ui.ariaToggleOptions || 'Toggle options'}
             aria-expanded={showOptions}
           >
             <Settings className="h-4 w-4" />
@@ -321,7 +323,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
         {showOptions && (
           <div className="space-y-4 rounded-lg bg-gray-50 p-4 dark:bg-gray-900">
             <h4 className="font-medium text-gray-900 dark:text-white">
-              Options
+              {ui.optionsTitle || 'Options'}
             </h4>
 
             <div className="flex flex-wrap gap-4">
@@ -337,7 +339,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                   }
                   className="rounded"
                 />
-                <span className="text-sm">URL Safe (- _ instead of + /)</span>
+                <span className="text-sm">{ui.optionUrlSafe || 'URL Safe (- _ instead of + /)'}</span>
               </label>
 
               <label className="flex items-center space-x-2">
@@ -352,7 +354,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                   }
                   className="rounded"
                 />
-                <span className="text-sm">Line breaks (MIME format)</span>
+                <span className="text-sm">{ui.optionLineBreaks || 'Line breaks (MIME format)'}</span>
               </label>
             </div>
           </div>
@@ -364,7 +366,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
             onClick={() => insertSample('Hello World! 🌍')}
             className="rounded border px-3 py-1 text-sm hover:bg-gray-50 dark:hover:bg-gray-700"
           >
-            Sample Text
+            {ui.sampleText || 'Sample Text'}
           </button>
           <button
             onClick={() =>
@@ -374,7 +376,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
             }
             className="rounded border px-3 py-1 text-sm hover:bg-gray-50 dark:hover:bg-gray-700"
           >
-            JWT Payload
+            {ui.sampleJwtPayload || 'JWT Payload'}
           </button>
           <button
             onClick={() =>
@@ -384,7 +386,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
             }
             className="rounded border px-3 py-1 text-sm hover:bg-gray-50 dark:hover:bg-gray-700"
           >
-            Data URL
+            {ui.sampleDataUrl || 'Data URL'}
           </button>
         </div>
 
@@ -411,10 +413,10 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
               <Upload className="h-6 w-6 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300" />
               <div className="text-center">
                 <p className="font-medium text-gray-700 dark:text-gray-300">
-                  Drop file here or click to upload
+                  {ui.uploadDropText || 'Drop file here or click to upload'}
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  Max file size: 10MB
+                  {ui.uploadMaxSize || 'Max file size: 10MB'}
                 </p>
               </div>
             </div>
@@ -449,7 +451,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Input
+              {ui.labelInput || 'Input'}
             </label>
             <span className="text-xs text-gray-500">
               {input.length} characters
@@ -458,7 +460,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter text to encode or Base64 string to decode..."
+            placeholder={ui.inputPlaceholder || 'Enter text to encode or Base64 string to decode...'}
             className="h-32 w-full resize-none rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 transition-all focus:outline-none dark:bg-gray-900 dark:text-white"
             style={{
               borderColor: error ? '#ef4444' : `${categoryColor}30`,
@@ -486,7 +488,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
             {isProcessing ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Processing...
+                {ui.btnProcessing || 'Processing...'}
               </>
             ) : (
               <>
@@ -495,7 +497,9 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                 ) : (
                   <Unlock className="h-4 w-4" />
                 )}
-                {getEffectiveOperation() === 'encode' ? 'Encode' : 'Decode'}
+                {getEffectiveOperation() === 'encode'
+                  ? (ui.btnEncode || 'Encode')
+                  : (ui.btnDecode || 'Decode')}
               </>
             )}
           </button>
@@ -509,7 +513,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
             }}
           >
             <X className="h-4 w-4" />
-            Clear
+            {ui.btnClear || 'Clear'}
           </button>
         </div>
 
@@ -527,7 +531,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
             className="rounded-lg border border-blue-200 bg-blue-50/50 p-4 dark:bg-blue-950/20"
           >
             <h4 className="mb-2 font-medium text-blue-900 dark:text-blue-100">
-              💡 Suggestions
+              💡 {ui.suggestionsTitle || 'Suggestions'}
             </h4>
             {suggestions.map((suggestion, index) => {
               const toolLink = getToolLinkFromSuggestion(suggestion);
@@ -542,7 +546,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                       href={toolLink}
                       className="ml-2 inline-flex items-center gap-1 font-medium text-blue-600 underline hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300"
                     >
-                      Open tool <ExternalLink className="h-3 w-3" />
+                      {ui.linkOpenTool || 'Open tool'} <ExternalLink className="h-3 w-3" />
                     </Link>
                   )}
                 </div>
@@ -559,7 +563,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
           >
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Output
+                {ui.labelOutput || 'Output'}
               </label>
               <div className="flex items-center gap-2">
                 <span className="text-xs text-gray-500">
@@ -572,12 +576,12 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                   {copied ? (
                     <>
                       <Check className="h-4 w-4 text-green-500" />
-                      <span className="text-sm text-green-500">Copied!</span>
+                      <span className="text-sm text-green-500">{ui.btnCopied || 'Copied!'}</span>
                     </>
                   ) : (
                     <>
                       <Copy className="h-4 w-4" />
-                      <span className="text-sm">Copy</span>
+                      <span className="text-sm">{ui.btnCopy || 'Copy'}</span>
                     </>
                   )}
                 </button>
@@ -586,7 +590,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
                   className="flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <Download className="h-4 w-4" />
-                  <span className="text-sm">Download</span>
+                  <span className="text-sm">{ui.btnDownload || 'Download'}</span>
                 </button>
               </div>
             </div>
@@ -602,7 +606,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
               mimeType?.startsWith('image/') && (
                 <div className="mt-4">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Image Preview
+                    {ui.imagePreviewLabel || 'Image Preview'}
                   </label>
                   <div className="mt-2 rounded-lg border bg-gray-50 p-4 dark:bg-gray-900">
                     <div className="flex min-h-[200px] items-center justify-center">
@@ -629,9 +633,7 @@ export default function Base64Tool({ categoryColor }: Base64ToolProps) {
         {/* Info Box */}
         <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
           <p className="text-sm text-blue-800 dark:text-blue-200">
-            Base64 encoding converts binary data into ASCII text format.
-            It&apos;s commonly used for embedding images in HTML/CSS, encoding
-            data for APIs, and handling binary data in text-based protocols.
+            {ui.infoBoxText || "Base64 encoding converts binary data into ASCII text format. It's commonly used for embedding images in HTML/CSS, encoding data for APIs, and handling binary data in text-based protocols."}
           </p>
         </div>
       </div>

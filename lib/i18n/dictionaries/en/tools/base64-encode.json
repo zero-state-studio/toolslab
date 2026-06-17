@@ -81,5 +81,35 @@
     "description": "Encode text or files to Base64, decode Base64 to text online free. Supports UTF-8, binary, files up to 50MB. No signup required. Secure browser-based Base64 tool."
   },
   "tagline": "Encode and decode Base64 files and text instantly",
-  "pageDescription": "Free Base64 encoder and decoder for text, images, and files up to 50MB. Perfect for web developers embedding images in HTML/CSS, API data transmission, and email attachments. Drag-and-drop interface with secure browser-based processing. No signup required — download decoded files directly or copy encoded strings to clipboard instantly."
+  "pageDescription": "Free Base64 encoder and decoder for text, images, and files up to 50MB. Perfect for web developers embedding images in HTML/CSS, API data transmission, and email attachments. Drag-and-drop interface with secure browser-based processing. No signup required — download decoded files directly or copy encoded strings to clipboard instantly.",
+  "ui": {
+    "modeAuto": "Auto",
+    "modeEncode": "Encode",
+    "modeDecode": "Decode",
+    "statusEncoding": "Encoding",
+    "statusDecoding": "Decoding",
+    "ariaToggleOptions": "Toggle options",
+    "optionsTitle": "Options",
+    "optionUrlSafe": "URL Safe (- _ instead of + /)",
+    "optionLineBreaks": "Line breaks (MIME format)",
+    "sampleText": "Sample Text",
+    "sampleJwtPayload": "JWT Payload",
+    "sampleDataUrl": "Data URL",
+    "uploadDropText": "Drop file here or click to upload",
+    "uploadMaxSize": "Max file size: 10MB",
+    "labelInput": "Input",
+    "inputPlaceholder": "Enter text to encode or Base64 string to decode...",
+    "btnProcessing": "Processing...",
+    "btnEncode": "Encode",
+    "btnDecode": "Decode",
+    "btnClear": "Clear",
+    "suggestionsTitle": "Suggestions",
+    "linkOpenTool": "Open tool",
+    "labelOutput": "Output",
+    "btnCopy": "Copy",
+    "btnCopied": "Copied!",
+    "btnDownload": "Download",
+    "imagePreviewLabel": "Image Preview",
+    "infoBoxText": "Base64 encoding converts binary data into ASCII text format. It's commonly used for embedding images in HTML/CSS, encoding data for APIs, and handling binary data in text-based protocols."
+  }
 }

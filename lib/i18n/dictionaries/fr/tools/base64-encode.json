@@ -81,5 +81,35 @@
     "description": "Encodez du texte et des fichiers en Base64 ou décodez des chaînes Base64 en texte en ligne gratuitement. Supporte UTF-8, fichiers binaires jusqu'à 50 Mo. Sécurisé, dans le navigateur, sans inscription."
   },
   "tagline": "Encodez et décodez fichiers et texte Base64 instantanément",
-  "pageDescription": "Encodeur et décodeur Base64 gratuit pour texte, images et fichiers jusqu'à 50 Mo. Parfait pour les développeurs web intégrant des images en HTML/CSS, la transmission de données API et les pièces jointes d'e-mail. Interface glisser-déposer avec traitement sécurisé dans le navigateur. Sans inscription — téléchargez les fichiers décodés ou copiez les chaînes encodées dans le presse-papiers."
+  "pageDescription": "Encodeur et décodeur Base64 gratuit pour texte, images et fichiers jusqu'à 50 Mo. Parfait pour les développeurs web intégrant des images en HTML/CSS, la transmission de données API et les pièces jointes d'e-mail. Interface glisser-déposer avec traitement sécurisé dans le navigateur. Sans inscription — téléchargez les fichiers décodés ou copiez les chaînes encodées dans le presse-papiers.",
+  "ui": {
+    "modeAuto": "Auto",
+    "modeEncode": "Encoder",
+    "modeDecode": "Décoder",
+    "statusEncoding": "Encodage",
+    "statusDecoding": "Décodage",
+    "ariaToggleOptions": "Afficher/masquer les options",
+    "optionsTitle": "Options",
+    "optionUrlSafe": "URL sécurisée (- _ au lieu de + /)",
+    "optionLineBreaks": "Sauts de ligne (format MIME)",
+    "sampleText": "Texte exemple",
+    "sampleJwtPayload": "Payload JWT",
+    "sampleDataUrl": "Data URL",
+    "uploadDropText": "Déposez un fichier ici ou cliquez pour télécharger",
+    "uploadMaxSize": "Taille maximale : 10 Mo",
+    "labelInput": "Entrée",
+    "inputPlaceholder": "Saisissez le texte à encoder ou la chaîne Base64 à décoder...",
+    "btnProcessing": "Traitement...",
+    "btnEncode": "Encoder",
+    "btnDecode": "Décoder",
+    "btnClear": "Effacer",
+    "suggestionsTitle": "Suggestions",
+    "linkOpenTool": "Ouvrir l'outil",
+    "labelOutput": "Sortie",
+    "btnCopy": "Copier",
+    "btnCopied": "Copié !",
+    "btnDownload": "Télécharger",
+    "imagePreviewLabel": "Aperçu de l'image",
+    "infoBoxText": "L'encodage Base64 convertit les données binaires en format texte ASCII. Il est couramment utilisé pour intégrer des images en HTML/CSS, encoder des données pour les API et gérer des données binaires dans les protocoles texte."
+  }
 }
