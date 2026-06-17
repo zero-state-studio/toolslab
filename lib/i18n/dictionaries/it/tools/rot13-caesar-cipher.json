@@ -77,9 +77,39 @@
       "Output brute force difficile da leggere: incolla prima poche parole, individua la riga leggibile, poi applica quello shift al testo completo"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Incolla input" },
-      { "keys": "Ctrl+C", "description": "Copia output" },
-      { "keys": "Ctrl+Enter", "description": "Elabora" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla input"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia output"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Elabora"
+      }
     ]
+  },
+  "ui": {
+    "modeLabel": "Modalità",
+    "modeRot13": "ROT13 (codifica/decodifica con un clic)",
+    "modeCaesarEncode": "Caesar — codifica con spostamento",
+    "modeCaesarDecode": "Caesar — decodifica con spostamento",
+    "modeBruteForce": "Brute force — mostra tutte le 25 rotazioni",
+    "shiftLabel": "Spostamento (1–25)",
+    "inputLabel": "Testo di input",
+    "inputPlaceholder": "Inserisci il testo da codificare o decodificare...",
+    "btnProcess": "Elabora",
+    "btnShowRotations": "Mostra tutte le 25 rotazioni",
+    "btnUseAsInput": "Usa output come input",
+    "outputLabel": "Output",
+    "btnCopy": "Copia",
+    "btnCopied": "Copiato",
+    "allRotationsLabel": "Tutte le 25 rotazioni",
+    "tableShift": "Spostamento",
+    "tableOutput": "Output",
+    "tableCopy": "Copia",
+    "errorNoInput": "Inserisci del testo da elaborare"
   }
 }

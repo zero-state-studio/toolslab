@@ -81,5 +81,27 @@
     "description": "Decodifica texto codificado en URL en línea. Convierte parámetros URL de vuelta a texto legible. Herramienta decodificadora URL gratuita."
   },
   "tagline": "Codifica y decodifica URLs y parámetros de consulta de forma segura",
-  "pageDescription": "Codifica y decodifica componentes URL y parámetros de consulta para desarrollo web. Maneja caracteres especiales, espacios y texto internacional en URLs de forma segura. Perfecto para desarrolladores de APIs, formularios web y manejo de solicitudes HTTP. Soporta estándares de percent-encoding con conversión y validación en tiempo real."
+  "pageDescription": "Codifica y decodifica componentes URL y parámetros de consulta para desarrollo web. Maneja caracteres especiales, espacios y texto internacional en URLs de forma segura. Perfecto para desarrolladores de APIs, formularios web y manejo de solicitudes HTTP. Soporta estándares de percent-encoding con conversión y validación en tiempo real.",
+  "ui": {
+    "headerTitle": "Codificador/Decodificador URL",
+    "headerDescription": "Codifica y decodifica componentes URL y parámetros de consulta de forma segura",
+    "modeAuto": "Auto",
+    "modeEncode": "Codificar",
+    "modeDecode": "Decodificar",
+    "typeComponent": "Componente",
+    "typeFullUrl": "URL Completa",
+    "optionsButton": "Opciones",
+    "examplesButton": "Ejemplos",
+    "optionHandlePlus": "Tratar + como espacio (en parámetros de consulta)",
+    "optionBatchMode": "Modo por lotes (una URL por línea)",
+    "loadSampleButton": "Cargar",
+    "inputLabelBatch": "URLs (una por línea)",
+    "inputLabelSingle": "URL o Texto",
+    "outputLabel": "Resultado",
+    "copyButton": "Copiar",
+    "downloadButton": "Descargar",
+    "processingText": "Procesando...",
+    "outputPlaceholder": "La URL procesada aparecerá aquí...",
+    "batchResultsLabel": "Resultados por Lotes"
+  }
 }

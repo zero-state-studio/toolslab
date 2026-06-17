@@ -59,9 +59,18 @@
       "Rimuovere l'ultima colonna resetta il layout — usa 'Esempio' per ripristinare velocemente una tabella funzionante"
     ],
     "keyboardShortcuts": [
-      { "keys": "Tab", "description": "Vai alla cella successiva" },
-      { "keys": "Shift+Tab", "description": "Vai alla cella precedente" },
-      { "keys": "Ctrl+C", "description": "Copia output Markdown" }
+      {
+        "keys": "Tab",
+        "description": "Vai alla cella successiva"
+      },
+      {
+        "keys": "Shift+Tab",
+        "description": "Vai alla cella precedente"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia output Markdown"
+      }
     ]
   },
   "meta": {
@@ -69,5 +78,32 @@
     "description": "Generatore gratuito di tabelle Markdown. Crea tabelle GFM in visuale o incolla CSV/TSV. Allineamenti per colonna, anteprima live, copia rapida."
   },
   "tagline": "Crea tabelle Markdown GFM in modo visuale o da CSV — allineamento, anteprima e copia in pochi secondi",
-  "pageDescription": "Crea tabelle Markdown pulite senza contare i pipe. Usa l'editor visuale per aggiungere righe, riordinare colonne e impostare l'allineamento per ciascuna colonna, oppure incolla CSV, TSV o una tabella Markdown esistente per importare dati immediatamente. I pipe e i newline nelle celle vengono escaped automaticamente quindi l'output rimane GitHub Flavored Markdown valido. Attiva il padding visivo per un sorgente diff-friendly, vedi l'HTML renderizzato in anteprima live e copia il risultato con un clic. Perfetto per README, articoli di blog, pagine comparative e documentazione API. Gratuito, nel browser, senza registrazione."
+  "pageDescription": "Crea tabelle Markdown pulite senza contare i pipe. Usa l'editor visuale per aggiungere righe, riordinare colonne e impostare l'allineamento per ciascuna colonna, oppure incolla CSV, TSV o una tabella Markdown esistente per importare dati immediatamente. I pipe e i newline nelle celle vengono escaped automaticamente quindi l'output rimane GitHub Flavored Markdown valido. Attiva il padding visivo per un sorgente diff-friendly, vedi l'HTML renderizzato in anteprima live e copia il risultato con un clic. Perfetto per README, articoli di blog, pagine comparative e documentazione API. Gratuito, nel browser, senza registrazione.",
+  "ui": {
+    "visualEditor": "Editor visuale",
+    "pasteCsvTsvMarkdown": "Incolla CSV / TSV / Markdown",
+    "example": "Esempio",
+    "clear": "Cancella",
+    "delimiterLabel": "Delimitatore",
+    "autoDetect": "Rilevamento automatico",
+    "commaOption": "Virgola (,)",
+    "semicolonOption": "Punto e virgola (;)",
+    "tabOption": "Tab",
+    "firstRowIsHeader": "La prima riga è l'intestazione",
+    "import": "Importa",
+    "removeColumn": "Rimuovi colonna",
+    "addColumn": "Aggiungi colonna",
+    "moveUp": "Sposta su",
+    "moveDown": "Sposta giù",
+    "removeRow": "Rimuovi riga",
+    "addRow": "Aggiungi riga",
+    "markdownOutput": "Output Markdown",
+    "prettyPadding": "Spaziatura allineata",
+    "hidePreview": "Nascondi anteprima",
+    "showPreview": "Mostra anteprima",
+    "copied": "Copiato",
+    "copyMarkdown": "Copia Markdown",
+    "outputPlaceholder": "La tabella Markdown apparirà qui...",
+    "livePreview": "Anteprima live"
+  }
 }

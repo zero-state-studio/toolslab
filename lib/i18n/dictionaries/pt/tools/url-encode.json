@@ -81,5 +81,27 @@
     "description": "Codifique e decodifique URLs online. Converta caracteres especiais em codificação percentual ou parâmetros URL em texto legível. Ferramenta gratuita."
   },
   "tagline": "Codifique e decodifique URLs e parâmetros de consulta com segurança",
-  "pageDescription": "Codifique e decodifique componentes de URL e parâmetros de consulta para desenvolvimento web. Manipule caracteres especiais, espaços e texto internacional em URLs com segurança. Perfeito para desenvolvedores de API, formulários web e manipulação de requisições HTTP. Suporta padrões de codificação percentual com conversão e validação em tempo real."
+  "pageDescription": "Codifique e decodifique componentes de URL e parâmetros de consulta para desenvolvimento web. Manipule caracteres especiais, espaços e texto internacional em URLs com segurança. Perfeito para desenvolvedores de API, formulários web e manipulação de requisições HTTP. Suporta padrões de codificação percentual com conversão e validação em tempo real.",
+  "ui": {
+    "headerTitle": "Codificador/Decodificador URL",
+    "headerDescription": "Codifique e decodifique componentes URL e parâmetros de consulta com segurança",
+    "modeAuto": "Auto",
+    "modeEncode": "Codificar",
+    "modeDecode": "Decodificar",
+    "typeComponent": "Componente",
+    "typeFullUrl": "URL Completa",
+    "optionsButton": "Opções",
+    "examplesButton": "Exemplos",
+    "optionHandlePlus": "Tratar + como espaço (nos parâmetros de consulta)",
+    "optionBatchMode": "Modo em lote (uma URL por linha)",
+    "loadSampleButton": "Carregar",
+    "inputLabelBatch": "URLs (uma por linha)",
+    "inputLabelSingle": "URL ou Texto",
+    "outputLabel": "Resultado",
+    "copyButton": "Copiar",
+    "downloadButton": "Baixar",
+    "processingText": "Processando...",
+    "outputPlaceholder": "A URL processada aparecerá aqui...",
+    "batchResultsLabel": "Resultados em Lote"
+  }
 }

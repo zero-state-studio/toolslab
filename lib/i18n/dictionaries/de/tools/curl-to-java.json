@@ -12,10 +12,22 @@
   "instructions": {
     "title": "So verwenden Sie den cURL zu Java Konverter",
     "steps": [
-      { "title": "cURL-Befehl einfügen", "description": "Aus Terminal, Chrome DevTools, API-Dokumentation oder Postman." },
-      { "title": "HttpClient oder OkHttp wählen", "description": "HttpClient für Java 11+ ohne Deps; OkHttp ist der verbreitetste Drittanbieter-Client." },
-      { "title": "Generierten Java-Code kopieren", "description": "Imports, try-with-resources, korrekte Header- und Auth-Behandlung." },
-      { "title": "Optionen anpassen", "description": "Timeout, SSL-Verifikation über das Panel anpassen." }
+      {
+        "title": "cURL-Befehl einfügen",
+        "description": "Aus Terminal, Chrome DevTools, API-Dokumentation oder Postman."
+      },
+      {
+        "title": "HttpClient oder OkHttp wählen",
+        "description": "HttpClient für Java 11+ ohne Deps; OkHttp ist der verbreitetste Drittanbieter-Client."
+      },
+      {
+        "title": "Generierten Java-Code kopieren",
+        "description": "Imports, try-with-resources, korrekte Header- und Auth-Behandlung."
+      },
+      {
+        "title": "Optionen anpassen",
+        "description": "Timeout, SSL-Verifikation über das Panel anpassen."
+      }
     ],
     "features": [
       "Java 11+ HttpClient (stdlib, keine Deps)",
@@ -53,10 +65,82 @@
       "Body wird nicht gesendet: -d/--data-Flags im Quell-cURL prüfen"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Eingabe einfügen" },
-      { "keys": "Ctrl+Enter", "description": "Java generieren" },
-      { "keys": "Ctrl+C", "description": "Ergebnis kopieren" },
-      { "keys": "Ctrl+S", "description": "Datei herunterladen" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Eingabe einfügen"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Java generieren"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Ergebnis kopieren"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Datei herunterladen"
+      }
     ]
+  },
+  "ui": {
+    "curlCommand": "cURL-Befehl",
+    "clear": "Leeren",
+    "import": "Importieren",
+    "inputPlaceholder": "cURL-Befehl hier einfügen...",
+    "quickExamples": "Schnelle Beispiele",
+    "exampleSimpleGet": "Einfaches GET",
+    "examplePostJson": "POST mit JSON",
+    "exampleBearerAuth": "Bearer-Auth",
+    "exampleFormUpload": "Formular-Upload",
+    "exampleGraphql": "GraphQL-Query",
+    "exampleComplexRequest": "Komplexe Anfrage",
+    "language": "Sprache",
+    "framework": "Framework",
+    "comingSoon": "Demnächst",
+    "generatorComingSoonPrefix": "Der Generator für",
+    "generatorComingSoonSuffix": "ist demnächst verfügbar. Wähle eine Sprache mit verfügbarem Framework (z. B. JavaScript + fetch, Python + requests), um sofort Code zu generieren.",
+    "advancedOptions": "Erweiterte Optionen",
+    "errorHandling": "Fehlerbehandlung",
+    "none": "Keine",
+    "basicTryCatch": "Einfaches Try-Catch",
+    "comprehensive": "Umfassend",
+    "asyncAwait": "Async/Await",
+    "extractEnvVars": "Umgebungsvariablen extrahieren",
+    "includeTypes": "Typen einschließen",
+    "retryLogic": "Retry-Logik",
+    "includeLogging": "Logging einschließen",
+    "includeComments": "Kommentare einschließen",
+    "indentation": "Einrückung",
+    "indentSize": "Einrückungsgröße",
+    "spaces": "Leerzeichen",
+    "tabs": "Tabs",
+    "converting": "Wird konvertiert...",
+    "convertToCode": "In Code umwandeln",
+    "generatedCode": "Generierter Code",
+    "copied": "Kopiert",
+    "copy": "Kopieren",
+    "download": "Herunterladen",
+    "codeTab": "Code",
+    "envVarsTab": "Env-Variablen",
+    "infoTab": "Info",
+    "addEnvVarsHint": "Füge diese Umgebungsvariablen deiner .env-Datei hinzu",
+    "noEnvVars": "Keine Umgebungsvariablen extrahiert.",
+    "parsedCurlDetails": "Analysierte cURL-Details",
+    "methodLabel": "Methode:",
+    "urlLabel": "URL:",
+    "authTypeLabel": "Auth-Typ:",
+    "dataTypeLabel": "Datentyp:",
+    "headers": "Header",
+    "dependencies": "Abhängigkeiten",
+    "installPackagesHint": "Installiere diese Pakete, um den generierten Code zu verwenden:",
+    "emptyState": "Der generierte Code erscheint hier",
+    "supportedFeatures": "Unterstützte Funktionen",
+    "allHttpMethods": "Alle HTTP-Methoden",
+    "allHttpMethodsDesc": "GET, POST, PUT, DELETE, PATCH usw.",
+    "typeInference": "Typinferenz",
+    "typeInferenceDesc": "Typen automatisch aus JSON generieren",
+    "errorHandlingDesc": "Try-Catch, Retry-Logik, Timeouts",
+    "languagesCount": "15+ Sprachen"
   }
 }

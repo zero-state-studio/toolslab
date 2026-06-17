@@ -24,11 +24,15 @@ import {
 
 interface Rot13CaesarCipherProps {
   categoryColor: string;
+  dictionary?: any;
 }
 
 export default function Rot13CaesarCipher({
   categoryColor,
+  dictionary,
 }: Rot13CaesarCipherProps) {
+  const ui = dictionary?.tools?.['rot13-caesar-cipher']?.ui ?? {};
+
   const isHydrated = useHydration();
   const { addToHistory } = useToolStore();
   const { resultRef, scrollToResult } = useScrollToResult({
@@ -53,7 +57,7 @@ export default function Rot13CaesarCipher({
 
   const handleProcess = () => {
     if (!input) {
-      setError('Please enter some text to process');
+      setError(ui.errorNoInput || 'Please enter some text to process');
       setOutput('');
       setRotations(null);
       return;
@@ -113,7 +117,7 @@ export default function Rot13CaesarCipher({
       {/* Mode selector */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_auto]">
         <div className="space-y-2">
-          <Label htmlFor="mode-select">Mode</Label>
+          <Label htmlFor="mode-select">{ui.modeLabel || 'Mode'}</Label>
           <Select
             value={mode}
             onValueChange={(value) => setMode(value as CipherMode)}
@@ -122,11 +126,11 @@ export default function Rot13CaesarCipher({
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="rot13">ROT13 (one-click encode/decode)</SelectItem>
-              <SelectItem value="encode">Caesar — encode with shift</SelectItem>
-              <SelectItem value="decode">Caesar — decode with shift</SelectItem>
+              <SelectItem value="rot13">{ui.modeRot13 || 'ROT13 (one-click encode/decode)'}</SelectItem>
+              <SelectItem value="encode">{ui.modeCaesarEncode || 'Caesar — encode with shift'}</SelectItem>
+              <SelectItem value="decode">{ui.modeCaesarDecode || 'Caesar — decode with shift'}</SelectItem>
               <SelectItem value="brute-force">
-                Brute force — show all 25 rotations
+                {ui.modeBruteForce || 'Brute force — show all 25 rotations'}
               </SelectItem>
             </SelectContent>
           </Select>
@@ -134,7 +138,7 @@ export default function Rot13CaesarCipher({
 
         {showShiftInput && (
           <div className="space-y-2">
-            <Label htmlFor="shift-input">Shift (1–25)</Label>
+            <Label htmlFor="shift-input">{ui.shiftLabel || 'Shift (1–25)'}</Label>
             <input
               id="shift-input"
               type="number"
@@ -154,7 +158,7 @@ export default function Rot13CaesarCipher({
       {/* Input area */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <Label htmlFor="cipher-input">Input Text</Label>
+          <Label htmlFor="cipher-input">{ui.inputLabel || 'Input Text'}</Label>
           <span className="text-xs text-muted-foreground">
             {inputStats.characters} chars · {inputStats.letters} letters
           </span>
@@ -163,7 +167,7 @@ export default function Rot13CaesarCipher({
           id="cipher-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Enter text to encode or decode..."
+          placeholder={ui.inputPlaceholder || 'Enter text to encode or decode...'}
           className="min-h-[140px] font-mono text-sm"
         />
       </div>
@@ -171,12 +175,12 @@ export default function Rot13CaesarCipher({
       {/* Action row */}
       <div className="flex flex-wrap gap-3">
         <Button onClick={handleProcess}>
-          {mode === 'brute-force' ? 'Show all 25 rotations' : 'Process'}
+          {mode === 'brute-force' ? (ui.btnShowRotations || 'Show all 25 rotations') : (ui.btnProcess || 'Process')}
         </Button>
         {output && mode !== 'brute-force' && (
           <Button variant="outline" onClick={handleSwap}>
             <ArrowRightLeft className="mr-2 h-4 w-4" />
-            Use output as input
+            {ui.btnUseAsInput || 'Use output as input'}
           </Button>
         )}
       </div>
@@ -192,7 +196,7 @@ export default function Rot13CaesarCipher({
         {output && mode !== 'brute-force' && (
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="cipher-output">Output</Label>
+              <Label htmlFor="cipher-output">{ui.outputLabel || 'Output'}</Label>
               <Button
                 variant="ghost"
                 size="sm"
@@ -201,11 +205,11 @@ export default function Rot13CaesarCipher({
               >
                 {copied ? (
                   <>
-                    <Check className="mr-1 h-3.5 w-3.5" /> Copied
+                    <Check className="mr-1 h-3.5 w-3.5" /> {ui.btnCopied || 'Copied'}
                   </>
                 ) : (
                   <>
-                    <Copy className="mr-1 h-3.5 w-3.5" /> Copy
+                    <Copy className="mr-1 h-3.5 w-3.5" /> {ui.btnCopy || 'Copy'}
                   </>
                 )}
               </Button>
@@ -221,17 +225,17 @@ export default function Rot13CaesarCipher({
 
         {rotations && rotations.length > 0 && (
           <div className="space-y-2">
-            <Label>All 25 rotations</Label>
+            <Label>{ui.allRotationsLabel || 'All 25 rotations'}</Label>
             <div className="max-h-[480px] overflow-y-auto rounded-md border">
               <table className="w-full text-sm">
                 <thead className="sticky top-0 bg-muted">
                   <tr>
                     <th className="w-20 px-3 py-2 text-left font-medium">
-                      Shift
+                      {ui.tableShift || 'Shift'}
                     </th>
-                    <th className="px-3 py-2 text-left font-medium">Output</th>
+                    <th className="px-3 py-2 text-left font-medium">{ui.tableOutput || 'Output'}</th>
                     <th className="w-20 px-3 py-2 text-right font-medium">
-                      Copy
+                      {ui.tableCopy || 'Copy'}
                     </th>
                   </tr>
                 </thead>

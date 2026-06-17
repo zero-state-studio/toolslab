@@ -85,5 +85,31 @@
         "description": "Dateinamen kopieren"
       }
     ]
+  },
+  "ui": {
+    "alsoConvertTo": "Auch konvertieren in:",
+    "base64StringLabel": "Base64-String",
+    "textareaPlaceholder": "Base64-String hier einfügen oder Bild / .txt-Datei hineinziehen...",
+    "dropFileHere": "Datei hier ablegen",
+    "validBase64": "Gültiges Base64",
+    "invalidBase64Format": "Ungültiges Base64-Format",
+    "formatMismatchPrefix": "Die Eingabe scheint",
+    "formatMismatchSuffix": "zu sein — Sie befinden sich auf dem JPEG-Konverter",
+    "clearButton": "Löschen",
+    "errorHeading": "Fehler",
+    "jpegReady": "JPEG bereit",
+    "hidePreview": "Vorschau ausblenden",
+    "showPreview": "Vorschau anzeigen",
+    "sizeLabel": "Größe:",
+    "dimensionsLabel": "Abmessungen:",
+    "qualityLabel": "Qualität:",
+    "previewHeading": "Vorschau",
+    "openInNewTab": "In neuem Tab öffnen",
+    "loadingPreview": "Vorschau wird geladen...",
+    "failedToLoadPreview": "Vorschau konnte nicht geladen werden",
+    "filenameLabel": "Dateiname:",
+    "downloadButton": "JPEG herunterladen",
+    "copiedButton": "Kopiert!",
+    "copyDataUrlButton": "Daten-URL kopieren"
   }
 }

@@ -82,5 +82,35 @@
     "description": "Convertissez binaire en texte ASCII, texte en binaire, hex en texte et plus. Support UTF-8, conversion instantanée. Outil gratuit et sécurisé en ligne."
   },
   "tagline": "Convertissez binaire en texte et decodez les donnees binaires instantanement",
-  "pageDescription": "Convertissez les nombres binaires en texte lisible et encodez le texte en representation binaire. Supporte les formats ASCII, UTF-8 et hexadecimal. Inclut la conversion bidirectionnelle entre binaire, hex et texte avec auto-detection, statistiques d'octets et resultats instantanes. 100% base sur navigateur sans telechargement vers le serveur."
+  "pageDescription": "Convertissez les nombres binaires en texte lisible et encodez le texte en representation binaire. Supporte les formats ASCII, UTF-8 et hexadecimal. Inclut la conversion bidirectionnelle entre binaire, hex et texte avec auto-detection, statistiques d'octets et resultats instantanes. 100% base sur navigateur sans telechargement vers le serveur.",
+  "ui": {
+    "conversionType": "Type de conversion",
+    "binaryToText": "Binary en Texte",
+    "textToBinary": "Texte en Binary",
+    "hexToText": "Hex en Texte",
+    "textToHex": "Texte en Hex",
+    "binaryToHex": "Binary en Hex",
+    "hexToBinary": "Hex en Binary",
+    "spaceSeparatedOutput": "Sortie séparée par des espaces",
+    "inputLabel": "Entrée",
+    "placeholderBinary": "Entrez du binary (ex. 01001000 01100101 01101100 01101100 01101111)",
+    "placeholderHex": "Entrez de l'hexadécimal (ex. 48 65 6C 6C 6F ou 0x48656C6C6F)",
+    "placeholderText": "Entrez le texte à convertir...",
+    "convertButton": "Convertir",
+    "clearButton": "Effacer",
+    "outputLabel": "Sortie",
+    "swapTitle": "Échanger entrée/sortie",
+    "copyTitle": "Copier dans le presse-papiers",
+    "outputPlaceholder": "La sortie convertie apparaîtra ici...",
+    "quickExamples": "Exemples rapides",
+    "infoTitle": "À propos du Binary, Hex et Texte",
+    "infoBinary": "Système numérique en base 2 utilisant uniquement 0 et 1. Chaque caractère est représenté par 8 bits (1 octet).",
+    "infoHex": "Système numérique en base 16 utilisant 0-9 et A-F. Chaque paire représente 1 octet (ex. 48 = \"H\").",
+    "infoAscii": "Encodage standard où chaque caractère correspond à un nombre de 0 à 127.",
+    "infoUtf8": "Encodage à largeur variable supportant tous les caractères Unicode (1-4 octets par caractère).",
+    "exampleHelloWorldBinary": "Hello World (Binary)",
+    "exampleHelloText": "Hello (Texte)",
+    "exampleHelloHex": "Hello (Hex)",
+    "exampleAsciiArt": "ASCII Art"
+  }
 }

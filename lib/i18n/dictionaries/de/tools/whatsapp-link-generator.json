@@ -111,5 +111,39 @@
         "description": "Länderauswahl schließen"
       }
     ]
+  },
+  "ui": {
+    "phoneNumberTitle": "Telefonnummer",
+    "phoneNumberDescription": "Gib die WhatsApp-Nummer ein, mit der du chatten möchtest",
+    "searchCountryPlaceholder": "Land suchen...",
+    "noCountriesFound": "Keine Länder gefunden",
+    "invalidPhoneNumber": "Bitte gib eine gültige Telefonnummer ein (6-15 Ziffern)",
+    "phoneNumberHint": "Gib die Nummer ohne führende Nullen ein. Die Landesvorwahl wird automatisch hinzugefügt.",
+    "prefilledMessageTitle": "Vorgefüllte Nachricht",
+    "prefilledMessageDescription": "Optionale Nachricht, die im Chat vorausgefüllt wird",
+    "templatesButton": "Vorlagen",
+    "messageTemplatesHeading": "Nachrichtenvorlagen",
+    "businessLabel": "Geschäftlich",
+    "personalLabel": "Persönlich",
+    "marketingLabel": "Marketing",
+    "messagePlaceholder": "Hallo! Ich würde gerne anfragen über...",
+    "characters": "Zeichen",
+    "clearMessage": "Nachricht löschen",
+    "generateButton": "WhatsApp-Link generieren",
+    "clearButton": "Löschen",
+    "yourLinkTitle": "Dein WhatsApp-Link",
+    "yourLinkDescription": "Teile diesen Link, um ein Gespräch zu starten",
+    "copyLink": "Link kopieren",
+    "download": "Herunterladen",
+    "openWhatsApp": "WhatsApp öffnen",
+    "qrCode": "QR-Code",
+    "downloadQR": "QR herunterladen",
+    "preview": "Vorschau",
+    "fullNumber": "Vollständige Nummer:",
+    "messageIncluded": "Nachricht enthalten:",
+    "yes": "Ja",
+    "no": "Nein",
+    "messageLength": "Nachrichtenlänge:",
+    "chars": "Zeichen"
   }
 }

@@ -46,7 +46,8 @@ const SAMPLE_XML = `<?xml version="1.0" encoding="UTF-8"?>
   </book>
 </bookstore>`;
 
-export default function XmlToJsonConverter() {
+export default function XmlToJsonConverter({ dictionary }: { dictionary?: any }) {
+  const ui = dictionary?.tools?.['xml-to-json-converter']?.ui ?? {};
   const isHydrated = useHydration();
   const { addToHistory } = useToolStore();
 
@@ -184,10 +185,10 @@ export default function XmlToJsonConverter() {
         >
           <div className="flex items-center gap-2">
             <Settings className="h-3.5 w-3.5" />
-            <span className="text-sm font-medium">Conversion Options</span>
+            <span className="text-sm font-medium">{ui.conversionOptions || 'Conversion Options'}</span>
           </div>
           <Badge variant="secondary" className="text-xs">
-            {showOptions ? 'Hide' : 'Show'}
+            {showOptions ? (ui.hide || 'Hide') : (ui.show || 'Show')}
           </Badge>
         </Button>
         {showOptions && (
@@ -195,9 +196,9 @@ export default function XmlToJsonConverter() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
-                  <Label htmlFor="prettyPrint">Pretty Print</Label>
+                  <Label htmlFor="prettyPrint">{ui.prettyPrintLabel || 'Pretty Print'}</Label>
                   <p className="text-xs text-muted-foreground">
-                    Format JSON with indentation
+                    {ui.prettyPrintDesc || 'Format JSON with indentation'}
                   </p>
                 </div>
                 <Switch
@@ -209,9 +210,9 @@ export default function XmlToJsonConverter() {
 
               <div className="flex flex-col space-y-2">
                 <div className="space-y-0.5">
-                  <Label htmlFor="attributeMode">Attribute Mode</Label>
+                  <Label htmlFor="attributeMode">{ui.attributeModeLabel || 'Attribute Mode'}</Label>
                   <p className="text-xs text-muted-foreground">
-                    How to handle XML attributes
+                    {ui.attributeModeDesc || 'How to handle XML attributes'}
                   </p>
                 </div>
                 <Select
@@ -225,13 +226,13 @@ export default function XmlToJsonConverter() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="inline">
-                      Inline (id, category)
+                      {ui.attrInline || 'Inline (id, category)'}
                     </SelectItem>
                     <SelectItem value="compact">
-                      Compact (@id, @category)
+                      {ui.attrCompact || 'Compact (@id, @category)'}
                     </SelectItem>
                     <SelectItem value="verbose">
-                      Verbose (@attributes)
+                      {ui.attrVerbose || 'Verbose (@attributes)'}
                     </SelectItem>
                   </SelectContent>
                 </Select>
@@ -239,9 +240,9 @@ export default function XmlToJsonConverter() {
 
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
-                  <Label htmlFor="removeNamespaces">Remove Namespaces</Label>
+                  <Label htmlFor="removeNamespaces">{ui.removeNamespacesLabel || 'Remove Namespaces'}</Label>
                   <p className="text-xs text-muted-foreground">
-                    Strip namespace prefixes
+                    {ui.removeNamespacesDesc || 'Strip namespace prefixes'}
                   </p>
                 </div>
                 <Switch
@@ -253,9 +254,9 @@ export default function XmlToJsonConverter() {
 
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
-                  <Label htmlFor="arrayMode">Smart Arrays</Label>
+                  <Label htmlFor="arrayMode">{ui.smartArraysLabel || 'Smart Arrays'}</Label>
                   <p className="text-xs text-muted-foreground">
-                    Auto-detect repeated elements
+                    {ui.smartArraysDesc || 'Auto-detect repeated elements'}
                   </p>
                 </div>
                 <Switch
@@ -267,9 +268,9 @@ export default function XmlToJsonConverter() {
 
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
-                  <Label htmlFor="convertTypes">Type Conversion</Label>
+                  <Label htmlFor="convertTypes">{ui.typeConversionLabel || 'Type Conversion'}</Label>
                   <p className="text-xs text-muted-foreground">
-                    Convert numbers and booleans
+                    {ui.typeConversionDesc || 'Convert numbers and booleans'}
                   </p>
                 </div>
                 <Switch
@@ -288,7 +289,7 @@ export default function XmlToJsonConverter() {
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <Label htmlFor="xml-input" className="text-base font-semibold">
-              XML Input
+              {ui.xmlInputLabel || 'XML Input'}
             </Label>
             <div className="flex gap-1 md:gap-2">
               <Button
@@ -298,7 +299,7 @@ export default function XmlToJsonConverter() {
                 className="h-8"
               >
                 <FileText className="h-3.5 w-3.5 md:mr-1.5" />
-                <span className="hidden md:inline">Sample</span>
+                <span className="hidden md:inline">{ui.sampleBtn || 'Sample'}</span>
               </Button>
               <Button
                 variant="outline"
@@ -307,7 +308,7 @@ export default function XmlToJsonConverter() {
                 className="h-8"
               >
                 <FileUp className="h-3.5 w-3.5 md:mr-1.5" />
-                <span className="hidden md:inline">Upload</span>
+                <span className="hidden md:inline">{ui.uploadBtn || 'Upload'}</span>
               </Button>
               <input
                 id="file-upload"
@@ -322,7 +323,7 @@ export default function XmlToJsonConverter() {
             id="xml-input"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Paste your XML here..."
+            placeholder={ui.inputPlaceholder || 'Paste your XML here...'}
             className="min-h-[300px] resize-y font-mono text-sm"
           />
         </div>
@@ -331,11 +332,11 @@ export default function XmlToJsonConverter() {
       {/* Action Buttons */}
       <div className="flex gap-3">
         <Button onClick={handleConvert} className="flex-1" size="lg">
-          Convert to JSON
+          {ui.convertBtn || 'Convert to JSON'}
         </Button>
         <Button onClick={handleClear} variant="outline" size="lg">
           <Trash2 className="mr-2 h-4 w-4" />
-          Clear
+          {ui.clearBtn || 'Clear'}
         </Button>
       </div>
 
@@ -345,7 +346,7 @@ export default function XmlToJsonConverter() {
           <div className="flex items-start gap-3">
             <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
             <div className="space-y-1">
-              <p className="font-medium text-destructive">Conversion Error</p>
+              <p className="font-medium text-destructive">{ui.conversionError || 'Conversion Error'}</p>
               <p className="text-sm text-muted-foreground">{error}</p>
             </div>
           </div>
@@ -357,19 +358,19 @@ export default function XmlToJsonConverter() {
         <Card className="bg-muted/30 p-4">
           <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
             <div>
-              <p className="text-muted-foreground">XML Size</p>
+              <p className="text-muted-foreground">{ui.xmlSizeLabel || 'XML Size'}</p>
               <p className="font-semibold">{metadata.xmlSize} bytes</p>
             </div>
             <div>
-              <p className="text-muted-foreground">JSON Size</p>
+              <p className="text-muted-foreground">{ui.jsonSizeLabel || 'JSON Size'}</p>
               <p className="font-semibold">{metadata.jsonSize} bytes</p>
             </div>
             <div>
-              <p className="text-muted-foreground">Elements</p>
+              <p className="text-muted-foreground">{ui.elementsLabel || 'Elements'}</p>
               <p className="font-semibold">{metadata.elementCount}</p>
             </div>
             <div>
-              <p className="text-muted-foreground">Processing Time</p>
+              <p className="text-muted-foreground">{ui.processingTimeLabel || 'Processing Time'}</p>
               <p className="font-semibold">{metadata.processingTime}ms</p>
             </div>
           </div>
@@ -386,7 +387,7 @@ export default function XmlToJsonConverter() {
                   htmlFor="json-output"
                   className="text-base font-semibold"
                 >
-                  JSON Output
+                  {ui.jsonOutputLabel || 'JSON Output'}
                 </Label>
                 <div className="flex gap-1 md:gap-2">
                   <Button
@@ -398,12 +399,12 @@ export default function XmlToJsonConverter() {
                     {copied ? (
                       <>
                         <Check className="h-3.5 w-3.5 md:mr-1.5" />
-                        <span className="hidden md:inline">Copied!</span>
+                        <span className="hidden md:inline">{ui.copiedBtn || 'Copied!'}</span>
                       </>
                     ) : (
                       <>
                         <Copy className="h-3.5 w-3.5 md:mr-1.5" />
-                        <span className="hidden md:inline">Copy</span>
+                        <span className="hidden md:inline">{ui.copyBtn || 'Copy'}</span>
                       </>
                     )}
                   </Button>
@@ -414,7 +415,7 @@ export default function XmlToJsonConverter() {
                     className="h-8"
                   >
                     <FileDown className="h-3.5 w-3.5 md:mr-1.5" />
-                    <span className="hidden md:inline">Download</span>
+                    <span className="hidden md:inline">{ui.downloadBtn || 'Download'}</span>
                   </Button>
                 </div>
               </div>

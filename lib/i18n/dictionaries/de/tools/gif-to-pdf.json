@@ -17,7 +17,10 @@
         "title": "PDF konfigurieren",
         "description": "Größe, Anpassung, Ränder."
       },
-      { "title": "PDF erstellen", "description": "Jedes GIF = Seite." }
+      {
+        "title": "PDF erstellen",
+        "description": "Jedes GIF = Seite."
+      }
     ],
     "features": [
       "Mehrere GIF in ein PDF",
@@ -59,8 +62,14 @@
       "Verzerrt: Vermeiden Sie Füllen"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ziehen & Ablegen", "description": "GIF ablegen" },
-      { "keys": "Klicken", "description": "GIF auswählen" }
+      {
+        "keys": "Ziehen & Ablegen",
+        "description": "GIF ablegen"
+      },
+      {
+        "keys": "Klicken",
+        "description": "GIF auswählen"
+      }
     ]
   },
   "meta": {
@@ -68,5 +77,39 @@
     "description": "Konvertieren Sie GIF kostenlos online in PDF. Kombinieren Sie GIF in PDF. Unterstützt animierte (erster Frame). Sicher."
   },
   "tagline": "Konvertieren Sie GIF in PDF unter Beibehaltung der Qualität mit benutzerdefinierten Seitengrößen",
-  "pageDescription": "Transformieren Sie GIF in professionelle PDF-Dokumente mit vollständiger Kontrolle. Funktioniert mit statischen und animierten GIF (erster Frame). Perfekt für Präsentationen, Dokumentation, Meme-Archive. Kostenlose sichere Konvertierung. Erhält GIF-Qualität."
+  "pageDescription": "Transformieren Sie GIF in professionelle PDF-Dokumente mit vollständiger Kontrolle. Funktioniert mit statischen und animierten GIF (erster Frame). Perfekt für Präsentationen, Dokumentation, Meme-Archive. Kostenlose sichere Konvertierung. Erhält GIF-Qualität.",
+  "ui": {
+    "uploadHeading": "GIF-Bilder hochladen",
+    "clearAll": "Alles löschen",
+    "dropZoneMain": "Klicken zum Hochladen oder Drag & Drop",
+    "dropZoneSub": "Nur GIF-Dateien (bis 10 MB pro Datei) - Erster Frame wird verwendet",
+    "selectedImagesLabel": "Ausgewählte GIF-Bilder",
+    "moveUp": "Nach oben",
+    "moveDown": "Nach unten",
+    "remove": "Entfernen",
+    "pdfSettingsHeading": "PDF-Einstellungen",
+    "pageSizeLabel": "Seitengröße",
+    "widthLabel": "Breite (pt)",
+    "heightLabel": "Höhe (pt)",
+    "imageFitLabel": "Bildanpassung",
+    "fitContain": "Enthalten (einpassen, Seitenverhältnis beibehalten)",
+    "fitCover": "Abdecken (Seite füllen, kann zuschneiden)",
+    "fitFill": "Füllen (strecken zum Füllen)",
+    "fitNone": "Keine (Originalgröße)",
+    "marginsLabel": "Ränder",
+    "filenameLabel": "Dateiname",
+    "filenamePlaceholder": "mein-dokument.pdf",
+    "generatingPdf": "PDF wird erstellt...",
+    "generatePdf": "PDF erstellen",
+    "imageSingular": "Bild",
+    "imagePlural": "Bilder",
+    "pdfGeneratedSuccess": "PDF erfolgreich erstellt!",
+    "pagesLabel": "Seiten:",
+    "fileSizeLabel": "Dateigröße:",
+    "filenameResultLabel": "Dateiname:",
+    "downloadPdf": "PDF herunterladen",
+    "previewHeading": "PDF-Vorschau",
+    "hidePreview": "Vorschau ausblenden",
+    "showPreview": "Vorschau anzeigen"
+  }
 }

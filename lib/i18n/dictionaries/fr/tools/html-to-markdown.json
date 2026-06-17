@@ -80,5 +80,35 @@
     "description": "Convertissez HTML en Markdown propre ou Markdown en HTML en ligne. Supporte les tableaux GFM, blocs de code, liens et images. Convertisseur HTML↔Markdown gratuit dans le navigateur."
   },
   "tagline": "Convertissez HTML en Markdown et vice versa avec support GFM complet",
-  "pageDescription": "Convertissez le balisage HTML en syntaxe Markdown propre ou rendez Markdown en HTML avec support GFM (GitHub Flavored Markdown). Parfait pour les développeurs migrant du contenu entre des CMS basés sur HTML et des plateformes Markdown comme GitHub, GitLab ou Notion. Supporte les tableaux, blocs de code, texte barré, listes de tâches, liens, images et tous les éléments HTML standard. Entièrement dans le navigateur avec des options de sortie configurables — aucun compte requis."
+  "pageDescription": "Convertissez le balisage HTML en syntaxe Markdown propre ou rendez Markdown en HTML avec support GFM (GitHub Flavored Markdown). Parfait pour les développeurs migrant du contenu entre des CMS basés sur HTML et des plateformes Markdown comme GitHub, GitLab ou Notion. Supporte les tableaux, blocs de code, texte barré, listes de tâches, liens, images et tous les éléments HTML standard. Entièrement dans le navigateur avec des options de sortie configurables — aucun compte requis.",
+  "ui": {
+    "modeHtmlToMd": "HTML → Markdown",
+    "modeMdToHtml": "Markdown → HTML",
+    "optionsButton": "Options",
+    "uploadHtmlButton": "Importer HTML",
+    "fromUrlButton": "Depuis URL",
+    "loadExampleButton": "Charger exemple",
+    "fetchingLabel": "Chargement…",
+    "fetchHtmlButton": "Récupérer HTML",
+    "headingStyleLabel": "Style des titres",
+    "bulletMarkerLabel": "Marqueur de liste",
+    "codeBlockStyleLabel": "Style de bloc de code",
+    "horizontalRuleLabel": "Règle horizontale",
+    "htmlInputLabel": "Entrée HTML",
+    "markdownInputLabel": "Entrée Markdown",
+    "markdownOutputLabel": "Sortie Markdown",
+    "htmlOutputLabel": "Sortie HTML",
+    "charsLabel": "caractères",
+    "linesLabel": "lignes",
+    "htmlInputPlaceholder": "<h1>Collez votre HTML ici...</h1>",
+    "markdownInputPlaceholder": "# Collez votre Markdown ici...",
+    "markdownOutputPlaceholder": "# La sortie Markdown apparaîtra ici...",
+    "htmlOutputPlaceholder": "<p>La sortie HTML apparaîtra ici...</p>",
+    "codeButton": "Code",
+    "previewButton": "Aperçu",
+    "copyOutputButton": "Copier la sortie",
+    "copiedLabel": "Copié !",
+    "swapButton": "Échanger",
+    "clearButton": "Effacer"
+  }
 }

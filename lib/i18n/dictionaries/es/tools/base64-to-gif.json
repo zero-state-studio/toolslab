@@ -92,5 +92,32 @@
       "Las cabeceras GIF se validan para confirmar que los datos son un GIF genuino",
       "Usa la vista previa para verificar que tu GIF se reproduce correctamente antes de descargarlo"
     ]
+  },
+  "ui": {
+    "alsoConvertTo": "Convertir también a:",
+    "inputLabel": "Cadena Base64",
+    "inputPlaceholder": "Pega la cadena Base64 aquí, o arrastra una imagen / archivo .txt...",
+    "dropFileHere": "Suelta el archivo aquí",
+    "validBase64": "Base64 válido",
+    "invalidBase64Format": "Formato Base64 no válido",
+    "clearButton": "Limpiar",
+    "errorHeading": "Error",
+    "gifReadyHeading": "GIF lista",
+    "hidePreview": "Ocultar vista previa",
+    "showPreview": "Mostrar vista previa",
+    "sizeLabel": "Tamaño:",
+    "dimensionsLabel": "Dimensiones:",
+    "formatLabel": "Formato:",
+    "framesLabel": "Fotogramas:",
+    "animatedLabel": "(animado)",
+    "previewHeading": "Vista previa",
+    "openInNewTab": "Abrir en nueva pestaña",
+    "loadingPreview": "Cargando vista previa...",
+    "failedToLoadPreview": "No se pudo cargar la vista previa",
+    "gifPreviewAlt": "Vista previa GIF",
+    "filenameLabel": "Nombre de archivo:",
+    "downloadButton": "Descargar GIF",
+    "copyDataUrlButton": "Copiar Data URL",
+    "copiedButton": "¡Copiado!"
   }
 }

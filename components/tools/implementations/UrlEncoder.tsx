@@ -39,7 +39,7 @@ import { BaseToolProps } from '@/lib/types/tools';
 
 interface UrlEncoderProps extends BaseToolProps {}
 
-export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
+export default function UrlEncoder({ categoryColor, dictionary }: UrlEncoderProps) {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -48,6 +48,8 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
   const { downloadText } = useDownload();
   const { trackCustom, trackError } = useToolTracking('url-encode');
   const { addToHistory } = useToolStore();
+
+  const ui = dictionary?.tools?.['url-encode']?.ui ?? {};
 
   // Processing options
   const [options, setOptions] = useState<UrlEncodeOptions>({
@@ -249,10 +251,10 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
       <div className="space-y-2 text-center">
         <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 dark:bg-gray-800">
           <Link className="h-5 w-5" style={{ color: categoryColor }} />
-          <span className="font-medium">URL Encoder/Decoder</span>
+          <span className="font-medium">{ui.headerTitle || 'URL Encoder/Decoder'}</span>
         </div>
         <p className="text-sm text-gray-600 dark:text-gray-400">
-          Encode and decode URL components and query parameters safely
+          {ui.headerDescription || 'Encode and decode URL components and query parameters safely'}
         </p>
       </div>
 
@@ -271,10 +273,10 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
             <Unlink className="h-4 w-4" />
           )}
           {options.mode === 'auto'
-            ? 'Auto'
+            ? (ui.modeAuto || 'Auto')
             : options.mode === 'encode'
-              ? 'Encode'
-              : 'Decode'}
+              ? (ui.modeEncode || 'Encode')
+              : (ui.modeDecode || 'Decode')}
           {options.mode === 'auto' && input && (
             <span className="rounded bg-gray-200 px-1 py-0.5 text-xs dark:bg-gray-700">
               ({detectedOperation})
@@ -292,7 +294,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
           ) : (
             <Globe className="h-4 w-4" />
           )}
-          {options.type === 'component' ? 'Component' : 'Full URL'}
+          {options.type === 'component' ? (ui.typeComponent || 'Component') : (ui.typeFullUrl || 'Full URL')}
         </button>
 
         <button
@@ -301,7 +303,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
           style={{ borderColor: categoryColor, color: categoryColor }}
         >
           <Settings className="h-4 w-4" />
-          Options
+          {ui.optionsButton || 'Options'}
         </button>
 
         <button
@@ -310,7 +312,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
           style={{ borderColor: categoryColor, color: categoryColor }}
         >
           <FileText className="h-4 w-4" />
-          Examples
+          {ui.examplesButton || 'Examples'}
         </button>
       </div>
 
@@ -330,7 +332,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
                     }))
                   }
                 />
-                Handle + as space (in query parameters)
+                {ui.optionHandlePlus || 'Handle + as space (in query parameters)'}
               </label>
             </div>
 
@@ -341,7 +343,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
                   checked={batchMode}
                   onChange={(e) => setBatchMode(e.target.checked)}
                 />
-                Batch mode (one URL per line)
+                {ui.optionBatchMode || 'Batch mode (one URL per line)'}
               </label>
             </div>
           </div>
@@ -388,7 +390,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
                       className="rounded px-2 py-1 text-xs"
                       style={{ color: categoryColor }}
                     >
-                      Load
+                      {ui.loadSampleButton || 'Load'}
                     </button>
                   </div>
                 </div>
@@ -402,7 +404,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            {batchMode ? 'URLs (one per line)' : 'URL or Text'}
+            {batchMode ? (ui.inputLabelBatch || 'URLs (one per line)') : (ui.inputLabelSingle || 'URL or Text')}
           </label>
           {currentEncoding !== 'plain' && (
             <span
@@ -510,7 +512,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Result
+            {ui.outputLabel || 'Result'}
           </label>
           <div className="flex gap-2">
             <button
@@ -524,7 +526,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
               ) : (
                 <Copy className="h-4 w-4" />
               )}
-              Copy
+              {ui.copyButton || 'Copy'}
             </button>
             <button
               onClick={() =>
@@ -535,14 +537,14 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
               style={{ borderColor: categoryColor, color: categoryColor }}
             >
               <Download className="h-4 w-4" />
-              Download
+              {ui.downloadButton || 'Download'}
             </button>
           </div>
         </div>
         <textarea
-          value={isProcessing ? 'Processing...' : output}
+          value={isProcessing ? (ui.processingText || 'Processing...') : output}
           readOnly
-          placeholder="Processed URL will appear here..."
+          placeholder={ui.outputPlaceholder || 'Processed URL will appear here...'}
           className="h-32 w-full resize-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
         />
       </div>
@@ -551,7 +553,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
       {batchMode && batchResults.length > 0 && (
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Batch Results ({batchResults.filter((r) => r.success).length}/
+            {ui.batchResultsLabel || 'Batch Results'} ({batchResults.filter((r) => r.success).length}/
             {batchResults.length} successful)
           </label>
           <div className="max-h-60 space-y-2 overflow-y-auto">
@@ -584,7 +586,7 @@ export default function UrlEncoder({ categoryColor }: UrlEncoderProps) {
         <div className="flex items-center justify-center gap-2 py-4">
           <Loader2 className="h-4 w-4 animate-spin" />
           <span className="text-sm text-gray-600 dark:text-gray-400">
-            Processing...
+            {ui.processingText || 'Processing...'}
           </span>
         </div>
       )}

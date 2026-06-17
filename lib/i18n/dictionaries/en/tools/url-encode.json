@@ -81,5 +81,27 @@
     "description": "Encode and decode URL strings online free — percent-encode special characters or decode URL parameters. No signup required. Fast, secure URL encoder/decoder tool."
   },
   "tagline": "Encode and decode URLs and query parameters safely",
-  "pageDescription": "URL encode and decode components and query parameters for web development. Handle special characters, spaces, and international text in URLs safely. Perfect for API developers, web forms, and HTTP request handling. Supports percent-encoding standards with real-time conversion. Free online with no signup required — browser-based and instant."
+  "pageDescription": "URL encode and decode components and query parameters for web development. Handle special characters, spaces, and international text in URLs safely. Perfect for API developers, web forms, and HTTP request handling. Supports percent-encoding standards with real-time conversion. Free online with no signup required — browser-based and instant.",
+  "ui": {
+    "headerTitle": "URL Encoder/Decoder",
+    "headerDescription": "Encode and decode URL components and query parameters safely",
+    "modeAuto": "Auto",
+    "modeEncode": "Encode",
+    "modeDecode": "Decode",
+    "typeComponent": "Component",
+    "typeFullUrl": "Full URL",
+    "optionsButton": "Options",
+    "examplesButton": "Examples",
+    "optionHandlePlus": "Handle + as space (in query parameters)",
+    "optionBatchMode": "Batch mode (one URL per line)",
+    "loadSampleButton": "Load",
+    "inputLabelBatch": "URLs (one per line)",
+    "inputLabelSingle": "URL or Text",
+    "outputLabel": "Result",
+    "copyButton": "Copy",
+    "downloadButton": "Download",
+    "processingText": "Processing...",
+    "outputPlaceholder": "Processed URL will appear here...",
+    "batchResultsLabel": "Batch Results"
+  }
 }

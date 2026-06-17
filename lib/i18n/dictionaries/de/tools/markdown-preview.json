@@ -85,5 +85,23 @@
         "description": "HTML kopieren"
       }
     ]
+  },
+  "ui": {
+    "importBtn": "Importieren",
+    "quickTemplates": "Schnellvorlagen",
+    "statsWords": "Wörter",
+    "statsCharacters": "Zeichen",
+    "statsLines": "Zeilen",
+    "statsReadingTime": "Lesezeit",
+    "statsHeadings": "Überschriften",
+    "statsLinks": "Links",
+    "editorPlaceholder": "# Beginne hier mit dem Schreiben von Markdown...\n\n## Funktionen\n- GitHub Flavored Markdown\n- Live-Vorschau\n- Exportieren nach HTML/PDF\n- Automatisches Speichern\n\nVersuche **fetten** oder *kursiven* Text zu schreiben!",
+    "previewPlaceholder": "Vorschau erscheint hier...",
+    "keyboardShortcutsHeading": "Tastaturkürzel:",
+    "shortcutBold": "Fett",
+    "shortcutItalic": "Kursiv",
+    "shortcutLink": "Link",
+    "supportsHeading": "Unterstützt:",
+    "supportsText": "GitHub Flavored Markdown (GFM), Tabellen, Aufgabenlisten, Codeblöcke und mehr."
   }
 }

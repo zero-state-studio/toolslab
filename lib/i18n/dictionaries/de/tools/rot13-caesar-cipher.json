@@ -77,9 +77,39 @@
       "Brute-Force-Ausgabe schwer zu scannen: erst wenige Wörter einfügen, lesbare Zeile identifizieren, dann die Verschiebung auf den vollen Text anwenden"
     ],
     "keyboardShortcuts": [
-      { "keys": "Strg+V", "description": "Eingabe einfügen" },
-      { "keys": "Strg+C", "description": "Ausgabe kopieren" },
-      { "keys": "Strg+Eingabe", "description": "Verarbeiten" }
+      {
+        "keys": "Strg+V",
+        "description": "Eingabe einfügen"
+      },
+      {
+        "keys": "Strg+C",
+        "description": "Ausgabe kopieren"
+      },
+      {
+        "keys": "Strg+Eingabe",
+        "description": "Verarbeiten"
+      }
     ]
+  },
+  "ui": {
+    "modeLabel": "Modus",
+    "modeRot13": "ROT13 (Kodieren/Dekodieren per Klick)",
+    "modeCaesarEncode": "Caesar — Kodieren mit Verschiebung",
+    "modeCaesarDecode": "Caesar — Dekodieren mit Verschiebung",
+    "modeBruteForce": "Brute force — alle 25 Rotationen anzeigen",
+    "shiftLabel": "Verschiebung (1–25)",
+    "inputLabel": "Eingabetext",
+    "inputPlaceholder": "Text zum Kodieren oder Dekodieren eingeben...",
+    "btnProcess": "Verarbeiten",
+    "btnShowRotations": "Alle 25 Rotationen anzeigen",
+    "btnUseAsInput": "Ausgabe als Eingabe verwenden",
+    "outputLabel": "Ausgabe",
+    "btnCopy": "Kopieren",
+    "btnCopied": "Kopiert",
+    "allRotationsLabel": "Alle 25 Rotationen",
+    "tableShift": "Verschiebung",
+    "tableOutput": "Ausgabe",
+    "tableCopy": "Kopieren",
+    "errorNoInput": "Bitte geben Sie Text zur Verarbeitung ein"
   }
 }

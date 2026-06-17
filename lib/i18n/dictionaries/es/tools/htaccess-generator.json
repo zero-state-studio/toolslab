@@ -116,5 +116,16 @@
       "Algunos hostings compartidos pueden restringir ciertas directivas .htaccess",
       "Limpia la caché del navegador después de cambios en redirecciones para ver los efectos"
     ]
-  }
+  },
+  "noRedirects": "No hay redirecciones configuradas. Haz clic en \"Añadir Redirección\" para crear una.",
+  "htmlCache": "Caché HTML",
+  "cssJsCache": "Caché CSS/JS",
+  "imageCache": "Caché de Imágenes",
+  "fontCache": "Caché de Fuentes",
+  "noCache": "Sin caché",
+  "oneHour": "1 hora",
+  "oneDay": "1 día",
+  "oneWeek": "1 semana",
+  "oneMonth": "1 mes",
+  "oneYear": "1 año"
 }

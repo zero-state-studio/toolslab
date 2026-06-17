@@ -29,9 +29,11 @@ import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 
 interface PngToPdfToolProps {
   categoryColor: string;
+  dictionary?: any;
 }
 
-export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
+export default function PngToPdfTool({ categoryColor, dictionary }: PngToPdfToolProps) {
+  const ui = dictionary?.tools?.['png-to-pdf']?.ui ?? {};
   const [images, setImages] = useState<ImageFile[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -258,14 +260,14 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
       <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-            Upload PNG Images
+            {ui.uploadHeading || 'Upload PNG Images'}
           </h2>
           {images.length > 0 && (
             <button
               onClick={handleClear}
               className="rounded-md bg-red-50 px-3 py-1.5 text-sm text-red-600 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400"
             >
-              Clear All
+              {ui.clearAll || 'Clear All'}
             </button>
           )}
         </div>
@@ -278,10 +280,10 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
         >
           <Upload className="mx-auto mb-4 h-12 w-12 text-gray-400" />
           <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-            Click to upload or drag and drop
+            {ui.dropZoneMain || 'Click to upload or drag and drop'}
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            PNG files only (up to 10MB per file) - Transparency supported
+            {ui.dropZoneSub || 'PNG files only (up to 10MB per file) - Transparency supported'}
           </p>
           <input
             ref={fileInputRef}
@@ -296,7 +298,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
         {images.length > 0 && (
           <div className="mt-6 space-y-3">
             <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Selected PNG Images ({images.length})
+              {ui.selectedImagesLabel || 'Selected PNG Images'} ({images.length})
             </h3>
             <div className="grid gap-3">
               {images.map((img, index) => (
@@ -322,7 +324,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
                       onClick={() => handleMoveUp(index)}
                       disabled={index === 0}
                       className="rounded p-1 text-gray-500 hover:bg-gray-200 disabled:opacity-30 dark:hover:bg-gray-600"
-                      title="Move up"
+                      title={ui.moveUp || 'Move up'}
                     >
                       <ChevronUp className="h-4 w-4" />
                     </button>
@@ -330,14 +332,14 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
                       onClick={() => handleMoveDown(index)}
                       disabled={index === images.length - 1}
                       className="rounded p-1 text-gray-500 hover:bg-gray-200 disabled:opacity-30 dark:hover:bg-gray-600"
-                      title="Move down"
+                      title={ui.moveDown || 'Move down'}
                     >
                       <ChevronDown className="h-4 w-4" />
                     </button>
                     <button
                       onClick={() => handleRemoveImage(index)}
                       className="rounded p-1 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"
-                      title="Remove"
+                      title={ui.remove || 'Remove'}
                     >
                       <X className="h-4 w-4" />
                     </button>
@@ -355,7 +357,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
           className="mb-4 flex w-full items-center justify-between"
         >
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-            PDF Settings
+            {ui.pdfSettingsHeading || 'PDF Settings'}
           </h2>
           <Settings
             className={`h-5 w-5 transition-transform ${showSettings ? 'rotate-90' : ''}`}
@@ -366,7 +368,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
           <div className="space-y-4">
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Page Size
+                {ui.pageSizeLabel || 'Page Size'}
               </label>
               <select
                 value={pageSize}
@@ -387,7 +389,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Width (pt)
+                    {ui.widthLabel || 'Width (pt)'}
                   </label>
                   <input
                     type="number"
@@ -400,7 +402,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Height (pt)
+                    {ui.heightLabel || 'Height (pt)'}
                   </label>
                   <input
                     type="number"
@@ -416,7 +418,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
 
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Image Fit
+                {ui.imageFitLabel || 'Image Fit'}
               </label>
               <select
                 value={fitMode}
@@ -424,17 +426,17 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 dark:border-gray-600 dark:bg-gray-700"
               >
                 <option value="contain">
-                  Contain (fit inside, maintain ratio)
+                  {ui.fitContain || 'Contain (fit inside, maintain ratio)'}
                 </option>
-                <option value="cover">Cover (fill page, may crop)</option>
-                <option value="fill">Fill (stretch to fill)</option>
-                <option value="none">None (original size)</option>
+                <option value="cover">{ui.fitCover || 'Cover (fill page, may crop)'}</option>
+                <option value="fill">{ui.fitFill || 'Fill (stretch to fill)'}</option>
+                <option value="none">{ui.fitNone || 'None (original size)'}</option>
               </select>
             </div>
 
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Margins: {margins}pt
+                {ui.marginsLabel || 'Margins'}: {margins}pt
               </label>
               <input
                 type="range"
@@ -449,14 +451,14 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
 
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                Filename
+                {ui.filenameLabel || 'Filename'}
               </label>
               <input
                 type="text"
                 value={fileName}
                 onChange={(e) => setFileName(e.target.value)}
                 className="w-full rounded-lg border border-gray-300 px-3 py-2 dark:border-gray-600 dark:bg-gray-700"
-                placeholder="my-document.pdf"
+                placeholder={ui.filenamePlaceholder || 'my-document.pdf'}
               />
             </div>
           </div>
@@ -470,13 +472,13 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
           {isProcessing ? (
             <>
               <Loader2 className="mr-2 inline h-5 w-5 animate-spin" />
-              Generating PDF...
+              {ui.generatingPdf || 'Generating PDF...'}
             </>
           ) : (
             <>
               <FileText className="mr-2 inline h-5 w-5" />
-              Generate PDF ({images.length}{' '}
-              {images.length === 1 ? 'image' : 'images'})
+              {ui.generatePdf || 'Generate PDF'} ({images.length}{' '}
+              {images.length === 1 ? (ui.imageSingular || 'image') : (ui.imagePlural || 'images')})
             </>
           )}
         </button>
@@ -499,19 +501,19 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
           <div className="mb-4 flex items-center gap-2">
             <FileText className="h-5 w-5 text-green-600 dark:text-green-400" />
             <h2 className="text-lg font-medium text-green-900 dark:text-green-100">
-              PDF Generated Successfully!
+              {ui.pdfGeneratedSuccess || 'PDF Generated Successfully!'}
             </h2>
           </div>
 
           <div className="mb-4 space-y-2 text-sm text-green-800 dark:text-green-200">
             <p>
-              <strong>Pages:</strong> {pdfMetadata.pageCount}
+              <strong>{ui.pagesLabel || 'Pages:'}</strong> {pdfMetadata.pageCount}
             </p>
             <p>
-              <strong>File Size:</strong> {formatFileSize(pdfMetadata.fileSize)}
+              <strong>{ui.fileSizeLabel || 'File Size:'}</strong> {formatFileSize(pdfMetadata.fileSize)}
             </p>
             <p>
-              <strong>Filename:</strong> {pdfMetadata.fileName}
+              <strong>{ui.filenameResultLabel || 'Filename:'}</strong> {pdfMetadata.fileName}
             </p>
           </div>
 
@@ -520,7 +522,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
             className="flex w-full items-center justify-center gap-2 rounded-lg bg-green-600 px-4 py-3 font-medium text-white hover:bg-green-700"
           >
             <Download className="h-5 w-5" />
-            Download PDF
+            {ui.downloadPdf || 'Download PDF'}
           </button>
 
           {/* PDF Preview Section */}
@@ -528,7 +530,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
             <div className="mt-6 space-y-2">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  PDF Preview
+                  {ui.previewHeading || 'PDF Preview'}
                 </h3>
                 <button
                   onClick={() => setShowPreview(!showPreview)}
@@ -537,12 +539,12 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
                   {showPreview ? (
                     <>
                       <EyeOff className="h-3 w-3" />
-                      Hide Preview
+                      {ui.hidePreview || 'Hide Preview'}
                     </>
                   ) : (
                     <>
                       <Eye className="h-3 w-3" />
-                      Show Preview
+                      {ui.showPreview || 'Show Preview'}
                     </>
                   )}
                 </button>
@@ -554,7 +556,7 @@ export default function PngToPdfTool({ categoryColor }: PngToPdfToolProps) {
                     src={previewUrl}
                     type="application/pdf"
                     className="h-[600px] w-full"
-                    title="PDF Preview"
+                    title={ui.previewHeading || 'PDF Preview'}
                   />
                 </div>
               )}

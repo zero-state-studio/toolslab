@@ -59,9 +59,18 @@
       "Supprimer la dernière colonne réinitialise la mise en page — utilisez 'Exemple' pour restaurer rapidement"
     ],
     "keyboardShortcuts": [
-      { "keys": "Tab", "description": "Aller à la cellule suivante" },
-      { "keys": "Shift+Tab", "description": "Aller à la cellule précédente" },
-      { "keys": "Ctrl+C", "description": "Copier le Markdown" }
+      {
+        "keys": "Tab",
+        "description": "Aller à la cellule suivante"
+      },
+      {
+        "keys": "Shift+Tab",
+        "description": "Aller à la cellule précédente"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le Markdown"
+      }
     ]
   },
   "meta": {
@@ -69,5 +78,32 @@
     "description": "Générateur gratuit de tables Markdown. Créez des tables GFM visuellement ou collez CSV/TSV. Alignement par colonne, aperçu en direct, copie rapide."
   },
   "tagline": "Créez des tables Markdown GFM visuellement ou depuis CSV — alignement, aperçu et copie en quelques secondes",
-  "pageDescription": "Créez des tables Markdown propres sans compter les pipes. Utilisez l'éditeur visuel pour ajouter des lignes, réordonner les colonnes et définir l'alignement de chaque colonne, ou collez du CSV, TSV ou une table Markdown existante pour importer immédiatement. Les pipes et sauts de ligne dans les cellules sont échappés automatiquement, donc la sortie reste du GitHub Flavored Markdown valide. Activez le padding visuel pour un code diff-friendly, voyez le HTML rendu en direct et copiez le résultat en un clic. Parfait pour les README, articles de blog, pages comparatives et documentation API. Gratuit, navigateur, sans inscription."
+  "pageDescription": "Créez des tables Markdown propres sans compter les pipes. Utilisez l'éditeur visuel pour ajouter des lignes, réordonner les colonnes et définir l'alignement de chaque colonne, ou collez du CSV, TSV ou une table Markdown existante pour importer immédiatement. Les pipes et sauts de ligne dans les cellules sont échappés automatiquement, donc la sortie reste du GitHub Flavored Markdown valide. Activez le padding visuel pour un code diff-friendly, voyez le HTML rendu en direct et copiez le résultat en un clic. Parfait pour les README, articles de blog, pages comparatives et documentation API. Gratuit, navigateur, sans inscription.",
+  "ui": {
+    "visualEditor": "Éditeur visuel",
+    "pasteCsvTsvMarkdown": "Coller CSV / TSV / Markdown",
+    "example": "Exemple",
+    "clear": "Effacer",
+    "delimiterLabel": "Délimiteur",
+    "autoDetect": "Détection automatique",
+    "commaOption": "Virgule (,)",
+    "semicolonOption": "Point-virgule (;)",
+    "tabOption": "Tabulation",
+    "firstRowIsHeader": "La première ligne est l'en-tête",
+    "import": "Importer",
+    "removeColumn": "Supprimer la colonne",
+    "addColumn": "Ajouter une colonne",
+    "moveUp": "Monter",
+    "moveDown": "Descendre",
+    "removeRow": "Supprimer la ligne",
+    "addRow": "Ajouter une ligne",
+    "markdownOutput": "Sortie Markdown",
+    "prettyPadding": "Rembourrage aligné",
+    "hidePreview": "Masquer l'aperçu",
+    "showPreview": "Afficher l'aperçu",
+    "copied": "Copié",
+    "copyMarkdown": "Copier Markdown",
+    "outputPlaceholder": "Le tableau Markdown apparaîtra ici...",
+    "livePreview": "Aperçu en direct"
+  }
 }

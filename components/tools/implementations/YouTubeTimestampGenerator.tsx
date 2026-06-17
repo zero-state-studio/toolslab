@@ -20,6 +20,7 @@ import {
 } from '@/lib/tools/youtube-timestamp-generator';
 
 interface YouTubeTimestampGeneratorProps {
+  dictionary?: any;
   toolText?: {
     title?: string;
     description?: string;
@@ -59,6 +60,7 @@ interface YouTubeTimestampGeneratorProps {
 }
 
 export default function YouTubeTimestampGenerator({
+  dictionary,
   toolText,
 }: YouTubeTimestampGeneratorProps) {
   const isHydrated = useHydration();
@@ -85,47 +87,54 @@ export default function YouTubeTimestampGenerator({
   const [converterSeconds, setConverterSeconds] = useState<number | null>(null);
   const [converterFormatted, setConverterFormatted] = useState('');
 
+  // Resolve per-tool translations: dictionary prop (runtime i18n) takes priority,
+  // toolText is kept as a harmless fallback for legacy callers.
+  const t = dictionary?.tools?.['youtube-timestamp-generator'] || toolText || {};
+
   // Labels with fallbacks
   const labels = {
-    title: toolText?.title || 'YouTube Timestamp Generator',
+    title: t.title || 'YouTube Timestamp Generator',
     description:
-      toolText?.description ||
+      t.description ||
       'Create timestamps for YouTube videos with chapters format',
-    placeholder: toolText?.placeholder || '00:00',
+    placeholder: t.placeholder || '00:00',
     videoUrlPlaceholder:
-      toolText?.videoUrlPlaceholder || 'https://www.youtube.com/watch?v=...',
-    addTimestamp: toolText?.addTimestamp || 'Add Timestamp',
-    time: toolText?.time || 'Time',
-    label: toolText?.label || 'Label',
-    labelPlaceholder: toolText?.labelPlaceholder || 'Chapter title...',
-    timestamps: toolText?.timestamps || 'Timestamps',
+      t.videoUrlPlaceholder || 'https://www.youtube.com/watch?v=...',
+    addTimestamp: t.addTimestamp || 'Add Timestamp',
+    time: t.time || 'Time',
+    label: t.label || 'Label',
+    labelPlaceholder: t.labelPlaceholder || 'Chapter title...',
+    timestamps: t.timestamps || 'Timestamps',
     noTimestamps:
-      toolText?.noTimestamps || 'No timestamps yet. Add your first one!',
-    generateChapters: toolText?.generateChapters || 'Generate Chapters',
-    importChapters: toolText?.importChapters || 'Import Chapters',
-    copyChapters: toolText?.copyChapters || 'Copy Chapters',
-    copyLinks: toolText?.copyLinks || 'Copy with Links',
-    clear: toolText?.clear || 'Clear All',
-    delete: toolText?.delete || 'Delete',
-    edit: toolText?.edit || 'Edit',
-    save: toolText?.save || 'Save',
-    cancel: toolText?.cancel || 'Cancel',
-    chaptersFormat: toolText?.chaptersFormat || 'YouTube Chapters Format',
-    linksFormat: toolText?.linksFormat || 'Timestamps with Links',
-    videoUrl: toolText?.videoUrl || 'YouTube Video URL',
-    optional: toolText?.optional || '(optional)',
-    invalidTime: toolText?.invalidTime || 'Invalid time format',
-    invalidUrl: toolText?.invalidUrl || 'Invalid YouTube URL',
-    chaptersOutput: toolText?.chaptersOutput || 'Chapters Output',
-    linksOutput: toolText?.linksOutput || 'Links Output',
-    copied: toolText?.copied || 'Copied!',
+      t.noTimestamps || 'No timestamps yet. Add your first one!',
+    generateChapters: t.generateChapters || 'Generate Chapters',
+    importChapters: t.importChapters || 'Import Chapters',
+    copyChapters: t.copyChapters || 'Copy Chapters',
+    copyLinks: t.copyLinks || 'Copy with Links',
+    clear: t.clear || 'Clear All',
+    delete: t.delete || 'Delete',
+    edit: t.edit || 'Edit',
+    save: t.save || 'Save',
+    cancel: t.cancel || 'Cancel',
+    chaptersFormat: t.chaptersFormat || 'YouTube Chapters Format',
+    linksFormat: t.linksFormat || 'Timestamps with Links',
+    videoUrl: t.videoUrl || 'YouTube Video URL',
+    optional: t.optional || '(optional)',
+    invalidTime: t.invalidTime || 'Invalid time format',
+    invalidUrl: t.invalidUrl || 'Invalid YouTube URL',
+    chaptersOutput: t.chaptersOutput || 'Chapters Output',
+    linksOutput: t.linksOutput || 'Links Output',
+    copied: t.copied || 'Copied!',
     importPlaceholder:
-      toolText?.importPlaceholder || 'Paste chapters here (one per line)...',
-    importButton: toolText?.importButton || 'Import',
-    convertTime: toolText?.convertTime || 'Time Converter',
-    seconds: toolText?.seconds || 'Seconds',
-    formatted: toolText?.formatted || 'Formatted',
-    convert: toolText?.convert || 'Convert',
+      t.importPlaceholder || 'Paste chapters here (one per line)...',
+    importButton: t.importButton || 'Import',
+    convertTime: t.convertTime || 'Time Converter',
+    seconds: t.seconds || 'Seconds',
+    formatted: t.formatted || 'Formatted',
+    convert: t.convert || 'Convert',
+    actions: t.actions || 'Actions',
+    converterPlaceholder: t.converterPlaceholder || '00:00 or 90',
+    converterHint: t.converterHint || 'MM:SS, HH:MM:SS, or seconds',
   };
 
   // Validate YouTube URL when it changes
@@ -428,7 +437,7 @@ export default function YouTubeTimestampGenerator({
                     {labels.label}
                   </th>
                   <th className="w-32 px-4 py-2 text-right text-sm font-medium">
-                    Actions
+                    {labels.actions}
                   </th>
                 </tr>
               </thead>
@@ -561,11 +570,11 @@ export default function YouTubeTimestampGenerator({
             <Input
               value={converterInput}
               onChange={(e) => setConverterInput(e.target.value)}
-              placeholder="00:00 or 90"
+              placeholder={labels.converterPlaceholder}
               onKeyPress={(e) => e.key === 'Enter' && handleConvert()}
             />
             <p className="text-xs text-muted-foreground">
-              MM:SS, HH:MM:SS, or seconds
+              {labels.converterHint}
             </p>
           </div>
           <div className="flex items-center">

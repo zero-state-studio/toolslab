@@ -249,7 +249,8 @@ const JsonTreeNode = memo(function JsonTreeNode({
   return <span>{String(data)}</span>;
 });
 
-export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
+export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatterProps) {
+  const ui = dictionary?.tools?.['json-formatter']?.ui ?? {};
   // Consolidated state with useReducer for better performance
   const [state, dispatch] = useReducer(formatterReducer, initialState);
   const {
@@ -604,7 +605,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
     } catch {
       return (
         <div className="text-red-500">
-          Error rendering tree view. Please use formatted view.
+          {ui.treeViewError || 'Error rendering tree view. Please use formatted view.'}
         </div>
       );
     }
@@ -617,7 +618,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         <div className="flex items-center gap-3">
           <FileJson className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            JSON Formatter & Validator
+            {ui.headerTitle || 'JSON Formatter & Validator'}
           </h3>
         </div>
       </div>
@@ -630,10 +631,10 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
               <Loader2 className="h-8 w-8 animate-spin text-blue-600 dark:text-blue-400" />
               <div className="text-center">
                 <h3 className="font-medium text-gray-900 dark:text-gray-100">
-                  Processing JSON...
+                  {ui.processingOverlayTitle || 'Processing JSON...'}
                 </h3>
                 <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                  Large JSON detected. This may take a moment.
+                  {ui.processingOverlaySubtext || 'Large JSON detected. This may take a moment.'}
                 </p>
               </div>
             </div>
@@ -643,14 +644,14 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Input JSON
+              {ui.inputLabel || 'Input JSON'}
             </label>
             <button
               onClick={handleFileUploadClick}
               className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
             >
               <Upload className="h-4 w-4" />
-              Upload JSON File
+              {ui.uploadButton || 'Upload JSON File'}
             </button>
             <input
               ref={fileInputRef}
@@ -663,7 +664,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
           {uploadedFileName && (
             <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
               <File className="h-4 w-4" />
-              <span>Uploaded: {uploadedFileName}</span>
+              <span>{ui.uploadedPrefix || 'Uploaded:'} {uploadedFileName}</span>
             </div>
           )}
           <div className="relative">
@@ -679,7 +680,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
               placeholder={
                 uploadedFileName
                   ? ''
-                  : '{"key": "value", "array": [1, 2, 3]} or upload a JSON file above'
+                  : (ui.inputPlaceholder || '{"key": "value", "array": [1, 2, 3]} or upload a JSON file above')
               }
               className="h-48 w-full resize-none rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 transition-all focus:outline-none dark:bg-gray-900 dark:text-white"
               style={{
@@ -701,11 +702,11 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                       <Loader2 className="h-5 w-5 animate-spin text-blue-600 dark:text-blue-400" />
                       <div className="flex flex-col">
                         <span className="font-medium text-gray-800 dark:text-gray-200">
-                          Processing: {uploadedFileName}
+                          {ui.processingPrefix || 'Processing:'} {uploadedFileName}
                         </span>
                         <span className="text-sm text-gray-600 dark:text-gray-400">
                           {(uploadedFileSize / (1024 * 1024)).toFixed(1)} MB -
-                          Please wait...
+                          {' '}{ui.pleaseWait || 'Please wait...'}
                         </span>
                       </div>
                     </>
@@ -713,15 +714,15 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                     <>
                       <File className="h-5 w-5 text-gray-600 dark:text-gray-400" />
                       <span className="font-medium text-gray-800 dark:text-gray-200">
-                        Input file: {uploadedFileName}
+                        {uploadedFileName}
                       </span>
                       <button
                         onClick={() =>
                           dispatch({ type: 'CLEAR_UPLOADED_FILE' })
                         }
                         className="ml-2 text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400"
-                        title="Remove file and clear input"
-                        aria-label="Remove uploaded file"
+                        title={ui.removeFileTitle || 'Remove file and clear input'}
+                        aria-label={ui.removeFileAriaLabel || 'Remove uploaded file'}
                       >
                         ✕
                       </button>
@@ -740,7 +741,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         <div className="flex flex-wrap items-center gap-3 rounded-lg bg-gray-50 px-4 py-2.5 dark:bg-gray-900">
           <div className="flex items-center gap-2">
             <label className="text-sm text-gray-600 dark:text-gray-400">
-              Indent:
+              {ui.indentLabel || 'Indent:'}
             </label>
             <select
               value={indentSize}
@@ -752,9 +753,9 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
               }
               className="rounded border border-gray-300 bg-white px-3 py-1 text-sm dark:border-gray-600 dark:bg-gray-800"
             >
-              <option value={2}>2 spaces</option>
-              <option value={4}>4 spaces</option>
-              <option value={0}>Tab</option>
+              <option value={2}>{ui.indent2Spaces || '2 spaces'}</option>
+              <option value={4}>{ui.indent4Spaces || '4 spaces'}</option>
+              <option value={0}>{ui.indentTab || 'Tab'}</option>
             </select>
           </div>
           <label className="flex cursor-pointer items-center gap-2">
@@ -768,7 +769,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
               style={{ accentColor: categoryColor }}
             />
             <span className="text-sm text-gray-600 dark:text-gray-400">
-              Sort keys
+              {ui.sortKeysLabel || 'Sort keys'}
             </span>
           </label>
         </div>
@@ -787,12 +788,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
             {isProcessing ? (
               <>
                 <Loader2 className="h-3.5 w-3.5 animate-spin" />
-                Processing...
+                {ui.processingButton || 'Processing...'}
               </>
             ) : (
               <>
                 <Maximize2 className="h-3.5 w-3.5" />
-                Format
+                {ui.formatButton || 'Format'}
               </>
             )}
           </button>
@@ -806,7 +807,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
             }}
           >
             <Minimize2 className="h-3.5 w-3.5" />
-            Minify
+            {ui.minifyButton || 'Minify'}
           </button>
         </div>
 
@@ -821,7 +822,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
         {formatSuccess && (
           <div className="animate-slideIn flex items-center gap-2 rounded-lg bg-green-50 p-3 text-green-700 dark:bg-green-950/30 dark:text-green-400">
             <CheckCircle className="h-5 w-5" />
-            <span className="font-medium">JSON formatted successfully!</span>
+            <span className="font-medium">{ui.successMessage || 'JSON formatted successfully!'}</span>
           </div>
         )}
 
@@ -830,10 +831,10 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
           <div className="animate-slideIn space-y-2" ref={outputRef}>
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Output{' '}
+                {ui.outputLabel || 'Output'}{' '}
                 {isLargeFile && (
                   <span className="text-gray-500">
-                    (Preview - First 200 lines)
+                    {ui.previewNote || '(Preview - First 200 lines)'}
                   </span>
                 )}
               </label>
@@ -851,12 +852,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                   {viewMode === 'tree' ? (
                     <>
                       <Code className="h-4 w-4" />
-                      <span className="text-sm">Code</span>
+                      <span className="text-sm">{ui.viewCode || 'Code'}</span>
                     </>
                   ) : (
                     <>
                       <Eye className="h-4 w-4" />
-                      <span className="text-sm">Tree</span>
+                      <span className="text-sm">{ui.viewTree || 'Tree'}</span>
                     </>
                   )}
                 </button>
@@ -867,12 +868,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                   {copied ? (
                     <>
                       <Check className="h-4 w-4 text-green-500" />
-                      <span className="text-sm text-green-500">Copied!</span>
+                      <span className="text-sm text-green-500">{ui.copiedButton || 'Copied!'}</span>
                     </>
                   ) : (
                     <>
                       <Copy className="h-4 w-4" />
-                      <span className="text-sm">Copy</span>
+                      <span className="text-sm">{ui.copyButton || 'Copy'}</span>
                     </>
                   )}
                 </button>
@@ -881,7 +882,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                   className="flex items-center gap-1 rounded-lg px-3 py-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <Download className="h-4 w-4" />
-                  <span className="text-sm">Download</span>
+                  <span className="text-sm">{ui.downloadButton || 'Download'}</span>
                 </button>
               </div>
             </div>
@@ -904,14 +905,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                     <div className="flex items-center gap-2 text-orange-800 dark:text-orange-200">
                       <AlertCircle className="h-5 w-5" />
                       <span className="font-medium">
-                        Large file detected ({previewLines} lines total,{' '}
+                        {ui.largeFileTitle || 'Large file detected'} ({previewLines} lines total,{' '}
                         {(uploadedFileSize / (1024 * 1024)).toFixed(1)} MB)
                       </span>
                     </div>
                     <p className="mt-2 text-sm text-orange-700 dark:text-orange-300">
-                      Only the first 200 lines are shown above. Download the
-                      complete formatted file using the button above to view the
-                      full content.
+                      {ui.largeFileDescription || 'Only the first 200 lines are shown above. Download the complete formatted file using the button above to view the full content.'}
                     </p>
                   </div>
                 )}
@@ -934,7 +933,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                 <Search className="h-5 w-5 text-gray-500" />
                 <input
                   type="text"
-                  placeholder="Search for a key in JSON..."
+                  placeholder={ui.searchPlaceholder || 'Search for a key in JSON...'}
                   value={searchKey}
                   onChange={(e) =>
                     dispatch({
@@ -954,15 +953,14 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                   className="rounded-lg px-4 py-2 text-sm font-medium text-white transition-all hover:scale-105"
                   style={{ backgroundColor: categoryColor }}
                 >
-                  Search
+                  {ui.searchButton || 'Search'}
                 </button>
               </div>
 
               {searchResults.length > 0 && (
                 <div className="animate-slideIn space-y-3">
                   <div className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Found {searchResults.length} occurrence
-                    {searchResults.length > 1 ? 's' : ''}:
+                    {ui.foundPrefix || 'Found'} {searchResults.length} {searchResults.length > 1 ? (ui.foundOccurrences || 'occurrences') : (ui.foundOccurrence || 'occurrence')}:
                   </div>
                   {searchResults.map((result, index) => (
                     <div
@@ -971,13 +969,13 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                     >
                       {searchResults.length > 1 && (
                         <div className="text-xs font-medium text-gray-500 dark:text-gray-400">
-                          Occurrence {index + 1}
+                          {ui.occurrencePrefix || 'Occurrence'} {index + 1}
                         </div>
                       )}
                       <div className="space-y-1">
                         <div className="flex items-center justify-between">
                           <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Value:
+                            {ui.valueLabel || 'Value:'}
                           </span>
                           <button
                             onClick={() => handleCopyValue(result.value, index)}
@@ -986,12 +984,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                             {copiedValues[index] ? (
                               <>
                                 <Check className="h-3 w-3 text-green-500" />
-                                <span className="text-green-500">Copied!</span>
+                                <span className="text-green-500">{ui.copiedButton || 'Copied!'}</span>
                               </>
                             ) : (
                               <>
                                 <Copy className="h-3 w-3" />
-                                <span>Copy Value</span>
+                                <span>{ui.copyValueButton || 'Copy Value'}</span>
                               </>
                             )}
                           </button>
@@ -1005,7 +1003,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                       <div className="space-y-1">
                         <div className="flex items-center justify-between">
                           <span className="text-sm font-medium text-gray-600 dark:text-gray-400">
-                            Path:
+                            {ui.pathLabel || 'Path:'}
                           </span>
                           <button
                             onClick={() => handleCopyPath(result.path, index)}
@@ -1014,12 +1012,12 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
                             {copiedPaths[index] ? (
                               <>
                                 <Check className="h-3 w-3 text-green-500" />
-                                <span className="text-green-500">Copied!</span>
+                                <span className="text-green-500">{ui.copiedButton || 'Copied!'}</span>
                               </>
                             ) : (
                               <>
                                 <Copy className="h-3 w-3" />
-                                <span>Copy Path</span>
+                                <span>{ui.copyPathButton || 'Copy Path'}</span>
                               </>
                             )}
                           </button>
@@ -1035,7 +1033,7 @@ export default function JsonFormatter({ categoryColor }: JsonFormatterProps) {
 
               {hasSearched && searchKey && searchResults.length === 0 && (
                 <div className="text-sm text-gray-500 dark:text-gray-400">
-                  No key &ldquo;{searchKey}&rdquo; found in the JSON.
+                  {ui.noKeyPrefix || 'No key'} &ldquo;{searchKey}&rdquo; {ui.noKeyFound || 'found in the JSON.'}
                 </div>
               )}
             </div>

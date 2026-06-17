@@ -108,7 +108,7 @@ export default function CurlToCodeConverter({
 }: CurlToCodeConverterProps = {}) {
   const { theme } = useTheme();
   const { trackUse, trackError } = useToolTracking(toolId);
-  const ui = dictionary?.tools?.['curl-to-code']?.ui ?? {};
+  const ui = dictionary?.tools?.[toolId]?.ui ?? {};
 
   // Localized labels for the example buttons (keys of EXAMPLE_CURLS stay EN)
   const exampleLabels: Record<string, string> = {

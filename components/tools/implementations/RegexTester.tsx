@@ -48,6 +48,7 @@ interface PresetPattern {
 
 interface RegexTesterProps {
   categoryColor: string;
+  dictionary?: any;
 }
 
 const PRESET_PATTERNS: PresetPattern[] = [
@@ -113,12 +114,12 @@ const PRESET_PATTERNS: PresetPattern[] = [
 ];
 
 const FLAG_OPTIONS = [
-  { key: 'g', label: 'Global', description: 'Find all matches' },
-  { key: 'i', label: 'Case Insensitive', description: 'Ignore case' },
-  { key: 'm', label: 'Multiline', description: '^/$ match line breaks' },
-  { key: 's', label: 'Dotall', description: '. matches newlines' },
-  { key: 'u', label: 'Unicode', description: 'Enable unicode support' },
-  { key: 'y', label: 'Sticky', description: 'Match from lastIndex' },
+  { key: 'g', labelKey: 'flagGlobal', descKey: 'flagDescGlobal', label: 'Global', description: 'Find all matches' },
+  { key: 'i', labelKey: 'flagCaseInsensitive', descKey: 'flagDescCaseInsensitive', label: 'Case Insensitive', description: 'Ignore case' },
+  { key: 'm', labelKey: 'flagMultiline', descKey: 'flagDescMultiline', label: 'Multiline', description: '^/$ match line breaks' },
+  { key: 's', labelKey: 'flagDotall', descKey: 'flagDescDotall', label: 'Dotall', description: '. matches newlines' },
+  { key: 'u', labelKey: 'flagUnicode', descKey: 'flagDescUnicode', label: 'Unicode', description: 'Enable unicode support' },
+  { key: 'y', labelKey: 'flagSticky', descKey: 'flagDescSticky', label: 'Sticky', description: 'Match from lastIndex' },
 ];
 
 // ReDoS protection constants
@@ -232,7 +233,8 @@ function executeRegexWithTimeout(
   }
 }
 
-export default function RegexTester({ categoryColor }: RegexTesterProps) {
+export default function RegexTester({ categoryColor, dictionary }: RegexTesterProps) {
+  const ui = dictionary?.tools?.['regex-tester']?.ui ?? {};
   const { downloadJSON } = useDownload();
   const { trackUse, trackCustom, trackError } = useToolTracking('regex-tester');
   const isFirstMount = useRef(true);
@@ -498,7 +500,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
         <div className="flex items-center gap-3">
           <Search className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            Regex Tester & Debugger
+            {ui.heading || 'Regex Tester & Debugger'}
           </h3>
         </div>
         <div className="flex items-center gap-2">
@@ -507,13 +509,13 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
             className="flex items-center gap-1 rounded-lg px-3 py-1 text-sm transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <BookOpen className="h-4 w-4" />
-            Presets
+            {ui.presetsButton || 'Presets'}
           </button>
           <button
             onClick={handleShare}
             className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
-            title="Share regex"
-            aria-label="Share regex"
+            title={ui.shareRegexTitle || 'Share regex'}
+            aria-label={ui.shareRegexTitle || 'Share regex'}
           >
             <Share2 className="h-4 w-4" />
           </button>
@@ -525,7 +527,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
         {showPresets && (
           <div className="animate-slideIn rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-900">
             <h4 className="mb-3 font-medium text-gray-900 dark:text-white">
-              Pattern Presets
+              {ui.patternPresetsHeading || 'Pattern Presets'}
             </h4>
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
               {PRESET_PATTERNS.map((preset) => (
@@ -556,14 +558,14 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
         {/* Pattern Input */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            Regular Expression Pattern
+            {ui.labelPattern || 'Regular Expression Pattern'}
           </label>
           <div className="relative">
             <input
               type="text"
               value={pattern}
               onChange={(e) => setPattern(e.target.value)}
-              placeholder="Enter regex pattern..."
+              placeholder={ui.placeholderPattern || 'Enter regex pattern...'}
               className="w-full rounded-lg border-2 bg-gray-50 px-4 py-3 pr-32 font-mono text-sm text-gray-900 placeholder-gray-400 transition-all focus:outline-none dark:bg-gray-900 dark:text-white"
               style={{
                 borderColor:
@@ -584,7 +586,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                       <CheckCircle2 className="h-4 w-4 text-green-500" />
                     </div>
                   ) : (
-                    <div title="No matches found">
+                    <div title={ui.noMatchesHeading || 'No matches found'}>
                       <XCircle className="h-4 w-4 text-red-500" />
                     </div>
                   )}
@@ -604,7 +606,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
         {/* Flags */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            Flags
+            {ui.labelFlags || 'Flags'}
           </label>
           <div className="flex flex-wrap gap-2">
             {FLAG_OPTIONS.map((flag) => (
@@ -621,9 +623,9 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                     ? { backgroundColor: categoryColor }
                     : { borderColor: categoryColor, color: categoryColor }
                 }
-                title={flag.description}
+                title={ui[flag.descKey] || flag.description}
               >
-                {flag.key} - {flag.label}
+                {flag.key} - {ui[flag.labelKey] || flag.label}
               </button>
             ))}
           </div>
@@ -632,19 +634,19 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
         {/* Test String */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            Test String
+            {ui.labelTestString || 'Test String'}
           </label>
           <textarea
             value={testString}
             onChange={(e) => setTestString(e.target.value)}
-            placeholder="Enter text to test against the regex pattern..."
+            placeholder={ui.placeholderTestString || 'Enter text to test against the regex pattern...'}
             className="h-32 w-full resize-none rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 transition-all focus:outline-none dark:bg-gray-900 dark:text-white"
             style={{ borderColor: `${categoryColor}30` }}
             onFocus={(e) => (e.target.style.borderColor = categoryColor)}
             onBlur={(e) => (e.target.style.borderColor = `${categoryColor}30`)}
           />
           <div className="flex items-center justify-between text-xs text-gray-500">
-            <span>{testString.length} characters</span>
+            <span>{testString.length} {ui.characters || 'characters'}</span>
             {result && result.isValid && (
               <div className="flex items-center gap-4">
                 <span
@@ -675,10 +677,10 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
         {result && result.isValid && (
           <div className="flex gap-1 rounded-lg bg-gray-100 p-1 dark:bg-gray-700">
             {[
-              { key: 'matches', label: 'Matches', icon: Target },
-              { key: 'replace', label: 'Replace', icon: RefreshCw },
-              { key: 'explain', label: 'Explain', icon: BookOpen },
-            ].map(({ key, label, icon: Icon }) => (
+              { key: 'matches', labelKey: 'tabMatches', label: 'Matches', icon: Target },
+              { key: 'replace', labelKey: 'tabReplace', label: 'Replace', icon: RefreshCw },
+              { key: 'explain', labelKey: 'tabExplain', label: 'Explain', icon: BookOpen },
+            ].map(({ key, labelKey, label, icon: Icon }) => (
               <button
                 key={key}
                 onClick={() =>
@@ -691,7 +693,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                 }`}
               >
                 <Icon className="h-4 w-4" />
-                {label}
+                {ui[labelKey] || label}
               </button>
             ))}
           </div>
@@ -714,7 +716,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                     <CheckCircle2 className="h-6 w-6 text-green-600 dark:text-green-400" />
                     <div>
                       <h4 className="font-medium text-green-800 dark:text-green-200">
-                        Pattern matched successfully!
+                        {ui.matchSuccess || 'Pattern matched successfully!'}
                       </h4>
                       <p className="text-sm text-green-700 dark:text-green-300">
                         Found {result.totalMatches} match
@@ -728,7 +730,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                     <XCircle className="h-6 w-6 text-red-600 dark:text-red-400" />
                     <div>
                       <h4 className="font-medium text-red-800 dark:text-red-200">
-                        No matches found
+                        {ui.noMatchesHeading || 'No matches found'}
                       </h4>
                       <p className="text-sm text-red-700 dark:text-red-300">
                         The pattern doesn&apos;t match any text in the input
@@ -747,7 +749,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Highlighted Matches
+                      {ui.labelHighlightedMatches || 'Highlighted Matches'}
                     </label>
                     <div className="flex items-center gap-2">
                       <button
@@ -755,14 +757,14 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                         className="flex items-center gap-1 rounded-lg px-2 py-1 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <Copy className="h-3 w-3" />
-                        Copy Text
+                        {ui.copyText || 'Copy Text'}
                       </button>
                       <button
                         onClick={exportMatches}
                         className="flex items-center gap-1 rounded-lg px-2 py-1 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <Download className="h-3 w-3" />
-                        Export
+                        {ui.exportButton || 'Export'}
                       </button>
                     </div>
                   </div>
@@ -777,7 +779,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                 {result.matches.length > 0 && (
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Match Details ({result.totalMatches} matches)
+                      {ui.labelMatchDetails || 'Match Details'} ({result.totalMatches} matches)
                     </label>
                     <div className="max-h-48 overflow-auto rounded-lg border border-gray-200 dark:border-gray-600">
                       {result.matches.map((match, index) => (
@@ -796,7 +798,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                           {match.groups && match.groups.length > 0 && (
                             <div className="mt-2">
                               <div className="text-xs font-medium text-gray-600 dark:text-gray-400">
-                                Groups:
+                                {ui.groupsLabel || 'Groups:'}
                               </div>
                               <div className="mt-1 space-y-1">
                                 {match.groups.map((group, groupIndex) => (
@@ -805,7 +807,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                                       Group {groupIndex + 1}:
                                     </span>{' '}
                                     <span className="font-mono text-gray-900 dark:text-white">
-                                      {group || '(empty)'}
+                                      {group || ui.groupEmpty || '(empty)'}
                                     </span>
                                   </div>
                                 ))}
@@ -816,7 +818,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                             Object.keys(match.namedGroups).length > 0 && (
                               <div className="mt-2">
                                 <div className="text-xs font-medium text-gray-600 dark:text-gray-400">
-                                  Named Groups:
+                                  {ui.namedGroupsLabel || 'Named Groups:'}
                                 </div>
                                 <div className="mt-1 space-y-1">
                                   {Object.entries(match.namedGroups).map(
@@ -847,19 +849,18 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Replacement String
+                    {ui.labelReplacementString || 'Replacement String'}
                   </label>
                   <input
                     type="text"
                     value={replaceString}
                     onChange={(e) => setReplaceString(e.target.value)}
-                    placeholder="Enter replacement text (use $1, $2 for groups)..."
+                    placeholder={ui.placeholderReplacement || 'Enter replacement text (use $1, $2 for groups)...'}
                     className="w-full rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 transition-all focus:outline-none dark:bg-gray-900 dark:text-white"
                     style={{ borderColor: `${categoryColor}30` }}
                   />
                   <div className="text-xs text-gray-500">
-                    Use $1, $2, etc. to reference capture groups, or $&amp; for
-                    the full match
+                    {ui.replacementHint || 'Use $1, $2, etc. to reference capture groups, or $& for the full match'}
                   </div>
                 </div>
 
@@ -867,14 +868,14 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Result After Replacement
+                        {ui.labelResultAfterReplacement || 'Result After Replacement'}
                       </label>
                       <button
                         onClick={() => handleCopy(replacementResult)}
                         className="flex items-center gap-1 rounded-lg px-2 py-1 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                       >
                         <Copy className="h-3 w-3" />
-                        Copy Result
+                        {ui.copyResult || 'Copy Result'}
                       </button>
                     </div>
                     <pre
@@ -893,20 +894,20 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
               <div className="space-y-4">
                 <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
                   <h4 className="font-medium text-blue-900 dark:text-blue-200">
-                    Pattern Explanation
+                    {ui.patternExplanationHeading || 'Pattern Explanation'}
                   </h4>
                   <div className="mt-2 space-y-2 text-sm text-blue-800 dark:text-blue-300">
                     <div>
-                      <strong>Pattern:</strong>{' '}
+                      <strong>{ui.explainPattern || 'Pattern:'}</strong>{' '}
                       <code className="rounded bg-blue-100 px-1 dark:bg-blue-800">
                         {pattern}
                       </code>
                     </div>
                     <div>
-                      <strong>Flags:</strong> {flags || 'none'}
+                      <strong>{ui.explainFlags || 'Flags:'}</strong> {flags || ui.flagsNone || 'none'}
                     </div>
                     <div>
-                      <strong>Performance:</strong> Found {result.totalMatches}{' '}
+                      <strong>{ui.explainPerformance || 'Performance:'}</strong> Found {result.totalMatches}{' '}
                       matches in {result.executionTime}ms
                     </div>
                   </div>
@@ -914,7 +915,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
 
                 <div className="rounded-lg bg-gray-50 p-4 dark:bg-gray-900">
                   <h4 className="font-medium text-gray-900 dark:text-white">
-                    Common Regex Patterns
+                    {ui.commonPatternsHeading || 'Common Regex Patterns'}
                   </h4>
                   <div className="mt-2 space-y-1 text-xs text-gray-600 dark:text-gray-400">
                     <div>
@@ -964,7 +965,7 @@ export default function RegexTester({ categoryColor }: RegexTesterProps) {
         {isProcessing && (
           <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
             <Loader2 className="h-4 w-4 animate-spin" />
-            Testing pattern...
+            {ui.testingPattern || 'Testing pattern...'}
           </div>
         )}
       </div>

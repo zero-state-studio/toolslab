@@ -55,7 +55,9 @@ type PreviewMode = 'desktop' | 'mobile';
 
 export default function LinkedInPostFormatter({
   categoryColor,
+  dictionary,
 }: LinkedInPostFormatterProps) {
+  const ui = dictionary?.tools?.['linkedin-post-formatter']?.ui ?? {};
   const [text, setText] = useState('');
   const [previewMode, setPreviewMode] = useState<PreviewMode>('desktop');
   const [selectedBulletStyle, setSelectedBulletStyle] =
@@ -260,7 +262,7 @@ export default function LinkedInPostFormatter({
         <div className="flex items-center gap-3">
           <Briefcase className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            LinkedIn Post Formatter
+            {ui.toolTitle || 'LinkedIn Post Formatter'}
           </h3>
         </div>
         <button
@@ -269,7 +271,7 @@ export default function LinkedInPostFormatter({
           style={{ color: categoryColor }}
         >
           <Sparkles className="h-4 w-4" />
-          Templates
+          {ui.templatesBtn || 'Templates'}
         </button>
       </div>
 
@@ -278,7 +280,7 @@ export default function LinkedInPostFormatter({
         {showTemplates && (
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900">
             <p className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-              Quick Start Templates
+              {ui.quickStartTemplates || 'Quick Start Templates'}
             </p>
             <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3">
               {Object.entries(postTemplates).map(([key, template]) => (
@@ -300,35 +302,35 @@ export default function LinkedInPostFormatter({
             <button
               onClick={() => applyFormat('bold')}
               className="rounded p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
-              title="Bold (Ctrl+B)"
+              title={ui.titleBold || 'Bold (Ctrl+B)'}
             >
               <Bold className="h-4 w-4" />
             </button>
             <button
               onClick={() => applyFormat('italic')}
               className="rounded p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
-              title="Italic (Ctrl+I)"
+              title={ui.titleItalic || 'Italic (Ctrl+I)'}
             >
               <Italic className="h-4 w-4" />
             </button>
             <button
               onClick={() => applyFormat('underline')}
               className="rounded p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
-              title="Underline (Ctrl+U)"
+              title={ui.titleUnderline || 'Underline (Ctrl+U)'}
             >
               <Underline className="h-4 w-4" />
             </button>
             <button
               onClick={() => applyFormat('strikethrough')}
               className="rounded p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
-              title="Strikethrough"
+              title={ui.titleStrikethrough || 'Strikethrough'}
             >
               <Strikethrough className="h-4 w-4" />
             </button>
             <button
               onClick={() => applyFormat('monospace')}
               className="rounded p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
-              title="Monospace"
+              title={ui.titleMonospace || 'Monospace'}
             >
               <Type className="h-4 w-4" />
             </button>
@@ -338,14 +340,14 @@ export default function LinkedInPostFormatter({
             <button
               onClick={applyBulletList}
               className="rounded p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
-              title="Bullet List"
+              title={ui.titleBulletList || 'Bullet List'}
             >
               <List className="h-4 w-4" />
             </button>
             <button
               onClick={applyNumberedList}
               className="rounded p-2 text-gray-600 transition-colors hover:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-700"
-              title="Numbered List"
+              title={ui.titleNumberedList || 'Numbered List'}
             >
               <ListOrdered className="h-4 w-4" />
             </button>
@@ -365,7 +367,7 @@ export default function LinkedInPostFormatter({
           </div>
 
           <div className="ml-auto flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-            <span>Select text, then click format</span>
+            <span>{ui.selectTextHint || 'Select text, then click format'}</span>
           </div>
         </div>
 
@@ -373,7 +375,7 @@ export default function LinkedInPostFormatter({
         <div className="space-y-2">
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Your LinkedIn Post
+              {ui.yourPostLabel || 'Your LinkedIn Post'}
             </label>
             <div className="flex items-center gap-2 text-sm">
               <span
@@ -389,7 +391,7 @@ export default function LinkedInPostFormatter({
               </span>
               <span className="text-gray-400">/ {LINKEDIN_CHAR_LIMIT}</span>
               {charInfo.isOptimal && (
-                <span className="text-xs text-green-500">(optimal)</span>
+                <span className="text-xs text-green-500">{ui.optimalLabel || '(optimal)'}</span>
               )}
             </div>
           </div>
@@ -397,7 +399,7 @@ export default function LinkedInPostFormatter({
             ref={textareaRef}
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Write your LinkedIn post here... Select text and use the formatting buttons above to apply bold, italic, and more."
+            placeholder={ui.textareaPlaceholder || 'Write your LinkedIn post here... Select text and use the formatting buttons above to apply bold, italic, and more.'}
             className="h-48 w-full resize-none rounded-lg border-2 bg-gray-50 px-4 py-3 font-sans text-base text-gray-900 placeholder-gray-400 transition-all focus:outline-none dark:bg-gray-900 dark:text-white"
             style={{
               borderColor: `${categoryColor}30`,
@@ -417,7 +419,7 @@ export default function LinkedInPostFormatter({
           <div ref={resultRef} className="space-y-3">
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Preview
+                {ui.previewLabel || 'Preview'}
               </label>
               <div className="flex items-center gap-1 rounded-lg bg-gray-100 p-1 dark:bg-gray-900">
                 <button
@@ -454,13 +456,13 @@ export default function LinkedInPostFormatter({
                 <div className="h-12 w-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-600" />
                 <div className="flex-1">
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    Your Name
+                    {ui.previewYourName || 'Your Name'}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    Your Headline • 1st
+                    {ui.previewYourHeadline || 'Your Headline • 1st'}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                    Just now • 🌐
+                    {ui.previewJustNow || 'Just now • 🌐'}
                   </p>
                 </div>
               </div>
@@ -499,12 +501,12 @@ export default function LinkedInPostFormatter({
             {copied ? (
               <>
                 <Check className="h-4 w-4" />
-                Copied!
+                {ui.copiedBtn || 'Copied!'}
               </>
             ) : (
               <>
                 <Copy className="h-4 w-4" />
-                Copy to Clipboard
+                {ui.copyBtn || 'Copy to Clipboard'}
               </>
             )}
           </button>
@@ -521,19 +523,18 @@ export default function LinkedInPostFormatter({
         {/* Tips */}
         <div className="rounded-lg bg-blue-50 p-4 dark:bg-blue-900/20">
           <p className="text-sm font-medium text-blue-800 dark:text-blue-300">
-            💡 Pro Tips
+            {ui.proTipsTitle || '💡 Pro Tips'}
           </p>
           <ul className="mt-2 space-y-1 text-sm text-blue-700 dark:text-blue-400">
-            <li>• Select text first, then click a formatting button</li>
+            <li>• {ui.tip1 || 'Select text first, then click a formatting button'}</li>
             <li>
-              • Use keyboard shortcuts: Ctrl+B (bold), Ctrl+I (italic), Ctrl+U
-              (underline)
+              • {ui.tip2 || 'Use keyboard shortcuts: Ctrl+B (bold), Ctrl+I (italic), Ctrl+U (underline)'}
             </li>
             <li>
               • Keep posts under {LINKEDIN_OPTIMAL_LENGTH} chars for optimal
               engagement
             </li>
-            <li>• Use bullet points to make content scannable</li>
+            <li>• {ui.tip4 || 'Use bullet points to make content scannable'}</li>
           </ul>
         </div>
       </div>

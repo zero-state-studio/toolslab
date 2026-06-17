@@ -86,5 +86,38 @@
         "description": "JSON-Datei herunterladen"
       }
     ]
+  },
+  "ui": {
+    "conversionOptions": "Konvertierungsoptionen",
+    "hide": "Ausblenden",
+    "show": "Einblenden",
+    "prettyPrintLabel": "Pretty Print",
+    "prettyPrintDesc": "JSON mit Einrückung formatieren",
+    "attributeModeLabel": "Attributmodus",
+    "attributeModeDesc": "Wie XML-Attribute verarbeitet werden",
+    "attrInline": "Inline (id, category)",
+    "attrCompact": "Kompakt (@id, @category)",
+    "attrVerbose": "Verbose (@attributes)",
+    "removeNamespacesLabel": "Namespaces Entfernen",
+    "removeNamespacesDesc": "Namespace-Präfixe entfernen",
+    "smartArraysLabel": "Intelligente Arrays",
+    "smartArraysDesc": "Erkennt automatisch wiederholte Elemente",
+    "typeConversionLabel": "Typkonvertierung",
+    "typeConversionDesc": "Zahlen und Booleans konvertieren",
+    "xmlInputLabel": "XML-Eingabe",
+    "sampleBtn": "Beispiel",
+    "uploadBtn": "Hochladen",
+    "inputPlaceholder": "XML hier einfügen...",
+    "convertBtn": "In JSON konvertieren",
+    "clearBtn": "Leeren",
+    "conversionError": "Konvertierungsfehler",
+    "xmlSizeLabel": "XML-Größe",
+    "jsonSizeLabel": "JSON-Größe",
+    "elementsLabel": "Elemente",
+    "processingTimeLabel": "Verarbeitungszeit",
+    "jsonOutputLabel": "JSON-Ausgabe",
+    "copiedBtn": "Kopiert!",
+    "copyBtn": "Kopieren",
+    "downloadBtn": "Herunterladen"
   }
 }

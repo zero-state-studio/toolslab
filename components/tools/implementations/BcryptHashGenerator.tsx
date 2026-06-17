@@ -35,11 +35,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface BcryptHashGeneratorProps {
   categoryColor: string;
+  dictionary?: any;
 }
 
 export default function BcryptHashGenerator({
   categoryColor,
+  dictionary,
 }: BcryptHashGeneratorProps) {
+  const ui = dictionary?.tools?.['bcrypt-hash-generator']?.ui ?? {};
   // Generate tab state
   const [password, setPassword] = useState('');
   const [rounds, setRounds] = useState(10);
@@ -229,15 +232,15 @@ export default function BcryptHashGenerator({
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="generate" className="flex items-center gap-2">
             <Key className="h-4 w-4" />
-            Generate
+            {ui.tabGenerate || 'Generate'}
           </TabsTrigger>
           <TabsTrigger value="verify" className="flex items-center gap-2">
             <Shield className="h-4 w-4" />
-            Verify
+            {ui.tabVerify || 'Verify'}
           </TabsTrigger>
           <TabsTrigger value="parse" className="flex items-center gap-2">
             <Info className="h-4 w-4" />
-            Parse
+            {ui.tabParse || 'Parse'}
           </TabsTrigger>
         </TabsList>
 
@@ -253,27 +256,27 @@ export default function BcryptHashGenerator({
 
           {/* Password Input */}
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">{ui.labelPassword || 'Password'}</Label>
             <Input
               id="password"
               type="text"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password to hash..."
+              placeholder={ui.placeholderPassword || 'Enter password to hash...'}
               className="font-mono"
             />
             <p className="text-xs text-muted-foreground">
-              {password.length} characters (max {bcryptInfo.maxPasswordLength}{' '}
-              bytes used by bcrypt)
+              {password.length} {ui.infoCharacters || 'characters (max'} {bcryptInfo.maxPasswordLength}{' '}
+              {ui.infoBytesUsed || 'bytes used by bcrypt)'}
             </p>
           </div>
 
           {/* Cost Factor (Rounds) */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <Label>Cost Factor (Rounds): {rounds}</Label>
+              <Label>{ui.labelCostFactor || 'Cost Factor (Rounds):'} {rounds}</Label>
               <span className="text-sm text-muted-foreground">
-                ~{estimatedTime}ms estimated
+                ~{estimatedTime}{ui.suffixMsEstimated || 'ms estimated'}
               </span>
             </div>
             <Slider
@@ -285,9 +288,9 @@ export default function BcryptHashGenerator({
               className="w-full"
             />
             <div className="flex justify-between text-xs text-muted-foreground">
-              <span>4 (Fastest)</span>
-              <span>10 (Recommended)</span>
-              <span>12 (Most Secure)</span>
+              <span>{ui.sliderFastest || '4 (Fastest)'}</span>
+              <span>{ui.sliderRecommended || '10 (Recommended)'}</span>
+              <span>{ui.sliderMostSecure || '12 (Most Secure)'}</span>
             </div>
           </div>
 
@@ -303,7 +306,7 @@ export default function BcryptHashGenerator({
               ) : (
                 <Play className="mr-2 h-4 w-4" />
               )}
-              {isGenerating ? 'Generating...' : 'Generate Hash'}
+              {isGenerating ? (ui.btnGenerating || 'Generating...') : (ui.btnGenerateHash || 'Generate Hash')}
             </Button>
             <Button
               variant="outline"
@@ -311,7 +314,7 @@ export default function BcryptHashGenerator({
               disabled={!password && !generatedHash}
             >
               <X className="mr-2 h-4 w-4" />
-              Clear
+              {ui.btnClear || 'Clear'}
             </Button>
           </div>
 
@@ -320,7 +323,7 @@ export default function BcryptHashGenerator({
             <div ref={resultRef} className="space-y-4">
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label>Generated Hash</Label>
+                  <Label>{ui.labelGeneratedHash || 'Generated Hash'}</Label>
                   <div className="flex items-center gap-2">
                     {hashTime !== null && (
                       <span className="flex items-center gap-1 text-sm text-muted-foreground">
@@ -332,7 +335,7 @@ export default function BcryptHashGenerator({
                       size="sm"
                       variant="ghost"
                       onClick={handleCopy}
-                      title="Copy to clipboard"
+                      title={ui.tooltipCopy || 'Copy to clipboard'}
                     >
                       {copied ? (
                         <Check className="h-4 w-4 text-green-500" />
@@ -351,28 +354,28 @@ export default function BcryptHashGenerator({
 
               {/* Hash Breakdown */}
               <div className="rounded-lg border bg-muted/30 p-4">
-                <h4 className="mb-3 font-semibold">Hash Breakdown</h4>
+                <h4 className="mb-3 font-semibold">{ui.headingHashBreakdown || 'Hash Breakdown'}</h4>
                 <div className="grid gap-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Version:</span>
+                    <span className="text-muted-foreground">{ui.labelVersion || 'Version:'}</span>
                     <code className="font-mono">$2a$ (bcrypt)</code>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Cost Factor:</span>
-                    <code className="font-mono">{rounds} rounds</code>
+                    <span className="text-muted-foreground">{ui.labelCostFactorShort || 'Cost Factor:'}</span>
+                    <code className="font-mono">{rounds} {ui.suffixRounds || 'rounds'}</code>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">
-                      Salt (22 chars):
+                      {ui.labelSalt22 || 'Salt (22 chars):'}
                     </span>
                     <code className="truncate font-mono text-xs">
                       {generatedSalt.substring(7, 29)}
                     </code>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-muted-foreground">Total Length:</span>
+                    <span className="text-muted-foreground">{ui.labelTotalLength || 'Total Length:'}</span>
                     <code className="font-mono">
-                      {generatedHash.length} chars
+                      {generatedHash.length} {ui.suffixChars || 'chars'}
                     </code>
                   </div>
                 </div>
@@ -382,7 +385,7 @@ export default function BcryptHashGenerator({
 
           {/* Sample Passwords */}
           <div className="space-y-3">
-            <Label>Sample Passwords</Label>
+            <Label>{ui.labelSamplePasswords || 'Sample Passwords'}</Label>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {Object.entries(samplePasswords).map(([label, pwd]) => (
                 <Button
@@ -416,25 +419,25 @@ export default function BcryptHashGenerator({
 
           {/* Password to verify */}
           <div className="space-y-2">
-            <Label htmlFor="verify-password">Password to Verify</Label>
+            <Label htmlFor="verify-password">{ui.labelPasswordToVerify || 'Password to Verify'}</Label>
             <Input
               id="verify-password"
               type="text"
               value={verifyPassword}
               onChange={(e) => setVerifyPassword(e.target.value)}
-              placeholder="Enter password..."
+              placeholder={ui.placeholderVerifyPassword || 'Enter password...'}
               className="font-mono"
             />
           </div>
 
           {/* Hash to verify against */}
           <div className="space-y-2">
-            <Label htmlFor="verify-hash">Bcrypt Hash</Label>
+            <Label htmlFor="verify-hash">{ui.labelBcryptHash || 'Bcrypt Hash'}</Label>
             <Textarea
               id="verify-hash"
               value={verifyHash}
               onChange={(e) => setVerifyHash(e.target.value)}
-              placeholder="Enter bcrypt hash (e.g., $2a$10$...)..."
+              placeholder={ui.placeholderVerifyHash || 'Enter bcrypt hash (e.g., $2a$10$...)...'}
               className="min-h-[80px] font-mono text-sm"
             />
           </div>
@@ -451,7 +454,7 @@ export default function BcryptHashGenerator({
             ) : (
               <Shield className="mr-2 h-4 w-4" />
             )}
-            {isVerifying ? 'Verifying...' : 'Verify Password'}
+            {isVerifying ? (ui.btnVerifying || 'Verifying...') : (ui.btnVerifyPassword || 'Verify Password')}
           </Button>
 
           {/* Verification Result */}
@@ -471,8 +474,8 @@ export default function BcryptHashGenerator({
               <AlertDescription className="flex items-center justify-between">
                 <span>
                   {verifyResult
-                    ? 'Password matches the hash!'
-                    : 'Password does NOT match the hash.'}
+                    ? (ui.resultMatch || 'Password matches the hash!')
+                    : (ui.resultNoMatch || 'Password does NOT match the hash.')}
                 </span>
                 {verifyTime !== null && (
                   <span className="flex items-center gap-1 text-sm">
@@ -497,12 +500,12 @@ export default function BcryptHashGenerator({
 
           {/* Hash to parse */}
           <div className="space-y-2">
-            <Label htmlFor="parse-hash">Bcrypt Hash to Parse</Label>
+            <Label htmlFor="parse-hash">{ui.labelBcryptHashToParse || 'Bcrypt Hash to Parse'}</Label>
             <Textarea
               id="parse-hash"
               value={parseHash}
               onChange={(e) => setParseHash(e.target.value)}
-              placeholder="Enter bcrypt hash (e.g., $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy)..."
+              placeholder={ui.placeholderParseHash || 'Enter bcrypt hash (e.g., $2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy)...'}
               className="min-h-[80px] font-mono text-sm"
             />
           </div>
@@ -510,29 +513,29 @@ export default function BcryptHashGenerator({
           {/* Parse Button */}
           <Button onClick={handleParse} disabled={!parseHash.trim()}>
             <Info className="mr-2 h-4 w-4" />
-            Parse Hash
+            {ui.btnParseHash || 'Parse Hash'}
           </Button>
 
           {/* Parsed Result */}
           {parsedResult && (
             <div className="rounded-lg border bg-muted/30 p-4">
-              <h4 className="mb-3 font-semibold">Parsed Hash Components</h4>
+              <h4 className="mb-3 font-semibold">{ui.headingParsedComponents || 'Parsed Hash Components'}</h4>
               <div className="grid gap-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Version:</span>
+                  <span className="text-muted-foreground">{ui.labelVersion || 'Version:'}</span>
                   <code className="font-mono">${parsedResult.version}$</code>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Cost Factor:</span>
+                  <span className="text-muted-foreground">{ui.labelCostFactorShort || 'Cost Factor:'}</span>
                   <code className="font-mono">
-                    {parsedResult.rounds} rounds (2^{parsedResult.rounds} ={' '}
+                    {parsedResult.rounds} {ui.suffixRounds || 'rounds'} (2^{parsedResult.rounds} ={' '}
                     {Math.pow(2, parsedResult.rounds || 0).toLocaleString()}{' '}
-                    iterations)
+                    {ui.suffixIterations || 'iterations'})
                   </code>
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-muted-foreground">
-                    Salt (22 chars):
+                    {ui.labelSalt22 || 'Salt (22 chars):'}
                   </span>
                   <code className="break-all rounded bg-muted p-2 font-mono text-xs">
                     {parsedResult.salt}
@@ -540,7 +543,7 @@ export default function BcryptHashGenerator({
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-muted-foreground">
-                    Hash (31 chars):
+                    {ui.labelHash31 || 'Hash (31 chars):'}
                   </span>
                   <code className="break-all rounded bg-muted p-2 font-mono text-xs">
                     {parsedResult.hash}
@@ -554,29 +557,28 @@ export default function BcryptHashGenerator({
 
       {/* Info Section */}
       <div className="rounded-lg border bg-muted/30 p-4">
-        <h3 className="mb-2 font-semibold">About Bcrypt</h3>
+        <h3 className="mb-2 font-semibold">{ui.headingAboutBcrypt || 'About Bcrypt'}</h3>
         <ul className="space-y-1 text-sm text-muted-foreground">
           <li>
-            <strong>Bcrypt</strong> is a password-hashing function designed by
-            Niels Provos and David Mazières, based on the Blowfish cipher.
+            <strong>Bcrypt</strong>{' '}
+            {ui.aboutBcryptDesc || 'is a password-hashing function designed by Niels Provos and David Mazières, based on the Blowfish cipher.'}
           </li>
           <li>
-            <strong>Cost Factor:</strong> Determines the computational cost.
-            Each increment doubles the time required (2^rounds iterations).
+            <strong>Cost Factor:</strong>{' '}
+            {ui.aboutCostFactor || 'Determines the computational cost. Each increment doubles the time required (2^rounds iterations).'}
           </li>
           <li>
-            <strong>Salt:</strong> A random 128-bit value automatically
-            generated and embedded in the hash, preventing rainbow table
-            attacks.
+            <strong>Salt:</strong>{' '}
+            {ui.aboutSalt || 'A random 128-bit value automatically generated and embedded in the hash, preventing rainbow table attacks.'}
           </li>
           <li>
-            <strong>Max Length:</strong> Bcrypt truncates passwords at 72 bytes.
-            Longer passwords are not more secure.
+            <strong>Max Length:</strong>{' '}
+            {ui.aboutMaxLength || 'Bcrypt truncates passwords at 72 bytes. Longer passwords are not more secure.'}
           </li>
           <li>
             <strong>Hash Format:</strong>{' '}
-            <code className="text-xs">$2a$rounds$salt(22)hash(31)</code> = 60
-            characters total.
+            <code className="text-xs">$2a$rounds$salt(22)hash(31)</code> = 60{' '}
+            {ui.aboutHashFormat || 'characters total.'}
           </li>
         </ul>
       </div>

@@ -94,5 +94,10 @@
     "description": "Generate Lorem Ipsum placeholder text for designs, mockups, and layouts. Create words, sentences, or paragraphs with multiple text styles. Free online tool."
   },
   "tagline": "Generate placeholder text instantly for designs and mockups",
-  "pageDescription": "Create Lorem Ipsum (lipsum) placeholder text for your designs, mockups, and layouts. Generate words, sentences, or paragraphs with custom length using classic Latin text or themed variants like Tech, Hipster, or Corporate styles. Export as plain text, HTML, or Markdown. Perfect for designers, developers, and content creators who need realistic dummy text. Free, secure, and browser-based — no signup or registration required."
+  "pageDescription": "Create Lorem Ipsum (lipsum) placeholder text for your designs, mockups, and layouts. Generate words, sentences, or paragraphs with custom length using classic Latin text or themed variants like Tech, Hipster, or Corporate styles. Export as plain text, HTML, or Markdown. Perfect for designers, developers, and content creators who need realistic dummy text. Free, secure, and browser-based — no signup or registration required.",
+  "ui": {
+    "toolTitle": "Lorem Ipsum Generator",
+    "toolSubtitle": "Placeholder text generator",
+    "quickPresets": "Quick presets"
+  }
 }

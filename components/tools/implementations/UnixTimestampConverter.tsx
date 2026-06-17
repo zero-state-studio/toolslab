@@ -40,7 +40,8 @@ import {
   type ConversionResult,
 } from '@/lib/tools/unix-timestamp';
 
-const UnixTimestampConverter = () => {
+const UnixTimestampConverter = ({ dictionary }: { dictionary?: any }) => {
+  const ui = dictionary?.tools?.['unix-timestamp-converter']?.ui ?? {};
   const { trackUse, trackError } = useToolTracking('unix-timestamp-converter');
   const [input, setInput] = useState('');
   const [batchInput, setBatchInput] = useState('');
@@ -265,8 +266,8 @@ const UnixTimestampConverter = () => {
           className="w-full max-w-md"
         >
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="single">Single Conversion</TabsTrigger>
-            <TabsTrigger value="batch">Batch Processing</TabsTrigger>
+            <TabsTrigger value="single">{ui.tabSingle || 'Single Conversion'}</TabsTrigger>
+            <TabsTrigger value="batch">{ui.tabBatch || 'Batch Processing'}</TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
@@ -277,14 +278,14 @@ const UnixTimestampConverter = () => {
           <div className="flex items-center justify-between">
             <CardTitle className="flex items-center gap-2 text-lg">
               <Settings className="h-5 w-5" />
-              Conversion Options
+              {ui.cardConversionOptions || 'Conversion Options'}
             </CardTitle>
             <Button
               variant="ghost"
               size="sm"
               onClick={() => setOptionsVisible(!optionsVisible)}
             >
-              {optionsVisible ? 'Hide' : 'Show'} Options
+              {optionsVisible ? (ui.btnHide || 'Hide') : (ui.btnShow || 'Show')} {ui.btnOptions || 'Options'}
             </Button>
           </div>
         </CardHeader>
@@ -292,10 +293,10 @@ const UnixTimestampConverter = () => {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
               <div className="space-y-2">
-                <Label htmlFor="timezone">Timezone</Label>
+                <Label htmlFor="timezone">{ui.labelTimezone || 'Timezone'}</Label>
                 <Select value={timezone} onValueChange={handleTimezoneChange}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select timezone" />
+                    <SelectValue placeholder={ui.placeholderSelectTimezone || 'Select timezone'} />
                   </SelectTrigger>
                   <SelectContent>
                     {COMMON_TIMEZONES.map((tz) => (
@@ -308,7 +309,7 @@ const UnixTimestampConverter = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="unit">Timestamp Unit</Label>
+                <Label htmlFor="unit">{ui.labelTimestampUnit || 'Timestamp Unit'}</Label>
                 <Select
                   value={unit}
                   onValueChange={(value) =>
@@ -319,15 +320,15 @@ const UnixTimestampConverter = () => {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="auto">Auto-detect</SelectItem>
-                    <SelectItem value="seconds">Seconds</SelectItem>
-                    <SelectItem value="milliseconds">Milliseconds</SelectItem>
+                    <SelectItem value="auto">{ui.optionAutoDetect || 'Auto-detect'}</SelectItem>
+                    <SelectItem value="seconds">{ui.optionSeconds || 'Seconds'}</SelectItem>
+                    <SelectItem value="milliseconds">{ui.optionMilliseconds || 'Milliseconds'}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="output-format">Output Format</Label>
+                <Label htmlFor="output-format">{ui.labelOutputFormat || 'Output Format'}</Label>
                 <Select value={outputFormat} onValueChange={setOutputFormat}>
                   <SelectTrigger>
                     <SelectValue />
@@ -345,7 +346,7 @@ const UnixTimestampConverter = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="custom-format">Custom Format</Label>
+                <Label htmlFor="custom-format">{ui.labelCustomFormat || 'Custom Format'}</Label>
                 <Input
                   id="custom-format"
                   value={customFormat}
@@ -362,7 +363,7 @@ const UnixTimestampConverter = () => {
                   checked={includeRelative}
                   onCheckedChange={setIncludeRelative}
                 />
-                <Label htmlFor="include-relative">Include relative times</Label>
+                <Label htmlFor="include-relative">{ui.labelIncludeRelative || 'Include relative times'}</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Switch
@@ -370,7 +371,7 @@ const UnixTimestampConverter = () => {
                   checked={includeCode}
                   onCheckedChange={setIncludeCode}
                 />
-                <Label htmlFor="include-code">Show code examples</Label>
+                <Label htmlFor="include-code">{ui.labelShowCode || 'Show code examples'}</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Switch
@@ -378,7 +379,7 @@ const UnixTimestampConverter = () => {
                   checked={liveConversion}
                   onCheckedChange={setLiveConversion}
                 />
-                <Label htmlFor="live-conversion">Live conversion</Label>
+                <Label htmlFor="live-conversion">{ui.labelLiveConversion || 'Live conversion'}</Label>
               </div>
             </div>
           </CardContent>
@@ -397,12 +398,12 @@ const UnixTimestampConverter = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="h-5 w-5" />
-                Input
+                {ui.cardInput || 'Input'}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="input">Enter Unix timestamp or date</Label>
+                <Label htmlFor="input">{ui.labelEnterInput || 'Enter Unix timestamp or date'}</Label>
                 <Input
                   id="input"
                   value={input}
@@ -419,17 +420,17 @@ const UnixTimestampConverter = () => {
                   {isProcessing ? (
                     <>
                       <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                      Converting...
+                      {ui.btnConverting || 'Converting...'}
                     </>
                   ) : liveConversion && input.trim() ? (
                     <>
                       <Calendar className="mr-2 h-4 w-4" />
-                      Live Mode
+                      {ui.btnLiveMode || 'Live Mode'}
                     </>
                   ) : (
                     <>
                       <Calendar className="mr-2 h-4 w-4" />
-                      Convert
+                      {ui.btnConvert || 'Convert'}
                     </>
                   )}
                 </Button>
@@ -438,11 +439,11 @@ const UnixTimestampConverter = () => {
                   onClick={handleInsertCurrentTimestamp}
                 >
                   <Clock className="mr-2 h-4 w-4" />
-                  Current Timestamp
+                  {ui.btnCurrentTimestamp || 'Current Timestamp'}
                 </Button>
                 <Button variant="outline" onClick={handleReset}>
                   <RefreshCw className="mr-2 h-4 w-4" />
-                  Reset
+                  {ui.btnReset || 'Reset'}
                 </Button>
               </div>
             </CardContent>
@@ -454,9 +455,9 @@ const UnixTimestampConverter = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" />
-                  Conversion Result
+                  {ui.cardConversionResult || 'Conversion Result'}
                   <Badge variant={result.success ? 'default' : 'destructive'}>
-                    {result.success ? 'Success' : 'Error'}
+                    {result.success ? (ui.badgeSuccess || 'Success') : (ui.badgeError || 'Error')}
                   </Badge>
                 </CardTitle>
               </CardHeader>
@@ -465,7 +466,7 @@ const UnixTimestampConverter = () => {
                   <div className="space-y-4">
                     {/* Primary Result */}
                     <div className="space-y-2">
-                      <Label>Primary Result</Label>
+                      <Label>{ui.labelPrimaryResult || 'Primary Result'}</Label>
                       <div className="flex items-center gap-2">
                         <Input
                           value={result.result || ''}
@@ -487,7 +488,7 @@ const UnixTimestampConverter = () => {
                     {/* All Formats */}
                     {result.metadata?.formats && (
                       <div className="space-y-2">
-                        <Label>All Formats</Label>
+                        <Label>{ui.labelAllFormats || 'All Formats'}</Label>
                         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                           {Object.entries(result.metadata.formats).map(
                             ([key, value]) => (
@@ -523,7 +524,7 @@ const UnixTimestampConverter = () => {
                     {/* Relative Times */}
                     {includeRelative && result.metadata?.relative && (
                       <div className="space-y-2">
-                        <Label>Relative Times</Label>
+                        <Label>{ui.labelRelativeTimes || 'Relative Times'}</Label>
                         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                           {Object.entries(result.metadata.relative).map(
                             ([key, value]) => (
@@ -559,7 +560,7 @@ const UnixTimestampConverter = () => {
                     {/* Code Examples */}
                     {includeCode && codeExamples && (
                       <div className="space-y-2">
-                        <Label>Code Examples</Label>
+                        <Label>{ui.labelCodeExamples || 'Code Examples'}</Label>
                         <Tabs
                           value="javascript"
                           onValueChange={() => {}}
@@ -617,13 +618,13 @@ const UnixTimestampConverter = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Code className="h-5 w-5" />
-                Batch Input
+                {ui.cardBatchInput || 'Batch Input'}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="batch-input">
-                  Enter timestamps or dates (one per line)
+                  {ui.labelBatchInput || 'Enter timestamps or dates (one per line)'}
                 </Label>
                 <Textarea
                   id="batch-input"
@@ -639,17 +640,17 @@ const UnixTimestampConverter = () => {
                   {isProcessing ? (
                     <>
                       <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                      Processing...
+                      {ui.btnProcessing || 'Processing...'}
                     </>
                   ) : (
                     <>
                       <Code className="mr-2 h-4 w-4" />
-                      Process Batch
+                      {ui.btnProcessBatch || 'Process Batch'}
                     </>
                   )}
                 </Button>
                 <Button variant="outline" onClick={() => setBatchInput('')}>
-                  Clear
+                  {ui.btnClear || 'Clear'}
                 </Button>
               </div>
             </CardContent>
@@ -661,11 +662,11 @@ const UnixTimestampConverter = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Code className="h-5 w-5" />
-                  Batch Results
+                  {ui.cardBatchResults || 'Batch Results'}
                   <Badge
                     variant={batchResult.success ? 'default' : 'destructive'}
                   >
-                    {batchResult.success ? 'Completed' : 'Failed'}
+                    {batchResult.success ? (ui.badgeCompleted || 'Completed') : (ui.badgeFailed || 'Failed')}
                   </Badge>
                 </CardTitle>
               </CardHeader>
@@ -681,7 +682,7 @@ const UnixTimestampConverter = () => {
                           onClick={() => exportBatchResults('json')}
                         >
                           <Download className="mr-2 h-4 w-4" />
-                          Export JSON
+                          {ui.btnExportJson || 'Export JSON'}
                         </Button>
                         <Button
                           variant="outline"
@@ -689,7 +690,7 @@ const UnixTimestampConverter = () => {
                           onClick={() => exportBatchResults('csv')}
                         >
                           <Download className="mr-2 h-4 w-4" />
-                          Export CSV
+                          {ui.btnExportCsv || 'Export CSV'}
                         </Button>
                       </div>
                     </div>
@@ -713,7 +714,7 @@ const UnixTimestampConverter = () => {
                             <Badge
                               variant={item.success ? 'default' : 'destructive'}
                             >
-                              {item.success ? 'Success' : 'Error'}
+                              {item.success ? (ui.badgeSuccess || 'Success') : (ui.badgeError || 'Error')}
                             </Badge>
                           </div>
                           {item.success && item.result ? (

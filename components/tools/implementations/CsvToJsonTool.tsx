@@ -28,7 +28,8 @@ import {
 
 interface CsvToJsonToolProps extends BaseToolProps {}
 
-export default function CsvToJsonTool({ categoryColor }: CsvToJsonToolProps) {
+export default function CsvToJsonTool({ categoryColor, dictionary }: CsvToJsonToolProps) {
+  const ui = dictionary?.tools?.['csv-to-json']?.ui ?? {};
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [delimiter, setDelimiter] = useState(',');
@@ -220,21 +221,21 @@ Alice Williams,28,Houston,alice@example.com`;
       <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-            CSV Input
+            {ui.inputSectionHeading || 'CSV Input'}
           </h2>
           <div className="flex gap-2">
             <button
               onClick={handleExampleData}
               className="text-sm text-muted-foreground hover:text-foreground"
             >
-              Load Example
+              {ui.loadExample || 'Load Example'}
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
               className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1 text-sm hover:bg-secondary/80"
             >
               <Upload className="h-3.5 w-3.5" />
-              Upload CSV
+              {ui.uploadCsv || 'Upload CSV'}
             </button>
             <input
               ref={fileInputRef}
@@ -248,7 +249,7 @@ Alice Williams,28,Houston,alice@example.com`;
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Paste your CSV data here or upload a file..."
+          placeholder={ui.inputPlaceholder || 'Paste your CSV data here or upload a file...'}
           className="min-h-[200px] w-full rounded-md border border-gray-300 p-3 font-mono text-sm focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
           spellCheck={false}
         />
@@ -258,45 +259,45 @@ Alice Williams,28,Houston,alice@example.com`;
       <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-3 flex items-center gap-2">
           <Settings className="h-4 w-4" />
-          <span className="font-medium">Conversion Options</span>
+          <span className="font-medium">{ui.optionsSectionHeading || 'Conversion Options'}</span>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {/* Delimiter */}
           <div>
-            <label className="mb-1 block text-sm font-medium">Delimiter</label>
+            <label className="mb-1 block text-sm font-medium">{ui.delimiterLabel || 'Delimiter'}</label>
             <select
               value={delimiter}
               onChange={(e) => setDelimiter(e.target.value)}
               className="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             >
-              <option value=",">Comma (,)</option>
-              <option value=";">Semicolon (;)</option>
-              <option value="\t">Tab</option>
-              <option value="|">Pipe (|)</option>
+              <option value=",">{ui.delimiterComma || 'Comma (,)'}</option>
+              <option value=";">{ui.delimiterSemicolon || 'Semicolon (;)'}</option>
+              <option value="\t">{ui.delimiterTab || 'Tab'}</option>
+              <option value="|">{ui.delimiterPipe || 'Pipe (|)'}</option>
             </select>
           </div>
 
           {/* Output Format */}
           <div>
             <label className="mb-1 block text-sm font-medium">
-              Output Format
+              {ui.outputFormatLabel || 'Output Format'}
             </label>
             <select
               value={outputFormat}
               onChange={(e) => setOutputFormat(e.target.value as any)}
               className="w-full rounded-md border border-gray-300 px-3 py-1.5 text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             >
-              <option value="array">Array of Objects</option>
-              <option value="nested">Nested Object</option>
-              <option value="compact">Compact Array</option>
+              <option value="array">{ui.outputFormatArray || 'Array of Objects'}</option>
+              <option value="nested">{ui.outputFormatNested || 'Nested Object'}</option>
+              <option value="compact">{ui.outputFormatCompact || 'Compact Array'}</option>
             </select>
           </div>
 
           {/* Custom Headers */}
           <div>
             <label className="mb-1 block text-sm font-medium">
-              Custom Headers
+              {ui.customHeadersLabel || 'Custom Headers'}
             </label>
             <input
               type="text"
@@ -311,7 +312,7 @@ Alice Williams,28,Houston,alice@example.com`;
           {/* Null Values */}
           <div>
             <label className="mb-1 block text-sm font-medium">
-              Null Values
+              {ui.nullValuesLabel || 'Null Values'}
             </label>
             <input
               type="text"
@@ -331,7 +332,7 @@ Alice Williams,28,Houston,alice@example.com`;
                 onChange={(e) => setHasHeaders(e.target.checked)}
                 className="rounded"
               />
-              First row contains headers
+              {ui.checkboxFirstRowHeaders || 'First row contains headers'}
             </label>
             <label className="flex items-center gap-2 text-sm">
               <input
@@ -340,7 +341,7 @@ Alice Williams,28,Houston,alice@example.com`;
                 onChange={(e) => setTrimValues(e.target.checked)}
                 className="rounded"
               />
-              Trim whitespace
+              {ui.checkboxTrimWhitespace || 'Trim whitespace'}
             </label>
           </div>
 
@@ -352,7 +353,7 @@ Alice Williams,28,Houston,alice@example.com`;
                 onChange={(e) => setMinifyOutput(e.target.checked)}
                 className="rounded"
               />
-              Minify JSON output
+              {ui.checkboxMinifyOutput || 'Minify JSON output'}
             </label>
           </div>
         </div>
@@ -374,12 +375,12 @@ Alice Williams,28,Houston,alice@example.com`;
           {convertSuccess ? (
             <>
               <Check className="h-4 w-4" />
-              Converted!
+              {ui.btnConverted || 'Converted!'}
             </>
           ) : (
             <>
               <ArrowRight className="h-4 w-4" />
-              Convert to JSON
+              {ui.btnConvert || 'Convert to JSON'}
             </>
           )}
         </button>
@@ -390,7 +391,7 @@ Alice Williams,28,Houston,alice@example.com`;
           className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
         >
           <FileSpreadsheet className="h-4 w-4" />
-          Validate CSV
+          {ui.btnValidate || 'Validate CSV'}
         </button>
 
         <button
@@ -402,7 +403,7 @@ Alice Williams,28,Houston,alice@example.com`;
           }}
           className="inline-flex items-center gap-2 rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
         >
-          Clear
+          {ui.btnClear || 'Clear'}
         </button>
       </div>
 
@@ -420,10 +421,10 @@ Alice Williams,28,Houston,alice@example.com`;
       {stats && (
         <div className="flex items-center gap-4 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 text-sm dark:border-gray-700 dark:bg-gray-800">
           <span className="text-gray-700 dark:text-gray-300">
-            <strong>Rows:</strong> {stats.rows}
+            <strong>{ui.statsRows || 'Rows'}:</strong> {stats.rows}
           </span>
           <span className="text-gray-700 dark:text-gray-300">
-            <strong>Columns:</strong> {stats.columns}
+            <strong>{ui.statsColumns || 'Columns'}:</strong> {stats.columns}
           </span>
         </div>
       )}
@@ -436,7 +437,7 @@ Alice Williams,28,Houston,alice@example.com`;
               <div className="flex items-center gap-2">
                 <FileJson className="h-5 w-5 text-green-500" />
                 <h2 className="text-lg font-medium text-gray-900 dark:text-white">
-                  JSON Output
+                  {ui.outputSectionHeading || 'JSON Output'}
                 </h2>
               </div>
               <div className="flex gap-2">
@@ -447,12 +448,12 @@ Alice Williams,28,Houston,alice@example.com`;
                   {copied ? (
                     <>
                       <Check className="h-3.5 w-3.5" />
-                      Copied!
+                      {ui.btnCopied || 'Copied!'}
                     </>
                   ) : (
                     <>
                       <Copy className="h-3.5 w-3.5" />
-                      Copy
+                      {ui.btnCopy || 'Copy'}
                     </>
                   )}
                 </button>
@@ -461,7 +462,7 @@ Alice Williams,28,Houston,alice@example.com`;
                   className="flex items-center gap-2 rounded-md bg-secondary px-3 py-1.5 text-sm hover:bg-secondary/80"
                 >
                   <Download className="h-3.5 w-3.5" />
-                  Download
+                  {ui.btnDownload || 'Download'}
                 </button>
               </div>
             </div>

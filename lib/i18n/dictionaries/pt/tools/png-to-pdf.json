@@ -66,8 +66,14 @@
       "Imagem distorcida: evite 'Preencher' se não quiser esticamento"
     ],
     "keyboardShortcuts": [
-      { "keys": "Arrastar e Soltar", "description": "Solte arquivos PNG para carregá-los" },
-      { "keys": "Clique", "description": "Selecione arquivos PNG do computador" }
+      {
+        "keys": "Arrastar e Soltar",
+        "description": "Solte arquivos PNG para carregá-los"
+      },
+      {
+        "keys": "Clique",
+        "description": "Selecione arquivos PNG do computador"
+      }
     ]
   },
   "meta": {
@@ -89,5 +95,39 @@
     "melhor conversor PNG para PDF online grátis",
     "converter capturas de tela PNG em PDF",
     "converter PNG para PDF tamanho A4 online"
-  ]
+  ],
+  "ui": {
+    "uploadHeading": "Carregar imagens PNG",
+    "clearAll": "Limpar tudo",
+    "dropZoneMain": "Clique para carregar ou arraste aqui",
+    "dropZoneSub": "Apenas ficheiros PNG (até 10 MB por ficheiro) - Transparência suportada",
+    "selectedImagesLabel": "Imagens PNG selecionadas",
+    "moveUp": "Mover para cima",
+    "moveDown": "Mover para baixo",
+    "remove": "Remover",
+    "pdfSettingsHeading": "Configurações de PDF",
+    "pageSizeLabel": "Tamanho da página",
+    "widthLabel": "Largura (pt)",
+    "heightLabel": "Altura (pt)",
+    "imageFitLabel": "Ajuste de imagem",
+    "fitContain": "Conter (ajustar ao interior, manter proporção)",
+    "fitCover": "Cobrir (preencher página, pode cortar)",
+    "fitFill": "Preencher (esticar para preencher)",
+    "fitNone": "Nenhum (tamanho original)",
+    "marginsLabel": "Margens",
+    "filenameLabel": "Nome do ficheiro",
+    "filenamePlaceholder": "meu-documento.pdf",
+    "generatingPdf": "A gerar PDF...",
+    "generatePdf": "Gerar PDF",
+    "imageSingular": "imagem",
+    "imagePlural": "imagens",
+    "pdfGeneratedSuccess": "PDF gerado com sucesso!",
+    "pagesLabel": "Páginas:",
+    "fileSizeLabel": "Tamanho do ficheiro:",
+    "filenameResultLabel": "Nome do ficheiro:",
+    "downloadPdf": "Descarregar PDF",
+    "previewHeading": "Pré-visualização do PDF",
+    "hidePreview": "Ocultar pré-visualização",
+    "showPreview": "Mostrar pré-visualização"
+  }
 }

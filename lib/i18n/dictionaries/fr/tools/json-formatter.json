@@ -75,10 +75,22 @@
       "Compatibilité navigateur : utilisez Chrome, Firefox ou Edge pour de meilleurs résultats"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Coller l'entrée" },
-      { "keys": "Ctrl+Enter", "description": "Traiter/Formater" },
-      { "keys": "Ctrl+C", "description": "Copier le résultat" },
-      { "keys": "Ctrl+S", "description": "Télécharger le fichier" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entrée"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Traiter/Formater"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le résultat"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Télécharger le fichier"
+      }
     ]
   },
   "features": [
@@ -104,5 +116,49 @@
   "options": {
     "compact": "Compact",
     "expanded": "Étendu"
+  },
+  "ui": {
+    "headerTitle": "Formateur et Validateur JSON",
+    "processingOverlayTitle": "Traitement JSON...",
+    "processingOverlaySubtext": "Grand fichier JSON détecté. Cela peut prendre un moment.",
+    "inputLabel": "JSON d'entrée",
+    "uploadButton": "Importer un fichier JSON",
+    "uploadedPrefix": "Importé :",
+    "inputPlaceholder": "{\"clé\": \"valeur\", \"array\": [1, 2, 3]} ou importez un fichier JSON ci-dessus",
+    "processingPrefix": "Traitement :",
+    "pleaseWait": "Veuillez patienter...",
+    "removeFileTitle": "Supprimer le fichier et effacer l'entrée",
+    "removeFileAriaLabel": "Supprimer le fichier importé",
+    "indentLabel": "Indentation :",
+    "indent2Spaces": "2 espaces",
+    "indent4Spaces": "4 espaces",
+    "indentTab": "Tab",
+    "sortKeysLabel": "Trier les clés",
+    "processingButton": "Traitement...",
+    "formatButton": "Formater",
+    "minifyButton": "Minifier",
+    "successMessage": "JSON formaté avec succès !",
+    "outputLabel": "Sortie",
+    "previewNote": "(Aperçu - 200 premières lignes)",
+    "viewCode": "Code",
+    "viewTree": "Arbre",
+    "copyButton": "Copier",
+    "copiedButton": "Copié !",
+    "downloadButton": "Télécharger",
+    "largeFileTitle": "Grand fichier détecté",
+    "largeFileDescription": "Seules les 200 premières lignes sont affichées ci-dessus. Téléchargez le fichier formaté complet en utilisant le bouton ci-dessus pour voir le contenu entier.",
+    "searchPlaceholder": "Rechercher une clé dans le JSON...",
+    "searchButton": "Rechercher",
+    "foundOccurrence": "occurrence",
+    "foundOccurrences": "occurrences",
+    "foundPrefix": "Trouvé",
+    "occurrencePrefix": "Occurrence",
+    "valueLabel": "Valeur :",
+    "copyValueButton": "Copier la valeur",
+    "pathLabel": "Chemin :",
+    "copyPathButton": "Copier le chemin",
+    "noKeyFound": "trouvé dans le JSON.",
+    "noKeyPrefix": "Aucune clé",
+    "treeViewError": "Erreur lors du rendu de la vue arborescente. Veuillez utiliser la vue formatée."
   }
 }

@@ -47,6 +47,7 @@ function formatFileSize(bytes: number): string {
 }
 
 export default function PdfToWord({ dictionary }: PdfToWordProps) {
+  const ui = dictionary?.tools?.['pdf-to-word']?.ui ?? {};
   const { addToHistory } = useToolStore();
   const [files, setFiles] = useState<FileWithPreview[]>([]);
   const [isConverting, setIsConverting] = useState(false);
@@ -333,14 +334,14 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
           <input {...getInputProps()} />
           <UploadIcon className="mx-auto mb-4 h-12 w-12 text-gray-400" />
           {isDragActive ? (
-            <p className="text-lg font-medium">Drop PDF files here...</p>
+            <p className="text-lg font-medium">{ui.dropActive || 'Drop PDF files here...'}</p>
           ) : (
             <>
               <p className="mb-2 text-lg font-medium">
-                Drag & drop PDF files here, or click to select
+                {ui.dropMainText || 'Drag & drop PDF files here, or click to select'}
               </p>
               <p className="text-sm text-gray-500">
-                Support for up to 10 files, max 50MB each
+                {ui.dropHint || 'Support for up to 10 files, max 50MB each'}
               </p>
             </>
           )}
@@ -369,7 +370,7 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
               {isConverting ? (
                 <>
                   <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />
-                  Converting...
+                  {ui.buttonConverting || 'Converting...'}
                 </>
               ) : (
                 <>
@@ -381,7 +382,7 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
             {files.some((f) => f.status === 'completed') && (
               <Button onClick={downloadAll} variant="outline">
                 <DownloadIcon className="mr-2 h-4 w-4" />
-                Download All
+                {ui.buttonDownloadAll || 'Download All'}
               </Button>
             )}
           </div>
@@ -446,7 +447,7 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
                               {fileItem.statusMessage || 'Converting...'}
                             </p>
                             <p className="text-sm text-gray-600">
-                              Please wait, this may take a few seconds
+                              {ui.progressWait || 'Please wait, this may take a few seconds'}
                             </p>
                           </div>
                         </div>
@@ -464,7 +465,7 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
                       <div className="flex items-center gap-2 text-green-600">
                         <CheckCircleIcon className="h-5 w-5" />
                         <span className="font-medium">
-                          Conversion Successful
+                          {ui.conversionSuccessful || 'Conversion Successful'}
                         </span>
                       </div>
 
@@ -473,7 +474,7 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
                         className="w-full"
                       >
                         <DownloadIcon className="mr-2 h-4 w-4" />
-                        Download Word Document
+                        {ui.buttonDownloadWord || 'Download Word Document'}
                       </Button>
                     </div>
                   )}
@@ -506,39 +507,37 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
       {files.length === 0 && (
         <Card className="p-6">
           <h3 className="mb-4 text-lg font-semibold">
-            💡 Tips for Best Results
+            💡 {ui.tipsHeading || 'Tips for Best Results'}
           </h3>
           <ul className="space-y-2 text-sm text-gray-600">
             <li className="flex gap-2">
               <span className="text-primary">•</span>
               <span>
-                High-quality conversion powered by professional algorithms
+                {ui.tip1 || 'High-quality conversion powered by professional algorithms'}
               </span>
             </li>
             <li className="flex gap-2">
               <span className="text-primary">•</span>
               <span>
-                Layout, tables, and formatting are preserved automatically
+                {ui.tip2 || 'Layout, tables, and formatting are preserved automatically'}
               </span>
             </li>
             <li className="flex gap-2">
               <span className="text-primary">•</span>
               <span>
-                All conversion happens on our server - fast and secure
+                {ui.tip3 || 'All conversion happens on our server - fast and secure'}
               </span>
             </li>
             <li className="flex gap-2">
               <span className="text-primary">•</span>
               <span>
-                Your files are never stored and are deleted immediately after
-                conversion
+                {ui.tip4 || 'Your files are never stored and are deleted immediately after conversion'}
               </span>
             </li>
             <li className="flex gap-2">
               <span className="text-primary">•</span>
               <span>
-                For password-protected PDFs, remove the password before
-                converting
+                {ui.tip5 || 'For password-protected PDFs, remove the password before converting'}
               </span>
             </li>
           </ul>

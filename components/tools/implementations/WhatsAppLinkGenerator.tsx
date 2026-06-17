@@ -46,7 +46,9 @@ interface WhatsAppLinkGeneratorProps extends BaseToolProps {}
 
 export default function WhatsAppLinkGenerator({
   categoryColor,
+  dictionary,
 }: WhatsAppLinkGeneratorProps) {
+  const ui = dictionary?.tools?.['whatsapp-link-generator']?.ui ?? {};
   const { copy } = useCopy();
   const { addToHistory } = useToolStore();
   const { resultRef, scrollToResult } = useScrollToResult({
@@ -199,10 +201,10 @@ export default function WhatsAppLinkGenerator({
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Phone className="h-5 w-5" />
-            Phone Number
+            {ui.phoneNumberTitle || 'Phone Number'}
           </CardTitle>
           <CardDescription>
-            Enter the WhatsApp number you want to chat with
+            {ui.phoneNumberDescription || 'Enter the WhatsApp number you want to chat with'}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -228,7 +230,7 @@ export default function WhatsAppLinkGenerator({
                     <div className="flex items-center gap-2 rounded-md border px-3">
                       <Search className="h-4 w-4 text-muted-foreground" />
                       <Input
-                        placeholder="Search country..."
+                        placeholder={ui.searchCountryPlaceholder || 'Search country...'}
                         value={countrySearch}
                         onChange={(e) => setCountrySearch(e.target.value)}
                         className="border-0 p-2 focus-visible:ring-0"
@@ -259,7 +261,7 @@ export default function WhatsAppLinkGenerator({
                     ))}
                     {filteredCountries.length === 0 && (
                       <p className="px-4 py-3 text-sm text-muted-foreground">
-                        No countries found
+                        {ui.noCountriesFound || 'No countries found'}
                       </p>
                     )}
                   </div>
@@ -282,13 +284,12 @@ export default function WhatsAppLinkGenerator({
           {phoneNumber &&
             !isValidPhoneNumber(cleanPhoneNumber(phoneNumber)) && (
               <p className="text-sm text-destructive">
-                Please enter a valid phone number (6-15 digits)
+                {ui.invalidPhoneNumber || 'Please enter a valid phone number (6-15 digits)'}
               </p>
             )}
 
           <p className="text-xs text-muted-foreground">
-            Enter the phone number without leading zeros. The country code will
-            be added automatically.
+            {ui.phoneNumberHint || 'Enter the phone number without leading zeros. The country code will be added automatically.'}
           </p>
         </CardContent>
       </Card>
@@ -300,10 +301,10 @@ export default function WhatsAppLinkGenerator({
             <div>
               <CardTitle className="flex items-center gap-2">
                 <MessageCircle className="h-5 w-5" />
-                Pre-filled Message
+                {ui.prefilledMessageTitle || 'Pre-filled Message'}
               </CardTitle>
               <CardDescription>
-                Optional message that will be pre-filled in the chat
+                {ui.prefilledMessageDescription || 'Optional message that will be pre-filled in the chat'}
               </CardDescription>
             </div>
             <Button
@@ -311,7 +312,7 @@ export default function WhatsAppLinkGenerator({
               size="sm"
               onClick={() => setShowTemplates(!showTemplates)}
             >
-              Templates
+              {ui.templatesButton || 'Templates'}
             </Button>
           </div>
         </CardHeader>
@@ -319,10 +320,10 @@ export default function WhatsAppLinkGenerator({
           {/* Message Templates */}
           {showTemplates && (
             <div className="space-y-4 rounded-lg bg-muted p-4">
-              <h4 className="text-sm font-medium">Message Templates</h4>
+              <h4 className="text-sm font-medium">{ui.messageTemplatesHeading || 'Message Templates'}</h4>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <div className="space-y-2">
-                  <Label className="text-xs">Business</Label>
+                  <Label className="text-xs">{ui.businessLabel || 'Business'}</Label>
                   <div className="flex flex-col gap-1">
                     {Object.entries(messageTemplates.business).map(
                       ([key, text]) => (
@@ -340,7 +341,7 @@ export default function WhatsAppLinkGenerator({
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs">Personal</Label>
+                  <Label className="text-xs">{ui.personalLabel || 'Personal'}</Label>
                   <div className="flex flex-col gap-1">
                     {Object.entries(messageTemplates.personal).map(
                       ([key, text]) => (
@@ -358,7 +359,7 @@ export default function WhatsAppLinkGenerator({
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs">Marketing</Label>
+                  <Label className="text-xs">{ui.marketingLabel || 'Marketing'}</Label>
                   <div className="flex flex-col gap-1">
                     {Object.entries(messageTemplates.marketing).map(
                       ([key, text]) => (
@@ -382,13 +383,13 @@ export default function WhatsAppLinkGenerator({
           <Textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Hi! I would like to inquire about..."
+            placeholder={ui.messagePlaceholder || 'Hi! I would like to inquire about...'}
             rows={4}
             maxLength={4096}
           />
 
           <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <span>{message.length} / 4096 characters</span>
+            <span>{message.length} / 4096 {ui.characters || 'characters'}</span>
             {message && (
               <Button
                 variant="ghost"
@@ -396,7 +397,7 @@ export default function WhatsAppLinkGenerator({
                 onClick={() => setMessage('')}
                 className="h-auto p-1 text-xs"
               >
-                Clear message
+                {ui.clearMessage || 'Clear message'}
               </Button>
             )}
           </div>
@@ -407,11 +408,11 @@ export default function WhatsAppLinkGenerator({
       <div className="flex flex-wrap gap-2">
         <Button onClick={handleGenerate} disabled={!isFormValid} size="lg">
           <MessageCircle className="mr-2 h-5 w-5" />
-          Generate WhatsApp Link
+          {ui.generateButton || 'Generate WhatsApp Link'}
         </Button>
         <Button variant="outline" onClick={handleClear}>
           <Trash2 className="mr-2 h-4 w-4" />
-          Clear
+          {ui.clearButton || 'Clear'}
         </Button>
       </div>
 
@@ -422,10 +423,10 @@ export default function WhatsAppLinkGenerator({
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MessageCircle className="h-5 w-5 text-[#25D366]" />
-                Your WhatsApp Link
+                {ui.yourLinkTitle || 'Your WhatsApp Link'}
               </CardTitle>
               <CardDescription>
-                Share this link to start a conversation
+                {ui.yourLinkDescription || 'Share this link to start a conversation'}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -437,11 +438,11 @@ export default function WhatsAppLinkGenerator({
                 <div className="flex flex-wrap gap-2">
                   <Button variant="outline" size="sm" onClick={handleCopy}>
                     <Copy className="mr-2 h-4 w-4" />
-                    Copy Link
+                    {ui.copyLink || 'Copy Link'}
                   </Button>
                   <Button variant="outline" size="sm" onClick={handleDownload}>
                     <Download className="mr-2 h-4 w-4" />
-                    Download
+                    {ui.download || 'Download'}
                   </Button>
                   <Button
                     variant="outline"
@@ -450,7 +451,7 @@ export default function WhatsAppLinkGenerator({
                     className="bg-[#25D366] text-white hover:bg-[#128C7E]"
                   >
                     <ExternalLink className="mr-2 h-4 w-4" />
-                    Open WhatsApp
+                    {ui.openWhatsApp || 'Open WhatsApp'}
                   </Button>
                 </div>
               </div>
@@ -462,7 +463,7 @@ export default function WhatsAppLinkGenerator({
                   <div className="space-y-3">
                     <Label className="flex items-center gap-2">
                       <QrCode className="h-4 w-4" />
-                      QR Code
+                      {ui.qrCode || 'QR Code'}
                     </Label>
                     <div className="flex flex-col items-center gap-3 rounded-lg border p-4">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -477,7 +478,7 @@ export default function WhatsAppLinkGenerator({
                         onClick={handleDownloadQR}
                       >
                         <Download className="mr-2 h-4 w-4" />
-                        Download QR
+                        {ui.downloadQR || 'Download QR'}
                       </Button>
                     </div>
                   </div>
@@ -487,7 +488,7 @@ export default function WhatsAppLinkGenerator({
                 <div className="space-y-3">
                   <Label className="flex items-center gap-2">
                     <Smartphone className="h-4 w-4" />
-                    Preview
+                    {ui.preview || 'Preview'}
                   </Label>
                   <div className="rounded-xl border-4 border-gray-800 bg-gray-100 p-3 dark:bg-gray-900">
                     {/* WhatsApp-style header */}
@@ -528,7 +529,7 @@ export default function WhatsAppLinkGenerator({
                   <AlertDescription className="space-y-1 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">
-                        Full Number:
+                        {ui.fullNumber || 'Full Number:'}
                       </span>
                       <span className="font-mono">
                         +{result.metadata.fullPhoneNumber}
@@ -536,22 +537,22 @@ export default function WhatsAppLinkGenerator({
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">
-                        Message Included:
+                        {ui.messageIncluded || 'Message Included:'}
                       </span>
                       <Badge
                         variant={
                           result.metadata.hasMessage ? 'default' : 'secondary'
                         }
                       >
-                        {result.metadata.hasMessage ? 'Yes' : 'No'}
+                        {result.metadata.hasMessage ? (ui.yes || 'Yes') : (ui.no || 'No')}
                       </Badge>
                     </div>
                     {result.metadata.hasMessage && (
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">
-                          Message Length:
+                          {ui.messageLength || 'Message Length:'}
                         </span>
-                        <span>{result.metadata.messageLength} chars</span>
+                        <span>{result.metadata.messageLength} {ui.chars || 'chars'}</span>
                       </div>
                     )}
                   </AlertDescription>

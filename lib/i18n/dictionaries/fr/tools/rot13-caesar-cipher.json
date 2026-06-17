@@ -77,9 +77,39 @@
       "Sortie de force brute difficile à scanner : collez quelques mots d'abord, repérez la ligne lisible, puis appliquez ce décalage au texte complet"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Coller l'entrée" },
-      { "keys": "Ctrl+C", "description": "Copier la sortie" },
-      { "keys": "Ctrl+Enter", "description": "Traiter" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entrée"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier la sortie"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Traiter"
+      }
     ]
+  },
+  "ui": {
+    "modeLabel": "Mode",
+    "modeRot13": "ROT13 (encoder/décoder en un clic)",
+    "modeCaesarEncode": "César — encoder avec décalage",
+    "modeCaesarDecode": "César — décoder avec décalage",
+    "modeBruteForce": "Brute force — afficher les 25 rotations",
+    "shiftLabel": "Décalage (1–25)",
+    "inputLabel": "Texte d'entrée",
+    "inputPlaceholder": "Entrez le texte à encoder ou décoder...",
+    "btnProcess": "Traiter",
+    "btnShowRotations": "Afficher les 25 rotations",
+    "btnUseAsInput": "Utiliser la sortie comme entrée",
+    "outputLabel": "Sortie",
+    "btnCopy": "Copier",
+    "btnCopied": "Copié",
+    "allRotationsLabel": "Les 25 rotations",
+    "tableShift": "Décalage",
+    "tableOutput": "Sortie",
+    "tableCopy": "Copier",
+    "errorNoInput": "Veuillez saisir du texte à traiter"
   }
 }

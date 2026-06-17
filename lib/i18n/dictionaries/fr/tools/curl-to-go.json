@@ -12,10 +12,22 @@
   "instructions": {
     "title": "Comment utiliser le convertisseur cURL vers Go",
     "steps": [
-      { "title": "Collez la commande cURL", "description": "Copiez depuis le terminal, DevTools, la documentation ou Postman et collez." },
-      { "title": "Choisissez net/http ou Resty", "description": "net/http pour du code stdlib sans dépendance ; Resty pour une API fluide populaire dans les microservices." },
-      { "title": "Copiez le Go généré", "description": "Le code inclut imports, context, timeout, defer Body.Close, vérifications d'erreurs. Collez dans main.go." },
-      { "title": "Ajustez les options", "description": "Modifiez gestion d'erreurs, timeout, vérification SSL depuis le panneau d'options." }
+      {
+        "title": "Collez la commande cURL",
+        "description": "Copiez depuis le terminal, DevTools, la documentation ou Postman et collez."
+      },
+      {
+        "title": "Choisissez net/http ou Resty",
+        "description": "net/http pour du code stdlib sans dépendance ; Resty pour une API fluide populaire dans les microservices."
+      },
+      {
+        "title": "Copiez le Go généré",
+        "description": "Le code inclut imports, context, timeout, defer Body.Close, vérifications d'erreurs. Collez dans main.go."
+      },
+      {
+        "title": "Ajustez les options",
+        "description": "Modifiez gestion d'erreurs, timeout, vérification SSL depuis le panneau d'options."
+      }
     ],
     "features": [
       "Stdlib net/http — sans dépendance tierce",
@@ -54,10 +66,82 @@
       "Import Resty introuvable : exécutez 'go get github.com/go-resty/resty/v2'"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Coller l'entrée" },
-      { "keys": "Ctrl+Enter", "description": "Générer Go" },
-      { "keys": "Ctrl+C", "description": "Copier le résultat" },
-      { "keys": "Ctrl+S", "description": "Télécharger le fichier .go" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller l'entrée"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Générer Go"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copier le résultat"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Télécharger le fichier .go"
+      }
     ]
+  },
+  "ui": {
+    "curlCommand": "Commande cURL",
+    "clear": "Effacer",
+    "import": "Importer",
+    "inputPlaceholder": "Collez votre commande cURL ici...",
+    "quickExamples": "Exemples rapides",
+    "exampleSimpleGet": "GET simple",
+    "examplePostJson": "POST avec JSON",
+    "exampleBearerAuth": "Auth Bearer",
+    "exampleFormUpload": "Upload de formulaire",
+    "exampleGraphql": "Requête GraphQL",
+    "exampleComplexRequest": "Requête complexe",
+    "language": "Langage",
+    "framework": "Framework",
+    "comingSoon": "Bientôt disponible",
+    "generatorComingSoonPrefix": "Le générateur pour",
+    "generatorComingSoonSuffix": "arrive bientôt. Choisissez un langage avec un framework disponible (p. ex. JavaScript + fetch, Python + requests) pour générer du code dès maintenant.",
+    "advancedOptions": "Options avancées",
+    "errorHandling": "Gestion des erreurs",
+    "none": "Aucune",
+    "basicTryCatch": "Try-Catch basique",
+    "comprehensive": "Complète",
+    "asyncAwait": "Async/Await",
+    "extractEnvVars": "Extraire les variables d'environnement",
+    "includeTypes": "Inclure les types",
+    "retryLogic": "Logique de retry",
+    "includeLogging": "Inclure le logging",
+    "includeComments": "Inclure les commentaires",
+    "indentation": "Indentation",
+    "indentSize": "Taille d'indentation",
+    "spaces": "Espaces",
+    "tabs": "Tabulations",
+    "converting": "Conversion en cours...",
+    "convertToCode": "Convertir en code",
+    "generatedCode": "Code généré",
+    "copied": "Copié",
+    "copy": "Copier",
+    "download": "Télécharger",
+    "codeTab": "Code",
+    "envVarsTab": "Variables Env",
+    "infoTab": "Infos",
+    "addEnvVarsHint": "Ajoutez ces variables d'environnement à votre fichier .env",
+    "noEnvVars": "Aucune variable d'environnement extraite.",
+    "parsedCurlDetails": "Détails du cURL analysé",
+    "methodLabel": "Méthode :",
+    "urlLabel": "URL :",
+    "authTypeLabel": "Type d'auth :",
+    "dataTypeLabel": "Type de données :",
+    "headers": "En-têtes",
+    "dependencies": "Dépendances",
+    "installPackagesHint": "Installez ces paquets pour utiliser le code généré :",
+    "emptyState": "Le code généré apparaîtra ici",
+    "supportedFeatures": "Fonctionnalités prises en charge",
+    "allHttpMethods": "Toutes les méthodes HTTP",
+    "allHttpMethodsDesc": "GET, POST, PUT, DELETE, PATCH, etc.",
+    "typeInference": "Inférence de types",
+    "typeInferenceDesc": "Génère automatiquement les types depuis le JSON",
+    "errorHandlingDesc": "Try-catch, logique de retry, timeouts",
+    "languagesCount": "15+ langages"
   }
 }

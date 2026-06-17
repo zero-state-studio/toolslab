@@ -59,9 +59,18 @@
       "Eliminar la última columna restablece el diseño — usa 'Ejemplo' para restaurar rápidamente una tabla funcional"
     ],
     "keyboardShortcuts": [
-      { "keys": "Tab", "description": "Ir a la celda siguiente" },
-      { "keys": "Shift+Tab", "description": "Ir a la celda anterior" },
-      { "keys": "Ctrl+C", "description": "Copiar Markdown" }
+      {
+        "keys": "Tab",
+        "description": "Ir a la celda siguiente"
+      },
+      {
+        "keys": "Shift+Tab",
+        "description": "Ir a la celda anterior"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar Markdown"
+      }
     ]
   },
   "meta": {
@@ -69,5 +78,32 @@
     "description": "Generador gratuito de tablas Markdown. Crea tablas GFM visualmente o pega CSV/TSV. Alineación por columna, vista previa en vivo y copia rápida."
   },
   "tagline": "Crea tablas Markdown GFM visualmente o desde CSV — alineación, vista previa y copia en segundos",
-  "pageDescription": "Crea tablas Markdown limpias sin contar pipes. Usa el editor visual para añadir filas, reordenar columnas y configurar la alineación de cada una, o pega CSV, TSV o una tabla Markdown existente para importar datos al instante. Los pipes y saltos de línea dentro de las celdas se escapan automáticamente para que la salida siga siendo GitHub Flavored Markdown válido. Activa el relleno visual para un código diff-friendly, mira el HTML renderizado en vivo y copia el resultado con un clic. Perfecto para READMEs, artículos de blog, páginas comparativas y documentación de API. Gratuito, en el navegador, sin registro."
+  "pageDescription": "Crea tablas Markdown limpias sin contar pipes. Usa el editor visual para añadir filas, reordenar columnas y configurar la alineación de cada una, o pega CSV, TSV o una tabla Markdown existente para importar datos al instante. Los pipes y saltos de línea dentro de las celdas se escapan automáticamente para que la salida siga siendo GitHub Flavored Markdown válido. Activa el relleno visual para un código diff-friendly, mira el HTML renderizado en vivo y copia el resultado con un clic. Perfecto para READMEs, artículos de blog, páginas comparativas y documentación de API. Gratuito, en el navegador, sin registro.",
+  "ui": {
+    "visualEditor": "Editor visual",
+    "pasteCsvTsvMarkdown": "Pegar CSV / TSV / Markdown",
+    "example": "Ejemplo",
+    "clear": "Limpiar",
+    "delimiterLabel": "Delimitador",
+    "autoDetect": "Detección automática",
+    "commaOption": "Coma (,)",
+    "semicolonOption": "Punto y coma (;)",
+    "tabOption": "Tabulador",
+    "firstRowIsHeader": "La primera fila es encabezado",
+    "import": "Importar",
+    "removeColumn": "Eliminar columna",
+    "addColumn": "Agregar columna",
+    "moveUp": "Mover arriba",
+    "moveDown": "Mover abajo",
+    "removeRow": "Eliminar fila",
+    "addRow": "Agregar fila",
+    "markdownOutput": "Salida Markdown",
+    "prettyPadding": "Relleno alineado",
+    "hidePreview": "Ocultar vista previa",
+    "showPreview": "Mostrar vista previa",
+    "copied": "Copiado",
+    "copyMarkdown": "Copiar Markdown",
+    "outputPlaceholder": "La tabla Markdown aparecerá aquí...",
+    "livePreview": "Vista previa en vivo"
+  }
 }
