@@ -12,10 +12,22 @@
   "instructions": {
     "title": "Cómo usar el Convertidor cURL a C#",
     "steps": [
-      { "title": "Pega el comando cURL", "description": "Desde terminal, Chrome DevTools, docs de API o Postman." },
-      { "title": "Elige HttpClient o RestSharp", "description": "HttpClient es la elección stdlib .NET; RestSharp es la API fluida 3rd-party popular." },
-      { "title": "Copia el C# generado", "description": "Método async con using var client, EnsureSuccessStatusCode y ReadAsStringAsync." },
-      { "title": "Ajusta opciones", "description": "Modifica timeout, verificación SSL desde el panel." }
+      {
+        "title": "Pega el comando cURL",
+        "description": "Desde terminal, Chrome DevTools, docs de API o Postman."
+      },
+      {
+        "title": "Elige HttpClient o RestSharp",
+        "description": "HttpClient es la elección stdlib .NET; RestSharp es la API fluida 3rd-party popular."
+      },
+      {
+        "title": "Copia el C# generado",
+        "description": "Método async con using var client, EnsureSuccessStatusCode y ReadAsStringAsync."
+      },
+      {
+        "title": "Ajusta opciones",
+        "description": "Modifica timeout, verificación SSL desde el panel."
+      }
     ],
     "features": [
       "System.Net.Http.HttpClient con async Task<string>",
@@ -53,10 +65,82 @@
       "Body ausente: verifica flags -d/--data en el cURL origen"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Pegar entrada" },
-      { "keys": "Ctrl+Enter", "description": "Generar C#" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado" },
-      { "keys": "Ctrl+S", "description": "Descargar archivo" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Pegar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Generar C#"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Descargar archivo"
+      }
     ]
+  },
+  "ui": {
+    "curlCommand": "Comando cURL",
+    "clear": "Limpiar",
+    "import": "Importar",
+    "inputPlaceholder": "Pega aquí tu comando cURL...",
+    "quickExamples": "Ejemplos rápidos",
+    "exampleSimpleGet": "GET simple",
+    "examplePostJson": "POST con JSON",
+    "exampleBearerAuth": "Auth Bearer",
+    "exampleFormUpload": "Subida de formulario",
+    "exampleGraphql": "Consulta GraphQL",
+    "exampleComplexRequest": "Petición compleja",
+    "language": "Lenguaje",
+    "framework": "Framework",
+    "comingSoon": "Próximamente",
+    "generatorComingSoonPrefix": "El generador para",
+    "generatorComingSoonSuffix": "estará disponible próximamente. Elige un lenguaje con un framework disponible (p. ej., JavaScript + fetch, Python + requests) para generar código ahora.",
+    "advancedOptions": "Opciones avanzadas",
+    "errorHandling": "Manejo de errores",
+    "none": "Ninguno",
+    "basicTryCatch": "Try-Catch básico",
+    "comprehensive": "Completo",
+    "asyncAwait": "Async/Await",
+    "extractEnvVars": "Extraer variables de entorno",
+    "includeTypes": "Incluir tipos",
+    "retryLogic": "Lógica de reintentos",
+    "includeLogging": "Incluir logging",
+    "includeComments": "Incluir comentarios",
+    "indentation": "Indentación",
+    "indentSize": "Tamaño de indentación",
+    "spaces": "Espacios",
+    "tabs": "Tabulaciones",
+    "converting": "Convirtiendo...",
+    "convertToCode": "Convertir a código",
+    "generatedCode": "Código generado",
+    "copied": "Copiado",
+    "copy": "Copiar",
+    "download": "Descargar",
+    "codeTab": "Código",
+    "envVarsTab": "Variables Env",
+    "infoTab": "Info",
+    "addEnvVarsHint": "Añade estas variables de entorno a tu archivo .env",
+    "noEnvVars": "No se extrajeron variables de entorno.",
+    "parsedCurlDetails": "Detalles del cURL analizado",
+    "methodLabel": "Método:",
+    "urlLabel": "URL:",
+    "authTypeLabel": "Tipo de auth:",
+    "dataTypeLabel": "Tipo de datos:",
+    "headers": "Cabeceras",
+    "dependencies": "Dependencias",
+    "installPackagesHint": "Instala estos paquetes para usar el código generado:",
+    "emptyState": "El código generado aparecerá aquí",
+    "supportedFeatures": "Funciones compatibles",
+    "allHttpMethods": "Todos los métodos HTTP",
+    "allHttpMethodsDesc": "GET, POST, PUT, DELETE, PATCH, etc.",
+    "typeInference": "Inferencia de tipos",
+    "typeInferenceDesc": "Genera tipos automáticamente desde JSON",
+    "errorHandlingDesc": "Try-catch, lógica de reintentos, timeouts",
+    "languagesCount": "15+ lenguajes"
   }
 }

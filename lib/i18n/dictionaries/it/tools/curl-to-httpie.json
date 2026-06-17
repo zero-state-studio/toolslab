@@ -12,10 +12,22 @@
   "instructions": {
     "title": "Come usare il convertitore cURL in HTTPie",
     "steps": [
-      { "title": "Incolla il comando cURL", "description": "Da terminale, DevTools o documentazione API." },
-      { "title": "Copia il one-liner HTTPie", "description": "Sintassi short-hand con header chiave:valore e campi body chiave=valore." },
-      { "title": "Esegui il comando HTTPie", "description": "Installa HTTPie (pip install httpie) e incolla il comando nella shell." },
-      { "title": "Personalizza opzioni", "description": "Regola timeout, verifica SSL dal pannello." }
+      {
+        "title": "Incolla il comando cURL",
+        "description": "Da terminale, DevTools o documentazione API."
+      },
+      {
+        "title": "Copia il one-liner HTTPie",
+        "description": "Sintassi short-hand con header chiave:valore e campi body chiave=valore."
+      },
+      {
+        "title": "Esegui il comando HTTPie",
+        "description": "Installa HTTPie (pip install httpie) e incolla il comando nella shell."
+      },
+      {
+        "title": "Personalizza opzioni",
+        "description": "Regola timeout, verifica SSL dal pannello."
+      }
     ],
     "features": [
       "CLI http e https con sintassi short-hand",
@@ -53,10 +65,82 @@
       "Header mancanti: verifica che i flag -H siano convertiti in 'Header:Value'"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Incolla input" },
-      { "keys": "Ctrl+Enter", "description": "Genera HTTPie" },
-      { "keys": "Ctrl+C", "description": "Copia risultato" },
-      { "keys": "Ctrl+S", "description": "Scarica file .sh" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla input"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Genera HTTPie"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copia risultato"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Scarica file .sh"
+      }
     ]
+  },
+  "ui": {
+    "curlCommand": "Comando cURL",
+    "clear": "Pulisci",
+    "import": "Importa",
+    "inputPlaceholder": "Incolla qui il tuo comando cURL...",
+    "quickExamples": "Esempi rapidi",
+    "exampleSimpleGet": "GET semplice",
+    "examplePostJson": "POST con JSON",
+    "exampleBearerAuth": "Auth Bearer",
+    "exampleFormUpload": "Upload form",
+    "exampleGraphql": "Query GraphQL",
+    "exampleComplexRequest": "Richiesta complessa",
+    "language": "Linguaggio",
+    "framework": "Framework",
+    "comingSoon": "In arrivo",
+    "generatorComingSoonPrefix": "Il generatore per",
+    "generatorComingSoonSuffix": "è in arrivo. Scegli un linguaggio con un framework disponibile (es. JavaScript + fetch, Python + requests) per generare il codice subito.",
+    "advancedOptions": "Opzioni avanzate",
+    "errorHandling": "Gestione errori",
+    "none": "Nessuna",
+    "basicTryCatch": "Try-Catch di base",
+    "comprehensive": "Completa",
+    "asyncAwait": "Async/Await",
+    "extractEnvVars": "Estrai variabili d'ambiente",
+    "includeTypes": "Includi tipi",
+    "retryLogic": "Logica di retry",
+    "includeLogging": "Includi logging",
+    "includeComments": "Includi commenti",
+    "indentation": "Indentazione",
+    "indentSize": "Dimensione indentazione",
+    "spaces": "Spazi",
+    "tabs": "Tab",
+    "converting": "Conversione in corso...",
+    "convertToCode": "Converti in codice",
+    "generatedCode": "Codice generato",
+    "copied": "Copiato",
+    "copy": "Copia",
+    "download": "Scarica",
+    "codeTab": "Codice",
+    "envVarsTab": "Variabili Env",
+    "infoTab": "Info",
+    "addEnvVarsHint": "Aggiungi queste variabili d'ambiente al tuo file .env",
+    "noEnvVars": "Nessuna variabile d'ambiente estratta.",
+    "parsedCurlDetails": "Dettagli cURL analizzati",
+    "methodLabel": "Metodo:",
+    "urlLabel": "URL:",
+    "authTypeLabel": "Tipo di auth:",
+    "dataTypeLabel": "Tipo di dati:",
+    "headers": "Header",
+    "dependencies": "Dipendenze",
+    "installPackagesHint": "Installa questi pacchetti per usare il codice generato:",
+    "emptyState": "Il codice generato apparirà qui",
+    "supportedFeatures": "Funzionalità supportate",
+    "allHttpMethods": "Tutti i metodi HTTP",
+    "allHttpMethodsDesc": "GET, POST, PUT, DELETE, PATCH, ecc.",
+    "typeInference": "Inferenza dei tipi",
+    "typeInferenceDesc": "Genera automaticamente i tipi dal JSON",
+    "errorHandlingDesc": "Try-catch, logica di retry, timeout",
+    "languagesCount": "15+ linguaggi"
   }
 }
