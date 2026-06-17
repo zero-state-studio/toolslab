@@ -9,12 +9,13 @@ import CurlToCodeConverter from './CurlToCode';
  *
  * See RIC-114 and the RIC-112 epic for the full curl-to-code v2 plan.
  */
-export default function CurlToPhp() {
+export default function CurlToPhp({ dictionary }: { dictionary?: any } = {}) {
   return (
     <CurlToCodeConverter
       toolId="curl-to-php"
       defaultLanguage="php"
       defaultFramework="guzzle"
+      dictionary={dictionary}
     />
   );
 }
