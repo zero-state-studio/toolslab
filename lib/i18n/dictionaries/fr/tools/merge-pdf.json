@@ -1,0 +1,103 @@
+{
+  "title": "Fusionner PDF",
+  "description": "Combinez plusieurs fichiers PDF en un seul document",
+  "placeholder": "Déposez vos fichiers PDF ici ou cliquez pour les importer",
+  "drop": "Déposez vos fichiers PDF ici ou cliquez pour les importer",
+  "hint": "Ajoutez deux PDF ou plus, réorganisez-les, puis fusionnez-les en un seul fichier",
+  "mergeButton": "Fusionner les PDF",
+  "pages": "pages",
+  "download": "Télécharger le PDF fusionné",
+  "remove": "Supprimer",
+  "moveUp": "Monter",
+  "moveDown": "Descendre",
+  "result": "Résultat",
+  "onlyPdf": "Seuls les fichiers PDF sont pris en charge",
+  "reorderTitle": "Réorganisez les fichiers avant la fusion",
+  "reorderHint": "Utilisez les flèches pour définir l'ordre — les fichiers sont fusionnés de haut en bas",
+  "meta": {
+    "title": "Fusionner PDF - Combiner des fichiers PDF en ligne",
+    "description": "Fusionnez vos fichiers PDF en un seul document, gratuit et en ligne. Réorganisez avant de combiner, sans inscription, sans envoi ni filigrane, tout reste local."
+  },
+  "tagline": "Combinez plusieurs fichiers PDF en un seul document, directement dans votre navigateur",
+  "pageDescription": "Combinez plusieurs fichiers PDF en un seul document avec cet outil gratuit Fusionner PDF en ligne. Glissez-déposez vos fichiers, réorganisez-les pour que les pages sortent dans le bon ordre, puis fusionnez-les en un clic. Tout fonctionne localement dans votre navigateur — vos fichiers ne sont jamais envoyés sur un serveur, donc même vos documents confidentiels restent privés. Sans inscription, sans filigrane et sans limite de taille de fichier.",
+  "instructions": {
+    "title": "Comment fusionner des fichiers PDF",
+    "steps": [
+      {
+        "title": "Importez vos PDF",
+        "description": "Glissez-déposez deux fichiers PDF ou plus sur la zone d'import, ou cliquez pour les parcourir et les sélectionner."
+      },
+      {
+        "title": "Réorganisez les fichiers",
+        "description": "Utilisez les flèches haut et bas pour définir l'ordre — le document final est assemblé de haut en bas."
+      },
+      {
+        "title": "Retirez les fichiers superflus",
+        "description": "Cliquez sur le × de tout fichier ajouté par erreur avant de lancer la fusion."
+      },
+      {
+        "title": "Fusionnez en un seul PDF",
+        "description": "Cliquez sur Fusionner les PDF. La combinaison se fait instantanément dans votre navigateur — rien n'est envoyé en ligne."
+      },
+      {
+        "title": "Téléchargez le résultat",
+        "description": "Téléchargez l'unique PDF fusionné contenant toutes les pages dans l'ordre que vous avez choisi."
+      }
+    ],
+    "features": [
+      "Combinez un nombre illimité de fichiers PDF en un seul document",
+      "Import par glisser-déposer avec réorganisation",
+      "Liste numérotée pour que l'ordre de fusion soit toujours clair",
+      "Supprimez chaque fichier individuellement avant la fusion",
+      "100% côté client — vos fichiers ne quittent jamais votre navigateur",
+      "Sans limite de taille, sans filigrane et sans inscription",
+      "Fonctionne hors ligne une fois la page chargée",
+      "Téléchargement instantané du PDF fusionné"
+    ],
+    "useCases": [
+      "Combiner plusieurs factures ou reçus en un seul PDF",
+      "Fusionner des pages scannées en un seul document",
+      "Assembler un contrat à partir de sections signées séparément",
+      "Réunir des chapitres ou des rapports dans un seul fichier",
+      "Combiner des relevés bancaires pour un dossier de demande",
+      "Fusionner des supports de présentation avant de les partager",
+      "Réunir une lettre de motivation et un CV dans un seul PDF",
+      "Regrouper des documents liés pour l'archivage"
+    ],
+    "proTips": [
+      "Réorganisez les fichiers avant la fusion — l'ordre final correspond à la liste, de haut en bas",
+      "Le badge numéroté indique la position de chaque fichier dans le document final",
+      "Comme tout est local, vous pouvez fusionner des PDF confidentiels en toute sécurité",
+      "Ajoutez vos fichiers en plusieurs fois — ils s'ajoutent à la liste existante",
+      "Les gros PDF se fusionnent plus vite sur un navigateur de bureau",
+      "Besoin de séparer plutôt que combiner plusieurs PDF en un seul ? Utilisez l'outil Diviser PDF"
+    ],
+    "troubleshooting": [
+      "Bouton Fusionner désactivé : ajoutez au moins deux fichiers PDF",
+      "Mauvais ordre des pages : utilisez les flèches pour réorganiser les fichiers avant la fusion",
+      "Un fichier refuse de s'ajouter : assurez-vous qu'il s'agit d'un vrai PDF, pas d'un fichier renommé",
+      "Problèmes avec un PDF chiffré : les fichiers protégés par mot de passe peuvent ne pas se charger",
+      "Fichier de sortie volumineux : fusionner de nombreux PDF scannés produit un gros fichier — c'est normal"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + glisser",
+        "description": "Déposez les fichiers PDF sur la zone d'import"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "fusionner pdf en ligne gratuit",
+    "combiner plusieurs pdf en un seul fichier",
+    "assembler pdf gratuit en ligne",
+    "fusionner pdf sans inscription",
+    "comment fusionner des fichiers pdf",
+    "comment combiner plusieurs pdf en un",
+    "fusionner pdf sans filigrane",
+    "fusionner pdf et réorganiser les pages",
+    "combiner pdf sans envoi sur serveur",
+    "fusionner pdf sans limite de taille",
+    "meilleur outil pour fusionner des pdf",
+    "fusionner pdf alternative ilovepdf smallpdf"
+  ]
+}

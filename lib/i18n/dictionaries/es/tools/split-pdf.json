@@ -1,0 +1,109 @@
+{
+  "title": "Dividir PDF",
+  "description": "Divide un PDF en archivos separados por página",
+  "placeholder": "Arrastra aquí un archivo PDF o haz clic para subirlo",
+  "drop": "Arrastra aquí un archivo PDF o haz clic para subirlo",
+  "hint": "Sube un PDF y luego haz clic entre las páginas para dividirlo",
+  "splitButton": "Dividir PDF",
+  "pages": "páginas",
+  "download": "Descargar",
+  "downloadAll": "Descargar todo (ZIP)",
+  "result": "Archivos generados",
+  "onlyPdf": "Solo se admiten archivos PDF",
+  "visualHint": "Haz clic en las tijeras después de una página para cortar ahí. El archivo se divide en las partes que se muestran abajo.",
+  "splitEveryPage": "Dividir cada página",
+  "resetCuts": "Restablecer",
+  "cutAfter": "Dividir después de esta página",
+  "outputFiles": "Archivos generados",
+  "rendering": "Generando páginas…",
+  "page": "Página",
+  "advanced": "Avanzado: rangos de páginas personalizados",
+  "rangeLabel": "Rangos de páginas",
+  "rangePlaceholder": "ej. 1-3, 5, 8-10",
+  "meta": {
+    "title": "Dividir PDF - Separar y Extraer Páginas PDF Gratis Online",
+    "description": "Divide un PDF en archivos separados online y gratis. Haz clic entre las páginas para cortar o extrae rangos. Todo privado en tu navegador, sin subir nada."
+  },
+  "tagline": "Divide un PDF en archivos separados haciendo clic entre las páginas",
+  "pageDescription": "Divide un PDF en archivos separados con esta herramienta online y gratuita para dividir PDF. Sube tu documento para ver cada página como una miniatura y luego haz clic en las tijeras entre páginas para marcar exactamente dónde cortar, sin necesidad de aprender una sintaxis de rangos confusa. Extrae páginas sueltas, separa el PDF en archivos individuales o define rangos personalizados en el modo avanzado. Todo se ejecuta localmente en tu navegador, así que tu PDF nunca se sube y los documentos confidenciales se mantienen privados. Sin registro y sin marcas de agua.",
+  "instructions": {
+    "title": "Cómo dividir un PDF",
+    "steps": [
+      {
+        "title": "Sube tu PDF",
+        "description": "Arrastra y suelta un PDF en el área de carga o haz clic para buscarlo. Cada página se muestra como una miniatura."
+      },
+      {
+        "title": "Marca dónde dividir",
+        "description": "Haz clic en las tijeras después de cualquier página para añadir un punto de corte. Usa 'Dividir cada página' para separar todas las páginas de una vez."
+      },
+      {
+        "title": "Revisa el resultado",
+        "description": "El resumen de 'Archivos generados' muestra cuántos archivos obtendrás y qué páginas contiene cada uno."
+      },
+      {
+        "title": "Divide el PDF",
+        "description": "Haz clic en Dividir PDF. Cada parte se crea al instante en tu navegador, sin subir nada a ningún servidor."
+      },
+      {
+        "title": "Descarga tus archivos",
+        "description": "Descarga cada parte por separado o consíguelas todas a la vez en un archivo ZIP."
+      }
+    ],
+    "features": [
+      "Miniaturas visuales de cada página, sin sintaxis de rangos",
+      "Haz clic entre páginas para marcar los puntos de corte",
+      "'Dividir cada página' para separar todas las páginas de una vez",
+      "Vista previa en vivo de cuántos archivos y qué páginas",
+      "Modo avanzado para rangos personalizados (1-3, 5, 8-10)",
+      "Descarga archivos sueltos o todas las partes en un ZIP",
+      "100% en el navegador: tu PDF nunca sale de tu dispositivo",
+      "Sin registro, sin marcas de agua y sin límite de tamaño"
+    ],
+    "useCases": [
+      "Dividir un informe extenso en un archivo por capítulo",
+      "Extraer páginas concretas para compartir sin el documento completo",
+      "Separar un escaneo de varias páginas en documentos individuales",
+      "Sacar una sola factura de un PDF combinado",
+      "Partir el PDF de un libro en secciones",
+      "Separar contratos firmados en páginas individuales",
+      "Extraer la página de un formulario para enviarla",
+      "Dividir un lote escaneado en un archivo por documento"
+    ],
+    "proTips": [
+      "Haz clic en las tijeras entre dos páginas para cortar ahí: las partes se actualizan en vivo",
+      "Usa 'Dividir cada página' para convertir un PDF en un archivo por página",
+      "Cambia al modo avanzado para rangos precisos como 1, 3-4, 9",
+      "Como todo es local, puedes dividir PDF confidenciales con total seguridad",
+      "Los PDF grandes generan las miniaturas más rápido en navegadores de escritorio",
+      "¿Necesitas unirlos en lugar de dividirlos? Usa la herramienta Unir PDF"
+    ],
+    "troubleshooting": [
+      "El botón Dividir está desactivado: añade al menos un punto de corte o un rango de páginas",
+      "Las páginas se ven borrosas: las miniaturas son vistas previas en baja resolución, el resultado conserva la calidad completa",
+      "La generación es lenta: los PDF muy grandes tardan más en previsualizarse, espera un momento",
+      "No pasa nada al subir el archivo: asegúrate de que es un PDF real y no un archivo renombrado",
+      "Problemas con PDF cifrados: los archivos protegidos con contraseña pueden no cargarse"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + arrastrar",
+        "description": "Suelta un archivo PDF en el área de carga"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "dividir pdf online gratis",
+    "separar pdf en varios archivos",
+    "extraer páginas de un pdf gratis",
+    "dividir pdf sin marcas de agua",
+    "cómo dividir un pdf",
+    "cómo separar páginas de un pdf",
+    "cómo extraer páginas de un pdf",
+    "dividir pdf por rangos de páginas",
+    "dividir pdf en páginas separadas",
+    "convertir cada página en un pdf",
+    "mejor programa para dividir pdf",
+    "dividir pdf sin instalar nada"
+  ]
+}

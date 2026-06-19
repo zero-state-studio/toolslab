@@ -47,6 +47,7 @@ import {
   Calculator,
   FileOutput,
   FileStack,
+  Scissors,
   Images,
   FileImage,
   Clapperboard,
@@ -153,7 +154,8 @@ export const toolIconMap: Record<string, LucideIcon> = {
   // PDF Tools
   'pdf-to-word': FileOutput,
   'pdf-to-jpg': FileImage,
-  'pdf-merger-splitter': FileStack,
+  'merge-pdf': FileStack,
+  'split-pdf': Scissors,
   'image-to-pdf': Images,
   'jpg-to-pdf': FileImage,
   'png-to-pdf': FileImage,
