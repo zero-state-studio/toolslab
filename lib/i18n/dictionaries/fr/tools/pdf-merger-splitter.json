@@ -1,0 +1,109 @@
+{
+  "title": "Fusionner et Diviser PDF",
+  "description": "Fusionnez plusieurs PDF en un seul ou divisez un PDF par plages de pages",
+  "placeholder": "Déposez vos fichiers PDF ici ou cliquez pour les importer",
+  "merge": "Fusionner les PDF",
+  "split": "Diviser le PDF",
+  "dropMerge": "Déposez vos fichiers PDF ici ou cliquez pour les importer",
+  "dropSplit": "Déposez un fichier PDF ici ou cliquez pour l'importer",
+  "mergeHint": "Ajoutez au moins deux PDF, réorganisez-les, puis fusionnez-les en un seul fichier",
+  "splitHint": "Importez un PDF, puis indiquez les plages de pages à extraire",
+  "mergeButton": "Fusionner les PDF",
+  "splitButton": "Diviser le PDF",
+  "rangeLabel": "Plages de pages",
+  "rangePlaceholder": "ex. 1-3, 5, 8-10",
+  "pages": "pages",
+  "download": "Télécharger",
+  "downloadAll": "Tout télécharger",
+  "remove": "Supprimer",
+  "moveUp": "Monter",
+  "moveDown": "Descendre",
+  "result": "Résultat",
+  "onlyPdf": "Seuls les fichiers PDF sont pris en charge",
+  "meta": {
+    "title": "Fusionner et Diviser PDF - Gratuit en ligne | ToolsLab",
+    "description": "Fusionnez plusieurs PDF en un seul ou divisez un PDF par plages de pages, gratuit en ligne. Rapide et privé : vos fichiers ne quittent jamais votre appareil."
+  },
+  "tagline": "Fusionnez vos PDF en un seul ou divisez un PDF par plages de pages dans votre navigateur",
+  "pageDescription": "Combinez plusieurs fichiers PDF en un seul document ou divisez un PDF en plusieurs fichiers par plages de pages grâce à cet outil gratuit de fusion et division de PDF en ligne. Tout s'exécute localement dans votre navigateur : vos fichiers ne sont jamais envoyés à un serveur, vos documents confidentiels restent donc privés. Idéal pour regrouper des factures, des rapports ou des pages scannées, et pour extraire des chapitres ou des sections précises. Sans inscription, sans filigrane et sans limite de taille de fichier.",
+  "instructions": {
+    "title": "Comment fusionner ou diviser des fichiers PDF",
+    "steps": [
+      {
+        "title": "Choisissez fusionner ou diviser",
+        "description": "Utilisez l'onglet pour sélectionner Fusionner les PDF (combiner des fichiers) ou Diviser le PDF (extraire des plages de pages)."
+      },
+      {
+        "title": "Importez vos PDF",
+        "description": "Glissez-déposez vos fichiers PDF dans la zone d'import, ou cliquez pour parcourir. Pour fusionner, ajoutez au moins deux fichiers ; pour diviser, ajoutez-en un seul."
+      },
+      {
+        "title": "Réorganisez ou indiquez les plages",
+        "description": "Pour la fusion, réorganisez les fichiers avec les flèches haut/bas afin que les pages apparaissent dans le bon ordre. Pour la division, saisissez des plages de pages comme « 1-3, 5, 8-10 »."
+      },
+      {
+        "title": "Lancez l'opération",
+        "description": "Cliquez sur Fusionner les PDF ou Diviser le PDF. Le traitement est instantané et a lieu dans votre navigateur : rien n'est envoyé en ligne."
+      },
+      {
+        "title": "Téléchargez le résultat",
+        "description": "Téléchargez le PDF fusionné, ou téléchargez chaque partie divisée séparément ou toutes en une seule fois."
+      }
+    ],
+    "features": [
+      "Combinez plusieurs PDF en un seul document, sans limite de nombre de fichiers",
+      "Divisez un PDF en plusieurs fichiers selon des plages de pages personnalisées",
+      "Import par glisser-déposer avec réorganisation avant la fusion",
+      "Syntaxe de plages avec pages uniques, intervalles et plages ouvertes (ex. 7-)",
+      "100 % côté client : vos fichiers ne quittent jamais votre navigateur",
+      "Sans limite de taille de fichier, sans filigrane et sans inscription",
+      "Fonctionne hors ligne une fois la page chargée",
+      "Téléchargement immédiat du résultat fusionné ou divisé"
+    ],
+    "useCases": [
+      "Combiner plusieurs factures ou reçus en un seul PDF",
+      "Fusionner des pages scannées en un seul document",
+      "Diviser un long rapport en fichiers par chapitre",
+      "Extraire des pages précises à partager sans envoyer tout le document",
+      "Assembler un contrat à partir de sections signées séparément",
+      "Séparer un scan multi-pages en documents individuels",
+      "Réorganiser et fusionner des supports de présentation",
+      "Extraire une plage de pages d'un PDF volumineux"
+    ],
+    "proTips": [
+      "Utilisez des plages ouvertes comme « 5- » pour extraire d'une page jusqu'à la fin",
+      "Réorganisez les fichiers avant la fusion : l'ordre final suit la liste de haut en bas",
+      "Combinez pages uniques et plages dans une même division, ex. « 1, 3-4, 9 »",
+      "Comme tout est local, vous pouvez fusionner en toute sécurité des PDF confidentiels",
+      "Les PDF volumineux se traitent plus vite sur un navigateur de bureau",
+      "Utilisez « Tout télécharger » pour récupérer toutes les parties divisées en un clic"
+    ],
+    "troubleshooting": [
+      "Bouton Fusionner désactivé : ajoutez au moins deux fichiers PDF",
+      "Erreur de plage invalide : utilisez uniquement chiffres, virgules et tirets, ex. « 1-3, 5 »",
+      "Page hors limites : les plages doivent rester dans le nombre de pages du document",
+      "Rien ne se passe à l'import : vérifiez que le fichier est un vrai PDF et non un fichier renommé",
+      "Problème avec un PDF chiffré : les fichiers protégés par mot de passe peuvent ne pas se charger"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + glisser",
+        "description": "Déposez les fichiers PDF dans la zone d'import"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "fusionner pdf en ligne gratuit",
+    "diviser un pdf par pages",
+    "extraire des pages d'un pdf gratuit",
+    "combiner plusieurs pdf en un seul",
+    "comment combiner des fichiers pdf",
+    "comment séparer des pages pdf",
+    "comment extraire des pages d'un pdf",
+    "fusionner pdf sans filigrane",
+    "fusionner pdf sans inscription",
+    "fusionner pdf par glisser-déposer",
+    "meilleur outil pour fusionner pdf",
+    "fusionner pdf gratuit sans limite de taille"
+  ]
+}

@@ -1324,6 +1324,33 @@ export const tools: Tool[] = [
     label: '',
   },
   {
+    id: 'pdf-merger-splitter',
+    name: 'PDF Merger & Splitter',
+    description:
+      'Merge multiple PDFs into one or split a PDF by page ranges — fast and private in your browser',
+    icon: '📑',
+    route: '/tools/pdf-merger-splitter',
+    categories: ['pdf'],
+    keywords: [
+      'pdf merger',
+      'merge pdf',
+      'merge pdf online',
+      'combine pdf',
+      'combine pdf files',
+      'pdf splitter',
+      'split pdf',
+      'split pdf by page',
+      'pdf combiner',
+      'join pdf',
+      'extract pdf pages',
+      'separate pdf pages',
+      'pdf merge and split',
+      'organize pdf',
+    ],
+    searchVolume: 200000,
+    label: '',
+  },
+  {
     id: 'image-to-pdf',
     name: 'Image to PDF',
     description:

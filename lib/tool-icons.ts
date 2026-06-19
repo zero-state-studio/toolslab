@@ -44,6 +44,7 @@ import {
   Mail,
   Bot,
   FileOutput,
+  FileStack,
   Images,
   FileImage,
   Clapperboard,
@@ -147,6 +148,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
 
   // PDF Tools
   'pdf-to-word': FileOutput,
+  'pdf-merger-splitter': FileStack,
   'image-to-pdf': Images,
   'jpg-to-pdf': FileImage,
   'png-to-pdf': FileImage,

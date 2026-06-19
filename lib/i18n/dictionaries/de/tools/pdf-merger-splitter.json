@@ -1,0 +1,109 @@
+{
+  "title": "PDF zusammenfügen & teilen",
+  "description": "Mehrere PDFs zu einer Datei zusammenfügen oder ein PDF nach Seitenbereichen aufteilen",
+  "placeholder": "PDF-Dateien hierher ziehen oder zum Hochladen klicken",
+  "merge": "PDFs zusammenfügen",
+  "split": "PDF teilen",
+  "dropMerge": "PDF-Dateien hierher ziehen oder zum Hochladen klicken",
+  "dropSplit": "Ein PDF hierher ziehen oder zum Hochladen klicken",
+  "mergeHint": "Zwei oder mehr PDFs hinzufügen, in die richtige Reihenfolge bringen und zu einer Datei zusammenfügen",
+  "splitHint": "Ein PDF hochladen und die Seitenbereiche wählen, die extrahiert werden sollen",
+  "mergeButton": "PDFs zusammenfügen",
+  "splitButton": "PDF teilen",
+  "rangeLabel": "Seitenbereiche",
+  "rangePlaceholder": "z. B. 1-3, 5, 8-10",
+  "pages": "Seiten",
+  "download": "Herunterladen",
+  "downloadAll": "Alle herunterladen",
+  "remove": "Entfernen",
+  "moveUp": "Nach oben",
+  "moveDown": "Nach unten",
+  "result": "Ergebnis",
+  "onlyPdf": "Es werden nur PDF-Dateien unterstützt",
+  "meta": {
+    "title": "PDF zusammenfügen & teilen – kostenlos online",
+    "description": "Mehrere PDFs kostenlos online zu einer Datei zusammenfügen oder ein PDF nach Seitenbereichen teilen. Sicher direkt im Browser – ohne Upload und ohne Anmeldung."
+  },
+  "tagline": "PDFs im Browser zu einer Datei zusammenfügen oder nach Seitenbereichen teilen",
+  "pageDescription": "Füge mehrere PDF-Dateien mit diesem kostenlosen Online-Tool zu einem einzigen Dokument zusammen oder teile ein PDF nach Seitenbereichen in separate Dateien auf. Alles läuft lokal in deinem Browser – deine Dateien werden nie auf einen Server hochgeladen, sodass selbst vertrauliche Dokumente privat bleiben. Ideal, um Rechnungen, Berichte oder gescannte Seiten zu kombinieren oder einzelne Kapitel und Abschnitte zu extrahieren. Ohne Anmeldung, ohne Wasserzeichen und ohne Größenbeschränkung.",
+  "instructions": {
+    "title": "PDF-Dateien zusammenfügen oder teilen – so geht's",
+    "steps": [
+      {
+        "title": "Zusammenfügen oder Teilen wählen",
+        "description": "Wähle über die Reiter, ob du PDFs zusammenfügen (Dateien kombinieren) oder ein PDF teilen (Seitenbereiche extrahieren) möchtest."
+      },
+      {
+        "title": "PDFs hochladen",
+        "description": "Ziehe deine PDF-Dateien per Drag-and-Drop in den Upload-Bereich oder klicke, um sie auszuwählen. Zum Zusammenfügen mindestens zwei Dateien hinzufügen, zum Teilen genügt eine."
+      },
+      {
+        "title": "Reihenfolge oder Bereiche festlegen",
+        "description": "Beim Zusammenfügen ordnest du die Dateien mit den Pfeilen nach oben/unten, damit die Seiten in der richtigen Reihenfolge erscheinen. Beim Teilen gibst du Seitenbereiche wie '1-3, 5, 8-10' ein."
+      },
+      {
+        "title": "Vorgang ausführen",
+        "description": "Klicke auf PDFs zusammenfügen oder PDF teilen. Die Verarbeitung erfolgt sofort in deinem Browser – nichts wird hochgeladen."
+      },
+      {
+        "title": "Ergebnis herunterladen",
+        "description": "Lade das zusammengefügte PDF herunter oder speichere jeden geteilten Teil einzeln bzw. alle auf einmal."
+      }
+    ],
+    "features": [
+      "Beliebig viele PDF-Dateien zu einem Dokument zusammenfügen",
+      "Ein PDF anhand eigener Seitenbereiche in mehrere Dateien aufteilen",
+      "Hochladen per Drag-and-Drop mit Sortieren vor dem Zusammenfügen",
+      "Seitenbereich-Syntax mit Einzelseiten, Bereichen und offenen Bereichen (z. B. 7-)",
+      "100 % im Browser – Dateien verlassen nie dein Gerät",
+      "Keine Größenbeschränkung, keine Wasserzeichen, keine Anmeldung",
+      "Funktioniert offline, sobald die Seite geladen ist",
+      "Sofortiger Download des zusammengefügten oder geteilten Ergebnisses"
+    ],
+    "useCases": [
+      "Mehrere Rechnungen oder Belege zu einem PDF kombinieren",
+      "Gescannte Seiten zu einem einzigen Dokument zusammenführen",
+      "Einen langen Bericht nach Kapiteln in einzelne Dateien aufteilen",
+      "Bestimmte Seiten extrahieren, ohne das ganze Dokument zu versenden",
+      "Einen Vertrag aus separat unterschriebenen Abschnitten zusammensetzen",
+      "Einen mehrseitigen Scan in einzelne Dokumente trennen",
+      "Präsentations-Handouts neu sortieren und zusammenfügen",
+      "Einen einzelnen Seitenbereich aus einem langen PDF herauslösen"
+    ],
+    "proTips": [
+      "Nutze offene Bereiche wie '5-', um von einer Seite bis zum Ende zu extrahieren",
+      "Sortiere die Dateien vor dem Zusammenfügen – die Endreihenfolge entspricht der Liste von oben nach unten",
+      "Kombiniere Einzelseiten und Bereiche in einem Teilvorgang, z. B. '1, 3-4, 9'",
+      "Da alles lokal läuft, kannst du auch vertrauliche PDFs bedenkenlos zusammenfügen",
+      "Große PDFs verarbeitet ein Desktop-Browser am schnellsten",
+      "Mit 'Alle herunterladen' speicherst du jeden geteilten Teil mit einem Klick"
+    ],
+    "troubleshooting": [
+      "Button zum Zusammenfügen ausgegraut: füge mindestens zwei PDF-Dateien hinzu",
+      "Fehler 'ungültiger Bereich': nur Zahlen, Kommas und Bindestriche verwenden, z. B. '1-3, 5'",
+      "Seite außerhalb des Bereichs: Bereiche dürfen die Seitenzahl des Dokuments nicht überschreiten",
+      "Nichts passiert beim Hochladen: stelle sicher, dass es ein echtes PDF ist und nicht nur umbenannt",
+      "Probleme mit verschlüsselten PDFs: passwortgeschützte Dateien lassen sich womöglich nicht laden"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Klicken + Ziehen",
+        "description": "PDF-Dateien in den Upload-Bereich ziehen"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "pdf zusammenfügen online kostenlos",
+    "pdf seiten trennen online",
+    "seiten aus pdf extrahieren kostenlos",
+    "mehrere pdf zu einer datei zusammenfügen",
+    "wie kombiniere ich pdf dateien",
+    "pdf teilen ohne anmeldung",
+    "pdf nach seitenbereichen aufteilen",
+    "pdf reihenfolge ändern und zusammenfügen",
+    "einzelne seiten aus pdf speichern",
+    "pdf zusammenfügen ohne wasserzeichen",
+    "bestes tool pdf zusammenfügen online",
+    "pdf zusammenfügen ilovepdf alternative"
+  ]
+}
