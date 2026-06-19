@@ -7,7 +7,7 @@
   "dropMerge": "Déposez vos fichiers PDF ici ou cliquez pour les importer",
   "dropSplit": "Déposez un fichier PDF ici ou cliquez pour l'importer",
   "mergeHint": "Ajoutez au moins deux PDF, réorganisez-les, puis fusionnez-les en un seul fichier",
-  "splitHint": "Importez un PDF, puis indiquez les plages de pages à extraire",
+  "splitHint": "Importez un PDF, puis cliquez entre les pages pour le diviser",
   "mergeButton": "Fusionner les PDF",
   "splitButton": "Diviser le PDF",
   "rangeLabel": "Plages de pages",
@@ -105,5 +105,13 @@
     "fusionner pdf par glisser-déposer",
     "meilleur outil pour fusionner pdf",
     "fusionner pdf gratuit sans limite de taille"
-  ]
+  ],
+  "visualHint": "Cliquez sur les ciseaux après une page pour découper à cet endroit. Le fichier est divisé dans les parties affichées ci-dessous.",
+  "splitEveryPage": "Diviser chaque page",
+  "resetCuts": "Réinitialiser",
+  "cutAfter": "Diviser après cette page",
+  "outputFiles": "Fichiers générés",
+  "rendering": "Génération des pages…",
+  "page": "Page",
+  "advanced": "Avancé : plages de pages personnalisées"
 }

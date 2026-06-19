@@ -7,7 +7,7 @@
   "dropMerge": "Drop PDF files here or click to upload",
   "dropSplit": "Drop a PDF file here or click to upload",
   "mergeHint": "Add two or more PDFs, reorder them, then merge into one file",
-  "splitHint": "Upload a PDF, then choose the page ranges to extract",
+  "splitHint": "Upload a PDF, then click between pages to split it",
   "mergeButton": "Merge PDFs",
   "splitButton": "Split PDF",
   "rangeLabel": "Page ranges",
@@ -91,5 +91,13 @@
         "description": "Drop PDF files onto the upload area"
       }
     ]
-  }
+  },
+  "visualHint": "Click the scissors after a page to split there. The file is cut into the parts shown below.",
+  "splitEveryPage": "Split every page",
+  "resetCuts": "Reset",
+  "cutAfter": "Split after this page",
+  "outputFiles": "Output files",
+  "rendering": "Rendering pages…",
+  "page": "Page",
+  "advanced": "Advanced: custom page ranges"
 }

@@ -7,7 +7,7 @@
   "dropMerge": "Trascina qui i file PDF o clicca per caricarli",
   "dropSplit": "Trascina qui un file PDF o clicca per caricarlo",
   "mergeHint": "Aggiungi due o più PDF, riordinali e poi uniscili in un unico file",
-  "splitHint": "Carica un PDF, poi scegli gli intervalli di pagine da estrarre",
+  "splitHint": "Carica un PDF, poi clicca tra le pagine per dividerlo",
   "mergeButton": "Unisci PDF",
   "splitButton": "Dividi PDF",
   "rangeLabel": "Intervalli di pagine",
@@ -105,5 +105,13 @@
     "unire pdf direttamente nel browser",
     "miglior programma per unire pdf online",
     "alternativa gratuita a ilovepdf e smallpdf"
-  ]
+  ],
+  "visualHint": "Clicca le forbici dopo una pagina per dividere lì. Il file viene tagliato nelle parti mostrate sotto.",
+  "splitEveryPage": "Dividi ogni pagina",
+  "resetCuts": "Reimposta",
+  "cutAfter": "Dividi dopo questa pagina",
+  "outputFiles": "File risultanti",
+  "rendering": "Rendering pagine…",
+  "page": "Pagina",
+  "advanced": "Avanzato: intervalli di pagine personalizzati"
 }

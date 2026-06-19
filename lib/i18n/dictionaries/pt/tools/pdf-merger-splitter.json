@@ -7,7 +7,7 @@
   "dropMerge": "Solte os arquivos PDF aqui ou clique para enviar",
   "dropSplit": "Solte um arquivo PDF aqui ou clique para enviar",
   "mergeHint": "Adicione dois ou mais PDFs, reordene-os e junte tudo em um único arquivo",
-  "splitHint": "Envie um PDF e escolha os intervalos de páginas que quer extrair",
+  "splitHint": "Envie um PDF e clique entre as páginas para dividi-lo",
   "mergeButton": "Juntar PDFs",
   "splitButton": "Dividir PDF",
   "rangeLabel": "Intervalos de páginas",
@@ -105,5 +105,13 @@
     "juntar e dividir pdf grátis",
     "melhor ferramenta para juntar pdf",
     "alternativa ao ilovepdf e smallpdf"
-  ]
+  ],
+  "visualHint": "Clique na tesoura após uma página para dividir ali. O arquivo é cortado nas partes mostradas abaixo.",
+  "splitEveryPage": "Dividir cada página",
+  "resetCuts": "Redefinir",
+  "cutAfter": "Dividir após esta página",
+  "outputFiles": "Arquivos gerados",
+  "rendering": "Renderizando páginas…",
+  "page": "Página",
+  "advanced": "Avançado: intervalos de páginas personalizados"
 }

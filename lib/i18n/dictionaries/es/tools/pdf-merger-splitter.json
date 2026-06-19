@@ -7,7 +7,7 @@
   "dropMerge": "Arrastra archivos PDF aquí o haz clic para subirlos",
   "dropSplit": "Arrastra un archivo PDF aquí o haz clic para subirlo",
   "mergeHint": "Añade dos o más PDF, ordénalos y combínalos en un solo archivo",
-  "splitHint": "Sube un PDF y elige los rangos de páginas que quieres extraer",
+  "splitHint": "Sube un PDF y luego haz clic entre las páginas para dividirlo",
   "mergeButton": "Unir PDF",
   "splitButton": "Dividir PDF",
   "rangeLabel": "Rangos de páginas",
@@ -105,5 +105,13 @@
     "dividir pdf por rangos de páginas",
     "mejor programa para unir pdf online",
     "unir pdf sin marca de agua"
-  ]
+  ],
+  "visualHint": "Haz clic en las tijeras después de una página para dividir ahí. El archivo se corta en las partes mostradas abajo.",
+  "splitEveryPage": "Dividir cada página",
+  "resetCuts": "Restablecer",
+  "cutAfter": "Dividir después de esta página",
+  "outputFiles": "Archivos resultantes",
+  "rendering": "Generando páginas…",
+  "page": "Página",
+  "advanced": "Avanzado: rangos de páginas personalizados"
 }
