@@ -123,6 +123,7 @@ export const ALL_TOOL_IDS = [
     'lorem-ipsum-generator',
     'string-case-converter',
     'binary-to-text',
+    'number-base-converter',
     'js-object-to-json',
     'bcrypt-hash-generator',
     'html-to-markdown',

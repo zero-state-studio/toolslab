@@ -1796,6 +1796,33 @@ export const tools: Tool[] = [
     label: '',
   },
   {
+    id: 'number-base-converter',
+    name: 'Number Base Converter',
+    description:
+      'Convert numbers between binary, octal, decimal, hex and any base 2–36 with signed and bit-width options',
+    icon: '🔢',
+    route: '/tools/number-base-converter',
+    categories: ['dev'],
+    keywords: [
+      'number base converter',
+      'hex to decimal',
+      'binary to decimal',
+      'decimal to hex',
+      'octal converter',
+      'base conversion',
+      'decimal to binary',
+      'binary to hex',
+      'radix converter',
+      'base 2 to base 16',
+      'twos complement converter',
+      'hex converter',
+      'binary converter',
+      'base converter',
+    ],
+    searchVolume: 55000,
+    label: '',
+  },
+  {
     id: 'js-object-to-json',
     name: 'JavaScript Object to JSON',
     description:

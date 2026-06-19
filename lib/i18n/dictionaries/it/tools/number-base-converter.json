@@ -1,0 +1,105 @@
+{
+  "title": "Convertitore di Basi Numeriche",
+  "description": "Converti numeri tra binario, ottale, decimale, esadecimale e qualsiasi base da 2 a 36",
+  "placeholder": "Inserisci un numero…",
+  "inputLabel": "Numero da convertire",
+  "fromBase": "Base di partenza",
+  "customBase": "Base personalizzata (2–36)",
+  "bitWidth": "Lunghezza in bit",
+  "signed": "Con segno (complemento a due)",
+  "binary": "Binario",
+  "octal": "Ottale",
+  "decimal": "Decimale",
+  "hexadecimal": "Esadecimale",
+  "base": "Base",
+  "copy": "Copia",
+  "copied": "Copiato!",
+  "none": "Illimitata",
+  "bits": "bit",
+  "meta": {
+    "title": "Convertitore di Basi Numeriche - Hex, Binario, Decimale, Ottale",
+    "description": "Converti numeri tra binario, ottale, decimale, esadecimale e qualsiasi base 2–36 online e gratis. Complemento a due, scelta dei bit, output multi-base."
+  },
+  "tagline": "Converti numeri tra binario, ottale, decimale, hex e qualsiasi base all'istante",
+  "pageDescription": "Converti numeri tra binario, ottale, decimale, esadecimale e qualsiasi base da 2 a 36 con questo Convertitore di Basi Numeriche online e gratuito. Vedi ogni rappresentazione aggiornarsi all'istante mentre digiti, cambia la base di partenza e usa le opzioni di lunghezza in bit e complemento a due con segno per capire come i valori vengono memorizzati a 8, 16, 32 o 64 bit. Basato su matematica a interi arbitrariamente grandi, così anche i numeri molto grandi vengono convertiti in modo esatto. Perfetto per sviluppatori, studenti di informatica e chiunque lavori con hex, binario o dati a basso livello — senza registrazione, gira nel tuo browser.",
+  "instructions": {
+    "title": "Come convertire le basi numeriche",
+    "steps": [
+      {
+        "title": "Inserisci il tuo numero",
+        "description": "Digita un numero nel campo di input. Sono accettati i prefissi come 0x, 0b e 0o, e puoi usare trattini bassi o spazi come separatori."
+      },
+      {
+        "title": "Scegli la base di partenza",
+        "description": "Seleziona Binario, Ottale, Decimale o Esadecimale, oppure imposta una base personalizzata qualsiasi da 2 a 36 con il piccolo selettore di base."
+      },
+      {
+        "title": "Leggi le conversioni",
+        "description": "Tutte le basi si aggiornano all'istante — decimale, esadecimale, ottale, binario e la tua base personalizzata, se l'hai usata."
+      },
+      {
+        "title": "Imposta bit e segno (opzionale)",
+        "description": "Scegli 8, 16, 32 o 64 bit per limitare il valore, e attiva Con segno per interpretarlo in complemento a due."
+      },
+      {
+        "title": "Copia qualsiasi risultato",
+        "description": "Clicca l'icona di copia accanto a una rappresentazione per copiarla negli appunti."
+      }
+    ],
+    "features": [
+      "Conversione tra binario, ottale, decimale, esadecimale e qualsiasi base 2–36",
+      "Output multi-base istantaneo mentre digiti",
+      "Interpretazione con segno (complemento a due) e senza segno",
+      "Selettore della lunghezza in bit per 8, 16, 32 e 64 bit",
+      "Matematica a interi grandi — esatta per numeri di dimensione arbitraria",
+      "Accetta i prefissi 0x / 0b / 0o e i separatori di cifre",
+      "Copia con un clic per ogni rappresentazione",
+      "100% nel browser — senza registrazione, funziona offline"
+    ],
+    "useCases": [
+      "Convertire valori hex di colori o memoria in decimale",
+      "Tradurre un numero binario in decimale per i compiti di informatica",
+      "Analizzare la rappresentazione in complemento a due dei numeri negativi",
+      "Convertire da decimale a esadecimale per la programmazione a basso livello",
+      "Verificare come un valore si limita a 8 o 16 bit",
+      "Convertire tra basi insolite come la base 36 per ID compatti",
+      "Eseguire il debug di maschere di bit e flag in hex e binario",
+      "Insegnare o imparare i sistemi di numerazione posizionali"
+    ],
+    "proTips": [
+      "Usa il selettore dei bit insieme a Con segno per vedere il complemento a due, es. 0xFF → -1 a 8 bit",
+      "I prefissi 0x, 0b e 0o vengono rimossi automaticamente",
+      "Trattini bassi e spazi vengono ignorati, quindi 1010_1010 è binario valido",
+      "La base 36 usa 0–9 e poi a–z, comoda per identificatori compatti",
+      "I numeri molto grandi restano esatti grazie alla matematica a interi grandi",
+      "Imposta una base personalizzata nel piccolo riquadro numerico accanto al menu della base"
+    ],
+    "troubleshooting": [
+      "Errore cifra non valida: l'input contiene una cifra non ammessa nella base scelta",
+      "Valore inatteso: verifica che la base di partenza corrisponda a come hai digitato il numero",
+      "Negativo mostrato come numero grande: attiva Con segno con una lunghezza in bit per il complemento a due",
+      "Interruttore Con segno disattivato: scegli prima una lunghezza in bit (il segno richiede una larghezza fissa)",
+      "Niente viene convertito: assicurati che il campo non sia vuoto e che la base sia tra 2 e 36"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Spostati tra input, base e opzioni"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "convertitore base numeri online",
+    "da esadecimale a decimale",
+    "da binario a decimale",
+    "da decimale a esadecimale",
+    "convertitore basi numeriche",
+    "convertire un numero da una base a un'altra",
+    "conversione decimale binario ottale esadecimale",
+    "convertitore esadecimale decimale binario ottale",
+    "complemento a due a 8 bit",
+    "convertitore base 36 online",
+    "convertitore basi numeriche gratis",
+    "come convertire binario in decimale"
+  ]
+}

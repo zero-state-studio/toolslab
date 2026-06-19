@@ -15,6 +15,20 @@ import 'server-only';
  * NEVER reintroduce longTailKeywords in lib/tools.ts.
  */
 export const toolLongTailKeywords: Record<string, string[]> = {
+  'number-base-converter': [
+    'number base converter online free',
+    'hex to decimal converter online',
+    'binary to decimal converter free',
+    'decimal to hex converter online',
+    'how to convert hex to decimal',
+    'how to convert binary to decimal',
+    'how to convert decimal to hexadecimal',
+    'base 2 to base 16 converter',
+    'convert number to any base 2 to 36',
+    "two's complement binary converter online",
+    'best free number base converter online',
+    'number base converter no signup',
+  ],
   'json-formatter': [
     'json formatter online free no signup',
     'format json online free no registration required',
