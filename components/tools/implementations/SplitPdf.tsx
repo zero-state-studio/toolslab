@@ -3,16 +3,11 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   Upload,
-  X,
-  ChevronUp,
-  ChevronDown,
   Download,
   Loader2,
   AlertCircle,
   FileText,
-  Combine,
   Scissors,
-  ArrowUpDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToolStore } from '@/lib/store/toolStore';
@@ -22,7 +17,6 @@ import {
   isPdfFile,
   fileToArrayBuffer,
   parsePageRanges,
-  mergePdfBuffers,
   splitPdfBuffer,
   getPdfPageCount,
   cutPointsToRanges,
@@ -34,47 +28,24 @@ import {
   SplitPart,
 } from '@/lib/tools/pdf-merger-splitter';
 
-interface PdfMergerSplitterProps extends BaseToolProps {}
+interface SplitPdfProps extends BaseToolProps {}
 
-type Mode = 'merge' | 'split';
-
-interface MergeItem {
-  file: File;
-  id: string;
-}
-
-export default function PdfMergerSplitter({
-  dictionary,
-}: PdfMergerSplitterProps) {
+export default function SplitPdf({ dictionary }: SplitPdfProps) {
   const { addToHistory } = useToolStore();
   const { resultRef, scrollToResult } = useScrollToResult({
     onlyIfNotVisible: false,
   });
 
-  const t = dictionary?.tools?.['pdf-merger-splitter'] || {};
+  const t = dictionary?.tools?.['split-pdf'] || {};
   const labels = {
-    merge: t.merge || 'Merge PDFs',
-    split: t.split || 'Split PDF',
-    dropMerge: t.dropMerge || 'Drop PDF files here or click to upload',
-    dropSplit: t.dropSplit || 'Drop a PDF file here or click to upload',
-    mergeHint: t.mergeHint || 'Add two or more PDFs, reorder, then merge',
-    splitHint:
-      t.splitHint || 'Upload a PDF, then click between pages to split it',
-    mergeButton: t.mergeButton || 'Merge PDFs',
+    drop: t.drop || 'Drop a PDF file here or click to upload',
+    hint: t.hint || 'Upload a PDF, then click between pages to split it',
     splitButton: t.splitButton || 'Split PDF',
     pages: t.pages || 'pages',
     download: t.download || 'Download',
     downloadAll: t.downloadAll || 'Download all',
-    remove: t.remove || 'Remove',
-    moveUp: t.moveUp || 'Move up',
-    moveDown: t.moveDown || 'Move down',
     result: t.result || 'Result',
     onlyPdf: t.onlyPdf || 'Only PDF files are supported',
-    reorderTitle: t.reorderTitle || 'Reorder files before merging',
-    reorderHint:
-      t.reorderHint ||
-      'Use the arrows to set the order — files are merged top to bottom',
-    // split visual
     visualHint:
       t.visualHint ||
       'Click the scissors after a page to split there. The file is cut into the parts shown below.',
@@ -89,90 +60,56 @@ export default function PdfMergerSplitter({
     rangePlaceholder: t.rangePlaceholder || 'e.g. 1-3, 5, 8-10',
   };
 
-  const [mode, setMode] = useState<Mode>('merge');
+  const [file, setFile] = useState<File | null>(null);
+  const [pageCount, setPageCount] = useState(0);
+  const [thumbnails, setThumbnails] = useState<PdfThumbnail[]>([]);
+  const [thumbsLoading, setThumbsLoading] = useState(false);
+  const [cutPoints, setCutPoints] = useState<number[]>([]);
+  const [advanced, setAdvanced] = useState(false);
+  const [ranges, setRanges] = useState('');
+  const [parts, setParts] = useState<SplitPart[]>([]);
   const [error, setError] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Merge state
-  const [mergeItems, setMergeItems] = useState<MergeItem[]>([]);
-  const [mergedBlob, setMergedBlob] = useState<Blob | null>(null);
-  const [mergedPages, setMergedPages] = useState(0);
-
-  // Split state
-  const [splitFile, setSplitFile] = useState<File | null>(null);
-  const [splitPageCount, setSplitPageCount] = useState(0);
-  const [thumbnails, setThumbnails] = useState<PdfThumbnail[]>([]);
-  const [thumbsLoading, setThumbsLoading] = useState(false);
-  const [cutPoints, setCutPoints] = useState<number[]>([]); // cut AFTER these pages
-  const [advanced, setAdvanced] = useState(false);
-  const [ranges, setRanges] = useState('');
-  const [splitParts, setSplitParts] = useState<SplitPart[]>([]);
-
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const hasResult = mergedBlob !== null || splitParts.length > 0;
-
-  useEffect(() => {
-    if (hasResult) scrollToResult();
-  }, [hasResult, scrollToResult]);
-
-  // Segments derived from the current cut points (visual mode).
   const segments = useMemo(
-    () => cutPointsToRanges(splitPageCount, cutPoints),
-    [splitPageCount, cutPoints]
+    () => cutPointsToRanges(pageCount, cutPoints),
+    [pageCount, cutPoints]
   );
 
-  const resetResults = () => {
-    setMergedBlob(null);
-    setMergedPages(0);
-    setSplitParts([]);
-    setError('');
-  };
+  useEffect(() => {
+    if (parts.length > 0) scrollToResult();
+  }, [parts, scrollToResult]);
 
-  const switchMode = (m: Mode) => {
-    setMode(m);
-    resetResults();
-  };
-
-  // ---- File intake ----
   const handleFiles = useCallback(
     async (files: FileList | null) => {
-      if (!files || files.length === 0) return;
-      const pdfs = Array.from(files).filter(isPdfFile);
-      if (pdfs.length === 0) {
+      const f = files?.[0];
+      if (!f) return;
+      if (!isPdfFile(f)) {
         setError(labels.onlyPdf);
         return;
       }
       setError('');
-      resetResults();
-
-      if (mode === 'merge') {
-        setMergeItems((prev) => [
-          ...prev,
-          ...pdfs.map((file) => ({ file, id: crypto.randomUUID() })),
-        ]);
-      } else {
-        const file = pdfs[0];
-        setSplitFile(file);
-        setCutPoints([]);
-        setThumbnails([]);
-        setThumbsLoading(true);
-        try {
-          const buf = await fileToArrayBuffer(file);
-          setSplitPageCount(await getPdfPageCount(buf));
-          const thumbs = await renderPdfThumbnails(buf);
-          setThumbnails(thumbs);
-        } catch (e) {
-          setError(
-            `Could not read the PDF${e instanceof Error ? `: ${e.message}` : ''}`
-          );
-          setSplitFile(null);
-        } finally {
-          setThumbsLoading(false);
-        }
+      setParts([]);
+      setCutPoints([]);
+      setThumbnails([]);
+      setFile(f);
+      setThumbsLoading(true);
+      try {
+        const buf = await fileToArrayBuffer(f);
+        setPageCount(await getPdfPageCount(buf));
+        setThumbnails(await renderPdfThumbnails(buf));
+      } catch (e) {
+        setError(
+          `Could not read the PDF${e instanceof Error ? `: ${e.message}` : ''}`
+        );
+        setFile(null);
+      } finally {
+        setThumbsLoading(false);
       }
     },
-    [mode, labels.onlyPdf]
+    [labels.onlyPdf]
   );
 
   const onDrop = (e: React.DragEvent) => {
@@ -180,82 +117,34 @@ export default function PdfMergerSplitter({
     handleFiles(e.dataTransfer.files);
   };
 
-  // ---- Merge actions ----
-  const moveItem = (index: number, dir: -1 | 1) => {
-    setMergeItems((prev) => {
-      const next = [...prev];
-      const target = index + dir;
-      if (target < 0 || target >= next.length) return prev;
-      [next[index], next[target]] = [next[target], next[index]];
-      return next;
-    });
-    resetResults();
-  };
-
-  const removeItem = (id: string) => {
-    setMergeItems((prev) => prev.filter((i) => i.id !== id));
-    resetResults();
-  };
-
-  const handleMerge = async () => {
-    setError('');
-    setIsProcessing(true);
-    const startTime = Date.now();
-    try {
-      const buffers = await Promise.all(
-        mergeItems.map((i) => fileToArrayBuffer(i.file))
-      );
-      const r = await mergePdfBuffers(buffers);
-      if (!r.success || !r.bytes) {
-        setError(r.error || 'Merge failed');
-        return;
-      }
-      const blob = pdfBytesToBlob(r.bytes);
-      setMergedBlob(blob);
-      setMergedPages(r.metadata?.pageCount ?? 0);
-      addToHistory({
-        id: crypto.randomUUID(),
-        tool: 'pdf-merger-splitter',
-        input: `merge ${mergeItems.length} PDFs`,
-        output: `${r.metadata?.pageCount ?? 0} pages, ${formatFileSize(blob.size)}`,
-        timestamp: startTime,
-      });
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Merge failed');
-    } finally {
-      setIsProcessing(false);
-    }
-  };
-
-  // ---- Split actions ----
   const toggleCut = (afterPage: number) => {
     setCutPoints((prev) =>
       prev.includes(afterPage)
         ? prev.filter((p) => p !== afterPage)
         : [...prev, afterPage]
     );
-    setSplitParts([]);
+    setParts([]);
   };
 
   const splitEveryPage = () => {
     setCutPoints(
-      Array.from({ length: Math.max(0, splitPageCount - 1) }, (_, i) => i + 1)
+      Array.from({ length: Math.max(0, pageCount - 1) }, (_, i) => i + 1)
     );
-    setSplitParts([]);
+    setParts([]);
   };
 
   const resetCuts = () => {
     setCutPoints([]);
-    setSplitParts([]);
+    setParts([]);
   };
 
   const handleSplit = async () => {
-    if (!splitFile) return;
+    if (!file) return;
     setError('');
 
     let splitRanges: [number, number][];
     if (advanced) {
-      const parsed = parsePageRanges(ranges, splitPageCount);
+      const parsed = parsePageRanges(ranges, pageCount);
       if (!parsed.success || !parsed.ranges) {
         setError(parsed.error || 'Invalid ranges');
         return;
@@ -268,17 +157,17 @@ export default function PdfMergerSplitter({
     setIsProcessing(true);
     const startTime = Date.now();
     try {
-      const buf = await fileToArrayBuffer(splitFile);
+      const buf = await fileToArrayBuffer(file);
       const r = await splitPdfBuffer(buf, splitRanges);
       if (!r.success || !r.parts) {
         setError(r.error || 'Split failed');
         return;
       }
-      setSplitParts(r.parts);
+      setParts(r.parts);
       addToHistory({
         id: crypto.randomUUID(),
-        tool: 'pdf-merger-splitter',
-        input: `split ${splitFile.name} (${advanced ? ranges : `${segments.length} parts`})`,
+        tool: 'split-pdf',
+        input: `split ${file.name} (${advanced ? ranges : `${segments.length} parts`})`,
         output: `${r.parts.length} files`,
         timestamp: startTime,
       });
@@ -289,41 +178,13 @@ export default function PdfMergerSplitter({
     }
   };
 
-  const baseName = (splitFile?.name || 'document').replace(/\.pdf$/i, '');
+  const baseName = (file?.name || 'document').replace(/\.pdf$/i, '');
   const splitDisabled =
     isProcessing || (advanced ? !ranges.trim() : segments.length === 0);
 
   return (
     <div className="space-y-5">
-      {/* Mode tabs */}
-      <div className="inline-flex rounded-lg border border-gray-200 p-1 dark:border-gray-700">
-        <button
-          onClick={() => switchMode('merge')}
-          className={`flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition ${
-            mode === 'merge'
-              ? 'bg-violet-600 text-white'
-              : 'text-gray-600 dark:text-gray-300'
-          }`}
-        >
-          <Combine className="h-4 w-4" />
-          {labels.merge}
-        </button>
-        <button
-          onClick={() => switchMode('split')}
-          className={`flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition ${
-            mode === 'split'
-              ? 'bg-violet-600 text-white'
-              : 'text-gray-600 dark:text-gray-300'
-          }`}
-        >
-          <Scissors className="h-4 w-4" />
-          {labels.split}
-        </button>
-      </div>
-
-      <p className="text-sm text-gray-500 dark:text-gray-400">
-        {mode === 'merge' ? labels.mergeHint : labels.splitHint}
-      </p>
+      <p className="text-sm text-gray-500 dark:text-gray-400">{labels.hint}</p>
 
       {/* Dropzone */}
       <div
@@ -333,14 +194,11 @@ export default function PdfMergerSplitter({
         className="cursor-pointer rounded-xl border-2 border-dashed border-gray-300 p-8 text-center transition hover:border-violet-400 dark:border-gray-600"
       >
         <Upload className="mx-auto mb-2 h-8 w-8 text-gray-400" />
-        <p className="text-sm text-gray-600 dark:text-gray-300">
-          {mode === 'merge' ? labels.dropMerge : labels.dropSplit}
-        </p>
+        <p className="text-sm text-gray-600 dark:text-gray-300">{labels.drop}</p>
         <input
           ref={fileInputRef}
           type="file"
           accept="application/pdf,.pdf"
-          multiple={mode === 'merge'}
           className="hidden"
           onChange={(e) => handleFiles(e.target.files)}
         />
@@ -353,92 +211,14 @@ export default function PdfMergerSplitter({
         </div>
       )}
 
-      {/* Merge: file list */}
-      {mode === 'merge' && mergeItems.length > 0 && (
-        <div className="space-y-2">
-          {mergeItems.length > 1 && (
-            <div className="flex items-center gap-2 border-b border-gray-100 pb-2 dark:border-gray-800">
-              <ArrowUpDown className="h-4 w-4 text-violet-500" />
-              <div>
-                <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">
-                  {labels.reorderTitle}
-                </p>
-                <p className="text-xs text-gray-500">{labels.reorderHint}</p>
-              </div>
-            </div>
-          )}
-          {mergeItems.map((item, index) => (
-            <div
-              key={item.id}
-              className="flex items-center gap-3 rounded-lg border border-gray-200 p-3 dark:border-gray-700"
-            >
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-xs font-semibold text-violet-700 dark:bg-violet-900/40 dark:text-violet-300">
-                {index + 1}
-              </span>
-              <FileText className="h-5 w-5 shrink-0 text-violet-500" />
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium">{item.file.name}</p>
-                <p className="text-xs text-gray-500">
-                  {formatFileSize(item.file.size)}
-                </p>
-              </div>
-              {/* Reorder controls — bordered group for visibility */}
-              <div className="flex shrink-0 items-center overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
-                <button
-                  onClick={() => moveItem(index, -1)}
-                  disabled={index === 0}
-                  title={labels.moveUp}
-                  aria-label={labels.moveUp}
-                  className="flex h-8 w-8 items-center justify-center text-gray-500 transition hover:bg-violet-50 hover:text-violet-600 disabled:opacity-25 dark:hover:bg-violet-900/30"
-                >
-                  <ChevronUp className="h-5 w-5" />
-                </button>
-                <span className="h-5 w-px bg-gray-200 dark:bg-gray-700" />
-                <button
-                  onClick={() => moveItem(index, 1)}
-                  disabled={index === mergeItems.length - 1}
-                  title={labels.moveDown}
-                  aria-label={labels.moveDown}
-                  className="flex h-8 w-8 items-center justify-center text-gray-500 transition hover:bg-violet-50 hover:text-violet-600 disabled:opacity-25 dark:hover:bg-violet-900/30"
-                >
-                  <ChevronDown className="h-5 w-5" />
-                </button>
-              </div>
-              <button
-                onClick={() => removeItem(item.id)}
-                title={labels.remove}
-                aria-label={labels.remove}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-gray-400 transition hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-          ))}
-          <Button
-            onClick={handleMerge}
-            disabled={mergeItems.length < 2 || isProcessing}
-            className="w-full"
-          >
-            {isProcessing ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Combine className="mr-2 h-4 w-4" />
-            )}
-            {labels.mergeButton}
-          </Button>
-        </div>
-      )}
-
-      {/* Split: visual page picker */}
-      {mode === 'split' && splitFile && (
+      {file && (
         <div className="space-y-4">
           <div className="flex items-center gap-3 rounded-lg border border-gray-200 p-3 dark:border-gray-700">
             <FileText className="h-5 w-5 shrink-0 text-violet-500" />
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium">{splitFile.name}</p>
+              <p className="truncate text-sm font-medium">{file.name}</p>
               <p className="text-xs text-gray-500">
-                {splitPageCount} {labels.pages} ·{' '}
-                {formatFileSize(splitFile.size)}
+                {pageCount} {labels.pages} · {formatFileSize(file.size)}
               </p>
             </div>
           </div>
@@ -470,11 +250,10 @@ export default function PdfMergerSplitter({
                   </button>
                 </div>
 
-                {/* Thumbnail grid; scissors after each page (except last) */}
                 <div className="flex flex-wrap gap-x-1 gap-y-3">
                   {thumbnails.map((thumb) => {
                     const isCut = cutPoints.includes(thumb.pageNumber);
-                    const isLast = thumb.pageNumber === splitPageCount;
+                    const isLast = thumb.pageNumber === pageCount;
                     return (
                       <div key={thumb.pageNumber} className="flex items-stretch">
                         <div className="flex w-24 flex-col items-center">
@@ -493,7 +272,7 @@ export default function PdfMergerSplitter({
                           <button
                             onClick={() => toggleCut(thumb.pageNumber)}
                             title={labels.cutAfter}
-                            className={`group mx-0.5 flex w-6 items-center justify-center self-stretch rounded transition ${
+                            className={`mx-0.5 flex w-6 items-center justify-center self-stretch rounded transition ${
                               isCut
                                 ? 'bg-violet-600 text-white'
                                 : 'text-gray-300 hover:bg-violet-50 hover:text-violet-500 dark:text-gray-600'
@@ -507,7 +286,6 @@ export default function PdfMergerSplitter({
                   })}
                 </div>
 
-                {/* Segment summary */}
                 <div className="rounded-lg bg-violet-50 p-3 text-sm dark:bg-violet-950/20">
                   <span className="font-medium">
                     {labels.outputFiles}: {segments.length}
@@ -522,7 +300,6 @@ export default function PdfMergerSplitter({
             )
           )}
 
-          {/* Advanced: custom ranges (power users) */}
           {!thumbsLoading && (
             <div>
               <button
@@ -568,33 +345,17 @@ export default function PdfMergerSplitter({
 
       {/* Results */}
       <div ref={resultRef}>
-        {mergedBlob && (
-          <div className="rounded-lg border border-green-200 bg-green-50 p-4 dark:border-green-900 dark:bg-green-950/30">
-            <p className="mb-3 text-sm font-medium">
-              {labels.result}: {mergedPages} {labels.pages} ·{' '}
-              {formatFileSize(mergedBlob.size)}
-            </p>
-            <Button
-              onClick={() => downloadPdf(mergedBlob, 'merged.pdf')}
-              variant="outline"
-            >
-              <Download className="mr-2 h-4 w-4" />
-              {labels.download}
-            </Button>
-          </div>
-        )}
-
-        {splitParts.length > 0 && (
+        {parts.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <p className="text-sm font-medium">
-                {labels.result}: {splitParts.length}
+                {labels.result}: {parts.length}
               </p>
               <Button
                 size="sm"
                 variant="outline"
                 onClick={() =>
-                  splitParts.forEach((p) =>
+                  parts.forEach((p) =>
                     downloadPdf(
                       pdfBytesToBlob(p.bytes),
                       `${baseName}_${p.label}.pdf`
@@ -606,7 +367,7 @@ export default function PdfMergerSplitter({
                 {labels.downloadAll}
               </Button>
             </div>
-            {splitParts.map((part) => (
+            {parts.map((part) => (
               <div
                 key={part.label}
                 className="flex items-center gap-3 rounded-lg border border-gray-200 p-3 dark:border-gray-700"

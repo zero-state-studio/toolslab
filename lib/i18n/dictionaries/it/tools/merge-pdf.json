@@ -1,0 +1,103 @@
+{
+  "title": "Unisci PDF",
+  "description": "Combina più file PDF in un unico documento",
+  "placeholder": "Trascina qui i file PDF o clicca per caricarli",
+  "drop": "Trascina qui i file PDF o clicca per caricarli",
+  "hint": "Aggiungi due o più PDF, riordinali e poi uniscili in un solo file",
+  "mergeButton": "Unisci PDF",
+  "pages": "pagine",
+  "download": "Scarica il PDF unito",
+  "remove": "Rimuovi",
+  "moveUp": "Sposta su",
+  "moveDown": "Sposta giù",
+  "result": "Risultato",
+  "onlyPdf": "Sono supportati solo file PDF",
+  "reorderTitle": "Riordina i file prima di unirli",
+  "reorderHint": "Usa le frecce per impostare l'ordine: i file vengono uniti dall'alto verso il basso",
+  "meta": {
+    "title": "Unisci PDF - Combina File PDF in Uno Online Gratis",
+    "description": "Unisci più PDF in un unico file online gratis: riordina i documenti prima di combinarli, senza upload, senza registrazione e senza filigrana, tutto nel browser."
+  },
+  "tagline": "Combina più file PDF in un unico documento, direttamente nel tuo browser",
+  "pageDescription": "Combina più file PDF in un solo documento con questo strumento gratuito per unire PDF online. Trascina i tuoi file, riordinali in modo che le pagine escano nella sequenza giusta e uniscili con un clic. Tutto avviene in locale nel tuo browser: i file non vengono mai caricati su un server, così anche i documenti riservati restano privati. Nessuna registrazione, nessuna filigrana e nessun limite a pagamento sulle dimensioni dei file.",
+  "instructions": {
+    "title": "Come unire file PDF",
+    "steps": [
+      {
+        "title": "Carica i tuoi PDF",
+        "description": "Trascina due o più file PDF nell'area di caricamento, oppure clicca per sfogliare e selezionarli dal computer."
+      },
+      {
+        "title": "Riordina i file",
+        "description": "Usa le frecce su e giù per impostare l'ordine: il documento finale viene composto dall'alto verso il basso, proprio come vedi nell'elenco."
+      },
+      {
+        "title": "Rimuovi quelli di troppo",
+        "description": "Clicca sulla × accanto a un file aggiunto per errore per toglierlo prima di unire."
+      },
+      {
+        "title": "Unisci in un solo PDF",
+        "description": "Clicca su Unisci PDF. La combinazione avviene all'istante nel browser, senza alcun upload."
+      },
+      {
+        "title": "Scarica il risultato",
+        "description": "Scarica l'unico PDF unito che contiene tutte le pagine nell'ordine che hai scelto."
+      }
+    ],
+    "features": [
+      "Combina un numero illimitato di file PDF in un solo documento",
+      "Caricamento con trascinamento e riordino dei file",
+      "Elenco numerato per avere sempre chiaro l'ordine di unione",
+      "Rimozione dei singoli file prima di unire",
+      "100% lato client: i file non lasciano mai il browser",
+      "Nessun limite di dimensione, nessuna filigrana e nessuna registrazione",
+      "Funziona anche offline una volta caricata la pagina",
+      "Download immediato del PDF unito"
+    ],
+    "useCases": [
+      "Combinare più fatture o ricevute in un unico PDF",
+      "Unire pagine scansionate in un solo documento",
+      "Comporre un contratto a partire da sezioni firmate separate",
+      "Riunire capitoli o report in un unico file",
+      "Combinare gli estratti conto per una pratica o una richiesta",
+      "Unire le dispense di una presentazione prima di condividerle",
+      "Mettere lettera di presentazione e curriculum in un solo PDF",
+      "Raggruppare documenti correlati da archiviare"
+    ],
+    "proTips": [
+      "Riordina i file prima di unire: l'ordine finale segue l'elenco dall'alto verso il basso",
+      "Il numero accanto a ogni file indica la sua posizione nel documento finale",
+      "Essendo tutto in locale, puoi unire in sicurezza anche PDF riservati",
+      "Puoi aggiungere i file in più momenti: si accodano a quelli già presenti",
+      "I PDF di grandi dimensioni si uniscono più velocemente da browser desktop",
+      "Devi dividere invece di unire? Usa lo strumento Dividi PDF"
+    ],
+    "troubleshooting": [
+      "Pulsante Unisci disattivato: aggiungi almeno due file PDF",
+      "Ordine delle pagine sbagliato: usa le frecce per riordinare prima di unire",
+      "Un file non si aggiunge: assicurati che sia un vero PDF e non un file rinominato",
+      "Problemi con PDF cifrati: i file protetti da password potrebbero non caricarsi",
+      "File finale molto grande: unendo molti PDF scansionati si ottiene un file pesante, è normale"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clicca + trascina",
+        "description": "Trascina i file PDF nell'area di caricamento"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "unire pdf online gratis",
+    "unire più pdf in uno",
+    "come unire file pdf",
+    "combinare pdf gratis",
+    "unire pdf senza registrazione",
+    "unire più file pdf in uno solo",
+    "come unire pdf gratis online",
+    "unire pdf senza filigrana",
+    "unire pdf trascinando i file",
+    "unire pdf riservati nel browser",
+    "miglior programma per unire pdf",
+    "unire pdf online o smallpdf"
+  ]
+}

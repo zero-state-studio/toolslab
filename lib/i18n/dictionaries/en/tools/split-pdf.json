@@ -1,0 +1,95 @@
+{
+  "title": "Split PDF",
+  "description": "Split a PDF into separate files by page",
+  "placeholder": "Drop a PDF file here or click to upload",
+  "drop": "Drop a PDF file here or click to upload",
+  "hint": "Upload a PDF, then click between pages to split it",
+  "splitButton": "Split PDF",
+  "pages": "pages",
+  "download": "Download",
+  "downloadAll": "Download all (ZIP)",
+  "result": "Output files",
+  "onlyPdf": "Only PDF files are supported",
+  "visualHint": "Click the scissors after a page to split there. The file is cut into the parts shown below.",
+  "splitEveryPage": "Split every page",
+  "resetCuts": "Reset",
+  "cutAfter": "Split after this page",
+  "outputFiles": "Output files",
+  "rendering": "Rendering pages…",
+  "page": "Page",
+  "advanced": "Advanced: custom page ranges",
+  "rangeLabel": "Page ranges",
+  "rangePlaceholder": "e.g. 1-3, 5, 8-10",
+  "meta": {
+    "title": "Split PDF - Separate or Extract PDF Pages Online Free",
+    "description": "Split a PDF into separate files online free. Click between pages to set where to cut, or extract page ranges. No upload, no signup — private in your browser."
+  },
+  "tagline": "Split a PDF into separate files by clicking between the pages",
+  "pageDescription": "Split a PDF into separate files with this free online Split PDF tool. Upload your document to see every page as a thumbnail, then click the scissors between pages to set exactly where to cut — no confusing range syntax needed. Extract single pages, split into individual files, or define custom ranges in advanced mode. Everything runs locally in your browser, so your PDF is never uploaded and confidential documents stay private. No signup, no watermarks.",
+  "instructions": {
+    "title": "How to split a PDF",
+    "steps": [
+      {
+        "title": "Upload your PDF",
+        "description": "Drag and drop a PDF onto the upload area or click to browse. Every page is shown as a thumbnail."
+      },
+      {
+        "title": "Set where to split",
+        "description": "Click the scissors after any page to add a split point. Use 'Split every page' to separate all pages at once."
+      },
+      {
+        "title": "Check the output",
+        "description": "The 'Output files' summary shows how many files you'll get and which pages each one contains."
+      },
+      {
+        "title": "Split the PDF",
+        "description": "Click Split PDF. Each part is created instantly in your browser — nothing is uploaded."
+      },
+      {
+        "title": "Download your files",
+        "description": "Download each part individually, or grab them all at once as a ZIP archive."
+      }
+    ],
+    "features": [
+      "Visual page thumbnails — no range syntax required",
+      "Click between pages to set split points",
+      "'Split every page' to separate all pages at once",
+      "Live preview of how many files and which pages",
+      "Advanced mode for custom page ranges (1-3, 5, 8-10)",
+      "Download single files or all parts as a ZIP",
+      "100% client-side — your PDF never leaves your browser",
+      "No signup, watermarks or file-size limits"
+    ],
+    "useCases": [
+      "Split a large report into per-chapter files",
+      "Extract specific pages to share without the whole document",
+      "Separate a multi-page scan into individual documents",
+      "Pull one invoice out of a combined PDF",
+      "Break a book PDF into sections",
+      "Split signed contracts into individual pages",
+      "Extract a single form page to send",
+      "Divide a scanned batch into one file per document"
+    ],
+    "proTips": [
+      "Click the scissors between two pages to cut there — the parts update live",
+      "Use 'Split every page' to turn a PDF into one file per page",
+      "Switch to Advanced for precise ranges like 1, 3-4, 9",
+      "Because everything is local, you can safely split confidential PDFs",
+      "Large PDFs render thumbnails fastest on desktop browsers",
+      "Need to combine instead? Use the Merge PDF tool"
+    ],
+    "troubleshooting": [
+      "Split button disabled: add at least one split point or a page range",
+      "Pages look blurry: thumbnails are low-res previews — the output keeps full quality",
+      "Rendering is slow: very large PDFs take longer to preview — please wait",
+      "Nothing happens on upload: make sure the file is a real PDF, not renamed",
+      "Encrypted PDF issues: password-protected files may fail to load"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Click + drag",
+        "description": "Drop a PDF file onto the upload area"
+      }
+    ]
+  }
+}

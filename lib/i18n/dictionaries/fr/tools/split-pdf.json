@@ -1,0 +1,109 @@
+{
+  "title": "Diviser un PDF",
+  "description": "Divisez un PDF en plusieurs fichiers séparés, page par page",
+  "placeholder": "Déposez un fichier PDF ici ou cliquez pour l'importer",
+  "drop": "Déposez un fichier PDF ici ou cliquez pour l'importer",
+  "hint": "Importez un PDF, puis cliquez entre les pages pour le découper",
+  "splitButton": "Diviser le PDF",
+  "pages": "pages",
+  "download": "Télécharger",
+  "downloadAll": "Tout télécharger (ZIP)",
+  "result": "Fichiers générés",
+  "onlyPdf": "Seuls les fichiers PDF sont pris en charge",
+  "visualHint": "Cliquez sur les ciseaux après une page pour la découper à cet endroit. Le fichier est divisé selon les parties affichées ci-dessous.",
+  "splitEveryPage": "Diviser chaque page",
+  "resetCuts": "Réinitialiser",
+  "cutAfter": "Diviser après cette page",
+  "outputFiles": "Fichiers générés",
+  "rendering": "Génération des pages…",
+  "page": "Page",
+  "advanced": "Avancé : intervalles de pages personnalisés",
+  "rangeLabel": "Intervalles de pages",
+  "rangePlaceholder": "ex. 1-3, 5, 8-10",
+  "meta": {
+    "title": "Diviser un PDF - Extraire et séparer des pages en ligne",
+    "description": "Divisez un PDF en plusieurs fichiers en ligne gratuit. Cliquez entre les pages pour choisir où couper ou extraire des intervalles. Sans inscription, privé."
+  },
+  "tagline": "Divisez un PDF en plusieurs fichiers en cliquant simplement entre les pages",
+  "pageDescription": "Divisez un PDF en plusieurs fichiers séparés avec cet outil gratuit en ligne. Importez votre document pour voir chaque page sous forme de miniature, puis cliquez sur les ciseaux entre les pages pour choisir exactement où couper — sans syntaxe d'intervalle compliquée. Extrayez des pages uniques, séparez votre document en fichiers individuels ou définissez des intervalles personnalisés en mode avancé. Tout s'exécute localement dans votre navigateur : votre PDF n'est jamais envoyé en ligne et vos documents confidentiels restent privés. Sans inscription, sans filigrane.",
+  "instructions": {
+    "title": "Comment diviser un PDF",
+    "steps": [
+      {
+        "title": "Importez votre PDF",
+        "description": "Glissez-déposez un PDF sur la zone d'import ou cliquez pour parcourir vos fichiers. Chaque page s'affiche sous forme de miniature."
+      },
+      {
+        "title": "Choisissez où diviser",
+        "description": "Cliquez sur les ciseaux après n'importe quelle page pour ajouter un point de découpe. Utilisez « Diviser chaque page » pour séparer toutes les pages d'un coup."
+      },
+      {
+        "title": "Vérifiez le résultat",
+        "description": "Le récapitulatif « Fichiers générés » indique combien de fichiers vous obtiendrez et quelles pages contient chacun d'eux."
+      },
+      {
+        "title": "Divisez le PDF",
+        "description": "Cliquez sur Diviser le PDF. Chaque partie est créée instantanément dans votre navigateur — rien n'est envoyé en ligne."
+      },
+      {
+        "title": "Téléchargez vos fichiers",
+        "description": "Téléchargez chaque partie individuellement, ou récupérez-les toutes en une seule fois dans une archive ZIP."
+      }
+    ],
+    "features": [
+      "Miniatures visuelles des pages — aucune syntaxe d'intervalle requise",
+      "Cliquez entre les pages pour définir les points de découpe",
+      "« Diviser chaque page » pour séparer toutes les pages d'un coup",
+      "Aperçu en direct du nombre de fichiers et des pages de chacun",
+      "Mode avancé pour des intervalles personnalisés (1-3, 5, 8-10)",
+      "Téléchargez un fichier unique ou toutes les parties en ZIP",
+      "100 % côté client — votre PDF ne quitte jamais votre navigateur",
+      "Sans inscription, sans filigrane ni limite de taille de fichier"
+    ],
+    "useCases": [
+      "Diviser un rapport volumineux en fichiers par chapitre",
+      "Extraire des pages précises à partager sans tout le document",
+      "Séparer un scan multipage en documents individuels",
+      "Sortir une seule facture d'un PDF regroupé",
+      "Découper un livre PDF en sections",
+      "Diviser des contrats signés en pages individuelles",
+      "Extraire une page de formulaire unique à envoyer",
+      "Répartir un lot scanné en un fichier par document"
+    ],
+    "proTips": [
+      "Cliquez sur les ciseaux entre deux pages pour couper à cet endroit — les parties se mettent à jour en direct",
+      "Utilisez « Diviser chaque page » pour transformer un PDF en un fichier par page",
+      "Passez en mode Avancé pour des intervalles précis comme 1, 3-4, 9",
+      "Comme tout est local, vous pouvez diviser vos PDF confidentiels en toute sécurité",
+      "Les gros PDF génèrent leurs miniatures plus vite sur navigateur de bureau",
+      "Besoin de regrouper à la place ? Utilisez l'outil Fusionner PDF"
+    ],
+    "troubleshooting": [
+      "Bouton Diviser désactivé : ajoutez au moins un point de découpe ou un intervalle de pages",
+      "Pages floues : les miniatures sont des aperçus basse résolution — le résultat conserve la pleine qualité",
+      "Génération lente : les très gros PDF mettent plus de temps à s'afficher — patientez",
+      "Rien ne se passe à l'import : vérifiez que le fichier est un vrai PDF et non un fichier renommé",
+      "Problème avec un PDF chiffré : les fichiers protégés par mot de passe peuvent ne pas se charger"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + glisser",
+        "description": "Déposez un fichier PDF sur la zone d'import"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "diviser pdf en ligne gratuit",
+    "extraire des pages d'un pdf",
+    "séparer les pages d'un pdf",
+    "découpeur de pdf gratuit",
+    "comment diviser un pdf",
+    "comment extraire des pages d'un pdf",
+    "diviser un pdf en pages individuelles",
+    "diviser pdf par intervalle de pages",
+    "extraire une page spécifique d'un pdf",
+    "diviser pdf sans inscription",
+    "meilleur outil pour diviser pdf",
+    "alternative gratuite à ilovepdf diviser pdf"
+  ]
+}

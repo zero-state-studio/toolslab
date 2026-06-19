@@ -104,9 +104,8 @@ const toolComponents = {
   ),
   'pdf-to-word': lazy(() => import('./implementations/PdfToWord')),
   'pdf-to-jpg': lazy(() => import('./implementations/PdfToJpg')),
-  'pdf-merger-splitter': lazy(
-    () => import('./implementations/PdfMergerSplitter')
-  ),
+  'merge-pdf': lazy(() => import('./implementations/MergePdf')),
+  'split-pdf': lazy(() => import('./implementations/SplitPdf')),
   'image-to-pdf': lazy(() => import('./implementations/ImageToPdfTool')),
   'jpg-to-pdf': lazy(() => import('./implementations/JpgToPdfTool')),
   'png-to-pdf': lazy(() => import('./implementations/PngToPdfTool')),
