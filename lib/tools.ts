@@ -1661,6 +1661,33 @@ export const tools: Tool[] = [
     label: '',
   },
   {
+    id: 'word-counter',
+    name: 'Word Counter & Reading Time',
+    description:
+      'Count words, characters, sentences, paragraphs and estimate reading time in real time',
+    icon: '🔤',
+    route: '/tools/word-counter',
+    categories: ['text'],
+    keywords: [
+      'word counter',
+      'character counter',
+      'reading time calculator',
+      'word count online',
+      'words in text',
+      'count words',
+      'letter counter',
+      'sentence counter',
+      'paragraph counter',
+      'text length',
+      'character count',
+      'words per minute',
+      'text statistics',
+      'word count tool',
+    ],
+    searchVolume: 90000,
+    label: '',
+  },
+  {
     id: 'binary-to-text',
     name: 'Binary to Text Converter',
     description:

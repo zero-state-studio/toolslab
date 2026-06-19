@@ -103,6 +103,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
   'regex-tester': SearchCode,
   'lorem-ipsum-generator': PenLine,
   'string-case-converter': CaseSensitive,
+  'word-counter': Type,
   'html-to-markdown': FileCode,
 
   // Generators
