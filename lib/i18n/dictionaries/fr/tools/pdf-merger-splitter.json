@@ -20,6 +20,8 @@
   "moveDown": "Descendre",
   "result": "Résultat",
   "onlyPdf": "Seuls les fichiers PDF sont pris en charge",
+  "reorderTitle": "Modifie l'ordre des fichiers",
+  "reorderHint": "Utilise les flèches pour définir l'ordre — les fichiers sont fusionnés de haut en bas",
   "meta": {
     "title": "Fusionner et Diviser PDF - Gratuit en ligne | ToolsLab",
     "description": "Fusionnez plusieurs PDF en un seul ou divisez un PDF par plages de pages, gratuit en ligne. Rapide et privé : vos fichiers ne quittent jamais votre appareil."

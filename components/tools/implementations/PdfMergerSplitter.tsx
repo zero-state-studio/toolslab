@@ -12,6 +12,7 @@ import {
   FileText,
   Combine,
   Scissors,
+  ArrowUpDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToolStore } from '@/lib/store/toolStore';
@@ -69,6 +70,10 @@ export default function PdfMergerSplitter({
     moveDown: t.moveDown || 'Move down',
     result: t.result || 'Result',
     onlyPdf: t.onlyPdf || 'Only PDF files are supported',
+    reorderTitle: t.reorderTitle || 'Reorder files before merging',
+    reorderHint:
+      t.reorderHint ||
+      'Use the arrows to set the order — files are merged top to bottom',
     // split visual
     visualHint:
       t.visualHint ||
@@ -349,11 +354,25 @@ export default function PdfMergerSplitter({
       {/* Merge: file list */}
       {mode === 'merge' && mergeItems.length > 0 && (
         <div className="space-y-2">
+          {mergeItems.length > 1 && (
+            <div className="flex items-center gap-2 border-b border-gray-100 pb-2 dark:border-gray-800">
+              <ArrowUpDown className="h-4 w-4 text-violet-500" />
+              <div>
+                <p className="text-sm font-semibold text-gray-700 dark:text-gray-200">
+                  {labels.reorderTitle}
+                </p>
+                <p className="text-xs text-gray-500">{labels.reorderHint}</p>
+              </div>
+            </div>
+          )}
           {mergeItems.map((item, index) => (
             <div
               key={item.id}
               className="flex items-center gap-3 rounded-lg border border-gray-200 p-3 dark:border-gray-700"
             >
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-violet-100 text-xs font-semibold text-violet-700 dark:bg-violet-900/40 dark:text-violet-300">
+                {index + 1}
+              </span>
               <FileText className="h-5 w-5 shrink-0 text-violet-500" />
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-medium">{item.file.name}</p>
@@ -361,28 +380,35 @@ export default function PdfMergerSplitter({
                   {formatFileSize(item.file.size)}
                 </p>
               </div>
-              <button
-                onClick={() => moveItem(index, -1)}
-                disabled={index === 0}
-                title={labels.moveUp}
-                className="rounded p-1 text-gray-400 hover:text-violet-600 disabled:opacity-30"
-              >
-                <ChevronUp className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => moveItem(index, 1)}
-                disabled={index === mergeItems.length - 1}
-                title={labels.moveDown}
-                className="rounded p-1 text-gray-400 hover:text-violet-600 disabled:opacity-30"
-              >
-                <ChevronDown className="h-4 w-4" />
-              </button>
+              {/* Reorder controls — bordered group for visibility */}
+              <div className="flex shrink-0 items-center overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+                <button
+                  onClick={() => moveItem(index, -1)}
+                  disabled={index === 0}
+                  title={labels.moveUp}
+                  aria-label={labels.moveUp}
+                  className="flex h-8 w-8 items-center justify-center text-gray-500 transition hover:bg-violet-50 hover:text-violet-600 disabled:opacity-25 dark:hover:bg-violet-900/30"
+                >
+                  <ChevronUp className="h-5 w-5" />
+                </button>
+                <span className="h-5 w-px bg-gray-200 dark:bg-gray-700" />
+                <button
+                  onClick={() => moveItem(index, 1)}
+                  disabled={index === mergeItems.length - 1}
+                  title={labels.moveDown}
+                  aria-label={labels.moveDown}
+                  className="flex h-8 w-8 items-center justify-center text-gray-500 transition hover:bg-violet-50 hover:text-violet-600 disabled:opacity-25 dark:hover:bg-violet-900/30"
+                >
+                  <ChevronDown className="h-5 w-5" />
+                </button>
+              </div>
               <button
                 onClick={() => removeItem(item.id)}
                 title={labels.remove}
-                className="rounded p-1 text-gray-400 hover:text-red-600"
+                aria-label={labels.remove}
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-gray-400 transition hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30"
               >
-                <X className="h-4 w-4" />
+                <X className="h-5 w-5" />
               </button>
             </div>
           ))}

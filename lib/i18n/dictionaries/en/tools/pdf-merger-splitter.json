@@ -20,6 +20,8 @@
   "moveDown": "Move down",
   "result": "Result",
   "onlyPdf": "Only PDF files are supported",
+  "reorderTitle": "Reorder files before merging",
+  "reorderHint": "Use the arrows to set the order — files are merged top to bottom",
   "meta": {
     "title": "PDF Merger & Splitter - Merge or Split PDF Online Free",
     "description": "Merge PDF files into one or split a PDF by page range online free. No upload, no signup, no watermark — fast, private, browser-based PDF merger & splitter."

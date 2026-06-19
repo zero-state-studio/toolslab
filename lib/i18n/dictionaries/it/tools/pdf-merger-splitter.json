@@ -20,6 +20,8 @@
   "moveDown": "Sposta giù",
   "result": "Risultato",
   "onlyPdf": "Sono supportati solo file PDF",
+  "reorderTitle": "Modifica l'ordine dei file",
+  "reorderHint": "Usa le frecce per impostare l'ordine — i file vengono uniti dall'alto verso il basso",
   "meta": {
     "title": "Unisci e Dividi PDF Online Gratis - ToolsLab",
     "description": "Unisci più PDF in un file o dividi un PDF per intervalli di pagine online gratis. Veloce, privato e senza registrazione: i file restano sul tuo dispositivo."

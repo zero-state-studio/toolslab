@@ -20,6 +20,8 @@
   "moveDown": "Nach unten",
   "result": "Ergebnis",
   "onlyPdf": "Es werden nur PDF-Dateien unterstützt",
+  "reorderTitle": "Reihenfolge der Dateien ändern",
+  "reorderHint": "Nutze die Pfeile, um die Reihenfolge festzulegen — Dateien werden von oben nach unten zusammengefügt",
   "meta": {
     "title": "PDF zusammenfügen & teilen – kostenlos online",
     "description": "Mehrere PDFs kostenlos online zu einer Datei zusammenfügen oder ein PDF nach Seitenbereichen teilen. Sicher direkt im Browser – ohne Upload und ohne Anmeldung."

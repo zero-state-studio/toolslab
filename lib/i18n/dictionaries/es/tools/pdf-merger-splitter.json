@@ -20,6 +20,8 @@
   "moveDown": "Bajar",
   "result": "Resultado",
   "onlyPdf": "Solo se admiten archivos PDF",
+  "reorderTitle": "Cambia el orden de los archivos",
+  "reorderHint": "Usa las flechas para definir el orden — los archivos se unen de arriba abajo",
   "meta": {
     "title": "Unir y Dividir PDF - Combina o separa PDF online gratis",
     "description": "Une varios PDF en uno o divide un PDF por rangos de páginas online y gratis. Rápido y privado: tus archivos nunca salen de tu dispositivo. Sin registro."
