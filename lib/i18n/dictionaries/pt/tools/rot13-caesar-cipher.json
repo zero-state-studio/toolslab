@@ -77,9 +77,39 @@
       "Saída de força bruta difícil de escanear: cole poucas palavras primeiro, identifique a linha legível, depois aplique esse deslocamento ao texto completo"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada" },
-      { "keys": "Ctrl+C", "description": "Copiar saída" },
-      { "keys": "Ctrl+Enter", "description": "Processar" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar saída"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Processar"
+      }
     ]
+  },
+  "ui": {
+    "modeLabel": "Modo",
+    "modeRot13": "ROT13 (codificar/decodificar em um clique)",
+    "modeCaesarEncode": "César — codificar com deslocamento",
+    "modeCaesarDecode": "César — decodificar com deslocamento",
+    "modeBruteForce": "Brute force — mostrar todas as 25 rotações",
+    "shiftLabel": "Deslocamento (1–25)",
+    "inputLabel": "Texto de entrada",
+    "inputPlaceholder": "Digite o texto a codificar ou decodificar...",
+    "btnProcess": "Processar",
+    "btnShowRotations": "Mostrar todas as 25 rotações",
+    "btnUseAsInput": "Usar saída como entrada",
+    "outputLabel": "Saída",
+    "btnCopy": "Copiar",
+    "btnCopied": "Copiado",
+    "allRotationsLabel": "Todas as 25 rotações",
+    "tableShift": "Deslocamento",
+    "tableOutput": "Saída",
+    "tableCopy": "Copiar",
+    "errorNoInput": "Por favor, insira algum texto para processar"
   }
 }

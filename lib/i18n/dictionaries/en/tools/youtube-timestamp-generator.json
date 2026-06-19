@@ -125,5 +125,8 @@
         "description": "Cancel editing"
       }
     ]
-  }
+  },
+  "actions": "Actions",
+  "converterPlaceholder": "00:00 or 90",
+  "converterHint": "MM:SS, HH:MM:SS, or seconds"
 }

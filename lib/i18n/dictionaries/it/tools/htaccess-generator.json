@@ -116,5 +116,16 @@
       "Alcuni hosting condivisi potrebbero limitare certe direttive .htaccess",
       "Svuota la cache del browser dopo modifiche ai redirect per vedere gli effetti"
     ]
-  }
+  },
+  "noRedirects": "Nessun redirect configurato. Clicca \"Aggiungi Redirect\" per crearne uno.",
+  "htmlCache": "Cache HTML",
+  "cssJsCache": "Cache CSS/JS",
+  "imageCache": "Cache Immagini",
+  "fontCache": "Cache Font",
+  "noCache": "Nessuna cache",
+  "oneHour": "1 ora",
+  "oneDay": "1 giorno",
+  "oneWeek": "1 settimana",
+  "oneMonth": "1 mese",
+  "oneYear": "1 anno"
 }

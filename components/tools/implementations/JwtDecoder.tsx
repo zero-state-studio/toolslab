@@ -96,7 +96,11 @@ const DEFAULT_ENCODE_PAYLOAD = JSON.stringify(
   2
 );
 
-export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
+export default function JwtDecoder({
+  categoryColor,
+  dictionary,
+}: JwtDecoderProps) {
+  const ui = dictionary?.tools?.['jwt-decoder']?.ui ?? {};
   const [mode, setMode] = useState<'decode' | 'encode'>('decode');
   const [input, setInput] = useState('');
   const [result, setResult] = useState<JwtDecodeResult | null>(null);
@@ -162,14 +166,20 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
 
       if (diff <= 0) {
         setCountdown({
-          text: `Token expired — ${formatDuration(Math.abs(diff))} ago`,
+          text: (ui.countdownExpired || 'Token expired — {duration} ago').replace(
+            '{duration}',
+            formatDuration(Math.abs(diff))
+          ),
           color: 'gray',
         });
       } else {
         const color: 'green' | 'yellow' | 'red' =
           diff > 3600 ? 'green' : diff > 600 ? 'yellow' : 'red';
         setCountdown({
-          text: `Token valid — expires in ${formatDuration(diff)}`,
+          text: (ui.countdownValid || 'Token valid — expires in {duration}').replace(
+            '{duration}',
+            formatDuration(diff)
+          ),
           color,
         });
       }
@@ -502,10 +512,10 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
 
   // Get status text
   const getStatusText = () => {
-    if (!result || !result.success) return 'Invalid';
-    if (result.isExpired) return 'Expired';
-    if (!result.securityInfo.isSecure) return 'Insecure';
-    return 'Valid';
+    if (!result || !result.success) return ui.statusInvalid || 'Invalid';
+    if (result.isExpired) return ui.statusExpired || 'Expired';
+    if (!result.securityInfo.isSecure) return ui.statusInsecure || 'Insecure';
+    return ui.statusValid || 'Valid';
   };
 
   // Format timestamp display
@@ -535,7 +545,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
         <div className="flex items-center gap-3">
           <Key className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
-            JWT Encoder/Decoder
+            {ui.toolTitle || 'JWT Encoder/Decoder'}
           </h3>
           {mode === 'decode' && result && (
             <div
@@ -573,7 +583,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
               }`}
             >
-              Decode
+              {ui.tabDecode || 'Decode'}
             </button>
             <button
               role="tab"
@@ -585,7 +595,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
               }`}
             >
-              Encode
+              {ui.tabEncode || 'Encode'}
             </button>
           </div>
 
@@ -594,7 +604,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
               onClick={() => setShowOptions(!showOptions)}
               className="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
             >
-              Options
+              {ui.optionsButton || 'Options'}
               {showOptions ? (
                 <ChevronUp className="h-4 w-4" />
               ) : (
@@ -614,7 +624,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 htmlFor="jwt-encode-alg"
                 className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Algorithm
+                {ui.algorithmLabel || 'Algorithm'}
               </label>
               <select
                 id="jwt-encode-alg"
@@ -640,7 +650,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 htmlFor="jwt-encode-payload"
                 className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Payload (JSON)
+                {ui.payloadJsonLabel || 'Payload (JSON)'}
               </label>
               <textarea
                 id="jwt-encode-payload"
@@ -662,7 +672,8 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 htmlFor="jwt-encode-extra-header"
                 className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Extra header claims (optional JSON, e.g. {'{ "kid": "..." }'})
+                {ui.extraHeaderLabel ||
+                  'Extra header claims (optional JSON, e.g. { "kid": "..." })'}
               </label>
               <textarea
                 id="jwt-encode-extra-header"
@@ -677,7 +688,10 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 placeholder="{}"
               />
               <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                Merged into the final header. <code>alg</code> and <code>typ</code> are set automatically.
+                {ui.extraHeaderHintPrefix || 'Merged into the final header.'}{' '}
+                <code>alg</code> {ui.extraHeaderHintAnd || 'and'}{' '}
+                <code>typ</code>{' '}
+                {ui.extraHeaderHintSuffix || 'are set automatically.'}
               </p>
             </div>
 
@@ -688,7 +702,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   htmlFor="jwt-encode-secret"
                   className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
                 >
-                  Secret Key ({encodeAlg})
+                  {ui.secretKeyLabel || 'Secret Key'} ({encodeAlg})
                 </label>
                 <input
                   id="jwt-encode-secret"
@@ -699,7 +713,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     setEncodeOutput(null);
                     setEncodeError(null);
                   }}
-                  placeholder="Enter HMAC secret..."
+                  placeholder={ui.enterHmacSecretPlaceholder || 'Enter HMAC secret...'}
                   className="w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                 />
               </div>
@@ -710,7 +724,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   htmlFor="jwt-encode-privkey"
                   className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
                 >
-                  Private Key — PEM ({encodeAlg})
+                  {ui.privateKeyPemLabel || 'Private Key — PEM'} ({encodeAlg})
                 </label>
                 <textarea
                   id="jwt-encode-privkey"
@@ -733,9 +747,10 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 <p className="flex items-start gap-2 text-sm text-amber-800 dark:text-amber-200">
                   <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" />
                   <span>
-                    <strong>Insecure:</strong> <code>alg=none</code> produces an
-                    unsigned token. Use only for local testing — never accept
-                    such tokens in production.
+                    <strong>{ui.insecureLabel || 'Insecure:'}</strong>{' '}
+                    <code>alg=none</code>{' '}
+                    {ui.algNoneWarning ||
+                      'produces an unsigned token. Use only for local testing — never accept such tokens in production.'}
                   </span>
                 </p>
               </div>
@@ -745,9 +760,13 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             <div className="flex items-start gap-2 rounded-lg bg-green-50 p-3 dark:bg-green-950/30">
               <Shield className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
               <p className="text-sm text-green-800 dark:text-green-200">
-                🔒 <strong>Your key never leaves this browser.</strong> Signing
-                runs entirely in-browser via the native WebCrypto API. No data
-                is sent to any server.
+                🔒{' '}
+                <strong>
+                  {ui.privacyKeyNeverLeaves ||
+                    'Your key never leaves this browser.'}
+                </strong>{' '}
+                {ui.privacySigningBody ||
+                  'Signing runs entirely in-browser via the native WebCrypto API. No data is sent to any server.'}
               </p>
             </div>
 
@@ -762,12 +781,12 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 {encoding ? (
                   <>
                     <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                    Signing...
+                    {ui.signingButton || 'Signing...'}
                   </>
                 ) : (
                   <>
                     <Key className="h-4 w-4" />
-                    Sign JWT
+                    {ui.signJwtButton || 'Sign JWT'}
                   </>
                 )}
               </button>
@@ -780,7 +799,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 }}
                 className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
               >
-                Reset
+                {ui.resetButton || 'Reset'}
               </button>
             </div>
 
@@ -791,7 +810,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
                   <div>
                     <p className="font-medium text-red-600 dark:text-red-400">
-                      Signing Error
+                      {ui.signingErrorTitle || 'Signing Error'}
                     </p>
                     <p className="text-red-600 dark:text-red-400">
                       {encodeError}
@@ -808,10 +827,10 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   <div className="flex items-center gap-2">
                     <Key className="h-5 w-5 text-green-600 dark:text-green-400" />
                     <span className="font-medium text-gray-900 dark:text-white">
-                      Signed JWT
+                      {ui.signedJwtLabel || 'Signed JWT'}
                     </span>
                     <span className="text-sm text-gray-500">
-                      ({encodeOutput.length} chars)
+                      ({encodeOutput.length} {ui.chars || 'chars'})
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -824,7 +843,9 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                       ) : (
                         <Copy className="h-3 w-3" />
                       )}
-                      {copiedEncoded ? 'Copied!' : 'Copy'}
+                      {copiedEncoded
+                        ? ui.copiedLabel || 'Copied!'
+                        : ui.copyLabel || 'Copy'}
                     </button>
                     <button
                       onClick={() => {
@@ -833,7 +854,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                       }}
                       className="inline-flex items-center gap-1 rounded-md bg-white px-2 py-1 text-xs text-gray-600 transition-colors hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
                     >
-                      Decode ↗
+                      {ui.decodeArrowButton || 'Decode ↗'}
                     </button>
                   </div>
                 </div>
@@ -855,7 +876,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
         {showOptions && (
           <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700/30">
             <h4 className="mb-3 font-medium text-gray-900 dark:text-white">
-              Decoding Options
+              {ui.decodingOptionsTitle || 'Decoding Options'}
             </h4>
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               <label className="flex items-center gap-2">
@@ -871,7 +892,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   className="rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
                 />
                 <span className="text-sm text-gray-700 dark:text-gray-300">
-                  Validate Structure
+                  {ui.validateStructureLabel || 'Validate Structure'}
                 </span>
               </label>
               <label className="flex items-center gap-2">
@@ -884,7 +905,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   className="rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
                 />
                 <span className="text-sm text-gray-700 dark:text-gray-300">
-                  Analyze Time Claims
+                  {ui.analyzeTimeClaimsLabel || 'Analyze Time Claims'}
                 </span>
               </label>
               <label className="flex items-center gap-2">
@@ -900,7 +921,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   className="rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500"
                 />
                 <span className="text-sm text-gray-700 dark:text-gray-300">
-                  Tool Suggestions
+                  {ui.toolSuggestionsLabel || 'Tool Suggestions'}
                 </span>
               </label>
             </div>
@@ -914,7 +935,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
               htmlFor="jwt-input"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              JWT Token
+              {ui.jwtTokenLabel || 'JWT Token'}
             </label>
             <div className="flex items-center gap-2">
               <button
@@ -922,7 +943,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 className="inline-flex items-center gap-1 rounded-lg bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
               >
                 <Sparkles className="h-3 w-3" />
-                Samples
+                {ui.samplesButton || 'Samples'}
               </button>
             </div>
           </div>
@@ -931,7 +952,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
           {showSamples && (
             <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-700/30">
               <h4 className="mb-3 text-sm font-medium text-gray-700 dark:text-gray-300">
-                Sample JWTs
+                {ui.sampleJwtsTitle || 'Sample JWTs'}
               </h4>
               <div className="space-y-2">
                 {Object.keys(samples).map((sampleKey) => (
@@ -952,7 +973,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
               id="jwt-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Paste your JWT token here..."
+              placeholder={ui.inputPlaceholder || 'Paste your JWT token here...'}
               className="w-full resize-none rounded-lg border border-gray-300 px-4 py-3 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-400"
               rows={4}
               style={{
@@ -973,12 +994,12 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             {isProcessing ? (
               <>
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                Decoding...
+                {ui.decodingButton || 'Decoding...'}
               </>
             ) : (
               <>
                 <Key className="h-4 w-4" />
-                Decode JWT
+                {ui.decodeJwtButton || 'Decode JWT'}
               </>
             )}
           </button>
@@ -987,7 +1008,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             onClick={handleClear}
             className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
           >
-            Clear
+            {ui.clearButton || 'Clear'}
           </button>
 
           {result && result.success && (
@@ -996,7 +1017,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
               className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
             >
               <Download className="h-4 w-4" />
-              Download
+              {ui.downloadButton || 'Download'}
             </button>
           )}
         </div>
@@ -1026,7 +1047,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
               <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
               <div>
                 <p className="font-medium text-red-600 dark:text-red-400">
-                  Decoding Error
+                  {ui.decodingErrorTitle || 'Decoding Error'}
                 </p>
                 <p className="text-red-600 dark:text-red-400">{error}</p>
               </div>
@@ -1046,10 +1067,10 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 <div className="flex items-center gap-2">
                   <FileJson className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                   <span className="font-medium text-gray-900 dark:text-white">
-                    Header
+                    {ui.headerSection || 'Header'}
                   </span>
                   <span className="text-sm text-gray-500">
-                    ({result.metadata.headerSize} chars)
+                    ({result.metadata.headerSize} {ui.chars || 'chars'})
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -1065,7 +1086,9 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     ) : (
                       <Copy className="h-3 w-3" />
                     )}
-                    {copiedSections.header ? 'Copied!' : 'Copy'}
+                    {copiedSections.header
+                      ? ui.copiedLabel || 'Copied!'
+                      : ui.copyLabel || 'Copy'}
                   </button>
                   {expandedSections.header ? (
                     <ChevronUp className="h-4 w-4" />
@@ -1084,7 +1107,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   {result.header.alg && (
                     <div className="mt-3 text-sm">
                       <span className="font-medium text-gray-700 dark:text-gray-300">
-                        Algorithm:{' '}
+                        {ui.algorithmLabel || 'Algorithm'}:{' '}
                       </span>
                       <span className="text-gray-900 dark:text-white">
                         {result.header.alg}
@@ -1104,10 +1127,10 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 <div className="flex items-center gap-2">
                   <FileJson className="h-5 w-5 text-green-600 dark:text-green-400" />
                   <span className="font-medium text-gray-900 dark:text-white">
-                    Payload
+                    {ui.payloadSection || 'Payload'}
                   </span>
                   <span className="text-sm text-gray-500">
-                    ({result.metadata.payloadSize} chars)
+                    ({result.metadata.payloadSize} {ui.chars || 'chars'})
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -1123,7 +1146,9 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     ) : (
                       <Copy className="h-3 w-3" />
                     )}
-                    {copiedSections.payload ? 'Copied!' : 'Copy'}
+                    {copiedSections.payload
+                      ? ui.copiedLabel || 'Copied!'
+                      : ui.copyLabel || 'Copy'}
                   </button>
                   {expandedSections.payload ? (
                     <ChevronUp className="h-4 w-4" />
@@ -1144,7 +1169,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   {result.claimsAnalysis.standardClaims.length > 0 && (
                     <div className="mt-4">
                       <h5 className="mb-2 font-medium text-gray-700 dark:text-gray-300">
-                        Standard Claims
+                        {ui.standardClaimsTitle || 'Standard Claims'}
                       </h5>
                       <div className="space-y-2">
                         {result.claimsAnalysis.standardClaims.map((claim) => (
@@ -1177,7 +1202,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   {result.claimsAnalysis.customClaims.length > 0 && (
                     <div className="mt-4">
                       <h5 className="mb-2 font-medium text-gray-700 dark:text-gray-300">
-                        Custom Claims
+                        {ui.customClaimsTitle || 'Custom Claims'}
                       </h5>
                       <div className="space-y-1">
                         {result.claimsAnalysis.customClaims.map((claim) => (
@@ -1211,10 +1236,10 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                   <span className="font-medium text-gray-900 dark:text-white">
-                    Signature
+                    {ui.signatureSection || 'Signature'}
                   </span>
                   <span className="text-sm text-gray-500">
-                    ({result.metadata.signatureSize} chars)
+                    ({result.metadata.signatureSize} {ui.chars || 'chars'})
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -1230,7 +1255,9 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     ) : (
                       <Copy className="h-3 w-3" />
                     )}
-                    {copiedSections.signature ? 'Copied!' : 'Copy'}
+                    {copiedSections.signature
+                      ? ui.copiedLabel || 'Copied!'
+                      : ui.copyLabel || 'Copy'}
                   </button>
                   {expandedSections.signature ? (
                     <ChevronUp className="h-4 w-4" />
@@ -1243,15 +1270,16 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 <div className="border-t border-gray-200 p-4 dark:border-gray-600">
                   <div className="rounded-lg bg-white p-3 dark:bg-gray-800">
                     <code className="break-all font-mono text-sm text-gray-900 dark:text-white">
-                      {result.signature || '(empty signature)'}
+                      {result.signature ||
+                        ui.emptySignature ||
+                        '(empty signature)'}
                     </code>
                   </div>
                   <div className="mt-3 flex items-start gap-2 rounded-lg bg-blue-50 p-3 dark:bg-blue-950/30">
                     <Info className="mt-0.5 h-4 w-4 text-blue-600 dark:text-blue-400" />
                     <p className="text-sm text-blue-800 dark:text-blue-200">
-                      The signature is encoded and cannot be decoded without the
-                      signing key. It&lsquo;s used to verify the token&lsquo;s
-                      authenticity and integrity.
+                      {ui.signatureInfo ||
+                        'The signature is encoded and cannot be decoded without the signing key. It‘s used to verify the token‘s authenticity and integrity.'}
                     </p>
                   </div>
                 </div>
@@ -1267,18 +1295,18 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 <div className="flex items-center gap-2">
                   <Key className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                   <span className="font-medium text-gray-900 dark:text-white">
-                    Verify Signature
+                    {ui.verifySignatureSection || 'Verify Signature'}
                   </span>
                   {verifyResult === 'valid' && (
                     <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800 dark:bg-green-900/30 dark:text-green-300">
                       <Check className="h-3 w-3" />
-                      Valid
+                      {ui.statusValid || 'Valid'}
                     </span>
                   )}
                   {verifyResult === 'invalid' && (
                     <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900/30 dark:text-red-300">
                       <AlertTriangle className="h-3 w-3" />
-                      Invalid
+                      {ui.statusInvalid || 'Invalid'}
                     </span>
                   )}
                 </div>
@@ -1295,16 +1323,20 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   <div className="flex items-start gap-2 rounded-lg bg-green-50 p-3 dark:bg-green-950/30">
                     <Shield className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-600 dark:text-green-400" />
                     <p className="text-sm text-green-800 dark:text-green-200">
-                      🔒 <strong>Your key never leaves this browser.</strong> Verification runs
-                      entirely in-browser using the native WebCrypto API. No data is sent to any
-                      server.{' '}
+                      🔒{' '}
+                      <strong>
+                        {ui.privacyKeyNeverLeaves ||
+                          'Your key never leaves this browser.'}
+                      </strong>{' '}
+                      {ui.privacyVerificationBody ||
+                        'Verification runs entirely in-browser using the native WebCrypto API. No data is sent to any server.'}{' '}
                       <a
                         href="https://github.com/hellotoolslab/toolslab"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline hover:no-underline"
                       >
-                        Codice sorgente su GitHub ↗
+                        {ui.sourceCodeLink || 'Codice sorgente su GitHub ↗'}
                       </a>
                     </p>
                   </div>
@@ -1315,7 +1347,8 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     if (alg === 'none') {
                       return (
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                          Unsigned token — no verification possible.
+                          {ui.unsignedTokenNoVerify ||
+                            'Unsigned token — no verification possible.'}
                         </p>
                       );
                     }
@@ -1324,11 +1357,12 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     if (!isHmac && !isAsymmetric) {
                       return (
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                          Algorithm{' '}
+                          {ui.algorithmLabel || 'Algorithm'}{' '}
                           <code className="rounded bg-gray-100 px-1 font-mono dark:bg-gray-700">
                             {alg}
                           </code>{' '}
-                          is not supported for verification.
+                          {ui.notSupportedForVerification ||
+                            'is not supported for verification.'}
                         </p>
                       );
                     }
@@ -1336,7 +1370,9 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                       <div className="space-y-3">
                         <div>
                           <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            {isHmac ? `Secret Key (${alg})` : `Public Key — PEM (${alg})`}
+                            {isHmac
+                              ? `${ui.secretKeyLabel || 'Secret Key'} (${alg})`
+                              : `${ui.publicKeyPemLabel || 'Public Key — PEM'} (${alg})`}
                           </label>
                           {isHmac ? (
                             <input
@@ -1349,7 +1385,10 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                               onKeyDown={(e) => {
                                 if (e.key === 'Enter' && !verifying) handleVerify();
                               }}
-                              placeholder="Enter HMAC secret key..."
+                              placeholder={
+                                ui.enterHmacSecretKeyPlaceholder ||
+                                'Enter HMAC secret key...'
+                              }
                               className="w-full rounded-lg border border-gray-300 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
                             />
                           ) : (
@@ -1374,12 +1413,12 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                           {verifying ? (
                             <>
                               <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                              Verifying...
+                              {ui.verifyingButton || 'Verifying...'}
                             </>
                           ) : (
                             <>
                               <Shield className="h-4 w-4" />
-                              Verify
+                              {ui.verifyButton || 'Verify'}
                             </>
                           )}
                         </button>
@@ -1397,19 +1436,20 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                             {verifyResult === 'valid' && (
                               <>
                                 <Check className="h-4 w-4" />
-                                Signature valid
+                                {ui.signatureValid || 'Signature valid'}
                               </>
                             )}
                             {verifyResult === 'invalid' && (
                               <>
                                 <AlertTriangle className="h-4 w-4" />
-                                Signature invalid
+                                {ui.signatureInvalid || 'Signature invalid'}
                               </>
                             )}
                             {verifyResult === 'error' && (
                               <>
                                 <AlertTriangle className="h-4 w-4" />
-                                Invalid key or wrong format
+                                {ui.invalidKeyOrFormat ||
+                                  'Invalid key or wrong format'}
                               </>
                             )}
                           </div>
@@ -1431,7 +1471,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   <div className="flex items-center gap-2">
                     <Clock className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                     <span className="font-medium text-gray-900 dark:text-white">
-                      Time Information
+                      {ui.timeInformationSection || 'Time Information'}
                     </span>
                   </div>
                   {expandedSections.timeInfo ? (
@@ -1446,7 +1486,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                       {result.timeInfo.issuedAt && (
                         <div>
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Issued At:
+                            {ui.issuedAtLabel || 'Issued At:'}
                           </span>
                           {formatTimeDisplay(result.timeInfo.issuedAt, result.timeInfo.age)}
                         </div>
@@ -1454,7 +1494,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                       {result.timeInfo.expiresAt && (
                         <div>
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Expires At:
+                            {ui.expiresAtLabel || 'Expires At:'}
                           </span>
                           {formatTimeDisplay(result.timeInfo.expiresAt, result.timeInfo.timeToExpiry)}
                         </div>
@@ -1462,7 +1502,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                       {result.timeInfo.notBefore && (
                         <div>
                           <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Not Before:
+                            {ui.notBeforeLabel || 'Not Before:'}
                           </span>
                           {formatTimeDisplay(result.timeInfo.notBefore, undefined)}
                         </div>
@@ -1482,7 +1522,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 <div className="flex items-center gap-2">
                   <Shield className="h-5 w-5 text-red-600 dark:text-red-400" />
                   <span className="font-medium text-gray-900 dark:text-white">
-                    Security Analysis
+                    {ui.securityAnalysisSection || 'Security Analysis'}
                   </span>
                   {result.securityInfo.warnings.length > 0 && (
                     <span className="inline-flex items-center gap-1 rounded-full bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800 dark:bg-red-900/30 dark:text-red-300">
@@ -1502,7 +1542,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   <div className="space-y-3">
                     <div>
                       <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Algorithm:{' '}
+                        {ui.algorithmLabel || 'Algorithm'}:{' '}
                       </span>
                       <span
                         className={`font-mono text-sm ${
@@ -1518,7 +1558,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     {result.securityInfo.warnings.length > 0 && (
                       <div>
                         <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                          Security Warnings:
+                          {ui.securityWarningsLabel || 'Security Warnings:'}
                         </span>
                         <ul className="mt-2 space-y-1">
                           {result.securityInfo.warnings.map(
@@ -1549,7 +1589,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                 <div className="flex items-center gap-2">
                   <Info className="h-5 w-5 text-gray-600 dark:text-gray-400" />
                   <span className="font-medium text-gray-900 dark:text-white">
-                    Token Metadata
+                    {ui.tokenMetadataSection || 'Token Metadata'}
                   </span>
                 </div>
                 {expandedSections.metadata ? (
@@ -1563,15 +1603,16 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="font-medium text-gray-700 dark:text-gray-300">
-                        Total Size:
+                        {ui.totalSizeLabel || 'Total Size:'}
                       </span>
                       <span className="ml-2 text-gray-900 dark:text-white">
-                        {result.metadata.totalSize} characters
+                        {result.metadata.totalSize}{' '}
+                        {ui.characters || 'characters'}
                       </span>
                     </div>
                     <div>
                       <span className="font-medium text-gray-700 dark:text-gray-300">
-                        Structure:
+                        {ui.structureLabel || 'Structure:'}
                       </span>
                       <span
                         className={`ml-2 ${
@@ -1585,18 +1626,18 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
                     </div>
                     <div>
                       <span className="font-medium text-gray-700 dark:text-gray-300">
-                        Header Size:
+                        {ui.headerSizeLabel || 'Header Size:'}
                       </span>
                       <span className="ml-2 text-gray-900 dark:text-white">
-                        {result.metadata.headerSize} chars
+                        {result.metadata.headerSize} {ui.chars || 'chars'}
                       </span>
                     </div>
                     <div>
                       <span className="font-medium text-gray-700 dark:text-gray-300">
-                        Payload Size:
+                        {ui.payloadSizeLabel || 'Payload Size:'}
                       </span>
                       <span className="ml-2 text-gray-900 dark:text-white">
-                        {result.metadata.payloadSize} chars
+                        {result.metadata.payloadSize} {ui.chars || 'chars'}
                       </span>
                     </div>
                   </div>
@@ -1611,7 +1652,7 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
           <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-4 dark:border-blue-800 dark:bg-blue-950/20">
             <h4 className="mb-2 flex items-center gap-2 font-medium text-blue-900 dark:text-blue-100">
               <Sparkles className="h-4 w-4" />
-              Suggestions
+              {ui.suggestionsTitle || 'Suggestions'}
             </h4>
             <ul className="space-y-1">
               {result.suggestions.map((suggestion, index) => (
@@ -1632,20 +1673,29 @@ export default function JwtDecoder({ categoryColor }: JwtDecoderProps) {
             <Info className="mt-0.5 h-5 w-5 text-amber-600 dark:text-amber-400" />
             <div>
               <p className="mb-2 font-medium text-amber-800 dark:text-amber-200">
-                🔍 About JWT Decoding
+                {ui.aboutTitle || '🔍 About JWT Decoding'}
               </p>
               <div className="space-y-1 text-sm text-amber-800 dark:text-amber-200">
                 <p>
-                  • This tool decodes JWT tokens and can verify signatures in-browser
+                  •{' '}
+                  {ui.aboutLine1 ||
+                    'This tool decodes JWT tokens and can verify signatures in-browser'}
                 </p>
                 <p>
-                  • Signature verification requires the secret key or public key
+                  •{' '}
+                  {ui.aboutLine2 ||
+                    'Signature verification requires the secret key or public key'}
                 </p>
                 <p>
-                  • Never trust decoded claims without proper signature
-                  verification
+                  •{' '}
+                  {ui.aboutLine3 ||
+                    'Never trust decoded claims without proper signature verification'}
                 </p>
-                <p>• Expired tokens should be rejected by your application</p>
+                <p>
+                  •{' '}
+                  {ui.aboutLine4 ||
+                    'Expired tokens should be rejected by your application'}
+                </p>
               </div>
             </div>
           </div>

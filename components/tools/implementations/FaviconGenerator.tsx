@@ -48,14 +48,18 @@ import { BaseToolProps } from '@/lib/types/tools';
 import { useToolTracking } from '@/lib/analytics/hooks/useToolTracking';
 import { useToolStore } from '@/lib/store/toolStore';
 
-interface FaviconGeneratorProps extends BaseToolProps {}
+interface FaviconGeneratorProps extends BaseToolProps {
+  dictionary?: any;
+}
 
 export default function FaviconGenerator({
   categoryColor,
   initialInput,
   onInputChange,
   onOutputChange,
+  dictionary,
 }: FaviconGeneratorProps) {
+  const ui = dictionary?.tools?.['favicon-generator']?.ui ?? {};
   const [sourceImage, setSourceImage] = useState<HTMLImageElement | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
   const [options, setOptions] = useState<FaviconOptions>(
@@ -403,7 +407,7 @@ Generated with ❤️ by ToolsLab
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Upload className="h-5 w-5" />
-            Source Input
+            {ui.sourceInput || 'Source Input'}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -411,19 +415,19 @@ Generated with ❤️ by ToolsLab
             <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="upload" className="flex items-center gap-2">
                 <ImageIcon className="h-4 w-4" />
-                Upload
+                {ui.tabUpload || 'Upload'}
               </TabsTrigger>
               <TabsTrigger value="url" className="flex items-center gap-2">
                 <Link className="h-4 w-4" />
-                URL
+                {ui.tabUrl || 'URL'}
               </TabsTrigger>
               <TabsTrigger value="text" className="flex items-center gap-2">
                 <Type className="h-4 w-4" />
-                Text
+                {ui.tabText || 'Text'}
               </TabsTrigger>
               <TabsTrigger value="emoji" className="flex items-center gap-2">
                 <Smile className="h-4 w-4" />
-                Emoji
+                {ui.tabEmoji || 'Emoji'}
               </TabsTrigger>
             </TabsList>
 
@@ -439,14 +443,14 @@ Generated with ❤️ by ToolsLab
                 <input {...getInputProps()} />
                 <Upload className="mx-auto mb-4 h-12 w-12 text-gray-400" />
                 {isDragActive ? (
-                  <p className="text-blue-600">Drop the image here...</p>
+                  <p className="text-blue-600">{ui.dropActive || 'Drop the image here...'}</p>
                 ) : (
                   <div>
-                    <p className="mb-2 text-lg">Drag & drop an image here</p>
+                    <p className="mb-2 text-lg">{ui.dragDropText || 'Drag & drop an image here'}</p>
                     <p className="mb-4 text-gray-500">
-                      or click to select files
+                      {ui.orClickToSelect || 'or click to select files'}
                     </p>
-                    <Button variant="outline">Choose Image</Button>
+                    <Button variant="outline">{ui.chooseImage || 'Choose Image'}</Button>
                   </div>
                 )}
               </div>
@@ -455,18 +459,18 @@ Generated with ❤️ by ToolsLab
             <TabsContent value="url" className="space-y-4">
               <div className="flex gap-2">
                 <Input
-                  placeholder="Enter image URL..."
+                  placeholder={ui.enterImageUrl || 'Enter image URL...'}
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
                 />
-                <Button onClick={handleLoadFromUrl}>Load</Button>
+                <Button onClick={handleLoadFromUrl}>{ui.loadButton || 'Load'}</Button>
               </div>
             </TabsContent>
 
             <TabsContent value="text" className="space-y-4">
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <div>
-                  <Label htmlFor="text-input">Text/Initials</Label>
+                  <Label htmlFor="text-input">{ui.labelTextInitials || 'Text/Initials'}</Label>
                   <Input
                     id="text-input"
                     value={textInput}
@@ -476,7 +480,7 @@ Generated with ❤️ by ToolsLab
                   />
                 </div>
                 <div>
-                  <Label htmlFor="text-color">Text Color</Label>
+                  <Label htmlFor="text-color">{ui.labelTextColor || 'Text Color'}</Label>
                   <div className="flex gap-2">
                     <Input
                       id="text-color"
@@ -493,7 +497,7 @@ Generated with ❤️ by ToolsLab
                   </div>
                 </div>
                 <div>
-                  <Label htmlFor="text-bg-color">Background Color</Label>
+                  <Label htmlFor="text-bg-color">{ui.labelBgColor || 'Background Color'}</Label>
                   <div className="flex gap-2">
                     <Input
                       id="text-bg-color"
@@ -514,14 +518,14 @@ Generated with ❤️ by ToolsLab
                 {isGenerating && (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 )}
-                Create Text Favicon
+                {ui.createTextFavicon || 'Create Text Favicon'}
               </Button>
             </TabsContent>
 
             <TabsContent value="emoji" className="space-y-4">
               <div className="flex items-end gap-4">
                 <div>
-                  <Label htmlFor="emoji-input">Emoji</Label>
+                  <Label htmlFor="emoji-input">{ui.labelEmoji || 'Emoji'}</Label>
                   <Input
                     id="emoji-input"
                     value={selectedEmoji}
@@ -537,13 +541,13 @@ Generated with ❤️ by ToolsLab
                   {isGenerating && (
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   )}
-                  Create Emoji Favicon
+                  {ui.createEmojiFavicon || 'Create Emoji Favicon'}
                 </Button>
               </div>
 
               {/* Popular emojis */}
               <div>
-                <Label>Popular Emojis</Label>
+                <Label>{ui.popularEmojis || 'Popular Emojis'}</Label>
                 <div className="mt-2 grid grid-cols-8 gap-2">
                   {[
                     '🚀',
@@ -587,7 +591,7 @@ Generated with ❤️ by ToolsLab
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Eye className="h-5 w-5" />
-                Preview
+                {ui.preview || 'Preview'}
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -596,7 +600,7 @@ Generated with ❤️ by ToolsLab
                   <div className="rounded-lg bg-gray-100 p-4 dark:bg-gray-800">
                     <img
                       src={imagePreview}
-                      alt="Favicon preview"
+                      alt={ui.faviconPreviewAlt || 'Favicon preview'}
                       className="h-32 w-32 object-contain"
                     />
                   </div>
@@ -604,7 +608,7 @@ Generated with ❤️ by ToolsLab
 
                 {/* Device mockups */}
                 <div className="space-y-3">
-                  <Label>How it appears:</Label>
+                  <Label>{ui.howItAppears || 'How it appears:'}</Label>
                   <div className="grid grid-cols-3 gap-4 text-sm">
                     <div className="text-center">
                       <div className="mb-2 rounded border bg-white p-2 dark:bg-gray-900">
@@ -619,7 +623,7 @@ Generated with ❤️ by ToolsLab
                           <span>ToolsLab</span>
                         </div>
                       </div>
-                      <span className="text-gray-600">Browser Tab</span>
+                      <span className="text-gray-600">{ui.browserTab || 'Browser Tab'}</span>
                     </div>
 
                     <div className="text-center">
@@ -630,7 +634,7 @@ Generated with ❤️ by ToolsLab
                           alt=""
                         />
                       </div>
-                      <span className="text-gray-600">iOS Home</span>
+                      <span className="text-gray-600">{ui.iosHome || 'iOS Home'}</span>
                     </div>
 
                     <div className="text-center">
@@ -641,7 +645,7 @@ Generated with ❤️ by ToolsLab
                           alt=""
                         />
                       </div>
-                      <span className="text-gray-600">Android</span>
+                      <span className="text-gray-600">{ui.android || 'Android'}</span>
                     </div>
                   </div>
                 </div>
@@ -654,12 +658,12 @@ Generated with ❤️ by ToolsLab
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Settings className="h-5 w-5" />
-                Customization
+                {ui.customization || 'Customization'}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <Label>Padding: {options.padding}px</Label>
+                <Label>{ui.labelPadding || 'Padding:'} {options.padding}px</Label>
                 <Slider
                   value={[options.padding]}
                   onValueChange={([value]) =>
@@ -672,7 +676,7 @@ Generated with ❤️ by ToolsLab
               </div>
 
               <div>
-                <Label>Border Radius: {options.borderRadius}px</Label>
+                <Label>{ui.labelBorderRadius || 'Border Radius:'} {options.borderRadius}px</Label>
                 <Slider
                   value={[options.borderRadius]}
                   onValueChange={([value]) =>
@@ -685,7 +689,7 @@ Generated with ❤️ by ToolsLab
               </div>
 
               <div>
-                <Label>Background</Label>
+                <Label>{ui.labelBackground || 'Background'}</Label>
                 <Tabs
                   value={options.backgroundType}
                   onValueChange={(value: any) =>
@@ -693,9 +697,9 @@ Generated with ❤️ by ToolsLab
                   }
                 >
                   <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="transparent">None</TabsTrigger>
-                    <TabsTrigger value="solid">Solid</TabsTrigger>
-                    <TabsTrigger value="gradient">Gradient</TabsTrigger>
+                    <TabsTrigger value="transparent">{ui.bgNone || 'None'}</TabsTrigger>
+                    <TabsTrigger value="solid">{ui.bgSolid || 'Solid'}</TabsTrigger>
+                    <TabsTrigger value="gradient">{ui.bgGradient || 'Gradient'}</TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="solid" className="mt-4">
@@ -744,7 +748,7 @@ Generated with ❤️ by ToolsLab
                             gradientStart: e.target.value,
                           }))
                         }
-                        placeholder="Start color"
+                        placeholder={ui.startColor || 'Start color'}
                       />
                     </div>
                     <div className="flex gap-2">
@@ -767,7 +771,7 @@ Generated with ❤️ by ToolsLab
                             gradientEnd: e.target.value,
                           }))
                         }
-                        placeholder="End color"
+                        placeholder={ui.endColor || 'End color'}
                       />
                     </div>
                   </TabsContent>
@@ -775,7 +779,7 @@ Generated with ❤️ by ToolsLab
               </div>
 
               <div>
-                <Label>Theme Color</Label>
+                <Label>{ui.labelThemeColor || 'Theme Color'}</Label>
                 <div className="mt-2 flex gap-2">
                   <Input
                     type="color"
@@ -802,7 +806,7 @@ Generated with ❤️ by ToolsLab
               </div>
 
               <div>
-                <Label>Quality: {options.compressionQuality}%</Label>
+                <Label>{ui.labelQuality || 'Quality:'} {options.compressionQuality}%</Label>
                 <Slider
                   value={[options.compressionQuality]}
                   onValueChange={([value]) =>
@@ -836,12 +840,12 @@ Generated with ❤️ by ToolsLab
                 {isGenerating ? (
                   <>
                     <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Generating...
+                    {ui.generating || 'Generating...'}
                   </>
                 ) : (
                   <>
                     <Package className="mr-2 h-5 w-5" />
-                    Generate Favicon Package
+                    {ui.generatePackage || 'Generate Favicon Package'}
                   </>
                 )}
               </Button>
@@ -863,21 +867,21 @@ Generated with ❤️ by ToolsLab
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2">
                 <Package className="h-5 w-5" />
-                Generated Files ({generatedFavicons.length})
+                {ui.generatedFiles || 'Generated Files'} ({generatedFavicons.length})
               </CardTitle>
               <div className="flex gap-2">
                 <Button onClick={handleCopyHtml} variant="outline" size="sm">
                   <Copy className="mr-2 h-4 w-4" />
-                  Copy HTML
+                  {ui.copyHtml || 'Copy HTML'}
                 </Button>
                 <Button onClick={handleDownloadAll}>
                   <Download className="mr-2 h-4 w-4" />
-                  Download All
+                  {ui.downloadAll || 'Download All'}
                 </Button>
               </div>
             </div>
             <p className="text-sm text-gray-600">
-              Total size: {formatFileSize(totalSize)}
+              {ui.totalSize || 'Total size:'} {formatFileSize(totalSize)}
             </p>
           </CardHeader>
           <CardContent>

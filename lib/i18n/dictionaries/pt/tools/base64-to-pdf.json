@@ -80,5 +80,39 @@
         "description": "Baixar PDF"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Dicas de Uso",
+    "tips": [
+      "Os dados Base64 de um PDF válido começam com \"JVBERi0\" quando decodificados",
+      "Remova prefixos de data URL como \"data:application/pdf;base64,\" antes de colar",
+      "Ficheiros grandes podem demorar mais a processar — tenha paciência com PDFs pesados",
+      "A ferramenta valida os cabeçalhos PDF para garantir dados PDF válidos"
+    ]
+  },
+  "ui": {
+    "inputHeading": "Entrada Base64",
+    "clearInputTitle": "Limpar entrada",
+    "textareaPlaceholder": "Cole aqui os dados PDF codificados em Base64...",
+    "dataUrlPrefixDetected": "Prefixo data URL detectado - será removido automaticamente",
+    "validBase64Format": "Formato Base64 válido • Tamanho estimado:",
+    "invalidBase64Format": "Formato Base64 inválido",
+    "outputFilenameLabel": "Nome do arquivo de saída:",
+    "convertingButton": "Convertendo...",
+    "convertToPdfButton": "Converter para PDF",
+    "resultHeading": "PDF pronto para download",
+    "conversionSuccessful": "Conversão bem-sucedida",
+    "fileSizeLabel": "Tamanho do arquivo:",
+    "fileNameLabel": "Nome do arquivo:",
+    "pdfValidationLabel": "Validação PDF:",
+    "validPdfHeader": "Cabeçalho PDF válido",
+    "noPdfHeaderFound": "Nenhum cabeçalho PDF encontrado",
+    "downloadPdfButton": "Baixar PDF",
+    "copyFilenameButton": "Copiar nome do arquivo",
+    "copiedButton": "Copiado!",
+    "pdfPreviewHeading": "Prévia do PDF",
+    "hidePreviewButton": "Ocultar prévia",
+    "showPreviewButton": "Mostrar prévia",
+    "unknownFileSize": "Desconhecido"
   }
 }

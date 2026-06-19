@@ -80,5 +80,39 @@
         "description": "PDF herunterladen"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Nutzungstipps",
+    "tips": [
+      "Gültige PDF-Base64-Daten beginnen dekodiert mit \"JVBERi0\"",
+      "Entfernen Sie Data-URL-Präfixe wie \"data:application/pdf;base64,\" vor dem Einfügen",
+      "Große Dateien können länger dauern — bei großen PDFs etwas Geduld",
+      "Das Tool validiert PDF-Header, um gültige PDF-Daten sicherzustellen"
+    ]
+  },
+  "ui": {
+    "inputHeading": "Base64-Eingabe",
+    "clearInputTitle": "Eingabe leeren",
+    "textareaPlaceholder": "Base64-kodierte PDF-Daten hier einfügen...",
+    "dataUrlPrefixDetected": "Data-URL-Präfix erkannt - wird automatisch entfernt",
+    "validBase64Format": "Gültiges Base64-Format • Geschätzte Größe:",
+    "invalidBase64Format": "Ungültiges Base64-Format",
+    "outputFilenameLabel": "Ausgabedateiname:",
+    "convertingButton": "Konvertierung läuft...",
+    "convertToPdfButton": "In PDF konvertieren",
+    "resultHeading": "PDF zum Herunterladen bereit",
+    "conversionSuccessful": "Konvertierung erfolgreich",
+    "fileSizeLabel": "Dateigröße:",
+    "fileNameLabel": "Dateiname:",
+    "pdfValidationLabel": "PDF-Validierung:",
+    "validPdfHeader": "Gültiger PDF-Header",
+    "noPdfHeaderFound": "Kein PDF-Header gefunden",
+    "downloadPdfButton": "PDF herunterladen",
+    "copyFilenameButton": "Dateiname kopieren",
+    "copiedButton": "Kopiert!",
+    "pdfPreviewHeading": "PDF-Vorschau",
+    "hidePreviewButton": "Vorschau ausblenden",
+    "showPreviewButton": "Vorschau anzeigen",
+    "unknownFileSize": "Unbekannt"
   }
 }

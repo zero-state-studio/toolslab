@@ -31,6 +31,7 @@ import { useScrollToResult } from '@/lib/hooks/useScrollToResult';
 
 interface Base64ToWebpToolProps {
   categoryColor: string;
+  dictionary?: any;
 }
 
 const RELATED_TOOLS = [
@@ -41,7 +42,9 @@ const RELATED_TOOLS = [
 
 export default function Base64ToWebpTool({
   categoryColor,
+  dictionary,
 }: Base64ToWebpToolProps) {
+  const ui = dictionary?.tools?.['base64-to-webp']?.ui ?? {};
   const [input, setInput] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -244,7 +247,7 @@ export default function Base64ToWebpTool({
       {/* Cross-tool navigation */}
       <div className="flex flex-wrap items-center gap-2 text-sm">
         <span className="text-gray-500 dark:text-gray-400">
-          Also convert to:
+          {ui.alsoConvertTo || 'Also convert to:'}
         </span>
         {RELATED_TOOLS.map((tool) => (
           <Link
@@ -265,7 +268,7 @@ export default function Base64ToWebpTool({
               htmlFor="base64-input"
               className="text-sm font-medium text-gray-900 dark:text-white"
             >
-              Base64 String
+              {ui.inputHeading || 'Base64 String'}
             </label>
             {input && (
               <span className="text-xs text-gray-400 dark:text-gray-500">
@@ -288,7 +291,7 @@ export default function Base64ToWebpTool({
               id="base64-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Paste Base64 string here, or drag & drop an image / .txt file..."
+              placeholder={ui.textareaPlaceholder || 'Paste Base64 string here, or drag & drop an image / .txt file...'}
               rows={4}
               className="w-full rounded-lg border border-gray-200 p-4 font-mono text-sm leading-relaxed [word-break:break-all] focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
               spellCheck={false}
@@ -297,7 +300,7 @@ export default function Base64ToWebpTool({
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-lg">
                 <div className="flex items-center gap-2 font-medium text-blue-600 dark:text-blue-400">
                   <Upload className="h-5 w-5" />
-                  Drop file here
+                  {ui.dropFileHere || 'Drop file here'}
                 </div>
               </div>
             )}
@@ -309,7 +312,7 @@ export default function Base64ToWebpTool({
                 <div className="flex items-center gap-2 text-sm">
                   <Check className="h-4 w-4 shrink-0 text-green-500" />
                   <span className="text-green-600 dark:text-green-400">
-                    Valid Base64
+                    {ui.validBase64 || 'Valid Base64'}
                     {validationInfo.estimatedSize > 0 && (
                       <span className="ml-2 text-gray-500">
                         (~{formatFileSize(validationInfo.estimatedSize)})
@@ -324,7 +327,7 @@ export default function Base64ToWebpTool({
                 <div className="flex items-center gap-2 text-sm">
                   <AlertCircle className="h-4 w-4 shrink-0 text-amber-500" />
                   <span className="text-amber-600 dark:text-amber-400">
-                    Invalid Base64 format
+                    {ui.invalidBase64Format || 'Invalid Base64 format'}
                   </span>
                 </div>
               )}
@@ -332,8 +335,7 @@ export default function Base64ToWebpTool({
                 <div className="flex items-center gap-2 text-sm">
                   <AlertCircle className="h-4 w-4 shrink-0 text-amber-500" />
                   <span className="text-amber-600 dark:text-amber-400">
-                    Input appears to be {formatMismatch} — you are on the WebP
-                    converter
+                    {ui.formatMismatchPrefix || 'Input appears to be'} {formatMismatch} {ui.formatMismatchSuffix || '— you are on the WebP converter'}
                   </span>
                 </div>
               )}
@@ -346,7 +348,7 @@ export default function Base64ToWebpTool({
             onClick={handleClear}
             className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-800"
           >
-            Clear
+            {ui.clearButton || 'Clear'}
           </button>
         )}
       </div>
@@ -356,7 +358,7 @@ export default function Base64ToWebpTool({
         <div className="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
           <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
           <div>
-            <p className="font-medium text-red-900 dark:text-red-200">Error</p>
+            <p className="font-medium text-red-900 dark:text-red-200">{ui.errorHeading || 'Error'}</p>
             <p className="mt-1 text-sm text-red-700 dark:text-red-300">
               {error}
             </p>
@@ -373,7 +375,7 @@ export default function Base64ToWebpTool({
           <div className="flex items-center justify-between">
             <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
               <Check className="h-5 w-5 text-green-500" />
-              WebP Ready
+              {ui.resultHeading || 'WebP Ready'}
             </h3>
             <button
               onClick={() => setShowPreview(!showPreview)}
@@ -382,12 +384,12 @@ export default function Base64ToWebpTool({
               {showPreview ? (
                 <>
                   <EyeOff className="h-4 w-4" />
-                  Hide Preview
+                  {ui.hidePreviewButton || 'Hide Preview'}
                 </>
               ) : (
                 <>
                   <Eye className="h-4 w-4" />
-                  Show Preview
+                  {ui.showPreviewButton || 'Show Preview'}
                 </>
               )}
             </button>
@@ -397,7 +399,7 @@ export default function Base64ToWebpTool({
           <div className="grid gap-3 rounded-lg bg-gray-50 p-4 dark:bg-gray-700/50 sm:grid-cols-2">
             <div className="flex items-center gap-2 text-sm">
               <FileCheck className="h-4 w-4 text-gray-500" />
-              <span className="text-gray-600 dark:text-gray-400">Size:</span>
+              <span className="text-gray-600 dark:text-gray-400">{ui.sizeLabel || 'Size:'}</span>
               <span className="font-medium text-gray-900 dark:text-white">
                 {formatFileSize(result.fileSize || 0)}
               </span>
@@ -406,7 +408,7 @@ export default function Base64ToWebpTool({
               <div className="flex items-center gap-2 text-sm">
                 <ImageIcon className="h-4 w-4 text-gray-500" />
                 <span className="text-gray-600 dark:text-gray-400">
-                  Dimensions:
+                  {ui.dimensionsLabel || 'Dimensions:'}
                 </span>
                 <span className="font-medium text-gray-900 dark:text-white">
                   {result.metadata.width} × {result.metadata.height}
@@ -417,7 +419,7 @@ export default function Base64ToWebpTool({
               <div className="flex items-center gap-2 text-sm">
                 <Info className="h-4 w-4 text-gray-500" />
                 <span className="text-gray-600 dark:text-gray-400">
-                  Compression:
+                  {ui.compressionLabel || 'Compression:'}
                 </span>
                 <span className="font-medium text-gray-900 dark:text-white">
                   {result.metadata.compressionType}
@@ -428,10 +430,10 @@ export default function Base64ToWebpTool({
               <div className="flex items-center gap-2 text-sm">
                 <Info className="h-4 w-4 text-gray-500" />
                 <span className="text-gray-600 dark:text-gray-400">
-                  Alpha:
+                  {ui.alphaLabel || 'Alpha:'}
                 </span>
                 <span className="font-medium text-gray-900 dark:text-white">
-                  {result.metadata.hasAlpha ? 'Yes' : 'No'}
+                  {result.metadata.hasAlpha ? (ui.yes || 'Yes') : (ui.no || 'No')}
                 </span>
               </div>
             )}
@@ -442,7 +444,7 @@ export default function Base64ToWebpTool({
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-medium text-gray-900 dark:text-white">
-                  Preview
+                  {ui.previewHeading || 'Preview'}
                 </h4>
                 <a
                   href={previewUrl}
@@ -451,7 +453,7 @@ export default function Base64ToWebpTool({
                   className="flex items-center gap-1.5 text-xs text-gray-500 transition-colors hover:text-gray-700 dark:hover:text-gray-300"
                 >
                   <ExternalLink className="h-3.5 w-3.5" />
-                  Open in new tab
+                  {ui.openInNewTab || 'Open in new tab'}
                 </a>
               </div>
               <div
@@ -466,20 +468,20 @@ export default function Base64ToWebpTool({
                 {imageLoading && !imageError && (
                   <div className="flex items-center gap-2 py-8 text-gray-500">
                     <Loader2 className="h-5 w-5 animate-spin" />
-                    <span>Loading preview...</span>
+                    <span>{ui.loadingPreview || 'Loading preview...'}</span>
                   </div>
                 )}
                 {imageError && (
                   <div className="flex items-center gap-2 py-8 text-red-500">
                     <AlertCircle className="h-5 w-5" />
-                    <span>Failed to load preview</span>
+                    <span>{ui.failedToLoadPreview || 'Failed to load preview'}</span>
                   </div>
                 )}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   key={previewUrl}
                   src={previewUrl}
-                  alt="WebP Preview"
+                  alt={ui.imageAlt || 'WebP Preview'}
                   className="max-h-[400px] max-w-full border border-gray-300 dark:border-gray-600"
                   style={{ display: imageLoading ? 'none' : 'block' }}
                   onLoad={(e) => {
@@ -508,7 +510,7 @@ export default function Base64ToWebpTool({
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <label className="shrink-0 text-sm font-medium text-gray-700 dark:text-gray-300">
-                Filename:
+                {ui.filenameLabel || 'Filename:'}
               </label>
               <input
                 type="text"
@@ -524,7 +526,7 @@ export default function Base64ToWebpTool({
                 style={{ backgroundColor: categoryColor }}
               >
                 <Download className="h-4 w-4" />
-                Download WebP
+                {ui.downloadButton || 'Download WebP'}
               </button>
               <button
                 onClick={handleCopyDataUrl}
@@ -533,12 +535,12 @@ export default function Base64ToWebpTool({
                 {copied ? (
                   <>
                     <Check className="h-4 w-4 text-green-500" />
-                    Copied!
+                    {ui.copiedButton || 'Copied!'}
                   </>
                 ) : (
                   <>
                     <Copy className="h-4 w-4" />
-                    Copy Data URL
+                    {ui.copyDataUrlButton || 'Copy Data URL'}
                   </>
                 )}
               </button>

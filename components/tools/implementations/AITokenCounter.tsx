@@ -33,7 +33,9 @@ import {
   type OptimizationResult,
 } from '@/lib/tools/ai-token-counter';
 
-interface AITokenCounterProps extends BaseToolProps {}
+interface AITokenCounterProps extends BaseToolProps {
+  dictionary?: any;
+}
 
 type ViewMode = 'single' | 'compare' | 'optimize';
 
@@ -46,7 +48,8 @@ interface HistoryItem {
   timestamp: number;
 }
 
-export default function AITokenCounter({}: AITokenCounterProps) {
+export default function AITokenCounter({ dictionary }: AITokenCounterProps) {
+  const ui = dictionary?.tools?.['ai-prompt-token-counter']?.ui ?? {};
   const { copy: copyToClipboard } = useCopy();
   const isHydrated = useHydration();
   const { addToHistory } = useToolStore();
@@ -337,11 +340,11 @@ export default function AITokenCounter({}: AITokenCounterProps) {
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Prompt / Text Input
+            {ui.promptTextInput || 'Prompt / Text Input'}
           </label>
           <div className="text-xs text-gray-500 dark:text-gray-400">
-            {charCount.toLocaleString()} characters ·{' '}
-            {wordCount.toLocaleString()} words
+            {charCount.toLocaleString()} {ui.characters || 'characters'} ·{' '}
+            {wordCount.toLocaleString()} {ui.words || 'words'}
           </div>
         </div>
 
@@ -354,7 +357,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
             ref={textareaRef}
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            placeholder="Enter your prompt or paste text here...&#10;&#10;Example: Write a detailed blog post about machine learning algorithms, including explanations of supervised and unsupervised learning, common algorithms like linear regression and neural networks, and practical applications."
+            placeholder={ui.textareaPlaceholder || "Enter your prompt or paste text here...\n\nExample: Write a detailed blog post about machine learning algorithms, including explanations of supervised and unsupervised learning, common algorithms like linear regression and neural networks, and practical applications."}
             className="min-h-[300px] w-full resize-y rounded-lg border border-gray-300 bg-white px-4 py-3 font-mono text-sm text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-500"
             style={{ maxHeight: '600px' }}
           />
@@ -362,8 +365,8 @@ export default function AITokenCounter({}: AITokenCounterProps) {
             <button
               onClick={() => fileInputRef.current?.click()}
               className="rounded-lg bg-gray-100 p-2 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
-              title="Upload file"
-              aria-label="Upload file"
+              title={ui.uploadFileTitle || 'Upload file'}
+              aria-label={ui.uploadFileTitle || 'Upload file'}
             >
               <Upload className="h-4 w-4" />
             </button>
@@ -371,8 +374,8 @@ export default function AITokenCounter({}: AITokenCounterProps) {
               <button
                 onClick={handleClear}
                 className="rounded-lg bg-gray-100 p-2 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
-                title="Clear all"
-                aria-label="Clear all"
+                title={ui.clearAllTitle || 'Clear all'}
+                aria-label={ui.clearAllTitle || 'Clear all'}
               >
                 <Trash2 className="h-4 w-4" />
               </button>
@@ -392,7 +395,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
       <div className="grid gap-4 md:grid-cols-2">
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-            AI Model
+            {ui.aiModelLabel || 'AI Model'}
           </label>
           <select
             value={selectedModel}
@@ -410,7 +413,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
 
         <div>
           <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
-            Output Token Ratio: {outputTokenRatio.toFixed(1)}x
+            {ui.outputTokenRatioLabel || 'Output Token Ratio:'} {outputTokenRatio.toFixed(1)}x
           </label>
           <input
             type="range"
@@ -422,7 +425,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
             className="w-full"
           />
           <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-            Expected output tokens relative to input (for cost estimation)
+            {ui.outputTokenRatioHint || 'Expected output tokens relative to input (for cost estimation)'}
           </div>
         </div>
       </div>
@@ -439,7 +442,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
             }`}
           >
             <Calculator className="mr-2 inline h-4 w-4" />
-            Analysis
+            {ui.tabAnalysis || 'Analysis'}
           </button>
           <button
             onClick={() => setViewMode('compare')}
@@ -450,7 +453,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
             }`}
           >
             <BarChart3 className="mr-2 inline h-4 w-4" />
-            Compare Models
+            {ui.tabCompareModels || 'Compare Models'}
           </button>
           <button
             onClick={handleOptimize}
@@ -461,7 +464,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
             }`}
           >
             <Sparkles className="mr-2 inline h-4 w-4" />
-            Optimize
+            {ui.tabOptimize || 'Optimize'}
           </button>
         </div>
       )}
@@ -480,7 +483,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       {analysis.tokens.toLocaleString()}
                     </div>
                     <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                      Tokens
+                      {ui.statTokens || 'Tokens'}
                     </div>
                   </div>
                   <div className="text-center">
@@ -488,7 +491,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       {analysis.characters.toLocaleString()}
                     </div>
                     <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                      Characters
+                      {ui.statCharacters || 'Characters'}
                     </div>
                   </div>
                   <div className="text-center">
@@ -496,7 +499,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       {analysis.words.toLocaleString()}
                     </div>
                     <div className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                      Words
+                      {ui.statWords || 'Words'}
                     </div>
                   </div>
                 </div>
@@ -505,7 +508,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                 <div className="mt-6">
                   <div className="mb-2 flex justify-between text-sm">
                     <span className="text-gray-600 dark:text-gray-400">
-                      Context Window Usage
+                      {ui.contextWindowUsage || 'Context Window Usage'}
                     </span>
                     <span className="font-medium">
                       {analysis.percentOfContext.toFixed(1)}%
@@ -526,7 +529,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                     />
                   </div>
                   <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                    {analysis.remainingTokens.toLocaleString()} tokens remaining
+                    {analysis.remainingTokens.toLocaleString()} {ui.tokensRemaining || 'tokens remaining'}
                     of {analysis.model.contextWindow.toLocaleString()}
                   </div>
                 </div>
@@ -535,22 +538,22 @@ export default function AITokenCounter({}: AITokenCounterProps) {
               {/* Statistics Grid */}
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <StatCard
-                  label="Token/Word Ratio"
+                  label={ui.statTokenWordRatio || 'Token/Word Ratio'}
                   value={analysis.tokenToWordRatio.toFixed(2)}
                   icon={<Calculator className="h-5 w-5" />}
                 />
                 <StatCard
-                  label="Lines"
+                  label={ui.statLines || 'Lines'}
                   value={analysis.lines.toString()}
                   icon={<FileText className="h-5 w-5" />}
                 />
                 <StatCard
-                  label="Tokenizer"
+                  label={ui.statTokenizer || 'Tokenizer'}
                   value={analysis.model.tokenizer}
                   icon={<Info className="h-5 w-5" />}
                 />
                 <StatCard
-                  label="Context Limit"
+                  label={ui.statContextLimit || 'Context Limit'}
                   value={`${(analysis.model.contextWindow / 1000).toFixed(0)}k`}
                   icon={<BarChart3 className="h-5 w-5" />}
                 />
@@ -560,7 +563,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
               <div className="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
                 <h3 className="mb-4 flex items-center text-lg font-semibold text-gray-900 dark:text-white">
                   <DollarSign className="mr-2 h-5 w-5" />
-                  Cost Estimation
+                  {ui.costEstimation || 'Cost Estimation'}
                 </h3>
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   <div>
@@ -568,7 +571,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       ${analysis.costEstimate.totalCost.toFixed(4)}
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">
-                      Per Request
+                      {ui.perRequest || 'Per Request'}
                     </div>
                   </div>
                   <div>
@@ -576,7 +579,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       ${analysis.costEstimate.costPer100Requests.toFixed(2)}
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">
-                      Per 100 Requests
+                      {ui.per100Requests || 'Per 100 Requests'}
                     </div>
                   </div>
                   <div>
@@ -584,7 +587,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       ${analysis.costEstimate.costPer1000Requests.toFixed(2)}
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">
-                      Per 1,000 Requests
+                      {ui.per1000Requests || 'Per 1,000 Requests'}
                     </div>
                   </div>
                   <div>
@@ -592,12 +595,12 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       ${analysis.costEstimate.costPer10000Requests.toFixed(2)}
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">
-                      Per 10,000 Requests
+                      {ui.per10000Requests || 'Per 10,000 Requests'}
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
-                  Pricing as of {getPricingUpdateDate()} • Input: $
+                  {ui.pricingAsOf || 'Pricing as of'} {getPricingUpdateDate()} • Input: $
                   {analysis.model.pricing.input}/1M tokens • Output: $
                   {analysis.model.pricing.output}/1M tokens
                 </div>
@@ -613,7 +616,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                         <AlertTriangle className="mr-3 h-5 w-5 text-orange-600 dark:text-orange-400" />
                         <div>
                           <h4 className="font-semibold text-orange-900 dark:text-orange-100">
-                            Warnings
+                            {ui.warnings || 'Warnings'}
                           </h4>
                           <ul className="mt-2 space-y-1 text-sm text-orange-800 dark:text-orange-200">
                             {analysis.warnings.map((warning, idx) => (
@@ -631,7 +634,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                         <Sparkles className="mr-3 h-5 w-5 text-blue-600 dark:text-blue-400" />
                         <div>
                           <h4 className="font-semibold text-blue-900 dark:text-blue-100">
-                            Optimization Suggestions
+                            {ui.optimizationSuggestions || 'Optimization Suggestions'}
                           </h4>
                           <ul className="mt-2 space-y-1 text-sm text-blue-800 dark:text-blue-200">
                             {analysis.suggestions.map((suggestion, idx) => (
@@ -653,12 +656,12 @@ export default function AITokenCounter({}: AITokenCounterProps) {
               <table className="w-full text-sm">
                 <thead className="bg-gray-50 dark:bg-gray-800">
                   <tr>
-                    <th className="px-4 py-3 text-left">Model</th>
-                    <th className="px-4 py-3 text-right">Tokens</th>
-                    <th className="px-4 py-3 text-right">Context</th>
-                    <th className="px-4 py-3 text-right">Usage %</th>
-                    <th className="px-4 py-3 text-right">Cost</th>
-                    <th className="px-4 py-3 text-center">Efficiency</th>
+                    <th className="px-4 py-3 text-left">{ui.tableHeaderModel || 'Model'}</th>
+                    <th className="px-4 py-3 text-right">{ui.tableHeaderTokens || 'Tokens'}</th>
+                    <th className="px-4 py-3 text-right">{ui.tableHeaderContext || 'Context'}</th>
+                    <th className="px-4 py-3 text-right">{ui.tableHeaderUsage || 'Usage %'}</th>
+                    <th className="px-4 py-3 text-right">{ui.tableHeaderCost || 'Cost'}</th>
+                    <th className="px-4 py-3 text-center">{ui.tableHeaderEfficiency || 'Efficiency'}</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -721,7 +724,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       {optimization.tokensSaved.toLocaleString()}
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">
-                      Tokens Saved
+                      {ui.tokensSaved || 'Tokens Saved'}
                     </div>
                   </div>
                   <div className="text-center">
@@ -729,7 +732,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       {optimization.percentageReduction.toFixed(1)}%
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">
-                      Reduction
+                      {ui.reduction || 'Reduction'}
                     </div>
                   </div>
                   <div className="text-center">
@@ -737,14 +740,14 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                       {optimization.changes.length}
                     </div>
                     <div className="text-sm text-gray-600 dark:text-gray-400">
-                      Optimizations
+                      {ui.optimizations || 'Optimizations'}
                     </div>
                   </div>
                 </div>
 
                 {optimization.changes.length > 0 && (
                   <div className="mt-4">
-                    <h4 className="mb-2 font-semibold">Changes Applied:</h4>
+                    <h4 className="mb-2 font-semibold">{ui.changesApplied || 'Changes Applied:'}</h4>
                     <ul className="space-y-1 text-sm">
                       {optimization.changes.map((change, idx) => (
                         <li key={idx}>• {change}</li>
@@ -759,13 +762,13 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                     className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700"
                   >
                     <Check className="h-4 w-4" />
-                    Apply Optimization
+                    {ui.applyOptimization || 'Apply Optimization'}
                   </button>
                   <button
                     onClick={() => setViewMode('single')}
                     className="rounded-lg bg-gray-300 px-4 py-2 hover:bg-gray-400 dark:bg-gray-700 dark:hover:bg-gray-600"
                   >
-                    Cancel
+                    {ui.cancel || 'Cancel'}
                   </button>
                 </div>
               </div>
@@ -773,9 +776,9 @@ export default function AITokenCounter({}: AITokenCounterProps) {
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
                   <h4 className="mb-2 font-semibold text-gray-700 dark:text-gray-300">
-                    Original (
+                    {ui.originalLabel || 'Original ('}
                     {analyzePrompt(optimization.original, selectedModel).tokens}{' '}
-                    tokens)
+                    {ui.tokensUnit || 'tokens)'}
                   </h4>
                   <div className="h-48 overflow-y-auto rounded-lg border border-gray-300 bg-gray-50 p-3 text-sm dark:border-gray-600 dark:bg-gray-800">
                     {optimization.original}
@@ -783,12 +786,12 @@ export default function AITokenCounter({}: AITokenCounterProps) {
                 </div>
                 <div>
                   <h4 className="mb-2 font-semibold text-gray-700 dark:text-gray-300">
-                    Optimized (
+                    {ui.optimizedLabel || 'Optimized ('}
                     {
                       analyzePrompt(optimization.optimized, selectedModel)
                         .tokens
                     }{' '}
-                    tokens)
+                    {ui.tokensUnit || 'tokens)'}
                   </h4>
                   <div className="h-48 overflow-y-auto rounded-lg border border-green-300 bg-green-50 p-3 text-sm dark:border-green-600 dark:bg-green-900">
                     {optimization.optimized}
@@ -805,7 +808,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
               className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
             >
               <Download className="h-4 w-4" />
-              Export JSON
+              {ui.exportJson || 'Export JSON'}
             </button>
             <button
               onClick={() =>
@@ -818,7 +821,7 @@ export default function AITokenCounter({}: AITokenCounterProps) {
               ) : (
                 <Copy className="h-4 w-4" />
               )}
-              Copy Results
+              {ui.copyResults || 'Copy Results'}
             </button>
           </div>
         </div>
@@ -833,13 +836,13 @@ export default function AITokenCounter({}: AITokenCounterProps) {
               className="flex items-center gap-2 font-semibold text-gray-900 dark:text-white"
             >
               <RefreshCw className="h-4 w-4" />
-              Recent Prompts ({history.length})
+              {ui.recentPrompts || 'Recent Prompts'} ({history.length})
             </button>
             <button
               onClick={handleClearHistory}
               className="text-sm text-red-600 hover:text-red-700 dark:text-red-400"
             >
-              <Trash2 className="inline h-4 w-4" /> Clear
+              <Trash2 className="inline h-4 w-4" /> {ui.clearHistory || 'Clear'}
             </button>
           </div>
 

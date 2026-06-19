@@ -82,5 +82,35 @@
     "description": "Binär in ASCII-Text, Text in Binär, Hex in Text und mehr konvertieren. Unterstützung für UTF-8 mit sofortiger Konvertierung. Kostenloses, sicheres Browser-Tool."
   },
   "tagline": "Konvertiere Binar zu Text und dekodiere Binardaten sofort",
-  "pageDescription": "Konvertiere Binarzahlen in lesbaren Text und kodiere Text in Binardarstellung. Unterstutzt ASCII, UTF-8 und Hexadezimalformate. Enthalt bidirektionale Konvertierung zwischen Binar, Hex und Text mit automatischer Erkennung, Byte-Statistiken und sofortigen Ergebnissen. 100% browserbasiert ohne Server-Uploads."
+  "pageDescription": "Konvertiere Binarzahlen in lesbaren Text und kodiere Text in Binardarstellung. Unterstutzt ASCII, UTF-8 und Hexadezimalformate. Enthalt bidirektionale Konvertierung zwischen Binar, Hex und Text mit automatischer Erkennung, Byte-Statistiken und sofortigen Ergebnissen. 100% browserbasiert ohne Server-Uploads.",
+  "ui": {
+    "conversionType": "Konvertierungstyp",
+    "binaryToText": "Binary zu Text",
+    "textToBinary": "Text zu Binary",
+    "hexToText": "Hex zu Text",
+    "textToHex": "Text zu Hex",
+    "binaryToHex": "Binary zu Hex",
+    "hexToBinary": "Hex zu Binary",
+    "spaceSeparatedOutput": "Leerzeichen-getrennte Ausgabe",
+    "inputLabel": "Eingabe",
+    "placeholderBinary": "Binary eingeben (z. B. 01001000 01100101 01101100 01101100 01101111)",
+    "placeholderHex": "Hexadezimal eingeben (z. B. 48 65 6C 6C 6F oder 0x48656C6C6F)",
+    "placeholderText": "Text zum Konvertieren eingeben...",
+    "convertButton": "Konvertieren",
+    "clearButton": "Löschen",
+    "outputLabel": "Ausgabe",
+    "swapTitle": "Eingabe/Ausgabe tauschen",
+    "copyTitle": "In Zwischenablage kopieren",
+    "outputPlaceholder": "Die konvertierte Ausgabe erscheint hier...",
+    "quickExamples": "Schnellbeispiele",
+    "infoTitle": "Über Binary, Hex & Text",
+    "infoBinary": "Zahlensystem zur Basis 2, das nur 0 und 1 verwendet. Jedes Zeichen wird durch 8 Bit (1 Byte) dargestellt.",
+    "infoHex": "Zahlensystem zur Basis 16 mit den Ziffern 0-9 und A-F. Jedes Paar steht für 1 Byte (z. B. 48 = \"H\").",
+    "infoAscii": "Standardkodierung, bei der jedes Zeichen einer Zahl von 0 bis 127 zugeordnet ist.",
+    "infoUtf8": "Variable-Width-Kodierung, die alle Unicode-Zeichen unterstützt (1-4 Bytes pro Zeichen).",
+    "exampleHelloWorldBinary": "Hello World (Binary)",
+    "exampleHelloText": "Hello (Text)",
+    "exampleHelloHex": "Hello (Hex)",
+    "exampleAsciiArt": "ASCII Art"
+  }
 }

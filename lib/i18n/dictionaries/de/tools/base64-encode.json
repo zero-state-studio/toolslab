@@ -81,5 +81,35 @@
     "description": "Text und Dateien in Base64 kodieren oder Base64-Zeichenketten online kostenlos dekodieren. Unterstützt UTF-8, Binärdateien bis 50MB. Sicher, im Browser, ohne Anmeldung."
   },
   "tagline": "Base64-Dateien und -Text sofort kodieren und dekodieren",
-  "pageDescription": "Kostenloser Base64-Encoder und -Decoder für Text, Bilder und Dateien bis 50MB. Perfekt für Webentwickler, die Bilder in HTML/CSS einbetten, API-Datenübertragung und E-Mail-Anhänge. Drag-and-Drop-Oberfläche mit sicherer browserbasierter Verarbeitung. Ohne Anmeldung — dekodierte Dateien direkt herunterladen oder kodierte Zeichenketten in die Zwischenablage kopieren."
+  "pageDescription": "Kostenloser Base64-Encoder und -Decoder für Text, Bilder und Dateien bis 50MB. Perfekt für Webentwickler, die Bilder in HTML/CSS einbetten, API-Datenübertragung und E-Mail-Anhänge. Drag-and-Drop-Oberfläche mit sicherer browserbasierter Verarbeitung. Ohne Anmeldung — dekodierte Dateien direkt herunterladen oder kodierte Zeichenketten in die Zwischenablage kopieren.",
+  "ui": {
+    "modeAuto": "Auto",
+    "modeEncode": "Kodieren",
+    "modeDecode": "Dekodieren",
+    "statusEncoding": "Kodierung",
+    "statusDecoding": "Dekodierung",
+    "ariaToggleOptions": "Optionen ein-/ausblenden",
+    "optionsTitle": "Optionen",
+    "optionUrlSafe": "URL-sicher (- _ statt + /)",
+    "optionLineBreaks": "Zeilenumbrüche (MIME-Format)",
+    "sampleText": "Beispieltext",
+    "sampleJwtPayload": "JWT-Payload",
+    "sampleDataUrl": "Data URL",
+    "uploadDropText": "Datei hierher ziehen oder klicken zum Hochladen",
+    "uploadMaxSize": "Maximale Dateigröße: 10 MB",
+    "labelInput": "Eingabe",
+    "inputPlaceholder": "Text zum Kodieren oder Base64-Zeichenkette zum Dekodieren eingeben...",
+    "btnProcessing": "Verarbeitung...",
+    "btnEncode": "Kodieren",
+    "btnDecode": "Dekodieren",
+    "btnClear": "Löschen",
+    "suggestionsTitle": "Vorschläge",
+    "linkOpenTool": "Tool öffnen",
+    "labelOutput": "Ausgabe",
+    "btnCopy": "Kopieren",
+    "btnCopied": "Kopiert!",
+    "btnDownload": "Herunterladen",
+    "imagePreviewLabel": "Bildvorschau",
+    "infoBoxText": "Base64-Kodierung wandelt Binärdaten in das ASCII-Textformat um. Sie wird häufig verwendet, um Bilder in HTML/CSS einzubetten, Daten für APIs zu kodieren und Binärdaten in textbasierten Protokollen zu verarbeiten."
+  }
 }

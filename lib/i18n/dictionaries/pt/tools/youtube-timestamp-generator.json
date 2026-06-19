@@ -8,20 +8,6 @@
   },
   "tagline": "Gere capítulos e timestamps do YouTube com criação automática de links e conversão de tempo",
   "pageDescription": "Gerador profissional de timestamps do YouTube para criadores de conteúdo e editores de vídeo — grátis, sem cadastro. Crie timestamps formatados para descrições de vídeo, gere Capítulos do YouTube para navegação melhorada e melhor SEO, converta entre formatos de tempo instantaneamente. Adicione timestamps com rótulos, importe capítulos existentes e exporte em múltiplos formatos. Gere links de timestamp clicáveis quando você fornece uma URL de vídeo. O conversor de tempo integrado lida com formatos HH:MM:SS, MM:SS e segundos. Todo o processamento acontece no seu navegador para privacidade completa — nenhum dado de vídeo é armazenado ou carregado.",
-  "longTailKeywords": [
-    "gerador timestamps YouTube online grátis",
-    "como adicionar capítulos YouTube descrição vídeo",
-    "gerador capítulos YouTube sem cadastro",
-    "criar links timestamp YouTube clicáveis",
-    "formato timestamps YouTube copiar colar descrição",
-    "ferramenta capítulos YouTube para criadores conteúdo",
-    "conversor tempo segundos MM:SS YouTube grátis",
-    "como criar capítulos YouTube para SEO vídeo",
-    "melhor gerador capítulos YouTube gratuito",
-    "importar capítulos YouTube de arquivo de texto",
-    "gerador links timestamp YouTube compartilhar",
-    "timestamps YouTube para episódios podcast"
-  ],
   "videoUrlPlaceholder": "https://www.youtube.com/watch?v=...",
   "addTimestamp": "Adicionar Timestamp",
   "time": "Tempo",
@@ -139,5 +125,8 @@
         "description": "Cancelar edição"
       }
     ]
-  }
+  },
+  "actions": "Ações",
+  "converterPlaceholder": "00:00 ou 90",
+  "converterHint": "MM:SS, HH:MM:SS, ou segundos"
 }

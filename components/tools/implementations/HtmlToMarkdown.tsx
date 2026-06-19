@@ -41,6 +41,7 @@ import {
 
 interface HtmlToMarkdownProps {
   categoryColor: string;
+  dictionary?: any;
 }
 
 type ConversionMode = 'html-to-md' | 'md-to-html';
@@ -87,7 +88,8 @@ const MARKDOWN_EXAMPLE = [
   FENCE,
 ].join('\n');
 
-export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
+export default function HtmlToMarkdown({ categoryColor, dictionary }: HtmlToMarkdownProps) {
+  const ui = dictionary?.tools?.['html-to-markdown']?.ui ?? {};
   const isHydrated = useHydration();
   const { addToHistory } = useToolStore();
   const [mode, setMode] = useState<ConversionMode>('html-to-md');
@@ -290,7 +292,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
             onClick={() => handleModeChange('html-to-md')}
             className="min-w-[140px]"
           >
-            HTML → Markdown
+            {ui.modeHtmlToMd || 'HTML → Markdown'}
           </Button>
           <Button
             variant={mode === 'md-to-html' ? 'default' : 'outline'}
@@ -298,7 +300,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
             onClick={() => handleModeChange('md-to-html')}
             className="min-w-[140px]"
           >
-            Markdown → HTML
+            {ui.modeMdToHtml || 'Markdown → HTML'}
           </Button>
         </div>
 
@@ -309,7 +311,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
             onClick={() => setShowOptions(!showOptions)}
           >
             <Settings className="mr-1 h-4 w-4" />
-            Options
+            {ui.optionsButton || 'Options'}
             {showOptions ? (
               <ChevronUp className="ml-1 h-3 w-3" />
             ) : (
@@ -326,7 +328,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
               onClick={() => fileInputRef.current?.click()}
             >
               <Upload className="mr-1 h-4 w-4" />
-              Upload HTML
+              {ui.uploadHtmlButton || 'Upload HTML'}
             </Button>
             <input
               ref={fileInputRef}
@@ -341,14 +343,14 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
               onClick={() => setShowUrlInput((v) => !v)}
             >
               <Link className="mr-1 h-4 w-4" />
-              From URL
+              {ui.fromUrlButton || 'From URL'}
             </Button>
           </>
         )}
 
         <Button variant="ghost" size="sm" onClick={handleLoadExample}>
           <RefreshCw className="mr-1 h-4 w-4" />
-          Load Example
+          {ui.loadExampleButton || 'Load Example'}
         </Button>
       </div>
 
@@ -380,7 +382,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
             ) : (
               <Link className="mr-1 h-4 w-4" />
             )}
-            {isFetchingUrl ? 'Fetching…' : 'Fetch HTML'}
+            {isFetchingUrl ? (ui.fetchingLabel || 'Fetching…') : (ui.fetchHtmlButton || 'Fetch HTML')}
           </Button>
           <Button
             variant="ghost"
@@ -400,7 +402,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
       {mode === 'html-to-md' && showOptions && (
         <div className="grid grid-cols-1 gap-4 rounded-lg border bg-muted/50 p-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-2">
-            <Label htmlFor="heading-style">Heading Style</Label>
+            <Label htmlFor="heading-style">{ui.headingStyleLabel || 'Heading Style'}</Label>
             <Select
               value={options.headingStyle}
               onValueChange={(v) =>
@@ -421,7 +423,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="bullet-marker">Bullet Marker</Label>
+            <Label htmlFor="bullet-marker">{ui.bulletMarkerLabel || 'Bullet Marker'}</Label>
             <Select
               value={options.bulletListMarker}
               onValueChange={(v) =>
@@ -443,7 +445,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="code-style">Code Block Style</Label>
+            <Label htmlFor="code-style">{ui.codeBlockStyleLabel || 'Code Block Style'}</Label>
             <Select
               value={options.codeBlockStyle}
               onValueChange={(v) =>
@@ -464,7 +466,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="hr-style">Horizontal Rule</Label>
+            <Label htmlFor="hr-style">{ui.horizontalRuleLabel || 'Horizontal Rule'}</Label>
             <Select
               value={options.hr}
               onValueChange={(v) => setOptions((o) => ({ ...o, hr: v }))}
@@ -497,7 +499,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Label htmlFor="input-area">
-                {mode === 'html-to-md' ? 'HTML Input' : 'Markdown Input'}
+                {mode === 'html-to-md' ? (ui.htmlInputLabel || 'HTML Input') : (ui.markdownInputLabel || 'Markdown Input')}
               </Label>
               {fileName && (
                 <span className="flex items-center gap-1 rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground">
@@ -507,7 +509,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
               )}
             </div>
             <span className="text-xs text-muted-foreground">
-              {inputChars} chars · {inputLines} lines
+              {inputChars} {ui.charsLabel || 'chars'} · {inputLines} {ui.linesLabel || 'lines'}
             </span>
           </div>
           <Textarea
@@ -516,8 +518,8 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
             onChange={(e) => setInput(e.target.value)}
             placeholder={
               mode === 'html-to-md'
-                ? '<h1>Paste your HTML here...</h1>'
-                : '# Paste your Markdown here...'
+                ? (ui.htmlInputPlaceholder || '<h1>Paste your HTML here...</h1>')
+                : (ui.markdownInputPlaceholder || '# Paste your Markdown here...')
             }
             className="h-72 resize-none font-mono text-sm"
           />
@@ -527,7 +529,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
         <div className="space-y-2" ref={resultRef}>
           <div className="flex items-center justify-between">
             <Label htmlFor="output-area">
-              {mode === 'html-to-md' ? 'Markdown Output' : 'HTML Output'}
+              {mode === 'html-to-md' ? (ui.markdownOutputLabel || 'Markdown Output') : (ui.htmlOutputLabel || 'HTML Output')}
             </Label>
             <div className="flex items-center gap-2">
               {mode === 'md-to-html' && output && (
@@ -540,18 +542,18 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
                   {showPreview ? (
                     <>
                       <Code className="mr-1 h-3 w-3" />
-                      Code
+                      {ui.codeButton || 'Code'}
                     </>
                   ) : (
                     <>
                       <Eye className="mr-1 h-3 w-3" />
-                      Preview
+                      {ui.previewButton || 'Preview'}
                     </>
                   )}
                 </Button>
               )}
               <span className="text-xs text-muted-foreground">
-                {outputChars} chars · {outputLines} lines
+                {outputChars} {ui.charsLabel || 'chars'} · {outputLines} {ui.linesLabel || 'lines'}
               </span>
             </div>
           </div>
@@ -568,8 +570,8 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
               readOnly
               placeholder={
                 mode === 'html-to-md'
-                  ? '# Markdown output will appear here...'
-                  : '<p>HTML output will appear here...</p>'
+                  ? (ui.markdownOutputPlaceholder || '# Markdown output will appear here...')
+                  : (ui.htmlOutputPlaceholder || '<p>HTML output will appear here...</p>')
               }
               className="h-72 resize-none font-mono text-sm"
             />
@@ -588,7 +590,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
             ) : (
               <Copy className="mr-2 h-4 w-4" />
             )}
-            {copied ? 'Copied!' : 'Copy Output'}
+            {copied ? (ui.copiedLabel || 'Copied!') : (ui.copyOutputButton || 'Copy Output')}
           </Button>
         </div>
       </div>
@@ -602,7 +604,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
           size="sm"
         >
           <ArrowRightLeft className="mr-2 h-4 w-4" />
-          Swap
+          {ui.swapButton || 'Swap'}
         </Button>
 
         <Button
@@ -612,7 +614,7 @@ export default function HtmlToMarkdown({ categoryColor }: HtmlToMarkdownProps) {
           size="sm"
         >
           <X className="mr-2 h-4 w-4" />
-          Clear
+          {ui.clearButton || 'Clear'}
         </Button>
       </div>
     </div>

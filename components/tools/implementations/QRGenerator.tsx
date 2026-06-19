@@ -58,7 +58,27 @@ const contentTypeIcons: Record<QRCodeType, React.ElementType> = {
   crypto: Bitcoin,
 };
 
-export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
+export default function QRGenerator({
+  categoryColor,
+  dictionary,
+}: QRGeneratorProps) {
+  const ui = dictionary?.tools?.['qr-generator']?.ui ?? {};
+
+  // Localized labels for data-driven options (EN falls back to source data)
+  const sizePresetLabels: Record<string, string | undefined> = {
+    small: ui.sizePresetSmall,
+    medium: ui.sizePresetMedium,
+    large: ui.sizePresetLarge,
+    xlarge: ui.sizePresetXlarge,
+    print: ui.sizePresetPrint,
+  };
+  const errorCorrectionDescriptions: Record<string, string | undefined> = {
+    low: ui.errorCorrectionLow,
+    medium: ui.errorCorrectionMedium,
+    quartile: ui.errorCorrectionQuartile,
+    high: ui.errorCorrectionHigh,
+  };
+
   const { copy: copyToClipboard } = useCopy();
   const { addToHistory } = useToolStore();
 
@@ -364,7 +384,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
             onChange={(e) =>
               setContentData((prev) => ({ ...prev, text: e.target.value }))
             }
-            placeholder="Enter your text here..."
+            placeholder={ui.enterTextPlaceholder || 'Enter your text here...'}
             className="h-24 w-full resize-none rounded-md border border-gray-300 p-3 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
           />
         );
@@ -391,7 +411,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
               onChange={(e) =>
                 setContentData((prev) => ({ ...prev, ssid: e.target.value }))
               }
-              placeholder="Network Name (SSID)"
+              placeholder={ui.networkNamePlaceholder || 'Network Name (SSID)'}
               className="w-full rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <input
@@ -403,7 +423,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                   password: e.target.value,
                 }))
               }
-              placeholder="Password"
+              placeholder={ui.passwordPlaceholder || 'Password'}
               className="w-full rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <div className="flex gap-3">
@@ -419,7 +439,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
               >
                 <option value="WPA">WPA/WPA2</option>
                 <option value="WEP">WEP</option>
-                <option value="nopass">Open Network</option>
+                <option value="nopass">
+                  {ui.openNetwork || 'Open Network'}
+                </option>
               </select>
               <label className="flex items-center space-x-2">
                 <input
@@ -453,7 +475,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                   firstName: e.target.value,
                 }))
               }
-              placeholder="First Name"
+              placeholder={ui.firstNamePlaceholder || 'First Name'}
               className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <input
@@ -465,7 +487,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                   lastName: e.target.value,
                 }))
               }
-              placeholder="Last Name"
+              placeholder={ui.lastNamePlaceholder || 'Last Name'}
               className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <input
@@ -477,7 +499,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                   organization: e.target.value,
                 }))
               }
-              placeholder="Organization"
+              placeholder={ui.organizationPlaceholder || 'Organization'}
               className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <input
@@ -486,7 +508,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
               onChange={(e) =>
                 setContentData((prev) => ({ ...prev, phone: e.target.value }))
               }
-              placeholder="Phone Number"
+              placeholder={ui.phoneNumberPlaceholder || 'Phone Number'}
               className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <input
@@ -495,7 +517,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
               onChange={(e) =>
                 setContentData((prev) => ({ ...prev, email: e.target.value }))
               }
-              placeholder="Email Address"
+              placeholder={ui.emailAddressPlaceholder || 'Email Address'}
               className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <input
@@ -504,7 +526,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
               onChange={(e) =>
                 setContentData((prev) => ({ ...prev, website: e.target.value }))
               }
-              placeholder="Website"
+              placeholder={ui.websitePlaceholder || 'Website'}
               className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
           </div>
@@ -528,7 +550,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
               onChange={(e) =>
                 setContentData((prev) => ({ ...prev, subject: e.target.value }))
               }
-              placeholder="Email Subject (optional)"
+              placeholder={
+                ui.emailSubjectPlaceholder || 'Email Subject (optional)'
+              }
               className="w-full rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <textarea
@@ -536,7 +560,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
               onChange={(e) =>
                 setContentData((prev) => ({ ...prev, body: e.target.value }))
               }
-              placeholder="Email Body (optional)"
+              placeholder={ui.emailBodyPlaceholder || 'Email Body (optional)'}
               className="h-20 w-full resize-none rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
           </div>
@@ -562,7 +586,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
               onChange={(e) =>
                 setContentData((prev) => ({ ...prev, message: e.target.value }))
               }
-              placeholder="SMS Message (optional)"
+              placeholder={ui.smsMessagePlaceholder || 'SMS Message (optional)'}
               className="h-20 w-full resize-none rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
           </div>
@@ -581,7 +605,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                   latitude: parseFloat(e.target.value) || 0,
                 }))
               }
-              placeholder="Latitude (e.g., 40.7128)"
+              placeholder={ui.latitudePlaceholder || 'Latitude (e.g., 40.7128)'}
               className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <input
@@ -594,7 +618,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                   longitude: parseFloat(e.target.value) || 0,
                 }))
               }
-              placeholder="Longitude (e.g., -74.0060)"
+              placeholder={
+                ui.longitudePlaceholder || 'Longitude (e.g., -74.0060)'
+              }
               className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
           </div>
@@ -629,7 +655,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                   cryptoAddress: e.target.value,
                 }))
               }
-              placeholder="Cryptocurrency Address"
+              placeholder={
+                ui.cryptoAddressPlaceholder || 'Cryptocurrency Address'
+              }
               className="w-full rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
             />
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
@@ -644,7 +672,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                     amount: parseFloat(e.target.value) || undefined,
                   }))
                 }
-                placeholder="Amount (optional)"
+                placeholder={ui.amountPlaceholder || 'Amount (optional)'}
                 className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
               />
               <input
@@ -653,7 +681,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                 onChange={(e) =>
                   setContentData((prev) => ({ ...prev, label: e.target.value }))
                 }
-                placeholder="Label (optional)"
+                placeholder={ui.labelPlaceholder || 'Label (optional)'}
                 className="rounded-md border border-gray-300 p-2.5 focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700"
               />
             </div>
@@ -672,7 +700,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
         <div>
           <label className="mb-1 block text-sm font-medium">
-            Size (pixels)
+            {ui.sizePixels || 'Size (pixels)'}
           </label>
           <div className="mb-1 flex gap-1">
             {Object.entries(sizePresets).map(([name, size]) => (
@@ -685,7 +713,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                     : 'bg-gray-200 text-gray-700 dark:bg-gray-600 dark:text-gray-300'
                 }`}
               >
-                {name}
+                {sizePresetLabels[name] || name}
               </button>
             ))}
           </div>
@@ -710,7 +738,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
 
         <div>
           <label className="mb-1 block text-sm font-medium">
-            Error Correction
+            {ui.errorCorrection || 'Error Correction'}
           </label>
           <select
             value={options.errorCorrectionLevel || 'medium'}
@@ -728,7 +756,8 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
           >
             {Object.entries(errorCorrectionInfo).map(([key, info]) => (
               <option key={key} value={key}>
-                {info.level} ({info.recovery}) - {info.description}
+                {info.level} ({info.recovery}) -{' '}
+                {errorCorrectionDescriptions[key] || info.description}
               </option>
             ))}
           </select>
@@ -739,7 +768,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
       <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
         <div>
           <label className="mb-1 block text-sm font-medium">
-            Foreground Color
+            {ui.foregroundColor || 'Foreground Color'}
           </label>
           <div className="flex gap-2">
             <input
@@ -770,7 +799,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
 
         <div>
           <label className="mb-1 block text-sm font-medium">
-            Background Color
+            {ui.backgroundColor || 'Background Color'}
           </label>
           <div className="flex gap-2">
             <input
@@ -801,7 +830,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
 
         <div>
           <label className="mb-1 block text-sm font-medium">
-            Margin (modules)
+            {ui.marginModules || 'Margin (modules)'}
           </label>
           <input
             type="range"
@@ -825,7 +854,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
       {/* Logo Upload */}
       <div>
         <label className="mb-1 block text-sm font-medium">
-          Logo (optional)
+          {ui.logoOptional || 'Logo (optional)'}
         </label>
         <div className="flex items-start gap-2">
           <div className="flex-1">
@@ -845,7 +874,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
             >
               <Upload className="mx-auto mb-1 h-4 w-4 text-gray-400" />
               <span className="text-xs text-gray-600 dark:text-gray-400">
-                {logoFile ? logoFile.name : 'Upload Logo (PNG, JPG, SVG)'}
+                {logoFile
+                  ? logoFile.name
+                  : ui.uploadLogo || 'Upload Logo (PNG, JPG, SVG)'}
               </span>
             </button>
           </div>
@@ -861,7 +892,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
               </div>
               <div>
                 <label className="mb-1 block text-xs text-gray-600 dark:text-gray-400">
-                  Size %
+                  {ui.sizePercent || 'Size %'}
                 </label>
                 <input
                   type="range"
@@ -901,7 +932,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
 
       {/* Format Selection */}
       <div>
-        <label className="mb-1 block text-sm font-medium">Export Format</label>
+        <label className="mb-1 block text-sm font-medium">
+          {ui.exportFormat || 'Export Format'}
+        </label>
         <div className="grid grid-cols-2 gap-2 md:grid-cols-5">
           {['png', 'svg', 'base64', 'dataurl', 'pdf'].map((format) => (
             <button
@@ -931,7 +964,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
           <div className="text-center">
             <QrCode className="mx-auto mb-2 h-12 w-12 text-gray-400" />
             <p className="text-gray-600 dark:text-gray-400">
-              QR Code will appear here
+              {ui.qrWillAppearHere || 'QR Code will appear here'}
             </p>
           </div>
         </div>
@@ -1021,7 +1054,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
                 </div>
                 <div>
                   <span className="text-gray-600 dark:text-gray-400">
-                    Readability:
+                    {ui.readability || 'Readability:'}
                   </span>
                   <div
                     className={`font-mono ${
@@ -1068,7 +1101,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
         {previewFormat === 'code' && (
           <div className="space-y-3">
             <div>
-              <label className="mb-2 block text-sm font-medium">Data URL</label>
+              <label className="mb-2 block text-sm font-medium">
+                {ui.dataUrl || 'Data URL'}
+              </label>
               <div className="relative">
                 <textarea
                   readOnly
@@ -1091,7 +1126,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
             {options.format === 'svg' && (
               <div>
                 <label className="mb-2 block text-sm font-medium">
-                  SVG Code
+                  {ui.svgCode || 'SVG Code'}
                 </label>
                 <div className="relative">
                   <textarea
@@ -1153,7 +1188,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
             className="flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-800"
           >
             <Copy className="h-4 w-4" />
-            Copy Data URL
+            {ui.copyDataUrl || 'Copy Data URL'}
           </button>
 
           <button
@@ -1164,7 +1199,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
             <RefreshCw
               className={`h-4 w-4 ${isGenerating ? 'animate-spin' : ''}`}
             />
-            Regenerate
+            {ui.regenerate || 'Regenerate'}
           </button>
         </div>
       </div>
@@ -1175,7 +1210,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
     <div className="space-y-6">
       {/* Content Type Selection */}
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-        <h3 className="mb-3 text-lg font-medium">Content Type</h3>
+        <h3 className="mb-3 text-lg font-medium">
+          {ui.contentType || 'Content Type'}
+        </h3>
         {renderContentTypeSelector()}
       </div>
 
@@ -1189,28 +1226,30 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
             onClick={() => setShowTemplates(!showTemplates)}
             className="text-sm text-blue-600 hover:text-blue-800"
           >
-            Use Template
+            {ui.useTemplate || 'Use Template'}
           </button>
         </div>
 
         {/* Templates */}
         {showTemplates && (
           <div className="mb-3 rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-800 dark:bg-blue-900/20">
-            <h4 className="mb-2 font-medium">Quick Templates</h4>
+            <h4 className="mb-2 font-medium">
+              {ui.quickTemplates || 'Quick Templates'}
+            </h4>
             <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
               <button
                 onClick={() => applyTemplate('wifiHome')}
                 className="rounded border bg-white p-2 text-left text-sm hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
                 <Wifi className="mr-2 inline h-4 w-4" />
-                Home WiFi
+                {ui.homeWifi || 'Home WiFi'}
               </button>
               <button
                 onClick={() => applyTemplate('businessCard')}
                 className="rounded border bg-white p-2 text-left text-sm hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
                 <User className="mr-2 inline h-4 w-4" />
-                Business Card
+                {ui.businessCard || 'Business Card'}
               </button>
               <button
                 onClick={() => applyTemplate('localhost', 3000)}
@@ -1232,7 +1271,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
           onClick={() => setShowAdvanced(!showAdvanced)}
           className="flex w-full items-center justify-between p-3 text-left"
         >
-          <h3 className="text-base font-medium">Advanced Options</h3>
+          <h3 className="text-base font-medium">
+            {ui.advancedOptions || 'Advanced Options'}
+          </h3>
           {showAdvanced ? (
             <ChevronUp className="h-4 w-4" />
           ) : (
@@ -1249,7 +1290,9 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
 
       {/* QR Code Preview */}
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-        <h3 className="mb-3 text-lg font-medium">Generated QR Code</h3>
+        <h3 className="mb-3 text-lg font-medium">
+          {ui.generatedQrCode || 'Generated QR Code'}
+        </h3>
         {renderQRPreview()}
       </div>
 
@@ -1258,7 +1301,7 @@ export default function QRGenerator({ categoryColor }: QRGeneratorProps) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="flex items-center gap-4 rounded-lg bg-white p-6 dark:bg-gray-800">
             <RefreshCw className="h-6 w-6 animate-spin text-blue-600" />
-            <span>Generating QR Code...</span>
+            <span>{ui.generatingQrCode || 'Generating QR Code...'}</span>
           </div>
         </div>
       )}

@@ -17,7 +17,10 @@
         "title": "Configurez PDF",
         "description": "Taille, ajustement, marges."
       },
-      { "title": "Générez PDF", "description": "Chaque GIF = page." }
+      {
+        "title": "Générez PDF",
+        "description": "Chaque GIF = page."
+      }
     ],
     "features": [
       "Plusieurs GIF en un PDF",
@@ -59,8 +62,14 @@
       "Déformée: Évitez Remplir"
     ],
     "keyboardShortcuts": [
-      { "keys": "Glisser-Déposer", "description": "Déposez GIF" },
-      { "keys": "Clic", "description": "Sélectionnez GIF" }
+      {
+        "keys": "Glisser-Déposer",
+        "description": "Déposez GIF"
+      },
+      {
+        "keys": "Clic",
+        "description": "Sélectionnez GIF"
+      }
     ]
   },
   "meta": {
@@ -68,5 +77,39 @@
     "description": "Convertissez GIF en PDF gratuitement. Combinez GIF en PDF. Supporte animées (premier frame). Sécurisé."
   },
   "tagline": "Convertissez GIF en PDF préservant qualité avec tailles page personnalisées",
-  "pageDescription": "Transformez GIF en PDF professionnels avec contrôle total. Fonctionne avec GIF statiques et animées (premier frame). Parfait présentations, documentation, archives mèmes. Conversion gratuite sécurisée. Maintient qualité GIF."
+  "pageDescription": "Transformez GIF en PDF professionnels avec contrôle total. Fonctionne avec GIF statiques et animées (premier frame). Parfait présentations, documentation, archives mèmes. Conversion gratuite sécurisée. Maintient qualité GIF.",
+  "ui": {
+    "uploadHeading": "Télécharger des images GIF",
+    "clearAll": "Tout effacer",
+    "dropZoneMain": "Cliquez pour télécharger ou glissez-déposez",
+    "dropZoneSub": "Fichiers GIF uniquement (jusqu'à 10 Mo par fichier) - Le premier frame sera utilisé",
+    "selectedImagesLabel": "Images GIF sélectionnées",
+    "moveUp": "Monter",
+    "moveDown": "Descendre",
+    "remove": "Supprimer",
+    "pdfSettingsHeading": "Paramètres PDF",
+    "pageSizeLabel": "Taille de page",
+    "widthLabel": "Largeur (pt)",
+    "heightLabel": "Hauteur (pt)",
+    "imageFitLabel": "Ajustement image",
+    "fitContain": "Contenir (ajuster à l'intérieur, maintenir ratio)",
+    "fitCover": "Couvrir (remplir la page, peut rogner)",
+    "fitFill": "Remplir (étirer pour remplir)",
+    "fitNone": "Aucun (taille originale)",
+    "marginsLabel": "Marges",
+    "filenameLabel": "Nom de fichier",
+    "filenamePlaceholder": "mon-document.pdf",
+    "generatingPdf": "Génération du PDF...",
+    "generatePdf": "Générer le PDF",
+    "imageSingular": "image",
+    "imagePlural": "images",
+    "pdfGeneratedSuccess": "PDF généré avec succès !",
+    "pagesLabel": "Pages :",
+    "fileSizeLabel": "Taille du fichier :",
+    "filenameResultLabel": "Nom de fichier :",
+    "downloadPdf": "Télécharger le PDF",
+    "previewHeading": "Aperçu PDF",
+    "hidePreview": "Masquer l'aperçu",
+    "showPreview": "Afficher l'aperçu"
+  }
 }

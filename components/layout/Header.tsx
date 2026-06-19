@@ -29,7 +29,14 @@ import { getCurrentHoliday } from '@/lib/utils/holidays';
 import { HolidayOverlay } from '@/components/ui/HolidayOverlay';
 import { CommandPalette } from '@/components/CommandPalette';
 
-export function Header() {
+import type { Dictionary } from '@/lib/i18n/types';
+
+interface HeaderProps {
+  /** Server-loaded common dictionary: makes SSR nav localized instead of EN fallbacks */
+  initialCommon?: Dictionary['common'];
+}
+
+export function Header({ initialCommon }: HeaderProps = {}) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -41,7 +48,10 @@ export function Header() {
   const newFavoritesCount = useToolStore(selectNewFavoritesCount);
   const isHydrated = useHydration();
   const { locale, createHref } = useLocalizedRouter();
-  const { data: common } = useDictionarySection('common');
+  const { data: fetchedCommon, isReady } = useDictionarySection('common');
+  // Until the client fetch resolves, fall back to the server-provided dict
+  // (same locale) so SSR and first client render are localized and identical.
+  const common = isReady ? fetchedCommon : (initialCommon ?? fetchedCommon);
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -150,7 +160,7 @@ export function Header() {
               )}
             >
               <Beaker className="h-3.5 w-3.5" />
-              The Lab
+              {common?.nav?.lab || 'The Lab'}
               {mounted && isHydrated && newFavoritesCount > 0 && (
                 <span className="rounded-full bg-pg-accent px-1.5 py-px font-mono text-[10px] font-medium text-white">
                   {newFavoritesCount}
@@ -170,7 +180,7 @@ export function Header() {
             aria-label="Open command palette"
           >
             <Search className="h-3.5 w-3.5" />
-            <span className="flex-1 text-left">Search tools…</span>
+            <span className="flex-1 text-left">{common?.nav?.searchPlaceholder || 'Search tools…'}</span>
             <span className="pg-kbd">⌘K</span>
           </button>
 
@@ -251,7 +261,7 @@ export function Header() {
             className="mb-4 flex w-full items-center gap-2 rounded-lg border border-pg-border bg-pg-surface px-3 py-2 text-[13px] text-pg-muted"
           >
             <Search className="h-3.5 w-3.5" />
-            <span className="flex-1 text-left">Search tools…</span>
+            <span className="flex-1 text-left">{common?.nav?.searchPlaceholder || 'Search tools…'}</span>
             <span className="pg-kbd">⌘K</span>
           </button>
 
@@ -259,7 +269,7 @@ export function Header() {
             {[
               { href: '/tools', label: common?.nav?.tools || 'Tools', Icon: Zap },
               { href: '/categories', label: common?.nav?.categories || 'Categories', Icon: Grid3X3 },
-              { href: '/lab', label: 'The Lab', Icon: Beaker },
+              { href: '/lab', label: common?.nav?.lab || 'The Lab', Icon: Beaker },
               { href: '/about', label: common?.nav?.about || 'About', Icon: Info },
             ].map(({ href, label, Icon }) => (
               <Link

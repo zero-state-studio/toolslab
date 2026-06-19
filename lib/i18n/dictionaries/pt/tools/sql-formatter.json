@@ -103,5 +103,51 @@
     "description": "Formate e embeleze consultas SQL online grátis. MySQL, PostgreSQL, SQLite e outros dialetos. Destaque de sintaxe e indentação. Sem cadastro ou instalação."
   },
   "tagline": "Formate e embeleze consultas SQL com destaque de sintaxe",
-  "pageDescription": "Formate e embeleze consultas SQL com indentação adequada, destaque de palavras-chave e validação de sintaxe. Perfeito para desenvolvedores de banco de dados, analistas de dados e otimização SQL. Suporta múltiplos dialetos SQL (MySQL, PostgreSQL, SQLite) com opções de formatação personalizáveis. Indente SQL no navegador sem instalar software e sem cadastro — formatador SQL gratuito e seguro sem uploads de dados."
+  "pageDescription": "Formate e embeleze consultas SQL com indentação adequada, destaque de palavras-chave e validação de sintaxe. Perfeito para desenvolvedores de banco de dados, analistas de dados e otimização SQL. Suporta múltiplos dialetos SQL (MySQL, PostgreSQL, SQLite) com opções de formatação personalizáveis. Indente SQL no navegador sem instalar software e sem cadastro — formatador SQL gratuito e seguro sem uploads de dados.",
+  "usageTips": {
+    "title": "Dicas de Uso",
+    "tips": [
+      "Use a deteção automática de dialeto para o melhor reconhecimento de palavras-chave",
+      "Escolha palavras-chave em maiúsculas para melhor legibilidade e padrões",
+      "Ative a preservação de comentários para manter documentação importante",
+      "Use indentação de 4 espaços para um equilíbrio ideal de legibilidade"
+    ]
+  },
+  "ui": {
+    "sqlInput": "Entrada SQL",
+    "loadComplex": "Carregar Exemplo Complexo",
+    "loadErrors": "Carregar com Erros",
+    "optionsButton": "Opções",
+    "formattingOptions": "Opções de Formatação",
+    "sqlDialect": "Dialeto SQL",
+    "autoDetect": "Auto",
+    "keywordCase": "Capitalização de Palavras-chave",
+    "keywordCaseUnchanged": "Sem alteração",
+    "indentation": "Indentação",
+    "twoSpaces": "2 espaços",
+    "fourSpaces": "4 espaços",
+    "tabEightSpaces": "Tab (8 espaços)",
+    "maxLineLength": "Comprimento Máximo de Linha",
+    "linesBetweenQueries": "Linhas entre Consultas",
+    "preserveComments": "Preservar comentários",
+    "formatting": "Formatando...",
+    "formatted": "Formatado!",
+    "formatSql": "Formatar SQL",
+    "validateSql": "Validar SQL",
+    "clear": "Limpar",
+    "validationErrors": "Erros de Validação",
+    "validationWarnings": "Avisos de Validação",
+    "statsLines": "Linhas:",
+    "statsCharacters": "Caracteres:",
+    "statsKeywords": "Palavras-chave:",
+    "statsStatements": "Instruções:",
+    "statsDetectedDialect": "Dialeto detectado:",
+    "formattedSql": "SQL Formatado",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "download": "Baixar",
+    "inputPlaceholder": "Cole sua consulta ou script SQL aqui...",
+    "copyTitle": "Copiar SQL formatado",
+    "downloadTitle": "Baixar SQL formatado"
+  }
 }

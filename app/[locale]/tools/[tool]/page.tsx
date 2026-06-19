@@ -6,7 +6,8 @@ import { tools, getToolById, categories } from '@/lib/tools';
 import { getToolLongTailKeywords } from '@/lib/tools-seo';
 import { generateToolSchema } from '@/lib/tool-schema';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
-import { loadToolTranslation } from '@/lib/i18n/load-tools';
+import { loadToolTranslation, loadToolSummaries } from '@/lib/i18n/load-tools';
+import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
 import { locales, type Locale, localeToOGLocale } from '@/lib/i18n/config';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import { getLocalizedPath } from '@/lib/i18n/helpers';
@@ -222,23 +223,43 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
     notFound();
   }
 
+  // Tool ids shown in the related/same-category sections (mirrors the
+  // client-side logic in ToolPageClient) — their title/description must be
+  // localized too, or the cards render in English on locale pages.
+  const sameCategoryIds = tools
+    .filter(
+      (t) =>
+        t.categories.includes(tool.categories[0]) &&
+        t.id !== tool.id &&
+        t.label !== 'coming-soon'
+    )
+    .slice(0, 6)
+    .map((t) => t.id);
+  const relatedIds = (getSmartRelatedTools(toolId, 4) || []).filter((id) => {
+    const t = getToolById(id);
+    return t && t.label !== 'coming-soon';
+  });
+  const summaryIds = Array.from(new Set([...relatedIds, ...sameCategoryIds]));
+
   // Load base sections and tool translation in parallel (avoids loading all 59 tools)
-  const [baseDict, singleToolData, toolSchema] = await Promise.all([
-    getDictionary(locale as Locale, [
-      'common',
-      'home',
-      'categories',
-      'footer',
-      'seo',
-      'lab',
-    ]),
-    loadToolTranslation(locale as Locale, toolId),
-    generateToolSchema(toolId, locale as Locale),
-  ]);
+  const [baseDict, singleToolData, toolSchema, relatedSummaries] =
+    await Promise.all([
+      getDictionary(locale as Locale, [
+        'common',
+        'home',
+        'categories',
+        'footer',
+        'seo',
+        'lab',
+      ]),
+      loadToolTranslation(locale as Locale, toolId),
+      generateToolSchema(toolId, locale as Locale),
+      loadToolSummaries(locale as Locale, summaryIds),
+    ]);
 
   const dict = {
     ...baseDict,
-    tools: { [toolId]: singleToolData },
+    tools: { ...relatedSummaries, [toolId]: singleToolData },
   };
 
   // Extract tool-specific translations

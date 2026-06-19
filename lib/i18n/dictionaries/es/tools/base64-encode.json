@@ -81,5 +81,35 @@
     "description": "Codifica texto y archivos a Base64 o decodifica cadenas Base64 a texto online gratis. Soporta UTF-8, archivos binarios hasta 50MB. Seguro, en el navegador, sin registro."
   },
   "tagline": "Codifica y decodifica archivos y texto Base64 al instante",
-  "pageDescription": "Codificador y decodificador Base64 gratuito para texto, imágenes y archivos de hasta 50MB. Perfecto para desarrolladores web que incorporan imágenes en HTML/CSS, transmisión de datos API y archivos adjuntos de correo. Interfaz de arrastrar y soltar con procesamiento seguro en el navegador. Sin registro — descarga archivos decodificados o copia cadenas codificadas al portapapeles."
+  "pageDescription": "Codificador y decodificador Base64 gratuito para texto, imágenes y archivos de hasta 50MB. Perfecto para desarrolladores web que incorporan imágenes en HTML/CSS, transmisión de datos API y archivos adjuntos de correo. Interfaz de arrastrar y soltar con procesamiento seguro en el navegador. Sin registro — descarga archivos decodificados o copia cadenas codificadas al portapapeles.",
+  "ui": {
+    "modeAuto": "Auto",
+    "modeEncode": "Codificar",
+    "modeDecode": "Decodificar",
+    "statusEncoding": "Codificando",
+    "statusDecoding": "Decodificando",
+    "ariaToggleOptions": "Mostrar/ocultar opciones",
+    "optionsTitle": "Opciones",
+    "optionUrlSafe": "URL segura (- _ en lugar de + /)",
+    "optionLineBreaks": "Saltos de línea (formato MIME)",
+    "sampleText": "Texto de ejemplo",
+    "sampleJwtPayload": "Payload JWT",
+    "sampleDataUrl": "Data URL",
+    "uploadDropText": "Arrastra un archivo aquí o haz clic para subir",
+    "uploadMaxSize": "Tamaño máximo: 10MB",
+    "labelInput": "Entrada",
+    "inputPlaceholder": "Introduce texto a codificar o cadena Base64 a decodificar...",
+    "btnProcessing": "Procesando...",
+    "btnEncode": "Codificar",
+    "btnDecode": "Decodificar",
+    "btnClear": "Limpiar",
+    "suggestionsTitle": "Sugerencias",
+    "linkOpenTool": "Abrir herramienta",
+    "labelOutput": "Salida",
+    "btnCopy": "Copiar",
+    "btnCopied": "¡Copiado!",
+    "btnDownload": "Descargar",
+    "imagePreviewLabel": "Vista previa de imagen",
+    "infoBoxText": "La codificación Base64 convierte datos binarios en formato de texto ASCII. Se usa comúnmente para incrustar imágenes en HTML/CSS, codificar datos para APIs y manejar datos binarios en protocolos basados en texto."
+  }
 }

@@ -86,5 +86,38 @@
         "description": "Download JSON file"
       }
     ]
+  },
+  "ui": {
+    "conversionOptions": "Conversion Options",
+    "hide": "Hide",
+    "show": "Show",
+    "prettyPrintLabel": "Pretty Print",
+    "prettyPrintDesc": "Format JSON with indentation",
+    "attributeModeLabel": "Attribute Mode",
+    "attributeModeDesc": "How to handle XML attributes",
+    "attrInline": "Inline (id, category)",
+    "attrCompact": "Compact (@id, @category)",
+    "attrVerbose": "Verbose (@attributes)",
+    "removeNamespacesLabel": "Remove Namespaces",
+    "removeNamespacesDesc": "Strip namespace prefixes",
+    "smartArraysLabel": "Smart Arrays",
+    "smartArraysDesc": "Auto-detect repeated elements",
+    "typeConversionLabel": "Type Conversion",
+    "typeConversionDesc": "Convert numbers and booleans",
+    "xmlInputLabel": "XML Input",
+    "sampleBtn": "Sample",
+    "uploadBtn": "Upload",
+    "inputPlaceholder": "Paste your XML here...",
+    "convertBtn": "Convert to JSON",
+    "clearBtn": "Clear",
+    "conversionError": "Conversion Error",
+    "xmlSizeLabel": "XML Size",
+    "jsonSizeLabel": "JSON Size",
+    "elementsLabel": "Elements",
+    "processingTimeLabel": "Processing Time",
+    "jsonOutputLabel": "JSON Output",
+    "copiedBtn": "Copied!",
+    "copyBtn": "Copy",
+    "downloadBtn": "Download"
   }
 }

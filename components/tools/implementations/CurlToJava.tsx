@@ -3,12 +3,13 @@
 import CurlToCodeConverter from './CurlToCode';
 
 /** curl-to-java landing. Defaults to Java 11+ HttpClient. RIC-117. */
-export default function CurlToJava() {
+export default function CurlToJava({ dictionary }: { dictionary?: any } = {}) {
   return (
     <CurlToCodeConverter
       toolId="curl-to-java"
       defaultLanguage="java"
       defaultFramework="httpurlconnection"
+      dictionary={dictionary}
     />
   );
 }

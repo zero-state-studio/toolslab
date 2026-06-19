@@ -81,5 +81,36 @@
     "description": "Convert CSV to JSON online free — custom delimiters, auto header detection, nested structures, large file support. No signup required. Free CSV to JSON converter."
   },
   "tagline": "Convert CSV data to JSON format with smart parsing",
-  "pageDescription": "Transform CSV files and data into JSON format with automatic header detection and custom delimiter support. Perfect for data migration, API integration, and spreadsheet processing. Handles large files, preserves data types, and offers multiple output formats. Free online with no signup required — secure browser-based CSV to JSON conversion with no file uploads."
+  "pageDescription": "Transform CSV files and data into JSON format with automatic header detection and custom delimiter support. Perfect for data migration, API integration, and spreadsheet processing. Handles large files, preserves data types, and offers multiple output formats. Free online with no signup required — secure browser-based CSV to JSON conversion with no file uploads.",
+  "ui": {
+    "inputSectionHeading": "CSV Input",
+    "loadExample": "Load Example",
+    "uploadCsv": "Upload CSV",
+    "inputPlaceholder": "Paste your CSV data here or upload a file...",
+    "optionsSectionHeading": "Conversion Options",
+    "delimiterLabel": "Delimiter",
+    "delimiterComma": "Comma (,)",
+    "delimiterSemicolon": "Semicolon (;)",
+    "delimiterTab": "Tab",
+    "delimiterPipe": "Pipe (|)",
+    "outputFormatLabel": "Output Format",
+    "outputFormatArray": "Array of Objects",
+    "outputFormatNested": "Nested Object",
+    "outputFormatCompact": "Compact Array",
+    "customHeadersLabel": "Custom Headers",
+    "nullValuesLabel": "Null Values",
+    "checkboxFirstRowHeaders": "First row contains headers",
+    "checkboxTrimWhitespace": "Trim whitespace",
+    "checkboxMinifyOutput": "Minify JSON output",
+    "btnConvert": "Convert to JSON",
+    "btnConverted": "Converted!",
+    "btnValidate": "Validate CSV",
+    "btnClear": "Clear",
+    "statsRows": "Rows",
+    "statsColumns": "Columns",
+    "outputSectionHeading": "JSON Output",
+    "btnCopy": "Copy",
+    "btnCopied": "Copied!",
+    "btnDownload": "Download"
+  }
 }

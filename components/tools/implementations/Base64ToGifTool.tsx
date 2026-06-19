@@ -32,7 +32,16 @@ import AdBanner from '@/components/ads/AdBanner';
 
 interface Base64ToGifToolProps {
   categoryColor: string;
+  dictionary?: any;
 }
+
+const FALLBACK_USAGE_TIPS = [
+  'Valid GIF Base64 data starts with "R0lGOD" when encoded',
+  'Data URL prefixes like "data:image/gif;base64," are removed automatically',
+  'Both GIF87a and GIF89a formats are supported, including animated GIFs',
+  'GIF headers are validated to confirm you have genuine GIF data',
+  'Use the preview to verify your GIF plays correctly before downloading',
+];
 
 const RELATED_TOOLS = [
   { label: 'WebP', href: '/tools/base64-to-webp' },
@@ -42,6 +51,7 @@ const RELATED_TOOLS = [
 
 export default function Base64ToGifTool({
   categoryColor,
+  dictionary,
 }: Base64ToGifToolProps) {
   const [input, setInput] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -69,6 +79,7 @@ export default function Base64ToGifTool({
   const { resultRef, scrollToResult } = useScrollToResult({
     onlyIfNotVisible: false,
   });
+  const ui = dictionary?.tools?.['base64-to-gif']?.ui ?? {};
 
   // Detect format mismatch (data URL prefix says a different format)
   const formatMismatch = useMemo(() => {
@@ -246,7 +257,7 @@ export default function Base64ToGifTool({
       {/* Cross-tool navigation */}
       <div className="flex flex-wrap items-center gap-2 text-sm">
         <span className="text-gray-500 dark:text-gray-400">
-          Also convert to:
+          {ui.alsoConvertTo || 'Also convert to:'}
         </span>
         {RELATED_TOOLS.map((tool) => (
           <Link
@@ -267,7 +278,7 @@ export default function Base64ToGifTool({
               htmlFor="base64-input"
               className="text-sm font-medium text-gray-900 dark:text-white"
             >
-              Base64 String
+              {ui.inputLabel || 'Base64 String'}
             </label>
             {input && (
               <span className="text-xs text-gray-400 dark:text-gray-500">
@@ -290,7 +301,7 @@ export default function Base64ToGifTool({
               id="base64-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Paste Base64 string here, or drag & drop an image / .txt file..."
+              placeholder={ui.inputPlaceholder || 'Paste Base64 string here, or drag & drop an image / .txt file...'}
               rows={4}
               className="w-full rounded-lg border border-gray-200 p-4 font-mono text-sm leading-relaxed [word-break:break-all] focus:border-blue-500 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
               spellCheck={false}
@@ -299,7 +310,7 @@ export default function Base64ToGifTool({
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-lg">
                 <div className="flex items-center gap-2 font-medium text-blue-600 dark:text-blue-400">
                   <Upload className="h-5 w-5" />
-                  Drop file here
+                  {ui.dropFileHere || 'Drop file here'}
                 </div>
               </div>
             )}
@@ -311,7 +322,7 @@ export default function Base64ToGifTool({
                 <div className="flex items-center gap-2 text-sm">
                   <Check className="h-4 w-4 shrink-0 text-green-500" />
                   <span className="text-green-600 dark:text-green-400">
-                    Valid Base64
+                    {ui.validBase64 || 'Valid Base64'}
                     {validationInfo.estimatedSize > 0 && (
                       <span className="ml-2 text-gray-500">
                         (~{formatFileSize(validationInfo.estimatedSize)})
@@ -326,7 +337,7 @@ export default function Base64ToGifTool({
                 <div className="flex items-center gap-2 text-sm">
                   <AlertCircle className="h-4 w-4 shrink-0 text-amber-500" />
                   <span className="text-amber-600 dark:text-amber-400">
-                    Invalid Base64 format
+                    {ui.invalidBase64Format || 'Invalid Base64 format'}
                   </span>
                 </div>
               )}
@@ -348,7 +359,7 @@ export default function Base64ToGifTool({
             onClick={handleClear}
             className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-800"
           >
-            Clear
+            {ui.clearButton || 'Clear'}
           </button>
         )}
       </div>
@@ -358,7 +369,7 @@ export default function Base64ToGifTool({
         <div className="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-900/20">
           <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-500" />
           <div>
-            <p className="font-medium text-red-900 dark:text-red-200">Error</p>
+            <p className="font-medium text-red-900 dark:text-red-200">{ui.errorHeading || 'Error'}</p>
             <p className="mt-1 text-sm text-red-700 dark:text-red-300">
               {error}
             </p>
@@ -375,7 +386,7 @@ export default function Base64ToGifTool({
           <div className="flex items-center justify-between">
             <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
               <Check className="h-5 w-5 text-green-500" />
-              GIF Ready
+              {ui.gifReadyHeading || 'GIF Ready'}
             </h3>
             <button
               onClick={() => setShowPreview(!showPreview)}
@@ -384,12 +395,12 @@ export default function Base64ToGifTool({
               {showPreview ? (
                 <>
                   <EyeOff className="h-4 w-4" />
-                  Hide Preview
+                  {ui.hidePreview || 'Hide Preview'}
                 </>
               ) : (
                 <>
                   <Eye className="h-4 w-4" />
-                  Show Preview
+                  {ui.showPreview || 'Show Preview'}
                 </>
               )}
             </button>
@@ -399,7 +410,7 @@ export default function Base64ToGifTool({
           <div className="grid gap-3 rounded-lg bg-gray-50 p-4 dark:bg-gray-700/50 sm:grid-cols-2">
             <div className="flex items-center gap-2 text-sm">
               <FileCheck className="h-4 w-4 text-gray-500" />
-              <span className="text-gray-600 dark:text-gray-400">Size:</span>
+              <span className="text-gray-600 dark:text-gray-400">{ui.sizeLabel || 'Size:'}</span>
               <span className="font-medium text-gray-900 dark:text-white">
                 {formatFileSize(result.fileSize || 0)}
               </span>
@@ -408,7 +419,7 @@ export default function Base64ToGifTool({
               <div className="flex items-center gap-2 text-sm">
                 <ImageIcon className="h-4 w-4 text-gray-500" />
                 <span className="text-gray-600 dark:text-gray-400">
-                  Dimensions:
+                  {ui.dimensionsLabel || 'Dimensions:'}
                 </span>
                 <span className="font-medium text-gray-900 dark:text-white">
                   {result.metadata.width} × {result.metadata.height}
@@ -419,7 +430,7 @@ export default function Base64ToGifTool({
               <div className="flex items-center gap-2 text-sm">
                 <Info className="h-4 w-4 text-gray-500" />
                 <span className="text-gray-600 dark:text-gray-400">
-                  Format:
+                  {ui.formatLabel || 'Format:'}
                 </span>
                 <span className="font-medium text-gray-900 dark:text-white">
                   {result.metadata.version}
@@ -431,10 +442,10 @@ export default function Base64ToGifTool({
                 <div className="flex items-center gap-2 text-sm">
                   <Info className="h-4 w-4 text-gray-500" />
                   <span className="text-gray-600 dark:text-gray-400">
-                    Frames:
+                    {ui.framesLabel || 'Frames:'}
                   </span>
                   <span className="font-medium text-gray-900 dark:text-white">
-                    {result.metadata.frameCount} (animated)
+                    {result.metadata.frameCount} {ui.animatedLabel || '(animated)'}
                   </span>
                 </div>
               )}
@@ -445,7 +456,7 @@ export default function Base64ToGifTool({
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <h4 className="text-sm font-medium text-gray-900 dark:text-white">
-                  Preview
+                  {ui.previewHeading || 'Preview'}
                 </h4>
                 <a
                   href={previewUrl}
@@ -454,7 +465,7 @@ export default function Base64ToGifTool({
                   className="flex items-center gap-1.5 text-xs text-gray-500 transition-colors hover:text-gray-700 dark:hover:text-gray-300"
                 >
                   <ExternalLink className="h-3.5 w-3.5" />
-                  Open in new tab
+                  {ui.openInNewTab || 'Open in new tab'}
                 </a>
               </div>
               <div
@@ -469,20 +480,20 @@ export default function Base64ToGifTool({
                 {imageLoading && !imageError && (
                   <div className="flex items-center gap-2 py-8 text-gray-500">
                     <Loader2 className="h-5 w-5 animate-spin" />
-                    <span>Loading preview...</span>
+                    <span>{ui.loadingPreview || 'Loading preview...'}</span>
                   </div>
                 )}
                 {imageError && (
                   <div className="flex items-center gap-2 py-8 text-red-500">
                     <AlertCircle className="h-5 w-5" />
-                    <span>Failed to load preview</span>
+                    <span>{ui.failedToLoadPreview || 'Failed to load preview'}</span>
                   </div>
                 )}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   key={previewUrl}
                   src={previewUrl}
-                  alt="GIF Preview"
+                  alt={ui.gifPreviewAlt || 'GIF Preview'}
                   className="max-h-[400px] max-w-full border border-gray-300 dark:border-gray-600"
                   style={{
                     display: imageLoading ? 'none' : 'block',
@@ -514,7 +525,7 @@ export default function Base64ToGifTool({
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <label className="shrink-0 text-sm font-medium text-gray-700 dark:text-gray-300">
-                Filename:
+                {ui.filenameLabel || 'Filename:'}
               </label>
               <input
                 type="text"
@@ -530,7 +541,7 @@ export default function Base64ToGifTool({
                 style={{ backgroundColor: categoryColor }}
               >
                 <Download className="h-4 w-4" />
-                Download GIF
+                {ui.downloadButton || 'Download GIF'}
               </button>
               <button
                 onClick={handleCopyDataUrl}
@@ -539,12 +550,12 @@ export default function Base64ToGifTool({
                 {copied ? (
                   <>
                     <Check className="h-4 w-4 text-green-500" />
-                    Copied!
+                    {ui.copiedButton || 'Copied!'}
                   </>
                 ) : (
                   <>
                     <Copy className="h-4 w-4" />
-                    Copy Data URL
+                    {ui.copyDataUrlButton || 'Copy Data URL'}
                   </>
                 )}
               </button>
@@ -565,24 +576,16 @@ export default function Base64ToGifTool({
       <div className="rounded-lg border border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20">
         <h3 className="mb-2 flex items-center gap-2 text-sm font-medium text-blue-900 dark:text-blue-100">
           <Info className="h-4 w-4" />
-          Usage Tips
+          {dictionary?.tools?.['base64-to-gif']?.usageTips?.title ||
+            'Usage Tips'}
         </h3>
         <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-200">
-          <li>
-            • Valid GIF Base64 data starts with &quot;R0lGOD&quot; when encoded
-          </li>
-          <li>
-            • Data URL prefixes like &quot;data:image/gif;base64,&quot; are
-            removed automatically
-          </li>
-          <li>
-            • Both GIF87a and GIF89a formats are supported, including animated
-            GIFs
-          </li>
-          <li>
-            • GIF headers are validated to confirm you have genuine GIF data
-          </li>
-          <li>• Use the preview to verify your GIF plays correctly before downloading</li>
+          {(
+            dictionary?.tools?.['base64-to-gif']?.usageTips?.tips ||
+            FALLBACK_USAGE_TIPS
+          ).map((tip: string, index: number) => (
+            <li key={index}>• {tip}</li>
+          ))}
         </ul>
       </div>
     </div>

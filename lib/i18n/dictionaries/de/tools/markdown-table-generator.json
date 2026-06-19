@@ -59,9 +59,18 @@
       "Das Entfernen der letzten Spalte setzt das Layout zurück — nutze 'Beispiel', um schnell eine funktionierende Tabelle wiederherzustellen"
     ],
     "keyboardShortcuts": [
-      { "keys": "Tab", "description": "Zur nächsten Zelle" },
-      { "keys": "Shift+Tab", "description": "Zur vorherigen Zelle" },
-      { "keys": "Ctrl+C", "description": "Markdown kopieren" }
+      {
+        "keys": "Tab",
+        "description": "Zur nächsten Zelle"
+      },
+      {
+        "keys": "Shift+Tab",
+        "description": "Zur vorherigen Zelle"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Markdown kopieren"
+      }
     ]
   },
   "meta": {
@@ -69,5 +78,32 @@
     "description": "Kostenloser Markdown-Tabellen-Generator. Erstelle GFM-Tabellen visuell oder füge CSV/TSV ein. Spaltenausrichtungen, Live-Vorschau, schnelles Kopieren."
   },
   "tagline": "Erstelle GFM-Markdown-Tabellen visuell oder aus CSV — Ausrichtung, Vorschau und Copy in Sekunden",
-  "pageDescription": "Erstelle saubere Markdown-Tabellen, ohne Pipes zu zählen. Nutze den visuellen Editor, um Zeilen hinzuzufügen, Spalten umzusortieren und die Ausrichtung pro Spalte zu setzen, oder füge CSV, TSV oder eine bestehende Markdown-Tabelle ein, um Daten sofort zu importieren. Pipes und Zeilenumbrüche in Zellen werden automatisch escaped, sodass die Ausgabe gültiges GitHub Flavored Markdown bleibt. Aktiviere schönes Padding für einen diff-freundlichen Quelltext, schaue dir das gerenderte HTML in der Live-Vorschau an und kopiere das Ergebnis mit einem Klick. Perfekt für READMEs, Blog-Artikel, Vergleichsseiten und API-Dokumentation. Kostenlos, im Browser, ohne Anmeldung."
+  "pageDescription": "Erstelle saubere Markdown-Tabellen, ohne Pipes zu zählen. Nutze den visuellen Editor, um Zeilen hinzuzufügen, Spalten umzusortieren und die Ausrichtung pro Spalte zu setzen, oder füge CSV, TSV oder eine bestehende Markdown-Tabelle ein, um Daten sofort zu importieren. Pipes und Zeilenumbrüche in Zellen werden automatisch escaped, sodass die Ausgabe gültiges GitHub Flavored Markdown bleibt. Aktiviere schönes Padding für einen diff-freundlichen Quelltext, schaue dir das gerenderte HTML in der Live-Vorschau an und kopiere das Ergebnis mit einem Klick. Perfekt für READMEs, Blog-Artikel, Vergleichsseiten und API-Dokumentation. Kostenlos, im Browser, ohne Anmeldung.",
+  "ui": {
+    "visualEditor": "Visueller Editor",
+    "pasteCsvTsvMarkdown": "CSV / TSV / Markdown einfügen",
+    "example": "Beispiel",
+    "clear": "Löschen",
+    "delimiterLabel": "Trennzeichen",
+    "autoDetect": "Automatisch erkennen",
+    "commaOption": "Komma (,)",
+    "semicolonOption": "Semikolon (;)",
+    "tabOption": "Tabulator",
+    "firstRowIsHeader": "Erste Zeile ist Kopfzeile",
+    "import": "Importieren",
+    "removeColumn": "Spalte entfernen",
+    "addColumn": "Spalte hinzufügen",
+    "moveUp": "Nach oben",
+    "moveDown": "Nach unten",
+    "removeRow": "Zeile entfernen",
+    "addRow": "Zeile hinzufügen",
+    "markdownOutput": "Markdown-Ausgabe",
+    "prettyPadding": "Ausgerichtete Einrückung",
+    "hidePreview": "Vorschau ausblenden",
+    "showPreview": "Vorschau anzeigen",
+    "copied": "Kopiert",
+    "copyMarkdown": "Markdown kopieren",
+    "outputPlaceholder": "Markdown-Tabelle wird hier angezeigt...",
+    "livePreview": "Live-Vorschau"
+  }
 }

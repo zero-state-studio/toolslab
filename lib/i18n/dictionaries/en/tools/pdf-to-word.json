@@ -102,5 +102,21 @@
     "helpDescription": "Your support can help us cover the server costs and reactivate this service. Every contribution, no matter how small, makes a difference.",
     "donateButton": "Buy me a coffee",
     "thanks": "Thank you for your understanding and support!"
+  },
+  "ui": {
+    "dropActive": "Drop PDF files here...",
+    "dropMainText": "Drag & drop PDF files here, or click to select",
+    "dropHint": "Support for up to 10 files, max 50MB each",
+    "buttonConverting": "Converting...",
+    "buttonDownloadAll": "Download All",
+    "progressWait": "Please wait, this may take a few seconds",
+    "conversionSuccessful": "Conversion Successful",
+    "buttonDownloadWord": "Download Word Document",
+    "tipsHeading": "Tips for Best Results",
+    "tip1": "High-quality conversion powered by professional algorithms",
+    "tip2": "Layout, tables, and formatting are preserved automatically",
+    "tip3": "All conversion happens on our server - fast and secure",
+    "tip4": "Your files are never stored and are deleted immediately after conversion",
+    "tip5": "For password-protected PDFs, remove the password before converting"
   }
 }

@@ -11,7 +11,9 @@ export interface Dictionary {
       lab: string;
       allTools: string;
       viewAllTools: string;
+      searchPlaceholder?: string;
     };
+    faqSchema?: Array<{ question: string; answer: string }>;
     actions: {
       copy: string;
       download: string;

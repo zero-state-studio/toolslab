@@ -103,5 +103,51 @@
   "meta": {
     "title": "Formateador SQL - Herramienta Online Gratuita",
     "description": "Formatea y embellece consultas SQL en línea gratis. MySQL, PostgreSQL, SQLite. Indentación automática, resaltado de sintaxis. Sin registro ni instalación."
+  },
+  "usageTips": {
+    "title": "Consejos de Uso",
+    "tips": [
+      "Usa la detección automática de dialecto para el mejor reconocimiento de palabras clave",
+      "Elige palabras clave en mayúsculas para mejor legibilidad y estándares",
+      "Activa la conservación de comentarios para mantener documentación importante",
+      "Usa indentación de 4 espacios para un equilibrio óptimo de legibilidad"
+    ]
+  },
+  "ui": {
+    "sqlInput": "Entrada SQL",
+    "loadComplex": "Cargar Ejemplo Complejo",
+    "loadErrors": "Cargar con Errores",
+    "optionsButton": "Opciones",
+    "formattingOptions": "Opciones de Formato",
+    "sqlDialect": "Dialecto SQL",
+    "autoDetect": "Auto",
+    "keywordCase": "Mayúsculas de Palabras Clave",
+    "keywordCaseUnchanged": "Sin cambios",
+    "indentation": "Sangría",
+    "twoSpaces": "2 espacios",
+    "fourSpaces": "4 espacios",
+    "tabEightSpaces": "Tabulación (8 espacios)",
+    "maxLineLength": "Longitud Máxima de Línea",
+    "linesBetweenQueries": "Líneas entre Consultas",
+    "preserveComments": "Preservar comentarios",
+    "formatting": "Formateando...",
+    "formatted": "¡Formateado!",
+    "formatSql": "Formatear SQL",
+    "validateSql": "Validar SQL",
+    "clear": "Limpiar",
+    "validationErrors": "Errores de Validación",
+    "validationWarnings": "Advertencias de Validación",
+    "statsLines": "Líneas:",
+    "statsCharacters": "Caracteres:",
+    "statsKeywords": "Palabras clave:",
+    "statsStatements": "Sentencias:",
+    "statsDetectedDialect": "Dialecto detectado:",
+    "formattedSql": "SQL Formateado",
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "download": "Descargar",
+    "inputPlaceholder": "Pega tu consulta o script SQL aquí...",
+    "copyTitle": "Copiar SQL formateado",
+    "downloadTitle": "Descargar SQL formateado"
   }
 }

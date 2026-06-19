@@ -33,25 +33,30 @@ import {
 
 interface HtmlEncodeDecodeProps {
   categoryColor: string;
+  dictionary?: any;
 }
 
 const EXAMPLES = [
   {
+    labelKey: 'exampleHtmlTags',
     label: 'HTML Tags',
     input: '<div class="example">Hello World</div>',
     mode: 'encode' as const,
   },
   {
+    labelKey: 'exampleSpecialChars',
     label: 'Special Characters',
     input: '"Hello" & \'World\'',
     mode: 'encode' as const,
   },
   {
+    labelKey: 'exampleDecodeEntities',
     label: 'Decode Entities',
     input: '&lt;p&gt;Text&lt;/p&gt;',
     mode: 'decode' as const,
   },
   {
+    labelKey: 'exampleCopyright',
     label: 'Copyright Symbol',
     input: 'Copyright © 2024',
     mode: 'encode' as const,
@@ -60,7 +65,9 @@ const EXAMPLES = [
 
 export default function HtmlEncodeDecode({
   categoryColor,
+  dictionary,
 }: HtmlEncodeDecodeProps) {
+  const ui = dictionary?.tools?.['html-encode-decode']?.ui ?? {};
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [mode, setMode] = useState<'encode' | 'decode'>('encode');
@@ -170,7 +177,7 @@ export default function HtmlEncodeDecode({
             onClick={() => setMode('encode')}
             className="min-w-[100px]"
           >
-            Encode
+            {ui.encodeBtn || 'Encode'}
           </Button>
           <Button
             variant={mode === 'decode' ? 'default' : 'outline'}
@@ -178,7 +185,7 @@ export default function HtmlEncodeDecode({
             onClick={() => setMode('decode')}
             className="min-w-[100px]"
           >
-            Decode
+            {ui.decodeBtn || 'Decode'}
           </Button>
         </div>
 
@@ -190,7 +197,7 @@ export default function HtmlEncodeDecode({
               onClick={() => setShowOptions(!showOptions)}
             >
               <Settings className="mr-1 h-4 w-4" />
-              Options
+              {ui.optionsBtn || 'Options'}
             </Button>
           </div>
         )}
@@ -199,7 +206,7 @@ export default function HtmlEncodeDecode({
       {/* Encoding Options (only for encode mode) */}
       {mode === 'encode' && showOptions && (
         <div className="space-y-3 rounded-lg border bg-muted/50 p-4">
-          <Label>Encoding Type</Label>
+          <Label>{ui.encodingTypeLabel || 'Encoding Type'}</Label>
           <Select
             value={encodingType}
             onValueChange={(v) => setEncodingType(v as EncodingType)}
@@ -209,31 +216,31 @@ export default function HtmlEncodeDecode({
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="special-only">
-                Special Characters Only (Recommended)
+                {ui.encodingTypeSpecialOnly || 'Special Characters Only (Recommended)'}
               </SelectItem>
               <SelectItem value="named">
-                Named Entities (&lt; &gt; &amp;)
+                {ui.encodingTypeNamed || 'Named Entities'} (&lt; &gt; &amp;)
               </SelectItem>
               <SelectItem value="decimal">
-                Decimal Entities (&#60; &#62;)
+                {ui.encodingTypeDecimal || 'Decimal Entities'} (&#60; &#62;)
               </SelectItem>
               <SelectItem value="hexadecimal">
-                Hexadecimal Entities (&#x3C; &#x3E;)
+                {ui.encodingTypeHexadecimal || 'Hexadecimal Entities'} (&#x3C; &#x3E;)
               </SelectItem>
-              <SelectItem value="all">Encode All Characters</SelectItem>
+              <SelectItem value="all">{ui.encodingTypeAll || 'Encode All Characters'}</SelectItem>
             </SelectContent>
           </Select>
           <p className="text-sm text-muted-foreground">
             {encodingType === 'special-only' &&
-              'Encodes only HTML special characters like < > & " \''}
+              (ui.encodingDescSpecialOnly || "Encodes only HTML special characters like < > & \" '")}
             {encodingType === 'named' &&
-              'Uses named entities for common characters'}
+              (ui.encodingDescNamed || 'Uses named entities for common characters')}
             {encodingType === 'decimal' &&
-              'Uses decimal numeric character references'}
+              (ui.encodingDescDecimal || 'Uses decimal numeric character references')}
             {encodingType === 'hexadecimal' &&
-              'Uses hexadecimal numeric character references'}
+              (ui.encodingDescHexadecimal || 'Uses hexadecimal numeric character references')}
             {encodingType === 'all' &&
-              'Encodes every character including letters and numbers'}
+              (ui.encodingDescAll || 'Encodes every character including letters and numbers')}
           </p>
         </div>
       )}
@@ -243,8 +250,9 @@ export default function HtmlEncodeDecode({
         <Alert className="border-green-500 bg-green-50 text-green-900 dark:bg-green-950 dark:text-green-100">
           <Check className="h-4 w-4 text-green-600 dark:text-green-400" />
           <AlertDescription>
-            {mode === 'encode' ? 'Encoding' : 'Decoding'} completed
-            successfully!
+            {mode === 'encode'
+              ? (ui.encodingSuccess || 'Encoding completed successfully!')
+              : (ui.decodingSuccess || 'Decoding completed successfully!')}
           </AlertDescription>
         </Alert>
       )}
@@ -254,12 +262,12 @@ export default function HtmlEncodeDecode({
         <Alert>
           <Info className="h-4 w-4" />
           <AlertDescription>
-            Your input contains HTML entities. Did you mean to{' '}
+            {ui.suggestDecodeText || 'Your input contains HTML entities. Did you mean to'}{' '}
             <button
               onClick={() => setMode('decode')}
               className="font-semibold underline hover:no-underline"
             >
-              decode
+              {ui.suggestDecodeLink || 'decode'}
             </button>
             ?
           </AlertDescription>
@@ -270,27 +278,27 @@ export default function HtmlEncodeDecode({
       {mode === 'decode' && entityStats && entityStats.totalEntities > 0 && (
         <div className="space-y-1 rounded-lg border bg-muted/30 p-3 text-sm">
           <div className="font-medium">
-            Found {entityStats.totalEntities} HTML entities:
+            {(ui.entitiesFoundLabel || 'Found {count} HTML entities:').replace('{count}', String(entityStats.totalEntities))}
           </div>
           <ul className="ml-4 space-y-0.5 text-muted-foreground">
             {entityStats.namedEntities > 0 && (
               <li>
-                • {entityStats.namedEntities} named entities (&lt; &amp; etc.)
+                • {entityStats.namedEntities} {ui.namedEntitiesLabel || 'named entities'} (&lt; &amp; etc.)
               </li>
             )}
             {entityStats.decimalEntities > 0 && (
               <li>
-                • {entityStats.decimalEntities} decimal entities (&#60; etc.)
+                • {entityStats.decimalEntities} {ui.decimalEntitiesLabel || 'decimal entities'} (&#60; etc.)
               </li>
             )}
             {entityStats.hexEntities > 0 && (
               <li>
-                • {entityStats.hexEntities} hexadecimal entities (&#x3C; etc.)
+                • {entityStats.hexEntities} {ui.hexEntitiesLabel || 'hexadecimal entities'} (&#x3C; etc.)
               </li>
             )}
             {entityStats.malformedEntities > 0 && (
               <li className="text-yellow-600 dark:text-yellow-500">
-                ⚠ {entityStats.malformedEntities} possibly malformed entities
+                ⚠ {entityStats.malformedEntities} {ui.malformedEntitiesLabel || 'possibly malformed entities'}
               </li>
             )}
           </ul>
@@ -300,9 +308,9 @@ export default function HtmlEncodeDecode({
       {/* Input */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <Label htmlFor="input">Input</Label>
+          <Label htmlFor="input">{ui.inputLabel || 'Input'}</Label>
           <span className="text-sm text-muted-foreground">
-            {inputLength} characters
+            {inputLength} {ui.charactersLabel || 'characters'}
           </span>
         </div>
         <Textarea
@@ -311,8 +319,8 @@ export default function HtmlEncodeDecode({
           onChange={(e) => setInput(e.target.value)}
           placeholder={
             mode === 'encode'
-              ? 'Enter text to encode (e.g., <div>Hello & "World"</div>)'
-              : 'Enter HTML entities to decode (e.g., &lt;div&gt;Hello&lt;/div&gt;)'
+              ? (ui.encodePlaceholder || 'Enter text to encode (e.g., <div>Hello & "World"</div>)')
+              : (ui.decodePlaceholder || 'Enter HTML entities to decode (e.g., &lt;div&gt;Hello&lt;/div&gt;)')
           }
           className="min-h-[200px] font-mono text-sm"
         />
@@ -321,10 +329,10 @@ export default function HtmlEncodeDecode({
       {/* Output */}
       <div className="space-y-2">
         <div className="flex items-center justify-between">
-          <Label htmlFor="output">Output</Label>
+          <Label htmlFor="output">{ui.outputLabel || 'Output'}</Label>
           <div className="flex items-center gap-4">
             <span className="text-sm text-muted-foreground">
-              {outputLength} characters
+              {outputLength} {ui.charactersLabel || 'characters'}
             </span>
             <div className="flex gap-2">
               <Button
@@ -332,7 +340,7 @@ export default function HtmlEncodeDecode({
                 variant="ghost"
                 onClick={handleSwap}
                 disabled={!output}
-                title="Swap input/output"
+                title={ui.swapTitle || 'Swap input/output'}
               >
                 <ArrowRightLeft className="h-4 w-4" />
               </Button>
@@ -363,14 +371,14 @@ export default function HtmlEncodeDecode({
           id="output"
           value={output}
           readOnly
-          placeholder="Processed output will appear here..."
+          placeholder={ui.outputPlaceholder || 'Processed output will appear here...'}
           className="min-h-[200px] bg-muted/50 font-mono text-sm"
         />
       </div>
 
       {/* Quick Examples */}
       <div className="space-y-3">
-        <Label>Quick Examples</Label>
+        <Label>{ui.quickExamplesLabel || 'Quick Examples'}</Label>
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {EXAMPLES.map((example, index) => (
             <Button
@@ -381,7 +389,7 @@ export default function HtmlEncodeDecode({
               className="h-auto justify-start py-3 text-left"
             >
               <div className="space-y-1">
-                <div className="text-xs font-semibold">{example.label}</div>
+                <div className="text-xs font-semibold">{ui[example.labelKey] || example.label}</div>
                 <div className="truncate font-mono text-xs text-muted-foreground">
                   {example.input}
                 </div>

@@ -66,8 +66,14 @@
       "Image déformée : évitez 'Remplir' si vous ne souhaitez pas d'étirement"
     ],
     "keyboardShortcuts": [
-      { "keys": "Glisser-Déposer", "description": "Déposez des fichiers PNG pour les charger" },
-      { "keys": "Clic", "description": "Sélectionnez des fichiers PNG depuis l'ordinateur" }
+      {
+        "keys": "Glisser-Déposer",
+        "description": "Déposez des fichiers PNG pour les charger"
+      },
+      {
+        "keys": "Clic",
+        "description": "Sélectionnez des fichiers PNG depuis l'ordinateur"
+      }
     ]
   },
   "meta": {
@@ -89,5 +95,39 @@
     "meilleur convertisseur PNG vers PDF gratuit",
     "convertir captures d'écran PNG en PDF",
     "convertir PNG en PDF format A4 gratuit"
-  ]
+  ],
+  "ui": {
+    "uploadHeading": "Télécharger des images PNG",
+    "clearAll": "Tout effacer",
+    "dropZoneMain": "Cliquez pour télécharger ou glissez-déposez",
+    "dropZoneSub": "Fichiers PNG uniquement (jusqu'à 10 Mo par fichier) - Transparence prise en charge",
+    "selectedImagesLabel": "Images PNG sélectionnées",
+    "moveUp": "Déplacer vers le haut",
+    "moveDown": "Déplacer vers le bas",
+    "remove": "Supprimer",
+    "pdfSettingsHeading": "Paramètres PDF",
+    "pageSizeLabel": "Taille de page",
+    "widthLabel": "Largeur (pt)",
+    "heightLabel": "Hauteur (pt)",
+    "imageFitLabel": "Ajustement de l'image",
+    "fitContain": "Contenir (ajuster à l'intérieur, conserver le ratio)",
+    "fitCover": "Couvrir (remplir la page, peut rogner)",
+    "fitFill": "Remplir (étirer pour remplir)",
+    "fitNone": "Aucun (taille originale)",
+    "marginsLabel": "Marges",
+    "filenameLabel": "Nom de fichier",
+    "filenamePlaceholder": "mon-document.pdf",
+    "generatingPdf": "Génération du PDF...",
+    "generatePdf": "Générer le PDF",
+    "imageSingular": "image",
+    "imagePlural": "images",
+    "pdfGeneratedSuccess": "PDF généré avec succès !",
+    "pagesLabel": "Pages :",
+    "fileSizeLabel": "Taille du fichier :",
+    "filenameResultLabel": "Nom de fichier :",
+    "downloadPdf": "Télécharger le PDF",
+    "previewHeading": "Aperçu du PDF",
+    "hidePreview": "Masquer l'aperçu",
+    "showPreview": "Afficher l'aperçu"
+  }
 }

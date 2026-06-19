@@ -33,9 +33,15 @@ import {
   JSStats,
 } from '@/lib/tools/js-minifier';
 
-interface JSMinifierProps extends BaseToolProps {}
+interface JSMinifierProps extends BaseToolProps {
+  dictionary?: any;
+}
 
-export default function JSMinifier({ categoryColor }: JSMinifierProps) {
+export default function JSMinifier({
+  categoryColor,
+  dictionary,
+}: JSMinifierProps) {
+  const ui = dictionary?.tools?.['js-minifier']?.ui ?? {};
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
   const [mode, setMode] = useState<'minify' | 'beautify'>('minify');
@@ -285,7 +291,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
             }`}
           >
             <Minimize2 className="h-4 w-4" />
-            Minify
+            {ui.minify || 'Minify'}
           </button>
           <button
             onClick={() => {
@@ -299,7 +305,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
             }`}
           >
             <Maximize2 className="h-4 w-4" />
-            Beautify
+            {ui.beautify || 'Beautify'}
           </button>
         </div>
 
@@ -309,7 +315,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
             className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
           >
             <Settings className="h-4 w-4" />
-            Options
+            {ui.options || 'Options'}
             <ChevronDown
               className={`h-4 w-4 transition-transform ${showOptions ? 'rotate-180' : ''}`}
             />
@@ -320,7 +326,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
               className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
             >
               <BarChart3 className="h-4 w-4" />
-              Stats
+              {ui.stats || 'Stats'}
               {compressionRatio > 0 && (
                 <span className="rounded-full bg-green-500 px-2 py-0.5 text-xs text-white">
                   -{compressionRatio.toFixed(0)}%
@@ -334,7 +340,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
       {/* Preset buttons */}
       <div className="flex flex-wrap gap-2">
         <span className="mr-2 self-center text-sm text-gray-600 dark:text-gray-400">
-          Presets:
+          {ui.presets || 'Presets:'}
         </span>
         <button
           onClick={() => applyPreset('aggressive')}
@@ -345,7 +351,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
           }`}
         >
           <Zap className="h-3 w-3" />
-          Aggressive
+          {ui.aggressive || 'Aggressive'}
           {activePreset === 'aggressive' && <Check className="ml-1 h-3 w-3" />}
         </button>
         <button
@@ -357,7 +363,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
           }`}
         >
           <Code2 className="h-3 w-3" />
-          Standard
+          {ui.standard || 'Standard'}
           {activePreset === 'standard' && <Check className="ml-1 h-3 w-3" />}
         </button>
         <button
@@ -369,7 +375,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
           }`}
         >
           <Shield className="h-3 w-3" />
-          Safe
+          {ui.safe || 'Safe'}
           {activePreset === 'safe' && <Check className="ml-1 h-3 w-3" />}
         </button>
         <button
@@ -381,7 +387,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
           }`}
         >
           <FileCode className="h-3 w-3" />
-          Pretty Print
+          {ui.prettyPrint || 'Pretty Print'}
           {activePreset === 'pretty' && <Check className="ml-1 h-3 w-3" />}
         </button>
       </div>
@@ -401,7 +407,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Mangle variable names
+                  {ui.mangleVariableNames || 'Mangle variable names'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -412,7 +418,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Mangle properties
+                  {ui.mangleProperties || 'Mangle properties'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -423,7 +429,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Remove dead code
+                  {ui.removeDeadCode || 'Remove dead code'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -434,7 +440,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Remove console statements
+                  {ui.removeConsoleStatements || 'Remove console statements'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -445,7 +451,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Preserve license comments
+                  {ui.preserveLicenseComments || 'Preserve license comments'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -459,7 +465,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Preserve function names
+                  {ui.preserveFunctionNames || 'Preserve function names'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -470,7 +476,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Optimize numbers
+                  {ui.optimizeNumbers || 'Optimize numbers'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -481,7 +487,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Optimize strings
+                  {ui.optimizeStrings || 'Optimize strings'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -492,7 +498,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Inline small functions
+                  {ui.inlineSmallFunctions || 'Inline small functions'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -503,7 +509,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Generate source map
+                  {ui.generateSourceMap || 'Generate source map'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -514,7 +520,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  JSX/React support
+                  {ui.jsxReactSupport || 'JSX/React support'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -525,13 +531,13 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Preserve TypeScript
+                  {ui.preserveTypeScript || 'Preserve TypeScript'}
                 </label>
               </div>
 
               <div className="flex items-center gap-4">
                 <label className="text-sm">
-                  Compression level:
+                  {ui.compressionLevel || 'Compression level:'}
                   <select
                     value={minifyOptions.compressionLevel}
                     onChange={(e) =>
@@ -539,15 +545,21 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="ml-2 rounded border border-gray-300 px-2 py-1 dark:border-gray-600 dark:bg-gray-800"
                   >
-                    <option value="basic">Basic</option>
-                    <option value="standard">Standard</option>
-                    <option value="advanced">Advanced</option>
-                    <option value="aggressive">Aggressive</option>
+                    <option value="basic">{ui.basic || 'Basic'}</option>
+                    <option value="standard">
+                      {ui.standard || 'Standard'}
+                    </option>
+                    <option value="advanced">
+                      {ui.advanced || 'Advanced'}
+                    </option>
+                    <option value="aggressive">
+                      {ui.aggressive || 'Aggressive'}
+                    </option>
                   </select>
                 </label>
 
                 <label className="text-sm">
-                  Module format:
+                  {ui.moduleFormat || 'Module format:'}
                   <select
                     value={minifyOptions.moduleFormat}
                     onChange={(e) =>
@@ -555,8 +567,12 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="ml-2 rounded border border-gray-300 px-2 py-1 dark:border-gray-600 dark:bg-gray-800"
                   >
-                    <option value="auto">Auto-detect</option>
-                    <option value="es6">ES6 Modules</option>
+                    <option value="auto">
+                      {ui.autoDetect || 'Auto-detect'}
+                    </option>
+                    <option value="es6">
+                      {ui.es6Modules || 'ES6 Modules'}
+                    </option>
                     <option value="commonjs">CommonJS</option>
                     <option value="umd">UMD</option>
                   </select>
@@ -575,7 +591,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Insert semicolons
+                  {ui.insertSemicolons || 'Insert semicolons'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -586,7 +602,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Preserve newlines
+                  {ui.preserveNewlines || 'Preserve newlines'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -600,7 +616,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Space after keywords
+                  {ui.spaceAfterKeywords || 'Space after keywords'}
                 </label>
                 <label className="flex items-center gap-2 text-sm">
                   <input
@@ -611,13 +627,13 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="rounded border-gray-300"
                   />
-                  Space in parentheses
+                  {ui.spaceInParentheses || 'Space in parentheses'}
                 </label>
               </div>
 
               <div className="flex items-center gap-4">
                 <label className="text-sm">
-                  Indent type:
+                  {ui.indentType || 'Indent type:'}
                   <select
                     value={beautifyOptions.indentType}
                     onChange={(e) =>
@@ -625,13 +641,13 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                     }
                     className="ml-2 rounded border border-gray-300 px-2 py-1 dark:border-gray-600 dark:bg-gray-800"
                   >
-                    <option value="spaces">Spaces</option>
-                    <option value="tabs">Tabs</option>
+                    <option value="spaces">{ui.spaces || 'Spaces'}</option>
+                    <option value="tabs">{ui.tabs || 'Tabs'}</option>
                   </select>
                 </label>
 
                 <label className="text-sm">
-                  Indent size:
+                  {ui.indentSize || 'Indent size:'}
                   <input
                     type="number"
                     min="1"
@@ -648,7 +664,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 </label>
 
                 <label className="text-sm">
-                  Brace style:
+                  {ui.braceStyle || 'Brace style:'}
                   <select
                     value={beautifyOptions.braceStyle}
                     onChange={(e) =>
@@ -664,7 +680,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 </label>
 
                 <label className="text-sm">
-                  Max line length:
+                  {ui.maxLineLength || 'Max line length:'}
                   <input
                     type="number"
                     min="60"
@@ -694,7 +710,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 {stats.originalSize.toLocaleString()}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Original bytes
+                {ui.originalBytes || 'Original bytes'}
               </div>
             </div>
             <div className="text-center">
@@ -702,7 +718,9 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 {stats.minifiedSize.toLocaleString()}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                {mode === 'minify' ? 'Minified' : 'Beautified'} bytes
+                {mode === 'minify'
+                  ? ui.minifiedBytes || 'Minified bytes'
+                  : ui.beautifiedBytes || 'Beautified bytes'}
               </div>
             </div>
             <div className="text-center">
@@ -710,7 +728,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 {stats.savedPercentage.toFixed(1)}%
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Size reduction
+                {ui.sizeReduction || 'Size reduction'}
               </div>
             </div>
             <div className="text-center">
@@ -718,7 +736,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 {stats.processingTime.toFixed(1)}ms
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Processing time
+                {ui.processingTime || 'Processing time'}
               </div>
             </div>
           </div>
@@ -729,7 +747,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 {stats.totalFunctions}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Functions
+                {ui.functions || 'Functions'}
               </div>
             </div>
             <div className="text-center">
@@ -737,7 +755,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 {stats.totalClasses}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Classes
+                {ui.classes || 'Classes'}
               </div>
             </div>
             <div className="text-center">
@@ -745,7 +763,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 {stats.totalVariables}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Variables
+                {ui.variables || 'Variables'}
               </div>
             </div>
             <div className="text-center">
@@ -753,7 +771,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 {stats.totalLines}
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                Lines
+                {ui.lines || 'Lines'}
               </div>
             </div>
           </div>
@@ -761,7 +779,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
           {stats.optimizationsApplied.length > 0 && (
             <div>
               <div className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                Optimizations Applied:
+                {ui.optimizationsApplied || 'Optimizations Applied:'}
               </div>
               <div className="flex flex-wrap gap-1">
                 {stats.optimizationsApplied.map((opt, index) => (
@@ -782,7 +800,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-            JavaScript Input
+            {ui.javascriptInput || 'JavaScript Input'}
           </label>
           <div className="flex gap-2">
             <button
@@ -790,7 +808,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
               className="flex items-center gap-2 rounded-lg bg-gray-100 px-3 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
             >
               <Upload className="h-4 w-4" />
-              Upload File
+              {ui.uploadFile || 'Upload File'}
             </button>
             <input
               ref={fileInputRef}
@@ -817,7 +835,9 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
         <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Paste your JavaScript code here..."
+          placeholder={
+            ui.inputPlaceholder || 'Paste your JavaScript code here...'
+          }
           className="min-h-[200px] w-full rounded-lg border border-gray-300 p-4 font-mono text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
         />
 
@@ -836,7 +856,9 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              {mode === 'minify' ? 'Minified' : 'Beautified'} JavaScript
+              {mode === 'minify'
+                ? ui.minifiedJavascript || 'Minified JavaScript'
+                : ui.beautifiedJavascript || 'Beautified JavaScript'}
             </label>
             <div className="flex gap-2">
               <button
@@ -848,7 +870,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 ) : (
                   <Copy className="h-4 w-4" />
                 )}
-                {copied ? 'Copied!' : 'Copy'}
+                {copied ? ui.copied || 'Copied!' : ui.copy || 'Copy'}
               </button>
               <button
                 onClick={() =>
@@ -862,7 +884,7 @@ export default function JSMinifier({ categoryColor }: JSMinifierProps) {
                 className="flex items-center gap-2 rounded-lg bg-green-500 px-3 py-2 text-sm text-white transition-colors hover:bg-green-600"
               >
                 <Download className="h-4 w-4" />
-                Download
+                {ui.download || 'Download'}
               </button>
             </div>
           </div>

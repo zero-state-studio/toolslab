@@ -102,5 +102,21 @@
     "helpDescription": "Seu apoio pode nos ajudar a cobrir os custos do servidor e reativar este serviço. Cada contribuição, por menor que seja, faz a diferença.",
     "donateButton": "Me pague um café",
     "thanks": "Obrigado pela compreensão e apoio!"
+  },
+  "ui": {
+    "dropActive": "Solte os arquivos PDF aqui...",
+    "dropMainText": "Arraste e solte arquivos PDF aqui, ou clique para selecionar",
+    "dropHint": "Suporte para até 10 arquivos, máx. 50 MB cada",
+    "buttonConverting": "Convertendo...",
+    "buttonDownloadAll": "Baixar todos",
+    "progressWait": "Aguarde, isso pode levar alguns segundos",
+    "conversionSuccessful": "Conversão concluída",
+    "buttonDownloadWord": "Baixar documento Word",
+    "tipsHeading": "Dicas para melhores resultados",
+    "tip1": "Conversão de alta qualidade com algoritmos profissionais",
+    "tip2": "Layout, tabelas e formatação são preservados automaticamente",
+    "tip3": "Toda a conversão ocorre no nosso servidor — rápida e segura",
+    "tip4": "Seus arquivos nunca são armazenados e são excluídos imediatamente após a conversão",
+    "tip5": "Para PDFs protegidos por senha, remova a senha antes de converter"
   }
 }

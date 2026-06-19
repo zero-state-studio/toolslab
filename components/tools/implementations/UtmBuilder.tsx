@@ -55,9 +55,15 @@ import {
   type UtmBuilderResult,
 } from '@/lib/tools/utm-builder';
 
-interface UtmBuilderProps extends BaseToolProps {}
+interface UtmBuilderProps extends BaseToolProps {
+  dictionary?: any;
+}
 
-export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
+export default function UtmBuilder({
+  categoryColor,
+  dictionary,
+}: UtmBuilderProps) {
+  const ui = dictionary?.tools?.['utm-builder']?.ui ?? {};
   const { copy } = useCopy();
   const { addToHistory } = useToolStore();
   const { resultRef, scrollToResult } = useScrollToResult({
@@ -248,15 +254,18 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Link className="h-5 w-5" />
-            Website URL
+            {ui.websiteUrl || 'Website URL'}
           </CardTitle>
           <CardDescription>
-            Enter the destination URL you want to track
+            {ui.websiteUrlDescription ||
+              'Enter the destination URL you want to track'}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="url">Destination URL *</Label>
+            <Label htmlFor="url">
+              {ui.destinationUrl || 'Destination URL'} *
+            </Label>
             <Input
               id="url"
               type="url"
@@ -274,9 +283,10 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle>UTM Parameters</CardTitle>
+              <CardTitle>{ui.utmParameters || 'UTM Parameters'}</CardTitle>
               <CardDescription>
-                Define your campaign tracking parameters
+                {ui.utmParametersDescription ||
+                  'Define your campaign tracking parameters'}
               </CardDescription>
             </div>
             <Button
@@ -285,7 +295,7 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
               onClick={() => setShowPresets(!showPresets)}
             >
               <Sparkles className="mr-2 h-4 w-4" />
-              Presets
+              {ui.presets || 'Presets'}
               {showPresets ? (
                 <ChevronUp className="ml-2 h-4 w-4" />
               ) : (
@@ -298,10 +308,14 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
           {/* Presets */}
           {showPresets && (
             <div className="space-y-4 rounded-lg bg-muted p-4">
-              <h4 className="text-sm font-medium">Quick Presets</h4>
+              <h4 className="text-sm font-medium">
+                {ui.quickPresets || 'Quick Presets'}
+              </h4>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <Label className="text-xs">Social Media</Label>
+                  <Label className="text-xs">
+                    {ui.socialMedia || 'Social Media'}
+                  </Label>
                   <div className="flex flex-wrap gap-2">
                     {Object.keys(utmPresets.socialMedia).map((preset) => (
                       <Button
@@ -317,7 +331,7 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs">Email</Label>
+                  <Label className="text-xs">{ui.email || 'Email'}</Label>
                   <div className="flex flex-wrap gap-2">
                     {Object.keys(utmPresets.email).map((preset) => (
                       <Button
@@ -333,7 +347,9 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs">Advertising</Label>
+                  <Label className="text-xs">
+                    {ui.advertising || 'Advertising'}
+                  </Label>
                   <div className="flex flex-wrap gap-2">
                     {Object.keys(utmPresets.advertising).map((preset) => (
                       <Button
@@ -349,7 +365,9 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label className="text-xs">Content</Label>
+                  <Label className="text-xs">
+                    {ui.contentCategory || 'Content'}
+                  </Label>
                   <div className="flex flex-wrap gap-2">
                     {Object.keys(utmPresets.content).map((preset) => (
                       <Button
@@ -371,7 +389,9 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
           {/* UTM Fields */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="source">Campaign Source</Label>
+              <Label htmlFor="source">
+                {ui.campaignSource || 'Campaign Source'}
+              </Label>
               <Input
                 id="source"
                 value={source}
@@ -379,12 +399,15 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                 placeholder="facebook, google, newsletter"
               />
               <p className="text-xs text-muted-foreground">
-                Where the traffic originates (required)
+                {ui.campaignSourceHint ||
+                  'Where the traffic originates (required)'}
               </p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="medium">Campaign Medium</Label>
+              <Label htmlFor="medium">
+                {ui.campaignMedium || 'Campaign Medium'}
+              </Label>
               <Input
                 id="medium"
                 value={medium}
@@ -392,12 +415,14 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                 placeholder="cpc, email, social"
               />
               <p className="text-xs text-muted-foreground">
-                Marketing medium (required)
+                {ui.campaignMediumHint || 'Marketing medium (required)'}
               </p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="campaign">Campaign Name</Label>
+              <Label htmlFor="campaign">
+                {ui.campaignName || 'Campaign Name'}
+              </Label>
               <Input
                 id="campaign"
                 value={campaign}
@@ -405,12 +430,14 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                 placeholder="summer_sale, product_launch"
               />
               <p className="text-xs text-muted-foreground">
-                Product, promo, or campaign name
+                {ui.campaignNameHint || 'Product, promo, or campaign name'}
               </p>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="term">Campaign Term</Label>
+              <Label htmlFor="term">
+                {ui.campaignTerm || 'Campaign Term'}
+              </Label>
               <Input
                 id="term"
                 value={term}
@@ -418,12 +445,14 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                 placeholder="running shoes"
               />
               <p className="text-xs text-muted-foreground">
-                Paid search keywords
+                {ui.campaignTermHint || 'Paid search keywords'}
               </p>
             </div>
 
             <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="content">Campaign Content</Label>
+              <Label htmlFor="content">
+                {ui.campaignContent || 'Campaign Content'}
+              </Label>
               <Input
                 id="content"
                 value={content}
@@ -431,7 +460,8 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                 placeholder="logolink, textlink, button"
               />
               <p className="text-xs text-muted-foreground">
-                Differentiate similar content or links
+                {ui.campaignContentHint ||
+                  'Differentiate similar content or links'}
               </p>
             </div>
           </div>
@@ -439,10 +469,10 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
           {/* Custom Parameters */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label>Custom Parameters</Label>
+              <Label>{ui.customParameters || 'Custom Parameters'}</Label>
               <Button variant="outline" size="sm" onClick={addCustomParam}>
                 <Plus className="mr-1 h-4 w-4" />
-                Add
+                {ui.add || 'Add'}
               </Button>
             </div>
             {customParams.map((param, index) => (
@@ -452,7 +482,7 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                   onChange={(e) =>
                     updateCustomParam(index, 'key', e.target.value)
                   }
-                  placeholder="Parameter name"
+                  placeholder={ui.parameterNamePlaceholder || 'Parameter name'}
                   className="flex-1"
                 />
                 <Input
@@ -460,7 +490,7 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                   onChange={(e) =>
                     updateCustomParam(index, 'value', e.target.value)
                   }
-                  placeholder="Value"
+                  placeholder={ui.valuePlaceholder || 'Value'}
                   className="flex-1"
                 />
                 <Button
@@ -478,37 +508,39 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-2">
             <Button onClick={handleGenerate} disabled={!url}>
-              Generate UTM URL
+              {ui.generateUtmUrl || 'Generate UTM URL'}
             </Button>
             <Button variant="outline" onClick={handleClear}>
               <Trash2 className="mr-2 h-4 w-4" />
-              Clear
+              {ui.clear || 'Clear'}
             </Button>
             <Button
               variant="outline"
               onClick={() => setShowTemplates(!showTemplates)}
             >
               <BookmarkPlus className="mr-2 h-4 w-4" />
-              Templates
+              {ui.templates || 'Templates'}
             </Button>
           </div>
 
           {/* Templates */}
           {showTemplates && (
             <div className="space-y-4 rounded-lg bg-muted p-4">
-              <h4 className="text-sm font-medium">Saved Templates</h4>
+              <h4 className="text-sm font-medium">
+                {ui.savedTemplates || 'Saved Templates'}
+              </h4>
 
               {/* Save new template */}
               <div className="flex gap-2">
                 <Input
                   value={templateName}
                   onChange={(e) => setTemplateName(e.target.value)}
-                  placeholder="Template name"
+                  placeholder={ui.templateNamePlaceholder || 'Template name'}
                   className="flex-1"
                 />
                 <Button onClick={handleSaveTemplate} size="sm">
                   <Save className="mr-1 h-4 w-4" />
-                  Save
+                  {ui.save || 'Save'}
                 </Button>
               </div>
 
@@ -533,7 +565,7 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                           size="sm"
                           onClick={() => loadTemplate(template)}
                         >
-                          Load
+                          {ui.load || 'Load'}
                         </Button>
                         <Button
                           variant="outline"
@@ -548,7 +580,7 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                 </div>
               ) : (
                 <p className="py-4 text-center text-sm text-muted-foreground">
-                  No saved templates yet
+                  {ui.noSavedTemplates || 'No saved templates yet'}
                 </p>
               )}
             </div>
@@ -561,9 +593,10 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
         <div ref={resultRef}>
           <Card>
             <CardHeader>
-              <CardTitle>Generated UTM URL</CardTitle>
+              <CardTitle>{ui.generatedUtmUrl || 'Generated UTM URL'}</CardTitle>
               <CardDescription>
-                Your trackable URL is ready to use
+                {ui.generatedUtmUrlDescription ||
+                  'Your trackable URL is ready to use'}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -577,11 +610,11 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                 <div className="flex flex-wrap gap-2">
                   <Button variant="outline" size="sm" onClick={handleCopy}>
                     <Copy className="mr-2 h-4 w-4" />
-                    Copy URL
+                    {ui.copyUrl || 'Copy URL'}
                   </Button>
                   <Button variant="outline" size="sm" onClick={handleDownload}>
                     <Download className="mr-2 h-4 w-4" />
-                    Download
+                    {ui.download || 'Download'}
                   </Button>
                   <Button
                     variant="outline"
@@ -589,7 +622,7 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                     onClick={() => window.open(result.url, '_blank')}
                   >
                     <ExternalLink className="mr-2 h-4 w-4" />
-                    Test Link
+                    {ui.testLink || 'Test Link'}
                   </Button>
                 </div>
               </div>
@@ -599,7 +632,8 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                 Object.keys(result.parameters).length > 0 && (
                   <div className="space-y-2">
                     <Label>
-                      Parameters ({result.metadata?.parameterCount})
+                      {ui.parameters || 'Parameters'} (
+                      {result.metadata?.parameterCount})
                     </Label>
                     <div className="flex flex-wrap gap-2">
                       {Object.entries(result.parameters).map(([key, value]) => (
@@ -617,7 +651,7 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                   <AlertDescription className="space-y-1 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">
-                        Original URL:
+                        {ui.originalUrl || 'Original URL:'}
                       </span>
                       <span className="font-mono text-xs">
                         {result.metadata.originalUrl}
@@ -625,17 +659,17 @@ export default function UtmBuilder({ categoryColor }: UtmBuilderProps) {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">
-                        Parameters Added:
+                        {ui.parametersAdded || 'Parameters Added:'}
                       </span>
                       <span>{result.metadata.parameterCount}</span>
                     </div>
                     {result.metadata.hasCustomParams && (
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">
-                          Custom Parameters:
+                          {ui.customParameters || 'Custom Parameters'}:
                         </span>
                         <Badge variant="outline" className="text-xs">
-                          Yes
+                          {ui.yes || 'Yes'}
                         </Badge>
                       </div>
                     )}

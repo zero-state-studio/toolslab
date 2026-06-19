@@ -88,5 +88,35 @@
         "description": "Copy filename"
       }
     ]
+  },
+  "ui": {
+    "alsoConvertTo": "Also convert to:",
+    "inputHeading": "Base64 String",
+    "textareaPlaceholder": "Paste Base64 string here, or drag & drop an image / .txt file...",
+    "dropFileHere": "Drop file here",
+    "validBase64": "Valid Base64",
+    "invalidBase64Format": "Invalid Base64 format",
+    "formatMismatchPrefix": "Input appears to be",
+    "formatMismatchSuffix": "— you are on the WebP converter",
+    "clearButton": "Clear",
+    "errorHeading": "Error",
+    "resultHeading": "WebP Ready",
+    "hidePreviewButton": "Hide Preview",
+    "showPreviewButton": "Show Preview",
+    "sizeLabel": "Size:",
+    "dimensionsLabel": "Dimensions:",
+    "compressionLabel": "Compression:",
+    "alphaLabel": "Alpha:",
+    "yes": "Yes",
+    "no": "No",
+    "previewHeading": "Preview",
+    "openInNewTab": "Open in new tab",
+    "loadingPreview": "Loading preview...",
+    "failedToLoadPreview": "Failed to load preview",
+    "imageAlt": "WebP Preview",
+    "filenameLabel": "Filename:",
+    "downloadButton": "Download WebP",
+    "copiedButton": "Copied!",
+    "copyDataUrlButton": "Copy Data URL"
   }
 }

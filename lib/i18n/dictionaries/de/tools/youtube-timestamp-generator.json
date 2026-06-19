@@ -8,20 +8,6 @@
   },
   "tagline": "Generieren Sie YouTube-Kapitel und Timestamps mit automatischer Link-Erstellung und Zeitkonvertierung",
   "pageDescription": "Professioneller YouTube-Timestamp-Generator für Content Creator und Video-Editoren — kostenlos, ohne Anmeldung. Erstellen Sie formatierte Timestamps für Videobeschreibungen, generieren Sie YouTube-Kapitel für verbesserte Navigation und SEO, und konvertieren Sie sofort zwischen Zeitformaten. Fügen Sie Timestamps mit Labels hinzu, importieren Sie vorhandene Kapitel und exportieren Sie in mehreren Formaten. Generieren Sie klickbare Timestamp-Links, wenn Sie eine Video-URL angeben. Der integrierte Zeitkonverter verarbeitet HH:MM:SS, MM:SS und Sekundenformate. Die gesamte Verarbeitung erfolgt in Ihrem Browser für vollständige Privatsphäre — keine Videodaten werden gespeichert oder hochgeladen.",
-  "longTailKeywords": [
-    "YouTube Timestamp Generator online kostenlos",
-    "YouTube Kapitel Videobeschreibung erstellen wie",
-    "YouTube Kapitel Generator ohne Anmeldung",
-    "klickbare YouTube Timestamp Links erstellen",
-    "YouTube Kapitel Format kopieren einfügen Beschreibung",
-    "YouTube Zeitstempel Tool für Content Creator",
-    "Zeitkonverter Sekunden MM:SS YouTube kostenlos",
-    "YouTube Kapitel für besseres Video SEO erstellen",
-    "bester kostenloser YouTube Kapitel Generator",
-    "YouTube Kapitel aus Textdatei importieren",
-    "YouTube Timestamp Links generieren teilen",
-    "Zeitstempel YouTube für Podcast Episoden"
-  ],
   "videoUrlPlaceholder": "https://www.youtube.com/watch?v=...",
   "addTimestamp": "Timestamp Hinzufügen",
   "time": "Zeit",
@@ -139,5 +125,8 @@
         "description": "Bearbeitung abbrechen"
       }
     ]
-  }
+  },
+  "actions": "Aktionen",
+  "converterPlaceholder": "00:00 oder 90",
+  "converterHint": "MM:SS, HH:MM:SS, oder Sekunden"
 }

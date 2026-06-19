@@ -86,5 +86,38 @@
         "description": "Baixar arquivo JSON"
       }
     ]
+  },
+  "ui": {
+    "conversionOptions": "Opções de Conversão",
+    "hide": "Ocultar",
+    "show": "Mostrar",
+    "prettyPrintLabel": "Pretty Print",
+    "prettyPrintDesc": "Formata o JSON com indentação",
+    "attributeModeLabel": "Modo de Atributos",
+    "attributeModeDesc": "Como tratar os atributos XML",
+    "attrInline": "Inline (id, category)",
+    "attrCompact": "Compacto (@id, @category)",
+    "attrVerbose": "Verbose (@attributes)",
+    "removeNamespacesLabel": "Remover Namespaces",
+    "removeNamespacesDesc": "Remove os prefixos de namespace",
+    "smartArraysLabel": "Arrays Inteligentes",
+    "smartArraysDesc": "Detecta automaticamente elementos repetidos",
+    "typeConversionLabel": "Conversão de Tipos",
+    "typeConversionDesc": "Converte números e booleanos",
+    "xmlInputLabel": "Entrada XML",
+    "sampleBtn": "Exemplo",
+    "uploadBtn": "Carregar",
+    "inputPlaceholder": "Cole seu XML aqui...",
+    "convertBtn": "Converter para JSON",
+    "clearBtn": "Limpar",
+    "conversionError": "Erro de Conversão",
+    "xmlSizeLabel": "Tamanho XML",
+    "jsonSizeLabel": "Tamanho JSON",
+    "elementsLabel": "Elementos",
+    "processingTimeLabel": "Tempo de Processamento",
+    "jsonOutputLabel": "Saída JSON",
+    "copiedBtn": "Copiado!",
+    "copyBtn": "Copiar",
+    "downloadBtn": "Baixar"
   }
 }

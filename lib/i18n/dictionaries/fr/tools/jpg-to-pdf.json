@@ -65,8 +65,14 @@
       "Image déformée : Évitez 'Remplir' si vous ne souhaitez pas d'étirement"
     ],
     "keyboardShortcuts": [
-      { "keys": "Glisser-Déposer", "description": "Déposez les fichiers JPG pour les charger" },
-      { "keys": "Clic", "description": "Sélectionnez des fichiers JPG depuis l'ordinateur" }
+      {
+        "keys": "Glisser-Déposer",
+        "description": "Déposez les fichiers JPG pour les charger"
+      },
+      {
+        "keys": "Clic",
+        "description": "Sélectionnez des fichiers JPG depuis l'ordinateur"
+      }
     ]
   },
   "meta": {
@@ -88,5 +94,39 @@
     "créer album photo PDF depuis images JPG",
     "meilleur convertisseur JPG en PDF gratuit en ligne",
     "convertir JPEG en PDF sans perte de qualité"
-  ]
+  ],
+  "ui": {
+    "uploadHeading": "Télécharger des images JPG",
+    "clearAll": "Tout effacer",
+    "dropZoneMain": "Cliquez pour télécharger ou glissez-déposez",
+    "dropZoneSub": "Fichiers JPG, JPEG uniquement (jusqu'à 10 Mo par fichier)",
+    "selectedImagesLabel": "Images JPG sélectionnées",
+    "moveUp": "Monter",
+    "moveDown": "Descendre",
+    "remove": "Supprimer",
+    "pdfSettingsHeading": "Paramètres PDF",
+    "pageSizeLabel": "Taille de la page",
+    "widthLabel": "Largeur (pt)",
+    "heightLabel": "Hauteur (pt)",
+    "imageFitLabel": "Ajustement de l'image",
+    "fitContain": "Contain (ajuster dedans, conserver les proportions)",
+    "fitCover": "Cover (remplir la page, peut rogner)",
+    "fitFill": "Fill (étirer pour remplir)",
+    "fitNone": "None (taille originale)",
+    "marginsLabel": "Marges",
+    "filenameLabel": "Nom de fichier",
+    "filenamePlaceholder": "mon-document.pdf",
+    "generatingPdf": "Génération du PDF...",
+    "generatePdf": "Générer le PDF",
+    "imageSingular": "image",
+    "imagePlural": "images",
+    "pdfGeneratedSuccess": "PDF généré avec succès !",
+    "pagesLabel": "Pages :",
+    "fileSizeLabel": "Taille du fichier :",
+    "filenameResultLabel": "Nom de fichier :",
+    "downloadPdf": "Télécharger le PDF",
+    "previewHeading": "Aperçu du PDF",
+    "hidePreview": "Masquer l'aperçu",
+    "showPreview": "Afficher l'aperçu"
+  }
 }

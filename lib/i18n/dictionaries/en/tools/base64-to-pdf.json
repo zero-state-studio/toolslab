@@ -80,5 +80,39 @@
         "description": "Download PDF"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Usage Tips",
+    "tips": [
+      "Valid PDF Base64 data should start with \"JVBERi0\" when decoded",
+      "Remove any data URL prefixes like \"data:application/pdf;base64,\" before pasting",
+      "Large files may take longer to process - be patient with big PDFs",
+      "The tool validates PDF headers to ensure you have valid PDF data"
+    ]
+  },
+  "ui": {
+    "inputHeading": "Base64 Input",
+    "clearInputTitle": "Clear input",
+    "textareaPlaceholder": "Paste your Base64 encoded PDF data here...",
+    "dataUrlPrefixDetected": "Data URL prefix detected - will be automatically removed",
+    "validBase64Format": "Valid Base64 format • Estimated size:",
+    "invalidBase64Format": "Invalid Base64 format",
+    "outputFilenameLabel": "Output filename:",
+    "convertingButton": "Converting...",
+    "convertToPdfButton": "Convert to PDF",
+    "resultHeading": "PDF Ready for Download",
+    "conversionSuccessful": "Conversion successful",
+    "fileSizeLabel": "File size:",
+    "fileNameLabel": "File name:",
+    "pdfValidationLabel": "PDF validation:",
+    "validPdfHeader": "Valid PDF header",
+    "noPdfHeaderFound": "No PDF header found",
+    "downloadPdfButton": "Download PDF",
+    "copyFilenameButton": "Copy filename",
+    "copiedButton": "Copied!",
+    "pdfPreviewHeading": "PDF Preview",
+    "hidePreviewButton": "Hide Preview",
+    "showPreviewButton": "Show Preview",
+    "unknownFileSize": "Unknown"
   }
 }

@@ -33,14 +33,29 @@ export async function loadToolTranslation(locale: Locale, toolId: string) {
 }
 
 /**
- * Load all tools' translations for a locale
- * @param locale - The locale to load
- * @returns Object with all tool translations
+ * Load only title+description for a list of tools (e.g. related tools).
+ * Keeps the RSC payload small: full translations are loaded only for the
+ * current tool, related ones just need their card title/description.
  */
-export async function loadAllToolsTranslations(locale: Locale) {
-  // List of all tool IDs (from registry)
-  const toolIds = [
-    'json-formatter',
+export async function loadToolSummaries(
+  locale: Locale,
+  toolIds: string[]
+): Promise<Record<string, { title?: string; description?: string }>> {
+  const entries = await Promise.all(
+    toolIds.map(async (id) => {
+      const data = await loadToolTranslation(locale, id);
+      return [
+        id,
+        { title: data?.title, description: data?.description },
+      ] as const;
+    })
+  );
+  return Object.fromEntries(entries);
+}
+
+// List of all tool IDs (must match the registry in lib/tools.ts)
+export const ALL_TOOL_IDS = [
+  'json-formatter',
     'csv-to-json',
     'json-to-csv',
     'sql-formatter',
@@ -109,12 +124,18 @@ export async function loadAllToolsTranslations(locale: Locale) {
     'html-to-markdown',
     'markdown-table-generator',
     'rot13-caesar-cipher',
-  ];
+];
 
+/**
+ * Load all tools' translations for a locale
+ * @param locale - The locale to load
+ * @returns Object with all tool translations
+ */
+export async function loadAllToolsTranslations(locale: Locale) {
   const tools: Record<string, any> = {};
 
   await Promise.all(
-    toolIds.map(async (toolId) => {
+    ALL_TOOL_IDS.map(async (toolId) => {
       const toolData = await loadToolTranslation(locale, toolId);
       if (toolData) {
         tools[toolId] = toolData;
@@ -123,4 +144,14 @@ export async function loadAllToolsTranslations(locale: Locale) {
   );
 
   return { tools };
+}
+
+/**
+ * Lightweight variant for the client chrome (Header search, Footer,
+ * ToolCard lists): title+description only for every tool. The full
+ * 'tools' section is ~325KB raw per locale — 95% of it (instructions,
+ * meta, FAQ) is never read by client components.
+ */
+export async function loadAllToolsSummaries(locale: Locale) {
+  return { tools: await loadToolSummaries(locale, ALL_TOOL_IDS) };
 }

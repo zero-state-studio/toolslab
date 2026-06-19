@@ -80,5 +80,39 @@
         "description": "Télécharger le PDF"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Conseils d'Utilisation",
+    "tips": [
+      "Les données Base64 d'un PDF valide commencent par \"JVBERi0\" une fois décodées",
+      "Supprimez les préfixes data URL comme \"data:application/pdf;base64,\" avant de coller",
+      "Les gros fichiers peuvent prendre plus de temps — soyez patient avec les PDF volumineux",
+      "L'outil valide les en-têtes PDF pour garantir des données PDF valides"
+    ]
+  },
+  "ui": {
+    "inputHeading": "Entrée Base64",
+    "clearInputTitle": "Effacer l'entrée",
+    "textareaPlaceholder": "Collez ici les données PDF encodées en Base64...",
+    "dataUrlPrefixDetected": "Préfixe data URL détecté - sera supprimé automatiquement",
+    "validBase64Format": "Format Base64 valide • Taille estimée :",
+    "invalidBase64Format": "Format Base64 non valide",
+    "outputFilenameLabel": "Nom du fichier de sortie :",
+    "convertingButton": "Conversion en cours...",
+    "convertToPdfButton": "Convertir en PDF",
+    "resultHeading": "PDF prêt à télécharger",
+    "conversionSuccessful": "Conversion réussie",
+    "fileSizeLabel": "Taille du fichier :",
+    "fileNameLabel": "Nom du fichier :",
+    "pdfValidationLabel": "Validation PDF :",
+    "validPdfHeader": "En-tête PDF valide",
+    "noPdfHeaderFound": "Aucun en-tête PDF trouvé",
+    "downloadPdfButton": "Télécharger le PDF",
+    "copyFilenameButton": "Copier le nom du fichier",
+    "copiedButton": "Copié !",
+    "pdfPreviewHeading": "Aperçu du PDF",
+    "hidePreviewButton": "Masquer l'aperçu",
+    "showPreviewButton": "Afficher l'aperçu",
+    "unknownFileSize": "Inconnu"
   }
 }

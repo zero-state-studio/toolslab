@@ -94,5 +94,10 @@
     "description": "Genera testo segnaposto Lorem Ipsum per design, mockup e layout. Crea parole, frasi o paragrafi in diversi stili di testo. Strumento online gratuito e veloce."
   },
   "tagline": "Genera testo segnaposto istantaneamente per design e mockup",
-  "pageDescription": "Crea testo segnaposto Lorem Ipsum per i tuoi design, mockup e layout. Genera parole, frasi o paragrafi con testo latino classico o varianti tematiche come Tech, Hipster o stili Aziendali. Esporta come testo semplice, HTML o Markdown. Perfetto per designer, sviluppatori e creatori di contenuti che hanno bisogno di testo fittizio realistico. Gratuito, sicuro e basato su browser."
+  "pageDescription": "Crea testo segnaposto Lorem Ipsum per i tuoi design, mockup e layout. Genera parole, frasi o paragrafi con testo latino classico o varianti tematiche come Tech, Hipster o stili Aziendali. Esporta come testo semplice, HTML o Markdown. Perfetto per designer, sviluppatori e creatori di contenuti che hanno bisogno di testo fittizio realistico. Gratuito, sicuro e basato su browser.",
+  "ui": {
+    "toolTitle": "Generatore Lorem Ipsum",
+    "toolSubtitle": "Generatore di testo segnaposto",
+    "quickPresets": "Preset rapidi"
+  }
 }

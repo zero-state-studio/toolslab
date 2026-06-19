@@ -12,10 +12,22 @@
   "instructions": {
     "title": "Como usar o Conversor cURL para Java",
     "steps": [
-      { "title": "Cole o comando cURL", "description": "Do terminal, Chrome DevTools, docs de API ou Postman." },
-      { "title": "Escolha HttpClient ou OkHttp", "description": "HttpClient para Java 11+ sem deps; OkHttp é o cliente de terceiros mais popular." },
-      { "title": "Copie o Java gerado", "description": "Inclui imports, try-with-resources, tratamento correto de cabeçalhos e auth." },
-      { "title": "Ajuste opções", "description": "Altere timeout, verificação SSL pelo painel." }
+      {
+        "title": "Cole o comando cURL",
+        "description": "Do terminal, Chrome DevTools, docs de API ou Postman."
+      },
+      {
+        "title": "Escolha HttpClient ou OkHttp",
+        "description": "HttpClient para Java 11+ sem deps; OkHttp é o cliente de terceiros mais popular."
+      },
+      {
+        "title": "Copie o Java gerado",
+        "description": "Inclui imports, try-with-resources, tratamento correto de cabeçalhos e auth."
+      },
+      {
+        "title": "Ajuste opções",
+        "description": "Altere timeout, verificação SSL pelo painel."
+      }
     ],
     "features": [
       "HttpClient do Java 11+ (stdlib, sem dependências)",
@@ -53,10 +65,82 @@
       "Body não enviado: verifique flags -d/--data no cURL origem"
     ],
     "keyboardShortcuts": [
-      { "keys": "Ctrl+V", "description": "Colar entrada" },
-      { "keys": "Ctrl+Enter", "description": "Gerar Java" },
-      { "keys": "Ctrl+C", "description": "Copiar resultado" },
-      { "keys": "Ctrl+S", "description": "Baixar arquivo" }
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar entrada"
+      },
+      {
+        "keys": "Ctrl+Enter",
+        "description": "Gerar Java"
+      },
+      {
+        "keys": "Ctrl+C",
+        "description": "Copiar resultado"
+      },
+      {
+        "keys": "Ctrl+S",
+        "description": "Baixar arquivo"
+      }
     ]
+  },
+  "ui": {
+    "curlCommand": "Comando cURL",
+    "clear": "Limpar",
+    "import": "Importar",
+    "inputPlaceholder": "Cole seu comando cURL aqui...",
+    "quickExamples": "Exemplos rápidos",
+    "exampleSimpleGet": "GET simples",
+    "examplePostJson": "POST com JSON",
+    "exampleBearerAuth": "Auth Bearer",
+    "exampleFormUpload": "Upload de formulário",
+    "exampleGraphql": "Consulta GraphQL",
+    "exampleComplexRequest": "Requisição complexa",
+    "language": "Linguagem",
+    "framework": "Framework",
+    "comingSoon": "Em breve",
+    "generatorComingSoonPrefix": "O gerador para",
+    "generatorComingSoonSuffix": "está chegando em breve. Escolha uma linguagem com um framework disponível (ex.: JavaScript + fetch, Python + requests) para gerar código agora.",
+    "advancedOptions": "Opções avançadas",
+    "errorHandling": "Tratamento de erros",
+    "none": "Nenhum",
+    "basicTryCatch": "Try-Catch básico",
+    "comprehensive": "Completo",
+    "asyncAwait": "Async/Await",
+    "extractEnvVars": "Extrair variáveis de ambiente",
+    "includeTypes": "Incluir tipos",
+    "retryLogic": "Lógica de retry",
+    "includeLogging": "Incluir logging",
+    "includeComments": "Incluir comentários",
+    "indentation": "Indentação",
+    "indentSize": "Tamanho da indentação",
+    "spaces": "Espaços",
+    "tabs": "Tabulações",
+    "converting": "Convertendo...",
+    "convertToCode": "Converter em código",
+    "generatedCode": "Código gerado",
+    "copied": "Copiado",
+    "copy": "Copiar",
+    "download": "Baixar",
+    "codeTab": "Código",
+    "envVarsTab": "Variáveis Env",
+    "infoTab": "Info",
+    "addEnvVarsHint": "Adicione estas variáveis de ambiente ao seu arquivo .env",
+    "noEnvVars": "Nenhuma variável de ambiente extraída.",
+    "parsedCurlDetails": "Detalhes do cURL analisado",
+    "methodLabel": "Método:",
+    "urlLabel": "URL:",
+    "authTypeLabel": "Tipo de auth:",
+    "dataTypeLabel": "Tipo de dados:",
+    "headers": "Cabeçalhos",
+    "dependencies": "Dependências",
+    "installPackagesHint": "Instale estes pacotes para usar o código gerado:",
+    "emptyState": "O código gerado aparecerá aqui",
+    "supportedFeatures": "Recursos suportados",
+    "allHttpMethods": "Todos os métodos HTTP",
+    "allHttpMethodsDesc": "GET, POST, PUT, DELETE, PATCH, etc.",
+    "typeInference": "Inferência de tipos",
+    "typeInferenceDesc": "Gera tipos automaticamente a partir do JSON",
+    "errorHandlingDesc": "Try-catch, lógica de retry, timeouts",
+    "languagesCount": "15+ linguagens"
   }
 }

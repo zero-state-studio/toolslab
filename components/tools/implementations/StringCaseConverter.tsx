@@ -50,7 +50,7 @@ export default function StringCaseConverter({
   const shouldScrollRef = useRef(false);
 
   // Get translations with fallbacks
-  const t = dictionary || {};
+  const t = dictionary?.tools?.['string-case-converter'] || {};
   const labels = {
     title: t.title || 'String Case Converter',
     inputLabel: t.inputLabel || 'Enter your text',

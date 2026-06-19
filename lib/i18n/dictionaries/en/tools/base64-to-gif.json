@@ -82,5 +82,42 @@
         "description": "Copy filename"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Usage Tips",
+    "tips": [
+      "Valid GIF Base64 data starts with \"R0lGOD\" when encoded",
+      "Data URL prefixes like \"data:image/gif;base64,\" are removed automatically",
+      "Both GIF87a and GIF89a formats are supported, including animated GIFs",
+      "GIF headers are validated to confirm you have genuine GIF data",
+      "Use the preview to verify your GIF plays correctly before downloading"
+    ]
+  },
+  "ui": {
+    "alsoConvertTo": "Also convert to:",
+    "inputLabel": "Base64 String",
+    "inputPlaceholder": "Paste Base64 string here, or drag & drop an image / .txt file...",
+    "dropFileHere": "Drop file here",
+    "validBase64": "Valid Base64",
+    "invalidBase64Format": "Invalid Base64 format",
+    "clearButton": "Clear",
+    "errorHeading": "Error",
+    "gifReadyHeading": "GIF Ready",
+    "hidePreview": "Hide Preview",
+    "showPreview": "Show Preview",
+    "sizeLabel": "Size:",
+    "dimensionsLabel": "Dimensions:",
+    "formatLabel": "Format:",
+    "framesLabel": "Frames:",
+    "animatedLabel": "(animated)",
+    "previewHeading": "Preview",
+    "openInNewTab": "Open in new tab",
+    "loadingPreview": "Loading preview...",
+    "failedToLoadPreview": "Failed to load preview",
+    "gifPreviewAlt": "GIF Preview",
+    "filenameLabel": "Filename:",
+    "downloadButton": "Download GIF",
+    "copyDataUrlButton": "Copy Data URL",
+    "copiedButton": "Copied!"
   }
 }

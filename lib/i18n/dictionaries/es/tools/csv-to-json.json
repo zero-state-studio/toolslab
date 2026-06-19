@@ -81,5 +81,36 @@
     "description": "Convierta archivos CSV a formato JSON online. Soporte para delimitadores personalizados, encabezados y estructuras anidadas. Conversor CSV a JSON gratuito."
   },
   "tagline": "Convierte datos CSV a formato JSON con análisis inteligente",
-  "pageDescription": "Transforma archivos CSV a formato JSON con detección automática de encabezados y soporte de delimitadores personalizados. Perfecto para migración de datos, integración de API y procesamiento de hojas de cálculo. Maneja archivos grandes con streaming, preserva tipos de datos y ofrece múltiples formatos de salida. Conversión gratuita y segura basada en navegador sin carga de archivos."
+  "pageDescription": "Transforma archivos CSV a formato JSON con detección automática de encabezados y soporte de delimitadores personalizados. Perfecto para migración de datos, integración de API y procesamiento de hojas de cálculo. Maneja archivos grandes con streaming, preserva tipos de datos y ofrece múltiples formatos de salida. Conversión gratuita y segura basada en navegador sin carga de archivos.",
+  "ui": {
+    "inputSectionHeading": "Entrada CSV",
+    "loadExample": "Cargar Ejemplo",
+    "uploadCsv": "Subir CSV",
+    "inputPlaceholder": "Pega tus datos CSV aquí o sube un archivo...",
+    "optionsSectionHeading": "Opciones de Conversión",
+    "delimiterLabel": "Delimitador",
+    "delimiterComma": "Coma (,)",
+    "delimiterSemicolon": "Punto y coma (;)",
+    "delimiterTab": "Tabulador",
+    "delimiterPipe": "Barra vertical (|)",
+    "outputFormatLabel": "Formato de Salida",
+    "outputFormatArray": "Array de Objetos",
+    "outputFormatNested": "Objeto Anidado",
+    "outputFormatCompact": "Array Compacto",
+    "customHeadersLabel": "Encabezados Personalizados",
+    "nullValuesLabel": "Valores Nulos",
+    "checkboxFirstRowHeaders": "La primera fila contiene encabezados",
+    "checkboxTrimWhitespace": "Eliminar espacios en blanco",
+    "checkboxMinifyOutput": "Minificar salida JSON",
+    "btnConvert": "Convertir a JSON",
+    "btnConverted": "¡Convertido!",
+    "btnValidate": "Validar CSV",
+    "btnClear": "Limpiar",
+    "statsRows": "Filas",
+    "statsColumns": "Columnas",
+    "outputSectionHeading": "Salida JSON",
+    "btnCopy": "Copiar",
+    "btnCopied": "¡Copiado!",
+    "btnDownload": "Descargar"
+  }
 }

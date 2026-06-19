@@ -54,7 +54,8 @@ const PREVIEW_WIDTHS: Record<PreviewSize, string> = {
   mobile: '375px',
 };
 
-export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
+export default function EmlToHtml({ defaultValue = '', dictionary }: EmlToHtmlProps) {
+  const ui = dictionary?.tools?.['eml-to-html']?.ui ?? {};
   const { trackUse, trackError } = useToolTracking('eml-to-html');
   const [emlInput, setEmlInput] = useState(defaultValue);
   const [result, setResult] = useState<ConversionResult | null>(null);
@@ -252,7 +253,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
               onClick={() => copyToClipboard(result.rawView || '', 'Raw EML')}
             >
               <Copy className="mr-2 h-4 w-4" />
-              Copy
+              {ui.copyBtn || 'Copy'}
             </Button>
           </div>
         );
@@ -263,9 +264,9 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
             {/* Responsive preview toggle */}
             <div className="mb-3 flex items-center gap-1 rounded-lg bg-gray-100 p-1 w-fit">
               {([
-                { size: 'desktop' as PreviewSize, icon: Monitor, label: 'Desktop' },
-                { size: 'tablet' as PreviewSize, icon: Tablet, label: 'Tablet' },
-                { size: 'mobile' as PreviewSize, icon: Smartphone, label: 'Mobile' },
+                { size: 'desktop' as PreviewSize, icon: Monitor, label: ui.previewDesktop || 'Desktop' },
+                { size: 'tablet' as PreviewSize, icon: Tablet, label: ui.previewTablet || 'Tablet' },
+                { size: 'mobile' as PreviewSize, icon: Smartphone, label: ui.previewMobile || 'Mobile' },
               ]).map(({ size, icon: Icon, label }) => (
                 <button
                   key={size}
@@ -298,11 +299,11 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
                 onClick={() => copyToClipboard(result.html || '', 'HTML')}
               >
                 <Copy className="mr-2 h-4 w-4" />
-                Copy HTML
+                {ui.copyHtmlBtn || 'Copy HTML'}
               </Button>
               <Button size="sm" variant="outline" onClick={downloadHtml}>
                 <Download className="mr-2 h-4 w-4" />
-                Download HTML
+                {ui.downloadHtmlBtn || 'Download HTML'}
               </Button>
             </div>
           </div>
@@ -315,8 +316,8 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="bg-gray-50 border-b">
-                    <th className="px-4 py-2 text-left font-medium w-48">Header</th>
-                    <th className="px-4 py-2 text-left font-medium">Value</th>
+                    <th className="px-4 py-2 text-left font-medium w-48">{ui.colHeader || 'Header'}</th>
+                    <th className="px-4 py-2 text-left font-medium">{ui.colValue || 'Value'}</th>
                     <th className="px-4 py-2 w-10"></th>
                   </tr>
                 </thead>
@@ -345,7 +346,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
             <div className="mt-4">
               <Button size="sm" variant="outline" onClick={exportHeaders}>
                 <Download className="mr-2 h-4 w-4" />
-                Export as JSON
+                {ui.exportAsJsonBtn || 'Export as JSON'}
               </Button>
             </div>
           </div>
@@ -359,9 +360,9 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="bg-gray-50 border-b">
-                      <th className="px-4 py-2 text-left font-medium">Text</th>
-                      <th className="px-4 py-2 text-left font-medium">URL</th>
-                      <th className="px-4 py-2 text-left font-medium w-24">Type</th>
+                      <th className="px-4 py-2 text-left font-medium">{ui.colText || 'Text'}</th>
+                      <th className="px-4 py-2 text-left font-medium">{ui.colUrl || 'URL'}</th>
+                      <th className="px-4 py-2 text-left font-medium w-24">{ui.colType || 'Type'}</th>
                       <th className="px-4 py-2 w-10"></th>
                     </tr>
                   </thead>
@@ -378,10 +379,10 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
                           {link.isTracking ? (
                             <Badge variant="outline" className="bg-yellow-100 text-yellow-700 text-xs">
                               <Eye className="mr-1 h-3 w-3" />
-                              Tracking
+                              {ui.trackingBadge || 'Tracking'}
                             </Badge>
                           ) : (
-                            <span className="text-xs text-gray-400">Normal</span>
+                            <span className="text-xs text-gray-400">{ui.normalLinkType || 'Normal'}</span>
                           )}
                         </td>
                         <td className="px-2 py-2">
@@ -399,7 +400,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
                 </table>
               </div>
             ) : (
-              <div className="py-12 text-center text-gray-400">No links found in this email</div>
+              <div className="py-12 text-center text-gray-400">{ui.noLinksFound || 'No links found in this email'}</div>
             )}
             {result.links && result.links.length > 0 && (
               <div className="mt-3 flex gap-4 text-xs text-gray-500">
@@ -426,7 +427,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
               onClick={() => copyToClipboard(result.sourceView || '', 'HTML Source')}
             >
               <Copy className="mr-2 h-4 w-4" />
-              Copy
+              {ui.copyBtn || 'Copy'}
             </Button>
           </div>
         );
@@ -450,7 +451,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
       <Card className="p-6">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <Label htmlFor="eml-input">EML Content</Label>
+            <Label htmlFor="eml-input">{ui.emlContentLabel || 'EML Content'}</Label>
             <div className="flex gap-2">
               <input
                 ref={fileInputRef}
@@ -465,14 +466,14 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
                 onClick={() => fileInputRef.current?.click()}
               >
                 <Upload className="mr-2 h-4 w-4" />
-                Upload EML
+                {ui.uploadEmlBtn || 'Upload EML'}
               </Button>
               <Button
                 size="sm"
                 variant="outline"
                 onClick={() => { setEmlInput(''); setResult(null); }}
               >
-                Clear
+                {ui.clearBtn || 'Clear'}
               </Button>
             </div>
           </div>
@@ -489,13 +490,13 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
               <div className="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-blue-50/90 border-2 border-dashed border-blue-400">
                 <div className="text-center">
                   <Upload className="mx-auto h-8 w-8 text-blue-500 mb-2" />
-                  <p className="text-sm font-medium text-blue-700">Drop .eml file here</p>
+                  <p className="text-sm font-medium text-blue-700">{ui.dropFileHere || 'Drop .eml file here'}</p>
                 </div>
               </div>
             )}
             <Textarea
               id="eml-input"
-              placeholder="Paste EML content here, upload a file, or drag & drop an .eml file..."
+              placeholder={ui.textareaPlaceholder || 'Paste EML content here, upload a file, or drag & drop an .eml file...'}
               value={emlInput}
               onChange={(e) => setEmlInput(e.target.value)}
               className="min-h-[200px] font-mono text-sm"
@@ -511,7 +512,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
                 onChange={(e) => setSanitizeHtml(e.target.checked)}
               />
               <Label htmlFor="sanitize" className="cursor-pointer text-sm">
-                Sanitize HTML (Remove scripts)
+                {ui.sanitizeHtmlLabel || 'Sanitize HTML (Remove scripts)'}
               </Label>
             </div>
 
@@ -522,7 +523,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
                 onChange={(e) => setConvertCid(e.target.checked)}
               />
               <Label htmlFor="convert-cid" className="cursor-pointer text-sm">
-                Convert inline images
+                {ui.convertInlineImagesLabel || 'Convert inline images'}
               </Label>
             </div>
           </div>
@@ -536,19 +537,19 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
             <div className="flex items-center justify-between">
               <h3 className="flex items-center gap-2 text-lg font-semibold">
                 <Mail className="h-5 w-5" />
-                Email Summary
+                {ui.emailSummaryHeading || 'Email Summary'}
               </h3>
               <div className="flex gap-2">
                 {emailSummary.hasAuthentication && (
                   <Badge variant="outline" className="bg-green-100">
                     <Shield className="mr-1 h-3 w-3" />
-                    Authenticated
+                    {ui.authenticatedBadge || 'Authenticated'}
                   </Badge>
                 )}
                 {emailSummary.hasTracking && (
                   <Badge variant="outline" className="bg-yellow-100">
                     <Eye className="mr-1 h-3 w-3" />
-                    Tracking
+                    {ui.trackingBadge || 'Tracking'}
                   </Badge>
                 )}
                 {emailSummary.hasAttachments && (
@@ -563,28 +564,28 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
 
             <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
               <div>
-                <span className="font-semibold">From:</span> {emailSummary.from}
+                <span className="font-semibold">{ui.summaryFrom || 'From:'}</span> {emailSummary.from}
               </div>
               <div>
-                <span className="font-semibold">To:</span>{' '}
+                <span className="font-semibold">{ui.summaryTo || 'To:'}</span>{' '}
                 {emailSummary.to.join(', ')}
               </div>
               <div>
-                <span className="font-semibold">Subject:</span>{' '}
+                <span className="font-semibold">{ui.summarySubject || 'Subject:'}</span>{' '}
                 {emailSummary.subject}
               </div>
               <div>
-                <span className="font-semibold">Date:</span> {emailSummary.date}
+                <span className="font-semibold">{ui.summaryDate || 'Date:'}</span> {emailSummary.date}
               </div>
               {emailSummary.client && (
                 <div>
-                  <span className="font-semibold">Client:</span>{' '}
+                  <span className="font-semibold">{ui.summaryClient || 'Client:'}</span>{' '}
                   {emailSummary.client}
                 </div>
               )}
               {emailSummary.template && (
                 <div>
-                  <span className="font-semibold">Template:</span>{' '}
+                  <span className="font-semibold">{ui.summaryTemplate || 'Template:'}</span>{' '}
                   {emailSummary.template}
                 </div>
               )}
@@ -621,7 +622,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
           <Card className="p-6">
             <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
               <Paperclip className="h-5 w-5" />
-              Attachments ({result.parsedEmail.attachments.length})
+              {ui.attachmentsHeading || 'Attachments'} ({result.parsedEmail.attachments.length})
             </h3>
             <div className="space-y-2">
               {result.parsedEmail.attachments.map((attachment, index) => (
@@ -656,7 +657,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
                       }
                     >
                       <Download className="mr-1 h-3.5 w-3.5" />
-                      Download
+                      {ui.downloadBtn || 'Download'}
                     </Button>
                   </div>
                 </div>
@@ -671,7 +672,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
           <Card className="p-6">
             <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
               <ImageIcon className="h-5 w-5" />
-              Inline Images ({result.parsedEmail.inlineImages.length})
+              {ui.inlineImagesHeading || 'Inline Images'} ({result.parsedEmail.inlineImages.length})
             </h3>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
               {result.parsedEmail.inlineImages.map((image, index) => (
@@ -698,19 +699,19 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
             <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="rendered">
                 <Eye className="mr-2 h-4 w-4" />
-                Rendered
+                {ui.tabRendered || 'Rendered'}
               </TabsTrigger>
               <TabsTrigger value="source">
                 <Code className="mr-2 h-4 w-4" />
-                Source
+                {ui.tabSource || 'Source'}
               </TabsTrigger>
               <TabsTrigger value="headers">
                 <Table className="mr-2 h-4 w-4" />
-                Headers
+                {ui.tabHeaders || 'Headers'}
               </TabsTrigger>
               <TabsTrigger value="links">
                 <Link2 className="mr-2 h-4 w-4" />
-                Links
+                {ui.tabLinks || 'Links'}
                 {result.links && result.links.length > 0 && (
                   <Badge variant="secondary" className="ml-1.5 h-5 px-1.5 text-xs">
                     {result.links.length}
@@ -719,7 +720,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
               </TabsTrigger>
               <TabsTrigger value="raw">
                 <FileText className="mr-2 h-4 w-4" />
-                Raw
+                {ui.tabRaw || 'Raw'}
               </TabsTrigger>
             </TabsList>
 
@@ -735,8 +736,7 @@ export default function EmlToHtml({ defaultValue = '' }: EmlToHtmlProps) {
         <Alert>
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>
-            Upload an EML file, paste email content, or drag & drop a file to get started.
-            Supports RFC822/2822 format from Outlook, Thunderbird, Apple Mail, and other email clients.
+            {ui.helpText || 'Upload an EML file, paste email content, or drag & drop a file to get started. Supports RFC822/2822 format from Outlook, Thunderbird, Apple Mail, and other email clients.'}
           </AlertDescription>
         </Alert>
       )}

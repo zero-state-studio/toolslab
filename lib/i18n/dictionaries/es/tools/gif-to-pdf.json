@@ -62,8 +62,14 @@
       "Distorsionada: Evita Rellenar"
     ],
     "keyboardShortcuts": [
-      { "keys": "Arrastrar", "description": "Suelta GIF" },
-      { "keys": "Clic", "description": "Selecciona GIF" }
+      {
+        "keys": "Arrastrar",
+        "description": "Suelta GIF"
+      },
+      {
+        "keys": "Clic",
+        "description": "Selecciona GIF"
+      }
     ]
   },
   "meta": {
@@ -71,5 +77,39 @@
     "description": "Convierte GIF a PDF online gratis. Combina GIF en PDF. Soporta animadas (primer frame). Seguro navegador."
   },
   "tagline": "Convierte GIF a PDF preservando calidad con tamaños página personalizados",
-  "pageDescription": "Transforma GIF en PDF profesionales con control total. Funciona con GIF estáticas y animadas (primer frame). Perfecto para presentaciones, documentación, archivos memes. Conversión gratuita segura navegador. Mantiene calidad GIF."
+  "pageDescription": "Transforma GIF en PDF profesionales con control total. Funciona con GIF estáticas y animadas (primer frame). Perfecto para presentaciones, documentación, archivos memes. Conversión gratuita segura navegador. Mantiene calidad GIF.",
+  "ui": {
+    "uploadHeading": "Subir imágenes GIF",
+    "clearAll": "Borrar todo",
+    "dropZoneMain": "Haz clic para subir o arrastra y suelta",
+    "dropZoneSub": "Solo archivos GIF (hasta 10MB por archivo) - Se usará el primer frame",
+    "selectedImagesLabel": "Imágenes GIF seleccionadas",
+    "moveUp": "Mover arriba",
+    "moveDown": "Mover abajo",
+    "remove": "Eliminar",
+    "pdfSettingsHeading": "Configuración PDF",
+    "pageSizeLabel": "Tamaño de página",
+    "widthLabel": "Ancho (pt)",
+    "heightLabel": "Alto (pt)",
+    "imageFitLabel": "Ajuste de imagen",
+    "fitContain": "Contener (ajustar dentro, mantener proporción)",
+    "fitCover": "Cubrir (rellenar página, puede recortar)",
+    "fitFill": "Rellenar (estirar para llenar)",
+    "fitNone": "Ninguno (tamaño original)",
+    "marginsLabel": "Márgenes",
+    "filenameLabel": "Nombre de archivo",
+    "filenamePlaceholder": "mi-documento.pdf",
+    "generatingPdf": "Generando PDF...",
+    "generatePdf": "Generar PDF",
+    "imageSingular": "imagen",
+    "imagePlural": "imágenes",
+    "pdfGeneratedSuccess": "¡PDF generado con éxito!",
+    "pagesLabel": "Páginas:",
+    "fileSizeLabel": "Tamaño de archivo:",
+    "filenameResultLabel": "Nombre de archivo:",
+    "downloadPdf": "Descargar PDF",
+    "previewHeading": "Vista previa PDF",
+    "hidePreview": "Ocultar vista previa",
+    "showPreview": "Mostrar vista previa"
+  }
 }

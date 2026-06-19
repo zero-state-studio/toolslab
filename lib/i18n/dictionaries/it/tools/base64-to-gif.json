@@ -82,5 +82,42 @@
         "description": "Copia nome file"
       }
     ]
+  },
+  "usageTips": {
+    "title": "Suggerimenti per l'Uso",
+    "tips": [
+      "I dati Base64 di una GIF valida iniziano con \"R0lGOD\"",
+      "I prefissi data URL come \"data:image/gif;base64,\" vengono rimossi automaticamente",
+      "Supportati entrambi i formati GIF87a e GIF89a, incluse le GIF animate",
+      "Le intestazioni GIF vengono validate per confermare che i dati siano una GIF autentica",
+      "Usa l'anteprima per verificare che la GIF si riproduca correttamente prima di scaricarla"
+    ]
+  },
+  "ui": {
+    "alsoConvertTo": "Converti anche in:",
+    "inputLabel": "Stringa Base64",
+    "inputPlaceholder": "Incolla qui la stringa Base64, o trascina un'immagine / file .txt...",
+    "dropFileHere": "Trascina il file qui",
+    "validBase64": "Base64 valido",
+    "invalidBase64Format": "Formato Base64 non valido",
+    "clearButton": "Cancella",
+    "errorHeading": "Errore",
+    "gifReadyHeading": "GIF pronta",
+    "hidePreview": "Nascondi anteprima",
+    "showPreview": "Mostra anteprima",
+    "sizeLabel": "Dimensione:",
+    "dimensionsLabel": "Dimensioni:",
+    "formatLabel": "Formato:",
+    "framesLabel": "Frame:",
+    "animatedLabel": "(animata)",
+    "previewHeading": "Anteprima",
+    "openInNewTab": "Apri in nuova scheda",
+    "loadingPreview": "Caricamento anteprima...",
+    "failedToLoadPreview": "Impossibile caricare l'anteprima",
+    "gifPreviewAlt": "Anteprima GIF",
+    "filenameLabel": "Nome file:",
+    "downloadButton": "Scarica GIF",
+    "copyDataUrlButton": "Copia Data URL",
+    "copiedButton": "Copiato!"
   }
 }
