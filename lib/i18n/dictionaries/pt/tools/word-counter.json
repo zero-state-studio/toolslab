@@ -19,7 +19,21 @@
     "description": "Contador de palavras online gratuito. Conte palavras, caracteres, frases, parágrafos e obtenha o tempo de leitura na hora. Em tempo real, sem cadastro, offline."
   },
   "tagline": "Conte palavras, caracteres e tempo de leitura na hora enquanto digita",
-  "pageDescription": "Conte palavras, caracteres, frases e parágrafos em tempo real com este Contador de Palavras online gratuito. Obtenha estimativas instantâneas de tempo de leitura e de fala enquanto digita — ideal para escritores, estudantes, blogueiros e profissionais de SEO que precisam atingir tamanhos exatos. Sem cadastro, seguro e baseado no navegador: seu texto nunca sai do seu dispositivo.",
+  "pageDescription": "Conte palavras, caracteres, frases e parágrafos em tempo real com este Contador de Palavras online gratuito. Obtenha estimativas instantâneas de tempo de leitura e de fala enquanto digita — ideal para escritores, estudantes, blogueiros e profissionais de SEO que precisam atingir tamanhos exatos. Funciona também como contador de caracteres online, sem registro e sem anúncios. Sem cadastro, seguro e baseado no navegador: seu texto nunca sai do seu dispositivo.",
+  "longTailKeywords": [
+    "contador de palavras online grátis",
+    "contador de caracteres online",
+    "contador de palavras sem registro",
+    "contador de palavras e caracteres",
+    "como contar palavras em um texto",
+    "contador de palavras para redação",
+    "calcular tempo de leitura de um texto",
+    "contar caracteres sem espaços",
+    "contador de palavras e parágrafos",
+    "contar palavras em tempo real",
+    "melhor contador de palavras online",
+    "contador de palavras sem anúncios"
+  ],
   "instructions": {
     "title": "Como usar o Contador de Palavras",
     "steps": [
@@ -46,7 +60,9 @@
     ],
     "features": [
       "Contagem em tempo real a cada tecla — sem botão de enviar",
+      "Contador de palavras e contador de caracteres online em uma única ferramenta",
       "Palavras, caracteres, caracteres sem espaços, frases, parágrafos e linhas",
+      "Totalmente grátis, sem registro e sem anúncios atrapalhando a contagem",
       "Estimativa de tempo de leitura a 200 PPM e de fala a 130 PPM",
       "Tratamento preciso de Unicode — emojis e letras acentuadas contados corretamente",
       "Copie todas as estatísticas como um resumo de texto limpo",
@@ -70,7 +86,8 @@
       "Os parágrafos são contados por linhas em branco, então separe blocos com uma linha vazia",
       "Emojis e caracteres acentuados contam como um único caractere cada",
       "Cole de qualquer editor — a formatação é ignorada, só o texto é contado",
-      "Copie as estatísticas para colar um resumo limpo em relatórios"
+      "Copie as estatísticas para colar um resumo limpo em relatórios",
+      "Procurando o melhor contador de palavras online? Este funciona offline e nunca envia seu texto a um servidor"
     ],
     "troubleshooting": [
       "Contagem de palavras estranha: espaços extras são ignorados — só palavras reais contam",

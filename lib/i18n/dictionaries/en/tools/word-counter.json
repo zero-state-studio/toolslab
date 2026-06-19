@@ -19,7 +19,7 @@
     "description": "Free online word counter. Count words, characters, sentences, paragraphs and get reading time instantly. Real-time, no signup, works offline in your browser."
   },
   "tagline": "Count words, characters and reading time instantly as you type",
-  "pageDescription": "Count words, characters, sentences and paragraphs in real time with this free online Word Counter. Get instant reading and speaking time estimates as you type — perfect for writers, students, bloggers, and SEO professionals who need to hit exact length targets. No signup required, secure and browser-based: your text never leaves your device.",
+  "pageDescription": "Wondering how many words are in your text? Count words, characters, sentences and paragraphs in real time with this free online Word Counter. It works as a reading time calculator too, giving instant reading and speaking time estimates by word count as you type — perfect for writers, students, bloggers, and SEO professionals who need to hit exact length targets. A fast, no-signup alternative to Microsoft Word: secure and browser-based, your text never leaves your device.",
   "instructions": {
     "title": "How to use the Word Counter",
     "steps": [
@@ -55,9 +55,10 @@
       "Works offline once the page is loaded"
     ],
     "useCases": [
+      "Quickly check how many words are in your text without opening Microsoft Word",
       "Hit word-count limits for essays, assignments and applications",
       "Stay within character limits for tweets, meta descriptions and ads",
-      "Estimate reading time for blog posts and articles",
+      "Use the reading time calculator to estimate read time for blog posts and articles",
       "Plan speaking time for presentations and scripts",
       "Check SEO title and meta description length",
       "Measure content length for freelance writing and invoicing",

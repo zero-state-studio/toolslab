@@ -18,8 +18,22 @@
     "title": "Wortzähler & Lesezeit - Kostenloses Online-Tool zum Wörterzählen",
     "description": "Kostenloser Online-Wortzähler. Zähle Wörter, Zeichen, Sätze, Absätze und erhalte sofort die Lesezeit. In Echtzeit, ohne Anmeldung, offline im Browser."
   },
+  "longTailKeywords": [
+    "wörter zählen online kostenlos",
+    "zeichen zählen online kostenlos",
+    "wortzähler ohne anmeldung",
+    "text zeichen und wörter zählen",
+    "wie zählt man wörter in einem text",
+    "wörter pro minute lesen berechnen",
+    "lesezeit berechnen für artikel",
+    "zeichen ohne leerzeichen zählen",
+    "wörter zählen für aufsatz",
+    "sprechzeit für text berechnen",
+    "bestes wortzähler tool kostenlos",
+    "wortzähler ohne software"
+  ],
   "tagline": "Zähle Wörter, Zeichen und Lesezeit sofort beim Tippen",
-  "pageDescription": "Zähle Wörter, Zeichen, Sätze und Absätze in Echtzeit mit diesem kostenlosen Online-Wortzähler. Erhalte sofortige Schätzungen für Lese- und Sprechzeit beim Tippen — ideal für Autoren, Studierende, Blogger und SEO-Profis, die exakte Längen einhalten müssen. Keine Anmeldung nötig, sicher und browserbasiert: Dein Text verlässt nie dein Gerät.",
+  "pageDescription": "Zähle Wörter, Zeichen, Sätze und Absätze in Echtzeit mit diesem kostenlosen Online-Wortzähler. So musst du nicht mehr selbst überlegen, wie man Wörter in einem Text zählt — Zeichen mit und ohne Leerzeichen erscheinen sofort. Berechne zugleich Lese- und Sprechzeit beim Tippen: ideal für Autoren, Studierende, Blogger und SEO-Profis, die exakte Längen für Aufsätze, Artikel oder Anzeigen einhalten müssen. Keine Anmeldung nötig, keine Software zu installieren — alles läuft sicher und browserbasiert, dein Text verlässt nie dein Gerät.",
   "instructions": {
     "title": "So verwendest du den Wortzähler",
     "steps": [
@@ -52,13 +66,14 @@
       "Kopiere alle Statistiken als saubere Textzusammenfassung",
       "Verarbeitet sehr lange Dokumente flüssig",
       "100% im Browser — Text wird nie an einen Server gesendet",
-      "Funktioniert offline, sobald die Seite geladen ist"
+      "Funktioniert offline, sobald die Seite geladen ist",
+      "Kostenloses Wortzähler-Tool ohne Software-Installation und ohne Anmeldung"
     ],
     "useCases": [
       "Wortlimits für Aufsätze, Hausarbeiten und Bewerbungen einhalten",
       "Zeichenlimits für Tweets, Meta-Beschreibungen und Anzeigen einhalten",
-      "Lesezeit für Blogbeiträge und Artikel schätzen",
-      "Sprechzeit für Präsentationen und Skripte planen",
+      "Lesezeit für Blogbeiträge und Artikel berechnen",
+      "Sprechzeit für Präsentationen und Skripte berechnen",
       "Länge von SEO-Titeln und Meta-Beschreibungen prüfen",
       "Inhaltslänge für freiberufliches Schreiben und Abrechnung messen",
       "Text auf eine genaue Ziellänge kürzen oder erweitern",
@@ -70,7 +85,8 @@
       "Absätze werden über Leerzeilen gezählt, trenne Blöcke also mit einer leeren Zeile",
       "Emojis und Umlaute zählen jeweils als ein einzelnes Zeichen",
       "Füge aus jedem Editor ein — Formatierung wird ignoriert, nur Text zählt",
-      "Kopiere die Statistik, um eine saubere Zusammenfassung in Berichte einzufügen"
+      "Kopiere die Statistik, um eine saubere Zusammenfassung in Berichte einzufügen",
+      "Wie zählt man Wörter in einem Text? Einfach einfügen — die Zählung passiert automatisch, ohne ein Wort von Hand abzuzählen"
     ],
     "troubleshooting": [
       "Wortzahl wirkt falsch: zusätzliche Leerzeichen werden ignoriert — nur echte Wörter zählen",

@@ -16,10 +16,24 @@
   "speakingTime": "Tiempo al hablar",
   "meta": {
     "title": "Contador de Palabras y Tiempo de Lectura - Herramienta Gratis",
-    "description": "Contador de palabras online gratis. Cuenta palabras, caracteres, frases, párrafos y obtén el tiempo de lectura al instante. En tiempo real, sin registro, offline."
+    "description": "Contador de palabras online gratis: cuenta palabras, caracteres con y sin espacios, frases y tiempo de lectura en tiempo real. Sin registro y en tu navegador."
   },
+  "longTailKeywords": [
+    "contador de palabras online gratis",
+    "contar caracteres con y sin espacios",
+    "calcular tiempo de lectura de un texto",
+    "contador de palabras sin registro",
+    "contar palabras para un ensayo",
+    "contador de caracteres para redes sociales",
+    "tiempo de lectura en voz alta",
+    "contador de palabras en tiempo real",
+    "cómo contar las palabras de un texto",
+    "mejor contador de palabras gratis",
+    "contador de palabras alternativa online",
+    "contador de palabras por minuto"
+  ],
   "tagline": "Cuenta palabras, caracteres y tiempo de lectura al instante mientras escribes",
-  "pageDescription": "Cuenta palabras, caracteres, frases y párrafos en tiempo real con este Contador de Palabras online gratuito. Obtén estimaciones instantáneas del tiempo de lectura y de habla mientras escribes — ideal para escritores, estudiantes, blogueros y profesionales del SEO que necesitan cumplir longitudes exactas. Sin registro, seguro y basado en el navegador: tu texto nunca sale de tu dispositivo.",
+  "pageDescription": "Cuenta palabras, caracteres (con y sin espacios), frases y párrafos en tiempo real con este Contador de Palabras online gratuito. Obtén estimaciones instantáneas del tiempo de lectura y de lectura en voz alta mientras escribes — ideal para escritores, estudiantes, blogueros y profesionales del SEO que necesitan cumplir longitudes exactas. Una alternativa rápida y sin anuncios a otros contadores: muchos lo consideran el mejor contador de palabras gratis porque funciona sin registro, es seguro y se ejecuta en tu navegador, así que tu texto nunca sale de tu dispositivo.",
   "instructions": {
     "title": "Cómo usar el Contador de Palabras",
     "steps": [
@@ -55,8 +69,8 @@
       "Funciona offline una vez cargada la página"
     ],
     "useCases": [
-      "Cumplir límites de palabras en ensayos, trabajos y solicitudes",
-      "Respetar límites de caracteres en tuits, meta descripciones y anuncios",
+      "Contar palabras para un ensayo, trabajos académicos y solicitudes",
+      "Respetar límites de caracteres en redes sociales, meta descripciones y anuncios",
       "Estimar el tiempo de lectura de entradas de blog y artículos",
       "Planificar el tiempo de presentaciones y guiones",
       "Comprobar la longitud de títulos y meta descripciones SEO",
@@ -65,7 +79,7 @@
       "Analizar la estructura de párrafos y frases al editar"
     ],
     "proTips": [
-      "El tiempo de lectura usa 200 PPM (lectura silenciosa media); el habla usa 130 PPM",
+      "El tiempo de lectura usa 200 palabras por minuto (lectura silenciosa media); la lectura en voz alta usa 130 PPM",
       "Usa 'Caracteres (sin espacios)' para límites que excluyen los espacios",
       "Los párrafos se cuentan por líneas en blanco, así que separa bloques con una línea vacía",
       "Los emojis y caracteres acentuados cuentan como un solo carácter cada uno",

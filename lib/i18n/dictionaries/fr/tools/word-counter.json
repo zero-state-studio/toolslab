@@ -16,10 +16,24 @@
   "speakingTime": "Temps de parole",
   "meta": {
     "title": "Compteur de Mots et Temps de Lecture - Outil En Ligne Gratuit",
-    "description": "Compteur de mots en ligne gratuit. Comptez mots, caractères, phrases, paragraphes et obtenez le temps de lecture instantanément. En temps réel, sans inscription, hors ligne."
+    "description": "Compteur de mots en ligne gratuit et en temps réel. Comptez mots, caractères avec et sans espaces, phrases, paragraphes et temps de lecture. Sans inscription."
   },
+  "longTailKeywords": [
+    "compteur de mots en ligne gratuit",
+    "compteur de caractères avec et sans espaces",
+    "compteur de mots et de caractères en ligne",
+    "compteur de mots en temps réel",
+    "comment compter les mots d'un texte",
+    "comment calculer le temps de lecture d'un texte",
+    "vitesse de lecture en mots par minute",
+    "compter les caractères sans espaces en ligne",
+    "compter mots phrases et paragraphes",
+    "estimer le temps de lecture d'un article",
+    "meilleur compteur de mots en ligne",
+    "compteur de mots sans inscription"
+  ],
   "tagline": "Comptez mots, caractères et temps de lecture instantanément en tapant",
-  "pageDescription": "Comptez les mots, caractères, phrases et paragraphes en temps réel avec ce Compteur de Mots en ligne gratuit. Obtenez des estimations instantanées du temps de lecture et de parole pendant que vous écrivez — idéal pour les rédacteurs, étudiants, blogueurs et professionnels du SEO qui doivent respecter des longueurs précises. Aucune inscription requise, sécurisé et basé sur le navigateur : votre texte ne quitte jamais votre appareil.",
+  "pageDescription": "Comptez les mots, les caractères avec et sans espaces, les phrases et les paragraphes en temps réel avec ce Compteur de Mots en ligne gratuit. Obtenez des estimations instantanées du temps de lecture et de parole pendant que vous écrivez — idéal pour les rédacteurs, étudiants, blogueurs et professionnels du SEO qui doivent respecter des longueurs précises. Considéré comme l'un des meilleurs compteurs de mots en ligne, il fonctionne sans inscription, sans installation et de façon sécurisée dans le navigateur : votre texte ne quitte jamais votre appareil.",
   "instructions": {
     "title": "Comment utiliser le Compteur de Mots",
     "steps": [
@@ -65,6 +79,7 @@
       "Analyser la structure des paragraphes et des phrases lors de l'édition"
     ],
     "proTips": [
+      "Pour calculer le temps de lecture d'un texte, divisez le nombre de mots par votre vitesse de lecture en mots par minute (l'outil le fait pour vous)",
       "Le temps de lecture utilise 200 MPM (lecture silencieuse moyenne) ; la parole utilise 130 MPM",
       "Utilisez 'Caractères (sans espaces)' pour les limites qui excluent les espaces",
       "Les paragraphes sont comptés par lignes vides, séparez donc les blocs par une ligne vide",
