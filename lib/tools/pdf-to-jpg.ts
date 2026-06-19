@@ -95,10 +95,9 @@ let workerConfigured = false;
 export async function loadPdf(buffer: ArrayBuffer) {
   const pdfjs = await import('pdfjs-dist');
   if (!workerConfigured) {
-    pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-      'pdfjs-dist/build/pdf.worker.min.mjs',
-      import.meta.url
-    ).toString();
+    // Worker served from /public (copied from pdfjs-dist) for reliable
+    // resolution in Next dev/prod.
+    pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
     workerConfigured = true;
   }
   // Copy into a fresh Uint8Array — pdf.js detaches the buffer it receives.
