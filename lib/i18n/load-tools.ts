@@ -108,6 +108,7 @@ export const ALL_TOOL_IDS = [
     'excel-filter',
     'ai-prompt-token-counter',
     'pdf-to-word',
+    'pdf-to-jpg',
     'pdf-merger-splitter',
     'image-to-pdf',
     'jpg-to-pdf',

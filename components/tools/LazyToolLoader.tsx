@@ -100,6 +100,7 @@ const toolComponents = {
     () => import('./implementations/AITokenCounter')
   ),
   'pdf-to-word': lazy(() => import('./implementations/PdfToWord')),
+  'pdf-to-jpg': lazy(() => import('./implementations/PdfToJpg')),
   'pdf-merger-splitter': lazy(
     () => import('./implementations/PdfMergerSplitter')
   ),

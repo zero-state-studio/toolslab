@@ -1002,6 +1002,20 @@ export const toolLongTailKeywords: Record<string, string[]> = {
     'best free html to markdown converter online',
     'html to markdown without installing node packages',
   ],
+  'pdf-to-jpg': [
+    'pdf to jpg converter online free no signup',
+    'convert pdf to png online free',
+    'extract images from a pdf online',
+    'best free pdf to jpg converter online',
+    'how to convert pdf to image',
+    'how to convert pdf pages into images',
+    'how to convert pdf to high resolution jpg',
+    'convert pdf to jpg high quality',
+    'convert all pages in a pdf to jpg',
+    'convert pdf to webp images online',
+    'pdf to jpg converter no upload private',
+    'convert pdf to image without watermark',
+  ],
 };
 
 /**
