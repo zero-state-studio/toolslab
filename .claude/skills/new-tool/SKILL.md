@@ -244,36 +244,36 @@ Crea un file JSON in `/lib/i18n/dictionaries/{en,it,es,fr,de,pt}/tools/TOOL_ID.j
 
 ---
 
-## STEP 9 — (Opzionale) Long-tail keywords in `/lib/tools-seo.ts`
+## STEP 9 — Dove vanno le long-tail keywords (riferimento)
 
-Se vuoi aggiungere long-tail keyword EN per il tool, **NON** metterli in `lib/tools.ts`. Invece:
+Le long-tail keyword vengono popolate allo STEP 10 tramite lo skill `long-tail-seo`. Questo step spiega solo **dove** finiscono — non scrivere le keyword a mano qui se stai per eseguire lo STEP 10.
 
-1. Apri `lib/tools-seo.ts` (file con `import 'server-only'`)
-2. Aggiungi entry nel mapping `toolLongTailKeywords`:
+- **EN** → `lib/tools-seo.ts`, mapping `toolLongTailKeywords` (file con `import 'server-only'`):
 
 ```typescript
 export const toolLongTailKeywords: Record<string, string[]> = {
   // ... entry esistenti ...
-  'TOOL_ID': [
-    'how to convert X online free',
-    'best free X tool',
-    // ... 8-12 frasi
-  ],
+  'TOOL_ID': [ /* 8-12 frasi long-tail EN */ ],
 };
 ```
 
-**Motivazione:** `lib/tools.ts` è importato da `SearchBar`, `Header`, `HeroSection`, `CategoryGrid`, `ToolLayout` (tutti `'use client'`). Webpack bundles il modulo intero in ogni route chunk client. Mettere longTailKeywords in `tools.ts` ha causato regressione INP mobile aprile 2026 (CrUX p75 225ms). Il file `tools-seo.ts` ha `import 'server-only'` → Webpack errore se importato accidentalmente da client.
+- **IT/ES/FR/DE/PT** → dentro i rispettivi `lib/i18n/dictionaries/{locale}/tools/TOOL_ID.json` (gestiti dallo skill multilingua).
 
-Lo skill `/long-tail-seo` (con multilingua) gestisce automaticamente il file giusto. Per long-tail in lingue non-EN, vanno in `lib/i18n/dictionaries/{locale}/tools/TOOL_ID.json`.
+**🚨 Motivazione (non spostare in `lib/tools.ts`):** `lib/tools.ts` è importato da `SearchBar`, `Header`, `HeroSection`, `CategoryGrid`, `ToolLayout` (tutti `'use client'`). Webpack bundles il modulo intero in ogni route chunk client. Mettere longTailKeywords in `tools.ts` ha causato regressione INP mobile aprile 2026 (CrUX p75 225ms). Il file `tools-seo.ts` ha `import 'server-only'` → Webpack errore se importato da client.
 
 ---
 
-## STEP 10 — 🔍 SEO obbligatorio: programmatic-seo + seo-audit
+## STEP 10 — 🔍 SEO OBBLIGATORIO (BLOCCANTE — non saltare)
 
-Dopo lo scaffold, esegui in ordine (vedi CLAUDE.md sezione "SEO OBBLIGATORIO dopo /new-tool"):
+⚠️ **Questo step NON è opzionale.** Ogni nuovo tool richiede analisi SEO con dati reali, non solo keyword scritte a buon senso. Esegui i 3 skill **in ordine**, invocandoli davvero (Skill tool), non simulandoli:
 
-1. **`programmatic-seo`** — ottimizza `meta.title`, `meta.description`, `tagline`, `pageDescription` e keywords usando il playbook. Aggiorna i file i18n (almeno EN, idealmente tutte 6).
-2. **`seo-audit`** — verifica: tool in sitemap, schema JSON-LD corretto (`lib/tool-schema.ts`), canonical/hreflang presenti, OG/Twitter con meta description ottimizzata.
+1. **`long-tail-seo`** — ricerca web reale lingua-per-lingua. Sceglie 8-12 long-tail data-driven per EN (→ `lib/tools-seo.ts`) e per IT/ES/FR/DE/PT (→ i18n JSON). Verifica che le keyword compaiano nel contenuto visibile (instructions/pageDescription), non solo nei meta.
+2. **`programmatic-seo`** — ottimizza `meta.title`, `meta.description`, `tagline`, `pageDescription` e `keywords` con il playbook, su tutti e 6 i file i18n. Keyword principale nelle prime 15 parole; meta.description ≤160 char; includi "free", "secure", "browser-based".
+3. **`seo-audit`** — verifica finale: tool in sitemap, schema JSON-LD corretto (`lib/tool-schema.ts`), canonical/hreflang presenti, OG/Twitter con meta description ottimizzata.
+
+**Output atteso:** keyword validate (non inventate), 6 file i18n ottimizzati, audit pulito. Se `long-tail-seo` / `programmatic-seo` modificano `keywords` o `searchVolume` in `tools.ts`, **rigenera la sitemap** (STEP 11) dopo.
+
+> ❌ **Anti-pattern da evitare:** scrivere keyword "plausibili" a mano e dichiarare l'SEO fatto. È esattamente ciò che questo step impedisce. Senza ricerca reale, il contenuto non è validato.
 
 ---
 
@@ -331,7 +331,7 @@ Prima di considerare il tool completo, verifica:
 - [ ] `components/tools/LazyToolLoader.tsx` — tool registrato nel lazy loader
 - [ ] `lib/i18n/load-tools.ts` — tool ID aggiunto ⚠️
 - [ ] `lib/i18n/dictionaries/{en,it,es,fr,de,pt}/tools/TOOL_ID.json` — 6 file con UI + meta + tagline + pageDescription + instructions
-- [ ] (Opzionale) `lib/tools-seo.ts` — entry in `toolLongTailKeywords` se aggiungi long-tail EN
-- [ ] `programmatic-seo` + `seo-audit` eseguiti
+- [ ] **SEO obbligatorio (STEP 10):** `long-tail-seo` → `programmatic-seo` → `seo-audit` eseguiti davvero ⚠️
+- [ ] `lib/tools-seo.ts` — long-tail EN popolate da `long-tail-seo` (NON scritte a mano)
 - [ ] `npm run sitemap:generate` eseguito + `public/sitemap-*.xml` committati ⚠️
 - [ ] `npm run type-check` pulito
