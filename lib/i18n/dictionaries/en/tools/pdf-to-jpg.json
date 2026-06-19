@@ -1,0 +1,90 @@
+{
+  "title": "PDF to JPG Converter",
+  "description": "Convert PDF pages to JPG, PNG or WebP images in your browser",
+  "placeholder": "Drop a PDF file here or click to upload",
+  "drop": "Drop a PDF file here or click to upload",
+  "format": "Image format",
+  "quality": "Quality",
+  "resolution": "Resolution",
+  "convert": "Convert to images",
+  "converting": "Converting…",
+  "pages": "pages",
+  "page": "Page",
+  "download": "Download",
+  "downloadAll": "Download all (ZIP)",
+  "result": "Images",
+  "onlyPdf": "Only PDF files are supported",
+  "meta": {
+    "title": "PDF to JPG Converter - Convert PDF to Image Online Free",
+    "description": "Convert PDF to JPG, PNG or WebP images online free and in high quality. Extract every page, no signup, no watermark — your PDF stays private in your browser."
+  },
+  "tagline": "Convert PDF pages to JPG, PNG or WebP images right in your browser",
+  "pageDescription": "Turn every page of a PDF into a high-quality, high-resolution JPG, PNG, or WebP image with this free online PDF to JPG converter, or extract images from a PDF in seconds. Choose your resolution (up to 300 DPI for print) and quality, then download images one by one or all pages at once as a ZIP. Everything runs locally in your browser — your PDF is never uploaded to a server, so confidential documents stay private. No signup, no watermarks, no file-size limits.",
+  "instructions": {
+    "title": "How to convert PDF to JPG",
+    "steps": [
+      {
+        "title": "Upload your PDF",
+        "description": "Drag and drop a PDF onto the upload area or click to browse. The page count appears once it loads."
+      },
+      {
+        "title": "Pick a format",
+        "description": "Choose JPG for small photos, PNG for lossless quality with transparency, or WebP for the best size-to-quality ratio."
+      },
+      {
+        "title": "Set resolution and quality",
+        "description": "Select 72 DPI for screen, 150 DPI for general use, or 300 DPI for print. For JPG and WebP, adjust the quality slider."
+      },
+      {
+        "title": "Convert to images",
+        "description": "Click Convert to images. Each page is rendered in your browser with a live progress indicator — nothing is uploaded."
+      },
+      {
+        "title": "Download your images",
+        "description": "Download any page individually, or grab every page at once as a ZIP archive."
+      }
+    ],
+    "features": [
+      "Convert PDF pages to JPG, PNG or WebP",
+      "Extract images from a PDF, one page or all pages at once",
+      "High-resolution output up to 300 DPI for print-quality images",
+      "Adjustable quality for JPG and WebP",
+      "Download single pages or all pages as a ZIP",
+      "Per-page thumbnails before downloading",
+      "100% client-side — your PDF never leaves your browser",
+      "No signup, watermarks or file-size limits",
+      "Works offline once the page has loaded"
+    ],
+    "useCases": [
+      "Turn a PDF report into images for a slide deck",
+      "Extract a PDF page as a JPG to share on social media",
+      "Convert a scanned document to images for editing",
+      "Save PDF pages as PNG for transparent overlays",
+      "Create web-ready WebP images from a brochure PDF",
+      "Export a PDF cover page as a thumbnail",
+      "Convert print-ready PDFs to 300 DPI images",
+      "Archive PDF pages as individual image files"
+    ],
+    "proTips": [
+      "Use 300 DPI when the images are headed for print",
+      "PNG keeps transparency and is lossless; JPG is smallest for photos",
+      "WebP gives the best quality-to-size ratio for the web",
+      "Lower the quality slider to shrink JPG/WebP file sizes",
+      "Use 'Download all (ZIP)' to grab a whole document in one click",
+      "Everything is local, so you can safely convert confidential PDFs"
+    ],
+    "troubleshooting": [
+      "Blurry images: increase the resolution to 150 or 300 DPI",
+      "Huge file sizes: lower the quality slider or use JPG/WebP instead of PNG",
+      "Conversion is slow: high DPI on many pages takes longer — try 150 DPI",
+      "Nothing happens on upload: make sure the file is a real PDF, not renamed",
+      "Encrypted PDF issues: password-protected files may fail to load"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Click + drag",
+        "description": "Drop a PDF file onto the upload area"
+      }
+    ]
+  }
+}

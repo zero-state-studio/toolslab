@@ -1324,6 +1324,31 @@ export const tools: Tool[] = [
     label: '',
   },
   {
+    id: 'pdf-to-jpg',
+    name: 'PDF to JPG Converter',
+    description:
+      'Convert PDF pages to JPG, PNG or WebP images directly in your browser',
+    icon: '🖼️',
+    route: '/tools/pdf-to-jpg',
+    categories: ['pdf'],
+    keywords: [
+      'pdf to jpg',
+      'pdf to jpeg',
+      'pdf to image',
+      'convert pdf to image',
+      'pdf to jpeg online',
+      'pdf page to image',
+      'pdf to png',
+      'extract images from pdf',
+      'pdf to picture',
+      'save pdf as image',
+      'pdf page to jpg',
+      'convert pdf pages to images',
+    ],
+    searchVolume: 120000,
+    label: '',
+  },
+  {
     id: 'pdf-merger-splitter',
     name: 'PDF Merger & Splitter',
     description:
