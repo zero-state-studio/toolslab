@@ -1,0 +1,107 @@
+{
+  "title": "Générateur de Box Shadow CSS",
+  "description": "Créez visuellement une ombre box-shadow CSS avec aperçu en direct et copiez le code",
+  "placeholder": "Ajustez les curseurs pour composer votre ombre",
+  "preview": "Aperçu",
+  "inset": "Ombre interne (inset)",
+  "offsetX": "Décalage X",
+  "offsetY": "Décalage Y",
+  "blur": "Flou",
+  "spread": "Étalement",
+  "color": "Couleur",
+  "opacity": "Opacité",
+  "addLayer": "Ajouter un calque",
+  "layer": "Calque",
+  "presets": "Préréglages",
+  "copy": "Copier le CSS",
+  "copied": "Copié !",
+  "cssOutput": "CSS",
+  "shadowColor": "Couleur de l'ombre",
+  "boxColor": "Couleur de la boîte",
+  "meta": {
+    "title": "Générateur de Box Shadow CSS - Outil box-shadow gratuit",
+    "description": "Générateur de box-shadow CSS gratuit en ligne avec aperçu en direct. Réglez décalage, flou, étalement, couleur et opacité, empilez les ombres, copiez le code."
+  },
+  "tagline": "Composez votre ombre box-shadow CSS avec aperçu en direct et copiez le code aussitôt",
+  "pageDescription": "Créez l'ombre CSS parfaite avec ce générateur de box-shadow gratuit en ligne. Faites glisser les curseurs pour régler le décalage horizontal et vertical, le flou, l'étalement, la couleur et l'opacité, activez l'ombre interne (inset) et empilez plusieurs calques d'ombre — le tout avec un aperçu en temps réel. Quand le rendu vous convient, copiez le code box-shadow prêt à coller dans votre feuille de style. Sans inscription, directement dans votre navigateur, avec des préréglages pour démarrer vite.",
+  "longTailKeywords": [
+    "générateur box shadow css gratuit",
+    "générateur d'ombre css en ligne",
+    "générateur box shadow css avec aperçu",
+    "copier code css box-shadow",
+    "comment faire une ombre portée en css",
+    "ombre interne css inset exemple",
+    "exemples box shadow css stylée",
+    "générateur ombre css multicouche",
+    "ajouter une ombre à une div css",
+    "générateur box shadow tailwind",
+    "box shadow css ou drop-shadow",
+    "générateur ombre css vs cssmatic"
+  ],
+  "instructions": {
+    "title": "Comment utiliser le générateur de Box Shadow CSS",
+    "steps": [
+      {
+        "title": "Partez d'un préréglage (facultatif)",
+        "description": "Cliquez sur un préréglage comme Discrète, Moyenne ou Multicouche pour charger une ombre de départ, puis affinez-la à votre goût."
+      },
+      {
+        "title": "Ajustez les curseurs",
+        "description": "Faites glisser Décalage X/Y pour déplacer l'ombre, Flou pour l'adoucir et Étalement pour l'agrandir ou la resserrer. L'aperçu se met à jour en direct."
+      },
+      {
+        "title": "Choisissez la couleur et l'opacité",
+        "description": "Sélectionnez une couleur d'ombre et réglez son opacité. Activez l'option inset pour afficher une ombre interne, à l'intérieur de la boîte."
+      },
+      {
+        "title": "Empilez plusieurs calques",
+        "description": "Cliquez sur Ajouter un calque pour superposer plusieurs ombres et créer de la profondeur — chaque calque dispose de ses propres réglages."
+      },
+      {
+        "title": "Copiez le CSS",
+        "description": "Cliquez sur Copier le CSS pour récupérer la déclaration box-shadow complète et collez-la dans votre feuille de style."
+      }
+    ],
+    "features": [
+      "Aperçu en temps réel qui se met à jour pendant que vous réglez",
+      "Curseurs pour le décalage X/Y, le flou, l'étalement et l'opacité",
+      "Prise en charge de l'ombre interne (inset)",
+      "Empilement de plusieurs calques d'ombre dans une seule déclaration",
+      "Sélecteur de couleur avec opacité pour une sortie rgba()",
+      "Préréglages prêts à l'emploi pour démarrer rapidement",
+      "Copie du code box-shadow en un clic",
+      "100 % côté navigateur — sans inscription, fonctionne hors ligne"
+    ],
+    "useCases": [
+      "Donner du relief aux cartes, boutons et fenêtres modales",
+      "Créer des ombres d'interface modernes et douces pour vos applications web",
+      "Réaliser des effets neumorphiques avec des ombres internes",
+      "Accorder une ombre à un design system existant",
+      "Prototyper rapidement des styles d'élévation",
+      "Générer des ombres multicouches pour une profondeur réaliste",
+      "Apprendre ou enseigner le fonctionnement des paramètres de box-shadow",
+      "Exporter l'ombre CSS pour Tailwind ou du CSS classique"
+    ],
+    "proTips": [
+      "Empilez deux calques — une ombre sombre et resserrée plus une ombre large et douce — pour une profondeur réaliste",
+      "Utilisez un étalement négatif pour garder l'ombre plus étroite que la boîte",
+      "Une opacité faible (10–25 %) paraît souvent plus naturelle qu'un noir plein",
+      "Les ombres internes (inset) sont idéales pour les boutons enfoncés et les champs de saisie",
+      "Un décalage 0/0 avec du flou crée une lueur (glow) uniforme autour de l'élément",
+      "Collez le code directement dans une valeur arbitraire Tailwind : shadow-[…]"
+    ],
+    "troubleshooting": [
+      "Aucune ombre visible : augmentez le flou ou l'opacité, ou vérifiez que les décalages ne sont pas à 0 avec un flou de 0",
+      "Ombre coupée : un parent avec overflow:hidden peut rogner l'ombre",
+      "Inset invisible : les ombres internes s'affichent à l'intérieur de l'élément, pas autour",
+      "Couleur incorrecte : l'opacité multiplie la couleur choisie — augmentez-la pour une ombre plus marquée",
+      "Rendu trop dur : réduisez l'opacité et augmentez le flou pour un effet plus doux"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Touches fléchées",
+        "description": "Ajuster finement la valeur d'un curseur sélectionné"
+      }
+    ]
+  }
+}

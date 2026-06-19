@@ -748,6 +748,33 @@ export const tools: Tool[] = [
     searchVolume: 40000,
     label: '',
   },
+  {
+    id: 'css-box-shadow-generator',
+    name: 'CSS Box Shadow Generator',
+    description:
+      'Design CSS box-shadow with live preview and sliders for offset, blur, spread, color and opacity',
+    icon: '🔲',
+    route: '/tools/css-box-shadow-generator',
+    categories: ['web', 'generators'],
+    keywords: [
+      'css box shadow generator',
+      'box shadow css',
+      'shadow generator online',
+      'css shadow tool',
+      'box-shadow',
+      'css shadow generator',
+      'drop shadow css',
+      'inset shadow',
+      'multiple box shadow',
+      'box shadow preview',
+      'css',
+      'web design',
+      'ui',
+      'generator',
+    ],
+    searchVolume: 60000,
+    label: '',
+  },
 
   // Dev Utilities
   {

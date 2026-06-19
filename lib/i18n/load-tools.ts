@@ -84,6 +84,7 @@ export const ALL_TOOL_IDS = [
     'image-optimizer',
     'favicon-generator',
     'gradient-generator',
+    'css-box-shadow-generator',
     'json-validator',
     'crontab-builder',
     'list-compare',

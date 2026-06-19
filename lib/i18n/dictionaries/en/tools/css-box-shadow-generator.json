@@ -1,0 +1,93 @@
+{
+  "title": "CSS Box Shadow Generator",
+  "description": "Design CSS box-shadow visually with live preview and copy the code",
+  "placeholder": "Adjust the sliders to design your shadow",
+  "preview": "Preview",
+  "inset": "Inset",
+  "offsetX": "Offset X",
+  "offsetY": "Offset Y",
+  "blur": "Blur",
+  "spread": "Spread",
+  "color": "Color",
+  "opacity": "Opacity",
+  "addLayer": "Add layer",
+  "layer": "Layer",
+  "presets": "Presets",
+  "copy": "Copy CSS",
+  "copied": "Copied!",
+  "cssOutput": "CSS",
+  "shadowColor": "Shadow color",
+  "boxColor": "Box color",
+  "meta": {
+    "title": "CSS Box Shadow Generator - Free Online box-shadow Tool",
+    "description": "Free online CSS box-shadow generator with live preview. Drag sliders for offset, blur, spread, color, opacity, inset and layers, then copy the code instantly."
+  },
+  "tagline": "Design CSS box-shadow with live preview and copy the code instantly",
+  "pageDescription": "Create the perfect CSS box-shadow with this free online generator. Drag sliders for horizontal and vertical offset, blur, spread, color and opacity, toggle inset shadows, and stack multiple shadow layers — all with a real-time live preview. Whether you need a soft drop shadow for cards and buttons or a layered, neumorphic effect, just tweak the controls until it looks right, then copy and paste the ready-to-use box-shadow code into your stylesheet. No signup, works in your browser, and includes handy presets to start from.",
+  "instructions": {
+    "title": "How to use the CSS Box Shadow Generator",
+    "steps": [
+      {
+        "title": "Start from a preset (optional)",
+        "description": "Click a preset like Subtle, Medium or Layered to load a starting shadow, then fine-tune it."
+      },
+      {
+        "title": "Adjust the sliders",
+        "description": "Drag Offset X/Y to move the shadow, Blur to soften it, and Spread to grow or shrink it. The preview updates live."
+      },
+      {
+        "title": "Pick color and opacity",
+        "description": "Choose a shadow color and set its opacity. Toggle Inset to render the shadow inside the box."
+      },
+      {
+        "title": "Add more layers",
+        "description": "Click Add layer to stack multiple shadows for depth — each layer has its own controls."
+      },
+      {
+        "title": "Copy the CSS",
+        "description": "Click Copy CSS to grab the full box-shadow declaration and paste it into your stylesheet."
+      }
+    ],
+    "features": [
+      "Live preview that updates as you drag",
+      "Sliders for offset X/Y, blur, spread and opacity",
+      "Inset shadow support",
+      "Stack multiple shadow layers in one declaration",
+      "Color picker with opacity for rgba() output",
+      "Ready-made presets to start from",
+      "One-click copy of the box-shadow code",
+      "100% browser-based — no signup, works offline"
+    ],
+    "useCases": [
+      "Add depth to cards, buttons and modals",
+      "Create soft, modern UI shadows for web apps",
+      "Build neumorphic effects with inset shadows",
+      "Match a shadow to an existing design system",
+      "Prototype elevation styles quickly",
+      "Generate layered shadows for realistic depth",
+      "Teach or learn how box-shadow parameters work",
+      "Export shadow CSS for Tailwind or plain CSS"
+    ],
+    "proTips": [
+      "Stack two layers — a tight dark one and a wide soft one — for realistic depth",
+      "Use a negative spread to keep the shadow tighter than the box",
+      "Lower opacity (10–25%) usually looks more natural than solid black",
+      "Inset shadows are great for pressed buttons and input fields",
+      "Offset 0/0 with blur creates an even glow around the element",
+      "Copy the code straight into a Tailwind arbitrary value: shadow-[…]"
+    ],
+    "troubleshooting": [
+      "No shadow visible: increase blur or opacity, or check offsets aren't 0 with 0 blur",
+      "Shadow clipped: a parent with overflow:hidden can cut off the shadow",
+      "Inset not showing: inset shadows render inside the element, not around it",
+      "Color looks off: opacity multiplies the picked color — raise it for a stronger shadow",
+      "Too harsh: reduce opacity and increase blur for a softer look"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Arrow keys",
+        "description": "Nudge a focused slider value"
+      }
+    ]
+  }
+}
