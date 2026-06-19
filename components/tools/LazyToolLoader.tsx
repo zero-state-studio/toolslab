@@ -58,6 +58,7 @@ const toolComponents = {
     () => import('./implementations/HtmlEncodeDecode')
   ),
   'text-diff': lazy(() => import('./implementations/TextDiff')),
+  'word-counter': lazy(() => import('./implementations/WordCounter')),
   'markdown-preview': lazy(() => import('./implementations/MarkdownPreview')),
   'qr-generator': lazy(() => import('./implementations/QRGenerator')),
   'barcode-generator': lazy(() => import('./implementations/BarcodeGenerator')),
@@ -99,6 +100,9 @@ const toolComponents = {
     () => import('./implementations/AITokenCounter')
   ),
   'pdf-to-word': lazy(() => import('./implementations/PdfToWord')),
+  'pdf-merger-splitter': lazy(
+    () => import('./implementations/PdfMergerSplitter')
+  ),
   'image-to-pdf': lazy(() => import('./implementations/ImageToPdfTool')),
   'jpg-to-pdf': lazy(() => import('./implementations/JpgToPdfTool')),
   'png-to-pdf': lazy(() => import('./implementations/PngToPdfTool')),

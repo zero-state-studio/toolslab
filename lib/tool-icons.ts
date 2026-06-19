@@ -44,6 +44,7 @@ import {
   Mail,
   Bot,
   FileOutput,
+  FileStack,
   Images,
   FileImage,
   Clapperboard,
@@ -103,6 +104,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
   'regex-tester': SearchCode,
   'lorem-ipsum-generator': PenLine,
   'string-case-converter': CaseSensitive,
+  'word-counter': Type,
   'html-to-markdown': FileCode,
 
   // Generators
@@ -146,6 +148,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
 
   // PDF Tools
   'pdf-to-word': FileOutput,
+  'pdf-merger-splitter': FileStack,
   'image-to-pdf': Images,
   'jpg-to-pdf': FileImage,
   'png-to-pdf': FileImage,

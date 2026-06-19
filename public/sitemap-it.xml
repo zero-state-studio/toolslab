@@ -795,6 +795,19 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/pdf-to-word"/>
   </url>
   <url>
+    <loc>https://toolslab.dev/it/tools/pdf-merger-splitter</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/pdf-merger-splitter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/pdf-merger-splitter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/pdf-merger-splitter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/pdf-merger-splitter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/pdf-merger-splitter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/pdf-merger-splitter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/pdf-merger-splitter"/>
+  </url>
+  <url>
     <loc>https://toolslab.dev/it/tools/image-to-pdf</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -936,6 +949,19 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/string-case-converter"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/string-case-converter"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/string-case-converter"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/it/tools/word-counter</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/word-counter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/word-counter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/word-counter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/word-counter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/word-counter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/word-counter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/word-counter"/>
   </url>
   <url>
     <loc>https://toolslab.dev/it/tools/binary-to-text</loc>
