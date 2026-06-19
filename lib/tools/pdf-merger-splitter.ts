@@ -220,3 +220,75 @@ export async function getPdfPageCount(buffer: ArrayBuffer): Promise<number> {
 export function pdfBytesToBlob(bytes: Uint8Array): Blob {
   return new Blob([bytes as BlobPart], { type: 'application/pdf' });
 }
+
+/**
+ * Turn a set of "cut after page N" points into inclusive [start, end]
+ * page ranges that partition a document of `totalPages`. Cut points are
+ * sanitised to the valid 1..totalPages-1 window, de-duplicated and sorted.
+ *
+ * Example: total 10, cuts [3, 7] → [[1,3],[4,7],[8,10]].
+ */
+export function cutPointsToRanges(
+  totalPages: number,
+  cutAfterPages: number[]
+): [number, number][] {
+  if (totalPages < 1) return [];
+  const cuts = Array.from(
+    new Set(
+      cutAfterPages.filter(
+        (c) => Number.isInteger(c) && c >= 1 && c <= totalPages - 1
+      )
+    )
+  ).sort((a, b) => a - b);
+
+  const ranges: [number, number][] = [];
+  let start = 1;
+  for (const cut of cuts) {
+    ranges.push([start, cut]);
+    start = cut + 1;
+  }
+  ranges.push([start, totalPages]);
+  return ranges;
+}
+
+export interface PdfThumbnail {
+  pageNumber: number;
+  dataUrl: string;
+}
+
+/**
+ * Render small PNG thumbnails for every page of a PDF buffer, for use in
+ * a visual page picker. Browser-only (uses pdf.js + canvas).
+ */
+export async function renderPdfThumbnails(
+  buffer: ArrayBuffer,
+  scale = 0.3
+): Promise<PdfThumbnail[]> {
+  const pdfjs = await import('pdfjs-dist');
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+    'pdfjs-dist/build/pdf.worker.min.mjs',
+    import.meta.url
+  ).toString();
+  const doc = await pdfjs.getDocument({ data: new Uint8Array(buffer.slice(0)) })
+    .promise;
+  try {
+    const thumbs: PdfThumbnail[] = [];
+    for (let i = 1; i <= doc.numPages; i++) {
+      const page = await doc.getPage(i);
+      const viewport = page.getViewport({ scale });
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.ceil(viewport.width);
+      canvas.height = Math.ceil(viewport.height);
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('Could not get canvas context');
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      await page.render({ canvasContext: context, viewport, canvas }).promise;
+      thumbs.push({ pageNumber: i, dataUrl: canvas.toDataURL('image/png') });
+      page.cleanup();
+    }
+    return thumbs;
+  } finally {
+    await doc.destroy();
+  }
+}

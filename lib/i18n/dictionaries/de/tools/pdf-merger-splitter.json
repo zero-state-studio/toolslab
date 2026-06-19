@@ -7,7 +7,7 @@
   "dropMerge": "PDF-Dateien hierher ziehen oder zum Hochladen klicken",
   "dropSplit": "Ein PDF hierher ziehen oder zum Hochladen klicken",
   "mergeHint": "Zwei oder mehr PDFs hinzufügen, in die richtige Reihenfolge bringen und zu einer Datei zusammenfügen",
-  "splitHint": "Ein PDF hochladen und die Seitenbereiche wählen, die extrahiert werden sollen",
+  "splitHint": "Lade ein PDF hoch und klicke dann zwischen den Seiten, um es zu teilen",
   "mergeButton": "PDFs zusammenfügen",
   "splitButton": "PDF teilen",
   "rangeLabel": "Seitenbereiche",
@@ -105,5 +105,13 @@
     "pdf zusammenfügen ohne wasserzeichen",
     "bestes tool pdf zusammenfügen online",
     "pdf zusammenfügen ilovepdf alternative"
-  ]
+  ],
+  "visualHint": "Klicke nach einer Seite auf die Schere, um dort zu teilen. Die Datei wird in die unten gezeigten Teile zerlegt.",
+  "splitEveryPage": "Jede Seite teilen",
+  "resetCuts": "Zurücksetzen",
+  "cutAfter": "Nach dieser Seite teilen",
+  "outputFiles": "Ausgabedateien",
+  "rendering": "Seiten werden gerendert…",
+  "page": "Seite",
+  "advanced": "Erweitert: benutzerdefinierte Seitenbereiche"
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   Upload,
   X,
@@ -24,6 +24,9 @@ import {
   mergePdfBuffers,
   splitPdfBuffer,
   getPdfPageCount,
+  cutPointsToRanges,
+  renderPdfThumbnails,
+  PdfThumbnail,
   pdfBytesToBlob,
   downloadPdf,
   formatFileSize,
@@ -54,11 +57,10 @@ export default function PdfMergerSplitter({
     dropMerge: t.dropMerge || 'Drop PDF files here or click to upload',
     dropSplit: t.dropSplit || 'Drop a PDF file here or click to upload',
     mergeHint: t.mergeHint || 'Add two or more PDFs, reorder, then merge',
-    splitHint: t.splitHint || 'Upload a PDF, then choose page ranges to extract',
+    splitHint:
+      t.splitHint || 'Upload a PDF, then click between pages to split it',
     mergeButton: t.mergeButton || 'Merge PDFs',
     splitButton: t.splitButton || 'Split PDF',
-    rangeLabel: t.rangeLabel || 'Page ranges',
-    rangePlaceholder: t.rangePlaceholder || 'e.g. 1-3, 5, 8-10',
     pages: t.pages || 'pages',
     download: t.download || 'Download',
     downloadAll: t.downloadAll || 'Download all',
@@ -67,6 +69,19 @@ export default function PdfMergerSplitter({
     moveDown: t.moveDown || 'Move down',
     result: t.result || 'Result',
     onlyPdf: t.onlyPdf || 'Only PDF files are supported',
+    // split visual
+    visualHint:
+      t.visualHint ||
+      'Click the scissors after a page to split there. The file is cut into the parts shown below.',
+    splitEveryPage: t.splitEveryPage || 'Split every page',
+    resetCuts: t.resetCuts || 'Reset',
+    cutAfter: t.cutAfter || 'Split after this page',
+    outputFiles: t.outputFiles || 'Output files',
+    rendering: t.rendering || 'Rendering pages…',
+    page: t.page || 'Page',
+    advanced: t.advanced || 'Advanced: custom page ranges',
+    rangeLabel: t.rangeLabel || 'Page ranges',
+    rangePlaceholder: t.rangePlaceholder || 'e.g. 1-3, 5, 8-10',
   };
 
   const [mode, setMode] = useState<Mode>('merge');
@@ -81,6 +96,10 @@ export default function PdfMergerSplitter({
   // Split state
   const [splitFile, setSplitFile] = useState<File | null>(null);
   const [splitPageCount, setSplitPageCount] = useState(0);
+  const [thumbnails, setThumbnails] = useState<PdfThumbnail[]>([]);
+  const [thumbsLoading, setThumbsLoading] = useState(false);
+  const [cutPoints, setCutPoints] = useState<number[]>([]); // cut AFTER these pages
+  const [advanced, setAdvanced] = useState(false);
   const [ranges, setRanges] = useState('');
   const [splitParts, setSplitParts] = useState<SplitPart[]>([]);
 
@@ -91,6 +110,12 @@ export default function PdfMergerSplitter({
   useEffect(() => {
     if (hasResult) scrollToResult();
   }, [hasResult, scrollToResult]);
+
+  // Segments derived from the current cut points (visual mode).
+  const segments = useMemo(
+    () => cutPointsToRanges(splitPageCount, cutPoints),
+    [splitPageCount, cutPoints]
+  );
 
   const resetResults = () => {
     setMergedBlob(null);
@@ -124,12 +149,19 @@ export default function PdfMergerSplitter({
       } else {
         const file = pdfs[0];
         setSplitFile(file);
+        setCutPoints([]);
+        setThumbnails([]);
+        setThumbsLoading(true);
         try {
           const buf = await fileToArrayBuffer(file);
           setSplitPageCount(await getPdfPageCount(buf));
+          const thumbs = await renderPdfThumbnails(buf);
+          setThumbnails(thumbs);
         } catch {
           setError('Could not read the PDF');
           setSplitFile(null);
+        } finally {
+          setThumbsLoading(false);
         }
       }
     },
@@ -189,19 +221,48 @@ export default function PdfMergerSplitter({
   };
 
   // ---- Split actions ----
+  const toggleCut = (afterPage: number) => {
+    setCutPoints((prev) =>
+      prev.includes(afterPage)
+        ? prev.filter((p) => p !== afterPage)
+        : [...prev, afterPage]
+    );
+    setSplitParts([]);
+  };
+
+  const splitEveryPage = () => {
+    setCutPoints(
+      Array.from({ length: Math.max(0, splitPageCount - 1) }, (_, i) => i + 1)
+    );
+    setSplitParts([]);
+  };
+
+  const resetCuts = () => {
+    setCutPoints([]);
+    setSplitParts([]);
+  };
+
   const handleSplit = async () => {
     if (!splitFile) return;
     setError('');
-    const parsed = parsePageRanges(ranges, splitPageCount);
-    if (!parsed.success || !parsed.ranges) {
-      setError(parsed.error || 'Invalid ranges');
-      return;
+
+    let splitRanges: [number, number][];
+    if (advanced) {
+      const parsed = parsePageRanges(ranges, splitPageCount);
+      if (!parsed.success || !parsed.ranges) {
+        setError(parsed.error || 'Invalid ranges');
+        return;
+      }
+      splitRanges = parsed.ranges;
+    } else {
+      splitRanges = segments;
     }
+
     setIsProcessing(true);
     const startTime = Date.now();
     try {
       const buf = await fileToArrayBuffer(splitFile);
-      const r = await splitPdfBuffer(buf, parsed.ranges);
+      const r = await splitPdfBuffer(buf, splitRanges);
       if (!r.success || !r.parts) {
         setError(r.error || 'Split failed');
         return;
@@ -210,7 +271,7 @@ export default function PdfMergerSplitter({
       addToHistory({
         id: crypto.randomUUID(),
         tool: 'pdf-merger-splitter',
-        input: `split ${splitFile.name} (${ranges})`,
+        input: `split ${splitFile.name} (${advanced ? ranges : `${segments.length} parts`})`,
         output: `${r.parts.length} files`,
         timestamp: startTime,
       });
@@ -222,6 +283,8 @@ export default function PdfMergerSplitter({
   };
 
   const baseName = (splitFile?.name || 'document').replace(/\.pdf$/i, '');
+  const splitDisabled =
+    isProcessing || (advanced ? !ranges.trim() : segments.length === 0);
 
   return (
     <div className="space-y-5">
@@ -338,42 +401,140 @@ export default function PdfMergerSplitter({
         </div>
       )}
 
-      {/* Split: controls */}
+      {/* Split: visual page picker */}
       {mode === 'split' && splitFile && (
-        <div className="space-y-3">
+        <div className="space-y-4">
           <div className="flex items-center gap-3 rounded-lg border border-gray-200 p-3 dark:border-gray-700">
             <FileText className="h-5 w-5 shrink-0 text-violet-500" />
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium">{splitFile.name}</p>
               <p className="text-xs text-gray-500">
-                {splitPageCount} {labels.pages} · {formatFileSize(splitFile.size)}
+                {splitPageCount} {labels.pages} ·{' '}
+                {formatFileSize(splitFile.size)}
               </p>
             </div>
           </div>
-          <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
-              {labels.rangeLabel}
-            </label>
-            <input
-              type="text"
-              value={ranges}
-              onChange={(e) => setRanges(e.target.value)}
-              placeholder={labels.rangePlaceholder}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800"
-            />
-          </div>
-          <Button
-            onClick={handleSplit}
-            disabled={!ranges.trim() || isProcessing}
-            className="w-full"
-          >
-            {isProcessing ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Scissors className="mr-2 h-4 w-4" />
-            )}
-            {labels.splitButton}
-          </Button>
+
+          {thumbsLoading ? (
+            <div className="flex items-center justify-center gap-2 rounded-lg border border-gray-200 py-10 text-sm text-gray-500 dark:border-gray-700">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              {labels.rendering}
+            </div>
+          ) : (
+            !advanced && (
+              <>
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="flex-1 text-xs text-gray-500">
+                    {labels.visualHint}
+                  </p>
+                  <button
+                    onClick={splitEveryPage}
+                    className="rounded-md border border-gray-200 px-2 py-1 text-xs hover:border-violet-400 dark:border-gray-700"
+                  >
+                    {labels.splitEveryPage}
+                  </button>
+                  <button
+                    onClick={resetCuts}
+                    disabled={cutPoints.length === 0}
+                    className="rounded-md border border-gray-200 px-2 py-1 text-xs hover:border-violet-400 disabled:opacity-40 dark:border-gray-700"
+                  >
+                    {labels.resetCuts}
+                  </button>
+                </div>
+
+                {/* Thumbnail grid; scissors after each page (except last) */}
+                <div className="flex flex-wrap gap-x-1 gap-y-3">
+                  {thumbnails.map((thumb) => {
+                    const isCut = cutPoints.includes(thumb.pageNumber);
+                    const isLast = thumb.pageNumber === splitPageCount;
+                    return (
+                      <div key={thumb.pageNumber} className="flex items-stretch">
+                        <div className="flex w-24 flex-col items-center">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={thumb.dataUrl}
+                            alt={`${labels.page} ${thumb.pageNumber}`}
+                            className="w-full rounded border border-gray-200 bg-white shadow-sm dark:border-gray-700"
+                            loading="lazy"
+                          />
+                          <span className="mt-1 text-xs text-gray-500">
+                            {thumb.pageNumber}
+                          </span>
+                        </div>
+                        {!isLast && (
+                          <button
+                            onClick={() => toggleCut(thumb.pageNumber)}
+                            title={labels.cutAfter}
+                            className={`group mx-0.5 flex w-6 items-center justify-center self-stretch rounded transition ${
+                              isCut
+                                ? 'bg-violet-600 text-white'
+                                : 'text-gray-300 hover:bg-violet-50 hover:text-violet-500 dark:text-gray-600'
+                            }`}
+                          >
+                            <Scissors className="h-4 w-4" />
+                          </button>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Segment summary */}
+                <div className="rounded-lg bg-violet-50 p-3 text-sm dark:bg-violet-950/20">
+                  <span className="font-medium">
+                    {labels.outputFiles}: {segments.length}
+                  </span>
+                  <span className="ml-2 text-gray-500">
+                    {segments
+                      .map((s) => (s[0] === s[1] ? `${s[0]}` : `${s[0]}–${s[1]}`))
+                      .join(' · ')}
+                  </span>
+                </div>
+              </>
+            )
+          )}
+
+          {/* Advanced: custom ranges (power users) */}
+          {!thumbsLoading && (
+            <div>
+              <button
+                onClick={() => setAdvanced((a) => !a)}
+                className="text-xs font-medium text-violet-600 hover:underline"
+              >
+                {advanced ? '← ' : ''}
+                {labels.advanced}
+              </button>
+              {advanced && (
+                <div className="mt-2">
+                  <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {labels.rangeLabel}
+                  </label>
+                  <input
+                    type="text"
+                    value={ranges}
+                    onChange={(e) => setRanges(e.target.value)}
+                    placeholder={labels.rangePlaceholder}
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm dark:border-gray-600 dark:bg-gray-800"
+                  />
+                </div>
+              )}
+            </div>
+          )}
+
+          {!thumbsLoading && (
+            <Button
+              onClick={handleSplit}
+              disabled={splitDisabled}
+              className="w-full"
+            >
+              {isProcessing ? (
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                <Scissors className="mr-2 h-4 w-4" />
+              )}
+              {labels.splitButton}
+            </Button>
+          )}
         </div>
       )}
 
