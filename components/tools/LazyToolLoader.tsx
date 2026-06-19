@@ -129,6 +129,9 @@ const toolComponents = {
     () => import('./implementations/StringCaseConverter')
   ),
   'binary-to-text': lazy(() => import('./implementations/BinaryToText')),
+  'number-base-converter': lazy(
+    () => import('./implementations/NumberBaseConverter')
+  ),
   'js-object-to-json': lazy(() => import('./implementations/JsObjectToJson')),
   'bcrypt-hash-generator': lazy(
     () => import('./implementations/BcryptHashGenerator')

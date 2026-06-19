@@ -44,6 +44,7 @@ import {
   Mail,
   Bot,
   BoxSelect,
+  Calculator,
   FileOutput,
   FileStack,
   Images,
@@ -146,6 +147,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
   'chmod-calculator': Shield,
   'htaccess-generator': Server,
   'binary-to-text': Binary,
+  'number-base-converter': Calculator,
   'js-object-to-json': Code,
 
   // PDF Tools

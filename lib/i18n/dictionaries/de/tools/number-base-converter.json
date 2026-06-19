@@ -1,0 +1,105 @@
+{
+  "title": "Zahlensystem-Umrechner",
+  "description": "Zahlen zwischen Binär, Oktal, Dezimal, Hex und jeder Basis 2–36 umrechnen",
+  "placeholder": "Zahl eingeben…",
+  "inputLabel": "Umzurechnende Zahl",
+  "fromBase": "Eingabebasis",
+  "customBase": "Eigene Basis (2–36)",
+  "bitWidth": "Bitbreite",
+  "signed": "Vorzeichenbehaftet (Zweierkomplement)",
+  "binary": "Binär",
+  "octal": "Oktal",
+  "decimal": "Dezimal",
+  "hexadecimal": "Hexadezimal",
+  "base": "Basis",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "none": "Unbegrenzt",
+  "bits": "Bit",
+  "meta": {
+    "title": "Zahlensystem-Umrechner – Hex, Binär, Dezimal, Oktal online",
+    "description": "Zahlen zwischen Binär, Oktal, Dezimal, Hex und jeder Basis 2–36 kostenlos online umrechnen. Mit Zweierkomplement und Bitbreite, sofortige Multi-Basis-Ausgabe."
+  },
+  "tagline": "Zahlen sofort zwischen Binär, Oktal, Dezimal, Hex und jeder Basis umrechnen",
+  "pageDescription": "Rechne Zahlen mit diesem kostenlosen Online-Zahlensystem-Umrechner zwischen Binär, Oktal, Dezimal, Hexadezimal und jeder Basis von 2 bis 36 um. Jede Darstellung aktualisiert sich sofort beim Tippen – wechsle die Eingabebasis und nutze die Optionen für Bitbreite und vorzeichenbehaftetes Zweierkomplement, um zu sehen, wie Werte bei 8, 16, 32 oder 64 Bit gespeichert werden. Dank Großzahlen-Arithmetik werden selbst sehr große Zahlen exakt umgerechnet. Ideal für Entwickler, Informatik-Studierende und alle, die mit Hex, Binär oder hardwarenahen Daten arbeiten – ohne Anmeldung, direkt im Browser.",
+  "instructions": {
+    "title": "So rechnest du Zahlensysteme um",
+    "steps": [
+      {
+        "title": "Zahl eingeben",
+        "description": "Gib eine Zahl in das Eingabefeld ein. Präfixe wie 0x, 0b und 0o werden akzeptiert, und du kannst Unterstriche oder Leerzeichen als Trennzeichen verwenden."
+      },
+      {
+        "title": "Eingabebasis wählen",
+        "description": "Wähle Binär, Oktal, Dezimal oder Hexadezimal, oder lege mit der kleinen Basisauswahl eine beliebige eigene Basis von 2 bis 36 fest."
+      },
+      {
+        "title": "Umrechnungen ablesen",
+        "description": "Alle Basen aktualisieren sich sofort – Dezimal, Hex, Oktal, Binär und deine eigene Basis, falls du eine genutzt hast."
+      },
+      {
+        "title": "Bitbreite und Vorzeichen festlegen (optional)",
+        "description": "Wähle 8, 16, 32 oder 64 Bit, um den Wert zu begrenzen, und aktiviere „Vorzeichenbehaftet“, um ihn als Zweierkomplement zu interpretieren."
+      },
+      {
+        "title": "Ergebnis kopieren",
+        "description": "Klicke auf das Kopier-Symbol neben einer beliebigen Darstellung, um sie in die Zwischenablage zu kopieren."
+      }
+    ],
+    "features": [
+      "Umrechnung zwischen Binär, Oktal, Dezimal, Hexadezimal und jeder Basis 2–36",
+      "Sofortige Multi-Basis-Ausgabe schon während der Eingabe",
+      "Vorzeichenbehaftete (Zweierkomplement) und vorzeichenlose Interpretation",
+      "Bitbreiten-Auswahl für 8, 16, 32 und 64 Bit",
+      "Großzahlen-Arithmetik – exakt für beliebig große Zahlen",
+      "Akzeptiert Präfixe 0x / 0b / 0o und Ziffern-Trennzeichen",
+      "Ein-Klick-Kopieren für jede Darstellung",
+      "100 % browserbasiert – ohne Anmeldung, funktioniert offline"
+    ],
+    "useCases": [
+      "Hex-Farb- oder Speicherwerte in Dezimal umrechnen",
+      "Binär in Dezimal für Informatik-Hausaufgaben übersetzen",
+      "Zweierkomplement-Darstellung negativer Zahlen prüfen",
+      "Dezimal in Hex für hardwarenahe Programmierung umrechnen",
+      "Prüfen, wie ein Wert bei 8 oder 16 Bit überläuft",
+      "Zwischen ungewöhnlichen Basen wie Basis 36 für kurze IDs umrechnen",
+      "Bitmasken und Flags in Hex und Binär debuggen",
+      "Stellenwertsysteme lehren oder lernen"
+    ],
+    "proTips": [
+      "Kombiniere die Bitbreiten-Auswahl mit „Vorzeichenbehaftet“, um das Zweierkomplement zu sehen, z. B. 0xFF → -1 bei 8 Bit",
+      "Die Präfixe 0x, 0b und 0o werden automatisch entfernt",
+      "Unterstriche und Leerzeichen werden ignoriert, daher ist 1010_1010 eine gültige Binärzahl",
+      "Basis 36 nutzt 0–9 und danach a–z – praktisch für kompakte Bezeichner",
+      "Sehr große Zahlen bleiben dank Großzahlen-Arithmetik exakt",
+      "Lege eine eigene Basis im kleinen Zahlenfeld neben der Basis-Auswahl fest"
+    ],
+    "troubleshooting": [
+      "Fehler „ungültige Ziffer“: Die Eingabe enthält eine Ziffer, die in der gewählten Basis nicht erlaubt ist",
+      "Unerwarteter Wert: Prüfe, ob die Eingabebasis dazu passt, wie du die Zahl eingegeben hast",
+      "Negative Zahl als große Zahl angezeigt: Aktiviere „Vorzeichenbehaftet“ mit einer Bitbreite für das Zweierkomplement",
+      "Schalter „Vorzeichenbehaftet“ deaktiviert: Wähle zuerst eine Bitbreite (Vorzeichen benötigt eine feste Breite)",
+      "Keine Umrechnung: Stelle sicher, dass das Feld nicht leer ist und die Basis zwischen 2 und 36 liegt"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Zwischen Eingabe, Basis und Optionen wechseln"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "zahlensystem umrechner online kostenlos",
+    "hexadezimal in dezimal umwandeln",
+    "dezimal in hexadezimal umrechnen",
+    "binär in dezimal umrechnen online",
+    "binär dezimal hexadezimal umrechner",
+    "zweierkomplement rechner online",
+    "basis 2 in basis 16 umrechnen",
+    "stellenwertsysteme umrechnen",
+    "wie rechne ich hex in dezimal um",
+    "binär zu hexadezimal umwandeln",
+    "zahlensysteme umrechnen ohne anmeldung",
+    "online rechner vs taschenrechner zahlensysteme"
+  ]
+}
