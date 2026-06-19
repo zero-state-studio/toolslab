@@ -264,9 +264,9 @@ export async function renderPdfThumbnails(
   buffer: ArrayBuffer,
   scale = 0.3
 ): Promise<PdfThumbnail[]> {
-  const pdfjs = await import('pdfjs-dist');
-  // Worker is served from /public (copied from pdfjs-dist) — reliable across
-  // Next dev/prod, no import.meta.url asset-resolution quirks.
+  // Legacy build + worker served from /public — most compatible with the
+  // Next/webpack bundler (avoids "Object.defineProperty called on non-object").
+  const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs');
   pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
   const doc = await pdfjs.getDocument({ data: new Uint8Array(buffer.slice(0)) })
     .promise;

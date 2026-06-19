@@ -93,10 +93,9 @@ let workerConfigured = false;
 
 /** Load a PDF document with pdf.js, configuring the worker once. */
 export async function loadPdf(buffer: ArrayBuffer) {
-  const pdfjs = await import('pdfjs-dist');
+  // Legacy build + worker from /public — most compatible with Next/webpack.
+  const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs');
   if (!workerConfigured) {
-    // Worker served from /public (copied from pdfjs-dist) for reliable
-    // resolution in Next dev/prod.
     pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
     workerConfigured = true;
   }
