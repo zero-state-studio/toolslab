@@ -43,6 +43,7 @@ import {
   Clock,
   Mail,
   Bot,
+  BoxSelect,
   FileOutput,
   FileStack,
   Images,
@@ -119,6 +120,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
   'image-optimizer': ImageDown,
   'favicon-generator': AppWindow,
   'gradient-generator': Blend,
+  'css-box-shadow-generator': BoxSelect,
 
   // Dev Utilities
   'json-validator': ClipboardCheck,

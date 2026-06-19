@@ -1,0 +1,107 @@
+{
+  "title": "Generador de Box Shadow CSS",
+  "description": "Diseña sombras box-shadow de CSS visualmente con vista previa en vivo y copia el código",
+  "placeholder": "Mueve los deslizadores para diseñar tu sombra",
+  "preview": "Vista previa",
+  "inset": "Inset (interior)",
+  "offsetX": "Desplazamiento X",
+  "offsetY": "Desplazamiento Y",
+  "blur": "Desenfoque (blur)",
+  "spread": "Expansión (spread)",
+  "color": "Color",
+  "opacity": "Opacidad",
+  "addLayer": "Añadir capa",
+  "layer": "Capa",
+  "presets": "Plantillas",
+  "copy": "Copiar CSS",
+  "copied": "¡Copiado!",
+  "cssOutput": "CSS",
+  "shadowColor": "Color de la sombra",
+  "boxColor": "Color de la caja",
+  "meta": {
+    "title": "Generador de Box Shadow CSS - Sombras Online Gratis",
+    "description": "Genera box-shadow de CSS online y gratis con vista previa en vivo. Ajusta desplazamiento, desenfoque, expansión, color y opacidad, apila capas y copia el CSS."
+  },
+  "tagline": "Diseña sombras box-shadow de CSS con vista previa en vivo y copia el código al instante",
+  "pageDescription": "Crea la sombra box-shadow perfecta con este generador online gratuito. Mueve los deslizadores para ajustar el desplazamiento horizontal y vertical, el desenfoque (blur), la expansión (spread), el color y la opacidad, activa las sombras inset y apila varias capas de sombra, todo con una vista previa en tiempo real. Cuando tengas el resultado que buscas, copia el código box-shadow listo para usar en tu hoja de estilos. Sin registro, funciona en tu navegador e incluye plantillas prácticas para empezar.",
+  "instructions": {
+    "title": "Cómo usar el Generador de Box Shadow CSS",
+    "steps": [
+      {
+        "title": "Empieza desde una plantilla (opcional)",
+        "description": "Haz clic en una plantilla como Sutil, Media o En capas para cargar una sombra inicial y luego ajústala a tu gusto."
+      },
+      {
+        "title": "Ajusta los deslizadores",
+        "description": "Mueve Desplazamiento X/Y para reposicionar la sombra, Blur para suavizarla y Spread para agrandarla o reducirla. La vista previa se actualiza al instante."
+      },
+      {
+        "title": "Elige color y opacidad",
+        "description": "Selecciona el color de la sombra y define su opacidad. Activa Inset para dibujar la sombra dentro de la caja en lugar de alrededor."
+      },
+      {
+        "title": "Añade más capas",
+        "description": "Pulsa Añadir capa para apilar varias sombras y conseguir profundidad: cada capa tiene sus propios controles independientes."
+      },
+      {
+        "title": "Copia el CSS",
+        "description": "Haz clic en Copiar CSS para obtener la declaración box-shadow completa y pégala directamente en tu hoja de estilos."
+      }
+    ],
+    "features": [
+      "Vista previa en vivo que se actualiza mientras arrastras",
+      "Deslizadores para desplazamiento X/Y, desenfoque, expansión y opacidad",
+      "Soporte para sombras interiores (inset)",
+      "Apila varias capas de sombra en una sola declaración",
+      "Selector de color con opacidad para generar salida en rgba()",
+      "Plantillas listas para usar como punto de partida",
+      "Copia el código box-shadow con un solo clic",
+      "100% en el navegador, sin registro y funciona sin conexión"
+    ],
+    "useCases": [
+      "Dar profundidad a tarjetas, botones y ventanas modales",
+      "Crear sombras de interfaz suaves y modernas para aplicaciones web",
+      "Construir efectos neumórficos con sombras inset",
+      "Ajustar una sombra para que encaje con un sistema de diseño existente",
+      "Prototipar estilos de elevación rápidamente",
+      "Generar sombras en capas para una profundidad realista",
+      "Enseñar o aprender cómo funcionan los parámetros de box-shadow",
+      "Exportar el CSS de la sombra para Tailwind o CSS puro"
+    ],
+    "proTips": [
+      "Apila dos capas, una oscura y ajustada y otra amplia y suave, para lograr profundidad realista",
+      "Usa una expansión (spread) negativa para mantener la sombra más ceñida que la caja",
+      "Una opacidad baja (10-25%) suele verse más natural que un negro sólido",
+      "Las sombras inset son ideales para botones presionados y campos de formulario",
+      "Un desplazamiento 0/0 con blur crea un resplandor uniforme alrededor del elemento",
+      "Copia el código directamente en un valor arbitrario de Tailwind: shadow-[…]"
+    ],
+    "troubleshooting": [
+      "No se ve la sombra: aumenta el blur o la opacidad, o comprueba que los desplazamientos no sean 0 con blur en 0",
+      "Sombra recortada: un elemento padre con overflow:hidden puede cortar la sombra",
+      "El inset no aparece: las sombras inset se dibujan dentro del elemento, no alrededor",
+      "El color se ve raro: la opacidad multiplica el color elegido; súbela para una sombra más intensa",
+      "Demasiado dura: reduce la opacidad y aumenta el blur para un aspecto más suave"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Teclas de flecha",
+        "description": "Ajusta el valor del deslizador enfocado"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "generador de box shadow css online gratis",
+    "generador de sombras css con vista previa",
+    "crear box shadow css online",
+    "copiar código box shadow css",
+    "cómo hacer sombra en css",
+    "cómo crear sombras con css box-shadow",
+    "ejemplos de box shadow css",
+    "box shadow css con varias capas",
+    "generador de sombra interior inset css",
+    "box shadow css rgba color y opacidad",
+    "generador de sombras css vs cssmatic",
+    "mejor generador de box shadow css gratis"
+  ]
+}

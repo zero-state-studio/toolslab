@@ -68,6 +68,9 @@ const toolComponents = {
   'gradient-generator': lazy(
     () => import('./implementations/GradientGenerator')
   ),
+  'css-box-shadow-generator': lazy(
+    () => import('./implementations/CssBoxShadowGenerator')
+  ),
   'curl-to-axios': lazy(() => import('./implementations/CurlToAxios')),
   'curl-to-code': lazy(() => import('./implementations/CurlToCode')),
   'curl-to-csharp': lazy(() => import('./implementations/CurlToCsharp')),
