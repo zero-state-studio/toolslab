@@ -162,8 +162,10 @@ export default function PdfMergerSplitter({
           setSplitPageCount(await getPdfPageCount(buf));
           const thumbs = await renderPdfThumbnails(buf);
           setThumbnails(thumbs);
-        } catch {
-          setError('Could not read the PDF');
+        } catch (e) {
+          setError(
+            `Could not read the PDF${e instanceof Error ? `: ${e.message}` : ''}`
+          );
           setSplitFile(null);
         } finally {
           setThumbsLoading(false);

@@ -265,10 +265,9 @@ export async function renderPdfThumbnails(
   scale = 0.3
 ): Promise<PdfThumbnail[]> {
   const pdfjs = await import('pdfjs-dist');
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
-    import.meta.url
-  ).toString();
+  // Worker is served from /public (copied from pdfjs-dist) — reliable across
+  // Next dev/prod, no import.meta.url asset-resolution quirks.
+  pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
   const doc = await pdfjs.getDocument({ data: new Uint8Array(buffer.slice(0)) })
     .promise;
   try {
