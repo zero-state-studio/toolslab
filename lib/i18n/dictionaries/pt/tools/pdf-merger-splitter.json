@@ -20,6 +20,8 @@
   "moveDown": "Mover para baixo",
   "result": "Resultado",
   "onlyPdf": "Apenas arquivos PDF são aceitos",
+  "reorderTitle": "Altere a ordem dos arquivos",
+  "reorderHint": "Use as setas para definir a ordem — os arquivos são unidos de cima para baixo",
   "meta": {
     "title": "Juntar e Dividir PDF Online Grátis | ToolsLab",
     "description": "Junte vários PDFs em um só ou divida um PDF por páginas online e grátis. Sem upload ao servidor, sem cadastro e sem marca d'água — tudo rápido e privado."
