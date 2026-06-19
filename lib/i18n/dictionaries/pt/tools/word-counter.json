@@ -1,0 +1,93 @@
+{
+  "title": "Contador de Palavras e Tempo de Leitura",
+  "description": "Conta palavras, caracteres, frases, parágrafos e estima o tempo de leitura",
+  "placeholder": "Digite ou cole seu texto aqui para contar as palavras…",
+  "inputLabel": "Seu texto",
+  "clear": "Limpar",
+  "copy": "Copiar estatísticas",
+  "copied": "Copiado!",
+  "words": "Palavras",
+  "characters": "Caracteres",
+  "charactersNoSpaces": "Caracteres (sem espaços)",
+  "sentences": "Frases",
+  "paragraphs": "Parágrafos",
+  "lines": "Linhas",
+  "readingTime": "Tempo de leitura",
+  "speakingTime": "Tempo de fala",
+  "meta": {
+    "title": "Contador de Palavras e Tempo de Leitura - Ferramenta Gratuita",
+    "description": "Contador de palavras online gratuito. Conte palavras, caracteres, frases, parágrafos e obtenha o tempo de leitura na hora. Em tempo real, sem cadastro, offline."
+  },
+  "tagline": "Conte palavras, caracteres e tempo de leitura na hora enquanto digita",
+  "pageDescription": "Conte palavras, caracteres, frases e parágrafos em tempo real com este Contador de Palavras online gratuito. Obtenha estimativas instantâneas de tempo de leitura e de fala enquanto digita — ideal para escritores, estudantes, blogueiros e profissionais de SEO que precisam atingir tamanhos exatos. Sem cadastro, seguro e baseado no navegador: seu texto nunca sai do seu dispositivo.",
+  "instructions": {
+    "title": "Como usar o Contador de Palavras",
+    "steps": [
+      {
+        "title": "Digite ou cole seu texto",
+        "description": "Insira seu texto na caixa. As contagens são atualizadas ao vivo a cada tecla — sem botão para pressionar."
+      },
+      {
+        "title": "Veja as estatísticas ao vivo",
+        "description": "Veja palavras, caracteres (com e sem espaços), frases, parágrafos e linhas se atualizarem na hora enquanto você escreve ou edita."
+      },
+      {
+        "title": "Verifique o tempo de leitura",
+        "description": "O tempo de leitura é estimado em 200 palavras por minuto e o de fala em 130 palavras por minuto, para você saber quanto dura seu texto."
+      },
+      {
+        "title": "Copie as estatísticas",
+        "description": "Clique em 'Copiar estatísticas' para copiar um resumo limpo de todas as métricas para a área de transferência, ideal para relatórios ou entregas."
+      },
+      {
+        "title": "Limpe e comece de novo",
+        "description": "Use o botão Limpar para esvaziar o campo e contar um novo texto do zero."
+      }
+    ],
+    "features": [
+      "Contagem em tempo real a cada tecla — sem botão de enviar",
+      "Palavras, caracteres, caracteres sem espaços, frases, parágrafos e linhas",
+      "Estimativa de tempo de leitura a 200 PPM e de fala a 130 PPM",
+      "Tratamento preciso de Unicode — emojis e letras acentuadas contados corretamente",
+      "Copie todas as estatísticas como um resumo de texto limpo",
+      "Lida com documentos muito longos sem travar",
+      "100% no navegador — o texto nunca é enviado a um servidor",
+      "Funciona offline depois que a página é carregada"
+    ],
+    "useCases": [
+      "Atingir limites de palavras em redações, trabalhos e candidaturas",
+      "Respeitar limites de caracteres em tweets, meta descrições e anúncios",
+      "Estimar o tempo de leitura de posts de blog e artigos",
+      "Planejar o tempo de apresentações e roteiros",
+      "Verificar o tamanho de títulos e meta descrições de SEO",
+      "Medir o tamanho do conteúdo para redação freelance e faturamento",
+      "Reduzir ou expandir um texto para um tamanho exato",
+      "Analisar a estrutura de parágrafos e frases ao editar"
+    ],
+    "proTips": [
+      "O tempo de leitura usa 200 PPM (leitura silenciosa média); a fala usa 130 PPM",
+      "Use 'Caracteres (sem espaços)' para limites que excluem espaços",
+      "Os parágrafos são contados por linhas em branco, então separe blocos com uma linha vazia",
+      "Emojis e caracteres acentuados contam como um único caractere cada",
+      "Cole de qualquer editor — a formatação é ignorada, só o texto é contado",
+      "Copie as estatísticas para colar um resumo limpo em relatórios"
+    ],
+    "troubleshooting": [
+      "Contagem de palavras estranha: espaços extras são ignorados — só palavras reais contam",
+      "Parágrafos mostram 1: separe os parágrafos com uma linha em branco, não uma única quebra de linha",
+      "Contagem de frases inesperada: abreviações com pontos podem ser contadas como fim de frase",
+      "Contagem de caracteres difere de outra ferramenta: aqui contam-se code points Unicode, emojis valem 1",
+      "Nada acontece: as contagens se atualizam automaticamente — não há nenhum botão"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Colar texto da área de transferência"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Selecionar todo o texto na caixa"
+      }
+    ]
+  }
+}

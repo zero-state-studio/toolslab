@@ -72,6 +72,7 @@ export const ALL_TOOL_IDS = [
     'base64-to-jpg',
     'base64-to-webp',
     'text-diff',
+    'word-counter',
     'markdown-preview',
     'regex-tester',
     'uuid-generator',

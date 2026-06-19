@@ -1,0 +1,93 @@
+{
+  "title": "Compteur de Mots et Temps de Lecture",
+  "description": "Comptez les mots, caractères, phrases, paragraphes et estimez le temps de lecture",
+  "placeholder": "Saisissez ou collez votre texte ici pour compter les mots…",
+  "inputLabel": "Votre texte",
+  "clear": "Effacer",
+  "copy": "Copier les stats",
+  "copied": "Copié !",
+  "words": "Mots",
+  "characters": "Caractères",
+  "charactersNoSpaces": "Caractères (sans espaces)",
+  "sentences": "Phrases",
+  "paragraphs": "Paragraphes",
+  "lines": "Lignes",
+  "readingTime": "Temps de lecture",
+  "speakingTime": "Temps de parole",
+  "meta": {
+    "title": "Compteur de Mots et Temps de Lecture - Outil En Ligne Gratuit",
+    "description": "Compteur de mots en ligne gratuit. Comptez mots, caractères, phrases, paragraphes et obtenez le temps de lecture instantanément. En temps réel, sans inscription, hors ligne."
+  },
+  "tagline": "Comptez mots, caractères et temps de lecture instantanément en tapant",
+  "pageDescription": "Comptez les mots, caractères, phrases et paragraphes en temps réel avec ce Compteur de Mots en ligne gratuit. Obtenez des estimations instantanées du temps de lecture et de parole pendant que vous écrivez — idéal pour les rédacteurs, étudiants, blogueurs et professionnels du SEO qui doivent respecter des longueurs précises. Aucune inscription requise, sécurisé et basé sur le navigateur : votre texte ne quitte jamais votre appareil.",
+  "instructions": {
+    "title": "Comment utiliser le Compteur de Mots",
+    "steps": [
+      {
+        "title": "Saisissez ou collez votre texte",
+        "description": "Entrez votre texte dans la zone. Les compteurs se mettent à jour en direct à chaque frappe — aucun bouton à presser."
+      },
+      {
+        "title": "Lisez les statistiques en direct",
+        "description": "Voyez les mots, caractères (avec et sans espaces), phrases, paragraphes et lignes se mettre à jour instantanément pendant que vous écrivez."
+      },
+      {
+        "title": "Vérifiez votre temps de lecture",
+        "description": "Le temps de lecture est estimé à 200 mots par minute et celui de parole à 130 mots par minute, pour savoir combien de temps prend votre texte."
+      },
+      {
+        "title": "Copiez les statistiques",
+        "description": "Cliquez sur 'Copier les stats' pour copier un résumé propre de toutes les métriques dans le presse-papiers pour vos rapports ou rendus."
+      },
+      {
+        "title": "Effacez et recommencez",
+        "description": "Utilisez le bouton Effacer pour vider le champ et compter un nouveau texte depuis zéro."
+      }
+    ],
+    "features": [
+      "Comptage en temps réel à chaque frappe — sans bouton d'envoi",
+      "Mots, caractères, caractères sans espaces, phrases, paragraphes et lignes",
+      "Estimation du temps de lecture à 200 MPM et de parole à 130 MPM",
+      "Gestion Unicode précise — emojis et lettres accentuées comptés correctement",
+      "Copiez toutes les statistiques sous forme de résumé texte propre",
+      "Gère sans problème les documents très longs",
+      "100% dans le navigateur — le texte n'est jamais envoyé à un serveur",
+      "Fonctionne hors ligne une fois la page chargée"
+    ],
+    "useCases": [
+      "Respecter les limites de mots des dissertations, devoirs et candidatures",
+      "Rester dans les limites de caractères des tweets, méta-descriptions et publicités",
+      "Estimer le temps de lecture des articles de blog",
+      "Planifier le temps des présentations et des scripts",
+      "Vérifier la longueur des titres et méta-descriptions SEO",
+      "Mesurer la longueur du contenu pour la rédaction freelance et la facturation",
+      "Réduire ou allonger un texte à une longueur précise",
+      "Analyser la structure des paragraphes et des phrases lors de l'édition"
+    ],
+    "proTips": [
+      "Le temps de lecture utilise 200 MPM (lecture silencieuse moyenne) ; la parole utilise 130 MPM",
+      "Utilisez 'Caractères (sans espaces)' pour les limites qui excluent les espaces",
+      "Les paragraphes sont comptés par lignes vides, séparez donc les blocs par une ligne vide",
+      "Les emojis et caractères accentués comptent pour un seul caractère chacun",
+      "Collez depuis n'importe quel éditeur — la mise en forme est ignorée, seul le texte compte",
+      "Copiez les stats pour coller un résumé propre dans vos rapports"
+    ],
+    "troubleshooting": [
+      "Comptage de mots étrange : les espaces en trop sont ignorés — seuls les vrais mots comptent",
+      "Les paragraphes affichent 1 : séparez les paragraphes par une ligne vide, pas un simple retour à la ligne",
+      "Comptage de phrases inattendu : les abréviations avec points peuvent être comptées comme fin de phrase",
+      "Comptage de caractères différent d'un autre outil : ici on compte les points de code Unicode, les emojis valent 1",
+      "Rien ne se passe : les compteurs se mettent à jour automatiquement — il n'y a aucun bouton"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Coller le texte depuis le presse-papiers"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Sélectionner tout le texte de la zone"
+      }
+    ]
+  }
+}

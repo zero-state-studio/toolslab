@@ -1,0 +1,93 @@
+{
+  "title": "Contatore di Parole e Tempo di Lettura",
+  "description": "Conta parole, caratteri, frasi, paragrafi e stima il tempo di lettura",
+  "placeholder": "Scrivi o incolla qui il tuo testo per contare le parole…",
+  "inputLabel": "Il tuo testo",
+  "clear": "Cancella",
+  "copy": "Copia statistiche",
+  "copied": "Copiato!",
+  "words": "Parole",
+  "characters": "Caratteri",
+  "charactersNoSpaces": "Caratteri (senza spazi)",
+  "sentences": "Frasi",
+  "paragraphs": "Paragrafi",
+  "lines": "Righe",
+  "readingTime": "Tempo di lettura",
+  "speakingTime": "Tempo di esposizione",
+  "meta": {
+    "title": "Contatore di Parole e Tempo di Lettura - Strumento Gratuito",
+    "description": "Contatore di parole online gratuito. Conta parole, caratteri, frasi, paragrafi e ottieni il tempo di lettura istantaneo. In tempo reale, senza registrazione, offline."
+  },
+  "tagline": "Conta parole, caratteri e tempo di lettura all'istante mentre scrivi",
+  "pageDescription": "Conta parole, caratteri, frasi e paragrafi in tempo reale con questo Contatore di Parole online gratuito. Ottieni stime istantanee del tempo di lettura ed esposizione mentre scrivi — ideale per scrittori, studenti, blogger e professionisti SEO che devono rispettare lunghezze precise. Nessuna registrazione richiesta, sicuro e basato su browser: il tuo testo non lascia mai il tuo dispositivo.",
+  "instructions": {
+    "title": "Come usare il Contatore di Parole",
+    "steps": [
+      {
+        "title": "Scrivi o incolla il testo",
+        "description": "Inserisci il testo nel riquadro. I conteggi si aggiornano in tempo reale a ogni tasto — nessun pulsante da premere."
+      },
+      {
+        "title": "Leggi le statistiche live",
+        "description": "Vedi parole, caratteri (con e senza spazi), frasi, paragrafi e righe aggiornarsi all'istante mentre scrivi o modifichi."
+      },
+      {
+        "title": "Controlla il tempo di lettura",
+        "description": "Il tempo di lettura è stimato a 200 parole al minuto e quello di esposizione a 130 parole al minuto, così sai quanto dura il tuo testo."
+      },
+      {
+        "title": "Copia le statistiche",
+        "description": "Clicca 'Copia statistiche' per copiare un riepilogo pulito di tutte le metriche negli appunti per report o consegne."
+      },
+      {
+        "title": "Cancella e ricomincia",
+        "description": "Usa il pulsante Cancella per svuotare il campo e contare un nuovo testo da zero."
+      }
+    ],
+    "features": [
+      "Conteggio in tempo reale a ogni tasto — nessun pulsante di invio",
+      "Parole, caratteri, caratteri senza spazi, frasi, paragrafi e righe",
+      "Stima del tempo di lettura a 200 PPM e di esposizione a 130 PPM",
+      "Gestione Unicode accurata — emoji e lettere accentate contate correttamente",
+      "Copia tutte le statistiche come riepilogo testuale pulito",
+      "Gestisce documenti molto lunghi senza rallentamenti",
+      "100% basato su browser — il testo non viene mai inviato a un server",
+      "Funziona offline una volta caricata la pagina"
+    ],
+    "useCases": [
+      "Rispettare i limiti di parole per temi, compiti e candidature",
+      "Restare nei limiti di caratteri per tweet, meta description e annunci",
+      "Stimare il tempo di lettura di articoli e post del blog",
+      "Pianificare i tempi di presentazioni e copioni",
+      "Controllare la lunghezza di title e meta description SEO",
+      "Misurare la lunghezza dei contenuti per scrittura freelance e fatturazione",
+      "Ridurre o ampliare un testo a una lunghezza precisa",
+      "Analizzare la struttura di paragrafi e frasi durante la revisione"
+    ],
+    "proTips": [
+      "Il tempo di lettura usa 200 PPM (lettura silenziosa media); l'esposizione usa 130 PPM",
+      "Usa 'Caratteri (senza spazi)' per i limiti che escludono gli spazi",
+      "I paragrafi si contano per righe vuote, quindi separa i blocchi con una riga vuota",
+      "Emoji e caratteri accentati contano come un singolo carattere ciascuno",
+      "Incolla da qualsiasi editor — la formattazione è ignorata, conta solo il testo",
+      "Copia le statistiche per incollare un riepilogo pulito nei report"
+    ],
+    "troubleshooting": [
+      "Conteggio parole strano: gli spazi extra sono ignorati — contano solo le parole reali",
+      "I paragrafi mostrano 1: separa i paragrafi con una riga vuota, non un solo a capo",
+      "Conteggio frasi inatteso: le abbreviazioni con punti possono essere contate come fine frase",
+      "Conteggio caratteri diverso da un altro strumento: qui si contano i code point Unicode, le emoji valgono 1",
+      "Non succede nulla: i conteggi si aggiornano automaticamente — non c'è alcun pulsante"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Incolla il testo dagli appunti"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Seleziona tutto il testo nel riquadro"
+      }
+    ]
+  }
+}

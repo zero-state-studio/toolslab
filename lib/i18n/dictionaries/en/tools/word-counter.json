@@ -1,0 +1,93 @@
+{
+  "title": "Word Counter & Reading Time",
+  "description": "Count words, characters, sentences, paragraphs and estimate reading time",
+  "placeholder": "Type or paste your text here to count words…",
+  "inputLabel": "Your text",
+  "clear": "Clear",
+  "copy": "Copy stats",
+  "copied": "Copied!",
+  "words": "Words",
+  "characters": "Characters",
+  "charactersNoSpaces": "Characters (no spaces)",
+  "sentences": "Sentences",
+  "paragraphs": "Paragraphs",
+  "lines": "Lines",
+  "readingTime": "Reading time",
+  "speakingTime": "Speaking time",
+  "meta": {
+    "title": "Word Counter & Reading Time - Free Online Word Count Tool",
+    "description": "Free online word counter. Count words, characters, sentences, paragraphs and get reading time instantly. Real-time, no signup, works offline in your browser."
+  },
+  "tagline": "Count words, characters and reading time instantly as you type",
+  "pageDescription": "Count words, characters, sentences and paragraphs in real time with this free online Word Counter. Get instant reading and speaking time estimates as you type — perfect for writers, students, bloggers, and SEO professionals who need to hit exact length targets. No signup required, secure and browser-based: your text never leaves your device.",
+  "instructions": {
+    "title": "How to use the Word Counter",
+    "steps": [
+      {
+        "title": "Type or paste your text",
+        "description": "Enter your text in the input box. Counts update live on every keystroke — no button to press."
+      },
+      {
+        "title": "Read the live stats",
+        "description": "See words, characters (with and without spaces), sentences, paragraphs and lines update instantly as you write or edit."
+      },
+      {
+        "title": "Check your reading time",
+        "description": "Reading time is estimated at 200 words per minute and speaking time at 130 words per minute, so you know how long your text takes to consume."
+      },
+      {
+        "title": "Copy the statistics",
+        "description": "Click 'Copy stats' to copy a clean summary of all metrics to your clipboard for reports or submissions."
+      },
+      {
+        "title": "Clear and start over",
+        "description": "Use the Clear button to empty the field and count a new piece of text from scratch."
+      }
+    ],
+    "features": [
+      "Real-time counting on every keystroke — no submit button",
+      "Words, characters, characters without spaces, sentences, paragraphs and lines",
+      "Reading time estimate at 200 WPM and speaking time at 130 WPM",
+      "Accurate Unicode handling — emoji and accented letters counted correctly",
+      "Copy all statistics as a clean text summary",
+      "Handles very large documents smoothly",
+      "100% browser-based — text never sent to a server",
+      "Works offline once the page is loaded"
+    ],
+    "useCases": [
+      "Hit word-count limits for essays, assignments and applications",
+      "Stay within character limits for tweets, meta descriptions and ads",
+      "Estimate reading time for blog posts and articles",
+      "Plan speaking time for presentations and scripts",
+      "Check SEO title and meta description length",
+      "Measure content length for freelance writing and invoicing",
+      "Trim or expand text to a precise target length",
+      "Analyze paragraph and sentence structure while editing"
+    ],
+    "proTips": [
+      "Reading time uses 200 WPM (average adult silent reading); speaking time uses 130 WPM",
+      "Use 'Characters (no spaces)' for limits that exclude whitespace",
+      "Paragraphs are counted by blank lines, so separate blocks with an empty line",
+      "Emoji and accented characters count as a single character each",
+      "Paste directly from any editor — formatting is ignored, only text is counted",
+      "Copy stats to paste a clean metric summary into reports"
+    ],
+    "troubleshooting": [
+      "Word count looks off: extra spaces are ignored — only real words are counted",
+      "Paragraphs show as 1: separate paragraphs with a blank line, not a single newline",
+      "Sentence count unexpected: abbreviations with periods may be counted as sentence ends",
+      "Character count differs from another tool: this tool counts Unicode code points, so emoji count as 1",
+      "Nothing happens: counts update automatically — there is no button to click"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+V",
+        "description": "Paste text from clipboard"
+      },
+      {
+        "keys": "Ctrl+A",
+        "description": "Select all text in the box"
+      }
+    ]
+  }
+}
