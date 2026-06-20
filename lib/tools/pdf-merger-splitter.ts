@@ -279,7 +279,7 @@ export async function renderPdfThumbnails(
   buffer: ArrayBuffer,
   scale = 0.3
 ): Promise<PdfThumbnail[]> {
-  const pdfjs = await import('pdfjs-dist/build/pdf.mjs');
+  const pdfjs = await import('pdfjs-dist');
   configurePdfWorker(pdfjs);
   const doc = await pdfjs.getDocument({ data: new Uint8Array(buffer.slice(0)) })
     .promise;
