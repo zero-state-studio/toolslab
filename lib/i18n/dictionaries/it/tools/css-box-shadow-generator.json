@@ -1,0 +1,107 @@
+{
+  "title": "Generatore Box Shadow CSS",
+  "description": "Crea l'ombra box-shadow CSS in modo visivo con anteprima dal vivo e copia il codice",
+  "placeholder": "Muovi gli slider per progettare la tua ombra",
+  "preview": "Anteprima",
+  "inset": "Inset (ombra interna)",
+  "offsetX": "Offset X",
+  "offsetY": "Offset Y",
+  "blur": "Blur (sfocatura)",
+  "spread": "Spread (estensione)",
+  "color": "Colore",
+  "opacity": "Opacità",
+  "addLayer": "Aggiungi livello",
+  "layer": "Livello",
+  "presets": "Preset",
+  "copy": "Copia CSS",
+  "copied": "Copiato!",
+  "cssOutput": "CSS",
+  "shadowColor": "Colore ombra",
+  "boxColor": "Colore box",
+  "meta": {
+    "title": "Generatore Box Shadow CSS - Strumento box-shadow Gratis",
+    "description": "Genera box-shadow CSS online gratis con anteprima dal vivo. Slider per offset, blur, spread, colore e opacità, ombre a più livelli, poi copia il codice."
+  },
+  "tagline": "Progetta l'ombra box-shadow CSS con anteprima dal vivo e copia subito il codice",
+  "pageDescription": "Crea l'ombra box-shadow CSS perfetta con questo generatore online gratuito. Muovi gli slider per impostare offset orizzontale e verticale, blur, spread, colore e opacità, attiva l'ombra interna (inset) e sovrapponi più livelli di ombra, tutto con anteprima in tempo reale. Quando il risultato ti convince, copia il codice box-shadow pronto all'uso nel tuo foglio di stile. Nessuna registrazione, funziona direttamente nel browser e include preset pronti da cui partire.",
+  "instructions": {
+    "title": "Come usare il Generatore Box Shadow CSS",
+    "steps": [
+      {
+        "title": "Parti da un preset (opzionale)",
+        "description": "Clicca un preset come Leggera, Media o A più livelli per caricare un'ombra di partenza, poi rifiniscila a tuo gusto."
+      },
+      {
+        "title": "Regola gli slider",
+        "description": "Trascina Offset X/Y per spostare l'ombra, Blur per ammorbidirla e Spread per allargarla o restringerla. L'anteprima si aggiorna dal vivo."
+      },
+      {
+        "title": "Scegli colore e opacità",
+        "description": "Seleziona il colore dell'ombra e imposta l'opacità. Attiva Inset per disegnare l'ombra all'interno del box invece che all'esterno."
+      },
+      {
+        "title": "Aggiungi altri livelli",
+        "description": "Clicca Aggiungi livello per sovrapporre più ombre e dare profondità: ogni livello ha i propri controlli indipendenti."
+      },
+      {
+        "title": "Copia il CSS",
+        "description": "Clicca Copia CSS per ottenere la dichiarazione box-shadow completa e incollala nel tuo foglio di stile."
+      }
+    ],
+    "features": [
+      "Anteprima dal vivo che si aggiorna mentre trascini gli slider",
+      "Slider per offset X/Y, blur, spread e opacità",
+      "Supporto per l'ombra interna (inset)",
+      "Più livelli di ombra sovrapposti in un'unica dichiarazione",
+      "Selettore colore con opacità per output in rgba()",
+      "Preset pronti da cui partire",
+      "Copia del codice box-shadow con un clic",
+      "100% lato browser: nessuna registrazione, funziona offline"
+    ],
+    "useCases": [
+      "Dare profondità a card, pulsanti e finestre modali",
+      "Creare ombre UI morbide e moderne per web app",
+      "Realizzare effetti neumorfici (neumorphism) con ombre inset",
+      "Abbinare un'ombra a un design system esistente",
+      "Prototipare rapidamente stili di elevazione",
+      "Generare ombre a più livelli per una profondità realistica",
+      "Insegnare o imparare come funzionano i parametri di box-shadow",
+      "Esportare il CSS dell'ombra per Tailwind o CSS puro"
+    ],
+    "proTips": [
+      "Sovrapponi due livelli, uno scuro e stretto e uno ampio e morbido, per una profondità realistica",
+      "Usa uno spread negativo per mantenere l'ombra più contenuta del box",
+      "Un'opacità bassa (10-25%) appare quasi sempre più naturale del nero pieno",
+      "Le ombre inset sono perfette per pulsanti premuti e campi input",
+      "Offset 0/0 con blur crea un alone uniforme attorno all'elemento",
+      "Copia il codice direttamente in un valore arbitrario Tailwind: shadow-[…]"
+    ],
+    "troubleshooting": [
+      "Ombra non visibile: aumenta blur o opacità, oppure controlla che gli offset non siano 0 con blur 0",
+      "Ombra tagliata: un elemento padre con overflow:hidden può ritagliare l'ombra",
+      "Inset non visibile: le ombre inset si disegnano dentro l'elemento, non attorno",
+      "Colore sbagliato: l'opacità moltiplica il colore scelto, alzala per un'ombra più intensa",
+      "Effetto troppo duro: riduci l'opacità e aumenta il blur per un risultato più morbido"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Frecce direzionali",
+        "description": "Regola con piccoli passi il valore dello slider selezionato"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "generatore box shadow css",
+    "box shadow css online",
+    "generatore ombra css con anteprima",
+    "generatore ombra css gratis",
+    "come fare ombra css",
+    "come creare ombra a un box css",
+    "css box shadow esempi",
+    "box shadow css anteprima dal vivo",
+    "box shadow css più livelli",
+    "ombra interna css inset",
+    "generatore box shadow vs cssmatic",
+    "ombra css o ombra con immagine"
+  ]
+}

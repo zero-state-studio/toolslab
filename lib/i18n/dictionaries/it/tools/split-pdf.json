@@ -1,0 +1,109 @@
+{
+  "title": "Dividi PDF",
+  "description": "Dividi un PDF in file separati pagina per pagina",
+  "placeholder": "Trascina qui un file PDF o clicca per caricarlo",
+  "drop": "Trascina qui un file PDF o clicca per caricarlo",
+  "hint": "Carica un PDF, poi clicca tra le pagine per dividerlo",
+  "splitButton": "Dividi PDF",
+  "pages": "pagine",
+  "download": "Scarica",
+  "downloadAll": "Scarica tutto (ZIP)",
+  "result": "File generati",
+  "onlyPdf": "Sono supportati solo file PDF",
+  "visualHint": "Clicca le forbici dopo una pagina per dividere lì. Il file viene tagliato nelle parti mostrate qui sotto.",
+  "splitEveryPage": "Dividi ogni pagina",
+  "resetCuts": "Reimposta",
+  "cutAfter": "Dividi dopo questa pagina",
+  "outputFiles": "File generati",
+  "rendering": "Anteprime in caricamento…",
+  "page": "Pagina",
+  "advanced": "Avanzate: intervalli di pagine personalizzati",
+  "rangeLabel": "Intervalli di pagine",
+  "rangePlaceholder": "es. 1-3, 5, 8-10",
+  "meta": {
+    "title": "Dividi PDF - Separa o Estrai Pagine PDF Online Gratis",
+    "description": "Dividi un PDF in file separati online e gratis. Clicca tra le pagine per scegliere dove tagliare o estrai intervalli. Privato nel browser, senza filigrane."
+  },
+  "tagline": "Dividi un PDF in file separati cliccando tra le pagine",
+  "pageDescription": "Dividi un PDF in file separati con questo strumento online gratuito per dividere PDF. Carica il documento per vedere ogni pagina come anteprima, poi clicca le forbici tra le pagine per scegliere esattamente dove tagliare, senza dover imparare la sintassi degli intervalli. Estrai singole pagine, separa il documento in file individuali o definisci intervalli personalizzati in modalità avanzata. Tutto avviene localmente nel browser: il PDF non viene mai caricato online e i documenti riservati restano privati. Senza registrazione e senza filigrane.",
+  "instructions": {
+    "title": "Come dividere un PDF",
+    "steps": [
+      {
+        "title": "Carica il PDF",
+        "description": "Trascina un PDF nell'area di caricamento o clicca per sceglierlo dal computer. Ogni pagina viene mostrata come anteprima."
+      },
+      {
+        "title": "Scegli dove dividere",
+        "description": "Clicca le forbici dopo una pagina per aggiungere un punto di taglio. Usa 'Dividi ogni pagina' per separare tutte le pagine in un colpo solo."
+      },
+      {
+        "title": "Controlla i file generati",
+        "description": "Il riepilogo 'File generati' mostra quanti file otterrai e quali pagine contiene ciascuno."
+      },
+      {
+        "title": "Dividi il PDF",
+        "description": "Clicca Dividi PDF. Ogni parte viene creata all'istante nel tuo browser, senza alcun caricamento online."
+      },
+      {
+        "title": "Scarica i tuoi file",
+        "description": "Scarica ogni parte singolarmente oppure prendile tutte in una volta in un archivio ZIP."
+      }
+    ],
+    "features": [
+      "Anteprime visive delle pagine, senza sintassi di intervalli",
+      "Clicca tra le pagine per impostare i punti di taglio",
+      "'Dividi ogni pagina' per separare tutte le pagine in un colpo solo",
+      "Anteprima in tempo reale di quanti file e quali pagine ottieni",
+      "Modalità avanzata per intervalli personalizzati (1-3, 5, 8-10)",
+      "Scarica i singoli file o tutte le parti in un archivio ZIP",
+      "100% lato client: il PDF non lascia mai il browser",
+      "Senza registrazione, filigrane o limiti di dimensione"
+    ],
+    "useCases": [
+      "Dividere un report lungo in un file per ogni capitolo",
+      "Estrarre pagine specifiche da condividere senza l'intero documento",
+      "Separare una scansione di più pagine in documenti singoli",
+      "Estrarre una sola fattura da un PDF unico",
+      "Spezzare il PDF di un libro in sezioni",
+      "Dividere contratti firmati in pagine singole",
+      "Estrarre la pagina di un modulo da inviare",
+      "Suddividere una scansione in blocco in un file per documento"
+    ],
+    "proTips": [
+      "Clicca le forbici tra due pagine per tagliare lì: le parti si aggiornano in tempo reale",
+      "Usa 'Dividi ogni pagina' per trasformare un PDF in un file per ogni pagina",
+      "Passa alla modalità Avanzate per intervalli precisi come 1, 3-4, 9",
+      "Poiché tutto avviene in locale, puoi dividere in sicurezza anche PDF riservati",
+      "I PDF molto grandi generano le anteprime più rapidamente nei browser desktop",
+      "Devi invece unirli? Usa lo strumento Unisci PDF"
+    ],
+    "troubleshooting": [
+      "Pulsante Dividi disattivato: aggiungi almeno un punto di taglio o un intervallo di pagine",
+      "Pagine sfocate: le anteprime sono a bassa risoluzione, ma il file generato mantiene la qualità originale",
+      "Caricamento lento: i PDF molto grandi richiedono più tempo per l'anteprima, attendi qualche istante",
+      "Non succede nulla al caricamento: assicurati che il file sia un vero PDF e non solo rinominato",
+      "Problemi con PDF cifrati: i file protetti da password potrebbero non caricarsi"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clicca + trascina",
+        "description": "Trascina un file PDF nell'area di caricamento"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "dividere pdf online gratis",
+    "dividi pdf gratis senza filigrana",
+    "estrarre pagine da pdf online",
+    "separare pagine pdf gratis",
+    "come dividere un file pdf",
+    "come estrarre pagine da pdf",
+    "come separare le pagine di un pdf",
+    "dividere pdf senza email",
+    "dividi pdf per intervalli di pagine",
+    "dividere pdf in pagine singole",
+    "miglior programma per dividere pdf",
+    "dividere pdf senza registrazione"
+  ]
+}

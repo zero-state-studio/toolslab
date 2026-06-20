@@ -496,6 +496,32 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/color-format-converter"/>
   </url>
   <url>
+    <loc>https://toolslab.dev/es/tools/image-resizer</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/image-resizer"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/es/tools/image-compressor</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/image-compressor"/>
+  </url>
+  <url>
     <loc>https://toolslab.dev/es/tools/favicon-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>
@@ -520,6 +546,19 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/gradient-generator"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/gradient-generator"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/gradient-generator"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/es/tools/css-box-shadow-generator</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/css-box-shadow-generator"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/css-box-shadow-generator"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/css-box-shadow-generator"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/css-box-shadow-generator"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/css-box-shadow-generator"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/css-box-shadow-generator"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/css-box-shadow-generator"/>
   </url>
   <url>
     <loc>https://toolslab.dev/es/tools/json-validator</loc>
@@ -795,17 +834,43 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/pdf-to-word"/>
   </url>
   <url>
-    <loc>https://toolslab.dev/es/tools/pdf-merger-splitter</loc>
+    <loc>https://toolslab.dev/es/tools/pdf-to-jpg</loc>
     <lastmod>2026-06-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/pdf-merger-splitter"/>
-    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/pdf-merger-splitter"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/pdf-merger-splitter"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/pdf-merger-splitter"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/pdf-merger-splitter"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/pdf-merger-splitter"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/pdf-merger-splitter"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/pdf-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/pdf-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/pdf-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/pdf-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/pdf-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/pdf-to-jpg"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/pdf-to-jpg"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/es/tools/merge-pdf</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/merge-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/merge-pdf"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/es/tools/split-pdf</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/split-pdf"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/split-pdf"/>
   </url>
   <url>
     <loc>https://toolslab.dev/es/tools/image-to-pdf</loc>
@@ -975,6 +1040,19 @@
     <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/binary-to-text"/>
     <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/binary-to-text"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/binary-to-text"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/es/tools/number-base-converter</loc>
+    <lastmod>2026-06-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/number-base-converter"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/number-base-converter"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/number-base-converter"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/number-base-converter"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/number-base-converter"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/number-base-converter"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/number-base-converter"/>
   </url>
   <url>
     <loc>https://toolslab.dev/es/tools/js-object-to-json</loc>

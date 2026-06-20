@@ -1,0 +1,103 @@
+{
+  "title": "PDF in JPG umwandeln",
+  "description": "PDF-Seiten direkt im Browser in JPG-, PNG- oder WebP-Bilder umwandeln",
+  "placeholder": "PDF-Datei hier ablegen oder zum Hochladen klicken",
+  "drop": "PDF-Datei hier ablegen oder zum Hochladen klicken",
+  "format": "Bildformat",
+  "quality": "Qualität",
+  "resolution": "Auflösung",
+  "convert": "In Bilder umwandeln",
+  "converting": "Wird umgewandelt …",
+  "pages": "Seiten",
+  "page": "Seite",
+  "download": "Herunterladen",
+  "downloadAll": "Alle herunterladen (ZIP)",
+  "result": "Bilder",
+  "onlyPdf": "Es werden nur PDF-Dateien unterstützt",
+  "meta": {
+    "title": "PDF in JPG umwandeln – Kostenloser Online-Konverter",
+    "description": "PDF-Seiten kostenlos und online in JPG, PNG oder WebP umwandeln. Hohe Auflösung bis 300 DPI, ohne Upload, ohne Wasserzeichen – alles läuft privat im Browser."
+  },
+  "tagline": "PDF-Seiten direkt im Browser in JPG-, PNG- oder WebP-Bilder umwandeln",
+  "pageDescription": "Verwandle jede Seite eines PDFs mit diesem kostenlosen Online-PDF-zu-JPG-Konverter in ein hochwertiges JPG-, PNG- oder WebP-Bild. Wähle deine Auflösung (bis zu 300 DPI für den Druck) und die Qualität und lade die Bilder dann einzeln oder alle auf einmal als ZIP herunter. Alles läuft lokal in deinem Browser – dein PDF wird nie auf einen Server hochgeladen, sodass vertrauliche Dokumente privat bleiben. Ohne Registrierung, ohne Wasserzeichen und ohne Dateigrößenbeschränkung.",
+  "instructions": {
+    "title": "So wandelst du ein PDF in JPG um",
+    "steps": [
+      {
+        "title": "PDF hochladen",
+        "description": "Ziehe ein PDF per Drag-and-drop in den Upload-Bereich oder klicke, um eine Datei auszuwählen. Sobald sie geladen ist, wird die Seitenzahl angezeigt."
+      },
+      {
+        "title": "Format wählen",
+        "description": "Wähle JPG für kleine Fotos, PNG für verlustfreie Qualität mit Transparenz oder WebP für das beste Verhältnis von Größe und Qualität."
+      },
+      {
+        "title": "Auflösung und Qualität festlegen",
+        "description": "Wähle 72 DPI für den Bildschirm, 150 DPI für den allgemeinen Gebrauch oder 300 DPI für den Druck. Bei JPG und WebP kannst du zusätzlich den Qualitätsregler anpassen."
+      },
+      {
+        "title": "In Bilder umwandeln",
+        "description": "Klicke auf „In Bilder umwandeln“. Jede Seite wird mit einer Live-Fortschrittsanzeige direkt in deinem Browser gerendert – nichts wird hochgeladen."
+      },
+      {
+        "title": "Bilder herunterladen",
+        "description": "Lade jede Seite einzeln herunter oder hole dir alle Seiten auf einmal als ZIP-Archiv."
+      }
+    ],
+    "features": [
+      "PDF-Seiten in JPG, PNG oder WebP umwandeln",
+      "Auflösung bis zu 300 DPI für druckfertige Ergebnisse",
+      "Einstellbare Qualität für JPG und WebP",
+      "Einzelne Seiten oder alle Seiten als ZIP herunterladen",
+      "Vorschaubilder jeder Seite vor dem Download",
+      "100 % clientseitig – dein PDF verlässt nie den Browser",
+      "Ohne Registrierung, Wasserzeichen oder Dateigrößenlimit",
+      "Funktioniert offline, sobald die Seite geladen ist"
+    ],
+    "useCases": [
+      "Einen PDF-Bericht für eine Präsentation in Bilder umwandeln",
+      "Eine PDF-Seite als JPG extrahieren, um sie in sozialen Medien zu teilen",
+      "Ein gescanntes Dokument zur Bearbeitung in Bilder umwandeln",
+      "PDF-Seiten als PNG mit transparentem Hintergrund speichern",
+      "Web-taugliche WebP-Bilder aus einer Broschüren-PDF erstellen",
+      "Die Titelseite eines PDFs als Vorschaubild exportieren",
+      "Druckfertige PDFs in 300-DPI-Bilder umwandeln",
+      "PDF-Seiten als einzelne Bilddateien archivieren"
+    ],
+    "proTips": [
+      "Verwende 300 DPI, wenn die Bilder in den Druck gehen",
+      "PNG behält die Transparenz und ist verlustfrei; JPG ist bei Fotos am kleinsten",
+      "WebP bietet das beste Verhältnis von Qualität zu Dateigröße fürs Web",
+      "Senke den Qualitätsregler, um die JPG-/WebP-Dateigröße zu verkleinern",
+      "Nutze „Alle herunterladen (ZIP)“, um ein ganzes Dokument mit einem Klick zu holen",
+      "Alles läuft lokal, daher kannst du vertrauliche PDFs gefahrlos umwandeln"
+    ],
+    "troubleshooting": [
+      "Unscharfe Bilder: Erhöhe die Auflösung auf 150 oder 300 DPI",
+      "Riesige Dateien: Senke den Qualitätsregler oder nutze JPG/WebP statt PNG",
+      "Umwandlung ist langsam: Hohe DPI bei vielen Seiten dauert länger – probiere 150 DPI",
+      "Beim Upload passiert nichts: Stelle sicher, dass es eine echte PDF-Datei ist und keine umbenannte",
+      "Probleme mit verschlüsselten PDFs: Passwortgeschützte Dateien lassen sich eventuell nicht laden"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Klicken + Ziehen",
+        "description": "Eine PDF-Datei in den Upload-Bereich ziehen"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "pdf in jpg umwandeln kostenlos",
+    "pdf zu jpg konvertieren online",
+    "pdf in png umwandeln online",
+    "bilder aus pdf extrahieren kostenlos",
+    "wie wandle ich pdf in bild um",
+    "pdf in bild umwandeln ohne qualitätsverlust",
+    "pdf in jpg umwandeln ohne wasserzeichen",
+    "pdf in jpg ohne registrierung",
+    "alle pdf seiten in jpg umwandeln",
+    "pdf seiten als zip herunterladen",
+    "pdf in webp umwandeln browser",
+    "pdf in jpg umwandeln 300 dpi"
+  ]
+}

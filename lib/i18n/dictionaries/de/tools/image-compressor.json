@@ -1,0 +1,105 @@
+{
+  "title": "Bild-Kompressor",
+  "description": "JPG-, PNG- und WebP-Bilder komprimieren, um die Dateigröße zu reduzieren",
+  "placeholder": "Bild hierher ziehen oder zum Hochladen klicken",
+  "drop": "Bild hierher ziehen oder zum Hochladen klicken",
+  "hint": "Bilddateigröße mit einstellbarer Qualität verkleinern",
+  "quality": "Qualität",
+  "format": "Ausgabeformat",
+  "keepFormat": "Original beibehalten",
+  "compressButton": "Bild komprimieren",
+  "result": "Komprimiertes Bild",
+  "download": "Herunterladen",
+  "onlyImage": "Es werden nur Bilddateien unterstützt",
+  "processing": "Wird komprimiert …",
+  "saved": "kleiner",
+  "larger": "größer (geringere Qualität versuchen)",
+  "alreadyOptimized": "Bereits optimiert — Original beibehalten (WebP für kleinere Größe)",
+  "pngNote": "PNG ist verlustfrei — der Qualitätsregler wirkt kaum. Nutze WebP oder JPG, um Fotos wirklich zu verkleinern.",
+  "meta": {
+    "title": "Bild-Kompressor – Bildgröße online verkleinern, kostenlos",
+    "description": "JPG, PNG und WebP kostenlos online komprimieren und die Dateigröße mit einstellbarer Qualität reduzieren. Kein Upload, keine Anmeldung, läuft im Browser."
+  },
+  "tagline": "Bilder komprimieren und Dateigröße ohne sichtbaren Qualitätsverlust reduzieren",
+  "pageDescription": "Komprimiere JPG-, PNG- und WebP-Bilder mit diesem kostenlosen Online-Bild-Kompressor und verkleinere ihre Dateigröße. Zieh den Qualitätsregler, um Größe und Schärfe auszubalancieren, und sieh genau, wie viel du gespart hast – meist 50–80 % kleiner. Alles läuft lokal in deinem Browser, deine Bilder werden also nie hochgeladen und bleiben privat. Ideal für schnellere Websites, kleinere E-Mail-Anhänge und das Einhalten von Upload-Limits. Keine Anmeldung, keine Wasserzeichen, keine Dateigrößen-Paywall.",
+  "instructions": {
+    "title": "So komprimierst du ein Bild",
+    "steps": [
+      {
+        "title": "Bild hochladen",
+        "description": "Zieh ein Bild per Drag & Drop in den Upload-Bereich oder klicke, um es auszuwählen. Die aktuelle Dateigröße wird angezeigt."
+      },
+      {
+        "title": "Qualität einstellen",
+        "description": "Bewege den Qualitätsregler. Geringere Qualität bedeutet eine kleinere Datei; rund 70 % sind für die meisten Fotos ein guter Kompromiss."
+      },
+      {
+        "title": "Ausgabeformat wählen",
+        "description": "Behalte das Originalformat bei oder konvertiere zu JPG oder WebP für stärkere Komprimierung. WebP gewinnt meistens."
+      },
+      {
+        "title": "Bild komprimieren",
+        "description": "Klicke auf „Bild komprimieren“. Die Verarbeitung läuft in deinem Browser – nichts wird hochgeladen."
+      },
+      {
+        "title": "Ersparnis prüfen und herunterladen",
+        "description": "Sieh dir die Größe vorher/nachher und die gesparte Prozentzahl an und lade dann die kleinere Datei herunter."
+      }
+    ],
+    "features": [
+      "JPG-, PNG- und WebP-Bilder komprimieren",
+      "Einstellbarer Qualitätsregler mit Live-Prozentanzeige",
+      "Format während der Komprimierung konvertieren (z. B. PNG → WebP)",
+      "Größe vorher/nachher mit exakt gesparter Prozentzahl",
+      "Komprimiertes Ergebnis vor dem Download in der Vorschau ansehen",
+      "100 % clientseitig – Bilder verlassen nie deinen Browser",
+      "Keine Anmeldung, keine Wasserzeichen, keine Dateigrößen-Limits",
+      "Funktioniert offline, sobald die Seite geladen ist"
+    ],
+    "useCases": [
+      "Bilder verkleinern, um die Ladezeit der Website zu beschleunigen",
+      "Fotogröße für E-Mail-Anhänge reduzieren",
+      "Ein Upload-Größenlimit einhalten",
+      "Screenshots vor dem Teilen komprimieren",
+      "Produktbilder für einen Online-Shop optimieren",
+      "Bildgewicht für schnellere mobile Seiten reduzieren",
+      "Schwere PNGs in leichtere WebP-Dateien umwandeln",
+      "Große Kamerafotos für das Web herunterrechnen"
+    ],
+    "proTips": [
+      "WebP mit 70–80 % Qualität schlägt JPG bei gleicher Größe meistens",
+      "PNG wird hier nahezu verlustfrei komprimiert – konvertiere zu JPG/WebP für große Einsparungen bei Fotos",
+      "Wenn das Ergebnis weich aussieht, erhöhe die Qualität ein wenig",
+      "Sehr kleine Dateien können Artefakte zeigen – finde den Sweet Spot bei etwa 60–75 %",
+      "Brauchst du auch andere Abmessungen? Nutze zuerst den Bildgrößen-Ändern-Tool",
+      "Alles läuft lokal, du kannst private Bilder also sicher komprimieren"
+    ],
+    "troubleshooting": [
+      "Datei wurde größer: Qualität senken oder Format zu JPG/WebP wechseln",
+      "Bild sieht klotzig aus: Qualität ist zu niedrig – Regler erhöhen",
+      "Transparenz verschwunden: JPG hat keinen Alphakanal – nutze WebP oder PNG",
+      "Keine Größenreduktion bei PNG: zu JPG oder WebP konvertieren für echte Einsparungen",
+      "Nichts lädt: Stelle sicher, dass die Datei ein echtes Bild ist und nicht nur umbenannt"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Klicken + Ziehen",
+        "description": "Ein Bild in den Upload-Bereich ziehen"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "bild komprimieren online kostenlos",
+    "bilddatei verkleinern online",
+    "jpg komprimieren online kostenlos",
+    "png komprimieren ohne anmeldung",
+    "bild komprimieren ohne qualitätsverlust",
+    "wie komprimiert man ein bild",
+    "verlustfrei oder verlustbehaftet komprimieren",
+    "bildgröße in kb verkleinern",
+    "bild auf 1 mb komprimieren",
+    "png in webp umwandeln und komprimieren",
+    "bester bildkompressor online vergleich",
+    "tinypng alternative ohne upload"
+  ]
+}

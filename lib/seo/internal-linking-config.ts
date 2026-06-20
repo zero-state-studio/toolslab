@@ -52,7 +52,7 @@ export const internalLinkingConfig: InternalLinkingConfig = {
     'crontab-builder', // High priority
     'list-compare', // High priority
     'gradient-generator', // Medium priority
-    'image-optimizer', // Medium priority
+    'image-resizer', // Medium priority
     'base64-to-pdf', // Medium priority
   ],
 

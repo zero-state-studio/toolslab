@@ -1,0 +1,105 @@
+{
+  "title": "Convertisseur de bases numériques",
+  "description": "Convertissez des nombres entre binaire, octal, décimal, hexadécimal et toute base de 2 à 36",
+  "placeholder": "Saisissez un nombre…",
+  "inputLabel": "Nombre à convertir",
+  "fromBase": "Base d'entrée",
+  "customBase": "Base personnalisée (2–36)",
+  "bitWidth": "Largeur en bits",
+  "signed": "Signé (complément à deux)",
+  "binary": "Binaire",
+  "octal": "Octal",
+  "decimal": "Décimal",
+  "hexadecimal": "Hexadécimal",
+  "base": "Base",
+  "copy": "Copier",
+  "copied": "Copié !",
+  "none": "Illimité",
+  "bits": "bits",
+  "meta": {
+    "title": "Convertisseur de bases : hex, binaire, décimal, octal",
+    "description": "Convertisseur de bases numériques en ligne gratuit : binaire, octal, décimal, hex et base 2–36. Complément à deux signé, largeur de bits, sortie instantanée."
+  },
+  "tagline": "Convertissez des nombres entre binaire, octal, décimal, hex et toute base instantanément",
+  "pageDescription": "Convertissez des nombres entre binaire, octal, décimal, hexadécimal et toute base de 2 à 36 avec ce convertisseur de bases numériques en ligne gratuit. Chaque représentation se met à jour instantanément pendant que vous tapez : changez la base d'entrée et utilisez les options de largeur de bits et de complément à deux signé pour examiner comment les valeurs sont stockées sur 8, 16, 32 ou 64 bits. Reposant sur des calculs en grands entiers, il convertit exactement même les très grands nombres. Idéal pour les développeurs, les étudiants en informatique et toute personne travaillant avec l'hexadécimal, le binaire ou les données de bas niveau — sans inscription, directement dans votre navigateur.",
+  "instructions": {
+    "title": "Comment convertir des bases numériques",
+    "steps": [
+      {
+        "title": "Saisissez votre nombre",
+        "description": "Tapez un nombre dans le champ de saisie. Les préfixes comme 0x, 0b et 0o sont acceptés, et vous pouvez utiliser des tirets bas ou des espaces comme séparateurs."
+      },
+      {
+        "title": "Choisissez la base d'entrée",
+        "description": "Sélectionnez Binaire, Octal, Décimal ou Hexadécimal, ou définissez n'importe quelle base personnalisée de 2 à 36 avec le petit sélecteur de base."
+      },
+      {
+        "title": "Lisez les conversions",
+        "description": "Toutes les bases se mettent à jour instantanément — décimal, hexadécimal, octal, binaire, ainsi que votre base personnalisée si vous en avez utilisé une."
+      },
+      {
+        "title": "Définissez la largeur de bits et le signe (facultatif)",
+        "description": "Choisissez 8, 16, 32 ou 64 bits pour cadrer la valeur, et activez Signé pour l'interpréter en complément à deux."
+      },
+      {
+        "title": "Copiez n'importe quel résultat",
+        "description": "Cliquez sur l'icône de copie à côté de chaque représentation pour la copier dans votre presse-papiers."
+      }
+    ],
+    "features": [
+      "Conversion entre binaire, octal, décimal, hexadécimal et toute base de 2 à 36",
+      "Sortie multi-base instantanée pendant la saisie",
+      "Interprétation signée (complément à deux) et non signée",
+      "Sélecteur de largeur de bits pour 8, 16, 32 et 64 bits",
+      "Calculs en grands entiers — exacts pour des nombres arbitrairement grands",
+      "Accepte les préfixes 0x / 0b / 0o et les séparateurs de chiffres",
+      "Copie en un clic pour chaque représentation",
+      "100 % côté navigateur — sans inscription, fonctionne hors ligne"
+    ],
+    "useCases": [
+      "Convertir une couleur hexadécimale ou une valeur mémoire en décimal",
+      "Traduire du binaire en décimal pour les devoirs d'informatique",
+      "Examiner la représentation en complément à deux des nombres négatifs",
+      "Convertir du décimal en hexadécimal pour la programmation de bas niveau",
+      "Vérifier comment une valeur est cadrée sur 8 ou 16 bits",
+      "Convertir entre bases inhabituelles comme la base 36 pour des identifiants courts",
+      "Déboguer des masques de bits et des indicateurs en hexadécimal et binaire",
+      "Enseigner ou apprendre les systèmes de numération positionnelle"
+    ],
+    "proTips": [
+      "Combinez le sélecteur de largeur de bits avec Signé pour voir le complément à deux, ex. 0xFF → -1 sur 8 bits",
+      "Les préfixes 0x, 0b et 0o sont retirés automatiquement",
+      "Les tirets bas et les espaces sont ignorés, donc 1010_1010 est un binaire valide",
+      "La base 36 utilise 0–9 puis a–z, pratique pour des identifiants compacts",
+      "Les très grands nombres restent exacts grâce aux calculs en grands entiers",
+      "Définissez une base personnalisée dans le petit champ numérique à côté de la liste déroulante des bases"
+    ],
+    "troubleshooting": [
+      "Erreur de chiffre invalide : la saisie contient un chiffre non autorisé dans la base choisie",
+      "Valeur inattendue : vérifiez que la base d'entrée correspond à la façon dont vous avez tapé le nombre",
+      "Nombre négatif affiché comme grand nombre : activez Signé avec une largeur de bits pour le complément à deux",
+      "Option Signé désactivée : choisissez d'abord une largeur de bits (le mode signé nécessite une largeur fixe)",
+      "Aucune conversion : assurez-vous que le champ n'est pas vide et que la base est comprise entre 2 et 36"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Naviguer entre la saisie, la base et les options"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "convertisseur de bases numériques en ligne",
+    "convertir hexadécimal en décimal",
+    "convertir binaire en décimal",
+    "convertir décimal en hexadécimal",
+    "convertir base 2 en base 16",
+    "convertisseur de base 2 à 36",
+    "complément à deux signé en ligne",
+    "convertir un nombre binaire en décimal",
+    "conversion en base n gratuit",
+    "convertisseur binaire octal décimal hexadécimal",
+    "rapidtables convertisseur de base alternative",
+    "convertisseur de base vs calculatrice décimale"
+  ]
+}

@@ -86,7 +86,7 @@ export const toolRelationships: ToolRelationships = {
   },
 
   'css-minifier': {
-    workflow: ['js-minifier', 'html-encoder', 'image-optimizer'],
+    workflow: ['js-minifier', 'html-encoder', 'image-resizer'],
     complementary: ['color-picker', 'gradient-generator', 'eml-to-html'],
     alternatives: ['xml-formatter'],
   },
@@ -110,7 +110,7 @@ export const toolRelationships: ToolRelationships = {
 
   'base64-to-pdf': {
     workflow: ['base64-encode', 'eml-to-html'],
-    complementary: ['image-optimizer', 'qr-generator', 'csv-to-json'],
+    complementary: ['image-resizer', 'qr-generator', 'csv-to-json'],
     alternatives: ['url-encode'],
     boostVisibility: true, // Under-linked tool
   },
@@ -198,20 +198,20 @@ export const toolRelationships: ToolRelationships = {
 
   // ==================== WEB/DESIGN ====================
   'color-picker': {
-    workflow: ['gradient-generator', 'css-minifier', 'image-optimizer'],
+    workflow: ['gradient-generator', 'css-minifier', 'image-resizer'],
     complementary: ['favicon-generator', 'qr-generator'],
     alternatives: [],
   },
 
   'gradient-generator': {
     workflow: ['color-picker', 'css-minifier'],
-    complementary: ['favicon-generator', 'image-optimizer'],
+    complementary: ['favicon-generator', 'image-resizer'],
     alternatives: ['qr-generator'],
     boostVisibility: true,
   },
 
   'barcode-generator': {
-    workflow: ['qr-generator', 'image-optimizer'],
+    workflow: ['qr-generator', 'image-resizer'],
     complementary: ['color-picker', 'favicon-generator'],
     alternatives: ['qr-generator'],
     boostVisibility: true,
@@ -219,21 +219,27 @@ export const toolRelationships: ToolRelationships = {
 
   'qr-generator': {
     workflow: ['uuid-generator', 'url-encode', 'barcode-generator'],
-    complementary: ['favicon-generator', 'image-optimizer', 'barcode-generator'],
+    complementary: ['favicon-generator', 'image-resizer', 'barcode-generator'],
     alternatives: ['barcode-generator'],
   },
 
   'favicon-generator': {
-    workflow: ['qr-generator', 'image-optimizer'],
+    workflow: ['qr-generator', 'image-resizer'],
     complementary: ['color-picker', 'gradient-generator'],
     alternatives: ['base64-to-pdf'],
     boostVisibility: true, // Orphan tool
   },
 
-  'image-optimizer': {
-    workflow: ['favicon-generator', 'qr-generator'],
-    complementary: ['base64-to-pdf', 'gradient-generator'],
-    alternatives: ['color-picker'],
+  'image-resizer': {
+    workflow: ['image-compressor', 'favicon-generator', 'qr-generator'],
+    complementary: ['image-compressor', 'base64-to-pdf', 'gradient-generator'],
+    alternatives: ['image-compressor'],
+    boostVisibility: true,
+  },
+  'image-compressor': {
+    workflow: ['image-resizer', 'favicon-generator'],
+    complementary: ['image-resizer', 'base64-to-pdf'],
+    alternatives: ['image-resizer'],
     boostVisibility: true,
   },
 

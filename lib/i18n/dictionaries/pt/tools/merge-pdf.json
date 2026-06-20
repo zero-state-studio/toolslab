@@ -1,0 +1,103 @@
+{
+  "title": "Juntar PDF",
+  "description": "Combine vários arquivos PDF em um único documento",
+  "placeholder": "Arraste os arquivos PDF aqui ou clique para enviar",
+  "drop": "Arraste os arquivos PDF aqui ou clique para enviar",
+  "hint": "Adicione dois ou mais PDFs, reordene-os e junte tudo em um só arquivo",
+  "mergeButton": "Juntar PDFs",
+  "pages": "páginas",
+  "download": "Baixar PDF unido",
+  "remove": "Remover",
+  "moveUp": "Mover para cima",
+  "moveDown": "Mover para baixo",
+  "result": "Resultado",
+  "onlyPdf": "Somente arquivos PDF são aceitos",
+  "reorderTitle": "Reordene os arquivos antes de juntar",
+  "reorderHint": "Use as setas para definir a ordem — os arquivos são unidos de cima para baixo",
+  "meta": {
+    "title": "Juntar PDF - Unir Arquivos PDF Online Grátis | ToolsLab",
+    "description": "Junte vários PDFs em um só documento online e grátis. Reordene antes de combinar, sem upload, sem cadastro e sem marca d'água — tudo direto no navegador."
+  },
+  "tagline": "Combine vários arquivos PDF em um só documento, direto no seu navegador",
+  "pageDescription": "Combine vários arquivos PDF em um único documento com esta ferramenta gratuita para Juntar PDF online. Arraste e solte os seus arquivos, reordene-os para que as páginas saiam na sequência certa e una tudo com um só clique. Tudo acontece localmente no navegador — os seus arquivos nunca são enviados para um servidor, então até documentos confidenciais permanecem privados. Sem cadastro, sem marca d'água e sem limite pago de tamanho de arquivo.",
+  "longTailKeywords": [
+    "juntar pdf online grátis",
+    "unir pdf grátis sem cadastro",
+    "mesclar pdf online sem marca d'água",
+    "combinar arquivos pdf em um só",
+    "como juntar vários pdf em um arquivo",
+    "como combinar arquivos pdf online",
+    "como unir pdf sem perder qualidade",
+    "reordenar páginas antes de juntar pdf",
+    "juntar pdf no navegador sem upload",
+    "unir vários pdf em um só arquivo",
+    "melhor ferramenta para juntar pdf grátis",
+    "alternativa ao ilovepdf para juntar pdf"
+  ],
+  "instructions": {
+    "title": "Como juntar arquivos PDF",
+    "steps": [
+      {
+        "title": "Envie os seus PDFs",
+        "description": "Arraste e solte dois ou mais arquivos PDF na área de envio, ou clique para procurar e selecioná-los no seu dispositivo."
+      },
+      {
+        "title": "Reordene os arquivos",
+        "description": "Use as setas para cima e para baixo para definir a ordem — o documento final é montado de cima para baixo, na sequência da lista."
+      },
+      {
+        "title": "Remova o que estiver sobrando",
+        "description": "Clique no × de qualquer arquivo que tenha adicionado por engano antes de juntar os PDFs."
+      },
+      {
+        "title": "Una tudo em um só PDF",
+        "description": "Clique em Juntar PDFs. A combinação acontece na hora, dentro do navegador — nada é enviado para a internet."
+      },
+      {
+        "title": "Baixe o resultado",
+        "description": "Baixe o PDF único já unido, com todas as páginas na ordem que você escolheu."
+      }
+    ],
+    "features": [
+      "Combine vários arquivos PDF em um único documento, sem limite de quantidade",
+      "Envio por arrastar e soltar com reordenação dos arquivos",
+      "Lista numerada para a ordem da união ficar sempre clara",
+      "Remova arquivos individualmente antes de juntar",
+      "100% no navegador — os arquivos nunca saem do seu dispositivo",
+      "Sem limite de tamanho, sem marca d'água e sem cadastro",
+      "Funciona offline depois que a página é carregada",
+      "Download imediato do PDF unido"
+    ],
+    "useCases": [
+      "Combinar várias notas fiscais ou recibos em um só PDF",
+      "Unir páginas digitalizadas em um único documento",
+      "Montar um contrato a partir de seções assinadas separadamente",
+      "Juntar capítulos ou relatórios em um único arquivo",
+      "Combinar extratos bancários para uma solicitação",
+      "Unir apostilas de apresentação antes de compartilhar",
+      "Colocar carta de apresentação e currículo no mesmo PDF",
+      "Reunir documentos relacionados para arquivamento"
+    ],
+    "proTips": [
+      "Reordene os arquivos antes de juntar — a ordem final segue a lista de cima para baixo",
+      "O número no selo mostra a posição de cada arquivo no documento final",
+      "Como tudo é processado localmente, você pode unir PDFs confidenciais com segurança",
+      "Adicione arquivos em várias etapas — eles são acrescentados à lista existente",
+      "PDFs grandes são unidos mais rápido em navegadores de computador",
+      "Precisa dividir em vez de juntar? Use a ferramenta Dividir PDF"
+    ],
+    "troubleshooting": [
+      "Botão de juntar desativado: adicione pelo menos dois arquivos PDF",
+      "Ordem de páginas errada: use as setas para reordenar antes de juntar",
+      "Um arquivo não é adicionado: verifique se é um PDF de verdade, não um arquivo renomeado",
+      "Problemas com PDF criptografado: arquivos protegidos por senha podem não carregar",
+      "Arquivo de saída muito grande: unir muitos PDFs digitalizados gera um arquivo grande — isso é normal"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clicar + arrastar",
+        "description": "Solte os arquivos PDF na área de envio"
+      }
+    ]
+  }
+}

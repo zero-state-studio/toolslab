@@ -1,0 +1,109 @@
+{
+  "title": "PDF teilen",
+  "description": "Teile ein PDF seitenweise in separate Dateien auf",
+  "placeholder": "PDF-Datei hierher ziehen oder zum Hochladen klicken",
+  "drop": "PDF-Datei hierher ziehen oder zum Hochladen klicken",
+  "hint": "Lade ein PDF hoch und klicke dann zwischen die Seiten, um es zu teilen",
+  "splitButton": "PDF teilen",
+  "pages": "Seiten",
+  "download": "Herunterladen",
+  "downloadAll": "Alle herunterladen (ZIP)",
+  "result": "Ausgabedateien",
+  "onlyPdf": "Es werden nur PDF-Dateien unterstützt",
+  "visualHint": "Klicke auf die Schere nach einer Seite, um dort zu teilen. Die Datei wird in die unten gezeigten Teile zerlegt.",
+  "splitEveryPage": "Jede Seite einzeln teilen",
+  "resetCuts": "Zurücksetzen",
+  "cutAfter": "Nach dieser Seite teilen",
+  "outputFiles": "Ausgabedateien",
+  "rendering": "Seiten werden gerendert …",
+  "page": "Seite",
+  "advanced": "Erweitert: eigene Seitenbereiche",
+  "rangeLabel": "Seitenbereiche",
+  "rangePlaceholder": "z. B. 1-3, 5, 8-10",
+  "meta": {
+    "title": "PDF teilen – Seiten online trennen oder extrahieren",
+    "description": "PDF online kostenlos in separate Dateien teilen. Klicke einfach zwischen die Seiten zum Trennen oder extrahiere Seitenbereiche. Kein Upload, keine Anmeldung."
+  },
+  "tagline": "Teile ein PDF in separate Dateien, indem du zwischen die Seiten klickst",
+  "pageDescription": "Teile ein PDF mit diesem kostenlosen Online-Tool in separate Dateien auf. Lade dein Dokument hoch, um jede Seite als Vorschaubild zu sehen, und klicke dann auf die Schere zwischen den Seiten, um genau festzulegen, wo getrennt werden soll – ganz ohne verwirrende Bereichssyntax. Extrahiere einzelne Seiten, teile in einzelne Dateien auf oder definiere im erweiterten Modus eigene Seitenbereiche. Alles läuft lokal im Browser, dein PDF wird also nie hochgeladen und vertrauliche Dokumente bleiben privat. Keine Anmeldung, keine Wasserzeichen.",
+  "instructions": {
+    "title": "So teilst du ein PDF",
+    "steps": [
+      {
+        "title": "PDF hochladen",
+        "description": "Ziehe ein PDF auf den Upload-Bereich oder klicke, um eine Datei auszuwählen. Jede Seite wird als Vorschaubild angezeigt."
+      },
+      {
+        "title": "Schnittpunkte festlegen",
+        "description": "Klicke auf die Schere nach einer beliebigen Seite, um dort einen Schnittpunkt zu setzen. Mit „Jede Seite einzeln teilen“ trennst du alle Seiten auf einmal."
+      },
+      {
+        "title": "Ausgabe prüfen",
+        "description": "Die Übersicht „Ausgabedateien“ zeigt, wie viele Dateien du erhältst und welche Seiten jede einzelne enthält."
+      },
+      {
+        "title": "PDF teilen",
+        "description": "Klicke auf „PDF teilen“. Jeder Teil wird sofort in deinem Browser erstellt – nichts wird hochgeladen."
+      },
+      {
+        "title": "Dateien herunterladen",
+        "description": "Lade jeden Teil einzeln herunter oder hole dir alle auf einmal als ZIP-Archiv."
+      }
+    ],
+    "features": [
+      "Visuelle Seitenvorschauen – keine Bereichssyntax nötig",
+      "Zwischen die Seiten klicken, um Schnittpunkte zu setzen",
+      "„Jede Seite einzeln teilen“, um alle Seiten auf einmal zu trennen",
+      "Live-Vorschau, wie viele Dateien und welche Seiten entstehen",
+      "Erweiterter Modus für eigene Seitenbereiche (1-3, 5, 8-10)",
+      "Einzelne Dateien herunterladen oder alle Teile als ZIP",
+      "100 % clientseitig – dein PDF verlässt nie deinen Browser",
+      "Keine Anmeldung, keine Wasserzeichen, keine Dateigrößen-Limits"
+    ],
+    "useCases": [
+      "Einen großen Bericht in Dateien pro Kapitel aufteilen",
+      "Bestimmte Seiten extrahieren, um sie ohne das ganze Dokument zu teilen",
+      "Einen mehrseitigen Scan in einzelne Dokumente trennen",
+      "Eine einzelne Rechnung aus einem zusammengefügten PDF herausziehen",
+      "Ein Buch-PDF in Abschnitte zerlegen",
+      "Unterschriebene Verträge in einzelne Seiten aufteilen",
+      "Eine einzelne Formularseite zum Versenden extrahieren",
+      "Einen gescannten Stapel in eine Datei pro Dokument aufteilen"
+    ],
+    "proTips": [
+      "Klicke auf die Schere zwischen zwei Seiten, um dort zu trennen – die Teile aktualisieren sich live",
+      "Verwende „Jede Seite einzeln teilen“, um aus einem PDF eine Datei pro Seite zu machen",
+      "Wechsle in den erweiterten Modus für präzise Bereiche wie 1, 3-4, 9",
+      "Da alles lokal läuft, kannst du vertrauliche PDFs sicher teilen",
+      "Große PDFs rendern Vorschaubilder am schnellsten in Desktop-Browsern",
+      "Du möchtest stattdessen zusammenfügen? Nutze das Tool „PDF zusammenfügen“"
+    ],
+    "troubleshooting": [
+      "Button „PDF teilen“ deaktiviert: Setze mindestens einen Schnittpunkt oder einen Seitenbereich",
+      "Seiten wirken unscharf: Vorschaubilder sind niedrig aufgelöste Vorschauen – die Ausgabe behält die volle Qualität",
+      "Rendern ist langsam: Sehr große PDFs brauchen länger für die Vorschau – bitte warten",
+      "Beim Hochladen passiert nichts: Stelle sicher, dass es eine echte PDF-Datei ist und nicht nur umbenannt",
+      "Probleme mit verschlüsselten PDFs: Passwortgeschützte Dateien lassen sich möglicherweise nicht laden"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Klicken + Ziehen",
+        "description": "Eine PDF-Datei auf den Upload-Bereich ziehen"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "pdf teilen online kostenlos",
+    "pdf seiten trennen ohne registrierung",
+    "pdf splitten ohne wasserzeichen",
+    "pdf aufteilen im browser",
+    "wie teile ich ein pdf",
+    "seiten aus pdf extrahieren",
+    "pdf in mehrere dateien teilen",
+    "pdf zwischen seiten teilen",
+    "einzelne seite aus pdf speichern",
+    "pdf nach seitenbereich aufteilen",
+    "bestes tool pdf teilen",
+    "pdf teilen ohne adobe"
+  ]
+}

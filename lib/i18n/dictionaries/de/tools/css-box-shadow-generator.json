@@ -1,0 +1,107 @@
+{
+  "title": "CSS Box Shadow Generator",
+  "description": "Gestalte CSS-box-shadow visuell mit Live-Vorschau und kopiere den Code",
+  "placeholder": "Bewege die Schieberegler, um deinen Schatten zu gestalten",
+  "preview": "Vorschau",
+  "inset": "Inset",
+  "offsetX": "Versatz X",
+  "offsetY": "Versatz Y",
+  "blur": "Unschärfe",
+  "spread": "Ausbreitung",
+  "color": "Farbe",
+  "opacity": "Deckkraft",
+  "addLayer": "Ebene hinzufügen",
+  "layer": "Ebene",
+  "presets": "Vorlagen",
+  "copy": "CSS kopieren",
+  "copied": "Kopiert!",
+  "cssOutput": "CSS",
+  "shadowColor": "Schattenfarbe",
+  "boxColor": "Box-Farbe",
+  "meta": {
+    "title": "CSS Box Shadow Generator - Kostenloses box-shadow Tool",
+    "description": "Erstelle CSS-box-shadow kostenlos online mit Live-Vorschau. Schieberegler für Versatz, Unschärfe, Ausbreitung, Farbe, Deckkraft, mehrere Ebenen, Code kopieren."
+  },
+  "tagline": "Gestalte CSS-box-shadow mit Live-Vorschau und kopiere den Code sofort",
+  "pageDescription": "Erstelle den perfekten CSS-box-shadow mit diesem kostenlosen Online-Generator. Bewege die Schieberegler für horizontalen und vertikalen Versatz, Unschärfe, Ausbreitung, Farbe und Deckkraft, schalte innere Schatten (inset) ein und staple mehrere Schatten-Ebenen – alles mit einer Vorschau in Echtzeit. Wenn der Schatten passt, kopierst du den fertigen box-shadow-Code direkt in dein Stylesheet. Ohne Anmeldung, läuft komplett im Browser, mit praktischen Vorlagen zum Loslegen.",
+  "instructions": {
+    "title": "So nutzt du den CSS Box Shadow Generator",
+    "steps": [
+      {
+        "title": "Mit einer Vorlage starten (optional)",
+        "description": "Klicke auf eine Vorlage wie Dezent, Mittel oder Mehrlagig, um einen Ausgangsschatten zu laden, und passe ihn anschließend fein an."
+      },
+      {
+        "title": "Schieberegler anpassen",
+        "description": "Verschiebe Versatz X/Y, um den Schatten zu bewegen, Unschärfe, um ihn weicher zu machen, und Ausbreitung, um ihn zu vergrößern oder zu verkleinern. Die Vorschau aktualisiert sich live."
+      },
+      {
+        "title": "Farbe und Deckkraft wählen",
+        "description": "Wähle eine Schattenfarbe und stelle ihre Deckkraft ein. Schalte Inset ein, um den Schatten innerhalb der Box darzustellen."
+      },
+      {
+        "title": "Weitere Ebenen hinzufügen",
+        "description": "Klicke auf Ebene hinzufügen, um mehrere Schatten für mehr Tiefe zu stapeln – jede Ebene hat eigene Regler."
+      },
+      {
+        "title": "CSS kopieren",
+        "description": "Klicke auf CSS kopieren, um die vollständige box-shadow-Deklaration zu übernehmen, und füge sie in dein Stylesheet ein."
+      }
+    ],
+    "features": [
+      "Live-Vorschau, die sich beim Ziehen sofort aktualisiert",
+      "Schieberegler für Versatz X/Y, Unschärfe, Ausbreitung und Deckkraft",
+      "Unterstützung für innere Schatten (inset)",
+      "Mehrere Schatten-Ebenen in einer Deklaration stapeln",
+      "Farbwähler mit Deckkraft für rgba()-Ausgabe",
+      "Fertige Vorlagen zum Loslegen",
+      "box-shadow-Code mit einem Klick kopieren",
+      "100 % browserbasiert – ohne Anmeldung, funktioniert offline"
+    ],
+    "useCases": [
+      "Karten, Buttons und Modals mehr Tiefe geben",
+      "Weiche, moderne UI-Schatten für Web-Apps erstellen",
+      "Neumorphe Effekte mit inneren Schatten gestalten",
+      "Einen Schatten an ein bestehendes Designsystem anpassen",
+      "Elevations-Stile schnell prototypisieren",
+      "Mehrlagige Schatten für realistische Tiefe erzeugen",
+      "Lernen oder vermitteln, wie box-shadow-Parameter wirken",
+      "Schatten-CSS für Tailwind oder klassisches CSS exportieren"
+    ],
+    "proTips": [
+      "Staple zwei Ebenen – eine enge dunkle und eine breite weiche – für realistische Tiefe",
+      "Nutze eine negative Ausbreitung, damit der Schatten enger als die Box bleibt",
+      "Eine geringere Deckkraft (10–25 %) wirkt meist natürlicher als reines Schwarz",
+      "Innere Schatten eignen sich ideal für gedrückte Buttons und Eingabefelder",
+      "Versatz 0/0 mit Unschärfe erzeugt ein gleichmäßiges Leuchten rund um das Element",
+      "Kopiere den Code direkt in einen beliebigen Tailwind-Wert: shadow-[…]"
+    ],
+    "troubleshooting": [
+      "Kein Schatten sichtbar: erhöhe Unschärfe oder Deckkraft, oder prüfe, dass der Versatz nicht 0 bei gleichzeitig 0 Unschärfe ist",
+      "Schatten abgeschnitten: ein Elternelement mit overflow:hidden kann den Schatten beschneiden",
+      "Inset wird nicht angezeigt: innere Schatten erscheinen im Element, nicht darum herum",
+      "Farbe wirkt falsch: die Deckkraft multipliziert die gewählte Farbe – erhöhe sie für einen kräftigeren Schatten",
+      "Zu hart: reduziere die Deckkraft und erhöhe die Unschärfe für einen weicheren Look"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Pfeiltasten",
+        "description": "Fokussierten Schiebereglerwert schrittweise anpassen"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "css box shadow generator kostenlos",
+    "css schatten generator mit vorschau",
+    "css schatten generator ohne anmeldung",
+    "box shadow css online erstellen",
+    "wie macht man schatten in css",
+    "css box shadow mehrere ebenen",
+    "css schlagschatten erzeugen",
+    "innere schatten css inset generator",
+    "box shadow live vorschau code kopieren",
+    "css box shadow beispiele kopieren",
+    "css box shadow generator vs cssmatic",
+    "box shadow generator für tailwind css"
+  ]
+}
