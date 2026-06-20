@@ -7,7 +7,7 @@
  */
 
 import { fileToArrayBuffer, formatFileSize } from './image-to-pdf';
-import { configurePdfWorker } from './pdf-merger-splitter';
+import { loadPdfjs } from './pdf-merger-splitter';
 
 export { fileToArrayBuffer, formatFileSize };
 
@@ -92,8 +92,7 @@ export function resolvePages(totalPages: number, pages?: number[]): number[] {
 
 /** Load a PDF document with pdf.js, configuring the worker once. */
 export async function loadPdf(buffer: ArrayBuffer) {
-  const pdfjs = await import('pdfjs-dist');
-  configurePdfWorker(pdfjs);
+  const pdfjs = await loadPdfjs();
   // Copy into a fresh Uint8Array — pdf.js detaches the buffer it receives.
   const data = new Uint8Array(buffer.slice(0));
   return pdfjs.getDocument({ data }).promise;

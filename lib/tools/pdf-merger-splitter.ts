@@ -256,18 +256,26 @@ export interface PdfThumbnail {
   dataUrl: string;
 }
 
-// Reuse a single module worker across calls. pdf.js v5 ships an ESM worker,
-// so we create it explicitly with { type: 'module' } and hand it to pdf.js via
-// workerPort — letting pdf.js create the worker itself produced a classic
-// worker that failed with "Object.defineProperty called on non-object".
+// pdf.js is loaded as a native browser ESM module straight from /public,
+// bypassing webpack entirely. Bundling pdf.js's ESM under Next throws
+// "Object.defineProperty called on non-object" at module init
+// (__webpack_require__.r on a non-object). webpackIgnore keeps webpack out,
+// so the browser imports the file directly with no interop layer.
+/* eslint-disable @typescript-eslint/no-explicit-any */
+let pdfjsModule: any = null;
 let pdfWorkerPort: Worker | null = null;
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export function configurePdfWorker(pdfjs: any): void {
-  if (!pdfWorkerPort) {
-    pdfWorkerPort = new Worker('/pdf.worker.min.mjs', { type: 'module' });
+export async function loadPdfjs(): Promise<any> {
+  if (!pdfjsModule) {
+    // @ts-expect-error — runtime-only ESM served from /public, no bundler types
+    pdfjsModule = await import(/* webpackIgnore: true */ '/pdf.min.mjs');
+    if (!pdfWorkerPort) {
+      // ESM worker, created explicitly as a module worker.
+      pdfWorkerPort = new Worker('/pdf.worker.min.mjs', { type: 'module' });
+    }
+    pdfjsModule.GlobalWorkerOptions.workerPort = pdfWorkerPort;
   }
-  pdfjs.GlobalWorkerOptions.workerPort = pdfWorkerPort;
+  return pdfjsModule;
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -279,8 +287,7 @@ export async function renderPdfThumbnails(
   buffer: ArrayBuffer,
   scale = 0.3
 ): Promise<PdfThumbnail[]> {
-  const pdfjs = await import('pdfjs-dist');
-  configurePdfWorker(pdfjs);
+  const pdfjs = await loadPdfjs();
   const doc = await pdfjs.getDocument({ data: new Uint8Array(buffer.slice(0)) })
     .promise;
   try {
