@@ -261,7 +261,6 @@ export interface PdfThumbnail {
 // "Object.defineProperty called on non-object" at module init
 // (__webpack_require__.r on a non-object). webpackIgnore keeps webpack out,
 // so the browser imports the file directly with no interop layer.
-/* eslint-disable @typescript-eslint/no-explicit-any */
 let pdfjsModule: any = null;
 let pdfWorkerPort: Worker | null = null;
 
@@ -277,7 +276,6 @@ export async function loadPdfjs(): Promise<any> {
   }
   return pdfjsModule;
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 /**
  * Render small PNG thumbnails for every page of a PDF buffer, for use in
