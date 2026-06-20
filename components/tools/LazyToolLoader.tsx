@@ -58,6 +58,7 @@ const toolComponents = {
     () => import('./implementations/HtmlEncodeDecode')
   ),
   'text-diff': lazy(() => import('./implementations/TextDiff')),
+  'word-counter': lazy(() => import('./implementations/WordCounter')),
   'markdown-preview': lazy(() => import('./implementations/MarkdownPreview')),
   'qr-generator': lazy(() => import('./implementations/QRGenerator')),
   'barcode-generator': lazy(() => import('./implementations/BarcodeGenerator')),
@@ -66,6 +67,9 @@ const toolComponents = {
   'list-compare': lazy(() => import('./implementations/ListCompare')),
   'gradient-generator': lazy(
     () => import('./implementations/GradientGenerator')
+  ),
+  'css-box-shadow-generator': lazy(
+    () => import('./implementations/CssBoxShadowGenerator')
   ),
   'curl-to-axios': lazy(() => import('./implementations/CurlToAxios')),
   'curl-to-code': lazy(() => import('./implementations/CurlToCode')),
@@ -99,6 +103,11 @@ const toolComponents = {
     () => import('./implementations/AITokenCounter')
   ),
   'pdf-to-word': lazy(() => import('./implementations/PdfToWord')),
+  'pdf-to-jpg': lazy(() => import('./implementations/PdfToJpg')),
+  'merge-pdf': lazy(() => import('./implementations/MergePdf')),
+  'split-pdf': lazy(() => import('./implementations/SplitPdf')),
+  'image-resizer': lazy(() => import('./implementations/ImageResizer')),
+  'image-compressor': lazy(() => import('./implementations/ImageCompressor')),
   'image-to-pdf': lazy(() => import('./implementations/ImageToPdfTool')),
   'jpg-to-pdf': lazy(() => import('./implementations/JpgToPdfTool')),
   'png-to-pdf': lazy(() => import('./implementations/PngToPdfTool')),
@@ -121,6 +130,9 @@ const toolComponents = {
     () => import('./implementations/StringCaseConverter')
   ),
   'binary-to-text': lazy(() => import('./implementations/BinaryToText')),
+  'number-base-converter': lazy(
+    () => import('./implementations/NumberBaseConverter')
+  ),
   'js-object-to-json': lazy(() => import('./implementations/JsObjectToJson')),
   'bcrypt-hash-generator': lazy(
     () => import('./implementations/BcryptHashGenerator')

@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // pdf.js ships modern ESM that Next/webpack does not transpile by default,
+  // causing "Object.defineProperty called on non-object" at module init.
+  // Transpiling the package through the Next compiler fixes the interop.
+  transpilePackages: ['pdfjs-dist'],
+
   // IMPORTANTE: Disabilita features sperimentali che causano problemi di cache
   experimental: {
     optimizeCss: true,
@@ -55,6 +60,11 @@ const nextConfig = {
     config.resolve = config.resolve || {};
     config.resolve.alias = config.resolve.alias || {};
     config.resolve.alias['@'] = require('path').resolve(__dirname);
+
+    // pdf.js (pdfjs-dist) optionally requires the Node "canvas" package;
+    // in the browser build it must be disabled or bundling breaks
+    // ("Object.defineProperty called on non-object").
+    config.resolve.alias.canvas = false;
 
     return config;
   },

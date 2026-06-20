@@ -1,0 +1,107 @@
+{
+  "title": "Redimensionar Imagem",
+  "description": "Redimensione imagens por pixels ou porcentagem direto no navegador",
+  "placeholder": "Solte uma imagem aqui ou clique para enviar",
+  "drop": "Solte uma imagem aqui ou clique para enviar",
+  "hint": "Redimensione por pixels exatos ou por porcentagem — proporção bloqueada por padrão",
+  "byPixels": "Por pixels",
+  "byPercent": "Por porcentagem",
+  "width": "Largura",
+  "height": "Altura",
+  "percent": "Escala",
+  "lockAspect": "Manter proporção",
+  "format": "Formato de saída",
+  "resizeButton": "Redimensionar imagem",
+  "result": "Imagem redimensionada",
+  "original": "Original",
+  "resized": "Redimensionada",
+  "download": "Baixar",
+  "onlyImage": "Apenas arquivos de imagem são aceitos",
+  "processing": "Redimensionando…",
+  "meta": {
+    "title": "Redimensionar Imagem Online Grátis por Pixels ou %",
+    "description": "Redimensione imagens online grátis por pixels exatos ou porcentagem, com proporção mantida. JPG, PNG, WebP. Sem upload, sem cadastro — roda no seu navegador."
+  },
+  "tagline": "Redimensione imagens por pixels exatos ou porcentagem, direto no navegador",
+  "pageDescription": "Redimensione qualquer imagem para dimensões exatas ou por porcentagem com este Redimensionador de Imagens online e gratuito. Defina uma largura ou altura com a proporção mantida, ou aplique uma escala em porcentagem, e exporte como PNG, JPG ou WebP. Tudo roda localmente no seu navegador — suas imagens nunca são enviadas a um servidor, então permanecem privadas. Ideal para tamanhos de redes sociais, miniaturas, avatares e imagens para a web. Sem cadastro, sem marca d'água e sem limite de tamanho de arquivo.",
+  "instructions": {
+    "title": "Como redimensionar uma imagem",
+    "steps": [
+      {
+        "title": "Envie sua imagem",
+        "description": "Arraste e solte uma imagem na área de envio ou clique para selecionar. As dimensões atuais aparecem na tela."
+      },
+      {
+        "title": "Escolha pixels ou porcentagem",
+        "description": "Alterne entre dimensões em pixels exatos e uma escala em porcentagem, conforme a forma como deseja redimensionar."
+      },
+      {
+        "title": "Defina o novo tamanho",
+        "description": "Informe a largura ou a altura (a outra é ajustada sozinha com a proporção mantida) ou arraste o controle de porcentagem."
+      },
+      {
+        "title": "Escolha o formato de saída",
+        "description": "Use PNG para qualidade sem perdas, JPG para fotos mais leves ou WebP para o melhor equilíbrio entre tamanho e qualidade."
+      },
+      {
+        "title": "Redimensione e baixe",
+        "description": "Clique em Redimensionar imagem, veja a prévia com as novas dimensões e o tamanho do arquivo e faça o download."
+      }
+    ],
+    "features": [
+      "Redimensione por pixels exatos ou por porcentagem",
+      "Bloqueio de proporção com um único clique",
+      "Saída em PNG, JPG ou WebP",
+      "Prévia ao vivo das dimensões de destino antes de redimensionar",
+      "Redimensionamento em alta qualidade via canvas",
+      "100% no navegador — as imagens nunca saem do seu dispositivo",
+      "Sem cadastro, marca d'água ou limite de tamanho de arquivo",
+      "Funciona offline depois que a página carrega"
+    ],
+    "useCases": [
+      "Redimensionar fotos para os tamanhos das redes sociais",
+      "Criar miniaturas e avatares em dimensões exatas",
+      "Reduzir imagens grandes para deixar o site mais rápido",
+      "Ajustar a imagem ao tamanho exigido em um upload",
+      "Diminuir capturas de tela por porcentagem",
+      "Padronizar a largura de fotos de produtos",
+      "Redimensionar imagens para e-mails ou documentos",
+      "Reduzir fotos em alta resolução para compartilhar"
+    ],
+    "proTips": [
+      "Mantenha a proporção bloqueada para evitar imagens distorcidas",
+      "Informe apenas a largura (ou apenas a altura) e a outra é calculada automaticamente",
+      "Use o modo porcentagem para reduzir tudo por igual sem fazer contas",
+      "O WebP costuma gerar o menor arquivo com a mesma qualidade visual",
+      "Ampliar acima de 100% não cria detalhes — apenas aumenta os pixels",
+      "Precisa de um arquivo menor no mesmo tamanho? Use o Compressor de Imagens"
+    ],
+    "troubleshooting": [
+      "Imagem distorcida: ative a opção Manter proporção",
+      "Resultado borrado: você ampliou além da resolução original",
+      "Arquivo ainda grande: mude o formato para JPG ou WebP, ou comprima",
+      "Nada carrega: confira se o arquivo é uma imagem de verdade, não renomeada",
+      "Transparência perdida: exporte como PNG ou WebP, não como JPG"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clicar + arrastar",
+        "description": "Soltar uma imagem na área de envio"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "redimensionar imagem online grátis",
+    "redimensionar fotos online grátis",
+    "redimensionar imagem sem perder qualidade",
+    "reduzir tamanho de imagem em pixels",
+    "como redimensionar uma imagem",
+    "redimensionar imagem por porcentagem",
+    "definir largura e altura em pixels",
+    "redimensionar imagem mantendo a proporção",
+    "redimensionar imagem para redes sociais",
+    "diminuir tamanho de foto online",
+    "redimensionar imagem online ou iloveimg",
+    "melhor redimensionar imagem online"
+  ]
+}

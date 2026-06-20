@@ -28,7 +28,8 @@ import {
   Barcode,
   Pipette,
   Palette,
-  ImageDown,
+  Scaling,
+  Shrink,
   AppWindow,
   Blend,
   ClipboardCheck,
@@ -43,7 +44,11 @@ import {
   Clock,
   Mail,
   Bot,
+  BoxSelect,
+  Calculator,
   FileOutput,
+  FileStack,
+  Scissors,
   Images,
   FileImage,
   Clapperboard,
@@ -103,6 +108,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
   'regex-tester': SearchCode,
   'lorem-ipsum-generator': PenLine,
   'string-case-converter': CaseSensitive,
+  'word-counter': Type,
   'html-to-markdown': FileCode,
 
   // Generators
@@ -114,9 +120,11 @@ export const toolIconMap: Record<string, LucideIcon> = {
   // Web & Design
   'color-picker': Pipette,
   'color-format-converter': Palette,
-  'image-optimizer': ImageDown,
+  'image-resizer': Scaling,
+  'image-compressor': Shrink,
   'favicon-generator': AppWindow,
   'gradient-generator': Blend,
+  'css-box-shadow-generator': BoxSelect,
 
   // Dev Utilities
   'json-validator': ClipboardCheck,
@@ -142,10 +150,14 @@ export const toolIconMap: Record<string, LucideIcon> = {
   'chmod-calculator': Shield,
   'htaccess-generator': Server,
   'binary-to-text': Binary,
+  'number-base-converter': Calculator,
   'js-object-to-json': Code,
 
   // PDF Tools
   'pdf-to-word': FileOutput,
+  'pdf-to-jpg': FileImage,
+  'merge-pdf': FileStack,
+  'split-pdf': Scissors,
   'image-to-pdf': Images,
   'jpg-to-pdf': FileImage,
   'png-to-pdf': FileImage,

@@ -1,0 +1,103 @@
+{
+  "title": "Convertisseur PDF en JPG",
+  "description": "Convertissez les pages d'un PDF en images JPG, PNG ou WebP directement dans votre navigateur",
+  "placeholder": "Déposez un fichier PDF ici ou cliquez pour le téléverser",
+  "drop": "Déposez un fichier PDF ici ou cliquez pour le téléverser",
+  "format": "Format d'image",
+  "quality": "Qualité",
+  "resolution": "Résolution",
+  "convert": "Convertir en images",
+  "converting": "Conversion en cours…",
+  "pages": "pages",
+  "page": "Page",
+  "download": "Télécharger",
+  "downloadAll": "Tout télécharger (ZIP)",
+  "result": "Images",
+  "onlyPdf": "Seuls les fichiers PDF sont pris en charge",
+  "meta": {
+    "title": "Convertisseur PDF en JPG - Convertir PDF en image en ligne",
+    "description": "Convertissez vos pages PDF en images JPG, PNG ou WebP en ligne et gratuit. Haute résolution jusqu'à 300 DPI, sans inscription ni filigrane, tout reste privé."
+  },
+  "tagline": "Convertissez les pages d'un PDF en images JPG, PNG ou WebP en un clic",
+  "pageDescription": "Transformez chaque page d'un PDF en image JPG, PNG ou WebP de haute qualité avec ce convertisseur PDF en JPG gratuit en ligne. Choisissez la résolution (jusqu'à 300 DPI pour l'impression) et la qualité, puis téléchargez les images une par une ou toutes ensemble dans une archive ZIP. Tout fonctionne localement dans votre navigateur : votre PDF n'est jamais envoyé sur un serveur, vos documents confidentiels restent donc privés. Sans inscription, sans filigrane et sans limite de taille de fichier.",
+  "instructions": {
+    "title": "Comment convertir un PDF en JPG",
+    "steps": [
+      {
+        "title": "Téléversez votre PDF",
+        "description": "Glissez-déposez un PDF sur la zone de dépôt ou cliquez pour le parcourir. Le nombre de pages s'affiche dès le chargement."
+      },
+      {
+        "title": "Choisissez un format",
+        "description": "Sélectionnez le JPG pour des photos légères, le PNG pour une qualité sans perte avec transparence, ou le WebP pour le meilleur rapport taille/qualité."
+      },
+      {
+        "title": "Réglez la résolution et la qualité",
+        "description": "Choisissez 72 DPI pour l'écran, 150 DPI pour un usage courant ou 300 DPI pour l'impression. Pour le JPG et le WebP, ajustez le curseur de qualité."
+      },
+      {
+        "title": "Lancez la conversion",
+        "description": "Cliquez sur « Convertir en images ». Chaque page est rendue dans votre navigateur avec un indicateur de progression en direct, sans aucun envoi de fichier."
+      },
+      {
+        "title": "Téléchargez vos images",
+        "description": "Téléchargez chaque page individuellement, ou récupérez toutes les pages d'un coup dans une archive ZIP."
+      }
+    ],
+    "features": [
+      "Conversion des pages PDF en JPG, PNG ou WebP",
+      "Résolution jusqu'à 300 DPI pour une qualité d'impression",
+      "Qualité ajustable pour le JPG et le WebP",
+      "Téléchargement page par page ou de tout le document en ZIP",
+      "Aperçu en miniature de chaque page avant le téléchargement",
+      "100 % côté client : votre PDF ne quitte jamais votre navigateur",
+      "Sans inscription, sans filigrane et sans limite de taille",
+      "Fonctionne hors ligne une fois la page chargée"
+    ],
+    "useCases": [
+      "Transformer un rapport PDF en images pour une présentation",
+      "Extraire une page d'un PDF en JPG à partager sur les réseaux sociaux",
+      "Convertir un document scanné en images pour le retoucher",
+      "Enregistrer des pages PDF en PNG pour des superpositions transparentes",
+      "Créer des images WebP optimisées pour le web à partir d'une brochure PDF",
+      "Exporter la page de couverture d'un PDF en miniature",
+      "Convertir des PDF prêts à imprimer en images 300 DPI",
+      "Archiver les pages d'un PDF sous forme de fichiers image individuels"
+    ],
+    "proTips": [
+      "Utilisez 300 DPI lorsque les images sont destinées à l'impression",
+      "Le PNG conserve la transparence et reste sans perte ; le JPG est le plus léger pour les photos",
+      "Le WebP offre le meilleur rapport qualité/taille pour le web",
+      "Baissez le curseur de qualité pour réduire la taille des fichiers JPG/WebP",
+      "Utilisez « Tout télécharger (ZIP) » pour récupérer un document entier en un clic",
+      "Tout reste local : vous pouvez convertir des PDF confidentiels en toute sécurité"
+    ],
+    "troubleshooting": [
+      "Images floues : augmentez la résolution à 150 ou 300 DPI",
+      "Fichiers trop volumineux : baissez la qualité ou préférez le JPG/WebP au PNG",
+      "Conversion lente : un DPI élevé sur de nombreuses pages prend plus de temps, essayez 150 DPI",
+      "Rien ne se passe au téléversement : vérifiez qu'il s'agit d'un vrai PDF et non d'un fichier renommé",
+      "Problèmes de PDF chiffré : les fichiers protégés par mot de passe peuvent ne pas se charger"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + glisser",
+        "description": "Déposez un fichier PDF sur la zone de téléversement"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "convertir pdf en jpg gratuit",
+    "convertir pdf en jpg en ligne",
+    "convertir pdf en jpg sans inscription",
+    "convertir pdf en png en ligne",
+    "comment transformer un pdf en image",
+    "extraire les images d'un pdf",
+    "convertir pdf en jpg haute qualité",
+    "convertir pdf en jpg 300 dpi",
+    "convertir pdf en webp en ligne",
+    "convertir pdf en images en zip",
+    "meilleur convertisseur pdf en jpg en ligne",
+    "convertir pdf en jpg sans filigrane"
+  ]
+}

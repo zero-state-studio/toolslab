@@ -1,0 +1,103 @@
+{
+  "title": "PDF zusammenfügen",
+  "description": "Mehrere PDF-Dateien zu einem Dokument verbinden",
+  "placeholder": "PDF-Dateien hierher ziehen oder zum Hochladen klicken",
+  "drop": "PDF-Dateien hierher ziehen oder zum Hochladen klicken",
+  "hint": "Zwei oder mehr PDFs hinzufügen, anordnen und zu einer Datei zusammenfügen",
+  "mergeButton": "PDFs zusammenfügen",
+  "pages": "Seiten",
+  "download": "Zusammengefügte PDF herunterladen",
+  "remove": "Entfernen",
+  "moveUp": "Nach oben",
+  "moveDown": "Nach unten",
+  "result": "Ergebnis",
+  "onlyPdf": "Es werden nur PDF-Dateien unterstützt",
+  "reorderTitle": "Dateien vor dem Zusammenfügen anordnen",
+  "reorderHint": "Mit den Pfeilen die Reihenfolge festlegen — die Dateien werden von oben nach unten zusammengefügt",
+  "meta": {
+    "title": "PDF zusammenfügen - PDFs zu einem Dokument verbinden",
+    "description": "Mehrere PDF zu einem zusammenfügen — kostenlos und online. Reihenfolge ändern, ohne Upload, ohne Anmeldung, ohne Wasserzeichen. Alles läuft privat im Browser."
+  },
+  "tagline": "Mehrere PDF-Dateien direkt im Browser zu einem Dokument verbinden",
+  "pageDescription": "Verbinde mehrere PDF-Dateien mit diesem kostenlosen Online-Tool zum PDF-Zusammenfügen zu einem einzigen Dokument. Ziehe deine Dateien per Drag-and-drop hinein, ordne sie so an, dass die Seiten in der richtigen Reihenfolge erscheinen, und füge sie mit einem Klick zusammen. Alles läuft lokal in deinem Browser — deine Dateien werden nie auf einen Server hochgeladen, sodass selbst vertrauliche Dokumente privat bleiben. Ohne Anmeldung, ohne Wasserzeichen und ohne Dateigrößen-Limit.",
+  "instructions": {
+    "title": "So fügst du PDF-Dateien zusammen",
+    "steps": [
+      {
+        "title": "PDFs hochladen",
+        "description": "Ziehe zwei oder mehr PDF-Dateien per Drag-and-drop in den Upload-Bereich oder klicke, um sie auszuwählen."
+      },
+      {
+        "title": "Dateien anordnen",
+        "description": "Lege mit den Pfeilen nach oben und unten die Reihenfolge fest — das fertige Dokument wird von oben nach unten zusammengesetzt."
+      },
+      {
+        "title": "Überflüssiges entfernen",
+        "description": "Klicke vor dem Zusammenfügen auf das ×, um versehentlich hinzugefügte Dateien wieder zu entfernen."
+      },
+      {
+        "title": "Zu einer PDF zusammenfügen",
+        "description": "Klicke auf „PDFs zusammenfügen“. Das Verbinden geschieht sofort im Browser — nichts wird hochgeladen."
+      },
+      {
+        "title": "Ergebnis herunterladen",
+        "description": "Lade die einzelne zusammengefügte PDF mit allen Seiten in deiner gewählten Reihenfolge herunter."
+      }
+    ],
+    "features": [
+      "Beliebig viele PDF-Dateien zu einem Dokument verbinden",
+      "Drag-and-drop-Upload mit Neuanordnung",
+      "Nummerierte Liste, damit die Reihenfolge immer klar ist",
+      "Einzelne Dateien vor dem Zusammenfügen entfernen",
+      "100 % im Browser — Dateien verlassen nie dein Gerät",
+      "Keine Dateigrößen-Limits, keine Wasserzeichen, keine Anmeldung",
+      "Funktioniert offline, sobald die Seite geladen ist",
+      "Sofortiger Download der zusammengefügten PDF"
+    ],
+    "useCases": [
+      "Mehrere Rechnungen oder Belege zu einer PDF zusammenfügen",
+      "Gescannte Seiten zu einem Dokument verbinden",
+      "Einen Vertrag aus separat unterschriebenen Abschnitten zusammensetzen",
+      "Kapitel oder Berichte zu einer Datei zusammenführen",
+      "Kontoauszüge für einen Antrag kombinieren",
+      "Präsentationsunterlagen vor dem Teilen zusammenfügen",
+      "Anschreiben und Lebenslauf zu einer PDF verbinden",
+      "Zusammengehörige Dokumente für die Archivierung bündeln"
+    ],
+    "proTips": [
+      "Ordne die Dateien vor dem Zusammenfügen an — die fertige Reihenfolge entspricht der Liste von oben nach unten",
+      "Das Nummern-Symbol zeigt die Position jeder Datei im fertigen Dokument",
+      "Da alles lokal läuft, kannst du auch vertrauliche PDFs gefahrlos zusammenfügen",
+      "Füge Dateien in mehreren Schritten hinzu — sie werden an die bestehende Liste angehängt",
+      "Große PDFs lassen sich am schnellsten in Desktop-Browsern zusammenfügen",
+      "Musst du stattdessen aufteilen? Nutze das Tool PDF teilen"
+    ],
+    "troubleshooting": [
+      "Schaltfläche „Zusammenfügen“ deaktiviert: füge mindestens zwei PDF-Dateien hinzu",
+      "Falsche Seitenreihenfolge: nutze die Pfeile zum Anordnen vor dem Zusammenfügen",
+      "Eine Datei lässt sich nicht hinzufügen: stelle sicher, dass es eine echte PDF ist und keine umbenannte Datei",
+      "Probleme mit verschlüsselten PDFs: passwortgeschützte Dateien lassen sich möglicherweise nicht laden",
+      "Sehr große Ausgabedatei: das Zusammenfügen vieler gescannter PDFs ergibt eine große Datei — das ist normal"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Klicken + ziehen",
+        "description": "PDF-Dateien in den Upload-Bereich ziehen"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "pdf zusammenfügen online kostenlos",
+    "mehrere pdf zu einem zusammenfügen",
+    "pdf verbinden kostenlos ohne anmeldung",
+    "pdf dateien zusammenführen ohne wasserzeichen",
+    "wie kombiniere ich pdf dateien",
+    "wie füge ich mehrere pdf zusammen",
+    "bestes tool pdf zusammenfügen",
+    "pdf reihenfolge ändern vor dem zusammenfügen",
+    "rechnungen zu einer pdf zusammenfügen",
+    "gescannte seiten zu pdf verbinden",
+    "pdf zusammenfügen ohne installation",
+    "pdf zusammenfügen smallpdf alternative"
+  ]
+}

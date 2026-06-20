@@ -1,0 +1,105 @@
+{
+  "title": "Compressor de Imagens",
+  "description": "Comprima imagens JPG, PNG e WebP para reduzir o tamanho do arquivo",
+  "placeholder": "Arraste uma imagem aqui ou clique para enviar",
+  "drop": "Arraste uma imagem aqui ou clique para enviar",
+  "hint": "Reduza o tamanho do arquivo de imagem com qualidade ajustável",
+  "quality": "Qualidade",
+  "format": "Formato de saída",
+  "keepFormat": "Manter original",
+  "compressButton": "Comprimir imagem",
+  "result": "Imagem comprimida",
+  "download": "Baixar",
+  "onlyImage": "Apenas arquivos de imagem são aceitos",
+  "processing": "Comprimindo…",
+  "saved": "menor",
+  "larger": "maior (tente uma qualidade mais baixa)",
+  "alreadyOptimized": "Já otimizada — mantivemos o original (use WebP para reduzir)",
+  "pngNote": "PNG é sem perdas — o controle de qualidade quase não afeta. Use WebP ou JPG para reduzir fotos de verdade.",
+  "meta": {
+    "title": "Compressor de Imagens - Reduzir Tamanho de Foto Online",
+    "description": "Comprima imagens JPG, PNG e WebP online grátis e reduza o tamanho do arquivo sem perder qualidade. Sem upload, sem cadastro — tudo roda no seu navegador."
+  },
+  "tagline": "Comprima imagens e reduza o tamanho do arquivo sem perda visível de qualidade",
+  "pageDescription": "Comprima imagens JPG, PNG e WebP para reduzir o tamanho do arquivo com este Compressor de Imagens online e gratuito. Arraste o controle de qualidade para equilibrar peso e nitidez e veja exatamente quanto você economizou — normalmente de 50% a 80% menor. Tudo roda localmente no seu navegador, então suas imagens nunca são enviadas e ficam privadas. Ideal para sites mais rápidos, anexos de e-mail menores e para ficar dentro dos limites de upload. Sem cadastro, sem marca d'água e sem limite de tamanho pago.",
+  "instructions": {
+    "title": "Como comprimir uma imagem",
+    "steps": [
+      {
+        "title": "Envie sua imagem",
+        "description": "Arraste e solte uma imagem na área de envio ou clique para procurar no seu dispositivo. O tamanho atual do arquivo é exibido."
+      },
+      {
+        "title": "Defina a qualidade",
+        "description": "Arraste o controle de qualidade. Quanto menor a qualidade, menor o arquivo; cerca de 70% é um bom equilíbrio para a maioria das fotos."
+      },
+      {
+        "title": "Escolha o formato de saída",
+        "description": "Mantenha o formato original ou converta para JPG ou WebP para uma compressão mais forte. O WebP geralmente é o que mais reduz."
+      },
+      {
+        "title": "Comprima a imagem",
+        "description": "Clique em Comprimir imagem. O processamento acontece no seu navegador — nada é enviado para servidores."
+      },
+      {
+        "title": "Confira a economia e baixe",
+        "description": "Veja o tamanho antes e depois e a porcentagem economizada, depois baixe o arquivo mais leve."
+      }
+    ],
+    "features": [
+      "Comprime imagens JPG, PNG e WebP",
+      "Controle de qualidade ajustável com porcentagem ao vivo",
+      "Converte o formato durante a compressão (ex.: PNG → WebP)",
+      "Tamanho antes e depois com a porcentagem exata economizada",
+      "Pré-visualize o resultado comprimido antes de baixar",
+      "100% no navegador — as imagens nunca saem do seu dispositivo",
+      "Sem cadastro, sem marca d'água e sem limite de tamanho",
+      "Funciona offline depois que a página carrega"
+    ],
+    "useCases": [
+      "Reduzir imagens para acelerar o carregamento do site",
+      "Diminuir o tamanho de fotos para anexar em e-mails",
+      "Ficar dentro de um limite de tamanho de upload",
+      "Comprimir capturas de tela antes de compartilhar",
+      "Otimizar fotos de produtos para uma loja online",
+      "Diminuir o peso das imagens para páginas mais rápidas no celular",
+      "Converter PNGs pesados em WebP mais leves",
+      "Reduzir fotos grandes de câmera para usar na web"
+    ],
+    "proTips": [
+      "WebP entre 70% e 80% de qualidade geralmente supera o JPG no mesmo tamanho",
+      "A compressão de PNG aqui é quase sem perdas — converta para JPG/WebP para grandes economias em fotos",
+      "Se o resultado ficar borrado, aumente um pouco a qualidade",
+      "Arquivos muito pequenos podem mostrar artefatos — encontre o ponto ideal entre 60% e 75%",
+      "Precisa também de outras dimensões? Use antes o Redimensionador de Imagens",
+      "Como tudo é local, você pode comprimir imagens privadas com segurança"
+    ],
+    "troubleshooting": [
+      "O arquivo ficou maior: diminua a qualidade ou troque o formato para JPG/WebP",
+      "A imagem ficou quadriculada: a qualidade está muito baixa — suba o controle",
+      "A transparência sumiu: o JPG não tem canal alfa — use WebP ou PNG",
+      "Nenhuma redução no PNG: converta para JPG ou WebP para economizar de verdade",
+      "Nada carrega: confira se o arquivo é uma imagem real, não um arquivo renomeado"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clicar + arrastar",
+        "description": "Solte uma imagem na área de envio"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "comprimir imagem online grátis",
+    "reduzir tamanho de imagem online",
+    "comprimir jpg online grátis",
+    "comprimir imagem sem perder qualidade",
+    "como reduzir o tamanho de uma foto",
+    "melhor compressor de imagens online",
+    "diminuir o tamanho de uma imagem para e-mail",
+    "comprimir png sem perder qualidade",
+    "converter png para webp online",
+    "compressor de imagens no navegador",
+    "comprimir imagem vs redimensionar imagem",
+    "compressor de imagens grátis sem marca d'água"
+  ]
+}

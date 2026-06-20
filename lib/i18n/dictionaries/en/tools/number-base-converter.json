@@ -1,0 +1,92 @@
+{
+  "title": "Number Base Converter",
+  "description": "Convert numbers between binary, octal, decimal, hex and any base 2–36",
+  "placeholder": "Enter a number…",
+  "inputLabel": "Number to convert",
+  "fromBase": "Input base",
+  "customBase": "Custom base (2–36)",
+  "bitWidth": "Bit width",
+  "signed": "Signed (two’s complement)",
+  "binary": "Binary",
+  "octal": "Octal",
+  "decimal": "Decimal",
+  "hexadecimal": "Hexadecimal",
+  "base": "Base",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "none": "Unbounded",
+  "bits": "bits",
+  "meta": {
+    "title": "Number Base Converter - Hex, Binary, Decimal, Octal Online",
+    "description": "Convert numbers between binary, octal, decimal, hex and any base 2–36 online free. Signed two’s complement and bit-width options, instant multi-base output."
+  },
+  "tagline": "Convert numbers between binary, octal, decimal, hex and any base instantly",
+  "pageDescription": "Convert numbers between binary, octal, decimal, hexadecimal and any base from 2 to 36 with this free online Number Base Converter. See every representation update instantly as you type, switch the input base, and use the bit-width and signed two’s complement options to inspect how values are stored at 8, 16, 32 or 64 bits. Backed by big-integer math, so even very large numbers convert exactly. Perfect for developers, CS students and anyone working with hex, binary or low-level data — no signup, runs in your browser.",
+  "instructions": {
+    "title": "How to convert number bases",
+    "steps": [
+      {
+        "title": "Enter your number",
+        "description": "Type a number in the input field. Prefixes like 0x, 0b and 0o are accepted, and you can use underscores or spaces as separators."
+      },
+      {
+        "title": "Choose the input base",
+        "description": "Pick Binary, Octal, Decimal or Hexadecimal, or set any custom base from 2 to 36 with the small base selector."
+      },
+      {
+        "title": "Read the conversions",
+        "description": "All bases update instantly — decimal, hex, octal, binary, and your custom base if you used one."
+      },
+      {
+        "title": "Set bit width and sign (optional)",
+        "description": "Choose 8, 16, 32 or 64 bits to wrap the value, and toggle Signed to interpret it as two’s complement."
+      },
+      {
+        "title": "Copy any result",
+        "description": "Click the copy icon next to any representation to copy it to your clipboard."
+      }
+    ],
+    "features": [
+      "Convert between binary, octal, decimal, hexadecimal and any base 2–36",
+      "Instant multi-base output as you type",
+      "Signed (two’s complement) and unsigned interpretation",
+      "Bit-width selector for 8, 16, 32 and 64 bits",
+      "Big-integer math — exact for arbitrarily large numbers",
+      "Accepts 0x / 0b / 0o prefixes and digit separators",
+      "One-click copy for every representation",
+      "100% browser-based — no signup, works offline"
+    ],
+    "useCases": [
+      "Convert hex color or memory values to decimal",
+      "Translate binary to decimal for CS homework",
+      "Inspect two’s complement representation of negative numbers",
+      "Convert decimal to hex for low-level programming",
+      "Check how a value wraps at 8 or 16 bits",
+      "Convert between unusual bases like base 36 for short IDs",
+      "Debug bitmasks and flags in hex and binary",
+      "Teach or learn positional number systems"
+    ],
+    "proTips": [
+      "Use the bit-width selector with Signed to see two’s complement, e.g. 0xFF → -1 at 8 bits",
+      "Prefixes 0x, 0b and 0o are stripped automatically",
+      "Underscores and spaces are ignored, so 1010_1010 is valid binary",
+      "Base 36 uses 0–9 then a–z, handy for compact identifiers",
+      "Binary is base 2 and hexadecimal is base 16, so a base 2 to base 16 conversion is just binary to hex",
+      "Very large numbers stay exact thanks to big-integer math",
+      "Set a custom base in the small numeric box next to the base dropdown"
+    ],
+    "troubleshooting": [
+      "Invalid digit error: the input contains a digit not allowed in the chosen base",
+      "Unexpected value: check the input base matches how you typed the number",
+      "Negative shown as large number: enable Signed with a bit width for two’s complement",
+      "Signed toggle disabled: choose a bit width first (signed needs a fixed width)",
+      "Nothing converts: make sure the field isn’t empty and the base is 2–36"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Move between input, base and options"
+      }
+    ]
+  }
+}

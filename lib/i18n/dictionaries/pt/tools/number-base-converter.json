@@ -1,0 +1,106 @@
+{
+  "title": "Conversor de Bases Numéricas",
+  "description": "Converta números entre binário, octal, decimal, hexadecimal e qualquer base de 2 a 36",
+  "placeholder": "Digite um número…",
+  "inputLabel": "Número a converter",
+  "fromBase": "Base de entrada",
+  "customBase": "Base personalizada (2–36)",
+  "bitWidth": "Largura de bits",
+  "signed": "Com sinal (complemento de dois)",
+  "binary": "Binário",
+  "octal": "Octal",
+  "decimal": "Decimal",
+  "hexadecimal": "Hexadecimal",
+  "base": "Base",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "none": "Sem limite",
+  "bits": "bits",
+  "meta": {
+    "title": "Conversor de Bases Numéricas - Hex, Binário, Decimal, Octal",
+    "description": "Converta binário, octal, decimal, hexadecimal e qualquer base de 2 a 36 online e grátis. Complemento de dois com sinal, largura de bits e saída instantânea."
+  },
+  "tagline": "Converta números entre binário, octal, decimal, hexadecimal e qualquer base na hora",
+  "pageDescription": "Converta números entre binário, octal, decimal, hexadecimal e qualquer base de 2 a 36 com este Conversor de Bases Numéricas online e gratuito. Veja cada representação atualizar instantaneamente enquanto digita, troque a base de entrada e use as opções de largura de bits e complemento de dois com sinal para inspecionar como os valores são armazenados em 8, 16, 32 ou 64 bits. Com aritmética de inteiros grandes, mesmo números muito grandes são convertidos com exatidão. Ideal para desenvolvedores, estudantes de computação e qualquer pessoa que trabalhe com hexadecimal, binário ou dados de baixo nível — sem cadastro, roda direto no seu navegador.",
+  "instructions": {
+    "title": "Como converter bases numéricas",
+    "steps": [
+      {
+        "title": "Digite seu número",
+        "description": "Insira um número no campo de entrada. Prefixos como 0x, 0b e 0o são aceitos, e você pode usar sublinhados ou espaços como separadores."
+      },
+      {
+        "title": "Escolha a base de entrada",
+        "description": "Selecione Binário, Octal, Decimal ou Hexadecimal, ou defina qualquer base personalizada de 2 a 36 no seletor de base."
+      },
+      {
+        "title": "Leia as conversões",
+        "description": "Todas as bases são atualizadas na hora — decimal, hexadecimal, octal, binário e a base personalizada, se você usar uma."
+      },
+      {
+        "title": "Defina a largura de bits e o sinal (opcional)",
+        "description": "Escolha 8, 16, 32 ou 64 bits para limitar o valor e ative Com sinal para interpretá-lo em complemento de dois."
+      },
+      {
+        "title": "Copie qualquer resultado",
+        "description": "Clique no ícone de copiar ao lado de qualquer representação para copiá-la para a área de transferência."
+      }
+    ],
+    "features": [
+      "Converte entre binário, octal, decimal, hexadecimal e qualquer base de 2 a 36",
+      "Saída multi-base instantânea enquanto você digita",
+      "Interpretação com sinal (complemento de dois) e sem sinal",
+      "Seletor de largura de bits para 8, 16, 32 e 64 bits",
+      "Aritmética de inteiros grandes — exata para números arbitrariamente grandes",
+      "Aceita prefixos 0x / 0b / 0o e separadores de dígitos",
+      "Cópia com um clique para cada representação",
+      "100% no navegador — sem cadastro, funciona offline"
+    ],
+    "useCases": [
+      "Converter valores de cor hexadecimal ou de memória para decimal",
+      "Converter binário para decimal nos exercícios de computação",
+      "Inspecionar a representação em complemento de dois de números negativos",
+      "Converter decimal para hexadecimal em programação de baixo nível",
+      "Verificar como um valor é truncado em 8 ou 16 bits",
+      "Converter entre bases incomuns como base 36 para IDs curtos",
+      "Depurar máscaras de bits e flags em hexadecimal e binário",
+      "Ensinar ou aprender sistemas de numeração posicionais"
+    ],
+    "proTips": [
+      "Use o seletor de largura de bits com Com sinal para ver o complemento de dois, ex.: 0xFF → -1 em 8 bits",
+      "Os prefixos 0x, 0b e 0o são removidos automaticamente",
+      "Sublinhados e espaços são ignorados, então 1010_1010 é binário válido",
+      "A base 36 usa 0–9 e depois a–z, útil para identificadores compactos",
+      "Binário é base 2 e hexadecimal é base 16, então converter de base 2 para base 16 é apenas binário para hexadecimal",
+      "Números muito grandes permanecem exatos graças à aritmética de inteiros grandes",
+      "Defina uma base personalizada no pequeno campo numérico ao lado do menu de bases"
+    ],
+    "troubleshooting": [
+      "Erro de dígito inválido: a entrada contém um dígito não permitido na base escolhida",
+      "Valor inesperado: verifique se a base de entrada corresponde a como você digitou o número",
+      "Negativo exibido como número grande: ative Com sinal e uma largura de bits para complemento de dois",
+      "Opção Com sinal desabilitada: escolha primeiro uma largura de bits (o sinal precisa de largura fixa)",
+      "Nada é convertido: confira se o campo não está vazio e se a base está entre 2 e 36"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Navegar entre entrada, base e opções"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "conversor de bases numéricas online grátis",
+    "converter hexadecimal para decimal online",
+    "converter binário para decimal online",
+    "converter decimal para hexadecimal grátis",
+    "como converter base 2 para base 16",
+    "como converter binário em decimal",
+    "calculadora de conversão de bases numéricas",
+    "conversor de binário octal decimal hexadecimal",
+    "complemento de dois de número negativo",
+    "conversor de base 2 a 36",
+    "binário para hexadecimal vs binário para decimal",
+    "hexadecimal ou decimal qual usar em programação"
+  ]
+}

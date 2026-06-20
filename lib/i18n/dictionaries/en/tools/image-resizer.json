@@ -1,0 +1,93 @@
+{
+  "title": "Image Resizer",
+  "description": "Resize images by pixels or percentage in your browser",
+  "placeholder": "Drop an image here or click to upload",
+  "drop": "Drop an image here or click to upload",
+  "hint": "Resize by exact pixels or by percentage — aspect ratio locked by default",
+  "byPixels": "By pixels",
+  "byPercent": "By percentage",
+  "width": "Width",
+  "height": "Height",
+  "percent": "Scale",
+  "lockAspect": "Lock aspect ratio",
+  "format": "Output format",
+  "resizeButton": "Resize image",
+  "result": "Resized image",
+  "original": "Original",
+  "resized": "Resized",
+  "download": "Download",
+  "onlyImage": "Only image files are supported",
+  "processing": "Resizing…",
+  "meta": {
+    "title": "Image Resizer - Resize Images Online Free by Pixels or %",
+    "description": "Resize images online free by exact pixels or percentage, with aspect ratio lock. JPG, PNG, WebP. No upload, no signup — runs privately in your browser."
+  },
+  "tagline": "Resize images by exact pixels or percentage, right in your browser",
+  "pageDescription": "Resize any image to exact dimensions or by percentage with this free online Image Resizer. Set a target width or height with aspect ratio locked, or scale by a percentage, and export as PNG, JPG or WebP. Everything runs locally in your browser — your images are never uploaded to a server, so they stay private. Perfect for social media sizes, thumbnails, avatars and web assets. No signup, no watermarks, no file-size limits.",
+  "instructions": {
+    "title": "How to resize an image",
+    "steps": [
+      {
+        "title": "Upload your image",
+        "description": "Drag and drop an image onto the upload area or click to browse. Its current dimensions appear."
+      },
+      {
+        "title": "Choose pixels or percentage",
+        "description": "Switch between exact pixel dimensions and a percentage scale, depending on how you want to resize."
+      },
+      {
+        "title": "Set the new size",
+        "description": "Enter a width or height (the other follows when aspect ratio is locked), or drag the percentage slider."
+      },
+      {
+        "title": "Pick an output format",
+        "description": "Keep PNG for lossless quality, choose JPG for smaller photos, or WebP for the best size-to-quality balance."
+      },
+      {
+        "title": "Resize and download",
+        "description": "Click Resize image, preview the result with its new dimensions and size, then download."
+      }
+    ],
+    "features": [
+      "Resize by exact pixels or by percentage",
+      "Aspect ratio lock with one-click toggle",
+      "Output as PNG, JPG or WebP",
+      "Live preview of target dimensions before resizing",
+      "High-quality canvas scaling",
+      "100% client-side — images never leave your browser",
+      "No signup, watermarks or file-size limits",
+      "Works offline once the page has loaded"
+    ],
+    "useCases": [
+      "Resize photos to social media dimensions",
+      "Create thumbnails and avatars at exact sizes",
+      "Shrink large images for faster web pages",
+      "Fit images to a required upload size",
+      "Scale screenshots down by percentage",
+      "Prepare product images at a consistent width",
+      "Resize images for email or documents",
+      "Downscale high-resolution photos for sharing"
+    ],
+    "proTips": [
+      "Keep the aspect lock on to avoid stretched images",
+      "Enter only a width (or only a height) and the other is computed for you",
+      "Use percentage mode to scale down uniformly without doing the math",
+      "WebP usually gives the smallest file at the same visual quality",
+      "Upscaling above 100% can't add detail — it only enlarges pixels",
+      "Need a smaller file at the same size? Use the Image Compressor"
+    ],
+    "troubleshooting": [
+      "Image looks stretched: turn on Lock aspect ratio",
+      "Result is blurry: you upscaled beyond the original resolution",
+      "File is still large: switch format to JPG or WebP, or compress it",
+      "Nothing loads: make sure the file is a real image, not renamed",
+      "Transparency lost: export as PNG or WebP, not JPG"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Click + drag",
+        "description": "Drop an image onto the upload area"
+      }
+    ]
+  }
+}

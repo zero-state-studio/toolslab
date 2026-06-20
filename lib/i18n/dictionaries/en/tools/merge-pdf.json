@@ -1,0 +1,90 @@
+{
+  "title": "Merge PDF",
+  "description": "Combine multiple PDF files into one document",
+  "placeholder": "Drop PDF files here or click to upload",
+  "drop": "Drop PDF files here or click to upload",
+  "hint": "Add two or more PDFs, reorder them, then merge into one file",
+  "mergeButton": "Merge PDFs",
+  "pages": "pages",
+  "download": "Download merged PDF",
+  "remove": "Remove",
+  "moveUp": "Move up",
+  "moveDown": "Move down",
+  "result": "Result",
+  "onlyPdf": "Only PDF files are supported",
+  "reorderTitle": "Reorder files before merging",
+  "reorderHint": "Use the arrows to set the order — files are merged top to bottom",
+  "meta": {
+    "title": "Merge PDF - Combine PDF Files Into One Online Free",
+    "description": "Merge PDF files into one document online free. Reorder before combining, no upload, no signup, no watermark — everything runs privately in your browser."
+  },
+  "tagline": "Combine multiple PDF files into one document, right in your browser",
+  "pageDescription": "Combine multiple PDF files into a single document with this free online Merge PDF tool. Drag and drop your files, reorder them so the pages come out in the right sequence, then merge with one click. Everything runs locally in your browser — your files are never uploaded to a server, so even confidential documents stay private. No signup, no watermarks, and no file-size paywall.",
+  "instructions": {
+    "title": "How to merge PDF files",
+    "steps": [
+      {
+        "title": "Upload your PDFs",
+        "description": "Drag and drop two or more PDF files onto the upload area, or click to browse and select them."
+      },
+      {
+        "title": "Reorder the files",
+        "description": "Use the up and down arrows to set the order — the final document is assembled from top to bottom."
+      },
+      {
+        "title": "Remove anything extra",
+        "description": "Click the × on any file you added by mistake before merging."
+      },
+      {
+        "title": "Merge into one PDF",
+        "description": "Click Merge PDFs. The combine happens instantly in your browser — nothing is uploaded."
+      },
+      {
+        "title": "Download the result",
+        "description": "Download the single merged PDF containing all pages in your chosen order."
+      }
+    ],
+    "features": [
+      "Combine unlimited PDF files into one document",
+      "Drag-and-drop upload with reordering",
+      "Numbered list so the merge order is always clear",
+      "Remove individual files before merging",
+      "100% client-side — files never leave your browser",
+      "No file-size limits, watermarks or signup",
+      "Works offline once the page has loaded",
+      "Instant download of the merged PDF"
+    ],
+    "useCases": [
+      "Combine multiple invoices or receipts into one PDF",
+      "Merge scanned pages into a single document",
+      "Assemble a contract from separate signed sections",
+      "Join chapters or reports into one file",
+      "Combine bank statements for an application",
+      "Merge presentation handouts before sharing",
+      "Put a cover letter and CV into one PDF",
+      "Bundle related documents for archiving"
+    ],
+    "proTips": [
+      "Reorder files before merging — the final order matches the list top to bottom",
+      "The number badge shows each file's position in the final document",
+      "Because everything is local, you can safely merge confidential PDFs",
+      "Add files in several drops — they append to the existing list",
+      "Merge PDFs without Adobe Acrobat or any installed software — it all runs online",
+      "Large PDFs merge fastest on desktop browsers",
+      "Need to split instead? Use the Split PDF tool"
+    ],
+    "troubleshooting": [
+      "Merge button disabled: add at least two PDF files",
+      "Wrong page order: use the arrows to reorder before merging",
+      "A file won't add: make sure it is a real PDF, not a renamed file",
+      "Encrypted PDF issues: password-protected files may fail to load",
+      "Huge output file: merging many scanned PDFs produces a large file — that's expected"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Click + drag",
+        "description": "Drop PDF files onto the upload area"
+      }
+    ]
+  }
+}
