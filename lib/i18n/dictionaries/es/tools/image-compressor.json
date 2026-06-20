@@ -1,0 +1,103 @@
+{
+  "title": "Compresor de Imágenes",
+  "description": "Comprime imágenes JPG, PNG y WebP para reducir el tamaño del archivo",
+  "placeholder": "Arrastra una imagen aquí o haz clic para subirla",
+  "drop": "Arrastra una imagen aquí o haz clic para subirla",
+  "hint": "Reduce el peso de la imagen con la calidad ajustable",
+  "quality": "Calidad",
+  "format": "Formato de salida",
+  "keepFormat": "Mantener original",
+  "compressButton": "Comprimir imagen",
+  "result": "Imagen comprimida",
+  "download": "Descargar",
+  "onlyImage": "Solo se admiten archivos de imagen",
+  "processing": "Comprimiendo…",
+  "saved": "más pequeña",
+  "larger": "más grande (prueba con menos calidad)",
+  "meta": {
+    "title": "Compresor de Imágenes - Reducir Peso de Imagen Online Gratis",
+    "description": "Comprime imágenes JPG, PNG y WebP online y gratis para reducir su peso con calidad ajustable. Sin subidas ni registro: todo funciona en tu navegador local."
+  },
+  "tagline": "Comprime imágenes y reduce su peso sin pérdida visible de calidad",
+  "pageDescription": "Comprime imágenes JPG, PNG y WebP para reducir su peso con este Compresor de Imágenes online y gratuito. Mueve el control de calidad para equilibrar tamaño y nitidez, y comprueba al instante cuánto has ahorrado: normalmente entre un 50 % y un 80 % menos. Todo el proceso se ejecuta de forma local en tu navegador, así que tus imágenes nunca se suben y permanecen privadas. Ideal para acelerar webs, aligerar archivos adjuntos de correo y no superar los límites de subida. Sin registro, sin marcas de agua y sin límites de tamaño de pago.",
+  "longTailKeywords": [
+    "comprimir imagen online gratis",
+    "comprimir jpg online",
+    "reducir tamaño de imagen online",
+    "comprimir imagen png online",
+    "comprimir imagen sin perder calidad",
+    "cómo comprimir imágenes sin perder calidad",
+    "reducir el peso de una imagen",
+    "convertir png a webp",
+    "comprimir imagen en el navegador",
+    "comprimir foto para web",
+    "mejor compresor de imágenes online",
+    "alternativa a tinypng gratis"
+  ],
+  "instructions": {
+    "title": "Cómo comprimir una imagen",
+    "steps": [
+      {
+        "title": "Sube tu imagen",
+        "description": "Arrastra y suelta una imagen sobre el área de carga o haz clic para buscarla. Se muestra su peso actual."
+      },
+      {
+        "title": "Ajusta la calidad",
+        "description": "Mueve el control de calidad. Menos calidad significa un archivo más ligero; alrededor del 70 % es un buen equilibrio para la mayoría de las fotos."
+      },
+      {
+        "title": "Elige el formato de salida",
+        "description": "Mantén el formato original o convierte a JPG o WebP para comprimir más. WebP suele dar el mejor resultado."
+      },
+      {
+        "title": "Comprime la imagen",
+        "description": "Haz clic en Comprimir imagen. Se procesa en tu navegador, sin subir nada a ningún servidor."
+      },
+      {
+        "title": "Revisa el ahorro y descarga",
+        "description": "Compara el peso antes y después y el porcentaje ahorrado, y luego descarga el archivo más ligero."
+      }
+    ],
+    "features": [
+      "Comprime imágenes JPG, PNG y WebP",
+      "Control de calidad ajustable con porcentaje en tiempo real",
+      "Convierte el formato mientras comprimes (p. ej. PNG → WebP)",
+      "Peso antes y después con el porcentaje exacto ahorrado",
+      "Previsualiza el resultado comprimido antes de descargar",
+      "100 % en el navegador: las imágenes nunca salen de tu equipo",
+      "Sin registro, sin marcas de agua y sin límites de tamaño",
+      "Funciona sin conexión una vez cargada la página"
+    ],
+    "useCases": [
+      "Aligerar imágenes para acelerar la carga de una web",
+      "Reducir el peso de una foto para enviarla por correo",
+      "No superar un límite de tamaño de subida",
+      "Comprimir capturas de pantalla antes de compartirlas",
+      "Optimizar las imágenes de producto de una tienda online",
+      "Reducir el peso de las imágenes para que el móvil cargue más rápido",
+      "Convertir PNG pesados en WebP mucho más ligeros",
+      "Aligerar fotos grandes de cámara para publicarlas en la web"
+    ],
+    "proTips": [
+      "WebP al 70-80 % de calidad suele superar a JPG con el mismo tamaño",
+      "La compresión de PNG aquí es casi sin pérdida: convierte a JPG o WebP para ahorrar mucho en fotos",
+      "Si el resultado se ve borroso, sube un poco la calidad",
+      "Los archivos muy pequeños pueden mostrar artefactos: el punto ideal está entre el 60 % y el 75 %",
+      "¿También necesitas otras dimensiones? Usa antes el Redimensionador de Imágenes",
+      "Todo es local, así que puedes comprimir imágenes privadas con total seguridad"
+    ],
+    "troubleshooting": [
+      "El archivo quedó más grande: baja la calidad o cambia el formato a JPG/WebP",
+      "La imagen se ve pixelada: la calidad es demasiado baja, sube el control",
+      "Se perdió la transparencia: JPG no admite canal alfa, usa WebP o PNG",
+      "El PNG no se reduce: conviértelo a JPG o WebP para ahorrar de verdad",
+      "No carga nada: comprueba que el archivo sea una imagen real y no esté solo renombrado"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + arrastrar",
+        "description": "Suelta una imagen sobre el área de carga"
+      }
+    ]
+  }
+}

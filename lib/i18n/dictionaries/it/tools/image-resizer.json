@@ -1,0 +1,107 @@
+{
+  "title": "Ridimensiona Immagini",
+  "description": "Ridimensiona immagini in pixel o in percentuale, direttamente nel browser",
+  "placeholder": "Trascina qui un'immagine o clicca per caricarla",
+  "drop": "Trascina qui un'immagine o clicca per caricarla",
+  "hint": "Ridimensiona in pixel esatti o in percentuale — le proporzioni restano bloccate di default",
+  "byPixels": "In pixel",
+  "byPercent": "In percentuale",
+  "width": "Larghezza",
+  "height": "Altezza",
+  "percent": "Scala",
+  "lockAspect": "Mantieni le proporzioni",
+  "format": "Formato di output",
+  "resizeButton": "Ridimensiona immagine",
+  "result": "Immagine ridimensionata",
+  "original": "Originale",
+  "resized": "Ridimensionata",
+  "download": "Scarica",
+  "onlyImage": "Sono supportati solo file immagine",
+  "processing": "Ridimensionamento in corso…",
+  "meta": {
+    "title": "Ridimensiona Immagini Online Gratis in Pixel o % | ToolsLab",
+    "description": "Ridimensiona immagini online gratis in pixel o in percentuale, mantenendo le proporzioni. JPG, PNG, WebP. Nessun upload: tutto resta privato nel browser."
+  },
+  "tagline": "Ridimensiona immagini in pixel esatti o in percentuale, direttamente nel browser",
+  "pageDescription": "Ridimensiona qualsiasi immagine a dimensioni esatte o in percentuale con questo strumento online gratuito. Imposta una larghezza o un'altezza con le proporzioni bloccate, oppure riduci la foto in percentuale, ed esporta in PNG, JPG o WebP. Tutto avviene in locale nel tuo browser: le immagini non vengono mai caricate su un server, quindi restano private. Perfetto per le dimensioni dei social, miniature, avatar e immagini per il web. Nessuna registrazione, nessun watermark, nessun limite di dimensione.",
+  "instructions": {
+    "title": "Come ridimensionare un'immagine",
+    "steps": [
+      {
+        "title": "Carica la tua immagine",
+        "description": "Trascina un'immagine nell'area di caricamento oppure clicca per sfogliare i file. Le dimensioni attuali in pixel vengono mostrate subito."
+      },
+      {
+        "title": "Scegli pixel o percentuale",
+        "description": "Passa dalle dimensioni esatte in pixel alla scala in percentuale, a seconda di come vuoi ridimensionare la foto."
+      },
+      {
+        "title": "Imposta le nuove dimensioni",
+        "description": "Inserisci una larghezza o un'altezza (l'altro valore si calcola da solo con le proporzioni bloccate), oppure trascina il cursore della percentuale."
+      },
+      {
+        "title": "Scegli il formato di output",
+        "description": "Mantieni PNG per la qualità senza perdite, scegli JPG per foto più leggere o WebP per il miglior rapporto peso/qualità."
+      },
+      {
+        "title": "Ridimensiona e scarica",
+        "description": "Clicca su Ridimensiona immagine, controlla l'anteprima con le nuove dimensioni e il nuovo peso, poi scarica il file."
+      }
+    ],
+    "features": [
+      "Ridimensionamento in pixel esatti o in percentuale",
+      "Blocco delle proporzioni con un solo clic",
+      "Output in PNG, JPG o WebP",
+      "Anteprima in tempo reale delle dimensioni prima di ridimensionare",
+      "Scalatura su canvas ad alta qualità",
+      "100% lato browser: le immagini non escono mai dal tuo dispositivo",
+      "Nessuna registrazione, nessun watermark, nessun limite di peso",
+      "Funziona anche offline una volta caricata la pagina"
+    ],
+    "useCases": [
+      "Ridimensionare foto alle misure dei social media",
+      "Creare miniature e avatar di dimensioni esatte",
+      "Ridurre immagini pesanti per pagine web più veloci",
+      "Adattare un'immagine a un limite di upload richiesto",
+      "Ridurre screenshot in percentuale",
+      "Preparare foto di prodotto con una larghezza uniforme",
+      "Ridimensionare immagini per email o documenti",
+      "Ridurre foto ad alta risoluzione per la condivisione"
+    ],
+    "proTips": [
+      "Tieni attivo il blocco delle proporzioni per evitare immagini stirate",
+      "Inserisci solo la larghezza (o solo l'altezza) e l'altro valore viene calcolato per te",
+      "Usa la modalità percentuale per ridurre in modo uniforme senza fare calcoli",
+      "Il formato WebP di solito dà il file più leggero a parità di qualità visiva",
+      "Ingrandire oltre il 100% non aggiunge dettaglio: ingrandisce solo i pixel",
+      "Ti serve un file più leggero alle stesse dimensioni? Usa il Compressore di Immagini"
+    ],
+    "troubleshooting": [
+      "L'immagine appare stirata: attiva Mantieni le proporzioni",
+      "Il risultato è sfocato: hai ingrandito oltre la risoluzione originale",
+      "Il file è ancora pesante: passa al formato JPG o WebP, oppure comprimilo",
+      "Non si carica nulla: verifica che sia un vero file immagine e non un file rinominato",
+      "Trasparenza persa: esporta in PNG o WebP, non in JPG"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clicca + trascina",
+        "description": "Trascina un'immagine nell'area di caricamento"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "ridimensionare immagine online gratis",
+    "ridurre dimensioni foto in pixel",
+    "ridimensiona immagini online gratis",
+    "ridimensionare foto per social media",
+    "come ridimensionare un'immagine",
+    "ridimensionare immagine senza perdere qualità",
+    "come ridurre dimensioni di una foto in pixel",
+    "ridimensionare immagine in percentuale",
+    "ridimensionare immagine mantenendo le proporzioni",
+    "convertire e ridimensionare in webp jpg png",
+    "ridimensionare immagine online o photoshop",
+    "miglior strumento per ridimensionare immagini online"
+  ]
+}
