@@ -101,6 +101,8 @@ export default function SplitPdf({ dictionary }: SplitPdfProps) {
         setPageCount(await getPdfPageCount(buf));
         setThumbnails(await renderPdfThumbnails(buf));
       } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error('[split-pdf] failed to read PDF', e);
         setError(
           `Could not read the PDF${e instanceof Error ? `: ${e.message}` : ''}`
         );

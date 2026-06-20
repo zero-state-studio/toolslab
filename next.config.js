@@ -56,6 +56,11 @@ const nextConfig = {
     config.resolve.alias = config.resolve.alias || {};
     config.resolve.alias['@'] = require('path').resolve(__dirname);
 
+    // pdf.js (pdfjs-dist) optionally requires the Node "canvas" package;
+    // in the browser build it must be disabled or bundling breaks
+    // ("Object.defineProperty called on non-object").
+    config.resolve.alias.canvas = false;
+
     return config;
   },
 
