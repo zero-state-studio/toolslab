@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // pdf.js ships modern ESM that Next/webpack does not transpile by default,
+  // causing "Object.defineProperty called on non-object" at module init.
+  // Transpiling the package through the Next compiler fixes the interop.
+  transpilePackages: ['pdfjs-dist'],
+
   // IMPORTANTE: Disabilita features sperimentali che causano problemi di cache
   experimental: {
     optimizeCss: true,
