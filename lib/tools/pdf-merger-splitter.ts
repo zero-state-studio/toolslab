@@ -256,6 +256,21 @@ export interface PdfThumbnail {
   dataUrl: string;
 }
 
+// Reuse a single module worker across calls. pdf.js v5 ships an ESM worker,
+// so we create it explicitly with { type: 'module' } and hand it to pdf.js via
+// workerPort — letting pdf.js create the worker itself produced a classic
+// worker that failed with "Object.defineProperty called on non-object".
+let pdfWorkerPort: Worker | null = null;
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export function configurePdfWorker(pdfjs: any): void {
+  if (!pdfWorkerPort) {
+    pdfWorkerPort = new Worker('/pdf.worker.min.mjs', { type: 'module' });
+  }
+  pdfjs.GlobalWorkerOptions.workerPort = pdfWorkerPort;
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
 /**
  * Render small PNG thumbnails for every page of a PDF buffer, for use in
  * a visual page picker. Browser-only (uses pdf.js + canvas).
@@ -264,10 +279,8 @@ export async function renderPdfThumbnails(
   buffer: ArrayBuffer,
   scale = 0.3
 ): Promise<PdfThumbnail[]> {
-  // Legacy build + worker served from /public — most compatible with the
-  // Next/webpack bundler (avoids "Object.defineProperty called on non-object").
-  const pdfjs = await import('pdfjs-dist/legacy/build/pdf.mjs');
-  pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs';
+  const pdfjs = await import('pdfjs-dist');
+  configurePdfWorker(pdfjs);
   const doc = await pdfjs.getDocument({ data: new Uint8Array(buffer.slice(0)) })
     .promise;
   try {
