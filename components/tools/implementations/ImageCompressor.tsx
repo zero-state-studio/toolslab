@@ -38,12 +38,20 @@ export default function ImageCompressor({ dictionary }: ImageCompressorProps) {
     processing: t.processing || 'Compressing…',
     saved: t.saved || 'smaller',
     larger: t.larger || 'larger (try lower quality)',
+    alreadyOptimized:
+      t.alreadyOptimized ||
+      'Already optimized — kept your original (try WebP for smaller size)',
+    pngNote:
+      t.pngNote ||
+      'PNG is lossless — the quality slider has little effect. Use WebP or JPG to actually shrink photos.',
   };
 
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [quality, setQuality] = useState(0.7);
-  const [format, setFormat] = useState<ImageFormat | 'keep'>('keep');
+  // Default to WebP — it actually compresses (PNG re-encode often grows the file).
+  const [format, setFormat] = useState<ImageFormat | 'keep'>('webp');
+  const [keptOriginal, setKeptOriginal] = useState(false);
   const [result, setResult] = useState<ProcessedImage | null>(null);
   const [resultUrl, setResultUrl] = useState<string | null>(null);
   const [error, setError] = useState('');
@@ -66,6 +74,7 @@ export default function ImageCompressor({ dictionary }: ImageCompressorProps) {
     setResult(null);
     if (resultUrl) URL.revokeObjectURL(resultUrl);
     setResultUrl(null);
+    setKeptOriginal(false);
     setError('');
   };
 
@@ -106,14 +115,20 @@ export default function ImageCompressor({ dictionary }: ImageCompressorProps) {
         quality,
         format: resolvedFormat(),
       });
-      setResult(out);
-      setResultUrl(URL.createObjectURL(out.blob));
-      const pct = Math.round((1 - out.blob.size / file.size) * 100);
+      // Never hand back a file bigger than the original — keep the original instead.
+      const grewBigger = out.blob.size >= file.size;
+      const finalBlob = grewBigger ? file : out.blob;
+      setKeptOriginal(grewBigger);
+      setResult({ blob: finalBlob, width: out.width, height: out.height });
+      setResultUrl(URL.createObjectURL(finalBlob));
+      const pct = Math.round((1 - finalBlob.size / file.size) * 100);
       addToHistory({
         id: crypto.randomUUID(),
         tool: 'image-compressor',
         input: `${file.name} ${formatFileSize(file.size)}`,
-        output: `${formatFileSize(out.blob.size)} (${pct}% ${labels.saved})`,
+        output: grewBigger
+          ? `kept original ${formatFileSize(file.size)}`
+          : `${formatFileSize(finalBlob.size)} (${pct}% ${labels.saved})`,
         timestamp: startTime,
       });
     } catch (e) {
@@ -186,19 +201,24 @@ export default function ImageCompressor({ dictionary }: ImageCompressorProps) {
             />
           </div>
 
-          <label className="text-sm flex items-center gap-2">
-            <span className="text-gray-500">{labels.format}</span>
-            <select
-              value={format}
-              onChange={(e) => setFormat(e.target.value as ImageFormat | 'keep')}
-              className="rounded-lg border border-gray-300 px-2 py-1.5 text-sm dark:border-gray-600 dark:bg-gray-800"
-            >
-              <option value="keep">{labels.keepFormat}</option>
-              <option value="jpeg">JPG</option>
-              <option value="webp">WebP</option>
-              <option value="png">PNG</option>
-            </select>
-          </label>
+          <div className="space-y-1">
+            <label className="text-sm flex items-center gap-2">
+              <span className="text-gray-500">{labels.format}</span>
+              <select
+                value={format}
+                onChange={(e) => setFormat(e.target.value as ImageFormat | 'keep')}
+                className="rounded-lg border border-gray-300 px-2 py-1.5 text-sm dark:border-gray-600 dark:bg-gray-800"
+              >
+                <option value="webp">WebP ★</option>
+                <option value="jpeg">JPG</option>
+                <option value="png">PNG</option>
+                <option value="keep">{labels.keepFormat}</option>
+              </select>
+            </label>
+            {resolvedFormat() === 'png' && (
+              <p className="text-xs text-amber-600">{labels.pngNote}</p>
+            )}
+          </div>
 
           <Button onClick={handleCompress} disabled={isProcessing} className="w-full">
             {isProcessing ? (
@@ -220,19 +240,25 @@ export default function ImageCompressor({ dictionary }: ImageCompressorProps) {
               alt={labels.result}
               className="max-h-72 rounded border border-gray-200 bg-white dark:border-gray-700"
             />
-            <p className="text-sm">
-              <span className="text-gray-500">{formatFileSize(file.size)} → </span>
-              <span className="font-semibold">{formatFileSize(result.blob.size)}</span>{' '}
-              <span className={savedPct >= 0 ? 'text-green-600' : 'text-amber-600'}>
-                ({Math.abs(savedPct)}% {savedPct >= 0 ? labels.saved : labels.larger})
-              </span>
-            </p>
+            {keptOriginal ? (
+              <p className="text-sm text-amber-600">{labels.alreadyOptimized}</p>
+            ) : (
+              <p className="text-sm">
+                <span className="text-gray-500">{formatFileSize(file.size)} → </span>
+                <span className="font-semibold">{formatFileSize(result.blob.size)}</span>{' '}
+                <span className="text-green-600">
+                  ({savedPct}% {labels.saved})
+                </span>
+              </p>
+            )}
             <Button
               variant="outline"
               onClick={() =>
                 downloadBlob(
                   result.blob,
-                  buildOutputName(file.name, 'compressed', resolvedFormat())
+                  keptOriginal
+                    ? file.name
+                    : buildOutputName(file.name, 'compressed', resolvedFormat())
                 )
               }
             >
