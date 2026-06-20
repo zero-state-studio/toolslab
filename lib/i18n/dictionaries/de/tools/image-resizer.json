@@ -1,0 +1,107 @@
+{
+  "title": "Bildgröße ändern",
+  "description": "Bilder im Browser nach Pixeln oder Prozent skalieren",
+  "placeholder": "Bild hierher ziehen oder zum Hochladen klicken",
+  "drop": "Bild hierher ziehen oder zum Hochladen klicken",
+  "hint": "Nach exakten Pixeln oder nach Prozent skalieren – Seitenverhältnis standardmäßig gesperrt",
+  "byPixels": "Nach Pixeln",
+  "byPercent": "Nach Prozent",
+  "width": "Breite",
+  "height": "Höhe",
+  "percent": "Skalierung",
+  "lockAspect": "Seitenverhältnis sperren",
+  "format": "Ausgabeformat",
+  "resizeButton": "Bildgröße ändern",
+  "result": "Skaliertes Bild",
+  "original": "Original",
+  "resized": "Skaliert",
+  "download": "Herunterladen",
+  "onlyImage": "Es werden nur Bilddateien unterstützt",
+  "processing": "Größe wird geändert …",
+  "meta": {
+    "title": "Bildgröße ändern – Bilder online kostenlos verkleinern",
+    "description": "Bildgröße online kostenlos ändern: nach exakten Pixeln oder Prozent verkleinern, Seitenverhältnis sperren. JPG, PNG, WebP – ohne Upload, direkt im Browser."
+  },
+  "tagline": "Bilder nach exakten Pixeln oder Prozent skalieren, direkt im Browser",
+  "pageDescription": "Ändere mit diesem kostenlosen Online-Tool die Größe jedes Bildes auf exakte Maße oder per Prozentwert. Gib eine Zielbreite oder -höhe bei gesperrtem Seitenverhältnis ein oder skaliere ganz einfach in Prozent, und exportiere als PNG, JPG oder WebP. Alles läuft lokal in deinem Browser – deine Bilder werden niemals auf einen Server hochgeladen und bleiben privat. Ideal für Social-Media-Formate, Thumbnails, Avatare und Web-Grafiken. Ohne Anmeldung, ohne Wasserzeichen, ohne Dateigrößen-Limit.",
+  "instructions": {
+    "title": "So änderst du die Bildgröße",
+    "steps": [
+      {
+        "title": "Bild hochladen",
+        "description": "Ziehe ein Bild per Drag-and-drop in den Upload-Bereich oder klicke, um eine Datei auszuwählen. Die aktuellen Maße werden angezeigt."
+      },
+      {
+        "title": "Pixel oder Prozent wählen",
+        "description": "Wechsle zwischen exakten Pixelmaßen und einer prozentualen Skalierung – je nachdem, wie du die Größe ändern möchtest."
+      },
+      {
+        "title": "Neue Größe festlegen",
+        "description": "Gib eine Breite oder Höhe ein (der andere Wert folgt automatisch bei gesperrtem Seitenverhältnis) oder verschiebe den Prozent-Regler."
+      },
+      {
+        "title": "Ausgabeformat auswählen",
+        "description": "Behalte PNG für verlustfreie Qualität, wähle JPG für kleinere Fotos oder WebP für das beste Verhältnis von Größe zu Qualität."
+      },
+      {
+        "title": "Skalieren und herunterladen",
+        "description": "Klicke auf „Bildgröße ändern“, prüfe das Ergebnis mit den neuen Maßen und der neuen Dateigröße und lade es herunter."
+      }
+    ],
+    "features": [
+      "Skalierung nach exakten Pixeln oder nach Prozent",
+      "Seitenverhältnis mit einem Klick sperren oder lösen",
+      "Ausgabe als PNG, JPG oder WebP",
+      "Live-Vorschau der Zielmaße vor dem Skalieren",
+      "Hochwertige Canvas-Skalierung für scharfe Ergebnisse",
+      "100 % im Browser – Bilder verlassen niemals dein Gerät",
+      "Ohne Anmeldung, Wasserzeichen oder Dateigrößen-Limit",
+      "Funktioniert offline, sobald die Seite geladen ist"
+    ],
+    "useCases": [
+      "Fotos auf Social-Media-Maße verkleinern",
+      "Thumbnails und Avatare in exakten Größen erstellen",
+      "Große Bilder für schnellere Webseiten verkleinern",
+      "Bilder an eine vorgegebene Upload-Größe anpassen",
+      "Screenshots prozentual herunterskalieren",
+      "Produktbilder auf eine einheitliche Breite bringen",
+      "Bilder für E-Mails oder Dokumente skalieren",
+      "Hochauflösende Fotos zum Teilen verkleinern"
+    ],
+    "proTips": [
+      "Lass das Seitenverhältnis gesperrt, um verzerrte Bilder zu vermeiden",
+      "Gib nur eine Breite (oder nur eine Höhe) ein – der andere Wert wird berechnet",
+      "Nutze den Prozentmodus, um gleichmäßig zu verkleinern, ohne selbst zu rechnen",
+      "WebP liefert meist die kleinste Datei bei gleicher Bildqualität",
+      "Hochskalieren über 100 % fügt keine Details hinzu – es vergrößert nur die Pixel",
+      "Brauchst du eine kleinere Datei bei gleicher Größe? Nutze den Bildkompressor"
+    ],
+    "troubleshooting": [
+      "Bild wirkt verzerrt: Schalte „Seitenverhältnis sperren“ ein",
+      "Ergebnis ist unscharf: Du hast über die Originalauflösung hinaus hochskaliert",
+      "Datei ist immer noch groß: Wechsle das Format zu JPG oder WebP oder komprimiere es",
+      "Nichts wird geladen: Stelle sicher, dass es eine echte Bilddatei und nicht nur umbenannt ist",
+      "Transparenz verloren: Exportiere als PNG oder WebP, nicht als JPG"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Klicken + Ziehen",
+        "description": "Bild in den Upload-Bereich ziehen"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "bild verkleinern online kostenlos",
+    "bildgröße online ändern kostenlos",
+    "foto auf bestimmte pixel verkleinern",
+    "bild skalieren ohne qualitätsverlust",
+    "wie ändere ich die bildgröße",
+    "bildgröße in pixel ändern",
+    "bild verkleinern ohne anmeldung",
+    "bild größe ändern nach prozent",
+    "seitenverhältnis beim verkleinern beibehalten",
+    "bild für social media verkleinern",
+    "bild verkleinern online ohne upload",
+    "bestes bild verkleinern tool kostenlos"
+  ]
+}

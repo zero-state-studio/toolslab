@@ -496,6 +496,32 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/color-format-converter"/>
   </url>
   <url>
+    <loc>https://toolslab.dev/tools/image-resizer</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/image-resizer"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/image-resizer"/>
+  </url>
+  <url>
+    <loc>https://toolslab.dev/tools/image-compressor</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://toolslab.dev/it/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://toolslab.dev/es/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://toolslab.dev/fr/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://toolslab.dev/de/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://toolslab.dev/pt/tools/image-compressor"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/tools/image-compressor"/>
+  </url>
+  <url>
     <loc>https://toolslab.dev/tools/favicon-generator</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>weekly</changefreq>

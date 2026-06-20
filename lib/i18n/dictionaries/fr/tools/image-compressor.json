@@ -1,0 +1,103 @@
+{
+  "title": "Compresseur d'images",
+  "description": "Compressez vos images JPG, PNG et WebP pour réduire leur poids",
+  "placeholder": "Déposez une image ici ou cliquez pour l'importer",
+  "drop": "Déposez une image ici ou cliquez pour l'importer",
+  "hint": "Réduisez le poids d'une image avec une qualité ajustable",
+  "quality": "Qualité",
+  "format": "Format de sortie",
+  "keepFormat": "Conserver l'original",
+  "compressButton": "Compresser l'image",
+  "result": "Image compressée",
+  "download": "Télécharger",
+  "onlyImage": "Seuls les fichiers image sont pris en charge",
+  "processing": "Compression en cours…",
+  "saved": "plus léger",
+  "larger": "plus lourd (baissez la qualité)",
+  "meta": {
+    "title": "Compresseur d'images - Réduire le poids d'une image en ligne",
+    "description": "Compressez vos images JPG, PNG et WebP en ligne gratuit pour réduire leur poids avec une qualité ajustable. Sans envoi ni inscription, dans votre navigateur."
+  },
+  "tagline": "Compressez vos images pour réduire leur poids sans perte de qualité visible",
+  "pageDescription": "Compressez vos images JPG, PNG et WebP pour réduire leur poids avec ce compresseur d'images en ligne gratuit. Déplacez le curseur de qualité pour ajuster l'équilibre entre poids et netteté, et voyez exactement combien vous économisez — en général 50 à 80 % de moins. Tout fonctionne en local dans votre navigateur : vos images ne sont jamais envoyées et restent privées. Idéal pour accélérer un site web, alléger les pièces jointes d'un e-mail et rester sous les limites d'envoi. Sans inscription, sans filigrane et sans limite de taille de fichier.",
+  "instructions": {
+    "title": "Comment compresser une image",
+    "steps": [
+      {
+        "title": "Importez votre image",
+        "description": "Glissez-déposez une image sur la zone d'import ou cliquez pour parcourir vos fichiers. Son poids actuel s'affiche."
+      },
+      {
+        "title": "Réglez la qualité",
+        "description": "Déplacez le curseur de qualité. Une qualité plus basse donne un fichier plus léger ; environ 70 % offre un bon équilibre pour la plupart des photos."
+      },
+      {
+        "title": "Choisissez le format de sortie",
+        "description": "Conservez le format d'origine ou convertissez en JPG ou WebP pour une compression plus forte. Le WebP l'emporte généralement."
+      },
+      {
+        "title": "Compressez l'image",
+        "description": "Cliquez sur Compresser l'image. Le traitement se fait dans votre navigateur — rien n'est envoyé sur un serveur."
+      },
+      {
+        "title": "Vérifiez le gain et téléchargez",
+        "description": "Comparez le poids avant/après et le pourcentage économisé, puis téléchargez le fichier allégé."
+      }
+    ],
+    "features": [
+      "Compression des images JPG, PNG et WebP",
+      "Curseur de qualité ajustable avec pourcentage en direct",
+      "Conversion de format pendant la compression (ex. PNG → WebP)",
+      "Poids avant/après avec pourcentage exact économisé",
+      "Aperçu du résultat compressé avant le téléchargement",
+      "100 % côté navigateur — vos images ne quittent jamais votre appareil",
+      "Sans inscription, sans filigrane et sans limite de taille",
+      "Fonctionne hors ligne une fois la page chargée"
+    ],
+    "useCases": [
+      "Alléger des images pour accélérer le chargement d'un site web",
+      "Réduire le poids d'une photo pour une pièce jointe d'e-mail",
+      "Rester sous une limite de taille d'envoi",
+      "Compresser des captures d'écran avant de les partager",
+      "Optimiser les images produits d'une boutique en ligne",
+      "Réduire le poids des images pour des pages mobiles plus rapides",
+      "Convertir des PNG lourds en WebP plus légers",
+      "Alléger des photos d'appareil photo trop grandes pour le web"
+    ],
+    "proTips": [
+      "Le WebP à 70–80 % de qualité bat généralement le JPG à poids égal",
+      "La compression PNG reste quasi sans perte ici — convertissez en JPG/WebP pour de gros gains sur les photos",
+      "Si le résultat paraît flou, augmentez un peu la qualité",
+      "Les fichiers très légers peuvent montrer des artefacts — trouvez le bon réglage vers 60–75 %",
+      "Besoin de changer aussi les dimensions ? Utilisez d'abord le Redimensionneur d'images",
+      "Tout est local, vous pouvez donc compresser vos images privées en toute sécurité"
+    ],
+    "troubleshooting": [
+      "Le fichier est devenu plus lourd : baissez la qualité ou passez au format JPG/WebP",
+      "L'image est pixelisée : la qualité est trop basse — remontez le curseur",
+      "La transparence a disparu : le JPG n'a pas de canal alpha — utilisez WebP ou PNG",
+      "Aucune réduction de poids sur un PNG : convertissez en JPG ou WebP pour de vrais gains",
+      "Rien ne se charge : vérifiez que le fichier est une vraie image et non un fichier renommé"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + glisser",
+        "description": "Déposez une image sur la zone d'import"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "compresser image en ligne gratuit",
+    "réduire le poids d'une image",
+    "compresser jpg en ligne",
+    "compresser png en ligne",
+    "comment réduire le poids d'une image",
+    "compresser une image sans perte de qualité",
+    "réduire la taille d'une photo pour e-mail",
+    "compresser image dans le navigateur",
+    "convertir png en webp pour compresser",
+    "compresser webp en ligne gratuit",
+    "meilleur compresseur d'images en ligne",
+    "compresser image en ligne sans inscription"
+  ]
+}

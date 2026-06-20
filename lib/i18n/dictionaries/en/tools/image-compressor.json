@@ -1,0 +1,89 @@
+{
+  "title": "Image Compressor",
+  "description": "Compress JPG, PNG and WebP images to reduce file size",
+  "placeholder": "Drop an image here or click to upload",
+  "drop": "Drop an image here or click to upload",
+  "hint": "Reduce image file size with adjustable quality",
+  "quality": "Quality",
+  "format": "Output format",
+  "keepFormat": "Keep original",
+  "compressButton": "Compress image",
+  "result": "Compressed image",
+  "download": "Download",
+  "onlyImage": "Only image files are supported",
+  "processing": "Compressing…",
+  "saved": "smaller",
+  "larger": "larger (try lower quality)",
+  "meta": {
+    "title": "Image Compressor - Reduce Image File Size Online Free",
+    "description": "Compress JPG, PNG and WebP images online free to reduce file size with an adjustable quality slider. No upload, no signup — runs privately in your browser."
+  },
+  "tagline": "Compress images to reduce file size without visible quality loss",
+  "pageDescription": "Compress JPG, PNG and WebP images to shrink their file size with this free online Image Compressor. Drag the quality slider to balance size against sharpness and see exactly how much you saved — typically 50–80% smaller. Everything runs locally in your browser, so your images are never uploaded and stay private. Ideal for faster websites, smaller email attachments and staying under upload limits. No signup, no watermarks, no file-size paywall.",
+  "instructions": {
+    "title": "How to compress an image",
+    "steps": [
+      {
+        "title": "Upload your image",
+        "description": "Drag and drop an image onto the upload area or click to browse. Its current size is shown."
+      },
+      {
+        "title": "Set the quality",
+        "description": "Drag the quality slider. Lower quality means a smaller file; around 70% is a good balance for most photos."
+      },
+      {
+        "title": "Choose the output format",
+        "description": "Keep the original format, or convert to JPG or WebP for stronger compression. WebP usually wins."
+      },
+      {
+        "title": "Compress the image",
+        "description": "Click Compress image. It processes in your browser — nothing is uploaded."
+      },
+      {
+        "title": "Check savings and download",
+        "description": "See the before/after size and percentage saved, then download the smaller file."
+      }
+    ],
+    "features": [
+      "Compress JPG, PNG and WebP images",
+      "Adjustable quality slider with live percentage",
+      "Convert format while compressing (e.g. PNG → WebP)",
+      "Before/after size with exact percentage saved",
+      "Preview the compressed result before downloading",
+      "100% client-side — images never leave your browser",
+      "No signup, watermarks or file-size limits",
+      "Works offline once the page has loaded"
+    ],
+    "useCases": [
+      "Shrink images to speed up website load times",
+      "Reduce photo size for email attachments",
+      "Stay under an upload size limit",
+      "Compress screenshots before sharing",
+      "Optimize product images for an online store",
+      "Cut down image weight for faster mobile pages",
+      "Convert heavy PNGs to lighter WebP",
+      "Batch down large camera photos for the web"
+    ],
+    "proTips": [
+      "WebP at 70–80% quality usually beats JPG at the same size",
+      "PNG compression is lossless-ish here — convert to JPG/WebP for big savings on photos",
+      "If the result looks soft, raise the quality a little",
+      "Very small files may show artifacts — find the sweet spot around 60–75%",
+      "Need different dimensions too? Use the Image Resizer first",
+      "Everything is local, so you can compress private images safely"
+    ],
+    "troubleshooting": [
+      "File got larger: lower the quality, or switch format to JPG/WebP",
+      "Image looks blocky: quality is too low — raise the slider",
+      "Transparency disappeared: JPG has no alpha — use WebP or PNG",
+      "No size reduction on PNG: convert to JPG or WebP for real savings",
+      "Nothing loads: make sure the file is a real image, not renamed"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Click + drag",
+        "description": "Drop an image onto the upload area"
+      }
+    ]
+  }
+}

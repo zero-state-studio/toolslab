@@ -1,0 +1,107 @@
+{
+  "title": "Redimensionar Imagen",
+  "description": "Cambia el tamaño de imágenes por píxeles o porcentaje en tu navegador",
+  "placeholder": "Arrastra una imagen aquí o haz clic para subirla",
+  "drop": "Arrastra una imagen aquí o haz clic para subirla",
+  "hint": "Redimensiona por píxeles exactos o por porcentaje: la relación de aspecto se mantiene bloqueada por defecto",
+  "byPixels": "Por píxeles",
+  "byPercent": "Por porcentaje",
+  "width": "Ancho",
+  "height": "Alto",
+  "percent": "Escala",
+  "lockAspect": "Mantener relación de aspecto",
+  "format": "Formato de salida",
+  "resizeButton": "Redimensionar imagen",
+  "result": "Imagen redimensionada",
+  "original": "Original",
+  "resized": "Redimensionada",
+  "download": "Descargar",
+  "onlyImage": "Solo se admiten archivos de imagen",
+  "processing": "Redimensionando…",
+  "meta": {
+    "title": "Redimensionar Imagen Online Gratis por Píxeles o % | ToolsLab",
+    "description": "Redimensiona imágenes online gratis por píxeles o porcentaje, sin perder calidad y manteniendo la relación de aspecto. JPG, PNG, WebP. Sin subidas ni registro."
+  },
+  "tagline": "Cambia el tamaño de tus imágenes por píxeles exactos o porcentaje, directo en tu navegador",
+  "pageDescription": "Redimensiona cualquier imagen a dimensiones exactas o por porcentaje con esta herramienta gratuita para cambiar el tamaño de imágenes online. Define un ancho o alto objetivo con la relación de aspecto bloqueada, o escala por porcentaje, y expórtala en PNG, JPG o WebP. Todo se procesa localmente en tu navegador: tus imágenes nunca se suben a un servidor, así que se mantienen privadas. Ideal para tamaños de redes sociales, miniaturas, avatares y recursos web. Sin registro, sin marcas de agua y sin límites de tamaño de archivo.",
+  "instructions": {
+    "title": "Cómo redimensionar una imagen",
+    "steps": [
+      {
+        "title": "Sube tu imagen",
+        "description": "Arrastra y suelta una imagen sobre el área de carga o haz clic para buscarla. Aparecerán sus dimensiones actuales."
+      },
+      {
+        "title": "Elige píxeles o porcentaje",
+        "description": "Cambia entre dimensiones exactas en píxeles y una escala por porcentaje, según cómo quieras redimensionar la imagen."
+      },
+      {
+        "title": "Define el nuevo tamaño",
+        "description": "Introduce un ancho o un alto (el otro se ajusta solo si la relación de aspecto está bloqueada) o mueve el deslizador de porcentaje."
+      },
+      {
+        "title": "Selecciona un formato de salida",
+        "description": "Mantén PNG para calidad sin pérdidas, elige JPG para fotos más ligeras o WebP para el mejor equilibrio entre tamaño y calidad."
+      },
+      {
+        "title": "Redimensiona y descarga",
+        "description": "Haz clic en Redimensionar imagen, revisa el resultado con sus nuevas dimensiones y peso, y luego descárgalo."
+      }
+    ],
+    "features": [
+      "Redimensiona por píxeles exactos o por porcentaje",
+      "Bloqueo de relación de aspecto con un solo clic",
+      "Exporta en PNG, JPG o WebP",
+      "Vista previa en vivo de las dimensiones objetivo antes de redimensionar",
+      "Escalado de alta calidad mediante canvas",
+      "100 % en el navegador: las imágenes nunca salen de tu equipo",
+      "Sin registro, marcas de agua ni límites de tamaño de archivo",
+      "Funciona sin conexión una vez cargada la página"
+    ],
+    "useCases": [
+      "Redimensionar fotos a las medidas de redes sociales",
+      "Crear miniaturas y avatares con tamaños exactos",
+      "Reducir el tamaño de imágenes grandes para webs más rápidas",
+      "Ajustar imágenes a un tamaño de subida requerido",
+      "Reducir capturas de pantalla por porcentaje",
+      "Preparar fotos de producto con un ancho uniforme",
+      "Cambiar el tamaño de imágenes para correos o documentos",
+      "Reducir fotos de alta resolución para compartirlas"
+    ],
+    "proTips": [
+      "Mantén el bloqueo de aspecto activado para evitar imágenes deformadas",
+      "Introduce solo el ancho (o solo el alto) y el otro valor se calcula por ti",
+      "Usa el modo porcentaje para reducir de forma uniforme sin hacer cuentas",
+      "WebP suele dar el archivo más ligero con la misma calidad visual",
+      "Ampliar por encima del 100 % no añade detalle: solo agranda los píxeles",
+      "¿Necesitas un archivo más ligero al mismo tamaño? Usa el Compresor de Imágenes"
+    ],
+    "troubleshooting": [
+      "La imagen se ve deformada: activa Mantener relación de aspecto",
+      "El resultado se ve borroso: ampliaste por encima de la resolución original",
+      "El archivo sigue siendo pesado: cambia el formato a JPG o WebP, o comprímelo",
+      "No carga nada: comprueba que el archivo sea una imagen real y no esté solo renombrado",
+      "Se perdió la transparencia: exporta en PNG o WebP, no en JPG"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + arrastrar",
+        "description": "Suelta una imagen sobre el área de carga"
+      }
+    ]
+  },
+  "longTailKeywords": [
+    "redimensionar imagen online gratis",
+    "cambiar el tamaño de una imagen",
+    "redimensionar imagen por píxeles",
+    "redimensionar imagen sin perder calidad",
+    "reducir tamaño de imagen en píxeles",
+    "cambiar tamaño de imagen online",
+    "redimensionar imagen por porcentaje",
+    "mantener la relación de aspecto al redimensionar",
+    "redimensionar imagen jpg png webp",
+    "cómo cambiar el tamaño de una imagen sin perder calidad",
+    "mejor herramienta para redimensionar imágenes online",
+    "redimensionar imagen vs comprimir imagen"
+  ]
+}

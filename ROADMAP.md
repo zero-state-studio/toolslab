@@ -12,7 +12,7 @@ Live status of the tool build pipeline. **Rendered on GitHub** — refresh to se
 
 ## 📊 Status
 
-- **Shipped (dev):** 6 tools · ~600K/mo search volume
+- **Shipped (dev):** 8 tools · ~1.2M/mo search volume
 - **Verifying:** 2 (pdf.js render)
 - **Queued:** prioritized below
 
@@ -26,6 +26,8 @@ Live status of the tool build pipeline. **Rendered on GitHub** — refresh to se
 - [x] **pdf-to-jpg** — PDF to JPG/PNG/WebP · 120K/mo · `RIC-54`
 - [x] **css-box-shadow-generator** — CSS Box Shadow Generator · 60K/mo · `RIC-30`
 - [x] **number-base-converter** — Number Base Converter · 55K/mo · `RIC-31`
+- [x] **image-resizer** — Image Resizer (px / %) · 450K/mo · `RIC-34`
+- [x] **image-compressor** — Image Compressor (quality slider) · 150K/mo · replaces `image-optimizer` stub
 
 > Each: pure tested logic, 6 locales (en/it/es/fr/de/pt), web-researched long-tail keywords, sitemap, completeness review.
 
@@ -72,8 +74,8 @@ Live status of the tool build pipeline. **Rendered on GitHub** — refresh to se
 
 ## ⚠️ Review before building (overlap with existing tools)
 
-- [ ] **image-resizer** · 450K/mo · `RIC-34` — overlaps `image-optimizer`; only build if clearly differentiated
 - [ ] **color-palette-generator** · 50K/mo · `RIC-33` — overlaps `color-picker`/`gradient-generator`
+- [x] ~~image-resizer / image-compressor~~ — shipped; the old `image-optimizer` was only a coming-soon stub (no logic), now replaced by two focused tools
 - [x] ~~json-to-yaml~~ — already covered by `yaml-json-converter`
 
 ---
