@@ -14,6 +14,8 @@
   "processing": "Compressione in corso…",
   "saved": "in meno",
   "larger": "più pesante (prova una qualità più bassa)",
+  "alreadyOptimized": "Già ottimizzata — tenuto l'originale (prova WebP per ridurre)",
+  "pngNote": "Il PNG è lossless — lo slider qualità ha poco effetto. Usa WebP o JPG per ridurre davvero le foto.",
   "meta": {
     "title": "Compressore di Immagini - Riduci il Peso Online Gratis",
     "description": "Comprimi immagini JPG, PNG e WebP online gratis e riduci il peso con uno slider di qualità. Nessun caricamento, nessuna registrazione: tutto resta nel browser."

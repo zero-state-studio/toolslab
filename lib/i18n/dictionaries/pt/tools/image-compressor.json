@@ -14,6 +14,8 @@
   "processing": "Comprimindo…",
   "saved": "menor",
   "larger": "maior (tente uma qualidade mais baixa)",
+  "alreadyOptimized": "Já otimizada — mantivemos o original (use WebP para reduzir)",
+  "pngNote": "PNG é sem perdas — o controle de qualidade quase não afeta. Use WebP ou JPG para reduzir fotos de verdade.",
   "meta": {
     "title": "Compressor de Imagens - Reduzir Tamanho de Foto Online",
     "description": "Comprima imagens JPG, PNG e WebP online grátis e reduza o tamanho do arquivo sem perder qualidade. Sem upload, sem cadastro — tudo roda no seu navegador."

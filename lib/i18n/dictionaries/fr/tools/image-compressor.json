@@ -14,6 +14,8 @@
   "processing": "Compression en cours…",
   "saved": "plus léger",
   "larger": "plus lourd (baissez la qualité)",
+  "alreadyOptimized": "Déjà optimisée — original conservé (essaie WebP pour réduire)",
+  "pngNote": "Le PNG est sans perte — le curseur de qualité a peu d'effet. Utilise WebP ou JPG pour vraiment réduire les photos.",
   "meta": {
     "title": "Compresseur d'images - Réduire le poids d'une image en ligne",
     "description": "Compressez vos images JPG, PNG et WebP en ligne gratuit pour réduire leur poids avec une qualité ajustable. Sans envoi ni inscription, dans votre navigateur."

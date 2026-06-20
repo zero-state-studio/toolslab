@@ -14,6 +14,8 @@
   "processing": "Compressing…",
   "saved": "smaller",
   "larger": "larger (try lower quality)",
+  "alreadyOptimized": "Already optimized — kept your original (try WebP for smaller size)",
+  "pngNote": "PNG is lossless — the quality slider has little effect. Use WebP or JPG to actually shrink photos.",
   "meta": {
     "title": "Image Compressor - Reduce Image File Size Online Free",
     "description": "Compress JPG, PNG and WebP images online free to reduce file size with an adjustable quality slider. No upload, no signup — runs privately in your browser."
