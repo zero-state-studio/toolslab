@@ -1,0 +1,88 @@
+{
+  "title": ".env a JSON",
+  "description": "Convierte archivos .env a JSON y viceversa",
+  "placeholder": "Pega aquí tu archivo .env…",
+  "hint": "Convierte un archivo .env a JSON o JSON de vuelta a .env. Maneja comillas, comentarios y el prefijo export — todo en tu navegador.",
+  "env2json": ".env → JSON",
+  "json2env": "JSON → .env",
+  "swap": "Invertir dirección",
+  "placeholderEnv": "Pega aquí tu archivo .env…",
+  "placeholderJson": "Pega aquí tu objeto JSON…",
+  "result": "Resultado",
+  "copy": "Copiar",
+  "copied": "¡Copiado!",
+  "sample": "Cargar ejemplo",
+  "vars": "variables",
+  "meta": {
+    "title": "Convertidor .env a JSON - Gratis, Bidireccional | ToolsLab",
+    "description": "Convierte archivos .env a JSON y JSON de vuelta a .env online gratis. Analiza variables de entorno con comillas, comentarios y prefijo export — en tu navegador, sin registro."
+  },
+  "tagline": "Convierte archivos .env a JSON y viceversa con un clic, todo en tu navegador",
+  "pageDescription": "Convierte archivos .env a JSON y JSON de vuelta a .env con este convertidor online y gratuito. Pega un archivo dotenv para obtener un objeto JSON limpio de tus variables de entorno — comillas, comentarios, el prefijo export y valores que contienen = se manejan correctamente — o pega un objeto JSON para generar un archivo .env listo para usar con las comillas adecuadas. Todo se ejecuta localmente en tu navegador, así que los secretos y claves de API nunca se suben. Ideal para desarrolladores que configuran ajustes, importan variables en CI o mueven configuraciones entre formatos.",
+  "instructions": {
+    "title": "Cómo convertir .env a JSON",
+    "steps": [
+      {
+        "title": "Elige una dirección",
+        "description": "Elige .env → JSON para analizar un archivo dotenv, o JSON → .env para generar uno desde un objeto JSON."
+      },
+      {
+        "title": "Pega tu entrada",
+        "description": "Pega el archivo .env o el objeto JSON en el cuadro. Los comentarios y el prefijo export se manejan automáticamente."
+      },
+      {
+        "title": "Lee el resultado",
+        "description": "La conversión se ejecuta al instante mientras escribes, mostrando el número de variables analizadas."
+      },
+      {
+        "title": "Invierte si hace falta",
+        "description": "Usa el botón de inversión para devolver el resultado en sentido contrario y confirmar un ida y vuelta limpio."
+      },
+      {
+        "title": "Copia la salida",
+        "description": "Haz clic en Copiar para tomar el JSON o el .env y pegarlo en tu configuración, código o ajustes de CI."
+      }
+    ],
+    "features": [
+      "Conversión bidireccional: .env ↔ JSON",
+      "Maneja comillas simples y dobles con escapes",
+      "Quita comentarios # y comentarios inline",
+      "Admite el prefijo export KEY=value",
+      "Conserva valores que contienen = (como URLs de base de datos)",
+      "Pone comillas a los valores que lo necesitan al escribir .env",
+      "100% del lado del cliente — los secretos no salen del navegador",
+      "Sin registro, sin límites"
+    ],
+    "useCases": [
+      "Convertir un archivo .env en JSON para un cargador de configuración",
+      "Generar un archivo .env desde un objeto de ajustes JSON",
+      "Importar variables de entorno en una pipeline de CI",
+      "Inspeccionar un .env desordenado como JSON estructurado",
+      "Migrar configuración entre los formatos dotenv y JSON",
+      "Construir un .env rápidamente desde documentación de API en JSON",
+      "Validar que un .env se analiza limpiamente",
+      "Convertir secretos para una herramienta que espera JSON"
+    ],
+    "proTips": [
+      "Los valores entre comillas dobles expanden \\n; las comillas simples quedan literales",
+      "Los valores con espacios o # se entrecomillan automáticamente al escribir .env",
+      "Usa la inversión para hacer ida y vuelta y verificar que no se perdió nada",
+      "Los objetos JSON anidados se convierten en una cadena JSON en el valor .env",
+      "Todo es local, así que es seguro pegar secretos reales",
+      "Combínalo con el convertidor YAML/JSON para otros formatos de configuración"
+    ],
+    "troubleshooting": [
+      "No se encontraron variables: comprueba que las líneas usen KEY=value, no KEY: value",
+      "Error de JSON inválido: JSON → .env necesita un objeto JSON válido",
+      "Un valor perdió un comentario: es lo esperado — los comentarios no son parte del valor",
+      "Las comillas se ven distintas: el analizador normaliza las comillas en la salida",
+      "Array rechazado: el .env necesita un objeto de pares clave/valor, no un array"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Pega en la entrada"
+      }
+    ]
+  }
+}

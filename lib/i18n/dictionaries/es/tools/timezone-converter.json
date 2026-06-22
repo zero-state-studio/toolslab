@@ -1,0 +1,86 @@
+{
+  "title": "Conversor de Zonas Horarias",
+  "description": "Convierte horas entre zonas horarias y planifica reuniones por todo el mundo",
+  "placeholder": "Elige fecha y hora",
+  "hint": "Elige una hora y la zona de origen, y la verás al instante en cada zona que añadas — perfecto para planificar reuniones.",
+  "when": "Fecha y hora",
+  "now": "Ahora",
+  "source": "Zona horaria de origen",
+  "targets": "Mostrar en estas zonas horarias",
+  "add": "Añadir zona horaria",
+  "convert": "Convertir",
+  "result": "Horas en el mundo",
+  "error": "No se pudo convertir — revisa la fecha y la zona horaria",
+  "meta": {
+    "title": "Conversor de Zonas Horarias y Planificador - Gratis | ToolsLab",
+    "description": "Convierte la hora entre zonas horarias online gratis. Compara una hora entre ciudades del mundo, gestiona el horario de verano y planifica reuniones — sin registro."
+  },
+  "tagline": "Convierte horas entre zonas y planifica reuniones globales en segundos",
+  "pageDescription": "Convierte cualquier hora entre zonas horarias y planifica reuniones por todo el mundo con este Conversor de Zonas Horarias online y gratuito. Elige fecha, hora y zona de origen, y luego añade todas las ciudades que quieras para ver la hora equivalente en todas partes a la vez — el horario de verano se gestiona automáticamente. Funciona por completo en tu navegador sin registro, ideal para planificar llamadas remotas, coordinar equipos distribuidos, organizar viajes y evitar el clásico error de '¿qué hora es allí?'.",
+  "instructions": {
+    "title": "Cómo convertir entre zonas horarias",
+    "steps": [
+      {
+        "title": "Pon la fecha y la hora",
+        "description": "Introduce el momento que quieres convertir, o pulsa Ahora para usar la hora actual. Es la hora local en tu zona de origen."
+      },
+      {
+        "title": "Elige la zona de origen",
+        "description": "Elige la zona en la que está la hora. Por defecto es la tuya, detectada por el navegador."
+      },
+      {
+        "title": "Añade zonas de destino",
+        "description": "Usa el menú Añadir zona horaria para agregar cada ciudad o zona que te interese. Añade tantas como necesites para una reunión."
+      },
+      {
+        "title": "Lee las horas convertidas",
+        "description": "Cada zona muestra fecha, hora, día de la semana y desfase UTC equivalentes, recalculados al instante con cada cambio."
+      },
+      {
+        "title": "Encuentra un solape",
+        "description": "Revisa las horas para hallar un hueco que funcione para todos y elimina las zonas que ya no necesites con el botón ×."
+      }
+    ],
+    "features": [
+      "Convierte una hora a muchas zonas a la vez",
+      "Gestión automática del horario de verano (DST)",
+      "Detecta tu zona horaria local automáticamente",
+      "Muestra fecha, hora, día y desfase UTC por zona",
+      "Añade o quita ciudades como planificador de reuniones",
+      "Se actualiza al instante al cambiar los datos",
+      "100% del lado del cliente — nada se envía a un servidor",
+      "Sin registro, sin límites"
+    ],
+    "useCases": [
+      "Planificar una reunión entre equipos distribuidos",
+      "Encontrar una hora que sirva en Nueva York, Londres y Tokio",
+      "Convertir marcas de tiempo UTC de logs a tu hora local",
+      "Organizar un webinar para una audiencia global",
+      "Coordinarte con freelancers y clientes remotos",
+      "Comprobar a qué hora ocurre un lanzamiento en tu zona",
+      "Evitar dobles reservas con los cambios de horario de verano",
+      "Planificar llegadas y salidas de viajes entre zonas"
+    ],
+    "proTips": [
+      "Pulsa Ahora y cambia la zona de origen para convertir 'su hora' a la tuya",
+      "El horario de verano es automático — elige la fecha, no un desfase fijo",
+      "Añade UTC como referencia neutral para horarios técnicos",
+      "Usa la etiqueta del día para detectar horas que caen al día siguiente",
+      "Quita las zonas sin usar para mantener limpia la vista de reunión",
+      "Combínalo con el Conversor de Marcas de Tiempo Unix para valores epoch"
+    ],
+    "troubleshooting": [
+      "La hora va una hora desfasada: es el horario de verano — verifica la fecha",
+      "Zona de origen equivocada: por defecto es la del navegador, cámbiala si hace falta",
+      "Falta una ciudad: elige la zona más cercana con el mismo desfase y reglas DST",
+      "La fecha saltó un día: los desfases grandes mueven horas al día siguiente/anterior, es correcto",
+      "No se actualiza nada: asegúrate de haber introducido fecha y hora"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Muévete entre los campos de fecha, origen y zona horaria"
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "title": "llms.txt-Generator",
+  "description": "Erzeuge eine llms.txt-Datei, um KI-Crawler zu deinen wichtigen Inhalten zu führen",
+  "hint": "Erstelle eine llms.txt-Datei, die KI-Crawlern wie ChatGPT, Claude und Perplexity deine wichtigsten Seiten zeigt.",
+  "name": "Projekt-/Seitenname",
+  "namePlaceholder": "Mein Projekt",
+  "summary": "Zusammenfassung (Blockquote)",
+  "summaryPlaceholder": "Eine kurze, dichte Zusammenfassung deiner Seite",
+  "details": "Details (optional)",
+  "detailsPlaceholder": "Zusätzlicher Kontext für das Modell…",
+  "section": "Abschnitt",
+  "sectionTitle": "Abschnittstitel (z. B. Docs)",
+  "linkTitle": "Link-Titel",
+  "url": "https://…",
+  "notes": "Notizen (optional)",
+  "addLink": "Link hinzufügen",
+  "addSection": "Abschnitt hinzufügen",
+  "result": "llms.txt",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "download": "llms.txt herunterladen",
+  "sample": "Beispiel laden",
+  "meta": {
+    "title": "llms.txt-Generator - KI-Crawler-Datei Erstellen Kostenlos | ToolsLab",
+    "description": "Erzeuge eine llms.txt-Datei online kostenlos, um KI-Crawler wie ChatGPT und Claude zu deinen wichtigen Seiten zu führen. Visuell bauen und herunterladen — ohne Anmeldung, im Browser."
+  },
+  "tagline": "Erzeuge eine llms.txt-Datei, um KI-Crawler zu deinen besten Inhalten zu führen",
+  "pageDescription": "Erzeuge eine llms.txt-Datei mit diesem kostenlosen Online-Generator. llms.txt ist ein aufkommender Standard (llmstxt.org), der KI-Crawlern wie ChatGPT, Claude und Perplexity eine kuratierte, maschinenlesbare Karte der wichtigsten Seiten deiner Website gibt. Trage deinen Projektnamen, eine kurze Zusammenfassung und einige Link-Abschnitte ein und erhalte sauberes, gültiges Markdown, das du in das Stammverzeichnis deiner Domain legst. Alles läuft im Browser ohne Anmeldung. Ideal, um zu verbessern, wie große Sprachmodelle deine Inhalte entdecken, verstehen und zitieren.",
+  "instructions": {
+    "title": "So erstellst du eine llms.txt-Datei",
+    "steps": [
+      {
+        "title": "Projekt benennen",
+        "description": "Gib den Namen deiner Seite oder deines Projekts ein. Er wird zur H1-Überschrift oben in der Datei."
+      },
+      {
+        "title": "Zusammenfassung hinzufügen",
+        "description": "Schreibe einen dichten Satz, der beschreibt, was deine Seite bietet. Er wird als Blockquote dargestellt, das das Modell zuerst liest."
+      },
+      {
+        "title": "Links in Abschnitte gruppieren",
+        "description": "Erstelle Abschnitte wie Docs, Guides oder Optional und füge die wichtigen URLs mit kurzem Titel und optionaler Notiz hinzu."
+      },
+      {
+        "title": "Ausgabe prüfen",
+        "description": "Das gültige Markdown aktualisiert sich live beim Tippen, du siehst also genau, was die Crawler erhalten."
+      },
+      {
+        "title": "llms.txt herunterladen",
+        "description": "Lade die Datei herunter und lege sie ins Stammverzeichnis deiner Domain (z. B. example.com/llms.txt)."
+      }
+    ],
+    "features": [
+      "Folgt dem Markdown-Format von llmstxt.org",
+      "Visueller Builder mit Live-Ausgabe",
+      "Unbegrenzt Abschnitte und Links hinzufügen",
+      "Optionale Zusammenfassung als Blockquote und Details",
+      "Notizen pro Link für zusätzlichen Kontext",
+      "In die Zwischenablage kopieren oder als llms.txt herunterladen",
+      "100% clientseitig — nichts wird hochgeladen",
+      "Keine Anmeldung, keine Limits"
+    ],
+    "useCases": [
+      "ChatGPT und Claude helfen, deine Docs zu finden",
+      "KI-Crawler zu deinen besten Landingpages führen",
+      "Einem LLM eine kuratierte Karte deines Produkts geben",
+      "Verbessern, wie KI-Tools deine Inhalte zitieren",
+      "Eine maschinenlesbare Seitenübersicht veröffentlichen",
+      "Crawler zu API-Docs und Guides lenken",
+      "Optionale Seiten markieren, damit LLMs sie überspringen",
+      "Deine Seite für die KI-Suche zukunftssicher machen"
+    ],
+    "proTips": [
+      "Halte die Zusammenfassung informationsdicht — sie liest das Modell zuerst",
+      "Setze die wichtigsten Links in den ersten Abschnitt",
+      "Nutze einen 'Optional'-Abschnitt für Seiten, die LLMs überspringen können",
+      "Verlinke saubere, inhaltsreiche Seiten, nicht navigationslastige",
+      "Lege die Datei ins Domain-Stammverzeichnis: example.com/llms.txt",
+      "Erwäge eine längere llms-full.txt für komplette Doku-Dumps"
+    ],
+    "troubleshooting": [
+      "Ausgabe ist nur der Titel: Füge mindestens einen Abschnitt mit gültigem Link hinzu",
+      "Ein Link fehlt: Jeder Link braucht einen Titel und eine URL",
+      "Abschnitt erscheint nicht: Gib ihm einen Titel und mindestens einen vollständigen Link",
+      "Crawler ignorieren sie: Stelle sicher, dass die Datei unter /llms.txt erreichbar ist",
+      "URLs sehen falsch aus: Verwende vollständige absolute URLs, die mit https:// beginnen"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Beim Ausfüllen der Links zwischen Feldern wechseln"
+      }
+    ]
+  }
+}

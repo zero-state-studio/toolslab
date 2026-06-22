@@ -1,0 +1,95 @@
+{
+  "title": "Generatore llms.txt",
+  "description": "Genera un file llms.txt per guidare i crawler AI ai tuoi contenuti chiave",
+  "hint": "Crea un file llms.txt che indica ai crawler AI come ChatGPT, Claude e Perplexity le tue pagine più importanti.",
+  "name": "Nome progetto / sito",
+  "namePlaceholder": "Il Mio Progetto",
+  "summary": "Riepilogo (blockquote)",
+  "summaryPlaceholder": "Un riepilogo breve e denso del tuo sito",
+  "details": "Dettagli (opzionale)",
+  "detailsPlaceholder": "Contesto aggiuntivo per il modello…",
+  "section": "Sezione",
+  "sectionTitle": "Titolo sezione (es. Docs)",
+  "linkTitle": "Titolo del link",
+  "url": "https://…",
+  "notes": "Note (opzionale)",
+  "addLink": "Aggiungi link",
+  "addSection": "Aggiungi sezione",
+  "result": "llms.txt",
+  "copy": "Copia",
+  "copied": "Copiato!",
+  "download": "Scarica llms.txt",
+  "sample": "Carica esempio",
+  "meta": {
+    "title": "Generatore llms.txt - Crea un File per Crawler AI Gratis | ToolsLab",
+    "description": "Genera un file llms.txt online gratis per guidare i crawler AI come ChatGPT e Claude alle tue pagine chiave. Costruiscilo visivamente e scaricalo — senza registrazione, nel browser."
+  },
+  "tagline": "Genera un file llms.txt per guidare i crawler AI ai tuoi contenuti migliori",
+  "pageDescription": "Genera un file llms.txt con questo generatore online e gratuito. llms.txt è uno standard emergente (llmstxt.org) che fornisce ai crawler AI come ChatGPT, Claude e Perplexity una mappa curata e leggibile dalle macchine delle pagine più importanti del tuo sito. Inserisci il nome del progetto, un breve riepilogo e alcune sezioni di link, e ottieni un Markdown pulito e valido da posizionare alla radice del dominio. Tutto avviene nel browser senza registrazione. Ideale per migliorare il modo in cui i large language model scoprono, comprendono e citano i tuoi contenuti.",
+  "instructions": {
+    "title": "Come creare un file llms.txt",
+    "steps": [
+      {
+        "title": "Dai un nome al progetto",
+        "description": "Inserisci il nome del sito o progetto. Diventa l'intestazione H1 in cima al file."
+      },
+      {
+        "title": "Aggiungi un riepilogo",
+        "description": "Scrivi una frase densa che descrive cosa offre il tuo sito. Viene resa come blockquote che il modello legge per primo."
+      },
+      {
+        "title": "Raggruppa i link in sezioni",
+        "description": "Crea sezioni come Docs, Guide o Opzionale, poi aggiungi gli URL chiave con un titolo breve e una nota opzionale per ciascuno."
+      },
+      {
+        "title": "Controlla l'output",
+        "description": "Il Markdown valido si aggiorna dal vivo mentre digiti, così vedi esattamente cosa riceveranno i crawler."
+      },
+      {
+        "title": "Scarica llms.txt",
+        "description": "Scarica il file e posizionalo alla radice del tuo dominio (es. example.com/llms.txt)."
+      }
+    ],
+    "features": [
+      "Segue il formato Markdown di llmstxt.org",
+      "Builder visivo con output dal vivo",
+      "Aggiungi sezioni e link illimitati",
+      "Riepilogo blockquote e dettagli opzionali",
+      "Note per link per contesto extra",
+      "Copia negli appunti o scarica come llms.txt",
+      "100% lato client — nulla viene caricato",
+      "Senza registrazione, senza limiti"
+    ],
+    "useCases": [
+      "Aiutare ChatGPT e Claude a trovare la tua documentazione",
+      "Guidare i crawler AI alle tue migliori landing page",
+      "Dare a un LLM una mappa curata del tuo prodotto",
+      "Migliorare come gli strumenti AI citano i tuoi contenuti",
+      "Pubblicare una panoramica del sito leggibile dalle macchine",
+      "Indirizzare i crawler a documentazione API e guide",
+      "Segnare le pagine opzionali così gli LLM possono saltarle",
+      "Rendere il sito a prova di futuro per la ricerca AI"
+    ],
+    "proTips": [
+      "Mantieni il riepilogo denso di informazioni — è la prima cosa che il modello legge",
+      "Metti i link più importanti nella prima sezione",
+      "Usa una sezione 'Opzionale' per pagine che gli LLM possono saltare",
+      "Collega pagine pulite e ricche di contenuto, non quelle piene di navigazione",
+      "Posiziona il file alla radice del dominio: example.com/llms.txt",
+      "Valuta un llms-full.txt più lungo per dump completi di documentazione"
+    ],
+    "troubleshooting": [
+      "L'output è solo il titolo: aggiungi almeno una sezione con un link valido",
+      "Manca un link: per ogni link servono sia il titolo sia l'URL",
+      "La sezione non appare: dalle un titolo e almeno un link completo",
+      "I crawler la ignorano: assicurati che il file sia raggiungibile su /llms.txt",
+      "Gli URL sembrano sbagliati: usa URL assoluti completi che iniziano con https://"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Spostati tra i campi mentre compili i link"
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "title": "Reparar JSON",
+  "description": "Corrige JSON roto o mal formado y obtén JSON válido y formateado",
+  "placeholder": "Pega aquí el JSON roto o mal formado…",
+  "hint": "Pega JSON roto — comas finales, comillas simples, claves sin comillas, None/True/False de Python, incluso salida truncada o envuelta en markdown de ChatGPT. Recupera JSON válido.",
+  "indent": "Sangría",
+  "repair": "Reparar JSON",
+  "sample": "Cargar ejemplo",
+  "result": "JSON reparado",
+  "copy": "Copiar",
+  "copied": "¡Copiado!",
+  "noChange": "Ya válido — solo formateado",
+  "tab": "Tabulación",
+  "minified": "Minificado",
+  "meta": {
+    "title": "Reparar JSON - Corrige JSON Roto y Mal Formado | ToolsLab",
+    "description": "Repara JSON roto online gratis. Corrige comas finales, comillas simples, claves sin comillas y salida truncada de ChatGPT a JSON válido — en tu navegador, sin registro."
+  },
+  "tagline": "Convierte JSON roto, mal formado o dañado por LLM en JSON válido al instante",
+  "pageDescription": "Repara JSON roto y mal formado con esta herramienta gratuita de Reparar JSON online. Corrige automáticamente los problemas más comunes — comas finales, comillas simples, claves sin comillas, corchetes que faltan, comentarios, None/True/False al estilo Python y salida truncada o envuelta en markdown de ChatGPT y otros LLM — y devuelve JSON limpio, válido y formateado. Todo se ejecuta en tu navegador sin registro ni subida, así que incluso los datos sensibles siguen siendo privados. Perfecto para desarrolladores que depuran respuestas de API, limpian salidas de IA y rescatan archivos de configuración.",
+  "instructions": {
+    "title": "Cómo reparar JSON roto",
+    "steps": [
+      {
+        "title": "Pega tu JSON roto",
+        "description": "Introduce el JSON mal formado — puede incluir comillas simples, comas finales, comentarios o incluso un bloque de código ```json."
+      },
+      {
+        "title": "Elige la sangría",
+        "description": "Elige 2 o 4 espacios, tabulaciones o salida minificada según cómo quieras formatear el JSON reparado."
+      },
+      {
+        "title": "Haz clic en Reparar JSON",
+        "description": "La herramienta corrige la sintaxis, vuelve a analizar el resultado e imprime JSON válido garantizado."
+      },
+      {
+        "title": "Revisa el resultado",
+        "description": "Comprueba el JSON reparado. Si ya era válido verás una nota indicando que solo se reformateó."
+      },
+      {
+        "title": "Copia el JSON limpio",
+        "description": "Haz clic en Copiar para tomar el JSON válido y pegarlo directamente en tu código, configuración o cliente de API."
+      }
+    ],
+    "features": [
+      "Elimina comas finales y añade las que faltan",
+      "Convierte comillas simples en dobles",
+      "Pone comillas a las claves sin comillas",
+      "Corrige literales de Python (None, True, False)",
+      "Quita comentarios y bloques markdown ```json",
+      "Cierra arrays y objetos truncados",
+      "Formatea con espacios, tabulaciones o salida minificada",
+      "100% del lado del cliente — los datos no salen del navegador"
+    ],
+    "useCases": [
+      "Corregir JSON mal formado devuelto por ChatGPT u otros LLM",
+      "Reparar un archivo de configuración editado a mano que no se analiza",
+      "Limpiar una respuesta de API copiada con comas de más",
+      "Rescatar JSON truncado por un log o la terminal",
+      "Convertir literales de objeto JavaScript en JSON válido",
+      "Corregir JSON con comillas simples de salida de Python",
+      "Preparar JSON desordenado antes de importarlo",
+      "Validar y reformatear JSON en un solo paso"
+    ],
+    "proTips": [
+      "Pega el bloque ```json completo — el delimitador se quita automáticamente",
+      "La salida LLM truncada se cierra con corchetes coincidentes, pero verifica los datos",
+      "Usa la salida minificada para reducir el JSON para almacenamiento o transporte",
+      "Si la reparación parece mal, la fuente era ambigua — corrígela un poco y reintenta",
+      "¿Necesitas comparar versiones? Combínalo con una herramienta de diff JSON",
+      "Todo es local, así que puedes reparar datos privados con seguridad"
+    ],
+    "troubleshooting": [
+      "No se pudo reparar: la entrada está demasiado lejos del JSON — corrige errores obvios y reintenta",
+      "Los números se volvieron cadenas: estaban entre comillas en la fuente; quítalas",
+      "La salida es solo una cadena: el texto suelto se vuelve una cadena JSON — envuélvelo en {} si querías un objeto",
+      "Se perdió un comentario: JSON no admite comentarios, así que se eliminan a propósito",
+      "Claves reordenadas: el orden de las claves se conserva; solo cambia el formato"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Pega el JSON en la entrada"
+      }
+    ]
+  }
+}

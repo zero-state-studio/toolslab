@@ -1,0 +1,87 @@
+{
+  "title": "JSON-Reparatur",
+  "description": "Kaputtes oder fehlerhaftes JSON reparieren und gültiges, formatiertes JSON erhalten",
+  "placeholder": "Kaputtes oder fehlerhaftes JSON hier einfügen…",
+  "hint": "Füge kaputtes JSON ein — abschließende Kommas, einfache Anführungszeichen, Schlüssel ohne Anführungszeichen, Python None/True/False, sogar abgeschnittene oder in Markdown verpackte ChatGPT-Ausgabe. Erhalte gültiges JSON zurück.",
+  "indent": "Einrückung",
+  "repair": "JSON reparieren",
+  "sample": "Beispiel laden",
+  "result": "Repariertes JSON",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "noChange": "Bereits gültig — nur formatiert",
+  "tab": "Tab",
+  "minified": "Minifiziert",
+  "meta": {
+    "title": "JSON-Reparatur - Kaputtes & Fehlerhaftes JSON Reparieren | ToolsLab",
+    "description": "Kaputtes JSON online kostenlos reparieren. Behebe abschließende Kommas, einfache Anführungszeichen, Schlüssel ohne Anführungszeichen und abgeschnittene ChatGPT-Ausgabe zu gültigem JSON — im Browser, ohne Anmeldung."
+  },
+  "tagline": "Verwandle kaputtes, fehlerhaftes oder von LLMs verhunztes JSON sofort in gültiges JSON",
+  "pageDescription": "Repariere kaputtes und fehlerhaftes JSON mit diesem kostenlosen Online-JSON-Reparatur-Tool. Es behebt die häufigsten Probleme automatisch — abschließende Kommas, einfache Anführungszeichen, Schlüssel ohne Anführungszeichen, fehlende Klammern, Kommentare, Python-artige None/True/False sowie abgeschnittene oder in Markdown verpackte Ausgabe von ChatGPT und anderen LLMs — und liefert sauberes, gültiges, formatiertes JSON. Alles läuft im Browser ohne Anmeldung und ohne Upload, sodass selbst sensible Daten privat bleiben. Ideal für Entwickler, die API-Antworten debuggen, KI-Ausgaben bereinigen und Konfigurationsdateien retten.",
+  "instructions": {
+    "title": "So reparierst du kaputtes JSON",
+    "steps": [
+      {
+        "title": "Kaputtes JSON einfügen",
+        "description": "Füge das fehlerhafte JSON ein — es darf einfache Anführungszeichen, abschließende Kommas, Kommentare oder sogar einen ```json-Codeblock enthalten."
+      },
+      {
+        "title": "Einrückung wählen",
+        "description": "Wähle 2 oder 4 Leerzeichen, Tabs oder minifizierte Ausgabe, je nachdem wie das reparierte JSON formatiert sein soll."
+      },
+      {
+        "title": "Auf JSON reparieren klicken",
+        "description": "Das Tool korrigiert die Syntax, parst das Ergebnis neu und gibt garantiert gültiges, formatiertes JSON aus."
+      },
+      {
+        "title": "Ergebnis prüfen",
+        "description": "Überprüfe das reparierte JSON. War es bereits gültig, erscheint ein Hinweis, dass es nur neu formatiert wurde."
+      },
+      {
+        "title": "Sauberes JSON kopieren",
+        "description": "Klicke auf Kopieren, um das gültige JSON zu übernehmen und direkt in Code, Konfiguration oder API-Client einzufügen."
+      }
+    ],
+    "features": [
+      "Entfernt abschließende Kommas und fügt fehlende hinzu",
+      "Wandelt einfache in doppelte Anführungszeichen um",
+      "Setzt Anführungszeichen um nicht zitierte Schlüssel",
+      "Behebt Python-Literale (None, True, False)",
+      "Entfernt Kommentare und ```json-Markdown-Blöcke",
+      "Schließt abgeschnittene Arrays und Objekte",
+      "Formatieren mit Leerzeichen, Tabs oder minifizierter Ausgabe",
+      "100% clientseitig — Daten verlassen den Browser nie"
+    ],
+    "useCases": [
+      "Fehlerhaftes JSON von ChatGPT oder anderen LLMs korrigieren",
+      "Eine handbearbeitete Konfigurationsdatei reparieren, die nicht parst",
+      "Eine kopierte API-Antwort mit überzähligen Kommas bereinigen",
+      "Von einem Log oder Terminal abgeschnittenes JSON retten",
+      "JavaScript-Objektliterale in gültiges JSON umwandeln",
+      "JSON mit einfachen Anführungszeichen aus Python-Ausgabe korrigieren",
+      "Unordentliches JSON vor dem Import vorbereiten",
+      "JSON in einem Schritt validieren und neu formatieren"
+    ],
+    "proTips": [
+      "Füge den ganzen ```json-Block ein — die Begrenzung wird automatisch entfernt",
+      "Abgeschnittene LLM-Ausgabe wird mit passenden Klammern geschlossen, prüfe aber die Daten",
+      "Nutze minifizierte Ausgabe, um JSON für Speicherung oder Transport zu verkleinern",
+      "Wirkt die Reparatur falsch, war die Quelle mehrdeutig — leicht anpassen und erneut versuchen",
+      "Versionen vergleichen? Kombiniere es mit einem JSON-Diff-Tool",
+      "Alles ist lokal, du kannst private Daten also sicher reparieren"
+    ],
+    "troubleshooting": [
+      "Reparatur nicht möglich: Die Eingabe ist zu weit von JSON entfernt — offensichtliche Fehler beheben und erneut versuchen",
+      "Zahlen wurden zu Strings: Sie standen in der Quelle in Anführungszeichen; entferne sie",
+      "Ausgabe ist nur ein String: Reiner Text wird zu einem JSON-String — in {} einfassen, wenn ein Objekt gemeint war",
+      "Ein Kommentar fehlt: JSON kennt keine Kommentare, sie werden bewusst entfernt",
+      "Schlüssel umsortiert: Die Schlüsselreihenfolge bleibt erhalten; nur die Formatierung ändert sich"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg/Cmd + V",
+        "description": "JSON in die Eingabe einfügen"
+      }
+    ]
+  }
+}

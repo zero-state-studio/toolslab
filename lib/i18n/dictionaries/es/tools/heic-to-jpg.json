@@ -1,0 +1,88 @@
+{
+  "title": "HEIC a JPG",
+  "description": "Convierte fotos HEIC/HEIF de iPhone a JPG o PNG en el navegador",
+  "placeholder": "Arrastra aquí tus fotos HEIC o haz clic para subirlas",
+  "drop": "Arrastra aquí tus fotos HEIC o haz clic para subirlas",
+  "hint": "Convierte fotos HEIC/HEIF de iPhone a JPG o PNG — 100% en tu navegador, sin subir nada",
+  "format": "Formato de salida",
+  "quality": "Calidad",
+  "convertButton": "Convertir",
+  "download": "Descargar",
+  "downloadAll": "Descargar todo",
+  "onlyHeic": "Solo se admiten archivos HEIC/HEIF (prueba con fotos .heic de iPhone)",
+  "processing": "Convirtiendo…",
+  "result": "Fotos convertidas",
+  "failed": "La conversión falló",
+  "meta": {
+    "title": "Convertidor HEIC a JPG - Gratis, Sin Subir | ToolsLab",
+    "description": "Convierte HEIC a JPG o PNG online gratis. Pasa fotos HEIC/HEIF de iPhone a JPG en tu navegador — conversión por lotes, sin subir, sin registro, privado."
+  },
+  "tagline": "Convierte fotos HEIC de iPhone a JPG o PNG al instante y en privado",
+  "pageDescription": "Convierte fotos HEIC y HEIF de iPhone a JPG o PNG con este convertidor HEIC a JPG online y gratuito. Arrastra una foto o un lote completo, elige JPG o PNG, ajusta la calidad y descarga — normalmente en menos de un segundo. Todo se procesa localmente en tu navegador, así que tus fotos nunca se suben y siguen siendo totalmente privadas. Perfecto para abrir archivos HEIC en Windows, compartir fotos de iPhone que no se ven en otros dispositivos o adjuntar imágenes en formularios que rechazan el HEIC. Sin registro, sin marcas de agua, sin límites.",
+  "instructions": {
+    "title": "Cómo convertir HEIC a JPG",
+    "steps": [
+      {
+        "title": "Añade tus fotos HEIC",
+        "description": "Arrastra y suelta uno o varios archivos .heic / .heif en el área de carga, o haz clic para explorar. Puedes convertir muchas fotos a la vez."
+      },
+      {
+        "title": "Elige JPG o PNG",
+        "description": "Elige JPG para archivos más pequeños y compatibles, o PNG si necesitas salida sin pérdidas con transparencia."
+      },
+      {
+        "title": "Ajusta la calidad (JPG)",
+        "description": "Mueve el control de calidad para la salida JPG. En torno al 90% las fotos quedan nítidas y ligeras; bájalo para archivos más pequeños."
+      },
+      {
+        "title": "Convierte",
+        "description": "Haz clic en Convertir. Cada foto se decodifica y recodifica en tu navegador — nada se sube a ningún servidor."
+      },
+      {
+        "title": "Descarga tus imágenes",
+        "description": "Previsualiza cada foto convertida y descárgala por separado, o usa Descargar todo para guardar el lote completo."
+      }
+    ],
+    "features": [
+      "Convierte HEIC y HEIF a JPG o PNG",
+      "Conversión por lotes de muchas fotos de iPhone",
+      "Control de calidad JPG ajustable",
+      "Previsualiza cada foto convertida antes de descargar",
+      "Descarga por separado o el lote completo",
+      "100% del lado del cliente — las fotos no salen de tu dispositivo",
+      "Sin registro, marcas de agua ni límites de tamaño",
+      "Funciona en Windows, Mac, Linux, Android e iPhone"
+    ],
+    "useCases": [
+      "Abrir fotos HEIC de iPhone en un PC con Windows",
+      "Compartir fotos que no se ven en dispositivos no Apple",
+      "Subir imágenes a sitios y formularios que rechazan HEIC",
+      "Convertir HEIC para editarlas en software fotográfico antiguo",
+      "Preparar fotos de iPhone para webs y correo",
+      "Pasar capturas HEIF a JPG universales",
+      "Convertir por lotes una exportación del carrete a JPG",
+      "Obtener PNG transparentes de gráficos HEIC"
+    ],
+    "proTips": [
+      "JPG al 85–95% de calidad es el mejor equilibrio para fotos",
+      "Usa PNG solo cuando necesites calidad sin pérdidas o transparencia",
+      "Selecciona una carpeta entera para convertir por lotes de una vez",
+      "Un HEIC suele contener una foto por archivo — se convierte el primer fotograma",
+      "Todo es local, así que las fotos privadas siguen siendo privadas",
+      "¿Necesitas archivos más pequeños después? Pásalos por el Compresor de imágenes"
+    ],
+    "troubleshooting": [
+      "No pasa nada: asegúrate de que el archivo termine realmente en .heic o .heif",
+      "El navegador dice no compatible: los HEIC en ráfaga muy grandes tardan un momento — espera",
+      "Los colores se ven raros: prueba la salida PNG en lugar de JPG",
+      "El archivo es grande: baja el control de calidad JPG",
+      "Solo salió una imagen: ese HEIC contenía un único fotograma, es normal"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + arrastrar",
+        "description": "Arrastra las fotos HEIC al área de carga"
+      }
+    ]
+  }
+}

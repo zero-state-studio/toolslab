@@ -73,6 +73,7 @@ qr-generator
 barcode-generator
 hash-generator
 bcrypt-hash-generator
+llms-txt-generator
 ```
 
 Se aggiungi un nuovo tool pure-generator, estendi questa lista. Gli altri tool (anche quelli con interfaccia complessa come `string-case-converter`, `text-diff`, `crontab-builder`) hanno un textarea di input e DEVONO avere `placeholder` in tutti 6 i locali.

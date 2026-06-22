@@ -1,0 +1,87 @@
+{
+  "title": "Riparazione JSON",
+  "description": "Correggi JSON rotto o malformato e ottieni JSON valido e formattato",
+  "placeholder": "Incolla qui il JSON rotto o malformato…",
+  "hint": "Incolla JSON rotto — virgole finali, apici singoli, chiavi senza virgolette, None/True/False di Python, persino output troncato o avvolto in markdown da ChatGPT. Riottieni JSON valido.",
+  "indent": "Indentazione",
+  "repair": "Ripara JSON",
+  "sample": "Carica esempio",
+  "result": "JSON riparato",
+  "copy": "Copia",
+  "copied": "Copiato!",
+  "noChange": "Già valido — solo formattato",
+  "tab": "Tab",
+  "minified": "Minificato",
+  "meta": {
+    "title": "Riparazione JSON - Correggi JSON Rotto e Malformato | ToolsLab",
+    "description": "Correggi JSON rotto online gratis. Ripara virgole finali, apici singoli, chiavi senza virgolette e output troncato di ChatGPT in JSON valido — nel browser, senza registrazione."
+  },
+  "tagline": "Trasforma JSON rotto, malformato o rovinato da LLM in JSON valido all'istante",
+  "pageDescription": "Ripara JSON rotto e malformato con questo strumento gratuito di Riparazione JSON online. Corregge automaticamente i problemi più comuni — virgole finali, apici singoli, chiavi senza virgolette, parentesi mancanti, commenti, None/True/False in stile Python e output troncato o avvolto in markdown da ChatGPT e altri LLM — restituendo JSON pulito, valido e formattato. Tutto avviene nel browser senza registrazione né caricamento, così anche i payload sensibili restano privati. Perfetto per sviluppatori che debuggano risposte API, ripuliscono output AI e recuperano file di configurazione.",
+  "instructions": {
+    "title": "Come riparare JSON rotto",
+    "steps": [
+      {
+        "title": "Incolla il tuo JSON rotto",
+        "description": "Inserisci il JSON malformato — può contenere apici singoli, virgole finali, commenti o anche un blocco di codice ```json."
+      },
+      {
+        "title": "Scegli l'indentazione",
+        "description": "Scegli 2 o 4 spazi, tabulazioni o output minificato in base a come vuoi formattare il JSON riparato."
+      },
+      {
+        "title": "Clicca Ripara JSON",
+        "description": "Lo strumento corregge la sintassi, rianalizza il risultato e stampa JSON valido e formattato garantito."
+      },
+      {
+        "title": "Controlla il risultato",
+        "description": "Verifica il JSON riparato. Se era già valido vedrai una nota che indica solo la riformattazione."
+      },
+      {
+        "title": "Copia il JSON pulito",
+        "description": "Clicca Copia per prendere il JSON valido e incollarlo direttamente nel codice, nella config o nel client API."
+      }
+    ],
+    "features": [
+      "Rimuove le virgole finali e aggiunge quelle mancanti",
+      "Converte gli apici singoli in doppi",
+      "Mette le virgolette alle chiavi senza virgolette",
+      "Corregge i literal Python (None, True, False)",
+      "Rimuove commenti e blocchi markdown ```json",
+      "Chiude array e oggetti troncati",
+      "Formatta con spazi, tab o output minificato",
+      "100% lato client — i payload non lasciano il browser"
+    ],
+    "useCases": [
+      "Correggere JSON malformato restituito da ChatGPT o altri LLM",
+      "Riparare un file di configurazione modificato a mano che non si analizza",
+      "Ripulire una risposta API copiata con virgole di troppo",
+      "Recuperare JSON troncato da un log o dal terminale",
+      "Convertire object literal JavaScript in JSON valido",
+      "Correggere JSON con apici singoli dall'output Python",
+      "Preparare JSON disordinato prima di importarlo",
+      "Validare e riformattare JSON in un solo passaggio"
+    ],
+    "proTips": [
+      "Incolla l'intero blocco ```json — il delimitatore viene rimosso automaticamente",
+      "L'output LLM troncato viene chiuso con parentesi corrispondenti, ma verifica i dati",
+      "Usa l'output minificato per ridurre il JSON per storage o trasporto",
+      "Se la riparazione sembra sbagliata, la sorgente era ambigua — correggila un po' e riprova",
+      "Devi confrontare versioni? Abbinalo a uno strumento di diff JSON",
+      "Tutto è locale, quindi puoi riparare payload privati in sicurezza"
+    ],
+    "troubleshooting": [
+      "Impossibile riparare: l'input è troppo distante dal JSON — correggi gli errori evidenti e riprova",
+      "I numeri sono diventati stringhe: erano tra virgolette nella sorgente; rimuovile",
+      "L'output è solo una stringa: il testo nudo diventa una stringa JSON — racchiudilo in {} se intendevi un oggetto",
+      "Commento perso: il JSON non ha commenti, quindi vengono rimossi di proposito",
+      "Chiavi riordinate: l'ordine delle chiavi è preservato; cambia solo la formattazione"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Incolla il JSON nell'input"
+      }
+    ]
+  }
+}

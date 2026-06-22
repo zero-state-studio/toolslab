@@ -1,0 +1,88 @@
+{
+  "title": ".env para JSON",
+  "description": "Converta arquivos .env para JSON e vice-versa",
+  "placeholder": "Cole aqui o seu arquivo .env…",
+  "hint": "Converta um arquivo .env para JSON ou JSON de volta para .env. Lida com aspas, comentários e o prefixo export — tudo no navegador.",
+  "env2json": ".env → JSON",
+  "json2env": "JSON → .env",
+  "swap": "Inverter direção",
+  "placeholderEnv": "Cole aqui o seu arquivo .env…",
+  "placeholderJson": "Cole aqui o seu objeto JSON…",
+  "result": "Resultado",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "sample": "Carregar exemplo",
+  "vars": "variáveis",
+  "meta": {
+    "title": "Conversor .env para JSON - Grátis, Bidirecional | ToolsLab",
+    "description": "Converta arquivos .env para JSON e JSON de volta para .env online grátis. Analise variáveis de ambiente com aspas, comentários e prefixo export — no navegador, sem cadastro."
+  },
+  "tagline": "Converta arquivos .env para JSON e vice-versa com um clique, tudo no navegador",
+  "pageDescription": "Converta arquivos .env para JSON e JSON de volta para .env com este conversor online e gratuito. Cole um arquivo dotenv para obter um objeto JSON limpo das suas variáveis de ambiente — aspas, comentários, o prefixo export e valores contendo = são todos tratados corretamente — ou cole um objeto JSON para gerar um arquivo .env pronto para uso com as aspas certas. Tudo roda localmente no navegador, então segredos e chaves de API nunca são enviados. Ideal para desenvolvedores que configuram ajustes, importam variáveis em CI ou movem configurações entre formatos.",
+  "instructions": {
+    "title": "Como converter .env para JSON",
+    "steps": [
+      {
+        "title": "Escolha uma direção",
+        "description": "Escolha .env → JSON para analisar um arquivo dotenv, ou JSON → .env para gerar um a partir de um objeto JSON."
+      },
+      {
+        "title": "Cole sua entrada",
+        "description": "Cole o arquivo .env ou o objeto JSON na caixa. Comentários e o prefixo export são tratados automaticamente."
+      },
+      {
+        "title": "Leia o resultado",
+        "description": "A conversão acontece na hora enquanto você digita, mostrando o número de variáveis analisadas."
+      },
+      {
+        "title": "Inverta se precisar",
+        "description": "Use o botão de inversão para devolver o resultado no sentido contrário e confirmar um ida e volta limpo."
+      },
+      {
+        "title": "Copie a saída",
+        "description": "Clique em Copiar para pegar o JSON ou o .env e colar na sua configuração, código ou ajustes de CI."
+      }
+    ],
+    "features": [
+      "Conversão bidirecional: .env ↔ JSON",
+      "Lida com aspas simples e duplas com escapes",
+      "Remove comentários # e comentários inline",
+      "Suporta o prefixo export KEY=value",
+      "Mantém valores contendo = (como URLs de banco de dados)",
+      "Coloca aspas nos valores que precisam ao escrever .env",
+      "100% no lado do cliente — os segredos não saem do navegador",
+      "Sem cadastro, sem limites"
+    ],
+    "useCases": [
+      "Transformar um arquivo .env em JSON para um carregador de configuração",
+      "Gerar um arquivo .env a partir de um objeto de ajustes JSON",
+      "Importar variáveis de ambiente em uma pipeline de CI",
+      "Inspecionar um .env desorganizado como JSON estruturado",
+      "Migrar configuração entre os formatos dotenv e JSON",
+      "Montar um .env rapidamente a partir de documentação de API em JSON",
+      "Validar que um .env é analisado corretamente",
+      "Converter segredos para uma ferramenta que espera JSON"
+    ],
+    "proTips": [
+      "Valores entre aspas duplas expandem \\n; aspas simples ficam literais",
+      "Valores com espaços ou # recebem aspas automaticamente ao escrever .env",
+      "Use a inversão para fazer ida e volta e verificar que nada se perdeu",
+      "Objetos JSON aninhados viram uma string JSON no valor .env",
+      "Tudo é local, então é seguro colar segredos reais",
+      "Combine com o conversor YAML/JSON para outros formatos de configuração"
+    ],
+    "troubleshooting": [
+      "Nenhuma variável encontrada: confira se as linhas usam KEY=value, não KEY: value",
+      "Erro de JSON inválido: JSON → .env precisa de um objeto JSON válido",
+      "Um valor perdeu um comentário: é esperado — comentários não fazem parte do valor",
+      "As aspas parecem diferentes: o analisador normaliza as aspas na saída",
+      "Array rejeitado: o .env precisa de um objeto de pares chave/valor, não um array"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Cole na entrada"
+      }
+    ]
+  }
+}

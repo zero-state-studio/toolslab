@@ -1,0 +1,91 @@
+{
+  "title": "Visualizzatore e Rimozione EXIF",
+  "description": "Visualizza i metadati EXIF delle foto e rimuovili per proteggere la privacy",
+  "placeholder": "Trascina qui una foto o clicca per caricarla",
+  "hint": "Scopri i metadati nascosti nelle tue foto — fotocamera, impostazioni, data e posizione GPS — poi rimuovili prima di condividere. Nessun caricamento.",
+  "drop": "Trascina qui una foto o clicca per caricarla",
+  "reading": "Lettura metadati…",
+  "metadata": "Metadati",
+  "noData": "Nessun metadato EXIF trovato — questa immagine è già pulita.",
+  "gpsWarning": "Questa foto rivela dove è stata scattata:",
+  "viewMap": "Vedi sulla mappa",
+  "strip": "Rimuovi tutti i metadati",
+  "stripping": "Rimozione…",
+  "cleaned": "Metadati rimossi",
+  "cleanedNote": "Scarica la copia pulita — non ha dati EXIF, GPS o fotocamera.",
+  "download": "Scarica foto pulita",
+  "onlyImage": "Sono supportati solo file immagine",
+  "fields": "campi",
+  "meta": {
+    "title": "Visualizzatore e Rimozione EXIF - Vedi e Cancella Metadati Foto | ToolsLab",
+    "description": "Visualizza i metadati EXIF e rimuovili dalle foto online gratis. Vedi fotocamera, data e GPS, poi cancellali per la privacy — nel browser, senza upload, senza registrazione."
+  },
+  "tagline": "Visualizza i metadati EXIF delle foto e rimuovi GPS e dati fotocamera per la privacy",
+  "pageDescription": "Visualizza e rimuovi i metadati EXIF dalle tue foto con questo Visualizzatore e Rimozione EXIF online e gratuito. Trascina un JPG, PNG, HEIC o TIFF per scoprire i dati nascosti incorporati dalla fotocamera — marca e modello, impostazioni di esposizione, data dello scatto e la posizione GPS esatta — poi rimuovili tutti con un clic e scarica una copia pulita. Tutto avviene localmente nel browser, quindi le foto e la loro posizione non vengono mai caricate. Essenziale prima di condividere immagini online, pubblicare nei forum o vendere oggetti, quando coordinate GPS trapelate possono esporre l'indirizzo di casa.",
+  "instructions": {
+    "title": "Come vedere e rimuovere i dati EXIF",
+    "steps": [
+      {
+        "title": "Carica una foto",
+        "description": "Trascina una foto o clicca per sfogliare. JPG, PNG, HEIC e TIFF contengono tutti metadati EXIF."
+      },
+      {
+        "title": "Esamina i metadati",
+        "description": "I dati nascosti sono raggruppati in sezioni Fotocamera, Esposizione, Data e Posizione così vedi esattamente cosa è incorporato."
+      },
+      {
+        "title": "Controlla l'avviso posizione",
+        "description": "Se sono presenti coordinate GPS, appare un avviso con un link alla mappa che mostra dove è stata scattata la foto."
+      },
+      {
+        "title": "Rimuovi tutti i metadati",
+        "description": "Clicca Rimuovi tutti i metadati. L'immagine viene ricodificata nel browser, eliminando ogni tag EXIF, GPS e fotocamera."
+      },
+      {
+        "title": "Scarica la foto pulita",
+        "description": "Scarica la copia pulita. Sembra identica ma non porta dati nascosti da condividere per errore."
+      }
+    ],
+    "features": [
+      "Legge metadati EXIF, GPS, IPTC e XMP",
+      "Raggruppa i dati in Fotocamera, Esposizione, Data e Posizione",
+      "Segnala le foto che rivelano coordinate GPS",
+      "Link alla mappa con un clic per le posizioni incorporate",
+      "Rimuove tutti i metadati ricodificando l'immagine",
+      "Supporta JPG, PNG, HEIC, TIFF e WebP",
+      "100% lato client — le foto non lasciano il dispositivo",
+      "Senza registrazione, filigrane o limiti"
+    ],
+    "useCases": [
+      "Rimuovere la posizione GPS prima di pubblicare foto online",
+      "Verificare quali dati rivela una foto prima di condividerla",
+      "Rimuovere i metadati dalle immagini vendute nei marketplace",
+      "Pulire le foto prima di caricarle su forum o app di incontri",
+      "Verificare le impostazioni di fotocamera e obiettivo di uno scatto",
+      "Proteggere l'indirizzo di casa nascosto nelle foto delle vacanze",
+      "Controllare data di scatto e dispositivo di una foto",
+      "Preparare immagini per un invio anonimo"
+    ],
+    "proTips": [
+      "Il GPS nelle foto può individuare casa tua — rimuovilo sempre prima di pubblicare",
+      "Gli screenshot di solito non hanno EXIF, quindi risultano già puliti",
+      "Le foto HEIC di iPhone contengono metadati ricchi, inclusa la posizione",
+      "La copia pulita è ricodificata, quindi la dimensione del file può cambiare leggermente",
+      "Abbinalo al convertitore HEIC in JPG per pulire e convertire in un solo flusso",
+      "Tutto è locale, quindi le foto sensibili restano private"
+    ],
+    "troubleshooting": [
+      "Nessun metadato trovato: l'immagine era già pulita o non aveva EXIF (comune per gli screenshot)",
+      "Posizione mancante: il GPS è presente solo se la fotocamera l'ha registrato",
+      "Il file pulito ha dimensione diversa: la ricodifica cambia leggermente la compressione",
+      "Trasparenza persa: il PNG mantiene l'alpha, ma l'output JPEG è opaco",
+      "Impossibile leggere: il file potrebbe essere corrotto o non una vera immagine"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + trascina",
+        "description": "Trascina una foto nell'area di caricamento"
+      }
+    ]
+  }
+}
