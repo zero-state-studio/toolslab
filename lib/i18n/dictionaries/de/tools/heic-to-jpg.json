@@ -1,0 +1,88 @@
+{
+  "title": "HEIC in JPG",
+  "description": "iPhone HEIC/HEIF-Fotos im Browser in JPG oder PNG umwandeln",
+  "placeholder": "HEIC-Fotos hierher ziehen oder zum Hochladen klicken",
+  "drop": "HEIC-Fotos hierher ziehen oder zum Hochladen klicken",
+  "hint": "iPhone HEIC/HEIF-Fotos in JPG oder PNG umwandeln — 100% im Browser, nichts wird hochgeladen",
+  "format": "Ausgabeformat",
+  "quality": "Qualität",
+  "convertButton": "Umwandeln",
+  "download": "Herunterladen",
+  "downloadAll": "Alle herunterladen",
+  "onlyHeic": "Es werden nur HEIC/HEIF-Dateien unterstützt (probiere .heic-Fotos vom iPhone)",
+  "processing": "Wird umgewandelt…",
+  "result": "Umgewandelte Fotos",
+  "failed": "Umwandlung fehlgeschlagen",
+  "meta": {
+    "title": "HEIC-in-JPG-Konverter - Kostenlos, Ohne Upload | ToolsLab",
+    "description": "HEIC online kostenlos in JPG oder PNG umwandeln. iPhone HEIC/HEIF-Fotos im Browser in JPG umwandeln — Stapelverarbeitung, kein Upload, keine Anmeldung, privat."
+  },
+  "tagline": "iPhone HEIC-Fotos sofort und privat in JPG oder PNG umwandeln",
+  "pageDescription": "Wandle iPhone HEIC- und HEIF-Fotos mit diesem kostenlosen Online-HEIC-in-JPG-Konverter in JPG oder PNG um. Ziehe ein Foto oder einen ganzen Stapel hinein, wähle JPG oder PNG, stelle die Qualität ein und lade herunter — meist in unter einer Sekunde. Alles läuft lokal in deinem Browser, deine Fotos werden also nie hochgeladen und bleiben vollständig privat. Ideal, um HEIC-Dateien unter Windows zu öffnen, iPhone-Fotos zu teilen, die anderswo nicht angezeigt werden, oder Bilder an Formulare anzuhängen, die HEIC ablehnen. Keine Anmeldung, kein Wasserzeichen, keine Limits.",
+  "instructions": {
+    "title": "So wandelst du HEIC in JPG um",
+    "steps": [
+      {
+        "title": "HEIC-Fotos hinzufügen",
+        "description": "Ziehe eine oder mehrere .heic / .heif-Dateien in den Upload-Bereich oder klicke zum Durchsuchen. Du kannst viele Fotos gleichzeitig umwandeln."
+      },
+      {
+        "title": "JPG oder PNG wählen",
+        "description": "Wähle JPG für die kleinsten, kompatibelsten Dateien oder PNG, wenn du verlustfreie Ausgabe mit Transparenz brauchst."
+      },
+      {
+        "title": "Qualität einstellen (JPG)",
+        "description": "Stelle den Qualitätsregler für die JPG-Ausgabe ein. Bei etwa 90% bleiben Fotos scharf und klein; senke ihn für kleinere Dateien."
+      },
+      {
+        "title": "Umwandeln",
+        "description": "Klicke auf Umwandeln. Jedes Foto wird direkt im Browser dekodiert und neu kodiert — nichts wird an einen Server gesendet."
+      },
+      {
+        "title": "Bilder herunterladen",
+        "description": "Sieh dir jedes umgewandelte Foto in der Vorschau an und lade es einzeln herunter, oder nutze Alle herunterladen für den ganzen Stapel."
+      }
+    ],
+    "features": [
+      "HEIC und HEIF in JPG oder PNG umwandeln",
+      "Stapelweise Umwandlung vieler iPhone-Fotos",
+      "Einstellbarer JPG-Qualitätsregler",
+      "Vorschau jedes umgewandelten Fotos vor dem Download",
+      "Einzeln oder als ganzen Stapel herunterladen",
+      "100% clientseitig — Fotos verlassen dein Gerät nie",
+      "Keine Anmeldung, Wasserzeichen oder Größenlimits",
+      "Funktioniert unter Windows, Mac, Linux, Android und iPhone"
+    ],
+    "useCases": [
+      "iPhone-HEIC-Fotos auf einem Windows-PC öffnen",
+      "Fotos teilen, die auf Nicht-Apple-Geräten nicht angezeigt werden",
+      "Bilder auf Seiten und Formulare laden, die HEIC ablehnen",
+      "HEIC zum Bearbeiten in älterer Foto-Software umwandeln",
+      "iPhone-Fotos für Websites und E-Mail vorbereiten",
+      "HEIF-Screenshots in universelle JPGs umwandeln",
+      "Einen Kamerarollen-Export stapelweise in JPG umwandeln",
+      "Transparente PNGs aus HEIC-Grafiken gewinnen"
+    ],
+    "proTips": [
+      "JPG mit 85–95% Qualität ist die beste Balance für Fotos",
+      "Nutze PNG nur, wenn du verlustfreie Qualität oder Transparenz brauchst",
+      "Wähle einen ganzen Ordner aus, um in einem Durchgang stapelweise umzuwandeln",
+      "Ein HEIC enthält oft ein Foto pro Datei — das erste Bild wird umgewandelt",
+      "Alles ist lokal, private Fotos bleiben also privat",
+      "Danach kleinere Dateien nötig? Schicke sie durch den Bildkompressor"
+    ],
+    "troubleshooting": [
+      "Nichts passiert: Stelle sicher, dass die Datei wirklich auf .heic oder .heif endet",
+      "Browser meldet nicht unterstützt: Sehr große HEIC-Serien brauchen einen Moment — warte",
+      "Farben sehen falsch aus: Probiere die PNG-Ausgabe statt JPG",
+      "Datei ist groß: Senke den JPG-Qualitätsregler",
+      "Nur ein Bild kam heraus: Dieses HEIC enthielt ein einzelnes Bild, das ist normal"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Klick + Ziehen",
+        "description": "HEIC-Fotos in den Upload-Bereich ziehen"
+      }
+    ]
+  }
+}

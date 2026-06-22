@@ -1,0 +1,87 @@
+{
+  "title": "JSON Repair",
+  "description": "Fix broken or malformed JSON and get valid, formatted JSON back",
+  "placeholder": "Paste broken or malformed JSON here…",
+  "hint": "Paste broken JSON — trailing commas, single quotes, unquoted keys, Python None/True/False, even truncated or markdown-wrapped output from ChatGPT. Get valid JSON back.",
+  "indent": "Indent",
+  "repair": "Repair JSON",
+  "sample": "Load sample",
+  "result": "Repaired JSON",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "noChange": "Already valid — formatted only",
+  "tab": "Tab",
+  "minified": "Minified",
+  "meta": {
+    "title": "JSON Repair - Fix Broken & Malformed JSON Online | ToolsLab",
+    "description": "Fix broken JSON online free. Repair trailing commas, single quotes, unquoted keys and truncated ChatGPT output into valid JSON — in your browser, no signup."
+  },
+  "tagline": "Fix broken, malformed or LLM-mangled JSON into valid JSON instantly",
+  "pageDescription": "Repair broken and malformed JSON with this free online JSON Repair tool. It fixes the most common problems automatically — trailing commas, single quotes, unquoted keys, missing brackets, comments, Python-style None/True/False and truncated or markdown-wrapped output from ChatGPT and other LLMs — then returns clean, valid, pretty-printed JSON. Everything runs in your browser with no signup and no upload, so even sensitive payloads stay private. Perfect for developers debugging API responses, cleaning AI output and rescuing config files.",
+  "instructions": {
+    "title": "How to repair broken JSON",
+    "steps": [
+      {
+        "title": "Paste your broken JSON",
+        "description": "Drop in the malformed JSON — it can include single quotes, trailing commas, comments or even a ```json code fence."
+      },
+      {
+        "title": "Choose the indentation",
+        "description": "Pick 2 or 4 spaces, tabs, or minified output depending on how you want the repaired JSON formatted."
+      },
+      {
+        "title": "Click Repair JSON",
+        "description": "The tool fixes the syntax, re-parses the result and pretty-prints guaranteed-valid JSON."
+      },
+      {
+        "title": "Review the result",
+        "description": "Check the repaired JSON. If it was already valid you'll see a note that it was only reformatted."
+      },
+      {
+        "title": "Copy the clean JSON",
+        "description": "Click Copy to grab the valid JSON and paste it straight into your code, config or API client."
+      }
+    ],
+    "features": [
+      "Removes trailing commas and adds missing ones",
+      "Converts single quotes to double quotes",
+      "Quotes unquoted object keys",
+      "Fixes Python literals (None, True, False)",
+      "Strips comments and markdown ```json fences",
+      "Closes truncated arrays and objects",
+      "Pretty-print with spaces, tabs or minified output",
+      "100% client-side — payloads never leave your browser"
+    ],
+    "useCases": [
+      "Fix malformed JSON returned by ChatGPT or other LLMs",
+      "Repair a hand-edited config file that won't parse",
+      "Clean up a copied API response with stray commas",
+      "Rescue JSON truncated by a log or terminal",
+      "Convert JavaScript object literals into valid JSON",
+      "Fix JSON with single quotes from Python output",
+      "Prepare messy JSON before importing it",
+      "Validate and reformat JSON in one step"
+    ],
+    "proTips": [
+      "Paste the whole ```json block — the fence is stripped automatically",
+      "Truncated LLM output is closed with matching brackets, but verify the data",
+      "Use minified output to shrink JSON for storage or transport",
+      "If the repair looks wrong, the source was ambiguous — fix it slightly and retry",
+      "Need to compare versions? Pair with a JSON diff tool",
+      "Everything is local, so you can repair private payloads safely"
+    ],
+    "troubleshooting": [
+      "Could not repair: the input is too far from JSON — fix obvious typos and retry",
+      "Numbers turned into strings: they were quoted in the source; remove the quotes",
+      "Output is just a string: bare text becomes a JSON string — wrap it in {} if you meant an object",
+      "Lost a comment: JSON has no comments, so they're removed by design",
+      "Keys reordered: object key order is preserved; only formatting changes"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Paste JSON into the input"
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "title": ".env zu JSON",
+  "description": ".env-Dateien in JSON und zurück konvertieren",
+  "placeholder": "Füge hier deine .env-Datei ein…",
+  "hint": "Konvertiere eine .env-Datei in JSON oder JSON zurück in .env. Behandelt Anführungszeichen, Kommentare und das export-Präfix — alles im Browser.",
+  "env2json": ".env → JSON",
+  "json2env": "JSON → .env",
+  "swap": "Richtung tauschen",
+  "placeholderEnv": "Füge hier deine .env-Datei ein…",
+  "placeholderJson": "Füge hier dein JSON-Objekt ein…",
+  "result": "Ergebnis",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "sample": "Beispiel laden",
+  "vars": "Variablen",
+  "meta": {
+    "title": ".env-zu-JSON-Konverter - Kostenlos, Beidseitig | ToolsLab",
+    "description": ".env-Dateien in JSON und JSON zurück in .env online kostenlos konvertieren. Umgebungsvariablen mit Anführungszeichen, Kommentaren und export-Präfix parsen — im Browser, ohne Anmeldung."
+  },
+  "tagline": "Konvertiere .env-Dateien in JSON und zurück mit einem Klick, komplett im Browser",
+  "pageDescription": "Konvertiere .env-Dateien in JSON und JSON zurück in .env mit diesem kostenlosen Online-Konverter. Füge eine dotenv-Datei ein, um ein sauberes JSON-Objekt deiner Umgebungsvariablen zu erhalten — Anführungszeichen, Kommentare, das export-Präfix und Werte mit = werden alle korrekt behandelt — oder füge ein JSON-Objekt ein, um eine einsatzbereite .env-Datei mit korrektem Quoting zu erzeugen. Alles läuft lokal im Browser, Secrets und API-Schlüssel werden also nie hochgeladen. Ideal für Entwickler, die Config einrichten, Variablen in CI importieren oder Einstellungen zwischen Formaten verschieben.",
+  "instructions": {
+    "title": "So konvertierst du .env in JSON",
+    "steps": [
+      {
+        "title": "Richtung wählen",
+        "description": "Wähle .env → JSON, um eine dotenv-Datei zu parsen, oder JSON → .env, um eine aus einem JSON-Objekt zu erzeugen."
+      },
+      {
+        "title": "Eingabe einfügen",
+        "description": "Füge die .env-Datei oder das JSON-Objekt in das Feld ein. Kommentare und das export-Präfix werden automatisch behandelt."
+      },
+      {
+        "title": "Ergebnis lesen",
+        "description": "Die Konvertierung läuft sofort beim Tippen und zeigt die Anzahl der geparsten Variablen."
+      },
+      {
+        "title": "Bei Bedarf tauschen",
+        "description": "Nutze den Tausch-Button, um das Ergebnis in die andere Richtung zurückzuführen und einen sauberen Round-Trip zu bestätigen."
+      },
+      {
+        "title": "Ausgabe kopieren",
+        "description": "Klicke auf Kopieren, um das JSON oder die .env zu übernehmen und in Config, Code oder CI-Einstellungen einzufügen."
+      }
+    ],
+    "features": [
+      "Beidseitige Konvertierung: .env ↔ JSON",
+      "Behandelt einfache und doppelte Anführungszeichen mit Escapes",
+      "Entfernt #-Kommentare und Inline-Kommentare",
+      "Unterstützt das Präfix export KEY=value",
+      "Behält Werte mit = (wie Datenbank-URLs)",
+      "Setzt Anführungszeichen um Werte, die sie beim .env-Schreiben brauchen",
+      "100% clientseitig — Secrets verlassen den Browser nie",
+      "Keine Anmeldung, keine Limits"
+    ],
+    "useCases": [
+      "Eine .env-Datei für einen Config-Loader in JSON umwandeln",
+      "Eine .env-Datei aus einem JSON-Einstellungsobjekt erzeugen",
+      "Umgebungsvariablen in eine CI-Pipeline importieren",
+      "Eine unordentliche .env als strukturiertes JSON inspizieren",
+      "Config zwischen dotenv- und JSON-Format migrieren",
+      "Eine .env schnell aus JSON-API-Doku aufbauen",
+      "Prüfen, ob eine .env sauber parst",
+      "Secrets für ein Tool konvertieren, das JSON erwartet"
+    ],
+    "proTips": [
+      "Werte in doppelten Anführungszeichen expandieren \\n; einfache bleiben wörtlich",
+      "Werte mit Leerzeichen oder # werden beim .env-Schreiben automatisch gequotet",
+      "Nutze den Tausch für einen Round-Trip, um zu prüfen, dass nichts verloren ging",
+      "Verschachtelte JSON-Objekte werden zu einem JSON-String im .env-Wert",
+      "Alles ist lokal, du kannst also echte Secrets sicher einfügen",
+      "Kombiniere es mit dem YAML/JSON-Konverter für andere Config-Formate"
+    ],
+    "troubleshooting": [
+      "Keine Variablen gefunden: Prüfe, dass die Zeilen KEY=value nutzen, nicht KEY: value",
+      "Fehler ungültiges JSON: JSON → .env benötigt ein gültiges JSON-Objekt",
+      "Ein Wert verlor einen Kommentar: das ist erwartet — Kommentare gehören nicht zum Wert",
+      "Anführungszeichen sehen anders aus: Der Parser normalisiert das Quoting in der Ausgabe",
+      "Array abgelehnt: Die .env benötigt ein Objekt aus Schlüssel/Wert-Paaren, kein Array"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Strg/Cmd + V",
+        "description": "In die Eingabe einfügen"
+      }
+    ]
+  }
+}

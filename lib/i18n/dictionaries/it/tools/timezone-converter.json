@@ -1,0 +1,86 @@
+{
+  "title": "Convertitore di Fusi Orari",
+  "description": "Converti orari tra fusi orari e pianifica riunioni in tutto il mondo",
+  "placeholder": "Scegli data e ora",
+  "hint": "Scegli un orario e il fuso di partenza, poi vedilo subito in ogni fuso che aggiungi — perfetto per pianificare riunioni.",
+  "when": "Data e ora",
+  "now": "Adesso",
+  "source": "Fuso orario di partenza",
+  "targets": "Mostra in questi fusi orari",
+  "add": "Aggiungi fuso orario",
+  "convert": "Converti",
+  "result": "Orari nel mondo",
+  "error": "Conversione non riuscita — controlla data e fuso orario",
+  "meta": {
+    "title": "Convertitore di Fusi Orari e Planner Riunioni - Gratis | ToolsLab",
+    "description": "Converti l'ora tra fusi orari online gratis. Confronta un orario tra città del mondo, gestisce l'ora legale automaticamente e pianifica riunioni — senza registrazione."
+  },
+  "tagline": "Converti gli orari tra fusi e pianifica riunioni globali in pochi secondi",
+  "pageDescription": "Converti qualsiasi orario tra fusi orari e pianifica riunioni in tutto il mondo con questo Convertitore di Fusi Orari online e gratuito. Scegli data, ora e fuso di partenza, poi aggiungi tutte le città che vuoi per vedere l'orario equivalente ovunque in una volta sola — l'ora legale è gestita automaticamente. Funziona interamente nel browser senza registrazione, ideale per pianificare chiamate da remoto, coordinare team distribuiti, organizzare viaggi ed evitare il classico errore 'che ore sono lì?'.",
+  "instructions": {
+    "title": "Come convertire tra fusi orari",
+    "steps": [
+      {
+        "title": "Imposta data e ora",
+        "description": "Inserisci il momento da convertire, o clicca Adesso per usare l'ora corrente. È l'orario locale nel tuo fuso di partenza."
+      },
+      {
+        "title": "Scegli il fuso di partenza",
+        "description": "Scegli il fuso in cui si trova l'orario. Per impostazione predefinita è il tuo, rilevato dal browser."
+      },
+      {
+        "title": "Aggiungi i fusi di destinazione",
+        "description": "Usa il menu Aggiungi fuso orario per aggiungere ogni città o fuso che ti interessa. Aggiungine quanti ne servono per una riunione."
+      },
+      {
+        "title": "Leggi gli orari convertiti",
+        "description": "Ogni fuso mostra data, ora, giorno della settimana e offset UTC equivalenti, ricalcolati subito a ogni modifica."
+      },
+      {
+        "title": "Trova una sovrapposizione",
+        "description": "Scorri gli orari per trovare uno slot adatto a tutti, poi rimuovi i fusi inutili con il pulsante ×."
+      }
+    ],
+    "features": [
+      "Converti un orario in molti fusi orari in una volta",
+      "Gestione automatica dell'ora legale (DST)",
+      "Rileva automaticamente il tuo fuso locale",
+      "Mostra data, ora, giorno e offset UTC per ogni fuso",
+      "Aggiungi o rimuovi città come planner riunioni",
+      "Si aggiorna subito quando cambi i dati",
+      "100% lato client — nulla viene inviato a un server",
+      "Senza registrazione, senza limiti"
+    ],
+    "useCases": [
+      "Pianificare una riunione tra team distribuiti",
+      "Trovare un orario adatto a New York, Londra e Tokyo",
+      "Convertire timestamp UTC dei log nella tua ora locale",
+      "Organizzare un webinar per un pubblico globale",
+      "Coordinarsi con freelance e clienti da remoto",
+      "Verificare a che ora avviene un lancio nel tuo fuso",
+      "Evitare doppie prenotazioni con i cambi di ora legale",
+      "Pianificare arrivi e partenze di viaggi tra fusi"
+    ],
+    "proTips": [
+      "Clicca Adesso e cambia il fuso di partenza per convertire 'la loro ora' nella tua",
+      "L'ora legale è automatica — scegli la data, non un offset fisso",
+      "Aggiungi UTC come riferimento neutro per le pianificazioni tecniche",
+      "Usa l'etichetta del giorno per cogliere orari che cadono il giorno dopo",
+      "Rimuovi i fusi inutilizzati per tenere pulita la vista riunione",
+      "Abbinalo al Convertitore di Timestamp Unix per i valori epoch"
+    ],
+    "troubleshooting": [
+      "L'ora è sfasata di un'ora: è l'ora legale — verifica la data",
+      "Fuso di partenza errato: è il fuso del browser, cambialo se serve",
+      "Manca una città: scegli il fuso più vicino con stesso offset e regole DST",
+      "La data è saltata di un giorno: offset ampi spostano gli orari al giorno successivo/precedente, è corretto",
+      "Non si aggiorna nulla: assicurati di aver inserito data e ora"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Spostati tra i campi data, fuso di partenza e fuso orario"
+      }
+    ]
+  }
+}

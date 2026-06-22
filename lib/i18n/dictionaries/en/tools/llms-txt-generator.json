@@ -1,0 +1,95 @@
+{
+  "title": "llms.txt Generator",
+  "description": "Generate an llms.txt file to guide AI crawlers to your key content",
+  "hint": "Build an llms.txt file that points AI crawlers like ChatGPT, Claude and Perplexity to your most important pages.",
+  "name": "Project / site name",
+  "namePlaceholder": "My Project",
+  "summary": "Summary (blockquote)",
+  "summaryPlaceholder": "A short, dense summary of your site",
+  "details": "Details (optional)",
+  "detailsPlaceholder": "Extra context for the model…",
+  "section": "Section",
+  "sectionTitle": "Section title (e.g. Docs)",
+  "linkTitle": "Link title",
+  "url": "https://…",
+  "notes": "Notes (optional)",
+  "addLink": "Add link",
+  "addSection": "Add section",
+  "result": "llms.txt",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "download": "Download llms.txt",
+  "sample": "Load example",
+  "meta": {
+    "title": "llms.txt Generator - Build an AI Crawler File Free | ToolsLab",
+    "description": "Generate an llms.txt file online free to guide AI crawlers like ChatGPT and Claude to your key pages. Build it visually and download — no signup, in your browser."
+  },
+  "tagline": "Generate an llms.txt file to guide AI crawlers to your best content",
+  "pageDescription": "Generate an llms.txt file with this free online generator. llms.txt is an emerging standard (llmstxt.org) that gives AI crawlers like ChatGPT, Claude and Perplexity a curated, machine-friendly map of your site's most important pages. Fill in your project name, a short summary and a few sections of links, and get clean, valid Markdown to drop at the root of your domain. Everything runs in your browser with no signup. Ideal for boosting how large language models discover, understand and cite your content.",
+  "instructions": {
+    "title": "How to create an llms.txt file",
+    "steps": [
+      {
+        "title": "Name your project",
+        "description": "Enter your site or project name. It becomes the H1 heading at the top of the file."
+      },
+      {
+        "title": "Add a summary",
+        "description": "Write one dense sentence describing what your site offers. It's rendered as a blockquote for the model to read first."
+      },
+      {
+        "title": "Group links into sections",
+        "description": "Create sections like Docs, Guides or Optional, then add the key URLs with a short title and optional note for each."
+      },
+      {
+        "title": "Review the output",
+        "description": "The valid Markdown updates live as you type, so you can see exactly what crawlers will receive."
+      },
+      {
+        "title": "Download llms.txt",
+        "description": "Download the file and place it at the root of your domain (e.g. example.com/llms.txt)."
+      }
+    ],
+    "features": [
+      "Follows the llmstxt.org Markdown format",
+      "Visual builder with live output",
+      "Add unlimited sections and links",
+      "Optional summary blockquote and details",
+      "Per-link notes for extra context",
+      "Copy to clipboard or download as llms.txt",
+      "100% client-side — nothing is uploaded",
+      "No signup, no limits"
+    ],
+    "useCases": [
+      "Help ChatGPT and Claude find your docs",
+      "Guide AI crawlers to your best landing pages",
+      "Give an LLM a curated map of your product",
+      "Improve how AI tools cite your content",
+      "Publish a machine-readable site overview",
+      "Point crawlers to API docs and guides",
+      "Mark optional pages so LLMs can skip them",
+      "Future-proof your site for AI search"
+    ],
+    "proTips": [
+      "Keep the summary information-dense — it's the first thing the model reads",
+      "Put the most important links in the first section",
+      "Use an 'Optional' section for pages LLMs can safely skip",
+      "Link to clean, content-rich pages, not navigation-heavy ones",
+      "Place the file at your domain root: example.com/llms.txt",
+      "Consider a longer llms-full.txt for complete documentation dumps"
+    ],
+    "troubleshooting": [
+      "Output is just the title: add at least one section with a valid link",
+      "A link is missing: both a title and a URL are required for each link",
+      "Section not showing: give it a title and at least one complete link",
+      "Crawlers ignore it: make sure the file is reachable at /llms.txt",
+      "URLs look wrong: use full absolute URLs starting with https://"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Move between fields while filling in links"
+      }
+    ]
+  }
+}
