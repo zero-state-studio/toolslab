@@ -1,0 +1,88 @@
+{
+  "title": "HEIC to JPG",
+  "description": "Convert iPhone HEIC/HEIF photos to JPG or PNG in your browser",
+  "placeholder": "Drop HEIC photos here or click to upload",
+  "drop": "Drop HEIC photos here or click to upload",
+  "hint": "Convert iPhone HEIC/HEIF photos to JPG or PNG — 100% in your browser, nothing is uploaded",
+  "format": "Output format",
+  "quality": "Quality",
+  "convertButton": "Convert",
+  "download": "Download",
+  "downloadAll": "Download all",
+  "onlyHeic": "Only HEIC/HEIF files are supported (try .heic photos from iPhone)",
+  "processing": "Converting…",
+  "result": "Converted photos",
+  "failed": "Conversion failed",
+  "meta": {
+    "title": "HEIC to JPG Converter - Free, No Upload | ToolsLab",
+    "description": "Convert HEIC to JPG or PNG online free. Turn iPhone HEIC/HEIF photos into JPG in your browser — batch convert, no upload, no signup, fully private."
+  },
+  "tagline": "Convert iPhone HEIC photos to JPG or PNG instantly and privately",
+  "pageDescription": "Convert iPhone HEIC and HEIF photos to JPG or PNG with this free online HEIC to JPG converter. Drop one photo or a whole batch, pick JPG or PNG, set the quality, and download — typically in under a second. Everything runs locally in your browser, so your photos are never uploaded and stay completely private. Perfect for opening HEIC files on Windows, sharing iPhone photos that won't display elsewhere, or attaching images to forms that reject HEIC. No signup, no watermarks, no file limits.",
+  "instructions": {
+    "title": "How to convert HEIC to JPG",
+    "steps": [
+      {
+        "title": "Add your HEIC photos",
+        "description": "Drag and drop one or more .heic / .heif files onto the upload area, or click to browse. You can convert many photos at once."
+      },
+      {
+        "title": "Choose JPG or PNG",
+        "description": "Pick JPG for the smallest, most compatible files, or PNG if you need lossless output with transparency support."
+      },
+      {
+        "title": "Set the quality (JPG)",
+        "description": "Drag the quality slider for JPG output. Around 90% keeps photos sharp while staying small; lower it for tinier files."
+      },
+      {
+        "title": "Convert",
+        "description": "Click Convert. Each photo is decoded and re-encoded right in your browser — nothing is uploaded to any server."
+      },
+      {
+        "title": "Download your images",
+        "description": "Preview each converted photo and download it individually, or use Download all to save the whole batch at once."
+      }
+    ],
+    "features": [
+      "Convert HEIC and HEIF to JPG or PNG",
+      "Batch convert many iPhone photos at once",
+      "Adjustable JPG quality slider",
+      "Preview every converted photo before downloading",
+      "Download individually or the whole batch",
+      "100% client-side — photos never leave your device",
+      "No signup, watermarks or file-size limits",
+      "Works on Windows, Mac, Linux, Android and iPhone"
+    ],
+    "useCases": [
+      "Open iPhone HEIC photos on a Windows PC",
+      "Share photos that won't display on non-Apple devices",
+      "Upload images to sites and forms that reject HEIC",
+      "Convert HEIC for editing in older photo software",
+      "Prepare iPhone photos for websites and email",
+      "Turn HEIF screenshots into universal JPGs",
+      "Batch convert a camera roll export to JPG",
+      "Get transparent PNGs from HEIC graphics"
+    ],
+    "proTips": [
+      "JPG at 85–95% quality is the best balance for photos",
+      "Use PNG only when you need lossless quality or transparency",
+      "Drop a whole folder selection to batch convert in one go",
+      "HEIC often holds one photo per file — the first frame is converted",
+      "Everything is local, so private photos stay private",
+      "Need smaller files afterwards? Run them through the Image Compressor"
+    ],
+    "troubleshooting": [
+      "Nothing happens: make sure the file really ends in .heic or .heif",
+      "Browser says unsupported: very large HEIC bursts can take a moment — wait for it",
+      "Colors look off: try PNG output instead of JPG",
+      "File is large: lower the JPG quality slider",
+      "Only one image came out: that HEIC contained a single frame, which is normal"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Click + drag",
+        "description": "Drop HEIC photos onto the upload area"
+      }
+    ]
+  }
+}

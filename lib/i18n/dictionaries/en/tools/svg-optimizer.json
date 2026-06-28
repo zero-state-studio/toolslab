@@ -1,0 +1,88 @@
+{
+  "title": "SVG Optimizer",
+  "description": "Minify and clean SVG files to shrink their size",
+  "placeholder": "Paste your SVG markup here…",
+  "hint": "Paste SVG markup or drop an .svg file to strip comments, metadata and editor cruft and shrink the file — all in your browser.",
+  "drop": "Drop an .svg file or click to upload",
+  "prettify": "Pretty-print output",
+  "optimize": "Optimize SVG",
+  "result": "Optimized SVG",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "download": "Download",
+  "saved": "smaller",
+  "onlySvg": "Only SVG files are supported",
+  "preview": "Preview",
+  "meta": {
+    "title": "SVG Optimizer - Minify & Clean SVG Online Free | ToolsLab",
+    "description": "Optimize and minify SVG files online free. Strip comments, metadata and editor cruft to shrink SVG size with SVGO — in your browser, no upload, no signup."
+  },
+  "tagline": "Minify and clean SVG files to cut their size without losing quality",
+  "pageDescription": "Optimize and minify SVG files with this free online SVG Optimizer powered by SVGO. Paste your markup or drop a file to strip comments, editor metadata, hidden layers and redundant attributes, collapse paths and shrink the file — often by 40–70% — while keeping the viewBox so it still scales perfectly. Everything runs locally in your browser, so your graphics are never uploaded and stay private. Ideal for faster-loading websites, smaller icon sets and cleaner inline SVG in your code.",
+  "instructions": {
+    "title": "How to optimize an SVG",
+    "steps": [
+      {
+        "title": "Add your SVG",
+        "description": "Paste the SVG markup into the box, or drop an .svg file exported from Figma, Illustrator or Inkscape."
+      },
+      {
+        "title": "Choose pretty-print (optional)",
+        "description": "Leave it off for the smallest one-line output, or turn it on to keep the optimized SVG readable."
+      },
+      {
+        "title": "Click Optimize SVG",
+        "description": "SVGO strips comments, metadata and editor cruft, collapses paths and removes redundant attributes in your browser."
+      },
+      {
+        "title": "Check the savings and preview",
+        "description": "See the before/after size, the percentage saved, and a live preview to confirm the graphic still looks right."
+      },
+      {
+        "title": "Copy or download",
+        "description": "Copy the optimized markup for inline use, or download the minified .svg file."
+      }
+    ],
+    "features": [
+      "Powered by SVGO, the industry-standard optimizer",
+      "Strips comments, metadata and editor namespaces",
+      "Collapses paths and removes redundant attributes",
+      "Keeps the viewBox so SVGs still scale",
+      "Optional pretty-print for readable output",
+      "Live preview of the optimized graphic",
+      "Before/after size with percentage saved",
+      "100% client-side — graphics never leave your browser"
+    ],
+    "useCases": [
+      "Shrink icons before adding them to a website",
+      "Clean up SVGs exported from Figma or Illustrator",
+      "Reduce inline SVG weight in React or Vue components",
+      "Optimize a whole icon set for faster page loads",
+      "Remove editor metadata before sharing a logo",
+      "Cut SVG sprite size for better performance",
+      "Tidy hand-written SVG markup",
+      "Prepare SVGs for an icon font or component library"
+    ],
+    "proTips": [
+      "Leave pretty-print off for production; turn it on for code review",
+      "The viewBox is kept on purpose so your SVG stays responsive",
+      "Re-optimizing an already-clean SVG is safe and just confirms the size",
+      "Exported design-tool SVGs usually shrink the most",
+      "Use the preview to catch any clipping before you ship it",
+      "Everything is local, so unreleased logos stay private"
+    ],
+    "troubleshooting": [
+      "Does not look like an SVG: make sure the markup contains an <svg> tag",
+      "Graphic looks broken: an external font or image reference may be missing — that's not in the SVG",
+      "Barely shrank: the SVG was already optimized, which is fine",
+      "Colors changed: a CSS variable or external style isn't included in the file",
+      "Preview is blank: the SVG may rely on scripts or external resources that don't render standalone"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Paste SVG markup into the input"
+      }
+    ]
+  }
+}

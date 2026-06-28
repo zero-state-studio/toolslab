@@ -1,0 +1,91 @@
+{
+  "title": "EXIF Viewer & Remover",
+  "description": "View photo EXIF metadata and strip it to protect your privacy",
+  "placeholder": "Drop a photo here or click to upload",
+  "hint": "See the hidden metadata in your photos — camera, settings, date and GPS location — then strip it before you share. Nothing is uploaded.",
+  "drop": "Drop a photo here or click to upload",
+  "reading": "Reading metadata…",
+  "metadata": "Metadata",
+  "noData": "No EXIF metadata found — this image is already clean.",
+  "gpsWarning": "This photo reveals where it was taken:",
+  "viewMap": "View on map",
+  "strip": "Remove all metadata",
+  "stripping": "Removing…",
+  "cleaned": "Metadata removed",
+  "cleanedNote": "Download the clean copy — it has no EXIF, GPS or camera data.",
+  "download": "Download clean photo",
+  "onlyImage": "Only image files are supported",
+  "fields": "fields",
+  "meta": {
+    "title": "EXIF Viewer & Remover - View & Strip Photo Metadata | ToolsLab",
+    "description": "View EXIF metadata and remove it from photos online free. See camera, date and GPS data, then strip it for privacy — in your browser, no upload, no signup."
+  },
+  "tagline": "View photo EXIF metadata and remove GPS and camera data for privacy",
+  "pageDescription": "View and remove EXIF metadata from your photos with this free online EXIF Viewer & Remover. Drop a JPG, PNG, HEIC or TIFF to reveal the hidden data your camera embedded — make and model, exposure settings, capture date and the exact GPS location — then strip all of it with one click and download a clean copy. Everything runs locally in your browser, so your photos and their location are never uploaded. Essential before sharing images online, posting to forums or selling items, when leaked GPS coordinates can expose your home address.",
+  "instructions": {
+    "title": "How to view and remove EXIF data",
+    "steps": [
+      {
+        "title": "Upload a photo",
+        "description": "Drag and drop a photo or click to browse. JPG, PNG, HEIC and TIFF all carry EXIF metadata."
+      },
+      {
+        "title": "Review the metadata",
+        "description": "The hidden data is grouped into Camera, Exposure, Date and Location sections so you can see exactly what's embedded."
+      },
+      {
+        "title": "Check the location warning",
+        "description": "If GPS coordinates are present, a warning appears with a map link showing precisely where the photo was taken."
+      },
+      {
+        "title": "Remove all metadata",
+        "description": "Click Remove all metadata. The image is re-encoded in your browser, dropping every EXIF, GPS and camera tag."
+      },
+      {
+        "title": "Download the clean photo",
+        "description": "Download the cleaned copy. It looks identical but carries no hidden data to share by mistake."
+      }
+    ],
+    "features": [
+      "Read EXIF, GPS, IPTC and XMP metadata",
+      "Groups data into Camera, Exposure, Date and Location",
+      "Flags photos that leak GPS coordinates",
+      "One-click map link for embedded locations",
+      "Strip all metadata by re-encoding the image",
+      "Supports JPG, PNG, HEIC, TIFF and WebP",
+      "100% client-side — photos never leave your device",
+      "No signup, watermarks or limits"
+    ],
+    "useCases": [
+      "Remove GPS location before posting photos online",
+      "Check what data a photo reveals before sharing",
+      "Strip metadata from images sold on marketplaces",
+      "Clean photos before uploading to forums or dating apps",
+      "Verify camera and lens settings of a shot",
+      "Protect your home address hidden in vacation photos",
+      "Audit a photo's capture date and device",
+      "Prepare images for anonymous submission"
+    ],
+    "proTips": [
+      "GPS in photos can pinpoint your home — always strip before public posting",
+      "Screenshots usually have no EXIF, so they show as already clean",
+      "HEIC photos from iPhone carry rich metadata including location",
+      "The clean copy is re-encoded, so file size may change slightly",
+      "Pair with the HEIC to JPG converter to clean and convert in one flow",
+      "Everything is local, so sensitive photos stay private"
+    ],
+    "troubleshooting": [
+      "No metadata found: the image was already stripped or never had EXIF (common for screenshots)",
+      "Location missing: GPS is only present if the camera recorded it",
+      "Clean file looks different size: re-encoding changes compression slightly",
+      "Transparency lost: PNG keeps alpha, but JPEG output is opaque",
+      "Could not read: the file may be corrupt or not a real image"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Click + drag",
+        "description": "Drop a photo onto the upload area"
+      }
+    ]
+  }
+}
