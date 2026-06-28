@@ -1,0 +1,86 @@
+{
+  "title": "Conversor de Fusos Horários",
+  "description": "Converta horários entre fusos e planeje reuniões pelo mundo todo",
+  "placeholder": "Escolha data e hora",
+  "hint": "Escolha um horário e o fuso de origem, e veja na hora em cada fuso que adicionar — perfeito para planejar reuniões.",
+  "when": "Data e hora",
+  "now": "Agora",
+  "source": "Fuso horário de origem",
+  "targets": "Mostrar nestes fusos horários",
+  "add": "Adicionar fuso horário",
+  "convert": "Converter",
+  "result": "Horários pelo mundo",
+  "error": "Não foi possível converter — verifique a data e o fuso horário",
+  "meta": {
+    "title": "Conversor de Fusos Horários e Planejador - Grátis | ToolsLab",
+    "description": "Converta o horário entre fusos online grátis. Compare um horário entre cidades do mundo, lida com horário de verão automaticamente e planeje reuniões — sem cadastro."
+  },
+  "tagline": "Converta horários entre fusos e planeje reuniões globais em segundos",
+  "pageDescription": "Converta qualquer horário entre fusos e planeje reuniões pelo mundo todo com este Conversor de Fusos Horários online e gratuito. Escolha data, hora e fuso de origem e adicione quantas cidades quiser para ver o horário equivalente em todos os lugares de uma vez — o horário de verão é tratado automaticamente. Funciona inteiramente no navegador sem cadastro, ideal para planejar chamadas remotas, coordenar equipes distribuídas, organizar viagens e evitar o clássico erro 'que horas são aí?'.",
+  "instructions": {
+    "title": "Como converter entre fusos horários",
+    "steps": [
+      {
+        "title": "Defina a data e a hora",
+        "description": "Informe o momento a converter, ou clique em Agora para usar a hora atual. É o horário local no seu fuso de origem."
+      },
+      {
+        "title": "Escolha o fuso de origem",
+        "description": "Escolha o fuso em que o horário está. Por padrão é o seu, detectado pelo navegador."
+      },
+      {
+        "title": "Adicione fusos de destino",
+        "description": "Use o menu Adicionar fuso horário para incluir cada cidade ou fuso que interessa. Adicione quantos precisar para uma reunião."
+      },
+      {
+        "title": "Leia os horários convertidos",
+        "description": "Cada fuso mostra data, hora, dia da semana e deslocamento UTC equivalentes, recalculados na hora a cada alteração."
+      },
+      {
+        "title": "Encontre uma sobreposição",
+        "description": "Percorra os horários para achar um intervalo que sirva a todos e remova fusos desnecessários com o botão ×."
+      }
+    ],
+    "features": [
+      "Converta um horário para muitos fusos de uma vez",
+      "Tratamento automático do horário de verão (DST)",
+      "Detecta seu fuso local automaticamente",
+      "Mostra data, hora, dia e deslocamento UTC por fuso",
+      "Adicione ou remova cidades como planejador de reuniões",
+      "Atualiza na hora ao mudar os dados",
+      "100% no lado do cliente — nada é enviado a um servidor",
+      "Sem cadastro, sem limites"
+    ],
+    "useCases": [
+      "Planejar uma reunião entre equipes distribuídas",
+      "Achar um horário de chamada que funcione em Nova York, Londres e Tóquio",
+      "Converter timestamps UTC de logs para seu horário local",
+      "Organizar um webinar para um público global",
+      "Coordenar com freelancers e clientes remotos",
+      "Verificar a que horas um lançamento acontece no seu fuso",
+      "Evitar reservas duplicadas nas mudanças de horário de verão",
+      "Planejar chegadas e partidas de viagens entre fusos"
+    ],
+    "proTips": [
+      "Clique em Agora e mude o fuso de origem para converter 'o horário deles' para o seu",
+      "O horário de verão é automático — escolha a data, não um deslocamento fixo",
+      "Adicione UTC como referência neutra para agendas técnicas",
+      "Use o rótulo do dia para perceber horários que caem no dia seguinte",
+      "Remova fusos não usados para manter a visão da reunião limpa",
+      "Combine com o Conversor de Timestamp Unix para valores epoch"
+    ],
+    "troubleshooting": [
+      "O horário está uma hora deslocado: é o horário de verão — verifique a data",
+      "Fuso de origem errado: por padrão é o do navegador, troque se preciso",
+      "Falta uma cidade: escolha o fuso mais próximo com o mesmo deslocamento e regras de DST",
+      "A data pulou um dia: deslocamentos grandes movem horários para o dia seguinte/anterior, é correto",
+      "Nada atualiza: confirme que data e hora foram preenchidas"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Mova entre os campos de data, origem e fuso horário"
+      }
+    ]
+  }
+}

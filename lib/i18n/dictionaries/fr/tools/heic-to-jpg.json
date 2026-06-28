@@ -1,0 +1,88 @@
+{
+  "title": "HEIC en JPG",
+  "description": "Convertissez les photos HEIC/HEIF d'iPhone en JPG ou PNG dans le navigateur",
+  "placeholder": "Déposez vos photos HEIC ici ou cliquez pour les importer",
+  "drop": "Déposez vos photos HEIC ici ou cliquez pour les importer",
+  "hint": "Convertissez les photos HEIC/HEIF d'iPhone en JPG ou PNG — 100% dans votre navigateur, rien n'est envoyé",
+  "format": "Format de sortie",
+  "quality": "Qualité",
+  "convertButton": "Convertir",
+  "download": "Télécharger",
+  "downloadAll": "Tout télécharger",
+  "onlyHeic": "Seuls les fichiers HEIC/HEIF sont pris en charge (essayez des photos .heic d'iPhone)",
+  "processing": "Conversion…",
+  "result": "Photos converties",
+  "failed": "Échec de la conversion",
+  "meta": {
+    "title": "Convertisseur HEIC en JPG - Gratuit, Sans Envoi | ToolsLab",
+    "description": "Convertissez HEIC en JPG ou PNG en ligne gratuitement. Transformez les photos HEIC/HEIF d'iPhone en JPG dans le navigateur — conversion par lot, sans envoi, sans inscription, privé."
+  },
+  "tagline": "Convertissez vos photos HEIC d'iPhone en JPG ou PNG instantanément et en privé",
+  "pageDescription": "Convertissez les photos HEIC et HEIF d'iPhone en JPG ou PNG avec ce convertisseur HEIC en JPG en ligne et gratuit. Déposez une photo ou tout un lot, choisissez JPG ou PNG, réglez la qualité et téléchargez — généralement en moins d'une seconde. Tout se passe localement dans votre navigateur : vos photos ne sont jamais envoyées et restent totalement privées. Parfait pour ouvrir des fichiers HEIC sous Windows, partager des photos d'iPhone illisibles ailleurs ou joindre des images à des formulaires qui refusent le HEIC. Sans inscription, sans filigrane, sans limite.",
+  "instructions": {
+    "title": "Comment convertir HEIC en JPG",
+    "steps": [
+      {
+        "title": "Ajoutez vos photos HEIC",
+        "description": "Glissez-déposez un ou plusieurs fichiers .heic / .heif sur la zone d'import, ou cliquez pour parcourir. Vous pouvez convertir plusieurs photos à la fois."
+      },
+      {
+        "title": "Choisissez JPG ou PNG",
+        "description": "Choisissez JPG pour des fichiers plus petits et compatibles, ou PNG si vous avez besoin d'une sortie sans perte avec transparence."
+      },
+      {
+        "title": "Réglez la qualité (JPG)",
+        "description": "Déplacez le curseur de qualité pour la sortie JPG. Autour de 90%, les photos restent nettes et légères ; baissez-le pour des fichiers plus petits."
+      },
+      {
+        "title": "Convertissez",
+        "description": "Cliquez sur Convertir. Chaque photo est décodée et réencodée dans votre navigateur — rien n'est envoyé à un serveur."
+      },
+      {
+        "title": "Téléchargez vos images",
+        "description": "Prévisualisez chaque photo convertie et téléchargez-la individuellement, ou utilisez Tout télécharger pour enregistrer le lot entier."
+      }
+    ],
+    "features": [
+      "Convertir HEIC et HEIF en JPG ou PNG",
+      "Conversion par lot de nombreuses photos d'iPhone",
+      "Curseur de qualité JPG réglable",
+      "Aperçu de chaque photo convertie avant le téléchargement",
+      "Téléchargement individuel ou du lot complet",
+      "100% côté client — les photos ne quittent pas votre appareil",
+      "Sans inscription, filigrane ni limite de taille",
+      "Fonctionne sous Windows, Mac, Linux, Android et iPhone"
+    ],
+    "useCases": [
+      "Ouvrir les photos HEIC d'iPhone sur un PC Windows",
+      "Partager des photos illisibles sur les appareils non Apple",
+      "Importer des images sur des sites et formulaires qui refusent le HEIC",
+      "Convertir le HEIC pour l'éditer dans d'anciens logiciels photo",
+      "Préparer les photos d'iPhone pour le web et l'e-mail",
+      "Transformer des captures HEIF en JPG universels",
+      "Convertir par lot un export de la pellicule en JPG",
+      "Obtenir des PNG transparents à partir de graphiques HEIC"
+    ],
+    "proTips": [
+      "Le JPG à 85–95% de qualité est le meilleur compromis pour les photos",
+      "N'utilisez le PNG que si vous avez besoin d'une qualité sans perte ou de transparence",
+      "Sélectionnez un dossier entier pour convertir par lot en une fois",
+      "Un HEIC contient souvent une photo par fichier — la première image est convertie",
+      "Tout est local, vos photos privées le restent",
+      "Besoin de fichiers plus petits ensuite ? Passez-les dans le Compresseur d'images"
+    ],
+    "troubleshooting": [
+      "Rien ne se passe : vérifiez que le fichier se termine bien par .heic ou .heif",
+      "Le navigateur dit non pris en charge : les rafales HEIC très grandes prennent un instant — patientez",
+      "Les couleurs semblent fausses : essayez la sortie PNG au lieu de JPG",
+      "Le fichier est volumineux : baissez le curseur de qualité JPG",
+      "Une seule image est sortie : ce HEIC ne contenait qu'une image, c'est normal"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + glisser",
+        "description": "Déposez les photos HEIC sur la zone d'import"
+      }
+    ]
+  }
+}

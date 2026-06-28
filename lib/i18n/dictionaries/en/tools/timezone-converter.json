@@ -1,0 +1,86 @@
+{
+  "title": "Timezone Converter",
+  "description": "Convert times between timezones and plan meetings across the world",
+  "placeholder": "Pick a date and time",
+  "hint": "Pick a time and source zone, then see it instantly in every zone you add — perfect for scheduling meetings.",
+  "when": "Date & time",
+  "now": "Now",
+  "source": "Source timezone",
+  "targets": "Show in these timezones",
+  "add": "Add timezone",
+  "convert": "Convert",
+  "result": "Times around the world",
+  "error": "Could not convert — check the date and timezone",
+  "meta": {
+    "title": "Timezone Converter & Meeting Planner - Free | ToolsLab",
+    "description": "Convert time between timezones online free. Compare a time across cities worldwide, handle DST automatically and plan meetings across timezones — no signup."
+  },
+  "tagline": "Convert times across timezones and plan global meetings in seconds",
+  "pageDescription": "Convert any time between timezones and plan meetings across the world with this free online Timezone Converter. Choose a date, time and source zone, then add as many cities as you like to see the exact equivalent time everywhere at once — daylight saving is handled automatically. It runs entirely in your browser with no signup, making it ideal for scheduling remote calls, coordinating distributed teams, planning travel and avoiding the classic 'what time is it there?' mistake.",
+  "instructions": {
+    "title": "How to convert between timezones",
+    "steps": [
+      {
+        "title": "Set the date and time",
+        "description": "Enter the moment you want to convert, or click Now to use the current time. This is the wall-clock time in your source zone."
+      },
+      {
+        "title": "Pick the source timezone",
+        "description": "Choose the zone the time is in. It defaults to your own timezone, detected from your browser."
+      },
+      {
+        "title": "Add target timezones",
+        "description": "Use the Add timezone menu to add every city or zone you care about. Add as many as you need for a meeting."
+      },
+      {
+        "title": "Read the converted times",
+        "description": "Each zone shows the equivalent date, time, weekday and UTC offset, recalculated instantly as you change anything."
+      },
+      {
+        "title": "Find an overlap",
+        "description": "Scan the times to find a slot that works for everyone, then remove zones you no longer need with the × button."
+      }
+    ],
+    "features": [
+      "Convert one time into many timezones at once",
+      "Automatic daylight saving (DST) handling",
+      "Detects your local timezone automatically",
+      "Shows date, time, weekday and UTC offset per zone",
+      "Add or remove cities as a meeting planner",
+      "Updates instantly as you change inputs",
+      "100% client-side — nothing is sent to a server",
+      "No signup, no limits"
+    ],
+    "useCases": [
+      "Schedule a meeting across distributed teams",
+      "Find a call time that works in New York, London and Tokyo",
+      "Convert UTC log timestamps to your local time",
+      "Plan a webinar for a global audience",
+      "Coordinate with remote freelancers and clients",
+      "Check what time a launch happens in your zone",
+      "Avoid double-booking across daylight saving changes",
+      "Plan travel arrivals and departures across zones"
+    ],
+    "proTips": [
+      "Click Now and switch the source zone to convert 'their time' to yours",
+      "Daylight saving is automatic — pick the date, not a fixed offset",
+      "Add UTC as a neutral reference for technical schedules",
+      "Use the weekday label to catch times that fall on the next day",
+      "Remove unused zones to keep the meeting view clean",
+      "Pair with the Unix Timestamp Converter for epoch values"
+    ],
+    "troubleshooting": [
+      "Time looks off by an hour: that's daylight saving — verify the date",
+      "Wrong source zone: it defaults to your browser zone, change it if needed",
+      "A city is missing: pick the closest zone with the same offset and DST rules",
+      "Date jumped a day: large offsets push times into the next/previous day, which is correct",
+      "Nothing updates: make sure a date and time are entered"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Move between the date, source and timezone fields"
+      }
+    ]
+  }
+}

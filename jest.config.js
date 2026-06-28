@@ -11,6 +11,7 @@ const customJestConfig = {
     '^@/(.*)$': '<rootDir>/$1',
     '^yaml$': '<rootDir>/node_modules/yaml/dist/index.js',
     '^marked$': '<rootDir>/node_modules/marked/lib/marked.umd.js',
+    '^svgo/browser$': '<rootDir>/node_modules/svgo/dist/svgo-node.cjs',
   },
   collectCoverageFrom: [
     'lib/**/*.{js,jsx,ts,tsx}',

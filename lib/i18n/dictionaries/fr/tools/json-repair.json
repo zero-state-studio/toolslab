@@ -1,0 +1,87 @@
+{
+  "title": "Réparation JSON",
+  "description": "Corrigez du JSON cassé ou malformé et obtenez du JSON valide et formaté",
+  "placeholder": "Collez ici le JSON cassé ou malformé…",
+  "hint": "Collez du JSON cassé — virgules finales, guillemets simples, clés sans guillemets, None/True/False de Python, même une sortie tronquée ou entourée de markdown par ChatGPT. Récupérez du JSON valide.",
+  "indent": "Indentation",
+  "repair": "Réparer le JSON",
+  "sample": "Charger un exemple",
+  "result": "JSON réparé",
+  "copy": "Copier",
+  "copied": "Copié !",
+  "noChange": "Déjà valide — seulement reformaté",
+  "tab": "Tabulation",
+  "minified": "Minifié",
+  "meta": {
+    "title": "Réparation JSON - Corriger du JSON Cassé et Malformé | ToolsLab",
+    "description": "Réparez du JSON cassé en ligne gratuitement. Corrigez virgules finales, guillemets simples, clés sans guillemets et sortie tronquée de ChatGPT en JSON valide — dans le navigateur, sans inscription."
+  },
+  "tagline": "Transformez du JSON cassé, malformé ou abîmé par un LLM en JSON valide instantanément",
+  "pageDescription": "Réparez du JSON cassé et malformé avec cet outil gratuit de Réparation JSON en ligne. Il corrige automatiquement les problèmes les plus courants — virgules finales, guillemets simples, clés sans guillemets, crochets manquants, commentaires, None/True/False à la Python et sortie tronquée ou entourée de markdown par ChatGPT et d'autres LLM — puis renvoie du JSON propre, valide et formaté. Tout fonctionne dans votre navigateur sans inscription ni envoi, donc même les données sensibles restent privées. Parfait pour les développeurs qui déboguent des réponses d'API, nettoient des sorties d'IA et sauvent des fichiers de configuration.",
+  "instructions": {
+    "title": "Comment réparer du JSON cassé",
+    "steps": [
+      {
+        "title": "Collez votre JSON cassé",
+        "description": "Insérez le JSON malformé — il peut contenir des guillemets simples, des virgules finales, des commentaires ou même un bloc de code ```json."
+      },
+      {
+        "title": "Choisissez l'indentation",
+        "description": "Choisissez 2 ou 4 espaces, des tabulations ou une sortie minifiée selon le format souhaité pour le JSON réparé."
+      },
+      {
+        "title": "Cliquez sur Réparer le JSON",
+        "description": "L'outil corrige la syntaxe, ré-analyse le résultat et imprime un JSON valide garanti et formaté."
+      },
+      {
+        "title": "Vérifiez le résultat",
+        "description": "Examinez le JSON réparé. S'il était déjà valide, une note indique qu'il a seulement été reformaté."
+      },
+      {
+        "title": "Copiez le JSON propre",
+        "description": "Cliquez sur Copier pour récupérer le JSON valide et le coller directement dans votre code, votre config ou votre client d'API."
+      }
+    ],
+    "features": [
+      "Supprime les virgules finales et ajoute celles qui manquent",
+      "Convertit les guillemets simples en guillemets doubles",
+      "Met des guillemets aux clés non guillemetées",
+      "Corrige les littéraux Python (None, True, False)",
+      "Retire les commentaires et les blocs markdown ```json",
+      "Ferme les tableaux et objets tronqués",
+      "Formatage avec espaces, tabulations ou sortie minifiée",
+      "100% côté client — les données ne quittent pas le navigateur"
+    ],
+    "useCases": [
+      "Corriger le JSON malformé renvoyé par ChatGPT ou d'autres LLM",
+      "Réparer un fichier de config édité à la main qui ne s'analyse pas",
+      "Nettoyer une réponse d'API copiée avec des virgules en trop",
+      "Sauver du JSON tronqué par un log ou le terminal",
+      "Convertir des littéraux d'objet JavaScript en JSON valide",
+      "Corriger du JSON avec guillemets simples issu de Python",
+      "Préparer un JSON désordonné avant de l'importer",
+      "Valider et reformater du JSON en une seule étape"
+    ],
+    "proTips": [
+      "Collez tout le bloc ```json — la clôture est retirée automatiquement",
+      "La sortie LLM tronquée est fermée par des crochets correspondants, mais vérifiez les données",
+      "Utilisez la sortie minifiée pour réduire le JSON pour le stockage ou le transport",
+      "Si la réparation semble fausse, la source était ambiguë — corrigez-la un peu et réessayez",
+      "Besoin de comparer des versions ? Associez-le à un outil de diff JSON",
+      "Tout est local, vous pouvez donc réparer des données privées en toute sécurité"
+    ],
+    "troubleshooting": [
+      "Réparation impossible : l'entrée est trop éloignée du JSON — corrigez les fautes évidentes et réessayez",
+      "Les nombres sont devenus des chaînes : ils étaient entre guillemets dans la source ; retirez-les",
+      "La sortie n'est qu'une chaîne : le texte brut devient une chaîne JSON — entourez-le de {} si vous vouliez un objet",
+      "Un commentaire a disparu : le JSON n'a pas de commentaires, ils sont donc retirés volontairement",
+      "Clés réordonnées : l'ordre des clés est conservé ; seul le formatage change"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Collez le JSON dans l'entrée"
+      }
+    ]
+  }
+}

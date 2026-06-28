@@ -1,0 +1,86 @@
+{
+  "title": "Convertisseur de Fuseaux Horaires",
+  "description": "Convertissez l'heure entre fuseaux horaires et planifiez des réunions dans le monde entier",
+  "placeholder": "Choisissez une date et une heure",
+  "hint": "Choisissez une heure et le fuseau source, et voyez-la instantanément dans chaque fuseau ajouté — parfait pour planifier des réunions.",
+  "when": "Date et heure",
+  "now": "Maintenant",
+  "source": "Fuseau horaire source",
+  "targets": "Afficher dans ces fuseaux horaires",
+  "add": "Ajouter un fuseau horaire",
+  "convert": "Convertir",
+  "result": "Heures dans le monde",
+  "error": "Conversion impossible — vérifiez la date et le fuseau horaire",
+  "meta": {
+    "title": "Convertisseur de Fuseaux Horaires & Planificateur - Gratuit | ToolsLab",
+    "description": "Convertissez l'heure entre fuseaux horaires en ligne gratuitement. Comparez une heure entre des villes, gestion automatique de l'heure d'été, planifiez des réunions — sans inscription."
+  },
+  "tagline": "Convertissez l'heure entre fuseaux et planifiez des réunions mondiales en quelques secondes",
+  "pageDescription": "Convertissez n'importe quelle heure entre fuseaux horaires et planifiez des réunions dans le monde entier avec ce Convertisseur de Fuseaux Horaires en ligne et gratuit. Choisissez une date, une heure et un fuseau source, puis ajoutez autant de villes que vous voulez pour voir l'heure équivalente partout d'un coup — l'heure d'été est gérée automatiquement. Tout fonctionne dans votre navigateur sans inscription, idéal pour planifier des appels à distance, coordonner des équipes réparties, organiser des voyages et éviter le classique « quelle heure est-il là-bas ? ».",
+  "instructions": {
+    "title": "Comment convertir entre fuseaux horaires",
+    "steps": [
+      {
+        "title": "Réglez la date et l'heure",
+        "description": "Saisissez le moment à convertir, ou cliquez sur Maintenant pour utiliser l'heure actuelle. C'est l'heure locale dans votre fuseau source."
+      },
+      {
+        "title": "Choisissez le fuseau source",
+        "description": "Choisissez le fuseau dans lequel se trouve l'heure. Par défaut, c'est le vôtre, détecté par votre navigateur."
+      },
+      {
+        "title": "Ajoutez des fuseaux cibles",
+        "description": "Utilisez le menu Ajouter un fuseau horaire pour ajouter chaque ville ou fuseau qui vous intéresse. Ajoutez-en autant que nécessaire pour une réunion."
+      },
+      {
+        "title": "Lisez les heures converties",
+        "description": "Chaque fuseau affiche la date, l'heure, le jour et le décalage UTC équivalents, recalculés instantanément à chaque modification."
+      },
+      {
+        "title": "Trouvez un créneau commun",
+        "description": "Parcourez les heures pour trouver un créneau qui convient à tous, puis retirez les fuseaux inutiles avec le bouton ×."
+      }
+    ],
+    "features": [
+      "Convertir une heure dans plusieurs fuseaux à la fois",
+      "Gestion automatique de l'heure d'été (DST)",
+      "Détecte automatiquement votre fuseau local",
+      "Affiche date, heure, jour et décalage UTC par fuseau",
+      "Ajoutez ou retirez des villes comme un planificateur de réunions",
+      "Mise à jour instantanée quand vous changez les données",
+      "100% côté client — rien n'est envoyé à un serveur",
+      "Sans inscription, sans limite"
+    ],
+    "useCases": [
+      "Planifier une réunion entre équipes réparties",
+      "Trouver une heure d'appel qui marche à New York, Londres et Tokyo",
+      "Convertir des horodatages UTC de logs vers votre heure locale",
+      "Organiser un webinaire pour un public mondial",
+      "Vous coordonner avec des freelances et clients à distance",
+      "Vérifier à quelle heure un lancement a lieu dans votre fuseau",
+      "Éviter les doubles réservations lors des changements d'heure d'été",
+      "Planifier arrivées et départs de voyages entre fuseaux"
+    ],
+    "proTips": [
+      "Cliquez sur Maintenant et changez le fuseau source pour convertir « leur heure » vers la vôtre",
+      "L'heure d'été est automatique — choisissez la date, pas un décalage fixe",
+      "Ajoutez UTC comme référence neutre pour les plannings techniques",
+      "Utilisez l'étiquette du jour pour repérer les heures qui tombent le lendemain",
+      "Retirez les fuseaux inutilisés pour garder une vue de réunion claire",
+      "Associez-le au Convertisseur d'Horodatage Unix pour les valeurs epoch"
+    ],
+    "troubleshooting": [
+      "L'heure est décalée d'une heure : c'est l'heure d'été — vérifiez la date",
+      "Mauvais fuseau source : par défaut c'est celui du navigateur, changez-le au besoin",
+      "Une ville manque : choisissez le fuseau le plus proche avec le même décalage et les mêmes règles DST",
+      "La date a sauté d'un jour : de grands décalages déplacent les heures au jour suivant/précédent, c'est correct",
+      "Rien ne se met à jour : assurez-vous d'avoir saisi une date et une heure"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Passez d'un champ à l'autre : date, source et fuseau horaire"
+      }
+    ]
+  }
+}

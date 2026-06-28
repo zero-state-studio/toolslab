@@ -1,0 +1,88 @@
+{
+  "title": "Optimizador SVG",
+  "description": "Minifica y limpia archivos SVG para reducir su tamaño",
+  "placeholder": "Pega aquí el código SVG…",
+  "hint": "Pega el código SVG o suelta un archivo .svg para quitar comentarios, metadatos y restos del editor y reducir el archivo — todo en tu navegador.",
+  "drop": "Suelta un archivo .svg o haz clic para subirlo",
+  "prettify": "Salida con formato",
+  "optimize": "Optimizar SVG",
+  "result": "SVG optimizado",
+  "copy": "Copiar",
+  "copied": "¡Copiado!",
+  "download": "Descargar",
+  "saved": "menos",
+  "onlySvg": "Solo se admiten archivos SVG",
+  "preview": "Vista previa",
+  "meta": {
+    "title": "Optimizador SVG - Minifica y Limpia SVG Gratis | ToolsLab",
+    "description": "Optimiza y minifica archivos SVG online gratis. Quita comentarios, metadatos y restos del editor para reducir el tamaño con SVGO — en tu navegador, sin subir, sin registro."
+  },
+  "tagline": "Minifica y limpia archivos SVG para reducir su tamaño sin perder calidad",
+  "pageDescription": "Optimiza y minifica archivos SVG con este Optimizador SVG online y gratuito basado en SVGO. Pega tu código o suelta un archivo para quitar comentarios, metadatos del editor, capas ocultas y atributos redundantes, simplificar trazados y reducir el archivo — a menudo un 40–70% — manteniendo el viewBox para que escale perfectamente. Todo se ejecuta localmente en tu navegador, así que tus gráficos nunca se suben y siguen siendo privados. Ideal para webs más rápidas, sets de iconos más ligeros y SVG inline más limpio en tu código.",
+  "instructions": {
+    "title": "Cómo optimizar un SVG",
+    "steps": [
+      {
+        "title": "Añade tu SVG",
+        "description": "Pega el código SVG en el cuadro, o suelta un archivo .svg exportado desde Figma, Illustrator o Inkscape."
+      },
+      {
+        "title": "Elige el formato (opcional)",
+        "description": "Déjalo desactivado para la salida más pequeña en una línea, o actívalo para mantener legible el SVG optimizado."
+      },
+      {
+        "title": "Haz clic en Optimizar SVG",
+        "description": "SVGO quita comentarios, metadatos y restos del editor, simplifica trazados y elimina atributos redundantes en tu navegador."
+      },
+      {
+        "title": "Revisa el ahorro y la vista previa",
+        "description": "Mira el tamaño antes/después, el porcentaje ahorrado y una vista previa en vivo para confirmar que el gráfico sigue bien."
+      },
+      {
+        "title": "Copia o descarga",
+        "description": "Copia el código optimizado para uso inline, o descarga el archivo .svg minificado."
+      }
+    ],
+    "features": [
+      "Basado en SVGO, el optimizador estándar del sector",
+      "Quita comentarios, metadatos y namespaces del editor",
+      "Simplifica trazados y elimina atributos redundantes",
+      "Mantiene el viewBox para que los SVG escalen",
+      "Formato opcional para una salida legible",
+      "Vista previa en vivo del gráfico optimizado",
+      "Tamaño antes/después con porcentaje ahorrado",
+      "100% del lado del cliente — los gráficos no salen del navegador"
+    ],
+    "useCases": [
+      "Reducir iconos antes de añadirlos a una web",
+      "Limpiar SVG exportados desde Figma o Illustrator",
+      "Reducir el peso de SVG inline en componentes React o Vue",
+      "Optimizar un set de iconos entero para cargas más rápidas",
+      "Quitar metadatos del editor antes de compartir un logo",
+      "Reducir el tamaño de un sprite SVG para mejor rendimiento",
+      "Ordenar código SVG escrito a mano",
+      "Preparar SVG para una fuente de iconos o librería de componentes"
+    ],
+    "proTips": [
+      "Deja el formato desactivado en producción; actívalo para revisar el código",
+      "El viewBox se mantiene a propósito para que tu SVG siga siendo responsive",
+      "Reoptimizar un SVG ya limpio es seguro y solo confirma el tamaño",
+      "Los SVG exportados de herramientas de diseño suelen reducirse más",
+      "Usa la vista previa para detectar recortes antes de publicar",
+      "Todo es local, así que los logos no publicados siguen siendo privados"
+    ],
+    "troubleshooting": [
+      "No parece un SVG: asegúrate de que el código contenga una etiqueta <svg>",
+      "El gráfico se ve roto: puede faltar una fuente o imagen externa — no están en el SVG",
+      "Apenas se redujo: el SVG ya estaba optimizado, es normal",
+      "Los colores cambiaron: una variable CSS o estilo externo no se incluye en el archivo",
+      "La vista previa está en blanco: el SVG puede depender de scripts o recursos externos que no se renderizan solos"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Pega el código SVG en la entrada"
+      }
+    ]
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "title": "Visionneuse et Suppression EXIF",
+  "description": "Affichez les métadonnées EXIF des photos et supprimez-les pour protéger votre vie privée",
+  "placeholder": "Déposez une photo ici ou cliquez pour l'importer",
+  "hint": "Découvrez les métadonnées cachées de vos photos — appareil, réglages, date et position GPS — puis supprimez-les avant de partager. Rien n'est envoyé.",
+  "drop": "Déposez une photo ici ou cliquez pour l'importer",
+  "reading": "Lecture des métadonnées…",
+  "metadata": "Métadonnées",
+  "noData": "Aucune métadonnée EXIF trouvée — cette image est déjà propre.",
+  "gpsWarning": "Cette photo révèle où elle a été prise :",
+  "viewMap": "Voir sur la carte",
+  "strip": "Supprimer toutes les métadonnées",
+  "stripping": "Suppression…",
+  "cleaned": "Métadonnées supprimées",
+  "cleanedNote": "Téléchargez la copie propre — sans données EXIF, GPS ni appareil.",
+  "download": "Télécharger la photo propre",
+  "onlyImage": "Seuls les fichiers image sont pris en charge",
+  "fields": "champs",
+  "meta": {
+    "title": "Visionneuse et Suppression EXIF - Voir & Effacer Métadonnées Photo | ToolsLab",
+    "description": "Affichez les métadonnées EXIF et supprimez-les des photos en ligne gratuitement. Voyez appareil, date et GPS, puis effacez-les pour la vie privée — dans le navigateur, sans envoi, sans inscription."
+  },
+  "tagline": "Affichez les métadonnées EXIF des photos et supprimez GPS et données d'appareil pour la confidentialité",
+  "pageDescription": "Affichez et supprimez les métadonnées EXIF de vos photos avec cette Visionneuse et Suppression EXIF en ligne et gratuite. Déposez un JPG, PNG, HEIC ou TIFF pour révéler les données cachées intégrées par votre appareil — marque et modèle, réglages d'exposition, date de prise de vue et la position GPS exacte — puis supprimez-les toutes d'un clic en téléchargeant une copie propre. Tout fonctionne localement dans votre navigateur, vos photos et leur localisation ne sont donc jamais envoyées. Indispensable avant de partager des images en ligne, de publier sur des forums ou de vendre des objets, lorsque des coordonnées GPS divulguées peuvent exposer votre adresse.",
+  "instructions": {
+    "title": "Comment voir et supprimer les données EXIF",
+    "steps": [
+      {
+        "title": "Importez une photo",
+        "description": "Glissez une photo ou cliquez pour parcourir. JPG, PNG, HEIC et TIFF contiennent tous des métadonnées EXIF."
+      },
+      {
+        "title": "Examinez les métadonnées",
+        "description": "Les données cachées sont regroupées en sections Appareil, Exposition, Date et Localisation pour voir exactement ce qui est intégré."
+      },
+      {
+        "title": "Vérifiez l'avertissement de localisation",
+        "description": "Si des coordonnées GPS sont présentes, un avertissement apparaît avec un lien vers la carte indiquant où la photo a été prise."
+      },
+      {
+        "title": "Supprimez toutes les métadonnées",
+        "description": "Cliquez sur Supprimer toutes les métadonnées. L'image est ré-encodée dans votre navigateur, supprimant chaque balise EXIF, GPS et appareil."
+      },
+      {
+        "title": "Téléchargez la photo propre",
+        "description": "Téléchargez la copie nettoyée. Elle est identique mais ne porte aucune donnée cachée à partager par erreur."
+      }
+    ],
+    "features": [
+      "Lit les métadonnées EXIF, GPS, IPTC et XMP",
+      "Regroupe les données en Appareil, Exposition, Date et Localisation",
+      "Signale les photos qui divulguent des coordonnées GPS",
+      "Lien vers la carte en un clic pour les localisations intégrées",
+      "Supprime toutes les métadonnées en ré-encodant l'image",
+      "Prend en charge JPG, PNG, HEIC, TIFF et WebP",
+      "100% côté client — les photos ne quittent pas votre appareil",
+      "Sans inscription, filigrane ni limite"
+    ],
+    "useCases": [
+      "Supprimer la localisation GPS avant de publier des photos en ligne",
+      "Vérifier les données qu'une photo révèle avant de la partager",
+      "Retirer les métadonnées des images vendues sur les marketplaces",
+      "Nettoyer les photos avant de les mettre sur des forums ou apps de rencontre",
+      "Vérifier les réglages d'appareil et d'objectif d'une prise",
+      "Protéger l'adresse du domicile cachée dans des photos de vacances",
+      "Auditer la date de prise de vue et l'appareil d'une photo",
+      "Préparer des images pour un envoi anonyme"
+    ],
+    "proTips": [
+      "Le GPS des photos peut localiser votre domicile — supprimez-le toujours avant publication",
+      "Les captures d'écran n'ont généralement pas d'EXIF, elles apparaissent donc déjà propres",
+      "Les photos HEIC d'iPhone portent des métadonnées riches, dont la localisation",
+      "La copie propre est ré-encodée, la taille du fichier peut donc changer légèrement",
+      "Associez-la au convertisseur HEIC en JPG pour nettoyer et convertir d'un coup",
+      "Tout est local, vos photos sensibles restent donc privées"
+    ],
+    "troubleshooting": [
+      "Aucune métadonnée trouvée : l'image était déjà nettoyée ou n'a jamais eu d'EXIF (fréquent pour les captures)",
+      "Localisation absente : le GPS n'est présent que si l'appareil l'a enregistré",
+      "Le fichier propre a une taille différente : le ré-encodage modifie légèrement la compression",
+      "Transparence perdue : le PNG conserve l'alpha, mais la sortie JPEG est opaque",
+      "Lecture impossible : le fichier est peut-être corrompu ou n'est pas une vraie image"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + glisser",
+        "description": "Déposez une photo sur la zone d'import"
+      }
+    ]
+  }
+}

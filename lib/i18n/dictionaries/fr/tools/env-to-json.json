@@ -1,0 +1,88 @@
+{
+  "title": ".env vers JSON",
+  "description": "Convertissez des fichiers .env en JSON et inversement",
+  "placeholder": "Collez votre fichier .env ici…",
+  "hint": "Convertissez un fichier .env en JSON ou du JSON en .env. Gère les guillemets, commentaires et le préfixe export — le tout dans votre navigateur.",
+  "env2json": ".env → JSON",
+  "json2env": "JSON → .env",
+  "swap": "Inverser le sens",
+  "placeholderEnv": "Collez votre fichier .env ici…",
+  "placeholderJson": "Collez votre objet JSON ici…",
+  "result": "Résultat",
+  "copy": "Copier",
+  "copied": "Copié !",
+  "sample": "Charger un exemple",
+  "vars": "variables",
+  "meta": {
+    "title": "Convertisseur .env vers JSON - Gratuit, Bidirectionnel | ToolsLab",
+    "description": "Convertissez des fichiers .env en JSON et du JSON en .env en ligne gratuitement. Analysez les variables d'environnement avec guillemets, commentaires et préfixe export — dans le navigateur, sans inscription."
+  },
+  "tagline": "Convertissez des fichiers .env en JSON et inversement d'un clic, dans votre navigateur",
+  "pageDescription": "Convertissez des fichiers .env en JSON et du JSON en .env avec ce convertisseur en ligne et gratuit. Collez un fichier dotenv pour obtenir un objet JSON propre de vos variables d'environnement — guillemets, commentaires, préfixe export et valeurs contenant = sont tous gérés correctement — ou collez un objet JSON pour générer un fichier .env prêt à l'emploi avec le bon échappement. Tout fonctionne localement dans votre navigateur, vos secrets et clés d'API ne sont donc jamais envoyés. Idéal pour les développeurs qui configurent leurs réglages, importent des variables dans une CI ou déplacent des paramètres entre formats.",
+  "instructions": {
+    "title": "Comment convertir .env en JSON",
+    "steps": [
+      {
+        "title": "Choisissez un sens",
+        "description": "Choisissez .env → JSON pour analyser un fichier dotenv, ou JSON → .env pour en générer un depuis un objet JSON."
+      },
+      {
+        "title": "Collez votre entrée",
+        "description": "Collez le fichier .env ou l'objet JSON dans la zone. Les commentaires et le préfixe export sont gérés automatiquement."
+      },
+      {
+        "title": "Lisez le résultat",
+        "description": "La conversion s'exécute instantanément pendant que vous tapez, affichant le nombre de variables analysées."
+      },
+      {
+        "title": "Inversez si besoin",
+        "description": "Utilisez le bouton d'inversion pour renvoyer le résultat dans l'autre sens et confirmer un aller-retour propre."
+      },
+      {
+        "title": "Copiez la sortie",
+        "description": "Cliquez sur Copier pour récupérer le JSON ou le .env et le coller dans votre config, votre code ou vos réglages CI."
+      }
+    ],
+    "features": [
+      "Conversion bidirectionnelle : .env ↔ JSON",
+      "Gère les guillemets simples et doubles avec échappements",
+      "Retire les commentaires # et les commentaires en ligne",
+      "Prend en charge le préfixe export KEY=value",
+      "Conserve les valeurs contenant = (comme les URL de base de données)",
+      "Met des guillemets aux valeurs qui en ont besoin à l'écriture du .env",
+      "100% côté client — les secrets ne quittent pas le navigateur",
+      "Sans inscription, sans limite"
+    ],
+    "useCases": [
+      "Transformer un fichier .env en JSON pour un chargeur de config",
+      "Générer un fichier .env depuis un objet de réglages JSON",
+      "Importer des variables d'environnement dans une pipeline CI",
+      "Inspecter un .env en désordre sous forme de JSON structuré",
+      "Migrer la config entre les formats dotenv et JSON",
+      "Construire un .env rapidement depuis une documentation d'API JSON",
+      "Vérifier qu'un .env s'analyse proprement",
+      "Convertir des secrets pour un outil qui attend du JSON"
+    ],
+    "proTips": [
+      "Les valeurs entre guillemets doubles développent \\n ; les guillemets simples restent littéraux",
+      "Les valeurs avec espaces ou # sont mises entre guillemets automatiquement à l'écriture du .env",
+      "Utilisez l'inversion pour faire un aller-retour et vérifier que rien n'a été perdu",
+      "Les objets JSON imbriqués deviennent une chaîne JSON dans la valeur .env",
+      "Tout est local, vous pouvez donc coller de vrais secrets en toute sécurité",
+      "Associez-le au convertisseur YAML/JSON pour d'autres formats de config"
+    ],
+    "troubleshooting": [
+      "Aucune variable trouvée : vérifiez que les lignes utilisent KEY=value, pas KEY: value",
+      "Erreur JSON invalide : JSON → .env nécessite un objet JSON valide",
+      "Une valeur a perdu un commentaire : c'est attendu — les commentaires ne font pas partie de la valeur",
+      "Les guillemets semblent différents : l'analyseur normalise les guillemets en sortie",
+      "Tableau refusé : le .env nécessite un objet de paires clé/valeur, pas un tableau"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Collez dans l'entrée"
+      }
+    ]
+  }
+}

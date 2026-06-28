@@ -1,0 +1,86 @@
+{
+  "title": "Zeitzonen-Konverter",
+  "description": "Zeiten zwischen Zeitzonen umrechnen und Meetings weltweit planen",
+  "placeholder": "Datum und Uhrzeit wählen",
+  "hint": "Wähle eine Uhrzeit und die Ausgangszone, und sieh sie sofort in jeder hinzugefügten Zone — perfekt für die Meeting-Planung.",
+  "when": "Datum & Uhrzeit",
+  "now": "Jetzt",
+  "source": "Ausgangszeitzone",
+  "targets": "In diesen Zeitzonen anzeigen",
+  "add": "Zeitzone hinzufügen",
+  "convert": "Umrechnen",
+  "result": "Uhrzeiten weltweit",
+  "error": "Umrechnung fehlgeschlagen — prüfe Datum und Zeitzone",
+  "meta": {
+    "title": "Zeitzonen-Konverter & Meeting-Planer - Kostenlos | ToolsLab",
+    "description": "Zeit zwischen Zeitzonen online kostenlos umrechnen. Vergleiche eine Uhrzeit über Städte hinweg, automatische Sommerzeit und plane Meetings — ohne Anmeldung."
+  },
+  "tagline": "Zeiten über Zeitzonen umrechnen und globale Meetings in Sekunden planen",
+  "pageDescription": "Rechne jede Uhrzeit zwischen Zeitzonen um und plane Meetings weltweit mit diesem kostenlosen Online-Zeitzonen-Konverter. Wähle Datum, Uhrzeit und Ausgangszone, dann füge beliebig viele Städte hinzu, um die entsprechende Zeit überall auf einmal zu sehen — die Sommerzeit wird automatisch berücksichtigt. Alles läuft im Browser ohne Anmeldung, ideal für die Planung von Remote-Calls, die Koordination verteilter Teams, die Reiseplanung und um den Klassiker „Wie spät ist es dort?“ zu vermeiden.",
+  "instructions": {
+    "title": "So rechnest du zwischen Zeitzonen um",
+    "steps": [
+      {
+        "title": "Datum und Uhrzeit festlegen",
+        "description": "Gib den umzurechnenden Zeitpunkt ein oder klicke Jetzt für die aktuelle Zeit. Das ist die Ortszeit in deiner Ausgangszone."
+      },
+      {
+        "title": "Ausgangszone wählen",
+        "description": "Wähle die Zone, in der die Uhrzeit gilt. Standardmäßig ist es deine eigene, vom Browser erkannt."
+      },
+      {
+        "title": "Zielzonen hinzufügen",
+        "description": "Nutze das Menü Zeitzone hinzufügen, um jede Stadt oder Zone hinzuzufügen, die dich interessiert. Füge so viele hinzu, wie du für ein Meeting brauchst."
+      },
+      {
+        "title": "Umgerechnete Zeiten ablesen",
+        "description": "Jede Zone zeigt Datum, Uhrzeit, Wochentag und UTC-Offset, sofort neu berechnet bei jeder Änderung."
+      },
+      {
+        "title": "Eine Überschneidung finden",
+        "description": "Scanne die Zeiten nach einem für alle passenden Slot und entferne nicht mehr benötigte Zonen mit der ×-Schaltfläche."
+      }
+    ],
+    "features": [
+      "Eine Uhrzeit auf einmal in viele Zeitzonen umrechnen",
+      "Automatische Sommerzeit-Behandlung (DST)",
+      "Erkennt deine lokale Zeitzone automatisch",
+      "Zeigt Datum, Uhrzeit, Wochentag und UTC-Offset pro Zone",
+      "Städte als Meeting-Planer hinzufügen oder entfernen",
+      "Aktualisiert sich sofort bei Eingabeänderungen",
+      "100% clientseitig — nichts geht an einen Server",
+      "Keine Anmeldung, keine Limits"
+    ],
+    "useCases": [
+      "Ein Meeting zwischen verteilten Teams planen",
+      "Eine Call-Zeit finden, die in New York, London und Tokio passt",
+      "UTC-Log-Zeitstempel in deine Ortszeit umrechnen",
+      "Ein Webinar für ein globales Publikum planen",
+      "Dich mit Remote-Freelancern und Kunden abstimmen",
+      "Prüfen, wann ein Launch in deiner Zone stattfindet",
+      "Doppelbuchungen bei Sommerzeitumstellungen vermeiden",
+      "Reise-Ankünfte und -Abflüge über Zonen planen"
+    ],
+    "proTips": [
+      "Klicke Jetzt und ändere die Ausgangszone, um „ihre Zeit“ in deine umzurechnen",
+      "Die Sommerzeit ist automatisch — wähle das Datum, keinen festen Offset",
+      "Füge UTC als neutrale Referenz für technische Pläne hinzu",
+      "Nutze den Wochentag, um Zeiten zu erkennen, die auf den nächsten Tag fallen",
+      "Entferne ungenutzte Zonen, um die Meeting-Ansicht übersichtlich zu halten",
+      "Kombiniere ihn mit dem Unix-Zeitstempel-Konverter für Epoch-Werte"
+    ],
+    "troubleshooting": [
+      "Zeit um eine Stunde verschoben: das ist die Sommerzeit — prüfe das Datum",
+      "Falsche Ausgangszone: standardmäßig die Browser-Zone, ändere sie bei Bedarf",
+      "Eine Stadt fehlt: wähle die nächste Zone mit gleichem Offset und gleichen DST-Regeln",
+      "Datum um einen Tag gesprungen: große Offsets verschieben Zeiten auf den nächsten/vorherigen Tag, das ist korrekt",
+      "Nichts aktualisiert sich: stelle sicher, dass Datum und Uhrzeit eingegeben sind"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Tab",
+        "description": "Zwischen den Feldern Datum, Ausgangszone und Zeitzone wechseln"
+      }
+    ]
+  }
+}

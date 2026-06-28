@@ -1,0 +1,88 @@
+{
+  "title": ".env to JSON",
+  "description": "Convert .env files to JSON and back",
+  "placeholder": "Paste your .env file here…",
+  "hint": "Convert a .env file to JSON or JSON back to .env. Handles quotes, comments and the export prefix — all in your browser.",
+  "env2json": ".env → JSON",
+  "json2env": "JSON → .env",
+  "swap": "Swap direction",
+  "placeholderEnv": "Paste your .env file here…",
+  "placeholderJson": "Paste your JSON object here…",
+  "result": "Result",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "sample": "Load sample",
+  "vars": "variables",
+  "meta": {
+    "title": ".env to JSON Converter - Free, Both Ways | ToolsLab",
+    "description": "Convert .env files to JSON and JSON back to .env online free. Parse environment variables with quotes, comments and export prefix — in your browser, no signup."
+  },
+  "tagline": "Convert .env files to JSON and back in one click, fully in your browser",
+  "pageDescription": "Convert .env files to JSON and JSON back to .env with this free online converter. Paste a dotenv file to get a clean JSON object of your environment variables — quotes, comments, the export prefix and values containing = are all handled correctly — or paste a JSON object to generate a ready-to-use .env file with proper quoting. Everything runs locally in your browser, so secrets and API keys are never uploaded. Ideal for developers wiring up config, importing variables into CI, or moving settings between formats.",
+  "instructions": {
+    "title": "How to convert .env to JSON",
+    "steps": [
+      {
+        "title": "Pick a direction",
+        "description": "Choose .env → JSON to parse a dotenv file, or JSON → .env to generate one from a JSON object."
+      },
+      {
+        "title": "Paste your input",
+        "description": "Paste the .env file or JSON object into the box. Comments and the export prefix are handled automatically."
+      },
+      {
+        "title": "Read the result",
+        "description": "The conversion runs instantly as you type, showing the number of variables parsed."
+      },
+      {
+        "title": "Swap if needed",
+        "description": "Use the swap button to feed the result back the other way and confirm a clean round-trip."
+      },
+      {
+        "title": "Copy the output",
+        "description": "Click Copy to grab the JSON or .env and paste it into your config, code or CI settings."
+      }
+    ],
+    "features": [
+      "Two-way conversion: .env ↔ JSON",
+      "Handles single and double quotes with escapes",
+      "Strips # comments and inline comments",
+      "Supports the export KEY=value prefix",
+      "Keeps values containing = signs (like database URLs)",
+      "Quotes values that need it when writing .env",
+      "100% client-side — secrets never leave your browser",
+      "No signup, no limits"
+    ],
+    "useCases": [
+      "Turn a .env file into JSON for a config loader",
+      "Generate a .env file from a JSON settings object",
+      "Import environment variables into a CI pipeline",
+      "Inspect a messy .env as structured JSON",
+      "Migrate config between dotenv and JSON formats",
+      "Build a .env quickly from API documentation JSON",
+      "Validate that a .env parses cleanly",
+      "Convert secrets for a tool that expects JSON"
+    ],
+    "proTips": [
+      "Double-quoted values expand \\n; single quotes stay literal",
+      "Values with spaces or # are auto-quoted when writing .env",
+      "Use swap to round-trip and verify nothing was lost",
+      "Nested JSON objects become a JSON string in the .env value",
+      "Everything is local, so it's safe to paste real secrets",
+      "Pair with the YAML/JSON converter for other config formats"
+    ],
+    "troubleshooting": [
+      "No variables found: check the lines use KEY=value, not KEY: value",
+      "Invalid JSON error: JSON → .env needs a valid JSON object",
+      "Value lost a comment: that's expected — comments aren't part of the value",
+      "Quotes look different: the parser normalizes quoting on output",
+      "Array rejected: .env needs an object of key/value pairs, not an array"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Paste into the input"
+      }
+    ]
+  }
+}

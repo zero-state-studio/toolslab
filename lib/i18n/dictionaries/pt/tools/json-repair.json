@@ -1,0 +1,87 @@
+{
+  "title": "Reparar JSON",
+  "description": "Corrija JSON quebrado ou malformado e obtenha JSON válido e formatado",
+  "placeholder": "Cole aqui o JSON quebrado ou malformado…",
+  "hint": "Cole JSON quebrado — vírgulas finais, aspas simples, chaves sem aspas, None/True/False do Python, até saída truncada ou envolta em markdown do ChatGPT. Recupere JSON válido.",
+  "indent": "Indentação",
+  "repair": "Reparar JSON",
+  "sample": "Carregar exemplo",
+  "result": "JSON reparado",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "noChange": "Já válido — apenas formatado",
+  "tab": "Tab",
+  "minified": "Minificado",
+  "meta": {
+    "title": "Reparar JSON - Corrigir JSON Quebrado e Malformado | ToolsLab",
+    "description": "Repare JSON quebrado online grátis. Corrija vírgulas finais, aspas simples, chaves sem aspas e saída truncada do ChatGPT para JSON válido — no navegador, sem cadastro."
+  },
+  "tagline": "Transforme JSON quebrado, malformado ou estragado por LLM em JSON válido na hora",
+  "pageDescription": "Repare JSON quebrado e malformado com esta ferramenta gratuita de Reparar JSON online. Ela corrige automaticamente os problemas mais comuns — vírgulas finais, aspas simples, chaves sem aspas, colchetes faltando, comentários, None/True/False ao estilo Python e saída truncada ou envolta em markdown do ChatGPT e outros LLMs — e devolve JSON limpo, válido e formatado. Tudo roda no seu navegador sem cadastro nem upload, então até dados sensíveis permanecem privados. Perfeito para desenvolvedores que depuram respostas de API, limpam saídas de IA e resgatam arquivos de configuração.",
+  "instructions": {
+    "title": "Como reparar JSON quebrado",
+    "steps": [
+      {
+        "title": "Cole seu JSON quebrado",
+        "description": "Insira o JSON malformado — pode incluir aspas simples, vírgulas finais, comentários ou até um bloco de código ```json."
+      },
+      {
+        "title": "Escolha a indentação",
+        "description": "Escolha 2 ou 4 espaços, tabulações ou saída minificada conforme quiser formatar o JSON reparado."
+      },
+      {
+        "title": "Clique em Reparar JSON",
+        "description": "A ferramenta corrige a sintaxe, reanalisa o resultado e imprime JSON válido garantido e formatado."
+      },
+      {
+        "title": "Revise o resultado",
+        "description": "Confira o JSON reparado. Se já era válido, você verá uma nota indicando que ele apenas foi reformatado."
+      },
+      {
+        "title": "Copie o JSON limpo",
+        "description": "Clique em Copiar para pegar o JSON válido e colar direto no seu código, configuração ou cliente de API."
+      }
+    ],
+    "features": [
+      "Remove vírgulas finais e adiciona as que faltam",
+      "Converte aspas simples em aspas duplas",
+      "Coloca aspas em chaves sem aspas",
+      "Corrige literais do Python (None, True, False)",
+      "Remove comentários e blocos markdown ```json",
+      "Fecha arrays e objetos truncados",
+      "Formata com espaços, tabulações ou saída minificada",
+      "100% no lado do cliente — os dados não saem do navegador"
+    ],
+    "useCases": [
+      "Corrigir JSON malformado retornado pelo ChatGPT ou outros LLMs",
+      "Reparar um arquivo de configuração editado à mão que não analisa",
+      "Limpar uma resposta de API copiada com vírgulas a mais",
+      "Resgatar JSON truncado por um log ou pelo terminal",
+      "Converter literais de objeto JavaScript em JSON válido",
+      "Corrigir JSON com aspas simples da saída do Python",
+      "Preparar JSON desorganizado antes de importá-lo",
+      "Validar e reformatar JSON em uma única etapa"
+    ],
+    "proTips": [
+      "Cole o bloco ```json inteiro — o delimitador é removido automaticamente",
+      "Saída de LLM truncada é fechada com colchetes correspondentes, mas verifique os dados",
+      "Use a saída minificada para reduzir o JSON para armazenamento ou transporte",
+      "Se o reparo parecer errado, a fonte era ambígua — ajuste um pouco e tente de novo",
+      "Precisa comparar versões? Combine com uma ferramenta de diff JSON",
+      "Tudo é local, então você pode reparar dados privados com segurança"
+    ],
+    "troubleshooting": [
+      "Não foi possível reparar: a entrada está longe demais de JSON — corrija erros óbvios e tente de novo",
+      "Os números viraram strings: estavam entre aspas na fonte; remova-as",
+      "A saída é só uma string: texto solto vira uma string JSON — envolva em {} se queria um objeto",
+      "Perdeu um comentário: JSON não tem comentários, então eles são removidos de propósito",
+      "Chaves reordenadas: a ordem das chaves é preservada; só a formatação muda"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl/Cmd + V",
+        "description": "Cole o JSON na entrada"
+      }
+    ]
+  }
+}
