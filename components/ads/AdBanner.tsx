@@ -64,12 +64,27 @@ export default function AdBanner({
   useEffect(() => {
     if (!mounted || pushedRef.current) return;
     if (!ADS_ENABLED || !ADSENSE_CLIENT || !slot) return;
-    try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
-      pushedRef.current = true;
-    } catch {
-      // AdSense script not ready yet — the push queue handles it.
+
+    // Defer the ad init off the hydration critical path. Running adsbygoogle's
+    // long task during/just after hydration steals the mobile main thread and
+    // regresses INP (and the paint window → LCP). requestIdleCallback runs it
+    // once the browser is free; setTimeout is the Safari fallback.
+    const push = () => {
+      if (pushedRef.current) return;
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        pushedRef.current = true;
+      } catch {
+        // AdSense script not ready yet — the push queue handles it.
+      }
+    };
+
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(push, { timeout: 3000 });
+      return () => window.cancelIdleCallback?.(id);
     }
+    const t = setTimeout(push, 1200);
+    return () => clearTimeout(t);
   }, [mounted, slot]);
 
   // Dev placeholder: visible grey box to preview ad positions locally.
@@ -87,10 +102,18 @@ export default function AdBanner({
   // Off in dev / missing config: render nothing, no reserved space.
   if (!ADS_ENABLED || !ADSENSE_CLIENT || !slot) return null;
 
+  // CLS fix: reserve a SINGLE locked height. A variable min/max box lets a
+  // filled responsive ad grow past the reserved space and shove content down
+  // (the main CLS source on mobile). We reserve the largest expected height
+  // (maxHeight, or minHeight when uncapped) up front and clip overflow, so the
+  // box never changes size — filled or not. The height is set on the SSR div
+  // too, so space is reserved in the initial HTML before hydration.
+  const reservedHeight = isFixed ? fixedHeight : (maxHeight ?? minHeight);
+
   return (
     <div
       className={`ad-banner overflow-hidden ${className}`}
-      style={{ minHeight, maxHeight, ...style }}
+      style={{ height: reservedHeight, ...style }}
       aria-hidden="true"
     >
       {/* Reserve space before mount to prevent CLS */}
@@ -109,7 +132,7 @@ export default function AdBanner({
         ) : (
           <ins
             className="adsbygoogle"
-            style={{ display: 'block', minHeight, maxHeight }}
+            style={{ display: 'block', width: '100%', height: reservedHeight }}
             data-ad-client={ADSENSE_CLIENT}
             data-ad-slot={slot}
             data-ad-format={format}
