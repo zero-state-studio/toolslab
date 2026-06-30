@@ -12,6 +12,7 @@ import {
   exceedsMaxSize,
   MAX_BASE64_INPUT_SIZE,
 } from './base64-common';
+import { decodeBase64ToBytes } from '@/lib/utils/base64-decode';
 
 export type { SanitizeResult } from './base64-common';
 export {
@@ -141,10 +142,10 @@ export function extractGifMetadata(uint8Array: Uint8Array): {
 /**
  * Converts Base64 string to GIF file with auto-correction of common input errors
  */
-export function base64ToGif(
+export async function base64ToGif(
   base64Data: string,
   options: Base64ToGifOptions = {}
-): Base64ToGifResult {
+): Promise<Base64ToGifResult> {
   try {
     // Check size limit
     if (exceedsMaxSize(base64Data)) {
@@ -186,10 +187,10 @@ export function base64ToGif(
       };
     }
 
-    // Decode Base64 to binary data
-    let binaryString: string;
+    // Decode Base64 to binary data off the main thread (avoids INP spikes).
+    let uint8Array: Uint8Array<ArrayBuffer>;
     try {
-      binaryString = atob(cleanBase64);
+      uint8Array = await decodeBase64ToBytes(cleanBase64);
     } catch (error) {
       return {
         success: false,
@@ -197,11 +198,6 @@ export function base64ToGif(
           'Failed to decode Base64 data. The data may be corrupted or incomplete.',
         corrections: corrections.length > 0 ? corrections : undefined,
       };
-    }
-
-    const uint8Array = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-      uint8Array[i] = binaryString.charCodeAt(i) & 0xff;
     }
 
     // Extract metadata
