@@ -111,7 +111,7 @@ export default function Base64ToPdfTool({
     setError(null);
 
     try {
-      const conversionResult = base64ToPdf(input, {
+      const conversionResult = await base64ToPdf(input, {
         fileName,
         validatePdfHeader: true,
       });

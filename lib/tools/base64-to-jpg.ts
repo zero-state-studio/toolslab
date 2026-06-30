@@ -8,6 +8,7 @@ import {
   MAX_BASE64_INPUT_SIZE,
   detectFormatFromBase64,
 } from './base64-common';
+import { decodeBase64ToBytes } from '@/lib/utils/base64-decode';
 
 export type { SanitizeResult } from './base64-common';
 export {
@@ -117,10 +118,10 @@ export function extractJpegMetadata(uint8Array: Uint8Array) {
 /**
  * Converts Base64 string to JPEG Blob with auto-correction of common input errors
  */
-export function base64ToJpg(
+export async function base64ToJpg(
   base64Data: string,
   options: Base64ToJpgOptions = {}
-): Base64ToJpgResult {
+): Promise<Base64ToJpgResult> {
   try {
     const { fileName = `jpeg-${Date.now()}.jpg`, validateJpegHeader = true } =
       options;
@@ -165,13 +166,8 @@ export function base64ToJpg(
       };
     }
 
-    // Decode Base64 to binary
-    const binaryString = atob(cleanBase64);
-    const uint8Array = new Uint8Array(binaryString.length);
-
-    for (let i = 0; i < binaryString.length; i++) {
-      uint8Array[i] = binaryString.charCodeAt(i) & 0xff;
-    }
+    // Decode Base64 to binary off the main thread (avoids INP spikes).
+    const uint8Array = await decodeBase64ToBytes(cleanBase64);
 
     // Validate JPEG header if required
     if (validateJpegHeader) {

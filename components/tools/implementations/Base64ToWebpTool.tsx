@@ -107,7 +107,7 @@ export default function Base64ToWebpTool({
       }
 
       try {
-        const conversionResult = base64ToWebp(inputValue, {
+        const conversionResult = await base64ToWebp(inputValue, {
           fileName: 'image.webp',
         });
         setResult(conversionResult);
