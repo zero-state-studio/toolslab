@@ -7,6 +7,7 @@ import {
   exceedsMaxSize,
   MAX_BASE64_INPUT_SIZE,
 } from './base64-common';
+import { decodeBase64ToBytes } from '@/lib/utils/base64-decode';
 
 export type { SanitizeResult } from './base64-common';
 export {
@@ -124,10 +125,10 @@ export function extractPngMetadata(uint8Array: Uint8Array) {
 /**
  * Converts Base64 string to PNG Blob with auto-correction of common input errors
  */
-export function base64ToPng(
+export async function base64ToPng(
   base64Data: string,
   options: Base64ToPngOptions = {}
-): Base64ToPngResult {
+): Promise<Base64ToPngResult> {
   try {
     const { fileName = `png-${Date.now()}.png`, validatePngHeader = true } =
       options;
@@ -171,13 +172,8 @@ export function base64ToPng(
       };
     }
 
-    // Decode Base64 to binary
-    const binaryString = atob(cleanBase64);
-    const uint8Array = new Uint8Array(binaryString.length);
-
-    for (let i = 0; i < binaryString.length; i++) {
-      uint8Array[i] = binaryString.charCodeAt(i) & 0xff;
-    }
+    // Decode Base64 to binary off the main thread (avoids INP spikes).
+    const uint8Array = await decodeBase64ToBytes(cleanBase64);
 
     // Validate PNG header if required
     if (validatePngHeader) {

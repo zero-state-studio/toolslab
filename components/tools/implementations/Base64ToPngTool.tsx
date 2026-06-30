@@ -107,7 +107,7 @@ export default function Base64ToPngTool({
       }
 
       try {
-        const conversionResult = base64ToPng(inputValue, {
+        const conversionResult = await base64ToPng(inputValue, {
           fileName: 'image.png',
         });
         setResult(conversionResult);

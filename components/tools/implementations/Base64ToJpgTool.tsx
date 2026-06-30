@@ -111,7 +111,7 @@ export default function Base64ToJpgTool({
       }
 
       try {
-        const conversionResult = base64ToJpg(inputValue, {
+        const conversionResult = await base64ToJpg(inputValue, {
           fileName: 'image.jpg',
         });
         setResult(conversionResult);

@@ -116,7 +116,7 @@ export default function Base64ToGifTool({
       }
 
       try {
-        const conversionResult = base64ToGif(inputValue, {
+        const conversionResult = await base64ToGif(inputValue, {
           fileName: 'image.gif',
           validateGifHeader: true,
         });

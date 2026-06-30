@@ -3,6 +3,8 @@
  * Converts Base64 encoded data to PDF files for download
  */
 
+import { decodeBase64ToBytes } from '@/lib/utils/base64-decode';
+
 export interface Base64ToPdfResult {
   success: boolean;
   error?: string;
@@ -162,10 +164,10 @@ export function extractPdfMetadata(uint8Array: Uint8Array): {
 /**
  * Converts Base64 string to PDF file
  */
-export function base64ToPdf(
+export async function base64ToPdf(
   base64Data: string,
   options: Base64ToPdfOptions = {}
-): Base64ToPdfResult {
+): Promise<Base64ToPdfResult> {
   try {
     // Clean input data
     let cleanBase64 = base64Data.trim();
@@ -193,24 +195,10 @@ export function base64ToPdf(
       };
     }
 
-    // Decode Base64 to binary data using proper method
+    // Decode Base64 to binary data off the main thread (avoids INP spikes).
     let uint8Array: Uint8Array;
     try {
-      if (typeof window !== 'undefined' && typeof window.atob === 'function') {
-        // Browser environment - use atob with proper binary conversion
-        const binaryString = atob(cleanBase64);
-        const buffer = new ArrayBuffer(binaryString.length);
-        uint8Array = new Uint8Array(buffer);
-        for (let i = 0; i < binaryString.length; i++) {
-          // Use bitwise AND to ensure we only get the lower 8 bits
-          // This handles characters with codes > 255 correctly
-          uint8Array[i] = binaryString.charCodeAt(i) & 0xff;
-        }
-      } else {
-        // Node.js environment fallback
-        const buffer = Buffer.from(cleanBase64, 'base64');
-        uint8Array = new Uint8Array(buffer);
-      }
+      uint8Array = await decodeBase64ToBytes(cleanBase64);
     } catch (error) {
       return {
         success: false,
