@@ -37,6 +37,7 @@ import ToolHowToUse from './ToolHowToUse';
 import ToolHeroSection from './ToolHeroSection';
 import AdBanner from '@/components/ads/AdBanner';
 import { ToolIcon } from '@/components/ui/ToolIcon';
+import { ADAPTER_TOOL_IDS } from '@/lib/pipeline/adapter-tool-ids';
 import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
 
 function getCategoryColor(category: string, mode: 'dark' | 'light' = 'dark'): string {
@@ -372,6 +373,26 @@ export default function ToolPageClient({
               locale={locale}
               dictionary={dictionary}
             />
+
+            {/* Pipeline CTA — only for tools available as pipeline steps.
+                UI-only link: no SEO copy is touched. */}
+            {ADAPTER_TOOL_IDS.has(tool.id) && (
+              <Link
+                href="/pipeline"
+                onClick={() =>
+                  trackEngagement('pipeline-cta-clicked', { tool: tool.id })
+                }
+                className="mt-3 flex items-center justify-between rounded-xl border border-dashed border-violet-500/30 bg-violet-500/5 px-4 py-2.5 text-sm transition-colors hover:border-violet-500/60 hover:bg-violet-500/10"
+              >
+                <span className="text-slate-700 dark:text-slate-300">
+                  Need to chain this with other tools?{' '}
+                  <span className="font-semibold text-violet-600 dark:text-violet-400">
+                    Try the Pipeline Builder
+                  </span>
+                </span>
+                <ArrowRight className="h-4 w-4 flex-shrink-0 text-violet-500" />
+              </Link>
+            )}
 
             {/* Ad: mobile only — below tool input/result, above How to Use.
                 Skipped for tools that render the banner inline above their Usage Tips. */}
