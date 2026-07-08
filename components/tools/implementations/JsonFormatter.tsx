@@ -275,6 +275,8 @@ export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatt
 
   const outputRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  // Auto-fix notes from formatJSON/minifyJSON (e.g. "wrapped NDJSON into array")
+  const [fixWarnings, setFixWarnings] = useState<string[]>([]);
 
   // Use unified hooks
   const { copied, copy } = useCopy();
@@ -316,6 +318,7 @@ export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatt
 
     try {
       const startTime = Date.now();
+      let warnings: string[] | undefined;
       const result = processSync(contentToProcess, (inputText) => {
         // Use the robust formatJSON function that handles Python-style syntax
         const formatResult = formatJSON(inputText);
@@ -323,6 +326,8 @@ export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatt
         if (!formatResult.success) {
           throw new Error(formatResult.error || 'Failed to parse JSON');
         }
+
+        warnings = formatResult.warnings;
 
         const parsed = JSON.parse(formatResult.result || '{}');
 
@@ -371,6 +376,7 @@ export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatt
         dispatch({ type: 'SET_OUTPUT', payload: result });
       }
 
+      setFixWarnings(warnings ?? []);
       dispatch({ type: 'SET_FORMAT_SUCCESS', payload: true });
       setTimeout(
         () => dispatch({ type: 'SET_FORMAT_SUCCESS', payload: false }),
@@ -393,6 +399,7 @@ export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatt
         });
       }, 100);
     } catch (err) {
+      setFixWarnings([]);
       // Track error
       trackError(
         err instanceof Error ? err : new Error(String(err)),
@@ -423,6 +430,7 @@ export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatt
 
     try {
       const startTime = Date.now();
+      let warnings: string[] | undefined;
       const result = processSync(contentToProcess, (inputText) => {
         // Use the robust minifyJSON function that handles Python-style syntax
         const minifyResult = minifyJSON(inputText);
@@ -431,9 +439,11 @@ export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatt
           throw new Error(minifyResult.error || 'Failed to parse JSON');
         }
 
+        warnings = minifyResult.warnings;
         return minifyResult.result || '';
       });
 
+      setFixWarnings(warnings ?? []);
       dispatch({ type: 'SET_OUTPUT', payload: result });
 
       addToHistory({
@@ -444,6 +454,7 @@ export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatt
         timestamp: startTime,
       });
     } catch (err) {
+      setFixWarnings([]);
       // Track error
       trackError(
         err instanceof Error ? err : new Error(String(err)),
@@ -815,6 +826,20 @@ export default function JsonFormatter({ categoryColor, dictionary }: JsonFormatt
         {error && (
           <div className="rounded-lg border border-red-200 bg-red-50 p-4 dark:border-red-800 dark:bg-red-950/30">
             <p className="text-red-600 dark:text-red-400">{error}</p>
+          </div>
+        )}
+
+        {/* Auto-fix Warnings */}
+        {!error && fixWarnings.length > 0 && (
+          <div className="space-y-1 rounded-lg border border-amber-200 bg-amber-50 p-3 dark:border-amber-800 dark:bg-amber-950/30">
+            {fixWarnings.map((warning) => (
+              <p
+                key={warning}
+                className="text-sm text-amber-700 dark:text-amber-300"
+              >
+                ⚠ {warning}
+              </p>
+            ))}
           </div>
         )}
 
