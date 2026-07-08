@@ -136,7 +136,7 @@ export function Header({ initialCommon }: HeaderProps = {}) {
           'bg-[color:var(--pg-bg)]/85 backdrop-blur-xl'
         )}
       >
-        <div className="mx-auto flex h-[60px] max-w-pg items-center gap-5 px-5 sm:px-10">
+        <div className="mx-auto flex h-[52px] max-w-pg items-center gap-5 px-5 sm:px-10">
           {/* Logo */}
           <Link
             href={createHref('/')}

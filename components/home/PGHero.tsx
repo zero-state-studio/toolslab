@@ -64,7 +64,7 @@ export function PGHero({
         style={{ background: 'radial-gradient(circle, var(--pg-accent) 0%, transparent 70%)' }}
       />
 
-      <div className="pg-container relative pt-14 pb-12">
+      <div className="pg-container relative pt-10 pb-8">
         <div className="mx-auto max-w-[960px] text-center">
           {/* pill */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-pg-border bg-pg-surface px-3 py-1.5 text-[13px] text-pg-muted">

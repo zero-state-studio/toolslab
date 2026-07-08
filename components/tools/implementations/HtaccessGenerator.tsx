@@ -380,7 +380,7 @@ export default function HtaccessGenerator({
   }, [output, addToHistory, config]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Presets */}
       <Card className="p-4">
         <h3 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
@@ -435,7 +435,7 @@ export default function HtaccessGenerator({
 
       {/* Security Tab */}
       {activeTab === 'security' && (
-        <Card className="space-y-4 p-6">
+        <Card className="space-y-4 p-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             {labels.security}
           </h3>
@@ -495,7 +495,7 @@ export default function HtaccessGenerator({
 
       {/* Redirects Tab */}
       {activeTab === 'redirects' && (
-        <Card className="space-y-4 p-6">
+        <Card className="space-y-4 p-4">
           <div className="flex items-center justify-between">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               {labels.redirects}
@@ -565,7 +565,7 @@ export default function HtaccessGenerator({
 
       {/* Caching Tab */}
       {activeTab === 'caching' && (
-        <Card className="space-y-4 p-6">
+        <Card className="space-y-4 p-4">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             {labels.caching}
           </h3>
@@ -666,7 +666,7 @@ export default function HtaccessGenerator({
       {activeTab === 'advanced' && (
         <div className="space-y-4">
           {/* Error Pages */}
-          <Card className="space-y-4 p-6">
+          <Card className="space-y-4 p-4">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {labels.errorPages}
@@ -720,7 +720,7 @@ export default function HtaccessGenerator({
           </Card>
 
           {/* IP Rules */}
-          <Card className="space-y-4 p-6">
+          <Card className="space-y-4 p-4">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                 {labels.ipRules}
@@ -773,7 +773,7 @@ export default function HtaccessGenerator({
           </Card>
 
           {/* Custom Rules */}
-          <Card className="space-y-4 p-6">
+          <Card className="space-y-4 p-4">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               {labels.customRules}
             </h3>
@@ -790,7 +790,7 @@ export default function HtaccessGenerator({
       )}
 
       {/* Output */}
-      <Card className="p-6">
+      <Card className="p-4">
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             {labels.output}

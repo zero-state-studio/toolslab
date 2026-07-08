@@ -61,7 +61,7 @@ export default function ToolHowToUse({
   if (!instruction) {
     // Fallback to generic instructions if tool-specific content not found
     return (
-      <div className="mt-8 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card sm:mt-12 sm:p-6">
+      <div className="mt-6 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card sm:p-5">
         <div className="mb-4 flex items-center gap-2">
           <BookOpen className="h-5 w-5" style={{ color: categoryColor }} />
           <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
@@ -119,10 +119,10 @@ export default function ToolHowToUse({
   }
 
   return (
-    <div className="mt-8 space-y-6 sm:mt-12" style={{ minHeight: '400px' }}>
+    <div className="mt-6 space-y-4" style={{ minHeight: '400px' }}>
       {/* Main Instructions Section */}
-      <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card sm:p-6">
-        <div className="mb-6 flex items-center gap-2">
+      <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card sm:p-5">
+        <div className="mb-4 flex items-center gap-2">
           <BookOpen className="h-5 w-5" style={{ color: categoryColor }} />
           <h2 className="text-xl font-semibold text-slate-900 dark:text-white">
             {instruction.title}
@@ -131,7 +131,7 @@ export default function ToolHowToUse({
 
         {/* Step-by-step Instructions */}
         {instruction.steps && instruction.steps.length > 0 && (
-          <ol className="mb-8 space-y-4">
+          <ol className="mb-5 space-y-3">
             {instruction.steps.map((step, index) => (
               <li key={index} className="flex gap-4">
                 <span
@@ -155,7 +155,7 @@ export default function ToolHowToUse({
 
         {/* Features Section */}
         {instruction.features && instruction.features.length > 0 && (
-          <div className="mb-6">
+          <div className="mb-4">
             <h3 className="mb-3 flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
               <Target className="h-4 w-4" style={{ color: categoryColor }} />
               {sectionLabels.keyFeatures}
@@ -180,10 +180,10 @@ export default function ToolHowToUse({
       {/* Use Cases and Pro Tips Grid */}
       {((instruction.useCases && instruction.useCases.length > 0) ||
         (instruction.proTips && instruction.proTips.length > 0)) && (
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-4 lg:grid-cols-2">
           {/* Use Cases */}
           {instruction.useCases && instruction.useCases.length > 0 && (
-            <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card sm:p-6">
+            <div className="rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.08] dark:bg-card sm:p-5">
               <h3 className="mb-4 flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
                 <Target className="h-4 w-4" style={{ color: categoryColor }} />
                 {sectionLabels.commonUseCases}
@@ -231,7 +231,7 @@ export default function ToolHowToUse({
         instruction.troubleshooting.length > 0) ||
         (instruction.keyboardShortcuts &&
           instruction.keyboardShortcuts.length > 0)) && (
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-4 lg:grid-cols-2">
           {/* Troubleshooting */}
           {instruction.troubleshooting &&
             instruction.troubleshooting.length > 0 && (

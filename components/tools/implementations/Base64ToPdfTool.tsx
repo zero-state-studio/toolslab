@@ -206,9 +206,9 @@ export default function Base64ToPdfTool({
   }, [previewUrl]);
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-4">
       {/* Input Section */}
-      <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">
             {ui.inputHeading || 'Base64 Input'}
@@ -345,7 +345,7 @@ export default function Base64ToPdfTool({
       {result && result.success && (
         <div
           ref={resultRef}
-          className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+          className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
         >
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white">
@@ -486,12 +486,22 @@ export default function Base64ToPdfTool({
         </div>
       )}
 
-      {/* Ad: mobile only — above usage tips */}
+      {/* Ad: mobile — above usage tips */}
       <AdBanner
         className="lg:hidden"
         minHeight={100}
         maxHeight={280}
         slot="5833147302"
+      />
+      {/* Ad: desktop leaderboard — above usage tips so it sits right below
+          the input on laptop viewports (replaces the page-level one) */}
+      <AdBanner
+        className="hidden text-center lg:block"
+        fixedWidth={728}
+        fixedHeight={90}
+        minHeight={90}
+        maxHeight={90}
+        slot="3320031589"
       />
 
       {/* Usage Tips */}

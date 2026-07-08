@@ -279,7 +279,7 @@ export default function ToolWorkspace({
     >
       {/* Tool Header Bar */}
       {!isLabMode && (
-        <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+        <div className="flex items-center justify-between border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
           <div className="flex items-center gap-4">
             <h3 className="font-semibold text-gray-900 dark:text-white">
               Workspace
@@ -340,7 +340,7 @@ export default function ToolWorkspace({
         </div>
       )}
 
-      <div className="flex-1 space-y-6 overflow-y-auto p-6">
+      <div className="flex-1 space-y-4 overflow-y-auto p-4">
         {/* Input Section */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">

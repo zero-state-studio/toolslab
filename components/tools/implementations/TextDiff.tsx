@@ -595,7 +595,7 @@ export default function TextDiff({
 
   return (
     <div
-      className={`space-y-6 ${isFullscreen ? 'fixed inset-0 z-50 overflow-auto bg-background p-6' : ''}`}
+      className={`space-y-4 ${isFullscreen ? 'fixed inset-0 z-50 overflow-auto bg-background p-4' : ''}`}
     >
       {/* Header with controls */}
       <div className="flex items-center justify-between">

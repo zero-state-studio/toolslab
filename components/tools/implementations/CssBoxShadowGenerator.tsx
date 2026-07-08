@@ -119,7 +119,7 @@ export default function CssBoxShadowGenerator({
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Presets */}
       <div className="flex flex-wrap gap-2">
         <span className="self-center text-sm font-medium text-gray-500">
@@ -136,14 +136,14 @@ export default function CssBoxShadowGenerator({
         ))}
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-2">
         {/* Preview */}
         <div className="space-y-3">
           <span className="text-sm font-medium text-gray-500">
             {labels.preview}
           </span>
           <div
-            className="flex h-64 items-center justify-center rounded-xl border border-gray-200 bg-[repeating-conic-gradient(#f3f4f6_0_25%,transparent_0_50%)] bg-[length:24px_24px] dark:border-gray-700"
+            className="flex h-48 items-center justify-center rounded-xl border border-gray-200 bg-[repeating-conic-gradient(#f3f4f6_0_25%,transparent_0_50%)] bg-[length:24px_24px] dark:border-gray-700"
           >
             <div
               className="h-32 w-44 rounded-xl transition-all"

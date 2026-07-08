@@ -413,7 +413,7 @@ export default function GradientGenerator({
   }, [handleCopyCSS, generateRandom, handleSaveStart, showSaveInput]);
 
   return (
-    <div className="mx-auto w-full max-w-7xl space-y-6">
+    <div className="mx-auto w-full max-w-7xl space-y-4">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="editor">{ui.tabEditor || 'Editor'}</TabsTrigger>
@@ -421,11 +421,11 @@ export default function GradientGenerator({
           <TabsTrigger value="favorites">{ui.tabFavorites || 'Favorites'}</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="editor" className="space-y-6">
+        <TabsContent value="editor" className="space-y-4">
           {/* Main Editor Layout */}
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             {/* Preview Panel */}
-            <Card className="p-6">
+            <Card className="p-4">
               <div className="mb-4 flex items-center justify-between gap-2">
                 <h3 className="text-lg font-semibold">{ui.previewHeading || 'Preview'}</h3>
                 <div className="flex items-center gap-2">
@@ -578,10 +578,10 @@ export default function GradientGenerator({
             </Card>
 
             {/* Controls Panel */}
-            <Card className="p-6">
+            <Card className="p-4">
               <h3 className="mb-4 text-lg font-semibold">{ui.settingsHeading || 'Settings'}</h3>
 
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {/* Gradient Type */}
                 <div>
                   <Label className="mb-2 block text-sm font-medium">
@@ -1151,7 +1151,7 @@ export default function GradientGenerator({
           </div>
 
           {/* Generated Code Section */}
-          <Card className="p-6">
+          <Card className="p-4">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
               <h3 className="text-lg font-semibold">{ui.generatedCodeHeading || 'Generated Code'}</h3>
               <div className="flex flex-wrap items-center gap-2">
@@ -1221,8 +1221,8 @@ ${gradientResult.svg}
           </Card>
         </TabsContent>
 
-        <TabsContent value="presets" className="space-y-6">
-          <Card className="p-6">
+        <TabsContent value="presets" className="space-y-4">
+          <Card className="p-4">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold">{ui.presetsHeading || 'Gradient Presets'}</h3>
               <Select
@@ -1269,8 +1269,8 @@ ${gradientResult.svg}
           </Card>
         </TabsContent>
 
-        <TabsContent value="favorites" className="space-y-6">
-          <Card className="p-6">
+        <TabsContent value="favorites" className="space-y-4">
+          <Card className="p-4">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold">{ui.savedGradientsHeading || 'Saved Gradients'}</h3>
               <Badge variant="secondary">{savedGradients.length} saved</Badge>

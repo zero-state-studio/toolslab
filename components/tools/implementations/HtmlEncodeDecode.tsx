@@ -167,7 +167,7 @@ export default function HtmlEncodeDecode({
     mode === 'encode' && hasEntities && input.length > 0;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Mode Toggle & Encoding Type Selector */}
       <div className="flex flex-wrap items-center gap-4">
         <div className="flex gap-2">

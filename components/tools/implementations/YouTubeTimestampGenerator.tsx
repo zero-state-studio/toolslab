@@ -317,7 +317,7 @@ export default function YouTubeTimestampGenerator({
   );
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Video URL Input */}
       <div className="space-y-2">
         <Label htmlFor="videoUrl">
@@ -422,7 +422,7 @@ export default function YouTubeTimestampGenerator({
 
         {/* Timestamps Table */}
         {timestamps.length === 0 ? (
-          <div className="rounded-lg border p-8 text-center text-muted-foreground">
+          <div className="rounded-lg border p-5 text-center text-muted-foreground">
             {labels.noTimestamps}
           </div>
         ) : (

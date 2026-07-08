@@ -148,7 +148,7 @@ export default function ImageCompressor({ dictionary }: ImageCompressorProps) {
         onDrop={onDrop}
         onDragOver={(e) => e.preventDefault()}
         onClick={() => fileInputRef.current?.click()}
-        className="cursor-pointer rounded-xl border-2 border-dashed border-gray-300 p-8 text-center transition hover:border-violet-400 dark:border-gray-600"
+        className="cursor-pointer rounded-xl border-2 border-dashed border-gray-300 p-5 text-center transition hover:border-violet-400 dark:border-gray-600"
       >
         <Upload className="mx-auto mb-2 h-8 w-8 text-gray-400" />
         <p className="text-sm text-gray-600 dark:text-gray-300">{labels.drop}</p>
@@ -238,7 +238,7 @@ export default function ImageCompressor({ dictionary }: ImageCompressorProps) {
             <img
               src={resultUrl}
               alt={labels.result}
-              className="max-h-72 rounded border border-gray-200 bg-white dark:border-gray-700"
+              className="max-h-56 rounded border border-gray-200 bg-white dark:border-gray-700"
             />
             {keptOriginal ? (
               <p className="text-sm text-amber-600">{labels.alreadyOptimized}</p>

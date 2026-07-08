@@ -214,9 +214,9 @@ export default function JsonToTypeScript({
   );
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-4">
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* Input Panel */}
         <Card>
           <CardHeader>
@@ -673,7 +673,7 @@ export default function JsonToTypeScript({
             </div>
           </div>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4">
           {/* Basic Options */}
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-2">

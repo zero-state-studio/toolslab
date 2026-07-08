@@ -303,12 +303,12 @@ export default function ToolsHubContent({
       </section>
 
       {/* ── MAIN LAYOUT: SIDEBAR + CONTENT ───────────────────────── */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-16 pt-2">
-        <div className="flex gap-8">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 pb-10 pt-2">
+        <div className="flex gap-6">
 
           {/* ── SIDEBAR (desktop only) ── */}
           <aside className="hidden w-56 flex-shrink-0 lg:block">
-            <div className="sticky top-20 space-y-8">
+            <div className="sticky top-16 space-y-6">
 
               {/* Categories */}
               <div>
@@ -535,15 +535,15 @@ export default function ToolsHubContent({
       </div>
 
       {/* ── SEO SECTION ───────────────────────────────────────────── */}
-      <section className="relative z-10 border-t border-slate-200 bg-slate-50 py-16 dark:border-white/[0.06] dark:bg-white/[0.01]">
+      <section className="relative z-10 border-t border-slate-200 bg-slate-50 py-10 dark:border-white/[0.06] dark:bg-white/[0.01]">
         <div className="mx-auto max-w-7xl px-4">
 
           {/* Why ToolsLab */}
-          <div className="mb-14">
+          <div className="mb-8">
             <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
               {t.seo.whyChoose.title}
             </h2>
-            <p className="mb-8 text-slate-600 dark:text-slate-400">
+            <p className="mb-5 text-slate-600 dark:text-slate-400">
               Professional tools built with privacy and speed in mind.
             </p>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -583,7 +583,7 @@ export default function ToolsHubContent({
             <h2 className="mb-2 text-2xl font-bold text-slate-900 dark:text-white">
               {t.seo.workflows.title}
             </h2>
-            <p className="mb-8 text-slate-600 dark:text-slate-400">
+            <p className="mb-5 text-slate-600 dark:text-slate-400">
               Combine tools to build efficient development workflows.
             </p>
             <div className="grid gap-4 sm:grid-cols-3">

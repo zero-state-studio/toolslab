@@ -281,7 +281,7 @@ export default function PasswordGenerator({
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3 dark:border-gray-700 sm:px-6 sm:py-4">
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <Key className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -299,7 +299,7 @@ export default function PasswordGenerator({
         </div>
       </div>
 
-      <div className="space-y-4 p-4 sm:space-y-6 sm:p-6">
+      <div className="space-y-4 p-4">
         {/* Generated Password Display */}
         <div className="relative">
           <div
@@ -532,7 +532,7 @@ export default function PasswordGenerator({
         <div className="flex justify-center">
           <button
             onClick={generatePassword}
-            className="flex items-center gap-2 rounded-lg px-6 py-2.5 font-medium text-white transition-all hover:scale-105 active:scale-95 sm:px-8 sm:py-3"
+            className="flex items-center gap-2 rounded-lg px-4 py-2.5 font-medium text-white transition-all hover:scale-105 active:scale-95 sm:px-8 sm:py-3"
             style={{
               backgroundColor: categoryColor,
               boxShadow: `0 4px 12px ${categoryColor}40`,

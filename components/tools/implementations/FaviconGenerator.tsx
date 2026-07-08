@@ -402,7 +402,7 @@ Generated with ❤️ by ToolsLab
   const totalSize = generatedFavicons.reduce((sum, f) => sum + f.size, 0);
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-4">
       {/* Input Section */}
       <Card>
         <CardHeader>
@@ -435,7 +435,7 @@ Generated with ❤️ by ToolsLab
             <TabsContent value="upload" className="space-y-4">
               <div
                 {...getRootProps()}
-                className={`cursor-pointer rounded-lg border-2 border-dashed p-8 text-center transition-colors ${
+                className={`cursor-pointer rounded-lg border-2 border-dashed p-5 text-center transition-colors ${
                   isDragActive
                     ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-300 hover:border-gray-400'
@@ -586,7 +586,7 @@ Generated with ❤️ by ToolsLab
 
       {/* Preview & Options */}
       {sourceImage && (
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {/* Preview */}
           <Card>
             <CardHeader>
@@ -662,7 +662,7 @@ Generated with ❤️ by ToolsLab
                 {ui.customization || 'Customization'}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-4">
               <div>
                 <Label>{ui.labelPadding || 'Padding:'} {options.padding}px</Label>
                 <Slider

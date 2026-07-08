@@ -156,9 +156,9 @@ export default function YamlValidator({
   };
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-4">
       {/* Input Section */}
-      <Card className="p-6">
+      <Card className="p-4">
         <div className="space-y-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h3 className="text-lg font-semibold">{ui.yamlInputHeading || 'YAML Input'}</h3>
@@ -262,7 +262,7 @@ export default function YamlValidator({
       {/* Results Section */}
       <div ref={resultRef}>
         {isValidating && (
-          <Card className="p-6">
+          <Card className="p-4">
             <div className="flex items-center gap-3">
               <div className="h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent"></div>
               <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
@@ -276,7 +276,7 @@ export default function YamlValidator({
           <>
             {/* Status Card */}
             <Card
-              className="mb-6 border-2 p-6"
+              className="mb-4 border-2 p-4"
               style={{
                 borderColor: result.isValid ? '#10b981' : '#ef4444',
                 backgroundColor: result.isValid
@@ -336,7 +336,7 @@ export default function YamlValidator({
 
             {/* Error Details */}
             {!result.isValid && result.error && (
-              <Card className="mb-6 p-6">
+              <Card className="mb-4 p-4">
                 <h3 className="mb-4 text-lg font-semibold text-red-600 dark:text-red-400">
                   {ui.errorDetailsHeading || 'Error Details'}
                 </h3>
@@ -369,7 +369,7 @@ export default function YamlValidator({
 
             {/* Output Tabs */}
             {result.isValid && (
-              <Card className="p-6">
+              <Card className="p-4">
                 <Tabs value={activeTab} onValueChange={setActiveTab}>
                   <TabsList className="mb-4">
                     <TabsTrigger value="output">{ui.formattedYamlTab || 'Formatted YAML'}</TabsTrigger>
@@ -424,7 +424,7 @@ export default function YamlValidator({
         )}
 
         {!result && !isValidating && (
-          <Card className="p-6">
+          <Card className="p-4">
             <div className="text-center text-gray-500">
               {ui.emptyState || 'Enter YAML content above and click "Validate YAML" to see results.'}
             </div>

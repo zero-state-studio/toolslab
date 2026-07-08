@@ -233,7 +233,7 @@ export default function CSSMinifier({ categoryColor, dictionary }: CSSMinifierPr
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Mode selector and actions */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row">
         <div className="flex gap-2">
@@ -621,7 +621,7 @@ export default function CSSMinifier({ categoryColor, dictionary }: CSSMinifierPr
       )}
 
       {/* Input/Output areas */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* Input */}
         <div>
           <div className="mb-2 flex items-center justify-between">
@@ -670,7 +670,7 @@ export default function CSSMinifier({ categoryColor, dictionary }: CSSMinifierPr
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={ui.placeholderInput || 'Paste your CSS here or upload a file...'}
-            className="h-96 w-full rounded-lg border border-gray-300 bg-white p-3 font-mono text-sm focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
+            className="h-64 w-full rounded-lg border border-gray-300 bg-white p-3 font-mono text-sm focus:border-transparent focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800"
             spellCheck={false}
           />
         </div>
@@ -718,7 +718,7 @@ export default function CSSMinifier({ categoryColor, dictionary }: CSSMinifierPr
             placeholder={
               validationError ? '' : (ui.placeholderOutput || 'Processed CSS will appear here...')
             }
-            className={`h-96 w-full rounded-lg border p-3 font-mono text-sm ${
+            className={`h-64 w-full rounded-lg border p-3 font-mono text-sm ${
               validationError
                 ? 'border-red-300 bg-red-50 dark:border-red-600 dark:bg-red-900/20'
                 : 'border-gray-300 bg-gray-50 dark:border-gray-600 dark:bg-gray-900'

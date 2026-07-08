@@ -203,8 +203,8 @@ export default function CategoriesHubContentSimple({
   };
 
   return (
-    <div className="pg-container py-12">
-      <div className="mb-8">
+    <div className="pg-container py-8">
+      <div className="mb-6">
         <div className="mb-2 text-[13px] text-pg-muted">
           <Link href={createHref('/')} className="hover:text-pg-text">{ui.home}</Link>{' '}
           › <span className="text-pg-text">{ui.categories}</span>

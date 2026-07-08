@@ -272,7 +272,7 @@ export default function JSONValidator({
   };
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-4">
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="validator">
@@ -285,7 +285,7 @@ export default function JSONValidator({
         </TabsList>
 
         <TabsContent value="validator" className="space-y-4">
-          <Card className="p-6">
+          <Card className="p-4">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">
@@ -459,7 +459,7 @@ export default function JSONValidator({
 
               {/* Summary Card */}
               <Card
-                className="border-2 p-6"
+                className="border-2 p-4"
                 style={{
                   borderColor: result.isValid ? '#10b981' : '#ef4444',
                   backgroundColor: result.isValid
@@ -467,7 +467,7 @@ export default function JSONValidator({
                     : 'rgba(239, 68, 68, 0.03)',
                 }}
               >
-                <div className="mb-6 flex items-center justify-between">
+                <div className="mb-4 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     {result.isValid ? (
                       <div className="flex items-center gap-2">
@@ -585,7 +585,7 @@ export default function JSONValidator({
 
               {/* Errors */}
               {result.errors.length > 0 && (
-                <Card className="p-6">
+                <Card className="p-4">
                   <h3 className="mb-4 text-lg font-semibold text-red-600">
                     {ui.errors || 'Errors'} ({result.errors.length})
                   </h3>
@@ -614,7 +614,7 @@ export default function JSONValidator({
 
               {/* Warnings */}
               {result.warnings.length > 0 && (
-                <Card className="p-6">
+                <Card className="p-4">
                   <h3 className="mb-4 text-lg font-semibold text-yellow-600">
                     {ui.warnings || 'Warnings'} ({result.warnings.length})
                   </h3>
@@ -643,7 +643,7 @@ export default function JSONValidator({
 
               {/* Security Issues */}
               {result.securityIssues.length > 0 && (
-                <Card className="p-6">
+                <Card className="p-4">
                   <h3 className="mb-4 flex items-center text-lg font-semibold text-purple-600">
                     <Shield className="mr-2 h-5 w-5" />
                     {ui.securityIssues || 'Security Issues'} (
@@ -678,7 +678,7 @@ export default function JSONValidator({
               )}
 
               {/* Metrics */}
-              <Card className="p-6">
+              <Card className="p-4">
                 <h3 className="mb-4 flex items-center text-lg font-semibold">
                   <Clock className="mr-2 h-5 w-5" />
                   {ui.performanceMetrics || 'Performance Metrics'}
@@ -730,7 +730,7 @@ export default function JSONValidator({
           )}
 
           {!result && (
-            <Card className="p-6">
+            <Card className="p-4">
               <div className="text-center text-gray-500">
                 {ui.emptyState ||
                   'Enter JSON data above to see validation results here.'}
@@ -740,7 +740,7 @@ export default function JSONValidator({
         </TabsContent>
 
         <TabsContent value="schema" className="space-y-4">
-          <Card className="p-6">
+          <Card className="p-4">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold">
@@ -767,13 +767,13 @@ export default function JSONValidator({
         </TabsContent>
 
         <TabsContent value="settings" className="space-y-4">
-          <Card className="p-6">
+          <Card className="p-4">
             <h3 className="mb-4 text-lg font-semibold">
               {ui.advancedSettings || 'Advanced Settings'}
             </h3>
 
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="max-depth">
                     {ui.maxObjectDepth || 'Maximum Object Depth'}

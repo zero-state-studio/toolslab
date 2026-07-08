@@ -242,7 +242,7 @@ export default function MarkdownTableGenerator({ dictionary }: BaseToolProps) {
   const previewHtml = useMemo(() => tableToHtml(table), [table]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Mode selector */}
       <div className="flex flex-wrap gap-2">
         <Button
