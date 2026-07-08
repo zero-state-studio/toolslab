@@ -12,6 +12,12 @@ export interface Base64ToPdfResult {
   fileSize?: number;
   fileName?: string;
   detectedFileType?: string | null;
+  /** Input was Base64-encoded more than once and got decoded automatically */
+  wasDoubleEncoded?: boolean;
+  /** First chars of the decoded data when it is readable text (error aid) */
+  decodedPreview?: string;
+  /** Input looks like natural language pasted by mistake, not Base64 */
+  inputLooksLikeText?: boolean;
   metadata?: {
     isPdf: boolean;
     hasValidHeader: boolean;
@@ -115,6 +121,51 @@ export function detectFileType(uint8Array: Uint8Array): string | null {
   return null;
 }
 
+/** Max nested decode attempts when recovering multi-encoded input */
+const MAX_NESTED_DECODES = 2;
+
+/**
+ * Checks whether the leading bytes are printable ASCII (tab/CR/LF allowed)
+ */
+function isPrintableAscii(bytes: Uint8Array, limit = 512): boolean {
+  const n = Math.min(bytes.length, limit);
+  if (n === 0) return false;
+  for (let i = 0; i < n; i++) {
+    const c = bytes[i];
+    if (c === 0x09 || c === 0x0a || c === 0x0d) continue;
+    if (c < 0x20 || c > 0x7e) return false;
+  }
+  return true;
+}
+
+/**
+ * Converts bytes to a string, chunked to avoid call-stack limits
+ */
+function asciiFromBytes(bytes: Uint8Array): string {
+  const CHUNK = 0x8000;
+  let out = '';
+  for (let i = 0; i < bytes.length; i += CHUNK) {
+    out += String.fromCharCode(...bytes.subarray(i, i + CHUNK));
+  }
+  return out;
+}
+
+/**
+ * Heuristic: input is natural language pasted by mistake, not Base64.
+ * Words-only text survives the charset check (letters are valid Base64 and
+ * whitespace gets stripped), then decodes to garbage — catch it up front.
+ * Real Base64 is one continuous string or MIME-wrapped at 64/76 chars, so
+ * many short whitespace-separated words without +, / or = means prose.
+ */
+export function looksLikeNaturalText(input: string): boolean {
+  const trimmed = input.trim();
+  if (!trimmed || /[+/=]/.test(trimmed)) return false;
+  const words = trimmed.split(/\s+/);
+  if (words.length < 3) return false;
+  const shortWords = words.filter((w) => w.length <= 20).length;
+  return shortWords / words.length >= 0.8;
+}
+
 /**
  * Checks if the decoded Base64 data represents a PDF file.
  * Searches within the first 1024 bytes as allowed by the PDF spec.
@@ -180,6 +231,16 @@ export async function base64ToPdf(
       }
     }
 
+    // Plain-text paste guard: catch prose before it decodes to garbage
+    if (looksLikeNaturalText(cleanBase64)) {
+      return {
+        success: false,
+        error:
+          'The input looks like plain text, not Base64. This tool decodes Base64 data back into a PDF file — paste a Base64 string instead (PDF data usually starts with "JVBERi0").',
+        inputLooksLikeText: true,
+      };
+    }
+
     // Remove whitespace and newlines
     cleanBase64 = cleanBase64.replace(/\s+/g, '');
 
@@ -207,6 +268,32 @@ export async function base64ToPdf(
       };
     }
 
+    // Recover multi-encoded input: when the decoded bytes are themselves
+    // Base64 text (e.g. "JVBERi0..." = "%PDF-" still encoded), keep decoding
+    // until a PDF emerges. Only commit the deeper level if it IS a PDF, so
+    // error reporting stays on the first decode otherwise.
+    let wasDoubleEncoded = false;
+    if (!isPdfData(uint8Array)) {
+      let candidate = uint8Array;
+      for (let depth = 0; depth < MAX_NESTED_DECODES; depth++) {
+        if (!isPrintableAscii(candidate)) break;
+        const innerBase64 = normalizeBase64(
+          asciiFromBytes(candidate).replace(/\s+/g, '')
+        );
+        if (innerBase64.length === 0 || !isValidBase64(innerBase64)) break;
+        try {
+          candidate = await decodeBase64ToBytes(innerBase64);
+        } catch {
+          break;
+        }
+        if (isPdfData(candidate)) {
+          uint8Array = candidate;
+          wasDoubleEncoded = true;
+          break;
+        }
+      }
+    }
+
     // Extract metadata
     const metadata = extractPdfMetadata(uint8Array);
 
@@ -216,10 +303,16 @@ export async function base64ToPdf(
       const errorDetail = detectedFileType
         ? `The data appears to be a ${detectedFileType}, not a PDF.`
         : 'PDF files should start with "%PDF-" header within the first 1024 bytes.';
+      // Readable decoded content helps users recognize what they pasted
+      const decodedPreview = isPrintableAscii(uint8Array, 50)
+        ? asciiFromBytes(uint8Array.subarray(0, 50)) +
+          (uint8Array.length > 50 ? '…' : '')
+        : undefined;
       return {
         success: false,
         error: `The decoded data does not appear to be a valid PDF file. ${errorDetail}`,
         detectedFileType,
+        decodedPreview,
         metadata,
       };
     }
@@ -235,6 +328,7 @@ export async function base64ToPdf(
       pdfBlob,
       fileSize: uint8Array.length,
       fileName,
+      wasDoubleEncoded,
       metadata,
     };
   } catch (error) {
