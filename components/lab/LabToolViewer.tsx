@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, BookOpen } from 'lucide-react';
 import { getToolById } from '@/lib/tools';
 import ToolWorkspace from '@/components/tools/ToolWorkspace';
@@ -46,13 +45,7 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
   const labelConfig = getToolLabelInfo(toolLabel);
 
   return (
-    <motion.div
-      className="flex h-full flex-1 flex-col overflow-hidden"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      transition={{ duration: 0.3 }}
-    >
+    <div className="flex h-full flex-1 flex-col overflow-hidden duration-300 animate-in fade-in slide-in-from-right-2">
       {/* Header */}
       <div className="border-b border-slate-200 bg-white px-4 py-3 dark:border-white/[0.06] dark:bg-card">
         <div className="flex items-center justify-between gap-4">
@@ -112,25 +105,18 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
 
       {/* Content */}
       <div className="flex-1 overflow-hidden">
-        <AnimatePresence mode="wait">
-          {showInstructions ? (
-            <motion.div
-              key="instructions"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="h-full overflow-y-auto p-6"
-            >
-              <ToolHowToUse toolId={tool.id} categoryColor="purple" />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="tool"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="h-full p-4 sm:p-6"
-            >
+        {showInstructions ? (
+          <div
+            key="instructions"
+            className="h-full overflow-y-auto p-6 duration-200 animate-in fade-in slide-in-from-bottom-3"
+          >
+            <ToolHowToUse toolId={tool.id} categoryColor="purple" />
+          </div>
+        ) : (
+          <div
+            key="tool"
+            className="h-full p-4 duration-200 animate-in fade-in slide-in-from-bottom-3 sm:p-6"
+          >
               <ToolWorkspace
                 tool={
                   {
@@ -142,10 +128,9 @@ export function LabToolViewer({ toolId, onBack }: LabToolViewerProps) {
                 categoryColor="purple"
                 isLabMode={true}
               />
-            </motion.div>
-          )}
-        </AnimatePresence>
+          </div>
+        )}
       </div>
-    </motion.div>
+    </div>
   );
 }

@@ -271,7 +271,7 @@ export default function ExcelFilter({
   const handleExportExcel = useCallback(() => {
     if (!excelData) return;
     const fileName = excelData.fileName.replace(/\.[^/.]+$/, '_filtered.xlsx');
-    exportToExcel(processedData, visibleHeaders, fileName);
+    void exportToExcel(processedData, visibleHeaders, fileName);
   }, [excelData, processedData, visibleHeaders]);
 
   // Reset all

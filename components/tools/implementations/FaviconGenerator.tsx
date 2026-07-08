@@ -29,7 +29,6 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { useDropzone } from 'react-dropzone';
-import JSZip from 'jszip';
 import {
   DEFAULT_FAVICON_OPTIONS,
   FAVICON_SIZES,
@@ -334,6 +333,8 @@ export default function FaviconGenerator({
     if (generatedFavicons.length === 0) return;
 
     try {
+      // jszip is only needed for the "download all" action — load on demand
+      const JSZip = (await import('jszip')).default;
       const zip = new JSZip();
 
       // Add all favicon files to ZIP

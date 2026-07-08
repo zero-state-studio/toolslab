@@ -5,6 +5,7 @@ import ToolPageClient from '@/components/tools/ToolPageClient';
 import { tools, getToolById, categories } from '@/lib/tools';
 import { getToolLongTailKeywords } from '@/lib/tools-seo';
 import { generateToolSchema } from '@/lib/tool-schema';
+import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
 import { loadToolTranslation } from '@/lib/i18n/load-tools';
 import { getDictionary } from '@/lib/i18n/get-dictionary';
 import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
@@ -188,6 +189,15 @@ export default async function ToolPage({ params }: ToolPageProps) {
     instructions: toolData?.instructions,
   };
 
+  // Computed at build time so the client bundle doesn't ship the
+  // related-tools engine and its relationship tables.
+  const relatedIds = (getSmartRelatedTools(params.tool, 4) || []).filter(
+    (id) => {
+      const t = getToolById(id);
+      return t && t.label !== 'coming-soon';
+    }
+  );
+
   return (
     <>
       {structuredData && (
@@ -206,6 +216,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
           locale="en"
           dictionary={dict}
           toolTranslations={toolTranslations}
+          relatedToolIds={relatedIds}
         />
       </Suspense>
     </>
