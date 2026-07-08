@@ -1,7 +1,6 @@
 'use client';
 
 import { ToolLabel } from '@/lib/edge-config/types';
-import { useFeatureFlag } from '@/hooks/useEdgeConfig';
 import { getToolById } from '@/lib/tools';
 
 /**

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useToolStore } from '@/lib/store/toolStore';
 import { getToolById } from '@/lib/tools';
@@ -61,12 +60,7 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
   const recentTools = isHydrated ? getRecentTools(6) : [];
 
   return (
-    <motion.div
-      className="flex-1 overflow-y-auto p-8"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-    >
+    <div className="flex-1 overflow-y-auto p-8 duration-300 animate-in fade-in slide-in-from-bottom-3">
       <div className="mx-auto max-w-6xl space-y-8">
         {/* Favorite Tools Grid */}
         <div>
@@ -148,7 +142,7 @@ export function LabOverview({ onToolSelect }: LabOverviewProps) {
           </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -160,13 +154,10 @@ interface ToolOverviewCardProps {
 
 function ToolOverviewCard({ tool, index, onClick }: ToolOverviewCardProps) {
   return (
-    <motion.div
-      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-sm transition-all duration-300 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
+    <div
+      className="group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm backdrop-blur-sm transition-all duration-300 animate-in fade-in slide-in-from-bottom-3 fill-mode-backwards hover:-translate-y-1 hover:border-slate-300 hover:bg-slate-50 hover:shadow-md dark:border-white/[0.06] dark:bg-white/[0.02] dark:hover:border-white/[0.10] dark:hover:bg-white/[0.04]"
+      style={{ animationDelay: `${index * 50}ms` }}
       onClick={onClick}
-      whileHover={{ y: -5 }}
     >
       {/* Gradient accent on hover */}
       <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-violet-500 to-amber-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -206,6 +197,6 @@ function ToolOverviewCard({ tool, index, onClick }: ToolOverviewCardProps) {
           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

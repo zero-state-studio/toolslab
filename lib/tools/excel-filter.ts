@@ -3,7 +3,18 @@
  * Load Excel files and apply dynamic filters to table data
  */
 
-import * as XLSX from 'xlsx';
+// xlsx (~134KB gz) is loaded on demand so the tool page doesn't pay for it
+// until the user actually parses or exports a file.
+type XLSXModule = typeof import('xlsx');
+
+let xlsxPromise: Promise<XLSXModule> | null = null;
+
+function loadXLSX(): Promise<XLSXModule> {
+  if (!xlsxPromise) {
+    xlsxPromise = import('xlsx');
+  }
+  return xlsxPromise;
+}
 
 export interface ExcelData {
   headers: string[];
@@ -105,6 +116,7 @@ export function detectColumnType(
  * Parse Excel file from File object
  */
 export async function parseExcelFile(file: File): Promise<ExcelData> {
+  const XLSX = await loadXLSX();
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
 
@@ -406,11 +418,12 @@ export function exportToCSV(
 /**
  * Export filtered data to Excel
  */
-export function exportToExcel(
+export async function exportToExcel(
   rows: Record<string, any>[],
   headers: string[],
   fileName: string = 'filtered_data.xlsx'
-): void {
+): Promise<void> {
+  const XLSX = await loadXLSX();
   const worksheet = XLSX.utils.json_to_sheet(rows, { header: headers });
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Filtered Data');

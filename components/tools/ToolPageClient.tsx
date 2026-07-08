@@ -36,7 +36,6 @@ import { FAQModal } from '@/components/ui/faq-modal';
 import ToolHowToUse from './ToolHowToUse';
 import ToolHeroSection from './ToolHeroSection';
 import AdBanner from '@/components/ads/AdBanner';
-import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
 import { ToolIcon } from '@/components/ui/ToolIcon';
 import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
 
@@ -68,6 +67,8 @@ interface ToolPageClientProps {
     placeholder?: string;
     instructions?: string;
   };
+  /** Related tool ids computed server-side (related-tools engine stays out of the client bundle) */
+  relatedToolIds?: string[];
 }
 
 export default function ToolPageClient({
@@ -75,6 +76,7 @@ export default function ToolPageClient({
   locale,
   dictionary,
   toolTranslations,
+  relatedToolIds,
 }: ToolPageClientProps) {
   const searchParams = useSearchParams();
   // resolvedTheme, not theme: with theme === 'system' the raw value never
@@ -112,10 +114,9 @@ export default function ToolPageClient({
   // Memoize related tools to avoid recalculating on every render
   const relatedTools = useMemo(() => {
     if (!tool) return [];
-    const smartRelatedIds = getSmartRelatedTools(toolId, 4);
 
-    if (smartRelatedIds && smartRelatedIds.length > 0) {
-      const relatedToolObjects = smartRelatedIds
+    if (relatedToolIds && relatedToolIds.length > 0) {
+      const relatedToolObjects = relatedToolIds
         .map((id: string) => toolsMap.get(id))
         .filter(
           (t: (typeof tools)[0] | undefined): t is (typeof tools)[0] =>
@@ -136,7 +137,7 @@ export default function ToolPageClient({
           t.label !== 'coming-soon'
       )
       .slice(0, 4);
-  }, [toolId, tool]);
+  }, [tool, relatedToolIds]);
 
   // Memoize same-category tools
   const sameCategoryTools = useMemo(() => {
@@ -149,7 +150,7 @@ export default function ToolPageClient({
           t.label !== 'coming-soon'
       )
       .slice(0, 6);
-  }, [toolId, tool]);
+  }, [tool]);
 
   // Memoize the tool prop object to prevent breaking ToolWorkspace memoization
   // Must be before early return to satisfy Rules of Hooks

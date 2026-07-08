@@ -2,12 +2,6 @@
 
 import React, { useMemo } from 'react';
 import { ToolLabel } from '@/lib/edge-config/types';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 
 export interface LabelConfig {
   label: ToolLabel;
@@ -119,8 +113,16 @@ export function useToolLabels() {
       md: 'h-4.5 w-4.5',
     }[size];
 
-    const labelElement = (
+    // Native title instead of a radix tooltip: this hook is on every tool
+    // page and the tooltip (popper + floating-ui, ~10KB gz) was loaded for
+    // the rarely-used 'test' label only.
+    return (
       <div
+        title={
+          toolLabel === 'test'
+            ? 'Tool recently deployed and currently in testing phase'
+            : undefined
+        }
         className={`inline-flex items-center gap-1 rounded-full font-medium ${sizeClasses} ${config.className}`}
       >
         <config.icon className={`${iconSize} flex-shrink-0`} />
@@ -128,22 +130,6 @@ export function useToolLabels() {
         <span className="font-medium">{config.text}</span>
       </div>
     );
-
-    // Add tooltip for test label
-    if (toolLabel === 'test') {
-      return (
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>{labelElement}</TooltipTrigger>
-            <TooltipContent>
-              <p>Tool recently deployed and currently in testing phase</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-      );
-    }
-
-    return labelElement;
   };
 
   return {
