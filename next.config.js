@@ -133,16 +133,22 @@ const nextConfig = {
           },
         ],
       },
-      // Static assets - immutable caching
-      {
-        source: '/_next/static/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
+      // Static assets - immutable caching. Skipped in dev: dev chunk names
+      // are NOT content-hashed, so immutable caching serves stale chunks
+      // after edits (hard reload required to see changes)
+      ...(process.env.NODE_ENV === 'development'
+        ? []
+        : [
+            {
+              source: '/_next/static/:path*',
+              headers: [
+                {
+                  key: 'Cache-Control',
+                  value: 'public, max-age=31536000, immutable',
+                },
+              ],
+            },
+          ]),
       // PWA manifest - cache for 7 days (rarely changes)
       {
         source: '/manifest.webmanifest',

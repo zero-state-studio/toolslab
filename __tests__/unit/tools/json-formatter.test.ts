@@ -16,11 +16,19 @@ describe('JSON Formatter', () => {
       expect(result.result?.split('\n').length).toBeGreaterThan(3);
     });
 
-    it('should return error for invalid JSON', () => {
+    it('should auto-fix trailing commas with a warning', () => {
+      // Pre-existing lenient behavior: preprocessJSON strips trailing commas
       const result = formatJSON(TEST_JSON.invalid.syntaxError);
+      expect(result.success).toBe(true);
+      expect(result.warnings).toContain(
+        'Applied automatic fixes to malformed JSON'
+      );
+    });
+
+    it('should return error for unrecoverable input', () => {
+      const result = formatJSON('this is not json at all');
       expect(result.success).toBe(false);
       expect(result.error).toBeDefined();
-      expect(result.line).toBeDefined();
     });
 
     it('should handle unicode characters', () => {
@@ -88,11 +96,17 @@ describe('JSON Formatter', () => {
       expect(result.error).toBeUndefined();
     });
 
-    it('should detect syntax errors with line numbers', () => {
+    it('should flag auto-fixed trailing commas with a warning', () => {
+      // Pre-existing lenient behavior: preprocessJSON strips trailing commas
       const result = validateJSON(TEST_JSON.invalid.syntaxError);
+      expect(result.valid).toBe(true);
+      expect(result.warnings?.join(' ')).toContain('automatically fixed');
+    });
+
+    it('should detect unfixable syntax errors', () => {
+      const result = validateJSON('{"name":ToolsLab}');
       expect(result.valid).toBe(false);
       expect(result.error).toBeDefined();
-      expect(result.line).toBeGreaterThan(0);
     });
 
     it('should handle incomplete JSON', () => {
@@ -146,6 +160,79 @@ describe('JSON Formatter', () => {
 
       const result = formatJSON(deepJSON);
       expect(result.success).toBe(true);
+    });
+  });
+
+  describe('Multi-value and garbage-wrapped input recovery', () => {
+    it('wraps concatenated objects into an array', () => {
+      const result = formatJSON('{"a": 1}{"b": 2}');
+      expect(result.success).toBe(true);
+      expect(JSON.parse(result.result!)).toEqual([{ a: 1 }, { b: 2 }]);
+      expect(result.warnings?.join(' ')).toContain('wrapped them into an array');
+    });
+
+    it('wraps NDJSON lines into an array', () => {
+      const result = formatJSON('{"a": 1}\n{"b": 2}\n{"c": 3}');
+      expect(result.success).toBe(true);
+      expect(JSON.parse(result.result!)).toEqual([{ a: 1 }, { b: 2 }, { c: 3 }]);
+    });
+
+    it('wraps comma-separated values pasted without brackets', () => {
+      const result = formatJSON('{"a": 1},{"b": 2}');
+      expect(result.success).toBe(true);
+      expect(JSON.parse(result.result!)).toEqual([{ a: 1 }, { b: 2 }]);
+    });
+
+    it('handles concatenated arrays', () => {
+      const result = formatJSON('[1,2][3,4]');
+      expect(result.success).toBe(true);
+      expect(JSON.parse(result.result!)).toEqual([
+        [1, 2],
+        [3, 4],
+      ]);
+    });
+
+    it('ignores trailing non-JSON content with a warning', () => {
+      const result = formatJSON('{"a": 1} some trailing note');
+      expect(result.success).toBe(true);
+      expect(JSON.parse(result.result!)).toEqual({ a: 1 });
+      expect(result.warnings?.join(' ')).toContain('trailing non-JSON content');
+    });
+
+    it('ignores leading non-JSON content (log prefix) with a warning', () => {
+      const result = formatJSON('2026-07-08 INFO response: {"a": 1}');
+      expect(result.success).toBe(true);
+      expect(JSON.parse(result.result!)).toEqual({ a: 1 });
+      expect(result.warnings?.join(' ')).toContain('leading non-JSON content');
+    });
+
+    it('is string-aware: braces inside strings do not split values', () => {
+      const result = formatJSON('{"text": "a } b"}{"x": "{ y"}');
+      expect(result.success).toBe(true);
+      expect(JSON.parse(result.result!)).toEqual([
+        { text: 'a } b' },
+        { x: '{ y' },
+      ]);
+    });
+
+    it('minifyJSON recovers concatenated objects too', () => {
+      const result = minifyJSON('{"a": 1}{"b": 2}');
+      expect(result.success).toBe(true);
+      expect(result.result).toBe('[{"a":1},{"b":2}]');
+    });
+
+    it('still fails on plain prose', () => {
+      const result = formatJSON('this is not json at all');
+      expect(result.success).toBe(false);
+    });
+
+    it('repairs truncated JSON via jsonrepair with a warning', () => {
+      const result = formatJSON('{"a": {"b": 1}');
+      expect(result.success).toBe(true);
+      expect(JSON.parse(result.result!)).toEqual({ a: { b: 1 } });
+      expect(result.warnings).toContain(
+        'Applied JSON repair to fix malformed input'
+      );
     });
   });
 
