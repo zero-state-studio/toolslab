@@ -31,6 +31,8 @@ export interface SitemapPage {
   path: string;
   changefreq: SitemapURL['changefreq'];
   priority: number;
+  /** Page exists only under the default (EN) locale — no /{locale} variants */
+  enOnly?: boolean;
 }
 
 /**
@@ -41,6 +43,8 @@ export function getStaticPages(): SitemapPage[] {
     { path: '/', changefreq: 'daily', priority: 1.0 },
     { path: '/tools', changefreq: 'daily', priority: 0.9 },
     { path: '/categories', changefreq: 'weekly', priority: 0.8 },
+    // EN-only beta: no localized routes yet
+    { path: '/pipeline', changefreq: 'weekly', priority: 0.8, enOnly: true },
     { path: '/lab', changefreq: 'monthly', priority: 0.6 },
     { path: '/about', changefreq: 'monthly', priority: 0.5 },
     { path: '/privacy', changefreq: 'yearly', priority: 0.3 },
@@ -163,7 +167,11 @@ export function generateSitemapURLs(
   existingLastmod?: Map<string, string>,
   fallbackLastmod: string = new Date().toISOString().split('T')[0]
 ): SitemapURL[] {
-  const pages = getAllPages();
+  const pages = getAllPages().filter(
+    // EN-only pages have no /{locale} variants — list them only in the
+    // default-locale sitemap
+    (page) => !page.enOnly || locale === defaultLocale
+  );
 
   return pages.map((page) => {
     const url = getAbsoluteUrl(locale, page.path);
@@ -172,7 +180,12 @@ export function generateSitemapURLs(
       lastmod: existingLastmod?.get(url) ?? fallbackLastmod,
       changefreq: page.changefreq,
       priority: page.priority,
-      alternates: generateHreflangAlternates(page.path),
+      alternates: page.enOnly
+        ? [
+            { hreflang: defaultLocale, href: url },
+            { hreflang: 'x-default', href: url },
+          ]
+        : generateHreflangAlternates(page.path),
     };
   });
 }

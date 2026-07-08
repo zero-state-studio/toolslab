@@ -201,18 +201,39 @@ export default function PipelineBuilder() {
 
   const safePipelines = isHydrated ? pipelines : [];
 
-  // Load a shared pipeline from the URL fragment (#<encoded>) on mount
+  // Load a shared pipeline from the URL fragment (#<encoded>) on mount and
+  // whenever the hash changes (e.g. clicking an example pipeline link on the
+  // landing content below the builder).
   useEffect(() => {
-    if (loadedFromUrl.current) return;
-    loadedFromUrl.current = true;
-    const hash = window.location.hash.replace(/^#/, '');
-    if (!hash) return;
-    const shared = decodePipeline(hash);
-    if (shared) {
-      setName(shared.name);
-      setSteps(shared.steps.map((s) => ({ ...s, uid: newUid() })));
-      trackEngagement('pipeline-opened-shared', { steps: shared.steps.length });
+    const loadFromHash = (isInitial: boolean) => {
+      const hash = window.location.hash.replace(/^#/, '');
+      if (!hash) return;
+      const shared = decodePipeline(hash);
+      if (shared) {
+        setName(shared.name);
+        setSteps(shared.steps.map((s) => ({ ...s, uid: newUid() })));
+        setResult(null);
+        setSavedId(null);
+        if (isInitial) {
+          trackEngagement('pipeline-opened-shared', {
+            steps: shared.steps.length,
+          });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          trackEngagement('pipeline-example-loaded', {
+            steps: shared.steps.length,
+          });
+        }
+      }
+    };
+
+    if (!loadedFromUrl.current) {
+      loadedFromUrl.current = true;
+      loadFromHash(true);
     }
+    const onHashChange = () => loadFromHash(false);
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   const adapterAt = useCallback(

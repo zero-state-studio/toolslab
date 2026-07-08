@@ -41,6 +41,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/categories"/>
   </url>
   <url>
+    <loc>https://toolslab.dev/pipeline</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://toolslab.dev/pipeline"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://toolslab.dev/pipeline"/>
+  </url>
+  <url>
     <loc>https://toolslab.dev/lab</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
