@@ -252,8 +252,27 @@ export default function QRGenerator({
     addToHistory,
   ]);
 
+  // True when the user actually entered something for the selected type —
+  // avoids auto-generating (and showing a validation error) on empty input
+  const hasContent = Boolean(
+    contentData.text?.trim() ||
+      (contentData.url?.trim() && contentData.url.trim() !== 'https://') ||
+      contentData.ssid?.trim() ||
+      contentData.emailTo?.trim() ||
+      contentData.phoneNumber?.trim() ||
+      contentData.firstName?.trim() ||
+      contentData.lastName?.trim() ||
+      contentData.cryptoAddress?.trim() ||
+      (typeof contentData.latitude === 'number' &&
+        typeof contentData.longitude === 'number')
+  );
+
   // Auto-generate on content/options change
   useEffect(() => {
+    if (!hasContent) {
+      setQrResult(null); // neutral "QR will appear here" placeholder
+      return;
+    }
     const timer = setTimeout(() => {
       if (contentData.type && Object.keys(contentData).length > 1) {
         handleGenerate();
@@ -261,7 +280,7 @@ export default function QRGenerator({
     }, 500); // Debounce
 
     return () => clearTimeout(timer);
-  }, [contentData, options, handleGenerate]);
+  }, [contentData, options, handleGenerate, hasContent]);
 
   // Download QR code
   const handleDownload = useCallback(
