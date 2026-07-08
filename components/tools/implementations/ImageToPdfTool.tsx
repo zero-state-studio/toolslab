@@ -259,9 +259,9 @@ export default function ImageToPdfTool({ categoryColor, dictionary }: ImageToPdf
   }, [previewUrl]);
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-4">
       {/* Upload Section */}
-      <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">
             {ui.uploadImagesHeading || 'Upload Images'}
@@ -281,7 +281,7 @@ export default function ImageToPdfTool({ categoryColor, dictionary }: ImageToPdf
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onClick={() => fileInputRef.current?.click()}
-          className="cursor-pointer rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-8 text-center transition-colors hover:border-gray-400 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700/50 dark:hover:border-gray-500"
+          className="cursor-pointer rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 p-5 text-center transition-colors hover:border-gray-400 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700/50 dark:hover:border-gray-500"
         >
           <Upload className="mx-auto mb-4 h-12 w-12 text-gray-400" />
           <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -302,7 +302,7 @@ export default function ImageToPdfTool({ categoryColor, dictionary }: ImageToPdf
 
         {/* Image Grid */}
         {images.length > 0 && (
-          <div className="mt-6 space-y-3">
+          <div className="mt-4 space-y-3">
             <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
               {ui.selectedImagesLabel || 'Selected Images'} ({images.length})
             </h3>
@@ -363,7 +363,7 @@ export default function ImageToPdfTool({ categoryColor, dictionary }: ImageToPdf
       </div>
 
       {/* Settings */}
-      <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <button
           onClick={() => setShowSettings(!showSettings)}
           className="mb-4 flex w-full items-center justify-between"
@@ -485,7 +485,7 @@ export default function ImageToPdfTool({ categoryColor, dictionary }: ImageToPdf
         <button
           onClick={handleGeneratePdf}
           disabled={images.length === 0 || isProcessing}
-          className="mt-6 w-full rounded-lg bg-blue-600 px-4 py-3 font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="mt-4 w-full rounded-lg bg-blue-600 px-4 py-3 font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isProcessing ? (
             <>
@@ -516,7 +516,7 @@ export default function ImageToPdfTool({ categoryColor, dictionary }: ImageToPdf
       {pdfBlob && pdfMetadata && (
         <div
           ref={resultRef}
-          className="rounded-lg border border-green-200 bg-green-50 p-6 shadow-sm dark:border-green-800 dark:bg-green-900/20"
+          className="rounded-lg border border-green-200 bg-green-50 p-4 shadow-sm dark:border-green-800 dark:bg-green-900/20"
         >
           <div className="mb-4 flex items-center gap-2">
             <FileText className="h-5 w-5 text-green-600 dark:text-green-400" />
@@ -547,7 +547,7 @@ export default function ImageToPdfTool({ categoryColor, dictionary }: ImageToPdf
 
           {/* PDF Preview Section */}
           {previewUrl && (
-            <div className="mt-6 space-y-2">
+            <div className="mt-4 space-y-2">
               <div className="flex items-center justify-between">
                 <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   {ui.pdfPreviewHeading || 'PDF Preview'}

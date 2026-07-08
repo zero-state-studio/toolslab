@@ -174,7 +174,7 @@ export default function XmlToJsonConverter({ dictionary }: { dictionary?: any })
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Options Panel */}
       <Card className="bg-muted/30 p-2">
         <Button

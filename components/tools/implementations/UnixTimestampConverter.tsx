@@ -257,7 +257,7 @@ const UnixTimestampConverter = ({ dictionary }: { dictionary?: any }) => {
   }, [result, input, timezone]);
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-4">
       {/* Mode Selector */}
       <div className="flex justify-center">
         <Tabs
@@ -392,7 +392,7 @@ const UnixTimestampConverter = ({ dictionary }: { dictionary?: any }) => {
         onValueChange={(v) => setMode(v as 'single' | 'batch')}
         className="w-full"
       >
-        <TabsContent value="single" className="space-y-6">
+        <TabsContent value="single" className="space-y-4">
           {/* Single Conversion Input */}
           <Card>
             <CardHeader>
@@ -612,7 +612,7 @@ const UnixTimestampConverter = ({ dictionary }: { dictionary?: any }) => {
           )}
         </TabsContent>
 
-        <TabsContent value="batch" className="space-y-6">
+        <TabsContent value="batch" className="space-y-4">
           {/* Batch Input */}
           <Card>
             <CardHeader>
@@ -697,7 +697,7 @@ const UnixTimestampConverter = ({ dictionary }: { dictionary?: any }) => {
 
                     <Separator />
 
-                    <div className="max-h-96 space-y-2 overflow-y-auto">
+                    <div className="max-h-64 space-y-2 overflow-y-auto">
                       {batchResult.metadata?.batch?.map((item, index) => (
                         <div
                           key={index}

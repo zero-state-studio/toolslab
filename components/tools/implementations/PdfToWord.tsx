@@ -313,19 +313,19 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
     const suspendedMessages =
       dictionary?.suspended || dictionary?.common?.suspended;
     return (
-      <div className="space-y-6">
+      <div className="space-y-4">
         <ServiceSuspendedCard messages={suspendedMessages} />
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Upload Area */}
-      <Card className="p-6">
+      <Card className="p-4">
         <div
           {...getRootProps()}
-          className={`cursor-pointer rounded-lg border-2 border-dashed p-8 text-center transition-colors ${
+          className={`cursor-pointer rounded-lg border-2 border-dashed p-5 text-center transition-colors ${
             isDragActive
               ? 'border-primary bg-primary/5'
               : 'border-gray-300 hover:border-primary/50'
@@ -358,7 +358,7 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
 
       {/* Conversion Button */}
       {files.length > 0 && (
-        <Card className="p-6">
+        <Card className="p-4">
           <div className="flex gap-2">
             <Button
               onClick={convertAll}
@@ -392,7 +392,7 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
       {/* Files List */}
       <div ref={resultRef}>
         {files.length > 0 && (
-          <Card className="p-6">
+          <Card className="p-4">
             <h3 className="mb-4 text-lg font-semibold">
               Files ({files.length})
             </h3>
@@ -505,7 +505,7 @@ export default function PdfToWord({ dictionary }: PdfToWordProps) {
 
       {/* Tips */}
       {files.length === 0 && (
-        <Card className="p-6">
+        <Card className="p-4">
           <h3 className="mb-4 text-lg font-semibold">
             💡 {ui.tipsHeading || 'Tips for Best Results'}
           </h3>

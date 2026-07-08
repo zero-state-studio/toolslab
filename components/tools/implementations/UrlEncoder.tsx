@@ -246,7 +246,7 @@ export default function UrlEncoder({ categoryColor, dictionary }: UrlEncoderProp
   const currentEncoding = input ? detectEncoding(input) : 'plain';
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6 p-6">
+    <div className="mx-auto w-full max-w-6xl space-y-4 p-4">
       {/* Header */}
       <div className="space-y-2 text-center">
         <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 dark:bg-gray-800">

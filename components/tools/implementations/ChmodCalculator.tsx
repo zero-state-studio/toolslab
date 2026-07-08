@@ -179,9 +179,9 @@ export default function ChmodCalculator({ dictionary }: ChmodCalculatorProps) {
     : result.command;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Permission Grid */}
-      <Card className="p-6">
+      <Card className="p-4">
         <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
           {labels.permissionGrid}
         </h3>
@@ -229,7 +229,7 @@ export default function ChmodCalculator({ dictionary }: ChmodCalculatorProps) {
       </Card>
 
       {/* Results */}
-      <Card className="p-6">
+      <Card className="p-4">
         <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
           {labels.results}
         </h3>
@@ -369,7 +369,7 @@ export default function ChmodCalculator({ dictionary }: ChmodCalculatorProps) {
       </Card>
 
       {/* Presets */}
-      <Card className="p-6">
+      <Card className="p-4">
         <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
           {labels.presets}
         </h3>

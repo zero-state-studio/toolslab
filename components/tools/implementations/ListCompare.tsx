@@ -456,7 +456,7 @@ export default function ListCompare({
   );
 
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-4">
       {/* Status Messages */}
       {error && (
         <Alert variant="destructive">
@@ -597,7 +597,7 @@ export default function ListCompare({
         </CardHeader>
         {optionsExpanded && (
           <CardContent>
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-3">
               {/* Main Comparison Mode */}
               <div className="space-y-3">
                 <Label className="text-sm font-medium">
@@ -752,7 +752,7 @@ export default function ListCompare({
       {/* Results Section */}
       {isProcessing ? (
         <Card>
-          <CardContent className="flex items-center justify-center py-8">
+          <CardContent className="flex items-center justify-center py-5">
             <div className="flex items-center gap-2">
               <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-primary"></div>
               <span>{ui.processingComparison || 'Processing comparison...'}</span>
@@ -868,7 +868,7 @@ export default function ListCompare({
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <ScrollArea className="h-64">
+                    <ScrollArea className="h-48">
                       <div className="space-y-2">
                         {sortResultsAlphabetically(comparisonResult.union).map(
                           (item, index) => (
@@ -923,7 +923,7 @@ export default function ListCompare({
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <ScrollArea className="h-64">
+                      <ScrollArea className="h-48">
                         <div className="space-y-2">
                           {sortResultsAlphabetically(
                             comparisonResult.intersection
@@ -1103,7 +1103,7 @@ export default function ListCompare({
         </div>
       ) : (
         <Card>
-          <CardContent className="flex items-center justify-center py-8 text-muted-foreground">
+          <CardContent className="flex items-center justify-center py-5 text-muted-foreground">
             <div className="text-center">
               <GitCompare className="mx-auto mb-2 h-8 w-8 opacity-50" />
               <p>

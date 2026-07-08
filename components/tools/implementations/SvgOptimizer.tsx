@@ -195,7 +195,7 @@ export default function SvgOptimizer({ dictionary }: SvgOptimizerProps) {
               </div>
             )}
 
-            <pre className="max-h-72 overflow-auto rounded bg-white p-3 font-mono text-xs dark:bg-gray-900">
+            <pre className="max-h-56 overflow-auto rounded bg-white p-3 font-mono text-xs dark:bg-gray-900">
               {result.data}
             </pre>
           </div>

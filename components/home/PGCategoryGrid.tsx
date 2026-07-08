@@ -17,7 +17,7 @@ export function PGCategoryGrid({
   const { createHref } = useLocalizedRouter();
 
   return (
-    <section className="pg-container pb-10">
+    <section className="pg-container pb-8">
       <div className="mb-4 flex items-baseline justify-between">
         <h2 className="text-[22px] font-bold tracking-[-0.3px] text-pg-text">{title}</h2>
         <Link

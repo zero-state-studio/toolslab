@@ -960,7 +960,7 @@ export default function QRGenerator({
   const renderQRPreview = () => {
     if (!qrResult) {
       return (
-        <div className="flex h-64 items-center justify-center rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600">
+        <div className="flex h-48 items-center justify-center rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600">
           <div className="text-center">
             <QrCode className="mx-auto mb-2 h-12 w-12 text-gray-400" />
             <p className="text-gray-600 dark:text-gray-400">
@@ -973,7 +973,7 @@ export default function QRGenerator({
 
     if (!qrResult.success) {
       return (
-        <div className="flex h-64 items-center justify-center rounded-lg border-2 border-dashed border-red-300">
+        <div className="flex h-48 items-center justify-center rounded-lg border-2 border-dashed border-red-300">
           <div className="text-center">
             <AlertTriangle className="mx-auto mb-2 h-12 w-12 text-red-500" />
             <p className="text-red-600">{qrResult.error}</p>
@@ -1207,7 +1207,7 @@ export default function QRGenerator({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Content Type Selection */}
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <h3 className="mb-3 text-lg font-medium">
@@ -1299,7 +1299,7 @@ export default function QRGenerator({
       {/* Loading overlay */}
       {isGenerating && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="flex items-center gap-4 rounded-lg bg-white p-6 dark:bg-gray-800">
+          <div className="flex items-center gap-4 rounded-lg bg-white p-4 dark:bg-gray-800">
             <RefreshCw className="h-6 w-6 animate-spin text-blue-600" />
             <span>{ui.generatingQrCode || 'Generating QR Code...'}</span>
           </div>

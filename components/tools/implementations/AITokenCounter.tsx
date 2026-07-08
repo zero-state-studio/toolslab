@@ -335,7 +335,7 @@ export default function AITokenCounter({ dictionary }: AITokenCounterProps) {
     .filter((w) => w).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Input Section */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
@@ -471,13 +471,13 @@ export default function AITokenCounter({ dictionary }: AITokenCounterProps) {
 
       {/* Results Section */}
       {analysis && (
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Single Analysis View */}
           {viewMode === 'single' && (
             <>
               {/* Token Count Card */}
-              <div className="rounded-lg border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white p-6 dark:border-blue-800 dark:from-blue-950 dark:to-gray-900">
-                <div className="grid gap-6 md:grid-cols-3">
+              <div className="rounded-lg border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white p-4 dark:border-blue-800 dark:from-blue-950 dark:to-gray-900">
+                <div className="grid gap-4 md:grid-cols-3">
                   <div className="text-center">
                     <div className="text-4xl font-bold text-blue-600 dark:text-blue-400">
                       {analysis.tokens.toLocaleString()}
@@ -505,7 +505,7 @@ export default function AITokenCounter({ dictionary }: AITokenCounterProps) {
                 </div>
 
                 {/* Context Window Bar */}
-                <div className="mt-6">
+                <div className="mt-4">
                   <div className="mb-2 flex justify-between text-sm">
                     <span className="text-gray-600 dark:text-gray-400">
                       {ui.contextWindowUsage || 'Context Window Usage'}
@@ -560,7 +560,7 @@ export default function AITokenCounter({ dictionary }: AITokenCounterProps) {
               </div>
 
               {/* Cost Estimation */}
-              <div className="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+              <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
                 <h3 className="mb-4 flex items-center text-lg font-semibold text-gray-900 dark:text-white">
                   <DollarSign className="mr-2 h-5 w-5" />
                   {ui.costEstimation || 'Cost Estimation'}
@@ -717,7 +717,7 @@ export default function AITokenCounter({ dictionary }: AITokenCounterProps) {
           {/* Optimize View */}
           {viewMode === 'optimize' && optimization && (
             <div className="space-y-4">
-              <div className="rounded-lg border-2 border-green-200 bg-green-50 p-6 dark:border-green-800 dark:bg-green-950">
+              <div className="rounded-lg border-2 border-green-200 bg-green-50 p-4 dark:border-green-800 dark:bg-green-950">
                 <div className="grid gap-4 sm:grid-cols-3">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-green-600 dark:text-green-400">

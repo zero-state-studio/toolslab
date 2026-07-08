@@ -180,7 +180,7 @@ export default function EnvToJson({ dictionary }: EnvToJsonProps) {
                 )}
               </Button>
             </div>
-            <pre className="max-h-96 overflow-auto rounded bg-white p-3 font-mono text-sm dark:bg-gray-900">
+            <pre className="max-h-64 overflow-auto rounded bg-white p-3 font-mono text-sm dark:bg-gray-900">
               {output}
             </pre>
           </div>

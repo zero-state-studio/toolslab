@@ -310,7 +310,7 @@ export default function HashGenerator({
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <Shield className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -355,7 +355,7 @@ export default function HashGenerator({
         </div>
       </div>
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-4 p-4">
         {/* Input Mode Tabs */}
         <div className="flex gap-1 rounded-lg bg-gray-100 p-1 dark:bg-gray-900">
           {(
@@ -792,7 +792,7 @@ export default function HashGenerator({
                     : txt('copyAll', 'Copy All')}
                 </button>
               </div>
-              <div className="max-h-96 space-y-1 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-900">
+              <div className="max-h-64 space-y-1 overflow-y-auto rounded-lg border border-gray-200 bg-gray-50 p-3 dark:border-gray-700 dark:bg-gray-900">
                 {bulkResults.map((result, i) => (
                   <div
                     key={i}

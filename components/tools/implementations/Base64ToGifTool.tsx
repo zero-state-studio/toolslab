@@ -253,7 +253,7 @@ export default function Base64ToGifTool({
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Cross-tool navigation */}
       <div className="flex flex-wrap items-center gap-2 text-sm">
         <span className="text-gray-500 dark:text-gray-400">
@@ -381,7 +381,7 @@ export default function Base64ToGifTool({
       {result?.success && (
         <div
           ref={resultRef}
-          className="space-y-4 rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800"
+          className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800"
         >
           <div className="flex items-center justify-between">
             <h3 className="flex items-center gap-2 text-lg font-semibold text-gray-900 dark:text-white">
@@ -478,13 +478,13 @@ export default function Base64ToGifTool({
                 }}
               >
                 {imageLoading && !imageError && (
-                  <div className="flex items-center gap-2 py-8 text-gray-500">
+                  <div className="flex items-center gap-2 py-5 text-gray-500">
                     <Loader2 className="h-5 w-5 animate-spin" />
                     <span>{ui.loadingPreview || 'Loading preview...'}</span>
                   </div>
                 )}
                 {imageError && (
-                  <div className="flex items-center gap-2 py-8 text-red-500">
+                  <div className="flex items-center gap-2 py-5 text-red-500">
                     <AlertCircle className="h-5 w-5" />
                     <span>{ui.failedToLoadPreview || 'Failed to load preview'}</span>
                   </div>
@@ -537,7 +537,7 @@ export default function Base64ToGifTool({
             <div className="flex gap-3">
               <button
                 onClick={handleDownload}
-                className="flex flex-1 items-center justify-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-all hover:opacity-90"
+                className="flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 font-medium text-white transition-all hover:opacity-90"
                 style={{ backgroundColor: categoryColor }}
               >
                 <Download className="h-4 w-4" />

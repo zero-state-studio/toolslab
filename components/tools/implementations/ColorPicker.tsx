@@ -1128,7 +1128,7 @@ export default function ColorPicker({
                 {ui.preview || 'Preview'}
               </label>
               <div
-                className="rounded-lg p-6"
+                className="rounded-lg p-4"
                 style={{
                   backgroundColor: backgroundColor,
                   color: currentColor.hex,
@@ -1308,10 +1308,10 @@ export default function ColorPicker({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Main Color Display */}
       <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {/* Color Preview and Wheel */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
@@ -1472,7 +1472,7 @@ export default function ColorPicker({
           </button>
         </div>
 
-        <div className="p-6">
+        <div className="p-4">
           {viewMode === 'palette' && renderPaletteView()}
           {viewMode === 'contrast' && renderContrastView()}
           {viewMode === 'export' && renderExportView()}
@@ -1485,7 +1485,7 @@ export default function ColorPicker({
       {/* Loading overlay */}
       {isProcessing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="rounded-lg bg-white p-6 dark:bg-gray-800">
+          <div className="rounded-lg bg-white p-4 dark:bg-gray-800">
             <RefreshCw className="h-8 w-8 animate-spin text-blue-500" />
             <p className="mt-2">{ui.processing || 'Processing...'}</p>
           </div>

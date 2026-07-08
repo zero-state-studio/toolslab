@@ -230,7 +230,7 @@ export default function CategoryPageContent({
 
         {/* ── FAQ ───────────────────────────────────────────────── */}
         {seoContent.faqs && seoContent.faqs.length > 0 && (
-          <section className="pg-container pt-12">
+          <section className="pg-container pt-8">
             <div className="rounded-pg-panel border border-pg-border bg-pg-surface p-6">
               <h2 className="mb-5 text-[18px] font-semibold text-pg-text">
                 Frequently Asked Questions about {category.name} Tools
@@ -302,8 +302,8 @@ export default function CategoryPageContent({
         )}
 
         {/* ── CTA ───────────────────────────────────────────────── */}
-        <section className="pg-container mb-16 mt-12">
-          <div className="rounded-pg-panel border border-pg-border bg-pg-surface p-8 text-center">
+        <section className="pg-container mb-10 mt-8">
+          <div className="rounded-pg-panel border border-pg-border bg-pg-surface p-6 text-center">
             <h2 className="mb-2 text-[24px] font-bold text-pg-text">
               Looking for more tools?
             </h2>

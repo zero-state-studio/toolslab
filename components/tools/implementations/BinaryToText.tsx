@@ -230,7 +230,7 @@ export default function BinaryToText({ categoryColor, dictionary }: BinaryToText
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Conversion Type Selector */}
       <div className="flex flex-wrap items-center gap-4">
         <div className="min-w-[200px] flex-1">

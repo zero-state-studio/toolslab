@@ -240,7 +240,7 @@ export default function ColorConverter({ categoryColor, dictionary }: ColorConve
       : null;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Input Section */}
       <div className="space-y-3">
         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -273,7 +273,7 @@ export default function ColorConverter({ categoryColor, dictionary }: ColorConve
 
       {/* Color Preview */}
       {currentColor && (
-        <div className="rounded-lg border-2 border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+        <div className="rounded-lg border-2 border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
           <div className="flex items-center gap-4">
             <div
               className="h-24 w-24 rounded-lg shadow-lg ring-2 ring-gray-200 dark:ring-gray-700"

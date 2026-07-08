@@ -289,7 +289,7 @@ export default function ExcelFilter({
   }, []);
 
   return (
-    <div className="mx-auto w-full max-w-[1400px] space-y-6">
+    <div className="mx-auto w-full max-w-[1400px] space-y-4">
       {/* Zell Banner */}
       <a
         href="https://zelldata.app"
@@ -331,7 +331,7 @@ export default function ExcelFilter({
 
       {/* Upload Section */}
       {!excelData && (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
           <div className="mb-4">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white">
               {ui.uploadSectionHeading || 'Upload Excel File'}

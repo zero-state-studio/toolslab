@@ -508,7 +508,7 @@ export default function MarkdownPreview({ dictionary }: { dictionary?: any }) {
               `}</style>
               <div
                 ref={previewRef}
-                className="markdown-preview h-[600px] max-w-none overflow-auto p-6"
+                className="markdown-preview h-[600px] max-w-none overflow-auto p-4"
                 style={{
                   backgroundColor:
                     theme === 'github-dark' ? '#0d1117' : '#ffffff',

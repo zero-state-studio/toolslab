@@ -264,9 +264,9 @@ export default function ToolPageClient({
       />
       <div className="pointer-events-none fixed -right-32 top-0 h-56 w-56 rounded-full bg-amber-500/[0.07] blur-3xl" />
 
-      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-4 sm:py-8">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-3 sm:py-4">
         {/* Breadcrumb - Reduced spacing */}
-        <nav className="mb-2 flex items-center gap-x-1.5 text-xs sm:flex-wrap sm:gap-x-2 sm:gap-y-1 sm:text-sm">
+        <nav className="mb-1.5 flex items-center gap-x-1.5 text-xs sm:flex-wrap sm:gap-x-2 sm:gap-y-1">
           <Link
             href={createHref('/')}
             aria-label={t.home}
@@ -299,7 +299,7 @@ export default function ToolPageClient({
         </nav>
 
         {/* Tool Hero Section - Optimized spacing */}
-        <div className="mb-3 flex items-start justify-between gap-4 md:mb-5">
+        <div className="mb-3 flex items-start justify-between gap-4">
           <ToolHeroSection
             toolId={tool.id}
             toolName={t.toolName}
@@ -385,7 +385,7 @@ export default function ToolPageClient({
 
             {/* Ad: content area — desktop only, fixed 728x90 leaderboard, above How to Use */}
             <AdBanner
-              className="my-6 hidden text-center lg:block"
+              className="my-4 hidden text-center lg:block"
               fixedWidth={728}
               fixedHeight={90}
               minHeight={90}

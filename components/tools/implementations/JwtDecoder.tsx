@@ -541,7 +541,7 @@ export default function JwtDecoder({
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <Key className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -615,7 +615,7 @@ export default function JwtDecoder({
         </div>
       </div>
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-4 p-4">
         {mode === 'encode' && (
           <div className="space-y-4">
             {/* Algorithm picker */}
@@ -775,7 +775,7 @@ export default function JwtDecoder({
               <button
                 onClick={handleSign}
                 disabled={isSignDisabled}
-                className="inline-flex items-center gap-2 rounded-lg px-6 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+                className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
                 style={{ backgroundColor: categoryColor }}
               >
                 {encoding ? (
@@ -988,7 +988,7 @@ export default function JwtDecoder({
           <button
             onClick={handleDecode}
             disabled={!input.trim() || isProcessing}
-            className="inline-flex items-center gap-2 rounded-lg px-6 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
+            className="inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
             style={{ backgroundColor: categoryColor }}
           >
             {isProcessing ? (

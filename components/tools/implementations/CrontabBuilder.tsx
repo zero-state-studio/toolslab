@@ -471,7 +471,7 @@ function CrontabBuilderContent({
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3 dark:border-gray-700 sm:px-6 sm:py-4">
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3 dark:border-gray-700 sm:px-4 sm:py-4">
         <div className="flex items-center gap-3">
           <div
             className="rounded-lg p-2"
@@ -498,7 +498,7 @@ function CrontabBuilderContent({
         )}
       </div>
 
-      <div className="space-y-4 p-4 sm:space-y-6 sm:p-6">
+      <div className="space-y-4 p-4 sm:space-y-4 sm:p-4">
         {/* Input Section */}
         <div className="space-y-4">
           {/* Sample Data */}
@@ -608,7 +608,7 @@ function CrontabBuilderContent({
             <button
               onClick={handleParseExpression}
               disabled={!inputExpression}
-              className="flex items-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex items-center gap-2 rounded-lg px-4 py-3 font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
               style={{
                 backgroundColor: categoryColor,
                 boxShadow: `0 4px 12px ${categoryColor}40`,
@@ -803,7 +803,7 @@ function CrontabBuilderContent({
           </TabsContent>
 
           {/* Builder Tab */}
-          <TabsContent value="builder" className="space-y-6">
+          <TabsContent value="builder" className="space-y-4">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {/* Minute Field */}
               <Card className="overflow-hidden">
@@ -1515,7 +1515,7 @@ function CrontabBuilderContent({
                 )}
 
                 {safeFavorites.length === 0 ? (
-                  <div className="py-8 text-center text-gray-500">
+                  <div className="py-5 text-center text-gray-500">
                     <Heart className="mx-auto mb-4 h-12 w-12 opacity-50" />
                     <p>No favorite expressions yet.</p>
                     <p className="text-sm">
@@ -1586,7 +1586,7 @@ function CrontabBuilderContent({
                           .toLowerCase()
                           .includes(favoritesSearchQuery.toLowerCase())
                       ).length === 0 && (
-                        <div className="py-8 text-center text-gray-500">
+                        <div className="py-5 text-center text-gray-500">
                           <Search className="mx-auto mb-4 h-12 w-12 opacity-50" />
                           <p>
                             No favorites found matching &quot;
@@ -1622,7 +1622,7 @@ function CrontabBuilderContent({
               </CardHeader>
               <CardContent>
                 {safeHistory.length === 0 ? (
-                  <div className="py-8 text-center text-gray-500">
+                  <div className="py-5 text-center text-gray-500">
                     <History className="mx-auto mb-4 h-12 w-12 opacity-50" />
                     <p>No history yet.</p>
                     <p className="text-sm">

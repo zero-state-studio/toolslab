@@ -63,9 +63,9 @@ export function Footer() {
 
   return (
     <footer className="border-t border-pg-border bg-[color:var(--pg-bg)]">
-      <div className="mx-auto max-w-pg px-6 py-16 sm:px-8 lg:px-10">
+      <div className="mx-auto max-w-pg px-6 py-10 sm:px-8 lg:px-10">
         {/* 4-col info grid */}
-        <div className="mb-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+        <div className="mb-8 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
           <div>
             <h3 className={columnHeading}>{footer.aboutToolsLab}</h3>
             <p className="mb-3 text-sm leading-relaxed text-pg-muted">
@@ -174,7 +174,7 @@ export function Footer() {
         </div>
 
         {/* Zero State + copyright */}
-        <div className="mt-10 flex flex-col items-center gap-4 text-center">
+        <div className="mt-6 flex flex-col items-center gap-3 text-center">
           <span className="text-[11px] uppercase tracking-wider text-pg-dim">
             {footer.developedBy}
           </span>
