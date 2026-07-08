@@ -10,6 +10,9 @@ import {
 
 export const revalidate = false;
 
+// Force static generation at build time; unknown params → 404 (no ISR fallback)
+export const dynamicParams = false;
+
 interface LocaleCategoriesPageProps {
   params: {
     locale: string;
@@ -110,7 +113,9 @@ export default async function LocaleCategoriesPage({
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
+  // Only the 'categories' section — CategoriesHubContentSimple reads
+  // dictionary.categories exclusively
+  const dict = await getDictionary(locale as Locale, ['categories']);
 
   return (
     <CategoriesHubContentSimple locale={locale as Locale} dictionary={dict} />

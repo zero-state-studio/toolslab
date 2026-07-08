@@ -10,6 +10,9 @@ import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 export const revalidate = false;
 
+// Force static generation at build time; unknown params → 404 (no ISR fallback)
+export const dynamicParams = false;
+
 interface LocaleAboutPageProps {
   params: {
     locale: string;
@@ -24,7 +27,6 @@ export async function generateMetadata({
     return {};
   }
 
-  const dict = await getDictionary(locale as Locale);
   const metadata = getPageMetadata('about', locale as Locale);
 
   return {
@@ -88,7 +90,9 @@ export default async function LocaleAboutPage({
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
+  // Only the 'about' section — NewAboutPage reads dictionary.about exclusively;
+  // the full dictionary would be serialized into the flight payload
+  const dict = await getDictionary(locale as Locale, ['about']);
 
   return (
     <Suspense

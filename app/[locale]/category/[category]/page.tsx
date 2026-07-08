@@ -13,6 +13,9 @@ import LocaleCategoryPageContent from '@/components/layout/LocaleCategoryPageCon
 
 export const revalidate = false;
 
+// Force static generation at build time; unknown params → 404 (no ISR fallback)
+export const dynamicParams = false;
+
 interface LocaleCategoryPageProps {
   params: {
     locale: string;
@@ -60,7 +63,7 @@ export async function generateMetadata({
     };
   }
 
-  const dict = await getDictionary(locale as Locale);
+  const dict = await getDictionary(locale as Locale, ['categories']);
   const categoryDict = dict.categories[categoryId];
   const categoryName = categoryDict?.name || category.name;
   const categoryNameLower = categoryName.toLowerCase();
@@ -139,7 +142,9 @@ export default async function LocaleCategoryPage({
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
+  // Only the sections LocaleCategoryPageContent reads — the full dictionary
+  // (tools instructions included) would be serialized into the flight payload
+  const dict = await getDictionary(locale as Locale, ['common', 'categories']);
   const seoContent = await getCategorySEO(categoryId, locale as Locale);
 
   if (!seoContent) {

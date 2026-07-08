@@ -115,6 +115,8 @@ export function validateSections(sections?: string[]): boolean {
     'footer',
     'seo',
     'lab',
+    'about',
+    'toolsPage',
   ];
   return sections.every((section) => validSections.includes(section));
 }

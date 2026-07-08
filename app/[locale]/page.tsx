@@ -9,6 +9,9 @@ import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 export const revalidate = false;
 
+// Force static generation at build time; unknown params → 404 (no ISR fallback)
+export const dynamicParams = false;
+
 interface LocalePageProps {
   params: {
     locale: string;
@@ -116,10 +119,20 @@ export default async function LocaleHomePage({
     notFound();
   }
 
-  // Load only sections needed for homepage
-  const homeSections = ['common', 'home', 'footer', 'seo', 'tools'];
+  // Only sections HomePageContent renders — the full 'tools' section (~325KB
+  // raw per locale) would be serialized into the RSC flight payload of the HTML
+  const homeSections = ['common', 'home', 'footer'];
   const dict = await getDictionary(locale as Locale, homeSections);
-  const structuredData = generateStructuredData(locale, dict);
+
+  // Titles-only tools load for the JSON-LD featureList: stays server-side,
+  // never serialized to the client
+  const { tools: toolSummaries } = await getDictionary(locale as Locale, [
+    'tools-summaries',
+  ]);
+  const structuredData = generateStructuredData(locale, {
+    ...dict,
+    tools: toolSummaries,
+  });
 
   return (
     <>
