@@ -77,7 +77,9 @@ export default function ToolPageClient({
   toolTranslations,
 }: ToolPageClientProps) {
   const searchParams = useSearchParams();
-  const { theme } = useTheme();
+  // resolvedTheme, not theme: with theme === 'system' the raw value never
+  // equals 'light', which selected the bright dark-mode palette on light pages
+  const { resolvedTheme } = useTheme();
   const { createHref } = useLocalizedRouter();
   const [usageCount, setUsageCount] = useState(0);
 
@@ -193,7 +195,7 @@ export default function ToolPageClient({
 
   const categoryColor = getCategoryColor(
     categoryId,
-    theme === 'light' ? 'light' : 'dark'
+    resolvedTheme === 'light' ? 'light' : 'dark'
   );
 
   // Localized title/description for related-tool cards (loaded server-side
