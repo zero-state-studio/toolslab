@@ -13,6 +13,9 @@ import { tools } from '@/lib/tools';
 
 export const revalidate = false;
 
+// Force static generation at build time; unknown params → 404 (no ISR fallback)
+export const dynamicParams = false;
+
 interface LocaleToolsPageProps {
   params: {
     locale: string;
@@ -128,7 +131,12 @@ export default async function LocaleToolsPage({
     notFound();
   }
 
-  const dict = await getDictionary(locale as Locale);
+  // Only the sections ToolsHubContent reads (toolsPage strings + category
+  // names) — the full dictionary would be serialized into the flight payload
+  const dict = await getDictionary(locale as Locale, [
+    'toolsPage',
+    'categories',
+  ]);
   const structuredData = buildStructuredData(locale);
 
   return (

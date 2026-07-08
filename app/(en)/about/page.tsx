@@ -48,7 +48,8 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  const dict = await getDictionary('en');
+  // Only the 'about' section — NewAboutPage reads dictionary.about exclusively
+  const dict = await getDictionary('en', ['about']);
 
   return (
     <Suspense
