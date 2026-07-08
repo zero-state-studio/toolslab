@@ -564,12 +564,22 @@ export default function Base64ToGifTool({
         </div>
       )}
 
-      {/* Ad: mobile only — above usage tips */}
+      {/* Ad: mobile — above usage tips */}
       <AdBanner
         className="lg:hidden"
         minHeight={100}
         maxHeight={280}
         slot="5833147302"
+      />
+      {/* Ad: desktop leaderboard — above usage tips so it sits right below
+          the input on laptop viewports (replaces the page-level one) */}
+      <AdBanner
+        className="hidden text-center lg:block"
+        fixedWidth={728}
+        fixedHeight={90}
+        minHeight={90}
+        maxHeight={90}
+        slot="3320031589"
       />
 
       {/* Usage Tips */}

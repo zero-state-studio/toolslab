@@ -44,9 +44,10 @@ function getCategoryColor(category: string, mode: 'dark' | 'light' = 'dark'): st
   return catColor(theme.hue, 'text', mode);
 }
 
-// Tools whose implementation renders an inline Usage Tips block: they render the
-// mobile ad banner internally (above the tips), so the outer mobile banner is skipped.
-const TOOLS_WITH_INLINE_MOBILE_AD = [
+// Tools whose implementation renders an inline Usage Tips block: they render
+// both the mobile banner and the desktop leaderboard internally (above the
+// tips, right below the input), so the outer banners are skipped.
+const TOOLS_WITH_INLINE_AD = [
   'base64-to-pdf',
   'base64-to-gif',
   'sql-formatter',
@@ -374,7 +375,7 @@ export default function ToolPageClient({
 
             {/* Ad: mobile only — below tool input/result, above How to Use.
                 Skipped for tools that render the banner inline above their Usage Tips. */}
-            {!TOOLS_WITH_INLINE_MOBILE_AD.includes(tool.id) && (
+            {!TOOLS_WITH_INLINE_AD.includes(tool.id) && (
               <AdBanner
                 className="my-6 lg:hidden"
                 minHeight={100}
@@ -384,14 +385,16 @@ export default function ToolPageClient({
             )}
 
             {/* Ad: content area — desktop only, fixed 728x90 leaderboard, above How to Use */}
-            <AdBanner
-              className="my-4 hidden text-center lg:block"
-              fixedWidth={728}
-              fixedHeight={90}
-              minHeight={90}
-              maxHeight={90}
-              slot="3320031589"
-            />
+            {!TOOLS_WITH_INLINE_AD.includes(tool.id) && (
+              <AdBanner
+                className="my-4 hidden text-center lg:block"
+                fixedWidth={728}
+                fixedHeight={90}
+                minHeight={90}
+                maxHeight={90}
+                slot="3320031589"
+              />
+            )}
 
             {/* Mobile Related Tools (visible only on mobile via CSS) */}
             <div className="my-8 lg:hidden">
