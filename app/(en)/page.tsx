@@ -150,7 +150,9 @@ const structuredData = [
 
 export default async function HomePage() {
   const locale = 'en';
-  const homeSections = ['common', 'home', 'footer', 'tools'];
+  // Only sections HomePageContent renders — the full 'tools' section (~325KB
+  // raw) would be serialized into the RSC flight payload of the HTML
+  const homeSections = ['common', 'home', 'footer'];
   const dictionary = await getDictionary(locale, homeSections);
 
   return (

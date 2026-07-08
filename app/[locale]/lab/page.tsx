@@ -10,6 +10,9 @@ import { LocaleLabPageClient } from './LocaleLabPageClient';
 
 export const revalidate = false;
 
+// Force static generation at build time; unknown params → 404 (no ISR fallback)
+export const dynamicParams = false;
+
 interface LocaleLabPageProps {
   params: {
     locale: string;

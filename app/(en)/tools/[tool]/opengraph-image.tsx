@@ -1,8 +1,10 @@
 import { ImageResponse } from 'next/og';
-import { getToolById, categories } from '@/lib/tools';
+import { getToolById, categories, tools } from '@/lib/tools';
 
-export const runtime = 'edge';
-export const revalidate = 86400; // Cache for 24h - tool data only changes on deploy
+// Statically generated at build time — tool data only changes on deploy
+export function generateStaticParams() {
+  return tools.map((tool) => ({ tool: tool.id }));
+}
 export const alt = 'ToolsLab Tool';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';

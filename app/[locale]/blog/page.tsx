@@ -9,6 +9,9 @@ import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 
 export const revalidate = false;
 
+// Force static generation at build time; unknown params → 404 (no ISR fallback)
+export const dynamicParams = false;
+
 interface BlogPageProps {
   params: {
     locale: Locale;

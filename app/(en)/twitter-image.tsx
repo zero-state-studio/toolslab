@@ -1,8 +1,7 @@
 import { ImageResponse } from 'next/og';
 import { getPopularTools } from '@/lib/tools';
 
-export const runtime = 'edge';
-export const revalidate = 86400; // Cache for 24h
+// Statically generated at build time — content only changes on deploy
 export const alt = 'ToolsLab - Laboratory for Developer Tools';
 export const size = { width: 1200, height: 600 }; // Twitter card dimensions
 export const contentType = 'image/png';
@@ -29,10 +28,8 @@ export default async function Image() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: `
-              radial-gradient(circle at 25px 25px, rgba(255,255,255,0.1) 2px, transparent 0),
-              radial-gradient(circle at 75px 75px, rgba(255,255,255,0.05) 2px, transparent 0)
-            `,
+          backgroundImage:
+            'radial-gradient(circle at 25px 25px, rgba(255,255,255,0.1) 2px, transparent 0px), radial-gradient(circle at 75px 75px, rgba(255,255,255,0.05) 2px, transparent 0px)',
           backgroundSize: '100px 100px',
         }}
       />
