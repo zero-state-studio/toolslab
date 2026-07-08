@@ -357,13 +357,23 @@ export default function Base64ToPdfTool({
             </div>
           </div>
 
-          {result.wasDoubleEncoded && (
-            <div className="mb-4 flex items-start gap-2 rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-700 dark:border-amber-800 dark:bg-amber-900/20 dark:text-amber-300">
-              <Info className="mt-0.5 h-4 w-4 shrink-0" />
-              <span>
-                Your input was Base64-encoded more than once — it was decoded
-                automatically until the PDF emerged.
-              </span>
+          {(result.wasDoubleEncoded || result.warnings?.length) && (
+            <div className="mb-4 space-y-2 rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-700 dark:border-amber-800 dark:bg-amber-900/20 dark:text-amber-300">
+              {result.wasDoubleEncoded && (
+                <div className="flex items-start gap-2">
+                  <Info className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>
+                    Your input was Base64-encoded more than once — it was
+                    decoded automatically until the PDF emerged.
+                  </span>
+                </div>
+              )}
+              {result.warnings?.map((warning) => (
+                <div key={warning} className="flex items-start gap-2">
+                  <Info className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>{warning}</span>
+                </div>
+              ))}
             </div>
           )}
 

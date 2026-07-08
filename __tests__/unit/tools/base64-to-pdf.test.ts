@@ -11,6 +11,7 @@ import {
   detectFileType,
   looksLikeNaturalText,
   normalizeBase64,
+  repairPdfHeader,
 } from '@/lib/tools/base64-to-pdf';
 
 // Minimal payload with a valid PDF header
@@ -119,6 +120,60 @@ describe('base64ToPdf', () => {
       expect(result.success).toBe(true);
       expect(result.metadata?.isPdf).toBe(false);
     });
+  });
+});
+
+describe('PDF header repair', () => {
+  const PDF_BODY =
+    '1 0 obj\n<< /Type /Catalog >>\nendobj\nxref\n0 1\ntrailer\n<< /Size 1 >>\nstartxref\n0\n%%EOF';
+
+  it('strips junk before a header beyond the 1024-byte window', async () => {
+    const junk = 'X'.repeat(1500);
+    const input = toBase64(`${junk}%PDF-1.4\n${PDF_BODY}`);
+    const result = await base64ToPdf(input);
+    expect(result.success).toBe(true);
+    expect(result.warnings?.join(' ')).toContain('Removed 1500 bytes');
+    expect(result.fileSize).toBe(`%PDF-1.4\n${PDF_BODY}`.length);
+  });
+
+  it('rebuilds a header truncated at the start (PDF-1.4)', async () => {
+    const input = toBase64(`PDF-1.4\n${PDF_BODY}`);
+    const result = await base64ToPdf(input);
+    expect(result.success).toBe(true);
+    expect(result.warnings?.join(' ')).toContain('Rebuilt the truncated');
+    expect(result.metadata?.isPdf).toBe(true);
+  });
+
+  it('adds a missing header when PDF body structures are present', async () => {
+    const input = toBase64(PDF_BODY);
+    const result = await base64ToPdf(input);
+    expect(result.success).toBe(true);
+    expect(result.warnings?.join(' ')).toContain('header was missing');
+    expect(result.metadata?.isPdf).toBe(true);
+  });
+
+  it('does not fabricate a PDF from text that merely mentions stream/trailer', async () => {
+    const input = toBase64(
+      'watch the movie trailer and stream the film online today folks'
+    );
+    const result = await base64ToPdf(input);
+    expect(result.success).toBe(false);
+  });
+
+  it('does not repair random binary without PDF structures', async () => {
+    const noise = Buffer.from(
+      Array.from({ length: 256 }, (_, i) => (i * 37 + 11) % 256)
+    );
+    const result = await base64ToPdf(noise.toString('base64'));
+    expect(result.success).toBe(false);
+  });
+
+  it('does not glue a header onto binary that happens to start with F-', async () => {
+    const bytes = Buffer.concat([
+      Buffer.from('F-xy'),
+      Buffer.from([0, 1, 2, 3]),
+    ]);
+    expect(repairPdfHeader(new Uint8Array(bytes))).toBeNull();
   });
 });
 
