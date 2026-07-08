@@ -114,8 +114,27 @@ export function formatXml(
     // Simple XML formatting using regex and string manipulation
     let xml = input.trim();
 
-    // Remove extra whitespace between tags
-    xml = xml.replace(/>\s*</g, '><');
+    // Remove extra whitespace between tags — but never inside CDATA,
+    // whose content must be preserved verbatim
+    xml = xml.replace(/(<!\[CDATA\[[\s\S]*?\]\]>)|>\s*</g, (m, cdata) =>
+      cdata !== undefined ? cdata : '><'
+    );
+
+    // Sorts the attributes of a single opening/self-closing tag
+    const sortTagAttributes = (tag: string): string => {
+      const m = tag.match(/^<([^\s/>]+)([\s\S]*?)(\s*\/?)>$/);
+      if (!m) return tag;
+      const [, name, attrsPart, selfClose] = m;
+      const attrs = attrsPart.match(
+        /[^\s=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?/g
+      );
+      if (!attrs || attrs.length < 2) return tag;
+      const sorted = attrs
+        .map((a) => a.trim())
+        .filter(Boolean)
+        .sort((a, b) => a.localeCompare(b));
+      return `<${name} ${sorted.join(' ')}${selfClose}>`;
+    };
 
     // Robust XML formatting approach
     let result = '';
@@ -126,6 +145,16 @@ export function formatXml(
     let i = 0;
     while (i < xml.length) {
       if (xml[i] === '<') {
+        // CDATA first: its content may contain '<' and '>' and must be
+        // copied verbatim up to the ']]>' terminator
+        if (xml.startsWith('<![CDATA[', i)) {
+          const cdataClose = xml.indexOf(']]>', i);
+          const cdataEnd = cdataClose === -1 ? xml.length : cdataClose + 3;
+          result += indentStr.repeat(indent) + xml.substring(i, cdataEnd) + '\n';
+          i = cdataEnd;
+          continue;
+        }
+
         // Find the end of this tag
         let tagEnd = xml.indexOf('>', i);
         if (tagEnd === -1) break;
@@ -147,12 +176,6 @@ export function formatXml(
           continue;
         }
 
-        if (tag.includes('<![CDATA[')) {
-          result += indentStr.repeat(indent) + tag + '\n';
-          i = tagEnd + 1;
-          continue;
-        }
-
         // Handle closing tags
         if (tag.startsWith('</')) {
           indent = Math.max(0, indent - 1);
@@ -163,12 +186,14 @@ export function formatXml(
 
         // Handle self-closing tags
         if (tag.endsWith('/>')) {
+          if (sortAttributes) tag = sortTagAttributes(tag);
           result += indentStr.repeat(indent) + tag + '\n';
           i = tagEnd + 1;
           continue;
         }
 
         // Handle opening tags
+        if (sortAttributes) tag = sortTagAttributes(tag);
         result += indentStr.repeat(indent) + tag;
         i = tagEnd + 1;
 
@@ -231,17 +256,34 @@ export function minifyXml(input: string): XmlMinifyResult {
 
     let minified = input.trim();
 
-    // Remove whitespace between tags (but preserve CDATA and text content)
-    minified = minified.replace(/>\s+</g, '><');
+    // Shield CDATA sections behind placeholders so no whitespace rule
+    // below can touch their content
+    const cdataBlocks: string[] = [];
+    minified = minified.replace(/<!\[CDATA\[[\s\S]*?\]\]>/g, (block) => {
+      cdataBlocks.push(block);
+      return `\u0000CDATA${cdataBlocks.length - 1}\u0000`;
+    });
 
-    // Remove comments unless they're in CDATA
+    // Remove comments
     minified = minified.replace(/<!--[\s\S]*?-->/g, '');
 
-    // Remove extra whitespace but preserve CDATA content
-    minified = minified.replace(/(?<!<!\[CDATA\[.*)\s+(?!.*\]\]>)/g, ' ');
+    // Collapse runs of whitespace (newlines/indentation) to a single space
+    minified = minified.replace(/\s+/g, ' ');
+
+    // Remove whitespace between tags and at text-node boundaries;
+    // internal spacing of text content is preserved
+    minified = minified.replace(/>\s+</g, '><');
+    minified = minified.replace(/>\s+/g, '>');
+    minified = minified.replace(/\s+</g, '<');
 
     // Remove whitespace around = in attributes
     minified = minified.replace(/\s*=\s*/g, '=');
+
+    // Restore CDATA sections verbatim
+    minified = minified.replace(
+      /\u0000CDATA(\d+)\u0000/g,
+      (_, idx) => cdataBlocks[Number(idx)]
+    );
 
     const minifiedSize = minified.length;
     const reduction =
@@ -540,10 +582,11 @@ export function searchXmlElements(
       searchTerm = query.substring(2);
     }
 
-    // Find all occurrences of the element and extract full XML blocks
+    // Find all occurrences of the element and extract full XML blocks.
+    // XML element names are case-sensitive, so no 'i' flag here.
     const elementRegex = new RegExp(
       `<${searchTerm}(?:\\s[^>]*)?(?:/>|>([\\s\\S]*?)</${searchTerm}>)`,
-      'gi'
+      'g'
     );
     let match;
     let matchCount = 0;
@@ -551,14 +594,22 @@ export function searchXmlElements(
     while ((match = elementRegex.exec(input)) !== null) {
       matchCount++;
       const fullMatch = match[0];
+      const inner = match[1];
 
-      // Format the found XML block manually to avoid recursion
-      let xmlBlock = fullMatch;
-      try {
-        // Simple formatting without calling formatXml to avoid recursion
-        xmlBlock = fullMatch.replace(/></g, '>\\n<').replace(/^/gm, '  ');
-      } catch (e) {
-        // Use original if formatting fails
+      // Leaf elements (text-only content) report their text as value;
+      // containers report the whole XML block
+      let value: string;
+      if (inner !== undefined && !inner.includes('<')) {
+        value = inner.trim();
+      } else {
+        let xmlBlock = fullMatch;
+        try {
+          // Simple formatting without calling formatXml to avoid recursion
+          xmlBlock = fullMatch.replace(/></g, '>\n<').replace(/^/gm, '  ');
+        } catch (e) {
+          // Use original if formatting fails
+        }
+        value = xmlBlock;
       }
 
       const path = query.startsWith('//')
@@ -566,14 +617,14 @@ export function searchXmlElements(
         : `/${searchTerm}`;
       results.push({
         path: matchCount === 1 ? path : `${path}[${matchCount}]`,
-        value: xmlBlock,
+        value,
         type: 'element',
       });
     }
 
     // Also try simple tag matching for elements that might not have been caught
     if (results.length === 0) {
-      const simpleRegex = new RegExp(`<${searchTerm}[^>]*>`, 'gi');
+      const simpleRegex = new RegExp(`<${searchTerm}[^>]*>`, 'g');
       let simpleMatch;
       let simpleCount = 0;
 
@@ -585,14 +636,14 @@ export function searchXmlElements(
         if (!elementContent.endsWith('/>')) {
           const remainingInput = input.substring(simpleMatch.index);
           const closingMatch = remainingInput.match(
-            new RegExp(`<${searchTerm}[^>]*>([\\s\\S]*?)</${searchTerm}>`, 'i')
+            new RegExp(`<${searchTerm}[^>]*>([\\s\\S]*?)</${searchTerm}>`)
           );
           if (closingMatch) {
             elementContent = closingMatch[0];
             // Format it manually to avoid recursion
             try {
               elementContent = elementContent
-                .replace(/></g, '>\\n<')
+                .replace(/></g, '>\n<')
                 .replace(/^/gm, '  ');
             } catch (e) {
               // Use original if formatting fails
@@ -612,7 +663,7 @@ export function searchXmlElements(
     }
 
     // Also search for self-closing tags
-    const selfClosingRegex = new RegExp(`<${searchTerm}[^>]*/>`, 'gi');
+    const selfClosingRegex = new RegExp(`<${searchTerm}[^>]*/>`, 'g');
     while ((match = selfClosingRegex.exec(input)) !== null) {
       matchCount++;
       const path = query.startsWith('//')
