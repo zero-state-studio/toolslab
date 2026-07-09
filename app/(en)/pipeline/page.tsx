@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import { Suspense } from 'react';
 import Link from 'next/link';
 import {
   Workflow,
@@ -9,10 +8,11 @@ import {
   Save,
   ListOrdered,
   ArrowRight,
+  Play,
 } from 'lucide-react';
-import PipelineBuilder from '@/components/pipeline/PipelineBuilder';
 
 const CANONICAL = 'https://toolslab.dev/pipeline';
+const BUILDER = '/pipeline/builder';
 
 export const metadata: Metadata = {
   title: 'Pipeline Builder - Chain Free Developer Tools Online',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 // Working example pipelines, pre-encoded with lib/pipeline/url-codec —
-// each link loads the builder above with the steps ready to run.
+// each link opens the builder with the steps loaded and ready to run.
 const EXAMPLES = [
   {
     name: 'CSV → formatted JSON',
@@ -189,7 +189,26 @@ const FEATURES = [
   },
 ];
 
-export default function PipelinePage() {
+const HOW_TO_STEPS: Array<[string, string]> = [
+  [
+    'Paste your input',
+    'Any text data works: CSV rows, JSON, YAML, XML, Base64 strings, JWTs, plain lists.',
+  ],
+  [
+    'Add steps',
+    'Pick from the palette — it highlights the tools compatible with the previous step’s output type.',
+  ],
+  [
+    'Run and inspect',
+    'Execute the whole chain in one click and check the output and timing of every single step.',
+  ],
+  [
+    'Save or share',
+    'Store the pipeline in your browser for next time, or copy a link that carries the steps (never your data).',
+  ],
+];
+
+export default function PipelineLandingPage() {
   return (
     <div className="relative min-h-screen bg-background">
       <script
@@ -197,201 +216,212 @@ export default function PipelinePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }}
       />
 
-      <div className="relative z-10 mx-auto max-w-[1200px] px-4 py-4">
-        {/* Hero */}
-        <div className="mb-4">
-          <div className="mb-1.5 flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-500 text-white shadow-md">
-              <Workflow className="h-4 w-4" />
+      <div className="relative z-10 mx-auto max-w-4xl px-4 py-8">
+        {/* ── Hero ── */}
+        <div className="mb-10 text-center">
+          <div className="mb-4 flex justify-center">
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-500 text-white shadow-lg">
+              <Workflow className="h-6 w-6" />
             </div>
-            <h1 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white sm:text-2xl">
-              Pipeline Builder
-            </h1>
-            <span className="rounded-full bg-violet-500/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-violet-500">
-              Beta
+          </div>
+          <h1 className="mb-3 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+            Chain dev tools into{' '}
+            <span className="bg-gradient-to-r from-violet-500 to-purple-400 bg-clip-text text-transparent">
+              pipelines
+            </span>
+          </h1>
+          <p className="mx-auto mb-6 max-w-2xl text-base leading-relaxed text-slate-600 dark:text-slate-400">
+            Convert, decode, format and hash data in one run: each step
+            transforms the output of the previous one, entirely in your
+            browser. Save your pipelines locally and share them as links —
+            your data never leaves your device.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href={BUILDER}
+              className="flex items-center gap-2 rounded-lg bg-[color:var(--pg-accent)] px-6 py-3 text-[15px] font-semibold text-white transition-all hover:opacity-90 active:scale-95"
+            >
+              <Play className="h-4 w-4" />
+              Open the Pipeline Builder
+            </Link>
+            <span className="text-xs text-pg-dim">
+              Free · no signup · runs in your browser
             </span>
           </div>
-          <p className="max-w-2xl text-sm text-slate-600 dark:text-slate-400">
-            Chain free developer tools into a data pipeline: each step
-            transforms the output of the previous one, entirely in your
-            browser. Convert, decode, format and hash in one run — then save
-            the pipeline or share it as a link.
+        </div>
+
+        {/* ── Example pipelines ── */}
+        <section className="mb-10">
+          <h2 className="mb-1.5 text-xl font-semibold text-slate-900 dark:text-white">
+            Example pipelines to start from
+          </h2>
+          <p className="mb-4 text-sm text-slate-600 dark:text-slate-400">
+            Every example opens the builder with the steps loaded, ready to run
+            on your data.
           </p>
-        </div>
-
-        {/* Builder */}
-        <Suspense
-          fallback={
-            <div className="min-h-[400px] animate-pulse rounded-xl bg-pg-surface" />
-          }
-        >
-          <PipelineBuilder />
-        </Suspense>
-
-        {/* ── SEO / explainer content ───────────────────────────────────── */}
-        <div className="mx-auto mt-10 max-w-4xl space-y-8">
-          {/* Example pipelines */}
-          <section>
-            <h2 className="mb-1.5 text-xl font-semibold text-slate-900 dark:text-white">
-              Example pipelines to start from
-            </h2>
-            <p className="mb-4 text-sm text-slate-600 dark:text-slate-400">
-              Every example is a working pipeline — click it and the builder
-              above loads the steps, ready to run on your data.
-            </p>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {EXAMPLES.map((ex) => (
-                // Native anchor (not next/link): same-page hash navigation must
-                // fire `hashchange` so the builder above reloads the steps
-                <a
-                  key={ex.name}
-                  href={`#${ex.hash}`}
-                  className="group rounded-xl border border-pg-border bg-pg-surface p-4 transition-colors hover:border-violet-500/50"
-                >
-                  <h3 className="mb-1 flex items-center justify-between gap-2 text-[14px] font-semibold text-slate-900 dark:text-white">
-                    {ex.name}
-                    <ArrowRight className="h-3.5 w-3.5 flex-shrink-0 text-pg-dim transition-transform group-hover:translate-x-0.5 group-hover:text-violet-500" />
-                  </h3>
-                  <p className="mb-2 text-[12px] leading-relaxed text-slate-600 dark:text-slate-400">
-                    {ex.description}
-                  </p>
-                  <p className="font-mono text-[11px] text-violet-600 dark:text-violet-400">
-                    {ex.steps}
-                  </p>
-                </a>
-              ))}
-            </div>
-          </section>
-
-          {/* What / why */}
-          <section>
-            <h2 className="mb-2 text-xl font-semibold text-slate-900 dark:text-white">
-              Stop copy-pasting between tools
-            </h2>
-            <div className="space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              <p>
-                Real-world data work is rarely a single transformation. You
-                export a CSV and need it as formatted JSON. You receive a
-                Base64-encoded payload and want readable output. You decode a
-                JWT, then need its claims in another format. Doing this with
-                single-purpose tools means pasting intermediate results from
-                page to page — slow, error-prone and tedious.
-              </p>
-              <p>
-                The Pipeline Builder chains those same tools together. Paste
-                your input once, add the steps you need, and run: each step
-                feeds the next, and you can inspect every intermediate output
-                along the way. When a pipeline is worth keeping, save it
-                locally or share it with your team as a link.
-              </p>
-              <p>
-                Like every tool on ToolsLab, pipelines run entirely
-                client-side. That makes them suitable for data you would never
-                paste into an online service or an AI chat: production tokens,
-                customer exports, internal configuration files.
-              </p>
-            </div>
-          </section>
-
-          {/* How to use */}
-          <section>
-            <h2 className="mb-3 text-xl font-semibold text-slate-900 dark:text-white">
-              How to build a pipeline
-            </h2>
-            <ol className="space-y-2.5">
-              {[
-                ['Paste your input', 'Any text data works: CSV rows, JSON, YAML, XML, Base64 strings, JWTs, plain lists.'],
-                ['Add steps', 'Pick from the palette — it highlights the tools compatible with the previous step’s output type.'],
-                ['Run and inspect', 'Execute the whole chain in one click and check the output and timing of every single step.'],
-                ['Save or share', 'Store the pipeline in your browser for next time, or copy a link that carries the steps (never your data).'],
-              ].map(([title, text], i) => (
-                <li key={title} className="flex gap-3">
-                  <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 font-mono text-[12px] font-semibold text-violet-600 dark:text-violet-400">
-                    {i + 1}
-                  </span>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
-                    <span className="font-semibold text-slate-900 dark:text-white">
-                      {title}.
-                    </span>{' '}
-                    {text}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          {/* Features */}
-          <section>
-            <h2 className="mb-3 text-xl font-semibold text-slate-900 dark:text-white">
-              Why use the Pipeline Builder
-            </h2>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {FEATURES.map((f) => (
-                <div
-                  key={f.title}
-                  className="rounded-xl border border-pg-border bg-pg-surface p-4"
-                >
-                  <f.icon className="mb-2 h-5 w-5 text-violet-500" />
-                  <h3 className="mb-1 text-[14px] font-semibold text-slate-900 dark:text-white">
-                    {f.title}
-                  </h3>
-                  <p className="text-[12px] leading-relaxed text-slate-600 dark:text-slate-400">
-                    {f.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* FAQ */}
-          <section>
-            <h2 className="mb-3 text-xl font-semibold text-slate-900 dark:text-white">
-              Frequently asked questions
-            </h2>
-            <div className="space-y-2">
-              {FAQS.map((f) => (
-                <details
-                  key={f.q}
-                  className="group rounded-xl border border-pg-border bg-pg-surface px-4 py-3"
-                >
-                  <summary className="cursor-pointer list-none text-[14px] font-medium text-slate-900 dark:text-white">
-                    <span className="flex items-center justify-between gap-2">
-                      {f.q}
-                      <span className="text-pg-dim transition-transform group-open:rotate-180">
-                        ▾
-                      </span>
-                    </span>
-                  </summary>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                    {f.a}
-                  </p>
-                </details>
-              ))}
-            </div>
-          </section>
-
-          {/* Cross-links to tool pages */}
-          <section className="rounded-xl border border-pg-border bg-pg-surface p-4">
-            <h2 className="mb-2 text-[14px] font-semibold text-slate-900 dark:text-white">
-              Prefer a single tool?
-            </h2>
-            <p className="text-[13px] leading-relaxed text-slate-600 dark:text-slate-400">
-              Every pipeline step is also a full standalone tool:{' '}
-              <Link href="/tools/csv-to-json" className="text-violet-600 hover:underline dark:text-violet-400">CSV to JSON</Link>,{' '}
-              <Link href="/tools/json-formatter" className="text-violet-600 hover:underline dark:text-violet-400">JSON Formatter</Link>,{' '}
-              <Link href="/tools/base64-encode" className="text-violet-600 hover:underline dark:text-violet-400">Base64 Encoder/Decoder</Link>,{' '}
-              <Link href="/tools/hash-generator" className="text-violet-600 hover:underline dark:text-violet-400">Hash Generator</Link>,{' '}
-              <Link href="/tools/jwt-decoder" className="text-violet-600 hover:underline dark:text-violet-400">JWT Decoder</Link>,{' '}
-              <Link href="/tools/yaml-json-converter" className="text-violet-600 hover:underline dark:text-violet-400">YAML ↔ JSON</Link>,{' '}
-              <Link href="/tools/sql-formatter" className="text-violet-600 hover:underline dark:text-violet-400">SQL Formatter</Link>{' '}
-              and more — explore{' '}
-              <Link href="/tools" className="text-violet-600 hover:underline dark:text-violet-400">
-                all 80+ free developer tools
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {EXAMPLES.map((ex) => (
+              <Link
+                key={ex.name}
+                href={`${BUILDER}#${ex.hash}`}
+                className="group rounded-xl border border-pg-border bg-pg-surface p-4 transition-colors hover:border-violet-500/50"
+              >
+                <h3 className="mb-1 flex items-center justify-between gap-2 text-[14px] font-semibold text-slate-900 dark:text-white">
+                  {ex.name}
+                  <ArrowRight className="h-3.5 w-3.5 flex-shrink-0 text-pg-dim transition-transform group-hover:translate-x-0.5 group-hover:text-violet-500" />
+                </h3>
+                <p className="mb-2 text-[12px] leading-relaxed text-slate-600 dark:text-slate-400">
+                  {ex.description}
+                </p>
+                <p className="font-mono text-[11px] text-violet-600 dark:text-violet-400">
+                  {ex.steps}
+                </p>
               </Link>
-              .
+            ))}
+          </div>
+        </section>
+
+        {/* ── What / why ── */}
+        <section className="mb-10">
+          <h2 className="mb-2 text-xl font-semibold text-slate-900 dark:text-white">
+            Stop copy-pasting between tools
+          </h2>
+          <div className="space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+            <p>
+              Real-world data work is rarely a single transformation. You
+              export a CSV and need it as formatted JSON. You receive a
+              Base64-encoded payload and want readable output. You decode a
+              JWT, then need its claims in another format. Doing this with
+              single-purpose tools means pasting intermediate results from page
+              to page — slow, error-prone and tedious.
             </p>
-          </section>
-        </div>
+            <p>
+              The Pipeline Builder chains those same tools together. Paste your
+              input once, add the steps you need, and run: each step feeds the
+              next, and you can inspect every intermediate output along the
+              way. When a pipeline is worth keeping, save it locally or share
+              it with your team as a link.
+            </p>
+            <p>
+              Like every tool on ToolsLab, pipelines run entirely client-side.
+              That makes them suitable for data you would never paste into an
+              online service or an AI chat: production tokens, customer
+              exports, internal configuration files.
+            </p>
+          </div>
+        </section>
+
+        {/* ── How to ── */}
+        <section className="mb-10">
+          <h2 className="mb-3 text-xl font-semibold text-slate-900 dark:text-white">
+            How to build a pipeline
+          </h2>
+          <ol className="space-y-2.5">
+            {HOW_TO_STEPS.map(([title, text], i) => (
+              <li key={title} className="flex gap-3">
+                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 font-mono text-[12px] font-semibold text-violet-600 dark:text-violet-400">
+                  {i + 1}
+                </span>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  <span className="font-semibold text-slate-900 dark:text-white">
+                    {title}.
+                  </span>{' '}
+                  {text}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {/* ── Features ── */}
+        <section className="mb-10">
+          <h2 className="mb-3 text-xl font-semibold text-slate-900 dark:text-white">
+            Why use the Pipeline Builder
+          </h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map((f) => (
+              <div
+                key={f.title}
+                className="rounded-xl border border-pg-border bg-pg-surface p-4"
+              >
+                <f.icon className="mb-2 h-5 w-5 text-violet-500" />
+                <h3 className="mb-1 text-[14px] font-semibold text-slate-900 dark:text-white">
+                  {f.title}
+                </h3>
+                <p className="text-[12px] leading-relaxed text-slate-600 dark:text-slate-400">
+                  {f.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── FAQ ── */}
+        <section className="mb-10">
+          <h2 className="mb-3 text-xl font-semibold text-slate-900 dark:text-white">
+            Frequently asked questions
+          </h2>
+          <div className="space-y-2">
+            {FAQS.map((f) => (
+              <details
+                key={f.q}
+                className="group rounded-xl border border-pg-border bg-pg-surface px-4 py-3"
+              >
+                <summary className="cursor-pointer list-none text-[14px] font-medium text-slate-900 dark:text-white">
+                  <span className="flex items-center justify-between gap-2">
+                    {f.q}
+                    <span className="text-pg-dim transition-transform group-open:rotate-180">
+                      ▾
+                    </span>
+                  </span>
+                </summary>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  {f.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Bottom CTA ── */}
+        <section className="mb-10 rounded-xl border border-violet-500/25 bg-violet-500/5 p-6 text-center">
+          <h2 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
+            Ready to build your first pipeline?
+          </h2>
+          <p className="mb-4 text-sm text-slate-600 dark:text-slate-400">
+            No account, nothing to install — paste your data and chain your
+            first steps in seconds.
+          </p>
+          <Link
+            href={BUILDER}
+            className="inline-flex items-center gap-2 rounded-lg bg-[color:var(--pg-accent)] px-6 py-3 text-[15px] font-semibold text-white transition-all hover:opacity-90 active:scale-95"
+          >
+            <Play className="h-4 w-4" />
+            Open the Pipeline Builder
+          </Link>
+        </section>
+
+        {/* ── Cross-links to tool pages ── */}
+        <section className="rounded-xl border border-pg-border bg-pg-surface p-4">
+          <h2 className="mb-2 text-[14px] font-semibold text-slate-900 dark:text-white">
+            Prefer a single tool?
+          </h2>
+          <p className="text-[13px] leading-relaxed text-slate-600 dark:text-slate-400">
+            Every pipeline step is also a full standalone tool:{' '}
+            <Link href="/tools/csv-to-json" className="text-violet-600 hover:underline dark:text-violet-400">CSV to JSON</Link>,{' '}
+            <Link href="/tools/json-formatter" className="text-violet-600 hover:underline dark:text-violet-400">JSON Formatter</Link>,{' '}
+            <Link href="/tools/base64-encode" className="text-violet-600 hover:underline dark:text-violet-400">Base64 Encoder/Decoder</Link>,{' '}
+            <Link href="/tools/hash-generator" className="text-violet-600 hover:underline dark:text-violet-400">Hash Generator</Link>,{' '}
+            <Link href="/tools/jwt-decoder" className="text-violet-600 hover:underline dark:text-violet-400">JWT Decoder</Link>,{' '}
+            <Link href="/tools/yaml-json-converter" className="text-violet-600 hover:underline dark:text-violet-400">YAML ↔ JSON</Link>,{' '}
+            <Link href="/tools/sql-formatter" className="text-violet-600 hover:underline dark:text-violet-400">SQL Formatter</Link>{' '}
+            and more — explore{' '}
+            <Link href="/tools" className="text-violet-600 hover:underline dark:text-violet-400">
+              all 80+ free developer tools
+            </Link>
+            .
+          </p>
+        </section>
       </div>
     </div>
   );

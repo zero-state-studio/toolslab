@@ -323,7 +323,7 @@ export default function PipelineBuilder() {
       name,
       steps: steps.map(({ toolId, options }) => ({ toolId, options })),
     });
-    const url = `${window.location.origin}/pipeline#${encoded}`;
+    const url = `${window.location.origin}${window.location.pathname}#${encoded}`;
     window.history.replaceState(null, '', `#${encoded}`);
     await copy(url);
     setShareCopied(true);
