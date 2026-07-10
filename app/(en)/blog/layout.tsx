@@ -3,7 +3,7 @@ import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 import './blog.css';
 
 export const metadata: Metadata = {
-  title: 'Blog - Developer Guides & Tutorials | ToolsLab',
+  title: 'Blog - Developer Guides & Tutorials',
   description:
     'Expert guides, tutorials, and best practices for developers. Learn about JSON, encoding, APIs, and more.',
   openGraph: {

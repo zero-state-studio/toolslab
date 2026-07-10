@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${seoContent.h1Title} - Free Online Tools | ToolsLab`,
+    title: `${seoContent.h1Title} - Free Online Tools`,
     description: seoContent.metaDescription,
     keywords: seoContent.keywords,
     openGraph: {

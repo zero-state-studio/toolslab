@@ -20,7 +20,9 @@ import styles from './page.module.css';
 export const revalidate = false;
 
 export const metadata: Metadata = {
-  title: 'JSON Formatting: The Complete Developer Guide | ToolsLab Blog',
+  title: {
+    absolute: 'JSON Formatting: The Complete Developer Guide | ToolsLab Blog',
+  },
   description:
     'Master JSON formatting with our comprehensive guide. Learn best practices, syntax rules, common mistakes, and advanced techniques for working with JSON data in 2025.',
   keywords: [
