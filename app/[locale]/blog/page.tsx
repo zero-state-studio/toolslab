@@ -28,7 +28,7 @@ export async function generateMetadata({
   const path = 'blog';
 
   return {
-    title: `${dict.blog.title} | ToolsLab`,
+    title: dict.blog.title,
     description: dict.blog.subtitle,
     openGraph: {
       title: `${dict.blog.title} | ToolsLab`,

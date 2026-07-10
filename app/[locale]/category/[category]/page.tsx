@@ -69,16 +69,17 @@ export async function generateMetadata({
   const categoryNameLower = categoryName.toLowerCase();
   const toolCount = category.tools.length;
 
-  // Localized brand suffix appended to the category H1 for the <title> tag.
-  // Prevents mixed-language titles like "Outils d'Encodage - Free Online Tools | ToolsLab"
+  // Localized suffix appended to the category H1 for the <title> tag.
+  // Prevents mixed-language titles like "Outils d'Encodage - Free Online Tools"
   // which weakens E-A-T signals for non-EN locales (see RIC-119).
+  // "| ToolsLab" is appended by the layout title template — do NOT add it here.
   const brandSuffix: Record<Locale, string> = {
-    en: 'Free Online Tools | ToolsLab',
-    it: 'Strumenti Gratuiti Online | ToolsLab',
-    es: 'Herramientas Gratis Online | ToolsLab',
-    fr: 'Outils en Ligne Gratuits | ToolsLab',
-    de: 'Kostenlose Online-Tools | ToolsLab',
-    pt: 'Ferramentas Grátis Online | ToolsLab',
+    en: 'Free Online Tools',
+    it: 'Strumenti Gratuiti Online',
+    es: 'Herramientas Gratis Online',
+    fr: 'Outils en Ligne Gratuits',
+    de: 'Kostenlose Online-Tools',
+    pt: 'Ferramentas Grátis Online',
   };
 
   // Localized H1 prefix. Falls back to seoContent.h1Title for EN and any
