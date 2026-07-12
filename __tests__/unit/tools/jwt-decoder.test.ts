@@ -312,9 +312,11 @@ describe('JWT Decoder', () => {
     });
 
     it('should handle JWT with special characters in payload', () => {
-      // Use a pre-encoded JWT with special characters to avoid btoa encoding issues
+      // Pre-encoded base64url payload:
+      // {"sub":"1234567890","name":"José García-Fernández",
+      //  "symbols":"!@#$%^&*()_+{}|:\"<>?[]\\;',./`~"}
       const specialToken =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikpvc8OpIEdhcmPDrWEtRmVybuOBqW5kZXoiLCJzeW1ib2xzIjoiIUAjJCVeJiooKV8re318Ol48Pj9bXVxcOycsLi9gfiJ9.signature';
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikpvc8OpIEdhcmPDrWEtRmVybsOhbmRleiIsInN5bWJvbHMiOiIhQCMkJV4mKigpXyt7fXw6XCI8Pj9bXVxcOycsLi9gfiJ9.signature';
 
       const result = decodeJwt(specialToken);
 

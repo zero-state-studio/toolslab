@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { X, HelpCircle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useToolStore } from '@/lib/store/toolStore';
 import { useHydration } from '@/lib/hooks/useHydration';
@@ -49,26 +48,20 @@ export function WelcomePopup({
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
+    <>
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         {/* Backdrop */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        <div
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm duration-200 animate-in fade-in"
           onClick={handleClose}
         />
 
         {/* Popup */}
-        <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          transition={{ type: 'spring', damping: 20 }}
+        <div
           className={cn(
             'relative w-full max-w-lg bg-white dark:bg-gray-900',
-            'overflow-hidden rounded-2xl shadow-2xl'
+            'overflow-hidden rounded-2xl shadow-2xl',
+            'duration-300 animate-in fade-in zoom-in-95'
           )}
         >
           {/* Header with gradient */}
@@ -150,9 +143,9 @@ export function WelcomePopup({
               </button>
             )}
           </div>
-        </motion.div>
+        </div>
       </div>
-    </AnimatePresence>
+    </>
   );
 }
 
@@ -162,9 +155,7 @@ export function HelpButton() {
 
   return (
     <>
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+      <button
         onClick={() => setShowPopup(true)}
         className={cn(
           'fixed bottom-6 right-6 z-40',
@@ -172,13 +163,13 @@ export function HelpButton() {
           'bg-gradient-to-r from-violet-500 to-purple-600',
           'text-white shadow-lg',
           'flex items-center justify-center',
-          'transition-shadow hover:shadow-xl'
+          'transition-[transform,box-shadow] hover:scale-110 hover:shadow-xl active:scale-95'
         )}
         title={t?.helpButton?.title || 'About The Lab'}
         aria-label={t?.helpButton?.ariaLabel || 'About The Lab'}
       >
         <HelpCircle className="h-6 w-6" />
-      </motion.button>
+      </button>
 
       <WelcomePopup
         isOpen={showPopup}

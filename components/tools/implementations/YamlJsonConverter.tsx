@@ -324,7 +324,7 @@ export default function YamlJsonConverter({ dictionary }: { dictionary?: any }) 
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header Controls */}
       <Card>
         <CardHeader>

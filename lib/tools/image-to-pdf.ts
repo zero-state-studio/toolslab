@@ -3,7 +3,9 @@
  * Converts multiple images (JPG, PNG, GIF, WebP) into a single PDF document
  */
 
-import { PDFDocument, PDFPage, PDFImage } from 'pdf-lib';
+// pdf-lib (~197KB gz) is loaded on demand inside imagesToPdf so the tool
+// page doesn't pay for it until the user actually converts images.
+import type { PDFDocument, PDFImage } from 'pdf-lib';
 
 export interface ImageToPdfResult {
   success: boolean;
@@ -265,6 +267,7 @@ export async function imagesToPdf(
     }
 
     // Create PDF document
+    const { PDFDocument } = await import('pdf-lib');
     const pdfDoc = await PDFDocument.create();
     const fitMode = options.fitMode || 'contain';
 

@@ -2,12 +2,22 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { tools as allTools } from '@/lib/tools';
 import { TLMascot } from '@/components/icons/TLMascot';
 import { useLocalizedRouter } from '@/hooks/useLocalizedRouter';
-import { CommandPalette } from '@/components/CommandPalette';
+
+// Loaded on first open — keeps the palette + radix dialog out of the
+// homepage first-load bundle.
+const CommandPalette = dynamic(
+  () =>
+    import('@/components/CommandPalette').then((m) => ({
+      default: m.CommandPalette,
+    })),
+  { ssr: false }
+);
 
 interface PGHeroProps {
   title?: string;
@@ -29,7 +39,13 @@ export function PGHero({
   toolCount,
 }: PGHeroProps) {
   const [paletteOpen, setPaletteOpen] = useState(false);
+  // Latch: mount the (lazy) palette on first open, keep it mounted afterwards
+  const [paletteLoaded, setPaletteLoaded] = useState(false);
   const [, setLocalQ] = useState('');
+
+  useEffect(() => {
+    if (paletteOpen) setPaletteLoaded(true);
+  }, [paletteOpen]);
   const router = useRouter();
   const { createHref } = useLocalizedRouter();
   const total = toolCount ?? allTools.filter((t) => t.label !== 'coming-soon').length;
@@ -48,7 +64,7 @@ export function PGHero({
         style={{ background: 'radial-gradient(circle, var(--pg-accent) 0%, transparent 70%)' }}
       />
 
-      <div className="pg-container relative pt-14 pb-12">
+      <div className="pg-container relative pt-10 pb-8">
         <div className="mx-auto max-w-[960px] text-center">
           {/* pill */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-pg-border bg-pg-surface px-3 py-1.5 text-[13px] text-pg-muted">
@@ -76,6 +92,8 @@ export function PGHero({
           <button
             type="button"
             onClick={() => setPaletteOpen(true)}
+            onMouseEnter={() => setPaletteLoaded(true)}
+            onFocus={() => setPaletteLoaded(true)}
             className={cn(
               'mx-auto flex w-full max-w-[560px] items-center gap-3 rounded-[14px] border border-pg-border-hi bg-pg-surface px-[18px] py-[14px] text-left',
               'shadow-[var(--pg-shadow-search-glow),0_1px_0_rgba(255,255,255,0.03)_inset]',
@@ -106,7 +124,9 @@ export function PGHero({
         </div>
       </div>
 
-      <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
+      {paletteLoaded && (
+        <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
+      )}
     </section>
   );
 }

@@ -25,7 +25,7 @@ const localeMeta: Record<
   { title: string; description: string; ogDescription: string; twitterTitle: string; twitterDescription: string; keywords: string[] }
 > = {
   it: {
-    title: 'Lab Sviluppatore - 70+ Strumenti Gratuiti Online | ToolsLab',
+    title: 'Lab Sviluppatore - 70+ Strumenti Gratuiti Online',
     description:
       'Accedi a oltre 70 strumenti gratuiti per sviluppatori in un unico spazio privato. JSON formatter, encoder Base64, generatori hash, convertitori di codice e altro. Nessuna registrazione — segna i tuoi preferiti per accesso immediato.',
     ogDescription:
@@ -41,7 +41,7 @@ const localeMeta: Record<
     ],
   },
   es: {
-    title: 'Lab Desarrollador - 70+ Herramientas Gratis Online | ToolsLab',
+    title: 'Lab Desarrollador - 70+ Herramientas Gratis Online',
     description:
       'Accede a más de 70 herramientas gratuitas para desarrolladores en un espacio privado. JSON formatter, codificador Base64, generadores hash y más. Sin registro — marca tus favoritas para acceso instantáneo.',
     ogDescription:
@@ -57,7 +57,7 @@ const localeMeta: Record<
     ],
   },
   fr: {
-    title: 'Lab Développeur - 70+ Outils Gratuits en Ligne | ToolsLab',
+    title: 'Lab Développeur - 70+ Outils Gratuits en Ligne',
     description:
       'Accédez à plus de 70 outils gratuits pour développeurs dans un espace privé. JSON formatter, encodeur Base64, générateurs hash et plus. Sans inscription — marquez vos favoris pour un accès instantané.',
     ogDescription:
@@ -73,7 +73,7 @@ const localeMeta: Record<
     ],
   },
   de: {
-    title: 'Entwickler-Lab - 70+ Kostenlose Online-Tools | ToolsLab',
+    title: 'Entwickler-Lab - 70+ Kostenlose Online-Tools',
     description:
       'Zugriff auf über 70 kostenlose Entwickler-Tools in einem privaten Workspace. JSON-Formatierer, Base64-Encoder, Hash-Generatoren und mehr. Keine Registrierung — markiere deine Favoriten für sofortigen Zugriff.',
     ogDescription:
@@ -89,7 +89,7 @@ const localeMeta: Record<
     ],
   },
   pt: {
-    title: 'Lab Desenvolvedor - 70+ Ferramentas Grátis Online | ToolsLab',
+    title: 'Lab Desenvolvedor - 70+ Ferramentas Grátis Online',
     description:
       'Acesse mais de 70 ferramentas gratuitas para desenvolvedores em um espaço privado. JSON formatter, codificador Base64, geradores hash e mais. Sem cadastro — marque seus favoritos para acesso instantâneo.',
     ogDescription:
@@ -108,7 +108,7 @@ const localeMeta: Record<
 
 // Fallback (EN)
 const enMeta = {
-  title: 'Developer Lab - 70+ Free Online Tools in One Workspace | ToolsLab',
+  title: 'Developer Lab - 70+ Free Online Tools in One Workspace',
   description:
     'Access 70+ free developer tools in one private workspace. JSON formatters, Base64 encoders, hash generators, code converters and more. No signup required — star your favorites for instant access.',
   ogDescription:

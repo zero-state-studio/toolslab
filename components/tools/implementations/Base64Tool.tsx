@@ -249,7 +249,7 @@ export default function Base64Tool({ categoryColor, dictionary }: Base64ToolProp
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <div className="flex gap-2">
             <button
@@ -318,7 +318,7 @@ export default function Base64Tool({ categoryColor, dictionary }: Base64ToolProp
         </div>
       </div>
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-4 p-4">
         {/* Options Panel */}
         {showOptions && (
           <div className="space-y-4 rounded-lg bg-gray-50 p-4 dark:bg-gray-900">
@@ -406,7 +406,7 @@ export default function Base64Tool({ categoryColor, dictionary }: Base64ToolProp
           />
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="group w-full rounded-lg border-2 border-dashed p-6 transition-all hover:bg-gray-50 dark:hover:bg-gray-900"
+            className="group w-full rounded-lg border-2 border-dashed p-4 transition-all hover:bg-gray-50 dark:hover:bg-gray-900"
             style={{ borderColor: `${categoryColor}40` }}
           >
             <div className="flex flex-col items-center gap-3">
@@ -479,7 +479,7 @@ export default function Base64Tool({ categoryColor, dictionary }: Base64ToolProp
           <button
             onClick={handleProcess}
             disabled={!input || isProcessing}
-            className="flex items-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex items-center gap-2 rounded-lg px-4 py-3 font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
             style={{
               backgroundColor: categoryColor,
               boxShadow: `0 4px 12px ${categoryColor}40`,
@@ -506,7 +506,7 @@ export default function Base64Tool({ categoryColor, dictionary }: Base64ToolProp
 
           <button
             onClick={handleClear}
-            className="flex items-center gap-2 rounded-lg border-2 px-6 py-3 font-medium transition-all hover:scale-105 active:scale-95"
+            className="flex items-center gap-2 rounded-lg border-2 px-4 py-3 font-medium transition-all hover:scale-105 active:scale-95"
             style={{
               borderColor: categoryColor,
               color: categoryColor,
@@ -613,7 +613,7 @@ export default function Base64Tool({ categoryColor, dictionary }: Base64ToolProp
                       <img
                         src={`data:${mimeType};base64,${input.includes('base64,') ? input.split('base64,')[1] : input}`}
                         alt="Decoded image from Base64 string"
-                        className="max-h-64 max-w-full rounded border object-contain"
+                        className="max-h-48 max-w-full rounded border object-contain"
                         style={{ aspectRatio: '16/9' }}
                         onLoad={(e) => {
                           const img = e.target as HTMLImageElement;

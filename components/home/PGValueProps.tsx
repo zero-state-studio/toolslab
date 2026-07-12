@@ -31,7 +31,7 @@ const items = [
 
 export function PGValueProps() {
   return (
-    <section className="pg-container pb-10">
+    <section className="pg-container pb-8">
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {items.map(({ icon: Icon, title, desc, colorVar }) => (
           <div

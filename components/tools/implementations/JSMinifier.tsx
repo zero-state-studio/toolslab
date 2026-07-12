@@ -275,7 +275,7 @@ export default function JSMinifier({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Mode selector and actions */}
       <div className="flex flex-col justify-between gap-4 sm:flex-row">
         <div className="flex gap-2">

@@ -3,7 +3,9 @@ import { Metadata } from 'next';
 export const revalidate = false;
 
 export const metadata: Metadata = {
-  title: 'Coming Soon | ToolsLab - Your Developer Tools Laboratory',
+  title: {
+    absolute: 'Coming Soon | ToolsLab - Your Developer Tools Laboratory',
+  },
   description:
     'ToolsLab is launching soon! Professional developer tools crafted with scientific precision. No signup, no limits, just tools that work.',
 };

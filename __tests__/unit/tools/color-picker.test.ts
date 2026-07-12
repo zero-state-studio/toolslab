@@ -156,16 +156,18 @@ describe('Color Picker Tool', () => {
 
     describe('RGB to LAB', () => {
       it('should convert RGB to LAB', () => {
+        // Ground truth (sRGB D65): RGB(255,87,51) -> LAB(60.2, 62.1, 54.3)
         const lab = rgbToLab({ r: 255, g: 87, b: 51 });
-        expect(lab.l).toBeCloseTo(62, -1);
-        expect(lab.a).toBeCloseTo(52, -1);
-        expect(lab.b).toBeCloseTo(55, -1);
+        expect(lab.l).toBeCloseTo(60, -1);
+        expect(lab.a).toBeCloseTo(62, -1);
+        expect(lab.b).toBeCloseTo(54, -1);
       });
     });
 
     describe('LAB to RGB', () => {
       it('should convert LAB to RGB', () => {
-        const rgb = labToRgb({ l: 62, a: 52, b: 55 });
+        // Ground truth (sRGB D65): LAB(60.2, 62.1, 54.3) -> RGB(255,87,51)
+        const rgb = labToRgb({ l: 60.2, a: 62.1, b: 54.3 });
         expect(rgb.r).toBeCloseTo(255, -1);
         expect(rgb.g).toBeCloseTo(87, -1);
         expect(rgb.b).toBeCloseTo(51, -1);

@@ -27,9 +27,19 @@ import { useDictionarySection } from '@/hooks/useDictionary';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { getCurrentHoliday } from '@/lib/utils/holidays';
 import { HolidayOverlay } from '@/components/ui/HolidayOverlay';
-import { CommandPalette } from '@/components/CommandPalette';
+import dynamic from 'next/dynamic';
 
 import type { Dictionary } from '@/lib/i18n/types';
+
+// Loaded on first open (⌘K / '/' / click) — keeps the palette + radix dialog
+// out of the first-load bundle of every page that renders the header.
+const CommandPalette = dynamic(
+  () =>
+    import('@/components/CommandPalette').then((m) => ({
+      default: m.CommandPalette,
+    })),
+  { ssr: false }
+);
 
 interface HeaderProps {
   /** Server-loaded common dictionary: makes SSR nav localized instead of EN fallbacks */
@@ -41,6 +51,8 @@ export function Header({ initialCommon }: HeaderProps = {}) {
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  // Latch: mount the (lazy) palette on first open, keep it mounted afterwards
+  const [paletteLoaded, setPaletteLoaded] = useState(false);
   const [holidayHover, setHolidayHover] = useState(false);
   const [holidayClick, setHolidayClick] = useState(false);
   const holiday = getCurrentHoliday();
@@ -77,6 +89,10 @@ export function Header({ initialCommon }: HeaderProps = {}) {
   }, []);
 
   useEffect(() => { setIsMobileMenuOpen(false); }, [pathname]);
+
+  useEffect(() => {
+    if (paletteOpen) setPaletteLoaded(true);
+  }, [paletteOpen]);
 
   const toggleTheme = useCallback(() => {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
@@ -120,7 +136,7 @@ export function Header({ initialCommon }: HeaderProps = {}) {
           'bg-[color:var(--pg-bg)]/85 backdrop-blur-xl'
         )}
       >
-        <div className="mx-auto flex h-[60px] max-w-pg items-center gap-5 px-5 sm:px-10">
+        <div className="mx-auto flex h-[52px] max-w-pg items-center gap-5 px-5 sm:px-10">
           {/* Logo */}
           <Link
             href={createHref('/')}
@@ -176,6 +192,8 @@ export function Header({ initialCommon }: HeaderProps = {}) {
           <button
             type="button"
             onClick={() => setPaletteOpen(true)}
+            onMouseEnter={() => setPaletteLoaded(true)}
+            onFocus={() => setPaletteLoaded(true)}
             className="group hidden min-w-[220px] items-center gap-2 rounded-lg border border-pg-border bg-pg-surface px-3 py-1.5 text-[13px] text-pg-muted transition-colors hover:border-pg-border-hi md:flex"
             aria-label="Open command palette"
           >
@@ -344,7 +362,9 @@ export function Header({ initialCommon }: HeaderProps = {}) {
         </div>
       </aside>
 
-      <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
+      {paletteLoaded && (
+        <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />
+      )}
     </>
   );
 }

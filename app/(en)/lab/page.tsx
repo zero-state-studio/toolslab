@@ -7,7 +7,7 @@ import { generateHreflangAlternates } from '@/lib/seo/hreflang-utils';
 export const revalidate = false;
 
 export const metadata: Metadata = {
-  title: 'Developer Lab - 70+ Free Online Tools in One Workspace | ToolsLab',
+  title: 'Developer Lab - 70+ Free Online Tools in One Workspace',
   description:
     'Access 70+ free developer tools in one private workspace. JSON formatters, Base64 encoders, hash generators, code converters and more. No signup required — star your favorites for instant access.',
   keywords: [

@@ -671,6 +671,42 @@ function validateExpression(fields: CronField[]): CronValidation {
 /**
  * Generate human-readable description
  */
+const MONTH_NAME_TO_NUMBER: Record<string, string> = {
+  jan: '1',
+  feb: '2',
+  mar: '3',
+  apr: '4',
+  may: '5',
+  jun: '6',
+  jul: '7',
+  aug: '8',
+  sep: '9',
+  oct: '10',
+  nov: '11',
+  dec: '12',
+};
+
+const DAY_NAME_TO_NUMBER: Record<string, string> = {
+  sun: '0',
+  mon: '1',
+  tue: '2',
+  wed: '3',
+  thu: '4',
+  fri: '5',
+  sat: '6',
+};
+
+/**
+ * Replaces JAN/MON-style names with their numeric value so the description
+ * logic (which relies on parseInt) also works on named fields.
+ */
+function normalizeNamedValues(
+  value: string,
+  names: Record<string, string>
+): string {
+  return value.replace(/[a-z]{3}/gi, (m) => names[m.toLowerCase()] ?? m);
+}
+
 function generateDescription(fields: CronField[]): string {
   const validFields = fields.filter((f) => f.valid);
 
@@ -681,8 +717,21 @@ function generateDescription(fields: CronField[]): string {
   const minuteField = validFields.find((f) => f.type === 'minute');
   const hourField = validFields.find((f) => f.type === 'hour');
   const dayField = validFields.find((f) => f.type === 'day');
-  const monthField = validFields.find((f) => f.type === 'month');
-  const weekdayField = validFields.find((f) => f.type === 'weekday');
+  const rawMonthField = validFields.find((f) => f.type === 'month');
+  const rawWeekdayField = validFields.find((f) => f.type === 'weekday');
+
+  const monthField = rawMonthField
+    ? {
+        ...rawMonthField,
+        value: normalizeNamedValues(rawMonthField.value, MONTH_NAME_TO_NUMBER),
+      }
+    : rawMonthField;
+  const weekdayField = rawWeekdayField
+    ? {
+        ...rawWeekdayField,
+        value: normalizeNamedValues(rawWeekdayField.value, DAY_NAME_TO_NUMBER),
+      }
+    : rawWeekdayField;
 
   // Don't use the business hours shortcut - handle all cases with the standard logic below
 
@@ -775,7 +824,9 @@ function generateDescription(fields: CronField[]): string {
 
   // Handle day of month
   if (dayField && dayField.value !== '*') {
-    if (dayField.value.includes(',')) {
+    if (/^l$/i.test(dayField.value)) {
+      dateParts.push('on the last day-of-month');
+    } else if (dayField.value.includes(',')) {
       const days = dayField.value.split(',').join(' and ');
       dateParts.push(`on day-of-month ${days}`);
     } else if (dayField.value.includes('/')) {
@@ -846,6 +897,9 @@ function generateDescription(fields: CronField[]): string {
   // Add date parts to description
   if (dateParts.length > 0) {
     description += ` ${dateParts.join(' ')}`;
+  } else if (isSpecificMinute && isSpecificHour) {
+    // e.g. "0 0 * * *" -> "At 00:00 every day"
+    description += ' every day';
   }
 
   return description;

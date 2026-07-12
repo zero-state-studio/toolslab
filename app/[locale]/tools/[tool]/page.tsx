@@ -390,6 +390,7 @@ export default async function LocaleToolPage({ params }: LocaleToolPageProps) {
           locale={locale as Locale}
           dictionary={dict}
           toolTranslations={toolTranslations}
+          relatedToolIds={relatedIds}
         />
       </Suspense>
     </>

@@ -36,7 +36,6 @@ import { FAQModal } from '@/components/ui/faq-modal';
 import ToolHowToUse from './ToolHowToUse';
 import ToolHeroSection from './ToolHeroSection';
 import AdBanner from '@/components/ads/AdBanner';
-import { getSmartRelatedTools } from '@/lib/seo/related-tools-engine';
 import { ToolIcon } from '@/components/ui/ToolIcon';
 import { getCategoryTheme, catColor } from '@/lib/categoryTheme';
 
@@ -45,9 +44,10 @@ function getCategoryColor(category: string, mode: 'dark' | 'light' = 'dark'): st
   return catColor(theme.hue, 'text', mode);
 }
 
-// Tools whose implementation renders an inline Usage Tips block: they render the
-// mobile ad banner internally (above the tips), so the outer mobile banner is skipped.
-const TOOLS_WITH_INLINE_MOBILE_AD = [
+// Tools whose implementation renders an inline Usage Tips block: they render
+// both the mobile banner and the desktop leaderboard internally (above the
+// tips, right below the input), so the outer banners are skipped.
+const TOOLS_WITH_INLINE_AD = [
   'base64-to-pdf',
   'base64-to-gif',
   'sql-formatter',
@@ -68,6 +68,8 @@ interface ToolPageClientProps {
     placeholder?: string;
     instructions?: string;
   };
+  /** Related tool ids computed server-side (related-tools engine stays out of the client bundle) */
+  relatedToolIds?: string[];
 }
 
 export default function ToolPageClient({
@@ -75,9 +77,12 @@ export default function ToolPageClient({
   locale,
   dictionary,
   toolTranslations,
+  relatedToolIds,
 }: ToolPageClientProps) {
   const searchParams = useSearchParams();
-  const { theme } = useTheme();
+  // resolvedTheme, not theme: with theme === 'system' the raw value never
+  // equals 'light', which selected the bright dark-mode palette on light pages
+  const { resolvedTheme } = useTheme();
   const { createHref } = useLocalizedRouter();
   const [usageCount, setUsageCount] = useState(0);
 
@@ -110,10 +115,9 @@ export default function ToolPageClient({
   // Memoize related tools to avoid recalculating on every render
   const relatedTools = useMemo(() => {
     if (!tool) return [];
-    const smartRelatedIds = getSmartRelatedTools(toolId, 4);
 
-    if (smartRelatedIds && smartRelatedIds.length > 0) {
-      const relatedToolObjects = smartRelatedIds
+    if (relatedToolIds && relatedToolIds.length > 0) {
+      const relatedToolObjects = relatedToolIds
         .map((id: string) => toolsMap.get(id))
         .filter(
           (t: (typeof tools)[0] | undefined): t is (typeof tools)[0] =>
@@ -134,7 +138,7 @@ export default function ToolPageClient({
           t.label !== 'coming-soon'
       )
       .slice(0, 4);
-  }, [toolId, tool]);
+  }, [tool, relatedToolIds]);
 
   // Memoize same-category tools
   const sameCategoryTools = useMemo(() => {
@@ -147,7 +151,7 @@ export default function ToolPageClient({
           t.label !== 'coming-soon'
       )
       .slice(0, 6);
-  }, [toolId, tool]);
+  }, [tool]);
 
   // Memoize the tool prop object to prevent breaking ToolWorkspace memoization
   // Must be before early return to satisfy Rules of Hooks
@@ -193,7 +197,7 @@ export default function ToolPageClient({
 
   const categoryColor = getCategoryColor(
     categoryId,
-    theme === 'light' ? 'light' : 'dark'
+    resolvedTheme === 'light' ? 'light' : 'dark'
   );
 
   // Localized title/description for related-tool cards (loaded server-side
@@ -261,9 +265,9 @@ export default function ToolPageClient({
       />
       <div className="pointer-events-none fixed -right-32 top-0 h-56 w-56 rounded-full bg-amber-500/[0.07] blur-3xl" />
 
-      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-4 sm:py-8">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-4 py-3 sm:py-4">
         {/* Breadcrumb - Reduced spacing */}
-        <nav className="mb-2 flex items-center gap-x-1.5 text-xs sm:flex-wrap sm:gap-x-2 sm:gap-y-1 sm:text-sm">
+        <nav className="mb-1.5 flex items-center gap-x-1.5 text-xs sm:flex-wrap sm:gap-x-2 sm:gap-y-1">
           <Link
             href={createHref('/')}
             aria-label={t.home}
@@ -296,7 +300,7 @@ export default function ToolPageClient({
         </nav>
 
         {/* Tool Hero Section - Optimized spacing */}
-        <div className="mb-3 flex items-start justify-between gap-4 md:mb-5">
+        <div className="mb-3 flex items-start justify-between gap-4">
           <ToolHeroSection
             toolId={tool.id}
             toolName={t.toolName}
@@ -371,7 +375,7 @@ export default function ToolPageClient({
 
             {/* Ad: mobile only — below tool input/result, above How to Use.
                 Skipped for tools that render the banner inline above their Usage Tips. */}
-            {!TOOLS_WITH_INLINE_MOBILE_AD.includes(tool.id) && (
+            {!TOOLS_WITH_INLINE_AD.includes(tool.id) && (
               <AdBanner
                 className="my-6 lg:hidden"
                 minHeight={100}
@@ -381,14 +385,16 @@ export default function ToolPageClient({
             )}
 
             {/* Ad: content area — desktop only, fixed 728x90 leaderboard, above How to Use */}
-            <AdBanner
-              className="my-6 hidden text-center lg:block"
-              fixedWidth={728}
-              fixedHeight={90}
-              minHeight={90}
-              maxHeight={90}
-              slot="3320031589"
-            />
+            {!TOOLS_WITH_INLINE_AD.includes(tool.id) && (
+              <AdBanner
+                className="my-4 hidden text-center lg:block"
+                fixedWidth={728}
+                fixedHeight={90}
+                minHeight={90}
+                maxHeight={90}
+                slot="3320031589"
+              />
+            )}
 
             {/* Mobile Related Tools (visible only on mobile via CSS) */}
             <div className="my-8 lg:hidden">

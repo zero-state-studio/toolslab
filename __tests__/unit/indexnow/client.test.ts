@@ -199,7 +199,13 @@ describe('IndexNowClient', () => {
     it('should fail after max retries', async () => {
       (global.fetch as jest.Mock).mockRejectedValue(new Error('Network error'));
 
-      const result = await client.submitSingle(
+      // Single endpoint + 1ms backoff: with the real 3 endpoints and
+      // exponential 1s backoff this test would take ~21s (12 fetches)
+      const fastClient = new IndexNowClient({
+        endpoints: ['https://api.indexnow.org/indexnow'],
+        retryDelay: 1,
+      });
+      const result = await fastClient.submitSingle(
         'https://toolslab.dev/tools/test'
       );
 

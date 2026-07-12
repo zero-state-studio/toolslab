@@ -438,7 +438,7 @@ export default function EmlToHtml({ defaultValue = '', dictionary }: EmlToHtmlPr
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Toast notification */}
       {toast && (
         <div className="fixed top-4 right-4 z-50 flex items-center gap-2 rounded-lg bg-gray-900 px-4 py-2.5 text-sm text-white shadow-lg animate-in fade-in slide-in-from-top-2">
@@ -448,7 +448,7 @@ export default function EmlToHtml({ defaultValue = '', dictionary }: EmlToHtmlPr
       )}
 
       {/* Input Section with Drag & Drop */}
-      <Card className="p-6">
+      <Card className="p-4">
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <Label htmlFor="eml-input">{ui.emlContentLabel || 'EML Content'}</Label>
@@ -532,7 +532,7 @@ export default function EmlToHtml({ defaultValue = '', dictionary }: EmlToHtmlPr
 
       {/* Email Summary */}
       {emailSummary && result?.success && (
-        <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 dark:from-blue-950 dark:to-indigo-950">
+        <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 dark:from-blue-950 dark:to-indigo-950">
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="flex items-center gap-2 text-lg font-semibold">
@@ -619,7 +619,7 @@ export default function EmlToHtml({ defaultValue = '', dictionary }: EmlToHtmlPr
       {/* Attachments with download */}
       {result?.parsedEmail?.attachments &&
         result.parsedEmail.attachments.length > 0 && (
-          <Card className="p-6">
+          <Card className="p-4">
             <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
               <Paperclip className="h-5 w-5" />
               {ui.attachmentsHeading || 'Attachments'} ({result.parsedEmail.attachments.length})
@@ -669,7 +669,7 @@ export default function EmlToHtml({ defaultValue = '', dictionary }: EmlToHtmlPr
       {/* Inline Images */}
       {result?.parsedEmail?.inlineImages &&
         result.parsedEmail.inlineImages.length > 0 && (
-          <Card className="p-6">
+          <Card className="p-4">
             <h3 className="mb-4 flex items-center gap-2 text-lg font-semibold">
               <ImageIcon className="h-5 w-5" />
               {ui.inlineImagesHeading || 'Inline Images'} ({result.parsedEmail.inlineImages.length})
@@ -691,7 +691,7 @@ export default function EmlToHtml({ defaultValue = '', dictionary }: EmlToHtmlPr
 
       {/* View Tabs - now 5 tabs including Links */}
       {result?.success && (
-        <Card className="p-6">
+        <Card className="p-4">
           <Tabs
             value={viewMode}
             onValueChange={(v) => setViewMode(v as ViewMode)}

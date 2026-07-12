@@ -173,7 +173,7 @@ export default function StringCaseConverter({
   }, [batchResult]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Mode Toggle */}
       <div className="flex gap-2">
         <Button
@@ -196,7 +196,7 @@ export default function StringCaseConverter({
       {!batchMode && (
         <>
           {/* Input Card */}
-          <Card className="p-6">
+          <Card className="p-4">
             <Label className="mb-2 block text-sm text-gray-600 dark:text-gray-400">
               {labels.inputLabel}
             </Label>
@@ -229,7 +229,7 @@ export default function StringCaseConverter({
           {/* Results */}
           {result && result.words.length > 0 && (
             <div ref={resultRef}>
-              <Card className="p-6">
+              <Card className="p-4">
                 <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
                   {labels.results}
                 </h3>
@@ -275,7 +275,7 @@ export default function StringCaseConverter({
       {batchMode && (
         <>
           {/* Batch Input */}
-          <Card className="p-6">
+          <Card className="p-4">
             <div className="mb-4 flex flex-wrap items-end gap-4">
               <div className="flex-1">
                 <Label className="mb-2 block text-sm text-gray-600 dark:text-gray-400">
@@ -314,7 +314,7 @@ export default function StringCaseConverter({
           {/* Batch Results */}
           {batchResult && batchResult.length > 0 && (
             <div ref={resultRef}>
-              <Card className="p-6">
+              <Card className="p-4">
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
                     {labels.batchResults}
@@ -375,7 +375,7 @@ export default function StringCaseConverter({
       )}
 
       {/* Quick Examples */}
-      <Card className="p-6">
+      <Card className="p-4">
         <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
           {t.examples || 'Examples'}
         </h3>

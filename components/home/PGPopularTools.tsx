@@ -22,7 +22,7 @@ export function PGPopularTools({
     .slice(0, limit);
 
   return (
-    <section className="pg-container pb-14">
+    <section className="pg-container pb-10">
       <div className="mb-4 flex items-baseline justify-between">
         <h2 className="text-[22px] font-bold tracking-[-0.3px] text-pg-text">{title}</h2>
         <span className="text-[12px] text-pg-muted">{updatedLabel}</span>

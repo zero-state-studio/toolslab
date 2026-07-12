@@ -195,7 +195,7 @@ export default function WhatsAppLinkGenerator({
     phoneNumber.trim() && isValidPhoneNumber(cleanPhoneNumber(phoneNumber));
 
   return (
-    <div className="mx-auto w-full max-w-4xl space-y-6">
+    <div className="mx-auto w-full max-w-4xl space-y-4">
       {/* Phone Number Input */}
       <Card>
         <CardHeader>
@@ -429,7 +429,7 @@ export default function WhatsAppLinkGenerator({
                 {ui.yourLinkDescription || 'Share this link to start a conversation'}
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-4">
               {/* URL Display */}
               <div className="space-y-2">
                 <div className="break-all rounded-lg bg-muted p-4 font-mono text-sm">
@@ -457,7 +457,7 @@ export default function WhatsAppLinkGenerator({
               </div>
 
               {/* QR Code & Mobile Preview */}
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {/* QR Code */}
                 {qrCodeUrl && (
                   <div className="space-y-3">

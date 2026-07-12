@@ -37,7 +37,7 @@ export async function generateMetadata({
 
   if (!article) {
     return {
-      title: 'Article Not Found | ToolsLab Blog',
+      title: 'Article Not Found',
     };
   }
 
@@ -45,7 +45,8 @@ export async function generateMetadata({
   const url = `${baseUrl}${getLocalizedPath(`/blog/${slug}`, locale)}`;
 
   return {
-    title: article.seo.metaTitle,
+    // metaTitle already carries its own brand suffix — bypass the layout template
+    title: { absolute: article.seo.metaTitle },
     description: article.seo.metaDescription,
     keywords: article.seo.keywords,
     openGraph: {

@@ -496,7 +496,7 @@ export default function RegexTester({ categoryColor, dictionary }: RegexTesterPr
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <Search className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -522,7 +522,7 @@ export default function RegexTester({ categoryColor, dictionary }: RegexTesterPr
         </div>
       </div>
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-4 p-4">
         {/* Preset Patterns */}
         {showPresets && (
           <div className="animate-slideIn rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-600 dark:bg-gray-900">

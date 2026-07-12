@@ -291,12 +291,12 @@ export default function BarcodeGenerator({ dictionary }: { dictionary?: any }) {
   const charLimit = useMemo(() => getCharacterLimit(format), [format]);
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div className="space-y-4">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {/* LEFT COLUMN */}
         <div className="space-y-4">
           {/* Format Selection */}
-          <Card className="p-4 sm:p-6">
+          <Card className="p-4 sm:p-4">
             <div className="space-y-4">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1">
@@ -395,7 +395,7 @@ export default function BarcodeGenerator({ dictionary }: { dictionary?: any }) {
           </Card>
 
           {/* Input */}
-          <Card className="p-4 sm:p-6">
+          <Card className="p-4 sm:p-4">
             <div className="space-y-4">
               <div>
                 <Label htmlFor="value" className="text-base font-semibold">
@@ -459,7 +459,7 @@ export default function BarcodeGenerator({ dictionary }: { dictionary?: any }) {
           </Card>
 
           {/* Customization Options — always visible */}
-          <Card className="p-4 sm:p-6">
+          <Card className="p-4 sm:p-4">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-base font-semibold">{ui.customizeBarcode || 'Customize Barcode'}</h3>
             </div>
@@ -703,7 +703,7 @@ export default function BarcodeGenerator({ dictionary }: { dictionary?: any }) {
 
         {/* RIGHT COLUMN — sticky preview */}
         <div className="lg:sticky lg:top-6 lg:self-start" ref={resultRef}>
-          <Card className="p-4 sm:p-6">
+          <Card className="p-4 sm:p-4">
             <div className="space-y-4">
               {/* Header */}
               <div className="flex items-center justify-between">
@@ -716,7 +716,7 @@ export default function BarcodeGenerator({ dictionary }: { dictionary?: any }) {
               {/* Barcode preview — dark mode fix: no bg-white */}
               <div
                 className={cn(
-                  'flex min-h-[160px] items-center justify-center overflow-x-auto rounded-lg border-2 border-dashed border-border p-4 sm:p-8',
+                  'flex min-h-[160px] items-center justify-center overflow-x-auto rounded-lg border-2 border-dashed border-border p-4 sm:p-5',
                   backgroundColor === 'transparent'
                     ? '[background:repeating-conic-gradient(#80808020_0%_25%,transparent_0%_50%)_0_0/20px_20px]'
                     : ''
@@ -812,7 +812,7 @@ export default function BarcodeGenerator({ dictionary }: { dictionary?: any }) {
 
       {/* Use Cases — full width below grid */}
       {currentMetadata && currentMetadata.useCases.length > 0 && (
-        <Card className="border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20 sm:p-6">
+        <Card className="border-blue-200 bg-blue-50 p-4 dark:border-blue-800 dark:bg-blue-900/20 sm:p-4">
           <div className="space-y-3">
             <h3 className="font-semibold text-blue-900 dark:text-blue-100">
               {ui.commonUseCases || 'Common Use Cases for'} {currentMetadata.name}

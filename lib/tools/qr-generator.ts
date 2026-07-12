@@ -278,10 +278,20 @@ export function validateQRContent(data: QRContentData): {
         errors.push('URL is required');
       } else {
         try {
-          const url = data.url.startsWith('http')
-            ? data.url
-            : `https://${data.url}`;
-          new URL(url);
+          // Any explicit URI scheme (http, ftp, file, ...) is taken as-is
+          const hasScheme = /^[a-z][a-z0-9+.-]*:/i.test(data.url);
+          const url = hasScheme ? data.url : `https://${data.url}`;
+          const parsed = new URL(url);
+          // Without an explicit scheme, require a dotted hostname (or
+          // localhost): auto-prefixing makes any bare word like
+          // "not-a-url" parse as a valid URL otherwise.
+          if (
+            !hasScheme &&
+            !parsed.hostname.includes('.') &&
+            parsed.hostname !== 'localhost'
+          ) {
+            errors.push('Invalid URL format');
+          }
         } catch {
           errors.push('Invalid URL format');
         }

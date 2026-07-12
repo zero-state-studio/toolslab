@@ -121,13 +121,14 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
     },
   },
   tools: {
+    // "| ToolsLab" is appended by the layout title template — do NOT add it here.
     titles: {
-      en: 'All Developer Tools - Free Online Utilities | ToolsLab',
-      it: 'Tutti gli Strumenti Sviluppatore - Tools Online Gratuiti | ToolsLab',
-      es: 'Todas las Herramientas para Desarrolladores - Utilidades Online Gratuitas | ToolsLab',
-      fr: 'Tous les Outils pour Développeurs - Utilitaires en Ligne Gratuits | ToolsLab',
-      de: 'Alle Entwickler-Tools - Kostenlose Online-Utilities | ToolsLab',
-      pt: 'Todas as Ferramentas para Desenvolvedores - Utilitários Online Gratuitos | ToolsLab',
+      en: 'All Developer Tools - Free Online Utilities',
+      it: 'Tutti gli Strumenti Sviluppatore - Tools Online Gratuiti',
+      es: 'Todas las Herramientas para Desarrolladores - Utilidades Online Gratuitas',
+      fr: 'Tous les Outils pour Développeurs - Utilitaires en Ligne Gratuits',
+      de: 'Alle Entwickler-Tools - Kostenlose Online-Utilities',
+      pt: 'Todas as Ferramentas para Desenvolvedores - Utilitários Online Gratuitos',
     },
     descriptions: {
       en: 'Discover 20+ free online tools for JSON formatting, Base64 encoding, URL decoding, hash generation, and more. All tools work entirely in your browser with no data transmission to servers. Perfect for development, debugging, and data processing workflows.',
@@ -225,13 +226,14 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
     },
   },
   categories: {
+    // "| ToolsLab" is appended by the layout title template — do NOT add it here.
     titles: {
-      en: 'Tool Categories - Browse by Type | ToolsLab',
-      it: 'Categorie Strumenti - Sfoglia per Tipo | ToolsLab',
-      es: 'Categorías de Herramientas - Navegar por Tipo | ToolsLab',
-      fr: "Catégories d'Outils - Parcourir par Type | ToolsLab",
-      de: 'Tool-Kategorien - Nach Typ durchsuchen | ToolsLab',
-      pt: 'Categorias de Ferramentas - Navegar por Tipo | ToolsLab',
+      en: 'Tool Categories - Browse by Type',
+      it: 'Categorie Strumenti - Sfoglia per Tipo',
+      es: 'Categorías de Herramientas - Navegar por Tipo',
+      fr: "Catégories d'Outils - Parcourir par Type",
+      de: 'Tool-Kategorien - Nach Typ durchsuchen',
+      pt: 'Categorias de Ferramentas - Navegar por Tipo',
     },
     descriptions: {
       en: 'Browse developer tools organized by category: Data & Conversion, Encoding & Security, Text & Format, Generators, Web & Design, and Development Utilities.',
@@ -305,13 +307,14 @@ export const PAGE_METADATA: Record<string, SEOMetadata> = {
     },
   },
   lab: {
+    // "| ToolsLab" is appended by the layout title template — do NOT add it here.
     titles: {
-      en: 'My Developer Lab - Favorites & Tool Chain | ToolsLab',
-      it: 'Il Mio Lab Sviluppatore - Preferiti & Catena Strumenti | ToolsLab',
-      es: 'Mi Laboratorio de Desarrollo - Favoritos & Cadena de Herramientas | ToolsLab',
-      fr: "Mon Laboratoire de Développeur - Favoris & Chaîne d'Outils | ToolsLab",
-      de: 'Mein Entwickler-Labor - Favoriten & Tool-Kette | ToolsLab',
-      pt: 'Meu Laboratório de Desenvolvimento - Favoritos & Cadeia de Ferramentas | ToolsLab',
+      en: 'My Developer Lab - Favorites & Tool Chain',
+      it: 'Il Mio Lab Sviluppatore - Preferiti & Catena Strumenti',
+      es: 'Mi Laboratorio de Desarrollo - Favoritos & Cadena de Herramientas',
+      fr: "Mon Laboratoire de Développeur - Favoris & Chaîne d'Outils",
+      de: 'Mein Entwickler-Labor - Favoriten & Tool-Kette',
+      pt: 'Meu Laboratório de Desenvolvimento - Favoritos & Cadeia de Ferramentas',
     },
     descriptions: {
       en: 'Your personal developer lab. Save your favorite tools, create custom tool chains, and streamline your development workflow with quick access to frequently used utilities.',

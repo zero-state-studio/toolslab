@@ -12,6 +12,14 @@ export interface Base64ToPdfResult {
   fileSize?: number;
   fileName?: string;
   detectedFileType?: string | null;
+  /** Input was Base64-encoded more than once and got decoded automatically */
+  wasDoubleEncoded?: boolean;
+  /** First chars of the decoded data when it is readable text (error aid) */
+  decodedPreview?: string;
+  /** Input looks like natural language pasted by mistake, not Base64 */
+  inputLooksLikeText?: boolean;
+  /** Notes about automatic repairs applied to produce the PDF */
+  warnings?: string[];
   metadata?: {
     isPdf: boolean;
     hasValidHeader: boolean;
@@ -115,6 +123,51 @@ export function detectFileType(uint8Array: Uint8Array): string | null {
   return null;
 }
 
+/** Max nested decode attempts when recovering multi-encoded input */
+const MAX_NESTED_DECODES = 2;
+
+/**
+ * Checks whether the leading bytes are printable ASCII (tab/CR/LF allowed)
+ */
+function isPrintableAscii(bytes: Uint8Array, limit = 512): boolean {
+  const n = Math.min(bytes.length, limit);
+  if (n === 0) return false;
+  for (let i = 0; i < n; i++) {
+    const c = bytes[i];
+    if (c === 0x09 || c === 0x0a || c === 0x0d) continue;
+    if (c < 0x20 || c > 0x7e) return false;
+  }
+  return true;
+}
+
+/**
+ * Converts bytes to a string, chunked to avoid call-stack limits
+ */
+function asciiFromBytes(bytes: Uint8Array): string {
+  const CHUNK = 0x8000;
+  let out = '';
+  for (let i = 0; i < bytes.length; i += CHUNK) {
+    out += String.fromCharCode(...bytes.subarray(i, i + CHUNK));
+  }
+  return out;
+}
+
+/**
+ * Heuristic: input is natural language pasted by mistake, not Base64.
+ * Words-only text survives the charset check (letters are valid Base64 and
+ * whitespace gets stripped), then decodes to garbage — catch it up front.
+ * Real Base64 is one continuous string or MIME-wrapped at 64/76 chars, so
+ * many short whitespace-separated words without +, / or = means prose.
+ */
+export function looksLikeNaturalText(input: string): boolean {
+  const trimmed = input.trim();
+  if (!trimmed || /[+/=]/.test(trimmed)) return false;
+  const words = trimmed.split(/\s+/);
+  if (words.length < 3) return false;
+  const shortWords = words.filter((w) => w.length <= 20).length;
+  return shortWords / words.length >= 0.8;
+}
+
 /**
  * Checks if the decoded Base64 data represents a PDF file.
  * Searches within the first 1024 bytes as allowed by the PDF spec.
@@ -140,6 +193,100 @@ export function isPdfData(uint8Array: Uint8Array): boolean {
   }
 
   return false;
+}
+
+/** Finds the byte offset of an ASCII sequence, or -1 */
+function findAsciiSequence(
+  bytes: Uint8Array,
+  ascii: string,
+  limit = Infinity
+): number {
+  const seq = Array.from(ascii, (c) => c.charCodeAt(0));
+  const end = Math.min(bytes.length - seq.length, limit);
+  for (let offset = 0; offset <= end; offset++) {
+    let match = true;
+    for (let i = 0; i < seq.length; i++) {
+      if (bytes[offset + i] !== seq[i]) {
+        match = false;
+        break;
+      }
+    }
+    if (match) return offset;
+  }
+  return -1;
+}
+
+/** PDF body structures that indicate the data is a PDF missing its header.
+ * "Strong" markers are PDF-specific; weak ones ("stream", "trailer") also
+ * occur in ordinary prose, so at least one strong marker is required. */
+const PDF_BODY_MARKERS_STRONG = ['endobj', 'xref', '%%EOF'];
+const PDF_BODY_MARKERS_WEAK = ['stream', 'trailer'];
+
+/**
+ * Attempts to repair decoded data that is a PDF with a broken/missing header:
+ * - "%PDF-" present but beyond the 1024-byte spec window → strip junk prefix
+ * - header partially cut at the start (e.g. "PDF-1.4" or "DF-1.4") → rebuild it
+ * - no header but ≥2 distinct PDF body structures → prepend "%PDF-1.4\n"
+ * Returns null when the data doesn't look like PDF content at all — a fake
+ * repaired file that won't open is worse UX than a clear error.
+ */
+export function repairPdfHeader(
+  bytes: Uint8Array
+): { bytes: Uint8Array; warning: string } | null {
+  // Case 1: header exists but past the 1024-byte window isPdfData searches
+  const headerOffset = findAsciiSequence(bytes, '%PDF-');
+  if (headerOffset > 0) {
+    return {
+      bytes: bytes.subarray(headerOffset),
+      warning: `Removed ${headerOffset} bytes of non-PDF content before the "%PDF-" header`,
+    };
+  }
+
+  // Case 2: header cut at the start — data begins mid-way through "%PDF-".
+  // Require a version number ("1." / "2.") right after the tail so random
+  // binary starting with e.g. "F-" doesn't get a header glued on.
+  const headerTails = ['PDF-', 'DF-', 'F-'];
+  for (const tail of headerTails) {
+    const afterTail = tail.length;
+    const startsWithTail =
+      findAsciiSequence(bytes.subarray(0, afterTail), tail) === 0;
+    const hasVersion =
+      bytes.length > afterTail + 1 &&
+      bytes[afterTail] >= 0x30 &&
+      bytes[afterTail] <= 0x39 && // digit
+      bytes[afterTail + 1] === 0x2e; // '.'
+    if (startsWithTail && hasVersion) {
+      const missing = '%PDF-'.slice(0, 5 - tail.length);
+      const repaired = new Uint8Array(missing.length + bytes.length);
+      repaired.set(Array.from(missing, (c) => c.charCodeAt(0)));
+      repaired.set(bytes, missing.length);
+      return {
+        bytes: repaired,
+        warning: `Rebuilt the truncated "%PDF-" header (input started with "${tail}")`,
+      };
+    }
+  }
+
+  // Case 3: no header at all, but the body clearly contains PDF structures
+  const strongFound = PDF_BODY_MARKERS_STRONG.filter(
+    (marker) => findAsciiSequence(bytes, marker) !== -1
+  );
+  const weakFound = PDF_BODY_MARKERS_WEAK.filter(
+    (marker) => findAsciiSequence(bytes, marker) !== -1
+  );
+  if (strongFound.length >= 1 && strongFound.length + weakFound.length >= 2) {
+    const header = '%PDF-1.4\n';
+    const repaired = new Uint8Array(header.length + bytes.length);
+    repaired.set(Array.from(header, (c) => c.charCodeAt(0)));
+    repaired.set(bytes, header.length);
+    return {
+      bytes: repaired,
+      warning:
+        'The "%PDF-" header was missing and has been added automatically. If the file does not open, the source data may be incomplete.',
+    };
+  }
+
+  return null;
 }
 
 /**
@@ -180,6 +327,16 @@ export async function base64ToPdf(
       }
     }
 
+    // Plain-text paste guard: catch prose before it decodes to garbage
+    if (looksLikeNaturalText(cleanBase64)) {
+      return {
+        success: false,
+        error:
+          'The input looks like plain text, not Base64. This tool decodes Base64 data back into a PDF file — paste a Base64 string instead (PDF data usually starts with "JVBERi0").',
+        inputLooksLikeText: true,
+      };
+    }
+
     // Remove whitespace and newlines
     cleanBase64 = cleanBase64.replace(/\s+/g, '');
 
@@ -207,21 +364,62 @@ export async function base64ToPdf(
       };
     }
 
+    // Recover multi-encoded input: when the decoded bytes are themselves
+    // Base64 text (e.g. "JVBERi0..." = "%PDF-" still encoded), keep decoding
+    // until a PDF emerges. Only commit the deeper level if it IS a PDF, so
+    // error reporting stays on the first decode otherwise.
+    let wasDoubleEncoded = false;
+    if (!isPdfData(uint8Array)) {
+      let candidate = uint8Array;
+      for (let depth = 0; depth < MAX_NESTED_DECODES; depth++) {
+        if (!isPrintableAscii(candidate)) break;
+        const innerBase64 = normalizeBase64(
+          asciiFromBytes(candidate).replace(/\s+/g, '')
+        );
+        if (innerBase64.length === 0 || !isValidBase64(innerBase64)) break;
+        try {
+          candidate = await decodeBase64ToBytes(innerBase64);
+        } catch {
+          break;
+        }
+        if (isPdfData(candidate)) {
+          uint8Array = candidate;
+          wasDoubleEncoded = true;
+          break;
+        }
+      }
+    }
+
     // Extract metadata
-    const metadata = extractPdfMetadata(uint8Array);
+    let metadata = extractPdfMetadata(uint8Array);
+    const warnings: string[] = [];
 
     // Validate PDF header if requested
     if (options.validatePdfHeader !== false && !metadata.isPdf) {
-      const detectedFileType = detectFileType(uint8Array);
-      const errorDetail = detectedFileType
-        ? `The data appears to be a ${detectedFileType}, not a PDF.`
-        : 'PDF files should start with "%PDF-" header within the first 1024 bytes.';
-      return {
-        success: false,
-        error: `The decoded data does not appear to be a valid PDF file. ${errorDetail}`,
-        detectedFileType,
-        metadata,
-      };
+      // Broken/missing header on otherwise-PDF data is repairable
+      const repaired = repairPdfHeader(uint8Array);
+      if (repaired) {
+        uint8Array = repaired.bytes;
+        warnings.push(repaired.warning);
+        metadata = extractPdfMetadata(uint8Array);
+      } else {
+        const detectedFileType = detectFileType(uint8Array);
+        const errorDetail = detectedFileType
+          ? `The data appears to be a ${detectedFileType}, not a PDF.`
+          : 'PDF files should start with "%PDF-" header within the first 1024 bytes.';
+        // Readable decoded content helps users recognize what they pasted
+        const decodedPreview = isPrintableAscii(uint8Array, 50)
+          ? asciiFromBytes(uint8Array.subarray(0, 50)) +
+            (uint8Array.length > 50 ? '…' : '')
+          : undefined;
+        return {
+          success: false,
+          error: `The decoded data does not appear to be a valid PDF file. ${errorDetail}`,
+          detectedFileType,
+          decodedPreview,
+          metadata,
+        };
+      }
     }
 
     // Create PDF blob - create a copy of the bytes
@@ -235,6 +433,8 @@ export async function base64ToPdf(
       pdfBlob,
       fileSize: uint8Array.length,
       fileName,
+      wasDoubleEncoded,
+      warnings: warnings.length > 0 ? warnings : undefined,
       metadata,
     };
   } catch (error) {

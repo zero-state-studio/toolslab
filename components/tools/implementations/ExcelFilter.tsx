@@ -271,7 +271,7 @@ export default function ExcelFilter({
   const handleExportExcel = useCallback(() => {
     if (!excelData) return;
     const fileName = excelData.fileName.replace(/\.[^/.]+$/, '_filtered.xlsx');
-    exportToExcel(processedData, visibleHeaders, fileName);
+    void exportToExcel(processedData, visibleHeaders, fileName);
   }, [excelData, processedData, visibleHeaders]);
 
   // Reset all
@@ -289,7 +289,7 @@ export default function ExcelFilter({
   }, []);
 
   return (
-    <div className="mx-auto w-full max-w-[1400px] space-y-6">
+    <div className="mx-auto w-full max-w-[1400px] space-y-4">
       {/* Zell Banner */}
       <a
         href="https://zelldata.app"
@@ -331,7 +331,7 @@ export default function ExcelFilter({
 
       {/* Upload Section */}
       {!excelData && (
-        <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
           <div className="mb-4">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white">
               {ui.uploadSectionHeading || 'Upload Excel File'}
@@ -751,12 +751,22 @@ export default function ExcelFilter({
         </>
       )}
 
-      {/* Ad: mobile only — above usage tips */}
+      {/* Ad: mobile — above usage tips */}
       <AdBanner
         className="lg:hidden"
         minHeight={100}
         maxHeight={280}
         slot="5833147302"
+      />
+      {/* Ad: desktop leaderboard — above usage tips so it sits right below
+          the input on laptop viewports (replaces the page-level one) */}
+      <AdBanner
+        className="hidden text-center lg:block"
+        fixedWidth={728}
+        fixedHeight={90}
+        minHeight={90}
+        maxHeight={90}
+        slot="3320031589"
       />
 
       {/* Usage Tips */}

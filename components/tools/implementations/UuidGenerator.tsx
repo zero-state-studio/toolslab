@@ -141,7 +141,7 @@ export default function UuidGenerator({ categoryColor, dictionary }: UuidGenerat
           </p>
         }
       >
-        <div className="max-h-96 space-y-2 overflow-y-auto">
+        <div className="max-h-64 space-y-2 overflow-y-auto">
           {uuids.map((uuid, index) => (
             <div
               key={index}

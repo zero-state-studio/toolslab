@@ -10,7 +10,7 @@ import { tools } from '@/lib/tools';
 export const revalidate = false;
 
 export const metadata: Metadata = {
-  title: 'All Developer Tools - 69+ Free Online Utilities | ToolsLab',
+  title: 'All Developer Tools - 69+ Free Online Utilities',
   description:
     '69+ free online tools for developers: JSON formatter, Base64 encoder, JWT decoder, hash generator, URL encoder, SQL formatter and more. 100% browser-based, no signup required, completely private.',
   keywords: [

@@ -27,10 +27,13 @@ export async function GET(
     const maxAge = sections ? 86400 : 86400; // 24h
     const staleWhileRevalidate = sections ? 604800 : 604800; // 7 days
 
-    // Return with cache headers for performance
+    // Return with cache headers for performance.
+    // s-maxage makes the CDN cache authoritative: 6 locales × few section
+    // combos = tiny key space, so function invocations drop to ~one per
+    // region per day.
     return NextResponse.json(dictionary, {
       headers: {
-        'Cache-Control': `public, max-age=${maxAge}, stale-while-revalidate=${staleWhileRevalidate}`,
+        'Cache-Control': `public, max-age=${maxAge}, s-maxage=${maxAge}, stale-while-revalidate=${staleWhileRevalidate}`,
         'Content-Type': 'application/json',
         'X-Dictionary-Sections': sections?.join(',') || 'all',
         'X-Dictionary-Locale': locale,

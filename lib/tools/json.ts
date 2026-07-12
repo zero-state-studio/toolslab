@@ -1,3 +1,5 @@
+import { jsonrepair } from 'jsonrepair';
+
 export interface ToolResult {
   success: boolean;
   result?: string;
@@ -289,6 +291,131 @@ export function repairJSON(input: string): string {
   return preprocessJSON(input);
 }
 
+interface TopLevelScan {
+  chunks: string[];
+  leading: string;
+  trailing: string;
+}
+
+/**
+ * Splits input into balanced top-level {…}/[…] chunks, tolerating leading
+ * non-JSON content (log prefixes), separators between values (whitespace,
+ * commas, semicolons) and trailing non-JSON content. String-aware, so
+ * braces inside string values don't break the balance.
+ */
+function scanTopLevelValues(input: string): TopLevelScan | null {
+  const chunks: string[] = [];
+  let i = 0;
+  const n = input.length;
+
+  // Skip leading non-JSON content up to the first { or [
+  while (i < n && input[i] !== '{' && input[i] !== '[') i++;
+  const leading = input.slice(0, i);
+
+  while (i < n) {
+    const start = i;
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+    for (; i < n; i++) {
+      const ch = input[i];
+      if (inString) {
+        if (escaped) escaped = false;
+        else if (ch === '\\') escaped = true;
+        else if (ch === '"') inString = false;
+      } else if (ch === '"') inString = true;
+      else if (ch === '{' || ch === '[') depth++;
+      else if (ch === '}' || ch === ']') {
+        depth--;
+        if (depth === 0) {
+          i++;
+          break;
+        }
+      }
+    }
+    if (depth !== 0 || inString) return null; // unbalanced/truncated input
+    chunks.push(input.slice(start, i));
+
+    // Skip separators between values
+    while (i < n && /[\s,;]/.test(input[i])) i++;
+    if (i < n && input[i] !== '{' && input[i] !== '[') {
+      return { chunks, leading, trailing: input.slice(i) };
+    }
+  }
+  return { chunks, leading, trailing: '' };
+}
+
+/**
+ * Recovers inputs made of multiple top-level JSON values (NDJSON,
+ * concatenated objects, array elements pasted without brackets) or a single
+ * value surrounded by non-JSON content (log lines, notes). Multiple values
+ * get wrapped into an array; every intervention is reported as a warning.
+ */
+function tryParseConcatenated(
+  input: string
+): { parsed: any; warnings: string[] } | null {
+  const scan = scanTopLevelValues(input);
+  if (!scan || scan.chunks.length === 0) return null;
+
+  const leading = scan.leading.trim();
+  const trailing = scan.trailing.trim();
+  // A single clean value would have parsed in the normal path already
+  if (scan.chunks.length === 1 && !leading && !trailing) return null;
+
+  const values: any[] = [];
+  for (const chunk of scan.chunks) {
+    try {
+      values.push(JSON.parse(chunk));
+    } catch {
+      try {
+        values.push(JSON.parse(preprocessJSON(chunk)));
+      } catch {
+        return null;
+      }
+    }
+  }
+
+  const preview = (s: string) =>
+    `"${s.slice(0, 40)}${s.length > 40 ? '…' : ''}"`;
+  const warnings: string[] = [];
+  if (leading) {
+    warnings.push(`Ignored leading non-JSON content: ${preview(leading)}`);
+  }
+  if (trailing) {
+    warnings.push(`Ignored trailing non-JSON content: ${preview(trailing)}`);
+  }
+  if (values.length > 1) {
+    warnings.push(
+      `Detected ${values.length} top-level JSON values (e.g. NDJSON or concatenated objects) — wrapped them into an array`
+    );
+  }
+  return { parsed: values.length === 1 ? values[0] : values, warnings };
+}
+
+/**
+ * Last-resort recovery chain used when parsing and preprocessing both fail:
+ * multi-value/garbage-wrapped inputs first, then the jsonrepair library.
+ */
+function recoverJSON(
+  input: string
+): { parsed: any; warnings: string[] } | null {
+  const concatenated = tryParseConcatenated(input);
+  if (concatenated) return concatenated;
+
+  try {
+    const parsed = JSON.parse(jsonrepair(input));
+    // Only trust repairs that yield structure: prose "repairs" into a bare
+    // string, which would silently succeed on garbage input
+    if (typeof parsed !== 'object' || parsed === null) return null;
+    return {
+      parsed,
+      warnings: ['Applied JSON repair to fix malformed input'],
+    };
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Formats JSON with proper indentation
  */
@@ -323,6 +450,17 @@ export function formatJSON(input: string): ToolResult {
         JSON.parse(processedInput);
         warnings.push('Applied automatic fixes to malformed JSON');
       } catch (secondError: any) {
+        // Last resort: multi-value inputs (NDJSON, concatenated objects,
+        // pasted log lines) and the jsonrepair library
+        const recovered = recoverJSON(cleanInput);
+        if (recovered) {
+          return {
+            success: true,
+            result: JSON.stringify(recovered.parsed, null, 2),
+            warnings: recovered.warnings,
+          };
+        }
+
         // If it still fails after preprocessing, try to provide helpful error info
         const originalErrorMsg = firstError.message || 'Unknown error';
         const repairedErrorMsg = secondError.message || 'Unknown error';
@@ -412,6 +550,17 @@ export function minifyJSON(input: string): ToolResult {
         JSON.parse(processedInput);
         warnings.push('Applied automatic fixes to malformed JSON');
       } catch (secondError: any) {
+        // Last resort: multi-value inputs (NDJSON, concatenated objects,
+        // pasted log lines) and the jsonrepair library
+        const recovered = recoverJSON(cleanInput);
+        if (recovered) {
+          return {
+            success: true,
+            result: JSON.stringify(recovered.parsed),
+            warnings: recovered.warnings,
+          };
+        }
+
         // If it still fails, return error with details
         const originalErrorMsg = firstError.message || 'Unknown error';
         const repairedErrorMsg = secondError.message || 'Unknown error';

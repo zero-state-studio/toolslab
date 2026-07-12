@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
+import Link from 'next/link';
 import {
   Download,
   Check,
@@ -31,6 +32,14 @@ interface Base64ToPdfToolProps {
   categoryColor: string;
   dictionary?: any;
 }
+
+// Sibling tools for image payloads detected by the PDF validator
+const IMAGE_TOOL_LINKS: Record<string, { href: string; label: string }> = {
+  'JPEG image': { href: '/tools/base64-to-jpg', label: 'Base64 to JPG' },
+  'PNG image': { href: '/tools/base64-to-png', label: 'Base64 to PNG' },
+  'GIF image': { href: '/tools/base64-to-gif', label: 'Base64 to GIF' },
+  'WebP image': { href: '/tools/base64-to-webp', label: 'Base64 to WebP' },
+};
 
 const FALLBACK_USAGE_TIPS = [
   'Valid PDF Base64 data should start with "JVBERi0" when decoded',
@@ -197,9 +206,9 @@ export default function Base64ToPdfTool({
   }, [previewUrl]);
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6">
+    <div className="mx-auto w-full max-w-6xl space-y-4">
       {/* Input Section */}
-      <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">
             {ui.inputHeading || 'Base64 Input'}
@@ -294,10 +303,30 @@ export default function Base64ToPdfTool({
             <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600 dark:text-red-400" />
             <div className="space-y-1">
               <p className="text-sm text-red-700 dark:text-red-300">{error}</p>
-              {result?.detectedFileType && (
+              {result?.detectedFileType &&
+                (IMAGE_TOOL_LINKS[result.detectedFileType] ? (
+                  <p className="text-sm text-red-600 dark:text-red-400">
+                    This Base64 is a {result.detectedFileType} — decode it with{' '}
+                    <Link
+                      href={IMAGE_TOOL_LINKS[result.detectedFileType].href}
+                      className="font-medium underline underline-offset-2"
+                    >
+                      {IMAGE_TOOL_LINKS[result.detectedFileType].label}
+                    </Link>{' '}
+                    instead.
+                  </p>
+                ) : (
+                  <p className="text-sm text-red-600 dark:text-red-400">
+                    Tip: If you need to convert this {result.detectedFileType}{' '}
+                    to PDF, use a dedicated conversion tool first.
+                  </p>
+                ))}
+              {result?.decodedPreview && (
                 <p className="text-sm text-red-600 dark:text-red-400">
-                  Tip: If you need to convert this {result.detectedFileType} to
-                  PDF, use a dedicated conversion tool first.
+                  Decoded content starts with:{' '}
+                  <code className="rounded bg-red-100 px-1 py-0.5 font-mono text-xs dark:bg-red-900/40">
+                    {result.decodedPreview}
+                  </code>
                 </p>
               )}
               {!result?.detectedFileType && error.includes('valid PDF') && (
@@ -316,7 +345,7 @@ export default function Base64ToPdfTool({
       {result && result.success && (
         <div
           ref={resultRef}
-          className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+          className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
         >
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-medium text-gray-900 dark:text-white">
@@ -327,6 +356,26 @@ export default function Base64ToPdfTool({
               <span>{ui.conversionSuccessful || 'Conversion successful'}</span>
             </div>
           </div>
+
+          {(result.wasDoubleEncoded || result.warnings?.length) && (
+            <div className="mb-4 space-y-2 rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-700 dark:border-amber-800 dark:bg-amber-900/20 dark:text-amber-300">
+              {result.wasDoubleEncoded && (
+                <div className="flex items-start gap-2">
+                  <Info className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>
+                    Your input was Base64-encoded more than once — it was
+                    decoded automatically until the PDF emerged.
+                  </span>
+                </div>
+              )}
+              {result.warnings?.map((warning) => (
+                <div key={warning} className="flex items-start gap-2">
+                  <Info className="mt-0.5 h-4 w-4 shrink-0" />
+                  <span>{warning}</span>
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* PDF Information */}
           <div className="mb-4 space-y-2 rounded-md bg-gray-50 p-4 dark:bg-gray-700">
@@ -437,12 +486,22 @@ export default function Base64ToPdfTool({
         </div>
       )}
 
-      {/* Ad: mobile only — above usage tips */}
+      {/* Ad: mobile — above usage tips */}
       <AdBanner
         className="lg:hidden"
         minHeight={100}
         maxHeight={280}
         slot="5833147302"
+      />
+      {/* Ad: desktop leaderboard — above usage tips so it sits right below
+          the input on laptop viewports (replaces the page-level one) */}
+      <AdBanner
+        className="hidden text-center lg:block"
+        fixedWidth={728}
+        fixedHeight={90}
+        minHeight={90}
+        maxHeight={90}
+        slot="3320031589"
       />
 
       {/* Usage Tips */}

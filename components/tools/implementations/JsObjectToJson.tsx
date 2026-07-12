@@ -281,7 +281,7 @@ export default function JsObjectToJson({ dictionary }: { dictionary?: any }) {
   }, [input, options]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Header Controls */}
       <Card>
         <CardHeader>

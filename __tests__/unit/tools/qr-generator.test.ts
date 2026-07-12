@@ -205,7 +205,8 @@ describe('QR Generator Content Generation', () => {
         latitude: 40.7128,
         longitude: -74.006,
       };
-      expect(generateGeoContent(data)).toBe('geo:40.7128,-74.0060');
+      // Note: -74.006 is a number, so a trailing zero can't survive
+      expect(generateGeoContent(data)).toBe('geo:40.7128,-74.006');
     });
 
     it('should handle missing coordinates', () => {

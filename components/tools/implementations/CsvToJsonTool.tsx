@@ -216,9 +216,9 @@ Alice Williams,28,Houston,alice@example.com`;
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Input Section */}
-      <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-medium text-gray-900 dark:text-white">
             {ui.inputSectionHeading || 'CSV Input'}
@@ -256,7 +256,7 @@ Alice Williams,28,Houston,alice@example.com`;
       </div>
 
       {/* Options Section */}
-      <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+      <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
         <div className="mb-3 flex items-center gap-2">
           <Settings className="h-4 w-4" />
           <span className="font-medium">{ui.optionsSectionHeading || 'Conversion Options'}</span>
@@ -432,7 +432,7 @@ Alice Williams,28,Houston,alice@example.com`;
       {/* Output Section */}
       <div ref={resultRef}>
         {output && (
-          <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+          <div className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
             <div className="mb-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <FileJson className="h-5 w-5 text-green-500" />
@@ -467,7 +467,7 @@ Alice Williams,28,Houston,alice@example.com`;
               </div>
             </div>
             <div className="relative">
-              <pre className="max-h-96 overflow-auto rounded-md border border-gray-300 bg-gray-50 p-4 font-mono text-sm dark:border-gray-600 dark:bg-gray-700">
+              <pre className="max-h-64 overflow-auto rounded-md border border-gray-300 bg-gray-50 p-4 font-mono text-sm dark:border-gray-600 dark:bg-gray-700">
                 <code className="text-gray-800 dark:text-gray-200">
                   {output}
                 </code>

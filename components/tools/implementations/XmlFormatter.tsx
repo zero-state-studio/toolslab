@@ -392,7 +392,7 @@ export default function XmlFormatter({ categoryColor, dictionary }: XmlFormatter
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <FileCode className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white">
@@ -408,7 +408,7 @@ export default function XmlFormatter({ categoryColor, dictionary }: XmlFormatter
         </button>
       </div>
 
-      <div className="space-y-6 p-6">
+      <div className="space-y-4 p-4">
         {/* Input Section */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -494,7 +494,7 @@ export default function XmlFormatter({ categoryColor, dictionary }: XmlFormatter
           <button
             onClick={formatXmlContent}
             disabled={!input || isProcessing}
-            className="flex items-center gap-2 rounded-lg px-6 py-3 font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex items-center gap-2 rounded-lg px-4 py-3 font-medium text-white transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
             style={{
               backgroundColor: categoryColor,
               boxShadow: `0 4px 12px ${categoryColor}40`,
@@ -515,7 +515,7 @@ export default function XmlFormatter({ categoryColor, dictionary }: XmlFormatter
           <button
             onClick={minifyXmlContent}
             disabled={!input || isProcessing}
-            className="flex items-center gap-2 rounded-lg border-2 px-6 py-3 font-medium transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex items-center gap-2 rounded-lg border-2 px-4 py-3 font-medium transition-all hover:scale-105 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
             style={{
               borderColor: categoryColor,
               color: categoryColor,
@@ -670,7 +670,7 @@ export default function XmlFormatter({ categoryColor, dictionary }: XmlFormatter
             </div>
 
             <pre
-              className="min-h-96 w-full resize-y overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 dark:bg-gray-900 dark:text-white"
+              className="min-h-64 w-full resize-y overflow-auto rounded-lg border-2 bg-gray-50 px-4 py-3 font-mono text-sm text-gray-900 dark:bg-gray-900 dark:text-white"
               style={{
                 borderColor: formatSuccess ? '#10b981' : `${categoryColor}30`,
                 height: '30rem',
@@ -680,7 +680,7 @@ export default function XmlFormatter({ categoryColor, dictionary }: XmlFormatter
             </pre>
 
             {/* XML Element Search Section */}
-            <div className="mt-6 space-y-4 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900">
+            <div className="mt-4 space-y-4 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900">
               <div className="flex items-center gap-3">
                 <label htmlFor="xml-element-search" className="sr-only">
                   Search XML elements
@@ -777,7 +777,7 @@ export default function XmlFormatter({ categoryColor, dictionary }: XmlFormatter
             </div>
 
             {/* v2 Tools: XPath, Tree View, Namespaces */}
-            <div className="mt-6 space-y-4 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900">
+            <div className="mt-4 space-y-4 rounded-lg border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-900">
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() =>
@@ -882,7 +882,7 @@ export default function XmlFormatter({ categoryColor, dictionary }: XmlFormatter
                         {xpathResults.length} result
                         {xpathResults.length > 1 ? 's' : ''}
                       </div>
-                      <div className="max-h-96 space-y-2 overflow-y-auto">
+                      <div className="max-h-64 space-y-2 overflow-y-auto">
                         {xpathResults.map((r, i) => (
                           <div
                             key={i}

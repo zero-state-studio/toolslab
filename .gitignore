@@ -170,17 +170,6 @@ storybook-static
 tmp/
 temp/
 
-# Test files and directories
-test/
-tests/
-__tests__/
-*.test.ts
-*.test.js
-*.spec.ts
-*.spec.js
-test-*.ts
-test-*.js
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -219,7 +208,10 @@ test-*.js
 CLAUDE.md
 CLAUDE-*.md
 docs/
-documentation/
+# documentation/: ignore everything except product/vision docs
+# (Linear mirrors and scratch notes stay local-only)
+documentation/*
+!documentation/product/
 README-*.md
 release_notes/
 released_note/

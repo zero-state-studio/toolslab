@@ -282,7 +282,7 @@ export default function HtmlToMarkdown({ categoryColor, dictionary }: HtmlToMark
   const outputChars = output.length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Mode Toggle */}
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex gap-2">
@@ -521,7 +521,7 @@ export default function HtmlToMarkdown({ categoryColor, dictionary }: HtmlToMark
                 ? (ui.htmlInputPlaceholder || '<h1>Paste your HTML here...</h1>')
                 : (ui.markdownInputPlaceholder || '# Paste your Markdown here...')
             }
-            className="h-72 resize-none font-mono text-sm"
+            className="h-56 resize-none font-mono text-sm"
           />
         </div>
 
@@ -560,7 +560,7 @@ export default function HtmlToMarkdown({ categoryColor, dictionary }: HtmlToMark
 
           {mode === 'md-to-html' && showPreview && output ? (
             <div
-              className="prose prose-sm dark:prose-invert h-72 max-w-none overflow-auto rounded-md border bg-background px-3 py-2 text-sm"
+              className="prose prose-sm dark:prose-invert h-56 max-w-none overflow-auto rounded-md border bg-background px-3 py-2 text-sm"
               dangerouslySetInnerHTML={{ __html: output }}
             />
           ) : (
@@ -573,7 +573,7 @@ export default function HtmlToMarkdown({ categoryColor, dictionary }: HtmlToMark
                   ? (ui.markdownOutputPlaceholder || '# Markdown output will appear here...')
                   : (ui.htmlOutputPlaceholder || '<p>HTML output will appear here...</p>')
               }
-              className="h-72 resize-none font-mono text-sm"
+              className="h-56 resize-none font-mono text-sm"
             />
           )}
 

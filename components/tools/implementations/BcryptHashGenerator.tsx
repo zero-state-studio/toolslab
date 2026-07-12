@@ -227,7 +227,7 @@ export default function BcryptHashGenerator({
   const samplePasswords = generateSamplePasswords();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="generate" className="flex items-center gap-2">
@@ -245,7 +245,7 @@ export default function BcryptHashGenerator({
         </TabsList>
 
         {/* Generate Tab */}
-        <TabsContent value="generate" className="space-y-6">
+        <TabsContent value="generate" className="space-y-4">
           {/* Error display */}
           {error && activeTab === 'generate' && (
             <Alert className="border-red-500 bg-red-50 text-red-900 dark:bg-red-950 dark:text-red-100">
@@ -408,7 +408,7 @@ export default function BcryptHashGenerator({
         </TabsContent>
 
         {/* Verify Tab */}
-        <TabsContent value="verify" className="space-y-6">
+        <TabsContent value="verify" className="space-y-4">
           {/* Error display */}
           {error && activeTab === 'verify' && (
             <Alert className="border-red-500 bg-red-50 text-red-900 dark:bg-red-950 dark:text-red-100">
@@ -489,7 +489,7 @@ export default function BcryptHashGenerator({
         </TabsContent>
 
         {/* Parse Tab */}
-        <TabsContent value="parse" className="space-y-6">
+        <TabsContent value="parse" className="space-y-4">
           {/* Error display */}
           {error && activeTab === 'parse' && (
             <Alert className="border-red-500 bg-red-50 text-red-900 dark:bg-red-950 dark:text-red-100">

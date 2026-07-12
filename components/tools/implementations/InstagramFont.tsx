@@ -439,7 +439,7 @@ export default function InstagramFont({ categoryColor, locale, dictionary }: Ins
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
       {/* Tool Header */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700">
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-2.5 dark:border-gray-700">
         <div className="flex items-center gap-3">
           <Sparkles className="h-5 w-5" style={{ color: categoryColor }} />
           <h3 className="font-semibold text-gray-900 dark:text-white" suppressHydrationWarning>
@@ -448,7 +448,7 @@ export default function InstagramFont({ categoryColor, locale, dictionary }: Ins
         </div>
       </div>
 
-      <div className="space-y-3 p-6 md:space-y-6">
+      <div className="space-y-3 p-4 md:space-y-4">
         {/* Input Section */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
@@ -746,7 +746,7 @@ export default function InstagramFont({ categoryColor, locale, dictionary }: Ins
               <div className="flex justify-center">
                 <button
                   onClick={() => setShowAllStyles(true)}
-                  className="rounded-lg px-6 py-3 text-sm font-medium transition-all hover:scale-105"
+                  className="rounded-lg px-4 py-3 text-sm font-medium transition-all hover:scale-105"
                   style={{
                     backgroundColor: `${categoryColor}20`,
                     color: categoryColor,
@@ -758,13 +758,13 @@ export default function InstagramFont({ categoryColor, locale, dictionary }: Ins
             )}
           </div>
         ) : input.trim() ? (
-          <div className="rounded-lg border border-gray-200 bg-gray-50 p-8 text-center dark:border-gray-700 dark:bg-gray-900">
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-5 text-center dark:border-gray-700 dark:bg-gray-900">
             <p className="text-gray-500 dark:text-gray-400">
               {t.noMatch}
             </p>
           </div>
         ) : (
-          <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 text-center dark:border-gray-700 dark:bg-gray-900 sm:p-8">
+          <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 text-center dark:border-gray-700 dark:bg-gray-900 sm:p-5">
             <Sparkles
               className="mx-auto mb-2 h-7 w-7 sm:mb-4 sm:h-12 sm:w-12"
               style={{ color: categoryColor }}

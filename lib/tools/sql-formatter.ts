@@ -410,6 +410,10 @@ export function validateSQL(sql: string): SqlValidationResult {
   const typoErrors = findTypoErrors(lines);
   errors.push(...typoErrors);
 
+  // Check for statements glued together without a semicolon
+  const separatorErrors = findMissingStatementSeparators(cleanSql);
+  errors.push(...separatorErrors);
+
   // Check for LIKE/NOT LIKE pattern issues
   const likePatternErrors = validateLikePatterns(lines);
   errors.push(...likePatternErrors);
@@ -757,45 +761,10 @@ function findUndefinedColumns(
     return errors; // Skip other validations for CTE queries
   }
 
-  // Common known columns (this would ideally come from schema analysis)
-  const knownColumns = [
-    'id',
-    'name',
-    'email',
-    'created_at',
-    'updated_at',
-    'status',
-    'user_id',
-    'customer_id',
-    'order_id',
-    'product_id',
-    'total_amount',
-    'quantity',
-    'price',
-    'order_date',
-    'order_count',
-  ];
-
-  // Check ORDER BY columns (only for non-CTE queries)
-  parsedInfo.orderByColumns.forEach((col) => {
-    // Remove semicolon if present at the end
-    const colWithoutSemicolon = col.replace(/;$/, '').trim();
-    const cleanCol = colWithoutSemicolon.replace(/.*\./, ''); // Remove table prefix
-    if (
-      !knownColumns.includes(cleanCol) &&
-      !parsedInfo.selectColumns.some(
-        (selectCol) =>
-          selectCol.includes(cleanCol) || selectCol.includes(`AS ${cleanCol}`)
-      )
-    ) {
-      const lineInfo = findColumnInOrderBy(lines, colWithoutSemicolon);
-      errors.push({
-        line: lineInfo.line,
-        column: lineInfo.column,
-        message: `Column '${cleanCol}' is not defined`,
-      });
-    }
-  });
+  // NOTE: no ORDER BY "undefined column" check here. Without real schema
+  // knowledge it was pure guesswork against a hardcoded column list and it
+  // produced false positives (e.g. window functions' OVER (... ORDER BY x)
+  // or any column outside the list), which blanked the formatter output.
 
   // Check SELECT columns for non-existent ones
   parsedInfo.selectColumns.forEach((col) => {
@@ -834,6 +803,82 @@ function findLogicalIssues(
   return warnings;
 }
 
+/**
+ * Detects a statement-starting keyword (INSERT/UPDATE/DELETE/DDL) that
+ * appears at parenthesis depth 0 in the middle of another statement,
+ * i.e. two statements glued together without a semicolon separator.
+ * Deliberately conservative: skips quoted strings and clause usages such
+ * as FOR UPDATE, ON DUPLICATE KEY UPDATE, AFTER/BEFORE DELETE triggers.
+ */
+function findMissingStatementSeparators(sql: string): SqlValidationError[] {
+  const errors: SqlValidationError[] = [];
+  const statementKeyword = /^(INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|TRUNCATE)\b/i;
+
+  let depth = 0;
+  let inSingle = false;
+  let inDouble = false;
+  let sawContent = false;
+  let lastNonSpace = '';
+  let line = 1;
+  let col = 0;
+
+  for (let i = 0; i < sql.length; i++) {
+    const ch = sql[i];
+    if (ch === '\n') {
+      line++;
+      col = 0;
+      continue;
+    }
+    col++;
+
+    if (inSingle) {
+      if (ch === "'") inSingle = false;
+      continue;
+    }
+    if (inDouble) {
+      if (ch === '"') inDouble = false;
+      continue;
+    }
+    if (ch === "'") {
+      inSingle = true;
+      sawContent = true;
+      lastNonSpace = ch;
+      continue;
+    }
+    if (ch === '"') {
+      inDouble = true;
+      sawContent = true;
+      lastNonSpace = ch;
+      continue;
+    }
+    if (ch === '(') depth++;
+    if (ch === ')') depth = Math.max(0, depth - 1);
+    if (/\s/.test(ch)) continue;
+
+    const isWordStart =
+      /[A-Za-z]/.test(ch) && (i === 0 || !/[A-Za-z0-9_$.]/.test(sql[i - 1]));
+    if (depth === 0 && isWordStart && sawContent && lastNonSpace !== ';') {
+      const m = sql.substring(i, i + 12).match(statementKeyword);
+      if (m) {
+        const before = sql.substring(Math.max(0, i - 20), i).toUpperCase();
+        const isClauseUsage = /(?:FOR|KEY|AFTER|BEFORE|OF|OR)\s+$/.test(before);
+        if (!isClauseUsage) {
+          errors.push({
+            line,
+            column: col,
+            message: `Missing semicolon before new statement "${m[1].toUpperCase()}"`,
+          });
+        }
+      }
+    }
+
+    sawContent = true;
+    lastNonSpace = ch;
+  }
+
+  return errors;
+}
+
 function findTypoErrors(lines: string[]): SqlValidationError[] {
   const errors: SqlValidationError[] = [];
 
@@ -857,7 +902,7 @@ function findTypoErrors(lines: string[]): SqlValidationError[] {
         errors.push({
           line: i + 1,
           column: lines[i].toUpperCase().indexOf(word) + 1,
-          message: `Possible typo: "${word}" should be "${commonTypos[word as keyof typeof commonTypos]}"`,
+          message: `Possible keyword typo: "${word}" should be "${commonTypos[word as keyof typeof commonTypos]}"`,
         });
       }
     });
@@ -1119,7 +1164,15 @@ function addLineBreaks(sql: string, options: SqlFormatterOptions): string {
   ];
 
   for (const keyword of singleWordKeywords) {
-    const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
+    // Don't re-break words already handled as part of a multi-word keyword
+    // (e.g. the JOIN in "INNER JOIN", the FROM in "DELETE FROM")
+    let pattern = `\\b${keyword}\\b`;
+    if (keyword === 'JOIN') {
+      pattern = `(?<!\\b(?:INNER|LEFT|RIGHT|FULL|CROSS)\\s)${pattern}`;
+    } else if (keyword === 'FROM') {
+      pattern = `(?<!\\bDELETE\\s)${pattern}`;
+    }
+    const regex = new RegExp(pattern, 'gi');
     result = result.replace(regex, (match) => `\n${match}`);
   }
 

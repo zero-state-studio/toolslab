@@ -32,10 +32,17 @@ export class IndexNowClient {
   private maxRetries = 3;
   private retryDelay = 1000; // Start with 1 second
 
-  constructor() {
+  constructor(config?: {
+    maxRetries?: number;
+    retryDelay?: number;
+    endpoints?: string[];
+  }) {
     this.host = process.env.NEXT_PUBLIC_SITE_URL || 'https://toolslab.dev';
     this.key = process.env.INDEXNOW_KEY || '3f6e2560c38248588ea3fc34a1a817a5';
     this.keyLocation = `${this.host}/${this.key}.txt`;
+    if (config?.maxRetries !== undefined) this.maxRetries = config.maxRetries;
+    if (config?.retryDelay !== undefined) this.retryDelay = config.retryDelay;
+    if (config?.endpoints) this.endpoints = config.endpoints;
   }
 
   /**
@@ -75,16 +82,17 @@ export class IndexNowClient {
     };
 
     // Try each endpoint with retry logic
+    let lastResult: SubmissionResult | undefined;
     for (const endpoint of this.endpoints) {
-      const result = await this.submitToEndpoint(endpoint, submission);
-      if (result.success) {
-        return result;
+      lastResult = await this.submitToEndpoint(endpoint, submission);
+      if (lastResult.success) {
+        return lastResult;
       }
     }
 
     return {
       success: false,
-      message: 'All IndexNow endpoints failed',
+      message: `All IndexNow endpoints failed${lastResult?.message ? `: ${lastResult.message}` : ''}`,
       failedUrls: validUrls,
       timestamp: Date.now(),
     };
