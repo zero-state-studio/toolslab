@@ -2,6 +2,7 @@
 // Intelligent type inference and TypeScript interface generation
 
 import { pythonToJson } from './json-formatter';
+import { buildSchemaDocument } from './json-schema-generator';
 
 // Type definitions for configuration
 export interface JsonToTypeScriptOptions {
@@ -425,7 +426,7 @@ export function convertJsonToTypeScript(
     }
 
     if (opts.generateJsonSchema) {
-      jsonSchema = generateJsonSchema(context);
+      jsonSchema = generateJsonSchemaOutput(jsonData, opts.rootInterfaceName);
     }
 
     if (opts.generateValidationCode) {
@@ -1130,16 +1131,11 @@ function mapTypeToZod(type: string): string {
 /**
  * Generates JSON Schema
  */
-function generateJsonSchema(context: ProcessingContext): string {
-  const schema = {
-    $schema: 'http://json-schema.org/draft-07/schema#',
-    type: 'object',
-    properties: {},
-    required: [] as string[],
-  };
-
-  // Implementation would build JSON Schema structure
-  return JSON.stringify(schema, null, 2);
+function generateJsonSchemaOutput(jsonData: unknown, title: string): string {
+  // Inference lives in the JSON Schema Generator tool — same engine, so the
+  // schema emitted here matches what that tool produces for the same sample.
+  const { document } = buildSchemaDocument(jsonData, { title });
+  return JSON.stringify(document, null, 2);
 }
 
 /**

@@ -112,6 +112,9 @@ const toolComponents = {
   'heic-to-jpg': lazy(() => import('./implementations/HeicToJpg')),
   'timezone-converter': lazy(() => import('./implementations/TimezoneConverter')),
   'json-repair': lazy(() => import('./implementations/JsonRepair')),
+  'json-schema-generator': lazy(
+    () => import('./implementations/JsonSchemaGenerator')
+  ),
   'svg-optimizer': lazy(() => import('./implementations/SvgOptimizer')),
   'exif-viewer': lazy(() => import('./implementations/ExifViewer')),
   'env-to-json': lazy(() => import('./implementations/EnvToJson')),

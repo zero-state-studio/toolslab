@@ -1,0 +1,112 @@
+{
+  "title": "Générateur de JSON Schema",
+  "description": "Générez un JSON Schema à partir de n'importe quel exemple JSON",
+  "placeholder": "Collez votre exemple JSON ici…",
+  "hint": "Collez un exemple JSON — objet, tableau ou réponse d'API. Les éléments du tableau sont fusionnés : les clés absentes de certains éléments restent optionnelles dans le schéma.",
+  "draft": "Draft",
+  "required": "Clés obligatoires",
+  "requiredAll": "Toutes les clés présentes",
+  "requiredNone": "Aucune",
+  "detectFormats": "Détecter les formats",
+  "includeExamples": "Inclure examples",
+  "strictObjects": "Pas de propriétés supplémentaires",
+  "titleLabel": "Titre du schéma",
+  "titlePlaceholder": "facultatif, ex. User",
+  "generate": "Générer le schéma",
+  "sample": "Charger un exemple",
+  "result": "JSON Schema",
+  "copy": "Copier",
+  "copied": "Copié !",
+  "download": "Télécharger",
+  "objects": "objets",
+  "properties": "propriétés",
+  "depth": "profondeur",
+  "formatsFound": "Formats détectés",
+  "longTailKeywords": [
+    "générateur json schema en ligne gratuit",
+    "créer un schéma json depuis json",
+    "comment générer un json schema à partir d'un exemple",
+    "json schema depuis une réponse d'api",
+    "générer un json schema draft-07",
+    "générateur json schema 2020-12",
+    "convertir json en json schema",
+    "champs obligatoires json schema depuis un exemple",
+    "générer un json schema pour la validation ajv",
+    "générateur json schema sans inscription",
+    "json schema en ligne dans le navigateur",
+    "déduire un json schema des données"
+  ],
+  "meta": {
+    "title": "Générateur de JSON Schema - Créer un JSON Schema Gratuit",
+    "description": "Générez un JSON Schema depuis un exemple JSON gratuitement. Draft-07 ou 2020-12, éléments fusionnés, formats détectés. Sans inscription, dans le navigateur."
+  },
+  "tagline": "Générez un JSON Schema depuis un vrai exemple JSON en un clic",
+  "pageDescription": "Transformez n'importe quel exemple JSON en JSON Schema valide avec ce générateur gratuit qui fonctionne dans le navigateur. Collez un objet, un tableau ou une réponse d'API et obtenez une sortie draft-07 ou 2020-12 avec les types, les clés obligatoires et les formats détectés. Les éléments du tableau sont fusionnés : une clé absente de certains reste optionnelle. Conçu pour qui écrit des contrats d'API. Tout est local, votre payload n'est jamais envoyé. Sans inscription.",
+  "instructions": {
+    "title": "Comment générer un JSON Schema",
+    "steps": [
+      {
+        "title": "Collez votre exemple JSON",
+        "description": "Insérez un objet, un tableau d'enregistrements ou une réponse d'API brute. Cliquez sur 'Charger un exemple' pour voir le traitement d'un tableau de deux enregistrements."
+      },
+      {
+        "title": "Choisissez le draft",
+        "description": "Draft-07 est la valeur par défaut la plus sûre et celle attendue par la plupart des validateurs (Ajv, python-jsonschema). Choisissez 2020-12 pour OpenAPI 3.1 et les outils récents."
+      },
+      {
+        "title": "Décidez ce qui est obligatoire",
+        "description": "'Toutes les clés présentes' marque comme required chaque clé de l'exemple. Passez à 'Aucune' quand l'exemple n'est que partiel et que vous resserrerez le schéma à la main."
+      },
+      {
+        "title": "Réglez formats, examples et rigueur",
+        "description": "La détection de formats ajoute les annotations date-time, date, time, email, uri, uuid et ipv4. 'Pas de propriétés supplémentaires' émet additionalProperties: false ; 'Inclure examples' garde la valeur échantillonnée sur chaque scalaire."
+      },
+      {
+        "title": "Générez, puis copiez ou téléchargez",
+        "description": "Cliquez sur Générer le schéma pour voir le résultat et le décompte d'objets, de propriétés et de profondeur. Copiez-le ou téléchargez-le en fichier .json prêt à versionner avec votre code d'API."
+      }
+    ],
+    "features": [
+      "Sortie draft-07 et 2020-12 avec la bonne URL $schema",
+      "Éléments de tableau fusionnés en un seul schéma : required se réduit aux clés communes",
+      "Distinction integer / number et valeurs nullable en listes de types",
+      "Détection des formats de chaîne : date-time, date, time, email, uri, uuid, ipv4",
+      "additionalProperties: false en option pour des contrats stricts",
+      "examples facultatifs et titre de schéma personnalisé",
+      "Convertit le JSON en JSON Schema en déduisant les types depuis l'exemple",
+      "Statistiques sur les objets, propriétés, profondeur d'imbrication et formats trouvés",
+      "100 % côté client — votre payload JSON ne quitte jamais le navigateur, sans inscription"
+    ],
+    "useCases": [
+      "Écrire un JSON Schema pour une réponse d'API dont vous n'avez qu'un échantillon",
+      "Générer un schéma de validation pour Ajv ou python-jsonschema",
+      "Rédiger le schéma du corps de requête OpenAPI 3.1 depuis un payload réel",
+      "Documenter la forme du payload d'un webhook pour votre équipe",
+      "Ajouter des contract tests qui échouent si une API amont change de forme",
+      "Créer le schéma d'un fichier de configuration pour l'autocomplétion dans l'éditeur",
+      "Vérifier quels champs sont réellement optionnels dans une liste d'enregistrements",
+      "Démarrer un schéma depuis un export de collection NoSQL"
+    ],
+    "proTips": [
+      "Collez plusieurs enregistrements, pas un seul : c'est ainsi que les clés optionnelles apparaissent",
+      "Incluez un enregistrement avec des null pour que les champs nullable sortent en listes de types",
+      "Utilisez 'Pas de propriétés supplémentaires' quand le schéma protège une requête entrante",
+      "Désactivez la détection de formats si vos identifiants ressemblent par hasard à des dates ou UUID",
+      "Donnez un titre identique au nom de votre type pour une documentation lisible",
+      "Besoin de types TypeScript ? Utilisez l'outil JSON to TypeScript"
+    ],
+    "troubleshooting": [
+      "Erreur JSON invalide : l'exemple doit être du JSON strict — passez-le d'abord par JSON Repair",
+      "Tout est ressorti obligatoire : passez 'Clés obligatoires' à Aucune, ou collez plus d'enregistrements",
+      "Un champ a un type trop étroit : ajoutez des échantillons couvrant ses autres valeurs, puis régénérez",
+      "Format inattendu sur un identifiant : désactivez la détection, les chaînes de type UUID sont annotées volontairement",
+      "Un tableau vide est devenu items: {} : il n'y avait rien à inférer — ajoutez un élément d'exemple"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+C / Cmd+C",
+        "description": "Copiez le schéma généré après avoir cliqué sur Copier"
+      }
+    ]
+  }
+}

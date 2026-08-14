@@ -125,6 +125,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
   'heic-to-jpg': Camera,
   'timezone-converter': Globe2,
   'json-repair': Wand2,
+  'json-schema-generator': FileJson2,
   'svg-optimizer': Sparkles,
   'exif-viewer': Fingerprint,
   'env-to-json': FileCode2,

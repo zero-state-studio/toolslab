@@ -809,6 +809,31 @@ export const tools: Tool[] = [
     label: '',
   },
   {
+    id: 'json-schema-generator',
+    name: 'JSON Schema Generator',
+    description:
+      'Generate a JSON Schema from a JSON sample — merged array items, detected formats, draft-07 or 2020-12',
+    icon: '🧬',
+    route: '/tools/json-schema-generator',
+    categories: ['data', 'dev'],
+    keywords: [
+      'json schema generator',
+      'generate json schema',
+      'json to json schema',
+      'json schema from json',
+      'json schema draft-07',
+      'json schema 2020-12',
+      'infer json schema',
+      'json schema builder',
+      'create json schema online',
+      'json schema validator schema',
+      'api response schema',
+      'json schema generator online',
+    ],
+    searchVolume: 40000,
+    label: '',
+  },
+  {
     id: 'svg-optimizer',
     name: 'SVG Optimizer',
     description:

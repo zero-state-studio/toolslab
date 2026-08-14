@@ -12,7 +12,7 @@ Live status of the tool build pipeline. **Rendered on GitHub** — refresh to se
 
 ## 📊 Status
 
-- **Shipped (dev):** 9 tools · ~1.3M/mo search volume
+- **Shipped (dev):** 10 tools · ~1.4M/mo search volume
 - **Verifying:** 2 (pdf.js render)
 - **Queued:** prioritized below
 
@@ -29,6 +29,7 @@ Live status of the tool build pipeline. **Rendered on GitHub** — refresh to se
 - [x] **image-resizer** — Image Resizer (px / %) · 450K/mo · `RIC-34`
 - [x] **image-compressor** — Image Compressor (quality slider) · 150K/mo · replaces `image-optimizer` stub
 - [x] **pdf-compressor** — Compress PDF (lossless + raster levels) · 90K/mo · `RIC-66`
+- [x] **json-schema-generator** — JSON Schema Generator (draft-07 / 2020-12) · 40K/mo · `RIC-35`
 
 > Each: pure tested logic, 6 locales (en/it/es/fr/de/pt), web-researched long-tail keywords, sitemap, completeness review.
 
@@ -42,8 +43,7 @@ Live status of the tool build pipeline. **Rendered on GitHub** — refresh to se
 
 ## 🎯 Queued — Phase 1 (high volume, ≥30K/mo)
 
-- [ ] 🎯 **json-schema-generator** — Generate JSON Schema from JSON · 40K/mo · `RIC-35`
-- [ ] **json-diff** — Structured JSON diff · 40K/mo · `RIC-12`
+- [ ] 🎯 **json-diff** — Structured JSON diff · 40K/mo · `RIC-12`
 - [ ] **fake-data-generator** — Mock/fake data · 35K/mo · `RIC-36`
 - [ ] **contrast-checker** — WCAG contrast checker (quick-win) · 33K/mo · `RIC-37`
 

@@ -86,6 +86,7 @@ export const ALL_TOOL_IDS = [
     'heic-to-jpg',
     'timezone-converter',
     'json-repair',
+    'json-schema-generator',
     'svg-optimizer',
     'exif-viewer',
     'env-to-json',

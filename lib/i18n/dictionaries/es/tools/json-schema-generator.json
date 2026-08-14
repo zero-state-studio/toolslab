@@ -1,0 +1,112 @@
+{
+  "title": "Generador de JSON Schema",
+  "description": "Genera un JSON Schema a partir de cualquier ejemplo JSON",
+  "placeholder": "Pega aquí tu ejemplo JSON…",
+  "hint": "Pega un ejemplo JSON — objeto, array o respuesta de API. Los elementos del array se combinan, así las claves ausentes en algunos elementos quedan opcionales en el esquema.",
+  "draft": "Draft",
+  "required": "Claves obligatorias",
+  "requiredAll": "Todas las claves presentes",
+  "requiredNone": "Ninguna",
+  "detectFormats": "Detectar formatos",
+  "includeExamples": "Incluir examples",
+  "strictObjects": "Sin propiedades extra",
+  "titleLabel": "Título del esquema",
+  "titlePlaceholder": "opcional, p. ej. User",
+  "generate": "Generar esquema",
+  "sample": "Cargar ejemplo",
+  "result": "JSON Schema",
+  "copy": "Copiar",
+  "copied": "¡Copiado!",
+  "download": "Descargar",
+  "objects": "objetos",
+  "properties": "propiedades",
+  "depth": "profundidad",
+  "formatsFound": "Formatos detectados",
+  "longTailKeywords": [
+    "generador de json schema online gratis",
+    "crear esquema json desde json",
+    "cómo crear un json schema a partir de un ejemplo",
+    "json schema desde respuesta de api",
+    "generar json schema draft-07",
+    "generador json schema 2020-12",
+    "convertir json a json schema",
+    "campos obligatorios json schema desde ejemplo",
+    "generar json schema para validación con ajv",
+    "generador json schema sin registro",
+    "json schema online en el navegador",
+    "inferir json schema de los datos"
+  ],
+  "meta": {
+    "title": "Generador de JSON Schema - Crear JSON Schema Gratis",
+    "description": "Genera un JSON Schema desde un ejemplo JSON gratis. Draft-07 o 2020-12, elementos de array combinados, formatos detectados. Sin registro, en tu navegador."
+  },
+  "tagline": "Genera un JSON Schema desde un ejemplo JSON real en un clic",
+  "pageDescription": "Convierte cualquier ejemplo JSON en un JSON Schema válido con este generador gratuito que funciona en el navegador. Pega un objeto, un array o una respuesta de API y obtén salida draft-07 o 2020-12 con tipos, claves obligatorias y formatos detectados. Los elementos del array se combinan, así una clave ausente en algunos queda opcional. Pensado para quien escribe contratos de API. Todo local: tu payload nunca se sube. Sin registro.",
+  "instructions": {
+    "title": "Cómo generar un JSON Schema",
+    "steps": [
+      {
+        "title": "Pega tu ejemplo JSON",
+        "description": "Introduce un objeto, un array de registros o una respuesta de API en bruto. Pulsa 'Cargar ejemplo' para ver cómo se trata un array de dos registros."
+      },
+      {
+        "title": "Elige el draft",
+        "description": "Draft-07 es el valor por defecto más seguro y el que esperan la mayoría de validadores (Ajv, python-jsonschema). Elige 2020-12 para OpenAPI 3.1 y herramientas más nuevas."
+      },
+      {
+        "title": "Decide qué es obligatorio",
+        "description": "'Todas las claves presentes' marca como required cada clave del ejemplo. Cambia a 'Ninguna' cuando el ejemplo sea parcial y prefieras ajustar el esquema a mano."
+      },
+      {
+        "title": "Ajusta formatos, examples y rigidez",
+        "description": "La detección de formatos añade anotaciones date-time, date, time, email, uri, uuid e ipv4. 'Sin propiedades extra' emite additionalProperties: false; 'Incluir examples' conserva el valor de muestra en cada escalar."
+      },
+      {
+        "title": "Genera y luego copia o descarga",
+        "description": "Pulsa Generar esquema para ver el resultado con el recuento de objetos, propiedades y profundidad. Cópialo o descárgalo como archivo .json listo para versionar junto a tu código de API."
+      }
+    ],
+    "features": [
+      "Salida draft-07 y 2020-12 con la URL $schema correcta",
+      "Elementos de array combinados en un solo esquema: required se reduce a las claves comunes",
+      "Detección de integer frente a number y valores nullable como listas de tipos",
+      "Detección de formatos de cadena: date-time, date, time, email, uri, uuid, ipv4",
+      "additionalProperties: false opcional para contratos estrictos",
+      "examples opcionales y título de esquema personalizado",
+      "Convierte JSON a JSON Schema infiriendo los tipos desde los datos de ejemplo",
+      "Estadísticas de objetos, propiedades, profundidad de anidamiento y formatos hallados",
+      "100% en el cliente: tu payload JSON nunca sale del navegador, sin registro"
+    ],
+    "useCases": [
+      "Escribir un JSON Schema para una respuesta de API de la que solo tienes una muestra",
+      "Generar un esquema de validación para Ajv o python-jsonschema",
+      "Redactar el esquema del cuerpo de petición de OpenAPI 3.1 desde un payload real",
+      "Documentar la forma del payload de un webhook para tu equipo",
+      "Añadir contract tests que fallen si una API upstream cambia de forma",
+      "Crear el esquema de un archivo de configuración para autocompletado y validación en el editor",
+      "Comprobar qué campos son realmente opcionales en una lista de registros",
+      "Arrancar un esquema desde un volcado de colección NoSQL"
+    ],
+    "proTips": [
+      "Pega varios registros, no uno: así se descubren las claves opcionales",
+      "Incluye un registro con nulls para que los campos nullable salgan como listas de tipos",
+      "Usa 'Sin propiedades extra' cuando el esquema protege una petición entrante",
+      "Desactiva la detección de formatos si tus IDs parecen fechas o UUID por casualidad",
+      "Pon un título igual al nombre de tu tipo para que la documentación se lea mejor",
+      "¿Necesitas tipos TypeScript? Usa la herramienta JSON to TypeScript"
+    ],
+    "troubleshooting": [
+      "Error de JSON no válido: el ejemplo debe ser JSON estricto — pásalo antes por JSON Repair",
+      "Todo salió obligatorio: cambia 'Claves obligatorias' a Ninguna, o pega más registros",
+      "Un campo tiene un tipo demasiado estrecho: añade muestras con sus otros valores y regenera",
+      "Formato inesperado en un ID: desactiva la detección de formatos, las cadenas tipo UUID se anotan a propósito",
+      "Un array vacío quedó como items: {}: no había nada que inferir — añade un elemento de ejemplo"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+C / Cmd+C",
+        "description": "Copia el esquema generado tras pulsar Copiar"
+      }
+    ]
+  }
+}

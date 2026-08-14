@@ -1,0 +1,112 @@
+{
+  "title": "JSON-Schema-Generator",
+  "description": "Erzeuge ein JSON Schema aus jedem JSON-Beispiel",
+  "placeholder": "JSON-Beispiel hier einfügen…",
+  "hint": "Füge ein JSON-Beispiel ein — Objekt, Array oder API-Antwort. Array-Elemente werden zusammengeführt, dadurch bleiben Schlüssel, die in einzelnen Elementen fehlen, optional.",
+  "draft": "Draft",
+  "required": "Pflichtfelder",
+  "requiredAll": "Alle vorhandenen Schlüssel",
+  "requiredNone": "Keine",
+  "detectFormats": "Formate erkennen",
+  "includeExamples": "examples einfügen",
+  "strictObjects": "Keine zusätzlichen Properties",
+  "titleLabel": "Schema-Titel",
+  "titlePlaceholder": "optional, z. B. User",
+  "generate": "Schema erzeugen",
+  "sample": "Beispiel laden",
+  "result": "JSON Schema",
+  "copy": "Kopieren",
+  "copied": "Kopiert!",
+  "download": "Herunterladen",
+  "objects": "Objekte",
+  "properties": "Properties",
+  "depth": "Tiefe",
+  "formatsFound": "Erkannte Formate",
+  "longTailKeywords": [
+    "json schema generator online kostenlos",
+    "json schema aus json erzeugen",
+    "wie erstelle ich ein json schema aus einem beispiel",
+    "json schema aus api antwort erzeugen",
+    "json schema draft-07 generator",
+    "json schema 2020-12 generator",
+    "json in json schema umwandeln",
+    "json schema pflichtfelder aus beispiel",
+    "json schema für ajv validierung erzeugen",
+    "json schema generator ohne anmeldung",
+    "json schema online im browser",
+    "json schema aus daten ableiten"
+  ],
+  "meta": {
+    "title": "JSON-Schema-Generator - JSON Schema aus JSON Kostenlos",
+    "description": "Erzeuge ein JSON Schema aus einem JSON-Beispiel kostenlos. Draft-07 oder 2020-12, zusammengeführte Array-Elemente, erkannte Formate. Ohne Anmeldung, im Browser."
+  },
+  "tagline": "Erzeuge ein JSON Schema aus einem echten JSON-Beispiel mit einem Klick",
+  "pageDescription": "Verwandle jedes JSON-Beispiel mit diesem kostenlosen Generator direkt im Browser in ein gültiges JSON Schema. Füge ein Objekt, ein Array oder eine rohe API-Antwort ein und erhalte Draft-07- oder 2020-12-Ausgabe mit Typen, Pflichtfeldern und erkannten String-Formaten. Array-Elemente werden zusammengeführt, sodass ein in manchen Elementen fehlender Schlüssel optional bleibt statt das Schema zu überengen. Gemacht für Entwickler, die API-Verträge und Request-Validierung schreiben. Alles läuft lokal, dein Payload wird nie hochgeladen. Ohne Anmeldung.",
+  "instructions": {
+    "title": "So erzeugst du ein JSON Schema",
+    "steps": [
+      {
+        "title": "JSON-Beispiel einfügen",
+        "description": "Füge ein Objekt, ein Array von Datensätzen oder eine rohe API-Antwort ein. Klick auf 'Beispiel laden', um zu sehen, wie ein Array mit zwei Datensätzen behandelt wird."
+      },
+      {
+        "title": "Draft wählen",
+        "description": "Draft-07 ist der sicherste Standard und was die meisten Validatoren (Ajv, python-jsonschema) erwarten. Wähle 2020-12 für OpenAPI 3.1 und neuere Tools."
+      },
+      {
+        "title": "Pflichtfelder festlegen",
+        "description": "'Alle vorhandenen Schlüssel' markiert jeden gefundenen Schlüssel als required. Wechsle auf 'Keine', wenn das Beispiel nur teilweise ist und du das Schema selbst nachziehst."
+      },
+      {
+        "title": "Formate, examples und Strenge einstellen",
+        "description": "Die Formaterkennung ergänzt date-time, date, time, email, uri, uuid und ipv4. 'Keine zusätzlichen Properties' schreibt additionalProperties: false; 'examples einfügen' behält den Beispielwert an jedem Skalar."
+      },
+      {
+        "title": "Erzeugen, dann kopieren oder herunterladen",
+        "description": "Klick auf Schema erzeugen, um das Ergebnis samt Anzahl an Objekten, Properties und Tiefe zu sehen. Kopiere es oder lade es als .json-Datei herunter, fertig zum Committen neben deinem API-Code."
+      }
+    ],
+    "features": [
+      "Draft-07- und 2020-12-Ausgabe mit korrekter $schema-URL",
+      "Array-Elemente zu einem Schema zusammengeführt — required schrumpft auf die gemeinsamen Schlüssel",
+      "Unterscheidung integer/number und nullable Werte als Typlisten",
+      "String-Formaterkennung: date-time, date, time, email, uri, uuid, ipv4",
+      "Optionales additionalProperties: false für strenge Verträge",
+      "Optionale examples und eigener Schema-Titel",
+      "Wandelt JSON in JSON Schema um und leitet die Typen aus den Beispieldaten ab",
+      "Statistik zu Objekten, Properties, Verschachtelungstiefe und gefundenen Formaten",
+      "100 % clientseitig — dein JSON-Payload verlässt den Browser nie, ohne Anmeldung"
+    ],
+    "useCases": [
+      "Ein JSON Schema für eine API-Antwort schreiben, von der nur ein Beispiel vorliegt",
+      "Ein Validierungsschema für Ajv oder python-jsonschema erzeugen",
+      "Das OpenAPI-3.1-Request-Body-Schema aus einem echten Payload entwerfen",
+      "Die Form eines Webhook-Payloads fürs Team dokumentieren",
+      "Contract-Tests ergänzen, die anschlagen, wenn eine Upstream-API ihre Form ändert",
+      "Ein Schema für eine Konfigurationsdatei bauen, damit Editoren validieren und vervollständigen",
+      "Prüfen, welche Felder in einer Liste von Datensätzen wirklich optional sind",
+      "Ein Schema aus einem NoSQL-Collection-Dump starten"
+    ],
+    "proTips": [
+      "Füge mehrere Datensätze ein, nicht einen — nur so werden optionale Schlüssel erkannt",
+      "Nimm einen Datensatz mit null-Werten mit, damit nullable Felder als Typlisten erscheinen",
+      "Nutze 'Keine zusätzlichen Properties', wenn das Schema einen eingehenden Request absichert",
+      "Schalte die Formaterkennung ab, wenn IDs zufällig wie Datumsangaben oder UUIDs aussehen",
+      "Setze einen Titel passend zum Typnamen, damit die Doku lesbar bleibt",
+      "Brauchst du TypeScript-Typen? Nutze das Tool JSON to TypeScript"
+    ],
+    "troubleshooting": [
+      "Fehler ungültiges JSON: Das Beispiel muss striktes JSON sein — schick es vorher durch JSON Repair",
+      "Alles wurde zur Pflicht: Stelle 'Pflichtfelder' auf Keine, oder füge mehr Datensätze ein",
+      "Ein Feld ist zu eng typisiert: Ergänze Beispiele mit den anderen Werten und erzeuge neu",
+      "Unerwartetes Format an einer ID: Formaterkennung abschalten, UUID-ähnliche Strings werden bewusst annotiert",
+      "Leeres Array wurde items: {}: Es gab nichts zu erschließen — füge ein Beispielelement hinzu"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+C / Cmd+C",
+        "description": "Erzeugtes Schema nach Klick auf Kopieren einfügen"
+      }
+    ]
+  }
+}
