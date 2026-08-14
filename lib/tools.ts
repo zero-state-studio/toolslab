@@ -1607,6 +1607,31 @@ export const tools: Tool[] = [
     label: '',
   },
   {
+    id: 'pdf-compressor',
+    name: 'Compress PDF',
+    description:
+      'Reduce PDF file size in your browser — pick a compression level, keep the pages, shrink the file',
+    icon: '🗜️',
+    route: '/tools/pdf-compressor',
+    categories: ['pdf'],
+    keywords: [
+      'compress pdf',
+      'pdf compressor',
+      'reduce pdf size',
+      'shrink pdf',
+      'compress pdf online',
+      'make pdf smaller',
+      'pdf size reducer',
+      'optimize pdf',
+      'compress pdf file',
+      'lower pdf file size',
+      'pdf compression',
+      'reduce pdf file size free',
+    ],
+    searchVolume: 90000,
+    label: '',
+  },
+  {
     id: 'split-pdf',
     name: 'Split PDF',
     description:

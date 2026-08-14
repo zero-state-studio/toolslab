@@ -1,0 +1,118 @@
+{
+  "title": "Comprimir PDF",
+  "description": "Reduza o tamanho de um PDF diretamente no navegador",
+  "placeholder": "Arraste um arquivo PDF aqui ou clique para enviar",
+  "drop": "Arraste um arquivo PDF aqui ou clique para enviar",
+  "level": "Nível de compressão",
+  "lossless": "Sem perdas",
+  "losslessHint": "Mantém o texto selecionável · economia pequena",
+  "light": "Leve",
+  "lightHint": "Melhor qualidade · 150 DPI",
+  "balanced": "Equilibrada",
+  "balancedHint": "Recomendada · 120 DPI",
+  "strong": "Forte",
+  "strongHint": "Arquivo menor · 96 DPI",
+  "advanced": "Configurações avançadas",
+  "dpi": "Resolução (DPI)",
+  "quality": "Qualidade JPEG",
+  "grayscale": "Converter para escala de cinza",
+  "compress": "Comprimir PDF",
+  "compressing": "Comprimindo…",
+  "pages": "páginas",
+  "download": "Baixar o PDF comprimido",
+  "result": "Resultado",
+  "before": "Original",
+  "after": "Comprimido",
+  "saved": "economizado",
+  "onlyPdf": "Apenas arquivos PDF são suportados",
+  "readError": "Não foi possível ler o PDF",
+  "noGain": "Este PDF já está otimizado — tente um nível mais forte ou a escala de cinza.",
+  "rasterNote": "As páginas são renderizadas novamente como imagens, então o texto deixa de ser selecionável.",
+  "longTailKeywords": [
+    "comprimir pdf online grátis",
+    "reduzir o tamanho de um pdf sem perder qualidade",
+    "como comprimir um pdf para enviar por email",
+    "comprimir pdf digitalizado sem perder qualidade",
+    "comprimir pdf sem cadastro",
+    "comprimir pdf sem marca d'água",
+    "reduzir pdf para menos de 10 mb",
+    "diminuir o tamanho do arquivo pdf online",
+    "comprimir pdf no navegador sem upload",
+    "melhor compressor de pdf grátis online",
+    "converter pdf em escala de cinza para reduzir tamanho",
+    "reduzir o dpi de um pdf para diminuir o peso"
+  ],
+  "meta": {
+    "title": "Comprimir PDF - Reduzir o Tamanho de PDF Online Grátis",
+    "description": "Comprima PDF online grátis e reduza o tamanho do arquivo escolhendo o nível de qualidade. Sem upload, sem cadastro e sem marca d'água — tudo no navegador."
+  },
+  "tagline": "Comprima PDF e reduza o tamanho do arquivo sem enviar nada online",
+  "pageDescription": "Reduza o tamanho de um PDF com esta ferramenta gratuita que funciona no navegador. Escolha Sem perdas para diminuir o arquivo sem perder qualidade e manter o texto selecionável, ou Leve, Equilibrada e Forte para renderizar as páginas como imagens otimizadas e obter arquivos muito menores. Feita para quem precisa caber no limite de 10 MB de um e-mail ou portal de upload. Seu documento é processado localmente e nunca sai do dispositivo, então arquivos confidenciais continuam seguros. Sem cadastro e sem marca d'água.",
+  "instructions": {
+    "title": "Como comprimir um PDF",
+    "steps": [
+      {
+        "title": "Envie seu PDF",
+        "description": "Arraste um PDF para a área de upload ou clique para escolher. Nome, número de páginas e tamanho atual aparecem na hora."
+      },
+      {
+        "title": "Escolha o nível de compressão",
+        "description": "Sem perdas reescreve a estrutura do arquivo e mantém o texto selecionável. Leve, Equilibrada e Forte renderizam cada página como JPEG a 150, 120 ou 96 DPI para economizar muito mais."
+      },
+      {
+        "title": "Ajuste as opções avançadas (opcional)",
+        "description": "Defina um DPI exato entre 36 e 300, mova o controle de qualidade JPEG ou converta as páginas para escala de cinza — ideal para digitalizações em preto e branco."
+      },
+      {
+        "title": "Comprima o arquivo",
+        "description": "Clique em Comprimir PDF. As páginas são processadas uma a uma no navegador e um contador mostra o progresso."
+      },
+      {
+        "title": "Confira a economia e baixe",
+        "description": "Compare o tamanho original e o comprimido com a porcentagem economizada e baixe o resultado como seuarquivo-compressed.pdf."
+      }
+    ],
+    "features": [
+      "Quatro níveis: Sem perdas mais Leve, Equilibrada e Forte",
+      "O modo Sem perdas mantém o texto vetorial e selecionável",
+      "DPI personalizado (36–300) e controle de qualidade JPEG",
+      "Conversão para escala de cinza para economizar mais em digitalizações",
+      "Comparação antes/depois com a porcentagem exata economizada",
+      "Tamanho da página em pontos preservado: o PDF imprime no mesmo formato",
+      "Nunca devolve um arquivo maior que o original",
+      "100% no navegador — seu PDF nunca é enviado, sem cadastro nem marca d'água"
+    ],
+    "useCases": [
+      "Reduzir um PDF abaixo do limite de anexo do e-mail",
+      "Comprimir um contrato digitalizado antes de enviá-lo a um portal",
+      "Aliviar um folheto cheio de fotos para carregar rápido na web",
+      "Encaixar um portfólio em PDF no limite de upload de uma vaga",
+      "Deixar um arquivo de notas fiscais mais leve para guardar por anos",
+      "Comprimir uma apresentação exportada em PDF antes de compartilhar",
+      "Reduzir um documento de identidade digitalizado para um formulário do governo",
+      "Aliviar um manual antes de anexá-lo a um ticket"
+    ],
+    "proTips": [
+      "Tente primeiro Sem perdas quando o texto precisa continuar pesquisável e selecionável",
+      "Digitalizações e PDFs cheios de fotos encolhem mais em Equilibrada ou Forte",
+      "A escala de cinza costuma reduzir à metade o peso de uma digitalização em preto e branco",
+      "Para impressão, fique em 150 DPI ou mais; 96 DPI basta para leitura em tela",
+      "Busque 10 MB ou menos quando o e-mail ou o portal recusa anexos maiores",
+      "Se a economia for pequena, o PDF provavelmente já estava otimizado",
+      "Precisa de menos páginas em vez de um arquivo menor? Use a ferramenta Dividir PDF"
+    ],
+    "troubleshooting": [
+      "0% economizado: o arquivo já está otimizado — tente Forte ou ative a escala de cinza",
+      "O texto não é mais selecionável: isso é esperado fora do modo Sem perdas; volte para Sem perdas",
+      "Páginas sem nitidez: aumente o DPI ou a qualidade JPEG nas configurações avançadas",
+      "Compressão lenta: PDFs grandes ou com muitas páginas demoram mais, pois são processados página por página",
+      "O PDF não carrega: arquivos protegidos por senha ou corrompidos não podem ser comprimidos"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clique + arrastar",
+        "description": "Arraste um arquivo PDF para a área de upload"
+      }
+    ]
+  }
+}

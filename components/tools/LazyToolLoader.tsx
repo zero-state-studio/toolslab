@@ -106,6 +106,7 @@ const toolComponents = {
   'pdf-to-jpg': lazy(() => import('./implementations/PdfToJpg')),
   'merge-pdf': lazy(() => import('./implementations/MergePdf')),
   'split-pdf': lazy(() => import('./implementations/SplitPdf')),
+  'pdf-compressor': lazy(() => import('./implementations/PdfCompressor')),
   'image-resizer': lazy(() => import('./implementations/ImageResizer')),
   'image-compressor': lazy(() => import('./implementations/ImageCompressor')),
   'heic-to-jpg': lazy(() => import('./implementations/HeicToJpg')),

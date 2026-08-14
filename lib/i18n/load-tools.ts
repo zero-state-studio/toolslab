@@ -120,6 +120,7 @@ export const ALL_TOOL_IDS = [
     'pdf-to-jpg',
     'merge-pdf',
     'split-pdf',
+    'pdf-compressor',
     'image-to-pdf',
     'jpg-to-pdf',
     'png-to-pdf',

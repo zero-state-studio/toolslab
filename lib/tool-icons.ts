@@ -165,6 +165,7 @@ export const toolIconMap: Record<string, LucideIcon> = {
   'pdf-to-jpg': FileImage,
   'merge-pdf': FileStack,
   'split-pdf': Scissors,
+  'pdf-compressor': Shrink,
   'image-to-pdf': Images,
   'jpg-to-pdf': FileImage,
   'png-to-pdf': FileImage,

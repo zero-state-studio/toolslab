@@ -1,0 +1,104 @@
+{
+  "title": "Compress PDF",
+  "description": "Reduce PDF file size directly in your browser",
+  "placeholder": "Drop a PDF file here or click to upload",
+  "drop": "Drop a PDF file here or click to upload",
+  "level": "Compression level",
+  "lossless": "Lossless",
+  "losslessHint": "Keeps text selectable · small savings",
+  "light": "Light",
+  "lightHint": "Best quality · 150 DPI",
+  "balanced": "Balanced",
+  "balancedHint": "Recommended · 120 DPI",
+  "strong": "Strong",
+  "strongHint": "Smallest file · 96 DPI",
+  "advanced": "Advanced settings",
+  "dpi": "Resolution (DPI)",
+  "quality": "JPEG quality",
+  "grayscale": "Convert to grayscale",
+  "compress": "Compress PDF",
+  "compressing": "Compressing…",
+  "pages": "pages",
+  "download": "Download compressed PDF",
+  "result": "Result",
+  "before": "Original",
+  "after": "Compressed",
+  "saved": "saved",
+  "onlyPdf": "Only PDF files are supported",
+  "readError": "Could not read the PDF",
+  "noGain": "This PDF is already well optimised — try a stronger level or grayscale.",
+  "rasterNote": "Pages are re-rendered as images, so text is no longer selectable.",
+  "meta": {
+    "title": "Compress PDF - Reduce PDF File Size Online Free",
+    "description": "Compress PDF files online free and reduce PDF size with adjustable quality levels. No upload, no signup, no watermark — everything runs in your browser."
+  },
+  "tagline": "Compress PDF files and cut their size without uploading anything",
+  "pageDescription": "Reduce PDF file size with this free, browser-based Compress PDF tool. Pick Lossless to shrink the file without losing quality and keep text selectable, or Light, Balanced and Strong to re-render pages as optimised images for much smaller files. Built for anyone hitting a 10 MB email or upload size limit. Your document is processed locally and never leaves your device, so confidential files stay secure. No signup, no watermarks.",
+  "instructions": {
+    "title": "How to compress a PDF",
+    "steps": [
+      {
+        "title": "Upload your PDF",
+        "description": "Drag and drop a PDF onto the upload area or click to browse. The file name, page count and current size appear right away."
+      },
+      {
+        "title": "Choose a compression level",
+        "description": "Lossless rewrites the file structure and keeps text selectable. Light, Balanced and Strong re-render each page as a JPEG at 150, 120 or 96 DPI for far bigger savings."
+      },
+      {
+        "title": "Fine-tune in Advanced settings (optional)",
+        "description": "Set an exact DPI between 36 and 300, move the JPEG quality slider, or switch pages to grayscale — ideal for scanned black-and-white documents."
+      },
+      {
+        "title": "Compress the file",
+        "description": "Click Compress PDF. Pages are processed one by one in your browser and a live counter shows the progress."
+      },
+      {
+        "title": "Check the savings and download",
+        "description": "Compare the original and compressed sizes with the percentage saved, then download the result as yourfile-compressed.pdf."
+      }
+    ],
+    "features": [
+      "Four compression levels: Lossless plus Light, Balanced and Strong",
+      "Lossless mode keeps text vector-based and selectable",
+      "Custom DPI (36–300) and JPEG quality slider",
+      "Grayscale conversion for extra savings on scans",
+      "Before/after size comparison with exact percentage saved",
+      "Page size in points preserved, so the PDF still prints at the same format",
+      "Never returns a file bigger than the original",
+      "100% client-side — your PDF is never uploaded, no signup or watermark"
+    ],
+    "useCases": [
+      "Shrink a PDF below an email attachment limit",
+      "Compress a scanned contract before uploading it to a portal",
+      "Reduce a photo-heavy brochure so it loads fast on the web",
+      "Fit a portfolio PDF into a job application upload cap",
+      "Make a large invoice archive lighter for long-term storage",
+      "Compress a slide deck exported as PDF before sharing it",
+      "Cut the size of a scanned ID or certificate for a government form",
+      "Lower the weight of a manual before attaching it to a ticket"
+    ],
+    "proTips": [
+      "Try Lossless first when the text must stay searchable and selectable",
+      "Scans and photo-heavy PDFs shrink the most in Balanced or Strong",
+      "Grayscale often halves the size of a black-and-white scan",
+      "For print, stay at 150 DPI or above; 96 DPI is fine for screen reading",
+      "Target 10 MB or less when a mail client or portal rejects bigger attachments",
+      "If the savings look small, the PDF was likely already optimised",
+      "Need fewer pages instead of a smaller file? Use the Split PDF tool"
+    ],
+    "troubleshooting": [
+      "0% saved: the file is already optimised — try Strong or enable grayscale",
+      "Text is no longer selectable: that is expected outside Lossless mode; switch back to Lossless",
+      "Pages look soft: raise the DPI or the JPEG quality in Advanced settings",
+      "Compression is slow: large or high-page-count PDFs take longer — pages are processed one by one",
+      "The PDF will not load: password-protected or corrupted files cannot be compressed"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Click + drag",
+        "description": "Drop a PDF file onto the upload area"
+      }
+    ]
+  }
+}
