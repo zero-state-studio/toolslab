@@ -1,0 +1,98 @@
+{
+  "title": "JSON Schema Generator",
+  "description": "Generate a JSON Schema from any JSON sample",
+  "placeholder": "Paste your JSON sample here…",
+  "hint": "Paste a JSON sample — object, array or API response. Array items are merged, so keys missing from some elements stay optional in the schema.",
+  "draft": "Draft",
+  "required": "Required keys",
+  "requiredAll": "All present keys",
+  "requiredNone": "None",
+  "detectFormats": "Detect formats",
+  "includeExamples": "Include examples",
+  "strictObjects": "No extra properties",
+  "titleLabel": "Schema title",
+  "titlePlaceholder": "optional, e.g. User",
+  "generate": "Generate schema",
+  "sample": "Load sample",
+  "result": "JSON Schema",
+  "copy": "Copy",
+  "copied": "Copied!",
+  "download": "Download",
+  "objects": "objects",
+  "properties": "properties",
+  "depth": "depth",
+  "formatsFound": "Formats detected",
+  "meta": {
+    "title": "JSON Schema Generator - Generate JSON Schema from JSON Free",
+    "description": "Generate a JSON Schema from any JSON sample free. Convert JSON to draft-07 or 2020-12 with merged array items and detected formats. No signup, all in browser."
+  },
+  "tagline": "Generate a JSON Schema from a real JSON sample in one click",
+  "pageDescription": "Turn any JSON sample into a valid JSON Schema with this free, browser-based generator. Paste an object, an array or a raw API response and get draft-07 or 2020-12 output with types, required keys and detected string formats. Array items are merged, so a key missing from some elements stays optional instead of over-constraining your schema. Built for developers writing API contracts and request validation. Everything runs locally — your payload is never uploaded. No signup.",
+  "instructions": {
+    "title": "How to generate a JSON Schema",
+    "steps": [
+      {
+        "title": "Paste your JSON sample",
+        "description": "Drop in an object, an array of records or a raw API response. Click 'Load sample' to see how a two-record array is handled."
+      },
+      {
+        "title": "Pick the draft",
+        "description": "Draft-07 is the safest default and what most validators (Ajv, python-jsonschema) expect. Choose 2020-12 for OpenAPI 3.1 and newer tooling."
+      },
+      {
+        "title": "Decide what is required",
+        "description": "'All present keys' marks every key found in the sample as required. Switch to 'None' when the sample is only partial and you'll tighten the schema by hand."
+      },
+      {
+        "title": "Toggle formats, examples and strictness",
+        "description": "Format detection adds date-time, date, time, email, uri, uuid and ipv4 annotations. 'No extra properties' emits additionalProperties: false; 'Include examples' keeps the sampled value on each scalar."
+      },
+      {
+        "title": "Generate, then copy or download",
+        "description": "Click Generate schema to see the result plus object, property and depth counts. Copy it or download it as a .json file ready to commit next to your API code."
+      }
+    ],
+    "features": [
+      "Draft-07 and 2020-12 output with the correct $schema URL",
+      "Array items merged into one schema — required narrows to the shared keys",
+      "Integer vs number detection, and nullable values as type lists",
+      "String format detection: date-time, date, time, email, uri, uuid, ipv4",
+      "Optional additionalProperties: false for strict contracts",
+      "Optional examples and a custom schema title",
+      "Converts JSON to JSON Schema by inferring types from the sample data",
+      "Stats on objects, properties, nesting depth and formats found",
+      "100% client-side — your JSON payload never leaves the browser, no signup"
+    ],
+    "useCases": [
+      "Write a JSON Schema for an API response you only have a sample of",
+      "Generate a validation schema for Ajv or python-jsonschema",
+      "Draft an OpenAPI 3.1 request body schema from a real payload",
+      "Document the shape of a webhook payload for your team",
+      "Add contract tests that fail when an upstream API changes shape",
+      "Build a config-file schema so editors autocomplete and validate it",
+      "Check which fields are actually optional across a list of records",
+      "Bootstrap a schema for a NoSQL collection dump"
+    ],
+    "proTips": [
+      "Paste several records, not one — that is how optional keys are discovered",
+      "Include a record with nulls so nullable fields come out as type lists",
+      "Use 'No extra properties' when the schema guards an incoming request",
+      "Turn off format detection if IDs in your data look like dates or UUIDs by accident",
+      "Set a title matching your type name to keep generated docs readable",
+      "Need TypeScript types instead? Use the JSON to TypeScript tool"
+    ],
+    "troubleshooting": [
+      "Invalid JSON error: the sample must be strict JSON — run it through JSON Repair first",
+      "Everything came out required: switch 'Required keys' to None, or paste more records",
+      "A field is typed too narrowly: add samples covering its other values, then regenerate",
+      "Unexpected format on an ID: disable format detection, UUID-like strings are annotated by design",
+      "Empty array became items: {}: there was nothing to infer from — add one example element"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+C / Cmd+C",
+        "description": "Copy the generated schema after clicking Copy"
+      }
+    ]
+  }
+}

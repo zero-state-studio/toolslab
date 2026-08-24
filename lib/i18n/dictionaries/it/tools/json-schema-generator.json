@@ -1,0 +1,112 @@
+{
+  "title": "Generatore JSON Schema",
+  "description": "Genera un JSON Schema da qualsiasi esempio JSON",
+  "placeholder": "Incolla qui il tuo esempio JSON…",
+  "hint": "Incolla un esempio JSON — oggetto, array o risposta API. Gli elementi dell'array vengono uniti, così le chiavi assenti in alcuni elementi restano opzionali nello schema.",
+  "draft": "Draft",
+  "required": "Chiavi obbligatorie",
+  "requiredAll": "Tutte le chiavi presenti",
+  "requiredNone": "Nessuna",
+  "detectFormats": "Rileva i formati",
+  "includeExamples": "Includi examples",
+  "strictObjects": "Nessuna proprietà extra",
+  "titleLabel": "Titolo dello schema",
+  "titlePlaceholder": "opzionale, es. User",
+  "generate": "Genera schema",
+  "sample": "Carica esempio",
+  "result": "JSON Schema",
+  "copy": "Copia",
+  "copied": "Copiato!",
+  "download": "Scarica",
+  "objects": "oggetti",
+  "properties": "proprietà",
+  "depth": "profondità",
+  "formatsFound": "Formati rilevati",
+  "longTailKeywords": [
+    "generatore json schema online gratis",
+    "creare json schema da json",
+    "come creare un json schema da un esempio",
+    "json schema da risposta api",
+    "generare json schema draft-07",
+    "generatore json schema 2020-12",
+    "convertire json in json schema",
+    "json schema campi obbligatori da esempio",
+    "generare json schema per validazione ajv",
+    "generatore json schema senza registrazione",
+    "json schema online nel browser",
+    "inferire json schema dai dati"
+  ],
+  "meta": {
+    "title": "Generatore JSON Schema - Crea JSON Schema da JSON Gratis",
+    "description": "Genera un JSON Schema da un esempio JSON gratis. Draft-07 o 2020-12, elementi array uniti, formati rilevati. Senza registrazione, tutto nel browser."
+  },
+  "tagline": "Genera un JSON Schema da un esempio JSON reale in un clic",
+  "pageDescription": "Trasforma qualsiasi esempio JSON in un JSON Schema valido con questo generatore gratuito che lavora nel browser. Incolla un oggetto, un array o una risposta API grezza e ottieni output draft-07 o 2020-12 con tipi, chiavi obbligatorie e formati stringa rilevati. Gli elementi dell'array vengono uniti, così una chiave assente in alcuni elementi resta opzionale invece di irrigidire lo schema. Pensato per sviluppatori che scrivono contratti API e validazione delle richieste. Tutto in locale: il payload non viene mai caricato. Senza registrazione.",
+  "instructions": {
+    "title": "Come generare un JSON Schema",
+    "steps": [
+      {
+        "title": "Incolla l'esempio JSON",
+        "description": "Inserisci un oggetto, un array di record o una risposta API grezza. Clicca 'Carica esempio' per vedere come viene gestito un array di due record."
+      },
+      {
+        "title": "Scegli il draft",
+        "description": "Draft-07 è il default più sicuro e quello atteso dalla maggior parte dei validatori (Ajv, python-jsonschema). Scegli 2020-12 per OpenAPI 3.1 e tooling più recente."
+      },
+      {
+        "title": "Decidi cosa è obbligatorio",
+        "description": "'Tutte le chiavi presenti' marca come required ogni chiave trovata nell'esempio. Passa a 'Nessuna' quando l'esempio è parziale e vuoi stringere lo schema a mano."
+      },
+      {
+        "title": "Regola formati, examples e severità",
+        "description": "Il rilevamento formati aggiunge annotazioni date-time, date, time, email, uri, uuid e ipv4. 'Nessuna proprietà extra' emette additionalProperties: false; 'Includi examples' mantiene il valore campionato su ogni scalare."
+      },
+      {
+        "title": "Genera, poi copia o scarica",
+        "description": "Clicca Genera schema per vedere il risultato più il conteggio di oggetti, proprietà e profondità. Copialo o scaricalo come file .json pronto da committare accanto al codice API."
+      }
+    ],
+    "features": [
+      "Output draft-07 e 2020-12 con l'URL $schema corretto",
+      "Elementi array uniti in un solo schema: required si riduce alle chiavi comuni",
+      "Distinzione integer/number e valori nullable come liste di tipi",
+      "Rilevamento formati stringa: date-time, date, time, email, uri, uuid, ipv4",
+      "additionalProperties: false opzionale per contratti stretti",
+      "examples opzionali e titolo dello schema personalizzato",
+      "Converte JSON in JSON Schema inferendo i tipi dai dati di esempio",
+      "Statistiche su oggetti, proprietà, profondità di nesting e formati trovati",
+      "100% lato client: il payload JSON non lascia mai il browser, senza registrazione"
+    ],
+    "useCases": [
+      "Scrivere un JSON Schema per una risposta API di cui hai solo un esempio",
+      "Generare uno schema di validazione per Ajv o python-jsonschema",
+      "Abbozzare lo schema del request body OpenAPI 3.1 da un payload reale",
+      "Documentare la struttura del payload di un webhook per il team",
+      "Aggiungere contract test che falliscono se un'API a monte cambia forma",
+      "Creare lo schema di un file di configurazione per autocomplete e validazione nell'editor",
+      "Verificare quali campi sono davvero opzionali in una lista di record",
+      "Partire da uno schema per un dump di collection NoSQL"
+    ],
+    "proTips": [
+      "Incolla più record, non uno: è così che si scoprono le chiavi opzionali",
+      "Includi un record con valori null così i campi nullable diventano liste di tipi",
+      "Usa 'Nessuna proprietà extra' quando lo schema protegge una richiesta in ingresso",
+      "Disattiva il rilevamento formati se gli ID sembrano per caso date o UUID",
+      "Imposta un titolo uguale al nome del tuo tipo per documentazione leggibile",
+      "Ti servono tipi TypeScript? Usa lo strumento JSON to TypeScript"
+    ],
+    "troubleshooting": [
+      "Errore JSON non valido: l'esempio deve essere JSON stretto — passalo prima da JSON Repair",
+      "Tutto è risultato obbligatorio: imposta 'Chiavi obbligatorie' su Nessuna, o incolla più record",
+      "Un campo ha un tipo troppo stretto: aggiungi esempi con gli altri valori e rigenera",
+      "Formato inatteso su un ID: disattiva il rilevamento formati, le stringhe simili a UUID sono annotate per scelta",
+      "Array vuoto diventato items: {}: non c'era nulla da inferire — aggiungi un elemento di esempio"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+C / Cmd+C",
+        "description": "Copia lo schema generato dopo aver cliccato Copia"
+      }
+    ]
+  }
+}

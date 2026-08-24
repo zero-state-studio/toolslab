@@ -1,0 +1,118 @@
+{
+  "title": "Compresser un PDF",
+  "description": "Réduisez la taille d'un PDF directement dans votre navigateur",
+  "placeholder": "Déposez un fichier PDF ici ou cliquez pour le charger",
+  "drop": "Déposez un fichier PDF ici ou cliquez pour le charger",
+  "level": "Niveau de compression",
+  "lossless": "Sans perte",
+  "losslessHint": "Texte sélectionnable · gain limité",
+  "light": "Légère",
+  "lightHint": "Meilleure qualité · 150 DPI",
+  "balanced": "Équilibrée",
+  "balancedHint": "Recommandée · 120 DPI",
+  "strong": "Forte",
+  "strongHint": "Fichier le plus léger · 96 DPI",
+  "advanced": "Réglages avancés",
+  "dpi": "Résolution (DPI)",
+  "quality": "Qualité JPEG",
+  "grayscale": "Convertir en niveaux de gris",
+  "compress": "Compresser le PDF",
+  "compressing": "Compression…",
+  "pages": "pages",
+  "download": "Télécharger le PDF compressé",
+  "result": "Résultat",
+  "before": "Original",
+  "after": "Compressé",
+  "saved": "gagné",
+  "onlyPdf": "Seuls les fichiers PDF sont pris en charge",
+  "readError": "Impossible de lire le PDF",
+  "noGain": "Ce PDF est déjà bien optimisé — essayez un niveau plus fort ou les niveaux de gris.",
+  "rasterNote": "Les pages sont réencodées en images : le texte n'est plus sélectionnable.",
+  "longTailKeywords": [
+    "compresser pdf en ligne gratuit",
+    "réduire la taille d'un pdf sans perdre la qualité",
+    "comment compresser un pdf pour l'envoyer par mail",
+    "compresser un pdf scanné sans perdre la qualité",
+    "compresser pdf sans inscription",
+    "compresser pdf sans filigrane",
+    "réduire un pdf à moins de 10 mo",
+    "alléger un fichier pdf en ligne",
+    "compresser pdf dans le navigateur sans envoi",
+    "meilleur compresseur pdf gratuit en ligne",
+    "compresser pdf en niveaux de gris pour réduire la taille",
+    "baisser les dpi d'un pdf pour réduire le poids"
+  ],
+  "meta": {
+    "title": "Compresser un PDF - Réduire la Taille d'un PDF en Ligne",
+    "description": "Compressez un PDF en ligne gratuitement et réduisez sa taille selon le niveau choisi. Sans envoi, sans inscription : tout reste dans votre navigateur."
+  },
+  "tagline": "Compressez vos PDF et réduisez leur taille sans rien envoyer en ligne",
+  "pageDescription": "Réduisez la taille d'un PDF avec cet outil gratuit qui fonctionne dans le navigateur. Choisissez Sans perte pour alléger le fichier sans perdre la qualité et garder le texte sélectionnable, ou Légère, Équilibrée et Forte pour réencoder les pages en images optimisées et obtenir des fichiers bien plus légers. Idéal quand la limite de 10 Mo d'un e-mail ou d'un portail vous bloque. Votre document est traité localement et ne quitte jamais votre appareil : vos fichiers confidentiels restent sécurisés. Sans inscription ni filigrane.",
+  "instructions": {
+    "title": "Comment compresser un PDF",
+    "steps": [
+      {
+        "title": "Chargez votre PDF",
+        "description": "Glissez un PDF dans la zone de dépôt ou cliquez pour le sélectionner. Le nom, le nombre de pages et la taille actuelle s'affichent aussitôt."
+      },
+      {
+        "title": "Choisissez le niveau de compression",
+        "description": "Sans perte réécrit la structure du fichier et garde le texte sélectionnable. Légère, Équilibrée et Forte réencodent chaque page en JPEG à 150, 120 ou 96 DPI pour des gains bien plus importants."
+      },
+      {
+        "title": "Affinez les réglages avancés (facultatif)",
+        "description": "Définissez un DPI exact entre 36 et 300, ajustez le curseur de qualité JPEG ou passez les pages en niveaux de gris — parfait pour les scans en noir et blanc."
+      },
+      {
+        "title": "Compressez le fichier",
+        "description": "Cliquez sur Compresser le PDF. Les pages sont traitées une à une dans votre navigateur et un compteur affiche la progression."
+      },
+      {
+        "title": "Vérifiez le gain et téléchargez",
+        "description": "Comparez la taille d'origine et la taille compressée avec le pourcentage gagné, puis téléchargez le résultat sous le nom votrefichier-compressed.pdf."
+      }
+    ],
+    "features": [
+      "Quatre niveaux : Sans perte, plus Légère, Équilibrée et Forte",
+      "Le mode Sans perte conserve un texte vectoriel et sélectionnable",
+      "DPI personnalisé (36–300) et curseur de qualité JPEG",
+      "Conversion en niveaux de gris pour gagner davantage sur les scans",
+      "Comparaison avant/après avec le pourcentage exact gagné",
+      "Taille de page en points préservée : le PDF s'imprime au même format",
+      "Ne renvoie jamais un fichier plus lourd que l'original",
+      "100 % côté client : votre PDF n'est jamais envoyé, sans inscription ni filigrane"
+    ],
+    "useCases": [
+      "Faire passer un PDF sous la limite des pièces jointes d'un e-mail",
+      "Compresser un contrat scanné avant de le déposer sur un portail",
+      "Alléger une brochure riche en photos pour un chargement rapide",
+      "Faire tenir un portfolio PDF dans la limite d'une candidature",
+      "Alléger une archive de factures pour un stockage longue durée",
+      "Compresser une présentation exportée en PDF avant de la partager",
+      "Réduire un justificatif d'identité scanné pour un formulaire administratif",
+      "Alléger un manuel avant de le joindre à un ticket"
+    ],
+    "proTips": [
+      "Essayez d'abord Sans perte si le texte doit rester recherchable et sélectionnable",
+      "Les scans et les PDF riches en photos se réduisent le plus en Équilibrée ou Forte",
+      "Les niveaux de gris divisent souvent par deux le poids d'un scan noir et blanc",
+      "Pour l'impression, restez à 150 DPI ou plus ; 96 DPI suffisent à l'écran",
+      "Visez 10 Mo ou moins quand une messagerie ou un portail refuse les pièces jointes plus lourdes",
+      "Si le gain est faible, le PDF était probablement déjà optimisé",
+      "Besoin de moins de pages plutôt que d'un fichier plus léger ? Utilisez l'outil Diviser un PDF"
+    ],
+    "troubleshooting": [
+      "0 % gagné : le fichier est déjà optimisé — essayez Forte ou activez les niveaux de gris",
+      "Le texte n'est plus sélectionnable : c'est normal hors du mode Sans perte ; revenez à Sans perte",
+      "Pages floues : augmentez le DPI ou la qualité JPEG dans les réglages avancés",
+      "Compression lente : les PDF volumineux ou à nombreuses pages prennent plus de temps, traités page par page",
+      "Le PDF ne se charge pas : les fichiers protégés par mot de passe ou corrompus ne peuvent pas être compressés"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + glisser",
+        "description": "Déposez un fichier PDF dans la zone de chargement"
+      }
+    ]
+  }
+}

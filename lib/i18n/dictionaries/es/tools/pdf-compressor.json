@@ -1,0 +1,118 @@
+{
+  "title": "Comprimir PDF",
+  "description": "Reduce el tamaño de un PDF directamente en tu navegador",
+  "placeholder": "Arrastra un archivo PDF aquí o haz clic para subirlo",
+  "drop": "Arrastra un archivo PDF aquí o haz clic para subirlo",
+  "level": "Nivel de compresión",
+  "lossless": "Sin pérdida",
+  "losslessHint": "Mantiene el texto seleccionable · ahorro pequeño",
+  "light": "Ligera",
+  "lightHint": "Mejor calidad · 150 DPI",
+  "balanced": "Equilibrada",
+  "balancedHint": "Recomendada · 120 DPI",
+  "strong": "Fuerte",
+  "strongHint": "Archivo más pequeño · 96 DPI",
+  "advanced": "Ajustes avanzados",
+  "dpi": "Resolución (DPI)",
+  "quality": "Calidad JPEG",
+  "grayscale": "Convertir a escala de grises",
+  "compress": "Comprimir PDF",
+  "compressing": "Comprimiendo…",
+  "pages": "páginas",
+  "download": "Descargar el PDF comprimido",
+  "result": "Resultado",
+  "before": "Original",
+  "after": "Comprimido",
+  "saved": "ahorrado",
+  "onlyPdf": "Solo se admiten archivos PDF",
+  "readError": "No se pudo leer el PDF",
+  "noGain": "Este PDF ya está optimizado: prueba un nivel más fuerte o la escala de grises.",
+  "rasterNote": "Las páginas se vuelven a renderizar como imágenes, por lo que el texto deja de ser seleccionable.",
+  "longTailKeywords": [
+    "comprimir pdf online gratis",
+    "reducir el tamaño de un pdf sin perder calidad",
+    "cómo comprimir un pdf para enviarlo por correo",
+    "comprimir pdf escaneado sin perder calidad",
+    "comprimir pdf sin registro",
+    "comprimir pdf sin marca de agua",
+    "reducir pdf a menos de 10 mb",
+    "hacer un pdf más pequeño online",
+    "comprimir pdf en el navegador sin subir archivos",
+    "mejor compresor de pdf gratis online",
+    "comprimir pdf en escala de grises para reducir tamaño",
+    "bajar los dpi de un pdf para reducir el peso"
+  ],
+  "meta": {
+    "title": "Comprimir PDF - Reducir el Tamaño de un PDF Online Gratis",
+    "description": "Comprime PDF online gratis y reduce el tamaño del archivo eligiendo el nivel de calidad. Sin subidas, sin registro ni marca de agua: todo en tu navegador."
+  },
+  "tagline": "Comprime PDF y reduce su tamaño sin subir nada a ningún servidor",
+  "pageDescription": "Reduce el tamaño de un PDF con esta herramienta gratuita que funciona en el navegador. Elige Sin pérdida para hacer el archivo más pequeño sin perder calidad y mantener el texto seleccionable, o Ligera, Equilibrada y Fuerte para volver a renderizar las páginas como imágenes optimizadas y obtener archivos mucho más pequeños. Pensada para quien debe entrar en el límite de 10 MB de un correo o de un portal de subida. Tu documento se procesa localmente y nunca sale de tu dispositivo, así los archivos confidenciales siguen seguros. Sin registro ni marcas de agua.",
+  "instructions": {
+    "title": "Cómo comprimir un PDF",
+    "steps": [
+      {
+        "title": "Sube tu PDF",
+        "description": "Arrastra un PDF al área de carga o haz clic para elegirlo. El nombre, el número de páginas y el tamaño actual aparecen al instante."
+      },
+      {
+        "title": "Elige el nivel de compresión",
+        "description": "Sin pérdida reescribe la estructura del archivo y mantiene el texto seleccionable. Ligera, Equilibrada y Fuerte renderizan cada página como JPEG a 150, 120 o 96 DPI para ahorrar mucho más."
+      },
+      {
+        "title": "Ajusta los avanzados (opcional)",
+        "description": "Define un DPI exacto entre 36 y 300, mueve el control de calidad JPEG o pasa las páginas a escala de grises, ideal para escaneos en blanco y negro."
+      },
+      {
+        "title": "Comprime el archivo",
+        "description": "Haz clic en Comprimir PDF. Las páginas se procesan una a una en tu navegador y un contador muestra el progreso."
+      },
+      {
+        "title": "Revisa el ahorro y descarga",
+        "description": "Compara el tamaño original y el comprimido con el porcentaje ahorrado y descarga el resultado como tuarchivo-compressed.pdf."
+      }
+    ],
+    "features": [
+      "Cuatro niveles: Sin pérdida más Ligera, Equilibrada y Fuerte",
+      "El modo Sin pérdida mantiene el texto vectorial y seleccionable",
+      "DPI personalizado (36–300) y control de calidad JPEG",
+      "Conversión a escala de grises para ahorrar más en escaneos",
+      "Comparación antes/después con el porcentaje exacto ahorrado",
+      "El tamaño de página en puntos se conserva: el PDF se imprime igual",
+      "Nunca devuelve un archivo más grande que el original",
+      "100% en el cliente: tu PDF nunca se sube, sin registro ni marcas de agua"
+    ],
+    "useCases": [
+      "Reducir un PDF por debajo del límite de adjuntos del correo",
+      "Comprimir un contrato escaneado antes de subirlo a un portal",
+      "Aligerar un folleto con muchas fotos para que cargue rápido en la web",
+      "Encajar un portafolio PDF en el límite de subida de una candidatura",
+      "Hacer más ligero un archivo de facturas para almacenarlo a largo plazo",
+      "Comprimir una presentación exportada a PDF antes de compartirla",
+      "Reducir el tamaño de un DNI escaneado para un formulario oficial",
+      "Aligerar un manual antes de adjuntarlo a un ticket"
+    ],
+    "proTips": [
+      "Prueba primero Sin pérdida si el texto debe seguir siendo buscable y seleccionable",
+      "Los escaneos y los PDF con muchas fotos se reducen más en Equilibrada o Fuerte",
+      "La escala de grises suele reducir a la mitad un escaneo en blanco y negro",
+      "Para imprimir, quédate en 150 DPI o más; 96 DPI basta para leer en pantalla",
+      "Apunta a 10 MB o menos cuando el correo o un portal rechaza adjuntos más grandes",
+      "Si el ahorro es pequeño, el PDF ya estaba optimizado",
+      "¿Necesitas menos páginas en lugar de un archivo menor? Usa la herramienta Dividir PDF"
+    ],
+    "troubleshooting": [
+      "0% ahorrado: el archivo ya está optimizado, prueba Fuerte o activa la escala de grises",
+      "El texto ya no es seleccionable: es lo esperado fuera del modo Sin pérdida; vuelve a Sin pérdida",
+      "Las páginas se ven borrosas: sube el DPI o la calidad JPEG en los ajustes avanzados",
+      "La compresión es lenta: los PDF grandes o con muchas páginas tardan más, se procesan una a una",
+      "El PDF no carga: los archivos protegidos con contraseña o corruptos no se pueden comprimir"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Clic + arrastrar",
+        "description": "Arrastra un archivo PDF al área de carga"
+      }
+    ]
+  }
+}
