@@ -297,3 +297,17 @@
 .tool-button      { transition: all 0.2s ease; }
 .tool-button:hover  { transform: scale(1.02); }
 .tool-button:active { transform: scale(0.98); }
+
+/* Tool implementations are code-split, so a skeleton holds their place until
+   the chunk mounts. Each tool declares its own real height (see
+   lib/tools/skeleton-heights.ts) via these custom properties, so swapping the
+   skeleton for the tool doesn't shift the content underneath it. */
+.tool-skeleton {
+  height: var(--tool-h-sm, 392px);
+}
+
+@media (min-width: 1024px) {
+  .tool-skeleton {
+    height: var(--tool-h-lg, 392px);
+  }
+}

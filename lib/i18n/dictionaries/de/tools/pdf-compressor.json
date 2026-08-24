@@ -1,0 +1,118 @@
+{
+  "title": "PDF komprimieren",
+  "description": "PDF-Dateigröße direkt im Browser reduzieren",
+  "placeholder": "PDF-Datei hier ablegen oder zum Hochladen klicken",
+  "drop": "PDF-Datei hier ablegen oder zum Hochladen klicken",
+  "level": "Komprimierungsstufe",
+  "lossless": "Verlustfrei",
+  "losslessHint": "Text bleibt markierbar · geringe Ersparnis",
+  "light": "Leicht",
+  "lightHint": "Beste Qualität · 150 DPI",
+  "balanced": "Ausgewogen",
+  "balancedHint": "Empfohlen · 120 DPI",
+  "strong": "Stark",
+  "strongHint": "Kleinste Datei · 96 DPI",
+  "advanced": "Erweiterte Einstellungen",
+  "dpi": "Auflösung (DPI)",
+  "quality": "JPEG-Qualität",
+  "grayscale": "In Graustufen umwandeln",
+  "compress": "PDF komprimieren",
+  "compressing": "Komprimiere…",
+  "pages": "Seiten",
+  "download": "Komprimiertes PDF herunterladen",
+  "result": "Ergebnis",
+  "before": "Original",
+  "after": "Komprimiert",
+  "saved": "gespart",
+  "onlyPdf": "Es werden nur PDF-Dateien unterstützt",
+  "readError": "PDF konnte nicht gelesen werden",
+  "noGain": "Dieses PDF ist bereits gut optimiert — probiere eine stärkere Stufe oder Graustufen.",
+  "rasterNote": "Seiten werden als Bilder neu gerendert, dadurch ist der Text nicht mehr markierbar.",
+  "longTailKeywords": [
+    "pdf verkleinern online kostenlos",
+    "pdf komprimieren ohne qualitätsverlust",
+    "wie kann ich die pdf dateigröße reduzieren",
+    "pdf für e-mail verkleinern",
+    "gescanntes pdf komprimieren ohne qualitätsverlust",
+    "pdf komprimieren ohne anmeldung",
+    "pdf verkleinern ohne wasserzeichen",
+    "pdf unter 10 mb verkleinern",
+    "pdf im browser komprimieren ohne upload",
+    "bester kostenloser pdf kompressor online",
+    "pdf in graustufen umwandeln um größe zu reduzieren",
+    "dpi eines pdf verringern für kleinere datei"
+  ],
+  "meta": {
+    "title": "PDF komprimieren - PDF-Größe Online Kostenlos Reduzieren",
+    "description": "PDF online kostenlos komprimieren und die Dateigröße über wählbare Stufen reduzieren. Kein Upload, keine Anmeldung, kein Wasserzeichen — alles im Browser."
+  },
+  "tagline": "PDF komprimieren und Dateigröße reduzieren, ohne etwas hochzuladen",
+  "pageDescription": "Reduziere die PDF-Dateigröße mit diesem kostenlosen Tool, das direkt im Browser arbeitet. Wähle Verlustfrei, um das PDF ohne Qualitätsverlust zu verkleinern und den Text markierbar zu halten, oder Leicht, Ausgewogen und Stark, um Seiten als optimierte Bilder neu zu rendern und deutlich kleinere Dateien zu erhalten. Gemacht für alle, die am 10-MB-Limit einer E-Mail oder eines Upload-Portals scheitern. Das Dokument wird lokal verarbeitet und verlässt dein Gerät nie, vertrauliche Dateien bleiben also sicher. Ohne Anmeldung, ohne Wasserzeichen.",
+  "instructions": {
+    "title": "So komprimierst du ein PDF",
+    "steps": [
+      {
+        "title": "PDF hochladen",
+        "description": "Ziehe ein PDF in den Upload-Bereich oder klicke zum Auswählen. Dateiname, Seitenzahl und aktuelle Größe erscheinen sofort."
+      },
+      {
+        "title": "Komprimierungsstufe wählen",
+        "description": "Verlustfrei schreibt die Dateistruktur neu und behält markierbaren Text. Leicht, Ausgewogen und Stark rendern jede Seite als JPEG mit 150, 120 oder 96 DPI und sparen deutlich mehr."
+      },
+      {
+        "title": "Erweiterte Einstellungen anpassen (optional)",
+        "description": "Lege einen genauen DPI-Wert zwischen 36 und 300 fest, verschiebe den JPEG-Qualitätsregler oder wandle Seiten in Graustufen um — ideal für Schwarz-Weiß-Scans."
+      },
+      {
+        "title": "Datei komprimieren",
+        "description": "Klicke auf PDF komprimieren. Die Seiten werden einzeln im Browser verarbeitet, ein Zähler zeigt den Fortschritt."
+      },
+      {
+        "title": "Ersparnis prüfen und herunterladen",
+        "description": "Vergleiche Original- und komprimierte Größe samt gesparter Prozente und lade das Ergebnis als deinedatei-compressed.pdf herunter."
+      }
+    ],
+    "features": [
+      "Vier Stufen: Verlustfrei sowie Leicht, Ausgewogen und Stark",
+      "Der Modus Verlustfrei hält Text vektorbasiert und markierbar",
+      "Eigene DPI (36–300) und JPEG-Qualitätsregler",
+      "Graustufen-Umwandlung für zusätzliche Ersparnis bei Scans",
+      "Vorher/Nachher-Vergleich mit exakter Ersparnis in Prozent",
+      "Seitengröße in Punkten bleibt erhalten — das PDF druckt im gleichen Format",
+      "Gibt niemals eine Datei zurück, die größer als das Original ist",
+      "100 % clientseitig — dein PDF wird nie hochgeladen, ohne Anmeldung oder Wasserzeichen"
+    ],
+    "useCases": [
+      "Ein PDF unter das Anhangs-Limit einer E-Mail bringen",
+      "Einen gescannten Vertrag vor dem Upload in ein Portal komprimieren",
+      "Eine fotolastige Broschüre für schnelles Laden im Web verkleinern",
+      "Ein Portfolio-PDF in das Upload-Limit einer Bewerbung bringen",
+      "Ein großes Rechnungsarchiv für die Langzeitablage leichter machen",
+      "Eine als PDF exportierte Präsentation vor dem Teilen komprimieren",
+      "Einen gescannten Ausweis für ein Behördenformular verkleinern",
+      "Ein Handbuch verkleinern, bevor es an ein Ticket angehängt wird"
+    ],
+    "proTips": [
+      "Probiere zuerst Verlustfrei, wenn Text durchsuchbar und markierbar bleiben muss",
+      "Scans und fotolastige PDFs schrumpfen mit Ausgewogen oder Stark am meisten",
+      "Graustufen halbieren die Größe eines Schwarz-Weiß-Scans oft",
+      "Für den Druck bei 150 DPI oder mehr bleiben; 96 DPI genügen am Bildschirm",
+      "Ziele auf 10 MB oder weniger, wenn Mailprogramm oder Portal größere Anhänge ablehnt",
+      "Ist die Ersparnis gering, war das PDF wahrscheinlich schon optimiert",
+      "Brauchst du weniger Seiten statt einer kleineren Datei? Nutze das Tool PDF teilen"
+    ],
+    "troubleshooting": [
+      "0 % gespart: Die Datei ist bereits optimiert — probiere Stark oder aktiviere Graustufen",
+      "Text ist nicht mehr markierbar: außerhalb von Verlustfrei ist das erwartet; wechsle zurück zu Verlustfrei",
+      "Seiten wirken unscharf: DPI oder JPEG-Qualität in den erweiterten Einstellungen erhöhen",
+      "Komprimierung ist langsam: große PDFs oder viele Seiten dauern länger, da Seite für Seite verarbeitet wird",
+      "Das PDF lädt nicht: Passwortgeschützte oder beschädigte Dateien lassen sich nicht komprimieren"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Klicken + ziehen",
+        "description": "Eine PDF-Datei in den Upload-Bereich ziehen"
+      }
+    ]
+  }
+}

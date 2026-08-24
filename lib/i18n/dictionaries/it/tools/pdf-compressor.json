@@ -1,0 +1,118 @@
+{
+  "title": "Comprimi PDF",
+  "description": "Riduci le dimensioni di un PDF direttamente nel browser",
+  "placeholder": "Trascina qui un file PDF o clicca per caricarlo",
+  "drop": "Trascina qui un file PDF o clicca per caricarlo",
+  "level": "Livello di compressione",
+  "lossless": "Senza perdita",
+  "losslessHint": "Testo selezionabile · risparmio contenuto",
+  "light": "Leggera",
+  "lightHint": "Qualità migliore · 150 DPI",
+  "balanced": "Bilanciata",
+  "balancedHint": "Consigliata · 120 DPI",
+  "strong": "Forte",
+  "strongHint": "File più piccolo · 96 DPI",
+  "advanced": "Impostazioni avanzate",
+  "dpi": "Risoluzione (DPI)",
+  "quality": "Qualità JPEG",
+  "grayscale": "Converti in scala di grigi",
+  "compress": "Comprimi PDF",
+  "compressing": "Compressione…",
+  "pages": "pagine",
+  "download": "Scarica il PDF compresso",
+  "result": "Risultato",
+  "before": "Originale",
+  "after": "Compresso",
+  "saved": "risparmiato",
+  "onlyPdf": "Sono supportati solo file PDF",
+  "readError": "Impossibile leggere il PDF",
+  "noGain": "Questo PDF è già ottimizzato — prova un livello più forte o la scala di grigi.",
+  "rasterNote": "Le pagine vengono ri-renderizzate come immagini, quindi il testo non è più selezionabile.",
+  "longTailKeywords": [
+    "comprimere pdf online gratis",
+    "ridurre dimensioni pdf senza perdere qualità",
+    "come diminuire le dimensioni di un pdf",
+    "comprimere pdf per inviarlo via email",
+    "rimpicciolire un file pdf online",
+    "comprimi pdf senza registrazione",
+    "comprimere pdf senza filigrana",
+    "comprimere pdf scansionato senza perdere qualità",
+    "ridurre un pdf sotto i 10 mb",
+    "comprimere pdf nel browser senza caricare file",
+    "miglior compressore pdf gratuito online",
+    "ridurre i dpi di un pdf per diminuire il peso"
+  ],
+  "meta": {
+    "title": "Comprimi PDF - Riduci le Dimensioni di un PDF Online Gratis",
+    "description": "Comprimi PDF online gratis e riduci le dimensioni del file scegliendo il livello di qualità. Nessun upload, nessuna registrazione: tutto nel tuo browser."
+  },
+  "tagline": "Comprimi i PDF e riduci le dimensioni senza caricare nulla online",
+  "pageDescription": "Riduci le dimensioni di un PDF con questo strumento gratuito che lavora nel browser. Scegli Senza perdita per rimpicciolire il file senza perdere qualità e mantenere il testo selezionabile, oppure Leggera, Bilanciata e Forte per ri-renderizzare le pagine come immagini ottimizzate e ottenere file molto più piccoli. Pensato per chi deve rientrare nel limite di 10 MB di email o portali di upload. Il documento resta sul tuo dispositivo, quindi i file riservati restano al sicuro. Senza registrazione e senza filigrana.",
+  "instructions": {
+    "title": "Come comprimere un PDF",
+    "steps": [
+      {
+        "title": "Carica il PDF",
+        "description": "Trascina un PDF nell'area di caricamento o clicca per sceglierlo. Nome file, numero di pagine e dimensione attuale appaiono subito."
+      },
+      {
+        "title": "Scegli il livello di compressione",
+        "description": "Senza perdita riscrive la struttura del file e mantiene il testo selezionabile. Leggera, Bilanciata e Forte ri-renderizzano ogni pagina in JPEG a 150, 120 o 96 DPI per risparmi molto maggiori."
+      },
+      {
+        "title": "Regola le impostazioni avanzate (opzionale)",
+        "description": "Imposta un DPI preciso tra 36 e 300, sposta lo slider della qualità JPEG o converti le pagine in scala di grigi — ideale per scansioni in bianco e nero."
+      },
+      {
+        "title": "Comprimi il file",
+        "description": "Clicca Comprimi PDF. Le pagine vengono elaborate una alla volta nel browser e un contatore mostra l'avanzamento."
+      },
+      {
+        "title": "Controlla il risparmio e scarica",
+        "description": "Confronta dimensione originale e compressa con la percentuale risparmiata, poi scarica il risultato come tuofile-compressed.pdf."
+      }
+    ],
+    "features": [
+      "Quattro livelli: Senza perdita più Leggera, Bilanciata e Forte",
+      "La modalità Senza perdita mantiene il testo vettoriale e selezionabile",
+      "DPI personalizzato (36–300) e slider della qualità JPEG",
+      "Conversione in scala di grigi per risparmiare di più sulle scansioni",
+      "Confronto prima/dopo con la percentuale esatta risparmiata",
+      "Dimensione pagina in punti preservata: il PDF si stampa nello stesso formato",
+      "Non restituisce mai un file più grande dell'originale",
+      "100% lato client: il PDF non viene mai caricato, senza registrazione né filigrana"
+    ],
+    "useCases": [
+      "Ridurre un PDF sotto il limite degli allegati email",
+      "Comprimere un contratto scansionato prima di caricarlo su un portale",
+      "Alleggerire una brochure piena di foto perché si apra veloce sul web",
+      "Far rientrare un portfolio PDF nel limite di upload di una candidatura",
+      "Rendere più leggero un archivio di fatture per la conservazione",
+      "Comprimere una presentazione esportata in PDF prima di condividerla",
+      "Ridurre la dimensione di un documento d'identità scansionato per un modulo online",
+      "Alleggerire un manuale prima di allegarlo a un ticket"
+    ],
+    "proTips": [
+      "Prova prima Senza perdita quando il testo deve restare ricercabile e selezionabile",
+      "Scansioni e PDF ricchi di foto si riducono di più con Bilanciata o Forte",
+      "La scala di grigi spesso dimezza il peso di una scansione in bianco e nero",
+      "Per la stampa resta a 150 DPI o più; 96 DPI bastano per la lettura a schermo",
+      "Punta a 10 MB o meno quando client di posta o portali rifiutano allegati più grandi",
+      "Se il risparmio è minimo, il PDF era probabilmente già ottimizzato",
+      "Ti servono meno pagine invece di un file più piccolo? Usa lo strumento Dividi PDF"
+    ],
+    "troubleshooting": [
+      "0% risparmiato: il file è già ottimizzato — prova Forte o attiva la scala di grigi",
+      "Il testo non è più selezionabile: è normale fuori dalla modalità Senza perdita; torna a Senza perdita",
+      "Pagine poco nitide: alza il DPI o la qualità JPEG nelle impostazioni avanzate",
+      "Compressione lenta: i PDF grandi o con molte pagine richiedono più tempo, elaborate una per una",
+      "Il PDF non si apre: i file protetti da password o corrotti non possono essere compressi"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Click + trascina",
+        "description": "Trascina un file PDF nell'area di caricamento"
+      }
+    ]
+  }
+}

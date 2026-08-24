@@ -1,0 +1,112 @@
+{
+  "title": "Gerador de JSON Schema",
+  "description": "Gere um JSON Schema a partir de qualquer amostra JSON",
+  "placeholder": "Cole aqui sua amostra JSON…",
+  "hint": "Cole uma amostra JSON — objeto, array ou resposta de API. Os itens do array são combinados, então chaves ausentes em alguns elementos ficam opcionais no schema.",
+  "draft": "Draft",
+  "required": "Chaves obrigatórias",
+  "requiredAll": "Todas as chaves presentes",
+  "requiredNone": "Nenhuma",
+  "detectFormats": "Detectar formatos",
+  "includeExamples": "Incluir examples",
+  "strictObjects": "Sem propriedades extra",
+  "titleLabel": "Título do schema",
+  "titlePlaceholder": "opcional, ex. User",
+  "generate": "Gerar schema",
+  "sample": "Carregar amostra",
+  "result": "JSON Schema",
+  "copy": "Copiar",
+  "copied": "Copiado!",
+  "download": "Baixar",
+  "objects": "objetos",
+  "properties": "propriedades",
+  "depth": "profundidade",
+  "formatsFound": "Formatos detectados",
+  "longTailKeywords": [
+    "gerador json schema online grátis",
+    "criar json schema a partir de json",
+    "como criar um json schema de um exemplo",
+    "json schema de resposta de api",
+    "gerar json schema draft-07",
+    "gerador json schema 2020-12",
+    "converter json em json schema",
+    "campos obrigatórios json schema a partir de amostra",
+    "gerar json schema para validação ajv",
+    "gerador json schema sem cadastro",
+    "json schema online no navegador",
+    "inferir json schema dos dados"
+  ],
+  "meta": {
+    "title": "Gerador de JSON Schema - Criar JSON Schema de JSON Grátis",
+    "description": "Gere um JSON Schema a partir de uma amostra JSON grátis. Draft-07 ou 2020-12, itens de array combinados, formatos detectados. Sem cadastro, no navegador."
+  },
+  "tagline": "Gere um JSON Schema a partir de uma amostra JSON em um clique",
+  "pageDescription": "Transforme qualquer amostra JSON em um JSON Schema válido com este gerador gratuito que funciona no navegador. Cole um objeto, um array ou uma resposta de API e obtenha saída draft-07 ou 2020-12 com tipos, chaves obrigatórias e formatos detectados. Os itens do array são combinados, então uma chave ausente em alguns fica opcional. Feito para quem escreve contratos de API. Tudo local: seu payload nunca é enviado. Sem cadastro.",
+  "instructions": {
+    "title": "Como gerar um JSON Schema",
+    "steps": [
+      {
+        "title": "Cole sua amostra JSON",
+        "description": "Insira um objeto, um array de registros ou uma resposta de API bruta. Clique em 'Carregar amostra' para ver como um array de dois registros é tratado."
+      },
+      {
+        "title": "Escolha o draft",
+        "description": "Draft-07 é o padrão mais seguro e o que a maioria dos validadores (Ajv, python-jsonschema) espera. Escolha 2020-12 para OpenAPI 3.1 e ferramentas mais novas."
+      },
+      {
+        "title": "Defina o que é obrigatório",
+        "description": "'Todas as chaves presentes' marca como required cada chave encontrada na amostra. Mude para 'Nenhuma' quando a amostra for parcial e você for ajustar o schema à mão."
+      },
+      {
+        "title": "Ajuste formatos, examples e rigidez",
+        "description": "A detecção de formatos adiciona anotações date-time, date, time, email, uri, uuid e ipv4. 'Sem propriedades extra' emite additionalProperties: false; 'Incluir examples' mantém o valor amostrado em cada escalar."
+      },
+      {
+        "title": "Gere e depois copie ou baixe",
+        "description": "Clique em Gerar schema para ver o resultado com a contagem de objetos, propriedades e profundidade. Copie ou baixe como arquivo .json pronto para versionar junto ao código da API."
+      }
+    ],
+    "features": [
+      "Saída draft-07 e 2020-12 com a URL $schema correta",
+      "Itens de array combinados em um único schema: required reduz às chaves comuns",
+      "Distinção entre integer e number e valores nullable como listas de tipos",
+      "Detecção de formatos de string: date-time, date, time, email, uri, uuid, ipv4",
+      "additionalProperties: false opcional para contratos estritos",
+      "examples opcionais e título de schema personalizado",
+      "Converte JSON em JSON Schema inferindo os tipos a partir da amostra",
+      "Estatísticas de objetos, propriedades, profundidade de aninhamento e formatos encontrados",
+      "100% no navegador — seu payload JSON nunca sai do dispositivo, sem cadastro"
+    ],
+    "useCases": [
+      "Escrever um JSON Schema para uma resposta de API da qual você só tem uma amostra",
+      "Gerar um schema de validação para Ajv ou python-jsonschema",
+      "Rascunhar o schema do corpo de requisição do OpenAPI 3.1 a partir de um payload real",
+      "Documentar a forma do payload de um webhook para o time",
+      "Adicionar contract tests que falham quando uma API upstream muda de forma",
+      "Criar o schema de um arquivo de configuração para autocomplete e validação no editor",
+      "Verificar quais campos são realmente opcionais em uma lista de registros",
+      "Começar um schema a partir de um dump de coleção NoSQL"
+    ],
+    "proTips": [
+      "Cole vários registros, não um: é assim que as chaves opcionais aparecem",
+      "Inclua um registro com nulls para que campos nullable saiam como listas de tipos",
+      "Use 'Sem propriedades extra' quando o schema protege uma requisição de entrada",
+      "Desligue a detecção de formatos se seus IDs parecerem datas ou UUID por acaso",
+      "Defina um título igual ao nome do seu tipo para manter a documentação legível",
+      "Precisa de tipos TypeScript? Use a ferramenta JSON to TypeScript"
+    ],
+    "troubleshooting": [
+      "Erro de JSON inválido: a amostra precisa ser JSON estrito — passe antes pelo JSON Repair",
+      "Tudo ficou obrigatório: mude 'Chaves obrigatórias' para Nenhuma, ou cole mais registros",
+      "Um campo ficou com tipo estreito demais: acrescente amostras com os outros valores e gere novamente",
+      "Formato inesperado em um ID: desative a detecção, strings parecidas com UUID são anotadas de propósito",
+      "Array vazio virou items: {}: não havia o que inferir — adicione um elemento de exemplo"
+    ],
+    "keyboardShortcuts": [
+      {
+        "keys": "Ctrl+C / Cmd+C",
+        "description": "Copie o schema gerado depois de clicar em Copiar"
+      }
+    ]
+  }
+}

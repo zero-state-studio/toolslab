@@ -41,6 +41,15 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
 });
 
+const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT;
+const adsEnabled =
+  process.env.NEXT_PUBLIC_ENABLE_ADS === 'true' && Boolean(adsenseClient);
+
+// Google's official snippet: announces to the AdSense tag that Funding Choices
+// is already loading, so it doesn't fetch a second copy. Runs from <head>, where
+// document.body may not exist yet, hence the retry.
+const GOOGLEFC_PRESENT_SIGNAL = `(function(){function s(){if(!window.frames['googlefcPresent']){if(document.body){var i=document.createElement('iframe');i.style='width:0;height:0;border:none;z-index:-1000;left:-1000px;top:-1000px';i.style.display='none';i.name='googlefcPresent';document.body.appendChild(i);}else{setTimeout(s,0);}}}s();})();`;
+
 /**
  * Shared <html>/<body> shell used by both root layouts.
  *
@@ -72,6 +81,42 @@ export async function RootDocument({
         {/* Umami analytics endpoints */}
         <link rel="dns-prefetch" href="https://cloud.umami.is" />
         <link rel="preconnect" href="https://cloud.umami.is" crossOrigin="" />
+        {adsEnabled && (
+          <>
+            <link
+              rel="preconnect"
+              href="https://fundingchoicesmessages.google.com"
+            />
+            <link
+              rel="preconnect"
+              href="https://pagead2.googlesyndication.com"
+            />
+            <link
+              rel="dns-prefetch"
+              href="https://googleads.g.doubleclick.net"
+            />
+            {/* Google Funding Choices (consent CMP), loaded here instead of
+                being pulled in by adsbygoogle.js on window.load.
+
+                The consent dialog is the biggest thing on screen, so whenever
+                it paints it becomes the LCP element. Behind lazyOnload it
+                painted at ~2.5s on every page — which is exactly the field LCP
+                Search Console reported for all 104 URLs. Its script was also
+                the whole of the 610ms main-thread block that landed right when
+                users start clicking (INP). Loading it async from <head> starts
+                the chain during HTML parse instead of after load, without ever
+                blocking first paint. The ad script itself stays lazyOnload. */}
+            <script
+              async
+              src={`https://fundingchoicesmessages.google.com/i/${adsenseClient}?ers=1`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: GOOGLEFC_PRESENT_SIGNAL,
+              }}
+            />
+          </>
+        )}
       </head>
       <body
         className={cn(
