@@ -2,11 +2,28 @@
 
 import React, { Suspense, lazy, ComponentType } from 'react';
 import { BaseToolProps } from '@/lib/types/tools';
+import {
+  TOOL_SKELETON_HEIGHTS,
+  DEFAULT_SKELETON_HEIGHT,
+} from '@/lib/tools/skeleton-heights';
 
-// Loading component for tool implementations
-function ToolLoadingSkeleton() {
+// Loading component for tool implementations.
+// Sized to the tool it stands in for, so mounting the real UI doesn't move
+// anything below it (see lib/tools/skeleton-heights.ts).
+function ToolLoadingSkeleton({ toolId }: { toolId?: string }) {
+  const [sm, lg] =
+    (toolId && TOOL_SKELETON_HEIGHTS[toolId]) || DEFAULT_SKELETON_HEIGHT;
+
   return (
-    <div className="animate-pulse space-y-6">
+    <div
+      className="tool-skeleton animate-pulse space-y-6 overflow-hidden"
+      style={
+        {
+          '--tool-h-sm': `${sm}px`,
+          '--tool-h-lg': `${lg}px`,
+        } as React.CSSProperties
+      }
+    >
       {/* Input section skeleton */}
       <div className="space-y-2">
         <div className="h-4 w-16 rounded bg-gray-200 dark:bg-gray-700"></div>
@@ -187,7 +204,7 @@ const LazyToolLoader = React.memo(function LazyToolLoader({
   }
 
   return (
-    <Suspense fallback={<ToolLoadingSkeleton />}>
+    <Suspense fallback={<ToolLoadingSkeleton toolId={toolId} />}>
       <ErrorBoundary>
         <ToolComponent {...props} />
       </ErrorBoundary>
